@@ -1,0 +1,23 @@
+var searchData=
+[
+  ['m_5falpha_0',['m_alpha',['../class_optimist_1_1_nonlinear_solver.html#a6c285ee03d40784885ca63fe798743b0',1,'Optimist::NonlinearSolver']]],
+  ['m_5fconverged_1',['m_converged',['../class_optimist_1_1_nonlinear_solver.html#a232b4da92c46cf12c5be6f0f10f5c529',1,'Optimist::NonlinearSolver']]],
+  ['m_5felapsed_5ftime_2',['m_elapsed_time',['../class_optimist_1_1_tic_toc.html#adb7ef854e3fdfe6b5fb407aa34b2945a',1,'Optimist::TicToc']]],
+  ['m_5ffunction_3',['m_function',['../class_optimist_1_1_nonlinear_solver.html#a5f9a0d8f85f2fff3065ede0b0dfe7574',1,'Optimist::NonlinearSolver']]],
+  ['m_5ffunction_5fevaluations_4',['m_function_evaluations',['../class_optimist_1_1_nonlinear_solver.html#a1c7dec7df1b372779c9c506a59542e48',1,'Optimist::NonlinearSolver']]],
+  ['m_5fiterations_5',['m_iterations',['../class_optimist_1_1_nonlinear_solver.html#adcb0876421dbcb5eed15509b18e769ad',1,'Optimist::NonlinearSolver']]],
+  ['m_5fjacobian_6',['m_jacobian',['../class_optimist_1_1_nonlinear_solver.html#a2259928995f1beb87651cd898df6899a',1,'Optimist::NonlinearSolver']]],
+  ['m_5fjacobian_5fevaluations_7',['m_jacobian_evaluations',['../class_optimist_1_1_nonlinear_solver.html#a4059d82109b40c0212e7988bdd927ce8',1,'Optimist::NonlinearSolver']]],
+  ['m_5flu_8',['m_lu',['../class_optimist_1_1_newton.html#a142342454c1440913c4994bd9c10d107',1,'Optimist::Newton']]],
+  ['m_5fmax_5ffunction_5fevaluations_9',['m_max_function_evaluations',['../class_optimist_1_1_nonlinear_solver.html#a343218586c6a23b9e394afefe239e5c4',1,'Optimist::NonlinearSolver']]],
+  ['m_5fmax_5fiterations_10',['m_max_iterations',['../class_optimist_1_1_nonlinear_solver.html#ad092bb8f334f67cb5eb420484ac1fce5',1,'Optimist::NonlinearSolver']]],
+  ['m_5fmax_5fjacobian_5fevaluations_11',['m_max_jacobian_evaluations',['../class_optimist_1_1_nonlinear_solver.html#af015da2fe88ff5d93e52110089da9a21',1,'Optimist::NonlinearSolver']]],
+  ['m_5fmax_5frelaxations_12',['m_max_relaxations',['../class_optimist_1_1_nonlinear_solver.html#a08a4e4ddef45fce5366f3311e65150a6',1,'Optimist::NonlinearSolver']]],
+  ['m_5frelaxations_13',['m_relaxations',['../class_optimist_1_1_nonlinear_solver.html#a75532c17cf5f05715306fd89571c315d',1,'Optimist::NonlinearSolver']]],
+  ['m_5fresiduals_14',['m_residuals',['../class_optimist_1_1_nonlinear_solver.html#abf5307352bda8eaea5fb3f0ab6d15c87',1,'Optimist::NonlinearSolver']]],
+  ['m_5fstart_5ftime_15',['m_start_time',['../class_optimist_1_1_tic_toc.html#a2542f53cb612724eedcf1a0a5cee4d51',1,'Optimist::TicToc']]],
+  ['m_5fstop_5ftime_16',['m_stop_time',['../class_optimist_1_1_tic_toc.html#ac4a10124cbea5c20eb7a2f9452658fd4',1,'Optimist::TicToc']]],
+  ['m_5ftolerance_17',['m_tolerance',['../class_optimist_1_1_nonlinear_solver.html#a0dfab507bdcc3df4f9cb0de3f7cd4490',1,'Optimist::NonlinearSolver']]],
+  ['m_5ftype_18',['m_type',['../class_optimist_1_1_broyden.html#a5504d37b7347362c0bcd95325f18d402',1,'Optimist::Broyden']]],
+  ['m_5fverbose_19',['m_verbose',['../class_optimist_1_1_nonlinear_solver.html#acbdcfdf86414996bfd5a9c7e79632d0f',1,'Optimist::NonlinearSolver']]]
+];
