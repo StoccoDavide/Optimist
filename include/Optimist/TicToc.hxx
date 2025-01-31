@@ -41,7 +41,6 @@ namespace Optimist {
     Time              m_elapsed_time; /**< Elapsed time. */
 
   public:
-
     /**
     * Copy constructor for the timer.
     */

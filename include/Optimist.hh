@@ -82,10 +82,6 @@ namespace Optimist
   using Real    = double; /**< Real number type. */
   using Integer = int;    /**< Integer number type. */
 
-  using Vector0 = Eigen::Vector<Real, 0>;    /**< \f$ 0 \times 1 \f$ vector of Real number type (column vector). */
-  using Matrix0 = Eigen::Matrix<Real, 0, 0>; /**< \f$ 0 \times 0 \f$ matrix of Real number type. */
-  using Vector1 = Eigen::Vector<Real, 1>;    /**< \f$ 1 \times 1 \f$ vector of Real number type (column vector). */
-  using Matrix1 = Eigen::Matrix<Real, 1, 1>; /**< \f$ 1 \times 1 \f$ matrix of Real number type. */
   using Vector2 = Eigen::Vector<Real, 2>;    /**< \f$ 2 \times 1 \f$ vector of Real number type (column vector). */
   using Matrix2 = Eigen::Matrix<Real, 2, 2>; /**< \f$ 2 \times 2 \f$ matrix of Real number type. */
   using Vector3 = Eigen::Vector<Real, 3>;    /**< \f$ 3 \times 1 \f$ vector of Real number type (column vector). */
@@ -123,14 +119,6 @@ namespace Optimist
   static Real const EPSILON_LOW    = Real(1.0e-08);                                   /**< Low precision epsilon static constant value. */
   static Real const INFTY          = std::numeric_limits<Real>::infinity();           /**< Infinity static constant value. */
   static Real const QUIET_NAN      = std::numeric_limits<Real>::quiet_NaN();          /**< Not-a-number static constant value. */
-
-  static Vector1 const NAN_VEC1      = Vector1::Constant(QUIET_NAN); /**< Not-a-number \f$ 1 \times 1 \f$ vector static constant object. */
-  static Matrix1 const NAN_MAT1      = Matrix1::Constant(QUIET_NAN); /**< Not-a-number \f$ 1 \times 1 \f$ matrix static constant object. */
-  static Vector1 const ZEROS_VEC1    = Vector1::Zero();              /**< Zeros \f$ 1 \times 1 \f$ vector static constant object. */
-  static Matrix1 const ZEROS_MAT1    = Matrix1::Zero();              /**< Zeros \f$ 1 \times 1 \f$ matrix static constant object. */
-  static Vector1 const ONES_VEC1     = Vector1::Ones();              /**< Ones \f$ 1 \times 1 \f$ vector static constant object. */
-  static Matrix1 const ONES_MAT1     = Matrix1::Ones();              /**< Ones \f$ 1 \times 1 \f$ matrix static constant object. */
-  static Matrix1 const IDENTITY_MAT1 = Matrix1::Identity();          /**< Identity \f$ 1 \times 1 \f$ matrix static constant object. */
 
   static Vector2 const NAN_VEC2      = Vector2::Constant(QUIET_NAN); /**< Not-a-number \f$ 2 \times 1 \f$ vector static constant object. */
   static Matrix2 const NAN_MAT2      = Matrix2::Constant(QUIET_NAN); /**< Not-a-number \f$ 2 \times 2 \f$ matrix static constant object. */
@@ -226,15 +214,22 @@ namespace Optimist
 // Time measurement
 #include "Optimist/TicToc.hxx"
 
-// Nonlinear systems of equations solvers
-#include "Optimist/NonlinearSolver/NonlinearSolver.hxx"
-#include "Optimist/NonlinearSolver/Newton.hxx"
-#include "Optimist/NonlinearSolver/Broyden.hxx"
+// The generic solver
+#include "Optimist/Solver.hxx"
 
-// ODE/DAE system of equations
-#include "Optimist/System/Implicit.hxx"
-#include "Optimist/System/Explicit.hxx"
-#include "Optimist/System/SemiExplicit.hxx"
-#include "Optimist/System/Linear.hxx"
+// Scalar solvers
+#include "Optimist/ScalarSolver.hxx"
+
+// Root-finding solvers
+#include "Optimist/RootFinder.hxx"
+#include "Optimist/RootFinder/Newton.hxx"
+#include "Optimist/RootFinder/Broyden.hxx"
+#include "Optimist/RootFinder/Greenstadt.hxx"
+
+// Optimization solvers
+#include "Optimist/Optimizer.hxx"
+
+// Mapping solvers to functions
+#include "Optimist/Factory.hxx"
 
 #endif // INCLUDE_OPTIMIST_HH

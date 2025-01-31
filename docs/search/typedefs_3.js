@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['jacobian_0',['Jacobian',['../class_optimist_1_1_broyden.html#aeb16efc2637fc29c3956e5576cd26eb3',1,'Optimist::Broyden::Jacobian'],['../class_optimist_1_1_newton.html#a8670a97567eaefbb0cf1390635c92ded',1,'Optimist::Newton::Jacobian'],['../class_optimist_1_1_nonlinear_solver.html#a157be6102d8799e9295b0849cf3b23e0',1,'Optimist::NonlinearSolver::Jacobian']]]
+  ['hessian_0',['Hessian',['../class_optimist_1_1_optimizer_1_1_optimizer.html#a78195c0e9364cabc385b4e6dce90458e',1,'Optimist::Optimizer::Optimizer']]]
 ];

@@ -25,12 +25,12 @@
 var NAVTREE =
 [
   [ "Optimist", "index.html", [
-    [ "Installation", "index.html#autotoc_md4", [
-      [ "Quick and dirty", "index.html#autotoc_md5", null ],
-      [ "CMake", "index.html#autotoc_md6", null ]
+    [ "Installation", "index.html#autotoc_md8", [
+      [ "Quick and dirty", "index.html#autotoc_md9", null ],
+      [ "CMake", "index.html#autotoc_md10", null ]
     ] ],
-    [ "Authors", "index.html#autotoc_md7", null ],
-    [ "License", "index.html#autotoc_md8", null ],
+    [ "Authors", "index.html#autotoc_md11", null ],
+    [ "License", "index.html#autotoc_md12", null ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
@@ -64,7 +64,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_broyden_8hxx.html",
-"namespace_optimist.html#a4a916affa31c4851f364a725449a74a3"
+"class_optimist_1_1_solver.html#a5864cd0f35177520fac1d9a54dec3880"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['integer_0',['Integer',['../namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452',1,'Optimist']]]
+  ['gradient_0',['Gradient',['../class_optimist_1_1_optimizer_1_1_optimizer.html#abc982ee7713fa8112f70add8ee66962c',1,'Optimist::Optimizer::Optimizer']]]
 ];

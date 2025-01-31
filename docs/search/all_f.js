@@ -1,11 +1,12 @@
 var searchData=
 [
-  ['tic_0',['tic',['../class_optimist_1_1_tic_toc.html#aaaaffa4a10b5f92e6ad29f26e1f4c974',1,'Optimist::TicToc']]],
-  ['tictoc_1',['TicToc',['../class_optimist_1_1_tic_toc.html',1,'Optimist::TicToc'],['../class_optimist_1_1_tic_toc.html#a26779a4b5dcd799554479f941bf53750',1,'Optimist::TicToc::TicToc(const TicToc &amp;)=delete'],['../class_optimist_1_1_tic_toc.html#ac14a6ef1b0b1a474e58ea97f9dfa6b62',1,'Optimist::TicToc::TicToc()']]],
-  ['tictoc_2ehxx_2',['TicToc.hxx',['../_tic_toc_8hxx.html',1,'']]],
-  ['time_3',['Time',['../class_optimist_1_1_tic_toc.html#a5885bcf2aa480457550c15733b64bb45',1,'Optimist::TicToc']]],
-  ['toc_4',['toc',['../class_optimist_1_1_tic_toc.html#afbfd2a45f4bbc938345375bc5d53ed8c',1,'Optimist::TicToc']]],
-  ['tolerance_5',['tolerance',['../class_optimist_1_1_nonlinear_solver.html#a8774de2b8e54d0fc63374a162facf2b6',1,'Optimist::NonlinearSolver::tolerance() const'],['../class_optimist_1_1_nonlinear_solver.html#a1e4c2630357572e12e9ce9eba2bebf0e',1,'Optimist::NonlinearSolver::tolerance(Real t_tolerance)']]],
-  ['type_6',['Type',['../class_optimist_1_1_broyden.html#ac3684d9c28953333f29708d3701cca4b',1,'Optimist::Broyden']]],
-  ['type_7',['type',['../class_optimist_1_1_broyden.html#ab0a56fbf33ed5b7b840049df6c232b12',1,'Optimist::Broyden::type() const'],['../class_optimist_1_1_broyden.html#a2a9fbc58d881d24b88b0c8d8ef26f48a',1,'Optimist::Broyden::type(Type t_type)']]]
+  ['real_0',['Real',['../namespace_optimist.html#a81198c1084f49913c4731c80160f6713',1,'Optimist']]],
+  ['relaxations_1',['relaxations',['../class_optimist_1_1_solver.html#ae8f86d935c9086e5dfd3bf34e2ecc6a8',1,'Optimist::Solver']]],
+  ['reset_2',['reset',['../class_optimist_1_1_solver.html#aa6c1d9d1e640b61adc05296241db463a',1,'Optimist::Solver']]],
+  ['root_20finder_3',['Root finder',['../class_optimist_1_1_root_finder_1_1_root_finder.html#autotoc_md1',1,'']]],
+  ['rootfind_4',['Rootfind',['../namespace_optimist.html#ae934838a70af85a291d42d009c5e3554',1,'Optimist']]],
+  ['rootfinder_5',['RootFinder',['../class_optimist_1_1_root_finder_1_1_root_finder.html',1,'Optimist::RootFinder::RootFinder&lt; N &gt;'],['../class_optimist_1_1_root_finder_1_1_root_finder.html#a91e0803a7f4803e5c600cb59420e3660',1,'Optimist::RootFinder::RootFinder::RootFinder()']]],
+  ['rootfinder_2ehxx_6',['RootFinder.hxx',['../_root_finder_8hxx.html',1,'']]],
+  ['rootfindfunction_7',['RootfindFunction',['../namespace_optimist.html#a8a7bd9f0ca5e319f0ade961d3dba933b',1,'Optimist']]],
+  ['rowvector_8',['RowVector',['../class_optimist_1_1_optimizer_1_1_optimizer.html#aa379c41a6cc33afa7dc4a36dfb865a95',1,'Optimist::Optimizer::Optimizer']]]
 ];

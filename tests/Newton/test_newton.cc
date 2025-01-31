@@ -12,37 +12,40 @@
 #include <gtest/gtest.h>
 
 using namespace Optimist;
+using namespace Optimist::RootFinder;
 
 // Funzione di Booth.
 TEST(Newton, Booth) {
-  // Non-linear solver.
-  Optimist::Newton<2> nlsolver;
-  // Starting entries.
+  // Non-linear solver
+  Newton<2> nlsolver;
+  // Starting entries
   Vector2 x_ini = Vector2::Zero();
   Vector2 x_out = Vector2::Zero();
-  auto fun = [](Vector2 const & X, Vector2 & F) {
+  Newton<2>::Function fun = [](Vector2 const & X, Vector2 & F) {
     F << X(0) + 2.0*X(1) - 7.0, 2.0*X(0) + X(1) - 5.0;
   };
-  auto jac = [](Vector2 const & /*X*/, Matrix2 & JF) {
+  Newton<2>::Jacobian jac = [](Vector2 const & /*X*/, Matrix2 & JF) {
     JF << 1.0, 2.0, 2.0, 1.0;
   };
-  // Solve without damping.
+  // Solve without damping
+  nlsolver.disable_damped_mode();
   nlsolver.solve(fun, jac, x_ini, x_out);
   EXPECT_LE((x_out - Vector2(1.0, 3.0)).maxCoeff(), EPSILON_LOW);
   EXPECT_TRUE(nlsolver.converged());
-  // Solve with damping.
-  nlsolver.solve_damped(fun, jac, x_ini, x_out);
+  // Solve with damping
+  nlsolver.enable_damped_mode();
+  nlsolver.solve(fun, jac, x_ini, x_out);
   EXPECT_LE((x_out - Vector2(1.0, 3.0)).maxCoeff(), EPSILON_LOW);
   EXPECT_TRUE(nlsolver.converged());
 }
 
-// 2D Rosenbrock function.
+// 2D Rosenbrock function
 TEST(Newton, Rosenbrock2D) {
-  // Non-linear solver.
-  Optimist::Newton<2> nlsolver;
+  // Non-linear solver
+  Newton<2> nlsolver;
   for (Real a = 1.0; a <= 5.0; a += 1.0) {
     for (Real b = 1.0; b <= 5.0; b += 1.0) {
-      // Starting entries.
+      // Starting entries
       Vector2 x_ini = Vector2::Zero();
       Vector2 x_out = Vector2::Zero();
       auto fun = [a, b](Vector2 const & X, Vector2 & F) {
@@ -51,25 +54,27 @@ TEST(Newton, Rosenbrock2D) {
       auto jac = [a, b](Vector2 const & /*X*/, Matrix2 & JF) {
         JF << -a, Real(0.0), Real(0.0), b;
       };
-      // Solve without damping.
+      // Solve without damping
+      nlsolver.disable_damped_mode();
       nlsolver.solve(fun, jac, x_ini, x_out);
       EXPECT_LE((x_out - Vector2::Ones()).maxCoeff(), EPSILON_LOW);
       EXPECT_TRUE(nlsolver.converged());
-      // Solve with damping.
-      nlsolver.solve_damped(fun, jac, x_ini, x_out);
+      // Solve with damping
+      nlsolver.enable_damped_mode();
+      nlsolver.solve(fun, jac, x_ini, x_out);
       EXPECT_LE((x_out - Vector2::Ones()).maxCoeff(), EPSILON_LOW);
       EXPECT_TRUE(nlsolver.converged());
     }
   }
 }
 
-// 3D Rosenbrock function.
+// 3D Rosenbrock function
 TEST(Newton, Rosenbrock3D) {
-  // Non-linear solver.
-  Optimist::Newton<3> nlsolver;
+  // Non-linear solver
+  Newton<3> nlsolver;
   for (Real a = 1.0; a <= 10.0; a += 1.0) {
     for (Real b = 1.0; b <= 10.0; b += 1.0) {
-        // Starting entries.
+        // Starting entries
         Vector3 x_ini = Vector3::Zero();
         Vector3 x_out = Vector3::Zero();
         auto fun = [a, b](Vector3 const & X, Vector3 & F) {
@@ -78,12 +83,14 @@ TEST(Newton, Rosenbrock3D) {
         auto jac = [a, b](Vector3 const & X, Matrix3 & JF) {
           JF << -a, Real(0.0), Real(0.0), -2*b*X(0), b, Real(0.0), Real(0.0), -2*b*X(1), b;
         };
-        // Solve without damping.
+        // Solve without damping
+        nlsolver.disable_damped_mode();
         nlsolver.solve(fun, jac, x_ini, x_out);
         EXPECT_LE((x_out - Vector3::Ones()).maxCoeff(), EPSILON_LOW);
         EXPECT_TRUE(nlsolver.converged());
-        // Solve with damping.
-        nlsolver.solve_damped(fun, jac, x_ini, x_out);
+        // Solve with damping
+        nlsolver.enable_damped_mode();
+        nlsolver.solve(fun, jac, x_ini, x_out);
         EXPECT_LE((x_out - Vector3::Ones()).maxCoeff(), EPSILON_LOW);
         EXPECT_TRUE(nlsolver.converged());
     }
@@ -100,16 +107,16 @@ void for_unrolled(F&& f) {
   repeat_unrolled(std::forward<F>(f), std::index_sequence<Iterations...>{});
 }
 
-// ND Rosenbrock function.
+// ND Rosenbrock function
 TEST(Newton, RosenbrockND) {
-  for_unrolled<1, 2, 3>([](auto D) {
-    using Vector = typename Optimist::Newton<D>::Vector;
-    using Matrix = typename Optimist::Newton<D>::Matrix;
-    // Non-linear solver.
-    Optimist::Newton<D> nlsolver;
+  for_unrolled<2, 3>([](auto D) {
+    using Vector = typename Newton<D>::Vector;
+    using Matrix = typename Newton<D>::Matrix;
+    // Non-linear solver
+    Newton<D> nlsolver;
     for (Real a = 1.0; a <= 10.0; a += 1.0) {
       for (Real b = 1.0; b <= 10.0; b += 1.0) {
-        // Starting entries.
+        // Starting entries
         Vector x_ini = Vector::Zero();
         Vector x_out = Vector::Zero();
         auto fun = [a, b, D](Vector const & X, Vector & F) {
@@ -126,12 +133,14 @@ TEST(Newton, RosenbrockND) {
             JF(i, i-1) = -2*b*X(i-1);
           }
         };
-        // Solve without damping.
+        // Solve without damping
+        nlsolver.disable_damped_mode();
         nlsolver.solve(fun, jac, x_ini, x_out);
         EXPECT_LE((x_out - Vector::Ones()).maxCoeff(), EPSILON_LOW);
         EXPECT_TRUE(nlsolver.converged());
-        // Solve with damping.
-        nlsolver.solve_damped(fun, jac, x_ini, x_out);
+        // Solve with damping
+        nlsolver.enable_damped_mode();
+        nlsolver.solve(fun, jac, x_ini, x_out);
         EXPECT_LE((x_out - Vector::Ones()).maxCoeff(), EPSILON_LOW);
         EXPECT_TRUE(nlsolver.converged());
       }

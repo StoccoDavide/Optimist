@@ -1,16 +1,11 @@
 var searchData=
 [
-  ['vector_0',['Vector',['../class_optimist_1_1_broyden.html#a0ae531a0f991150292ca480f5ce9d727',1,'Optimist::Broyden::Vector'],['../class_optimist_1_1_newton.html#a4a043570b1b0bffdc285603fb1ab7222',1,'Optimist::Newton::Vector'],['../class_optimist_1_1_nonlinear_solver.html#a9a948e32a9d028fef8d2e95619004c5f',1,'Optimist::NonlinearSolver::Vector']]],
-  ['vector0_1',['Vector0',['../namespace_optimist.html#af17fdc8ffe58574d0bb928923087fa8f',1,'Optimist']]],
-  ['vector1_2',['Vector1',['../namespace_optimist.html#afc206bb093888d7fa8e6821b0a7dfd86',1,'Optimist']]],
-  ['vector2_3',['Vector2',['../namespace_optimist.html#a75cad763b359459eaa3fc52e1c6087a9',1,'Optimist']]],
-  ['vector3_4',['Vector3',['../namespace_optimist.html#a85c70aba1f85994d175fc1f08324ffbd',1,'Optimist']]],
-  ['vector4_5',['Vector4',['../namespace_optimist.html#a03f571a92af61b4bd8f932a129f00991',1,'Optimist']]],
-  ['vector5_6',['Vector5',['../namespace_optimist.html#a17ef1f38066b2e4a35ebec947a2c4793',1,'Optimist']]],
-  ['vector6_7',['Vector6',['../namespace_optimist.html#a2c81929fff79512176826aaf35e5b378',1,'Optimist']]],
-  ['vector7_8',['Vector7',['../namespace_optimist.html#a1b533ff408692c12ca84e5f0ec8ba10d',1,'Optimist']]],
-  ['vector8_9',['Vector8',['../namespace_optimist.html#a36bd7c3740353ae964510ef9976bde9a',1,'Optimist']]],
-  ['vector9_10',['Vector9',['../namespace_optimist.html#a367d1182f0da870a52486c8e579371b8',1,'Optimist']]],
-  ['vectorx_11',['VectorX',['../namespace_optimist.html#a1c4721d50fea2c6ccf17b3f7dfa1c11b',1,'Optimist']]],
-  ['verbose_5fmode_12',['verbose_mode',['../class_optimist_1_1_nonlinear_solver.html#a6d040d868311be703d6bc013d7622d9e',1,'Optimist::NonlinearSolver']]]
+  ['tic_0',['tic',['../class_optimist_1_1_tic_toc.html#aaaaffa4a10b5f92e6ad29f26e1f4c974',1,'Optimist::TicToc']]],
+  ['tictoc_1',['TicToc',['../class_optimist_1_1_tic_toc.html',1,'Optimist::TicToc'],['../class_optimist_1_1_tic_toc.html#a26779a4b5dcd799554479f941bf53750',1,'Optimist::TicToc::TicToc(const TicToc &amp;)=delete'],['../class_optimist_1_1_tic_toc.html#ac14a6ef1b0b1a474e58ea97f9dfa6b62',1,'Optimist::TicToc::TicToc()']]],
+  ['tictoc_2ehxx_2',['TicToc.hxx',['../_tic_toc_8hxx.html',1,'']]],
+  ['time_3',['Time',['../class_optimist_1_1_tic_toc.html#a5885bcf2aa480457550c15733b64bb45',1,'Optimist::TicToc']]],
+  ['toc_4',['toc',['../class_optimist_1_1_tic_toc.html#afbfd2a45f4bbc938345375bc5d53ed8c',1,'Optimist::TicToc']]],
+  ['tolerance_5',['tolerance',['../class_optimist_1_1_solver.html#ad25694d70009fae966613de68c367328',1,'Optimist::Solver::tolerance() const'],['../class_optimist_1_1_solver.html#a110516adcdaa3462d3096c8236bf123b',1,'Optimist::Solver::tolerance(Real t_tolerance)']]],
+  ['trace_6',['trace',['../class_optimist_1_1_solver.html#a25a58fda5e26e32df2a41daab061f3d7',1,'Optimist::Solver']]],
+  ['tracetype_7',['TraceType',['../class_optimist_1_1_solver.html#a15994bb286ebbf3ecf41b39837518d32',1,'Optimist::Solver']]]
 ];

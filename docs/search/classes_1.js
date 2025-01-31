@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['newton_0',['Newton',['../class_optimist_1_1_newton.html',1,'Optimist']]],
-  ['nonlinearsolver_1',['NonlinearSolver',['../class_optimist_1_1_nonlinear_solver.html',1,'Optimist']]]
+  ['greenstadt_0',['Greenstadt',['../class_optimist_1_1_root_finder_1_1_greenstadt.html',1,'Optimist::RootFinder']]]
 ];

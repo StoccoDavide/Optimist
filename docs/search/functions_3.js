@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['disable_5fverbose_5fmode_0',['disable_verbose_mode',['../class_optimist_1_1_nonlinear_solver.html#a357a7ad097fb19d2077c8e42745ef286',1,'Optimist::NonlinearSolver']]]
+  ['damped_5fmode_0',['damped_mode',['../class_optimist_1_1_solver.html#a4506d1681725ae14ff41654014d3a683',1,'Optimist::Solver::damped_mode(bool t_damped)'],['../class_optimist_1_1_solver.html#af62e8c87cc9bf7a5b534a45fe7eac8b2',1,'Optimist::Solver::damped_mode() const']]],
+  ['disable_5fdamped_5fmode_1',['disable_damped_mode',['../class_optimist_1_1_solver.html#a6286f49953c25160eef3e1c6e998c3de',1,'Optimist::Solver']]],
+  ['disable_5fverbose_5fmode_2',['disable_verbose_mode',['../class_optimist_1_1_solver.html#a21a6ccccf79c99bc8e969c118e633282',1,'Optimist::Solver']]]
 ];

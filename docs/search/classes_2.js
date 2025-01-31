@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['tictoc_0',['TicToc',['../class_optimist_1_1_tic_toc.html',1,'Optimist']]]
+  ['newton_0',['Newton',['../class_optimist_1_1_root_finder_1_1_newton.html',1,'Optimist::RootFinder']]]
 ];

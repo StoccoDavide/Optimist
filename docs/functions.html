@@ -142,23 +142,25 @@ $(function(){initNavTree('functions.html',''); initResizable(true); });
 <div class="textblock">Here is a list of all class members with links to the classes they belong to:</div>
 
 <h3><a id="index_a" name="index_a"></a>- a -</h3><ul>
-<li>alpha()&#160;:&#160;<a class="el" href="class_optimist_1_1_nonlinear_solver.html#a258a78bec456db9d823cf96b1fa6ab99">Optimist::NonlinearSolver&lt; N &gt;</a></li>
+<li>alpha()&#160;:&#160;<a class="el" href="class_optimist_1_1_solver.html#abc85bf8f645772d3662e99b0f7295395">Optimist::Solver&lt; InputDim, OutputDim &gt;</a></li>
 </ul>
 
 
 <h3><a id="index_b" name="index_b"></a>- b -</h3><ul>
-<li>Broyden()&#160;:&#160;<a class="el" href="class_optimist_1_1_broyden.html#a67b799baaaf87feb361153ad8a0d5e08">Optimist::Broyden&lt; N &gt;</a></li>
+<li>Broyden()&#160;:&#160;<a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html#adbdcb9abfec907265ca2d313e589beeb">Optimist::RootFinder::Broyden&lt; N &gt;</a></li>
 </ul>
 
 
 <h3><a id="index_c" name="index_c"></a>- c -</h3><ul>
 <li>Clock&#160;:&#160;<a class="el" href="class_optimist_1_1_tic_toc.html#a18e0c11e8f036e7fac656f5d139ffcc8">Optimist::TicToc</a></li>
-<li>converged()&#160;:&#160;<a class="el" href="class_optimist_1_1_nonlinear_solver.html#a50708c9e9a00cd8eff7bb01109d04a13">Optimist::NonlinearSolver&lt; N &gt;</a></li>
+<li>converged()&#160;:&#160;<a class="el" href="class_optimist_1_1_solver.html#ae5024c851e91c16a8c25226fc7730598">Optimist::Solver&lt; InputDim, OutputDim &gt;</a></li>
 </ul>
 
 
 <h3><a id="index_d" name="index_d"></a>- d -</h3><ul>
-<li>disable_verbose_mode()&#160;:&#160;<a class="el" href="class_optimist_1_1_nonlinear_solver.html#a357a7ad097fb19d2077c8e42745ef286">Optimist::NonlinearSolver&lt; N &gt;</a></li>
+<li>damped_mode()&#160;:&#160;<a class="el" href="class_optimist_1_1_solver.html#a4506d1681725ae14ff41654014d3a683">Optimist::Solver&lt; InputDim, OutputDim &gt;</a></li>
+<li>disable_damped_mode()&#160;:&#160;<a class="el" href="class_optimist_1_1_solver.html#a6286f49953c25160eef3e1c6e998c3de">Optimist::Solver&lt; InputDim, OutputDim &gt;</a></li>
+<li>disable_verbose_mode()&#160;:&#160;<a class="el" href="class_optimist_1_1_solver.html#a21a6ccccf79c99bc8e969c118e633282">Optimist::Solver&lt; InputDim, OutputDim &gt;</a></li>
 </ul>
 
 
@@ -166,84 +168,125 @@ $(function(){initNavTree('functions.html',''); initResizable(true); });
 <li>elapsed_ms()&#160;:&#160;<a class="el" href="class_optimist_1_1_tic_toc.html#a6cd238c3d551defdb477f2b812fe9750">Optimist::TicToc</a></li>
 <li>elapsed_s()&#160;:&#160;<a class="el" href="class_optimist_1_1_tic_toc.html#a4ccde70b53b20cd0e85c9c49d9dca3f8">Optimist::TicToc</a></li>
 <li>elapsed_us()&#160;:&#160;<a class="el" href="class_optimist_1_1_tic_toc.html#a66f0dbcc7bbb38cfb1f8cdea37233482">Optimist::TicToc</a></li>
-<li>enable_bad_mode()&#160;:&#160;<a class="el" href="class_optimist_1_1_broyden.html#ab475f17c5e6281c189172a38a9fc859b">Optimist::Broyden&lt; N &gt;</a></li>
-<li>enable_combined_mode()&#160;:&#160;<a class="el" href="class_optimist_1_1_broyden.html#a225ca628c8bac0e4b74523d0220cf8a3">Optimist::Broyden&lt; N &gt;</a></li>
-<li>enable_good_mode()&#160;:&#160;<a class="el" href="class_optimist_1_1_broyden.html#a43e087faea2672d9358dfd293b00e27a">Optimist::Broyden&lt; N &gt;</a></li>
-<li>enable_verbose_mode()&#160;:&#160;<a class="el" href="class_optimist_1_1_nonlinear_solver.html#a76b0259c2733f7e4799ad7bf71771469">Optimist::NonlinearSolver&lt; N &gt;</a></li>
-<li>evaluate_function()&#160;:&#160;<a class="el" href="class_optimist_1_1_nonlinear_solver.html#a8d962c47bf882b0665196255e5f1583d">Optimist::NonlinearSolver&lt; N &gt;</a></li>
-<li>evaluate_jacobian()&#160;:&#160;<a class="el" href="class_optimist_1_1_nonlinear_solver.html#a3a7dc5062a29bb9a9d7545a018c0f14e">Optimist::NonlinearSolver&lt; N &gt;</a></li>
+<li>enable_bad_method()&#160;:&#160;<a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html#a8aaf158b584038a6c50733fe4edfc8a7">Optimist::RootFinder::Broyden&lt; N &gt;</a></li>
+<li>enable_combined_method()&#160;:&#160;<a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html#aaa021e841c72b7eebf61a41de752bcb5">Optimist::RootFinder::Broyden&lt; N &gt;</a></li>
+<li>enable_damped_mode()&#160;:&#160;<a class="el" href="class_optimist_1_1_solver.html#a525b6a459d620a66a5491b201f125a35">Optimist::Solver&lt; InputDim, OutputDim &gt;</a></li>
+<li>enable_good_method()&#160;:&#160;<a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html#a1ab8b5d6f9b0a78a08320393a39f8592">Optimist::RootFinder::Broyden&lt; N &gt;</a></li>
+<li>enable_one_method()&#160;:&#160;<a class="el" href="class_optimist_1_1_root_finder_1_1_greenstadt.html#a2d243b4f2560897e60fa91538b8048c3">Optimist::RootFinder::Greenstadt&lt; N &gt;</a></li>
+<li>enable_two_method()&#160;:&#160;<a class="el" href="class_optimist_1_1_root_finder_1_1_greenstadt.html#a8ed08c363aa1e229aad87a4342b98a73">Optimist::RootFinder::Greenstadt&lt; N &gt;</a></li>
+<li>enable_verbose_mode()&#160;:&#160;<a class="el" href="class_optimist_1_1_solver.html#ac4103197a982426ec188d785a56f3f1d">Optimist::Solver&lt; InputDim, OutputDim &gt;</a></li>
+<li>evaluate_first_derivative()&#160;:&#160;<a class="el" href="class_optimist_1_1_solver.html#a71cf81f1813d346103bcf2cd9780408c">Optimist::Solver&lt; InputDim, OutputDim &gt;</a></li>
+<li>evaluate_function()&#160;:&#160;<a class="el" href="class_optimist_1_1_solver.html#a7de6fe163b8b6b7f28959e26418026dd">Optimist::Solver&lt; InputDim, OutputDim &gt;</a></li>
+<li>evaluate_gradient()&#160;:&#160;<a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#a11fe70bb6f67a2492ebdeb1abd3789f1">Optimist::Optimizer::Optimizer&lt; N &gt;</a></li>
+<li>evaluate_hessian()&#160;:&#160;<a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#aeabd29a467e0686a18c9a74b7c356693">Optimist::Optimizer::Optimizer&lt; N &gt;</a></li>
+<li>evaluate_jacobian()&#160;:&#160;<a class="el" href="class_optimist_1_1_root_finder_1_1_root_finder.html#a25cad3b37f0481cd7a0628f8ccd8045e">Optimist::RootFinder::RootFinder&lt; N &gt;</a></li>
+<li>evaluate_second_derivative()&#160;:&#160;<a class="el" href="class_optimist_1_1_solver.html#ad028fe8fbea37e8967ef14e4ca9fb523">Optimist::Solver&lt; InputDim, OutputDim &gt;</a></li>
 </ul>
 
 
 <h3><a id="index_f" name="index_f"></a>- f -</h3><ul>
-<li>Function&#160;:&#160;<a class="el" href="class_optimist_1_1_broyden.html#ad71557253c30aa7bda3435536504c180">Optimist::Broyden&lt; N &gt;</a>, <a class="el" href="class_optimist_1_1_newton.html#a29792e1e148a9efb6130cde8692cdf45">Optimist::Newton&lt; N &gt;</a>, <a class="el" href="class_optimist_1_1_nonlinear_solver.html#a2ea94cd0484b49607e65b06b2318303c">Optimist::NonlinearSolver&lt; N &gt;</a></li>
-<li>function_evaluations()&#160;:&#160;<a class="el" href="class_optimist_1_1_nonlinear_solver.html#ac35fc963d77369cdee3455042451a093">Optimist::NonlinearSolver&lt; N &gt;</a></li>
+<li>first_derivative_evaluations()&#160;:&#160;<a class="el" href="class_optimist_1_1_solver.html#a3231c870d5461cb4a7d53cd6bdf95b9b">Optimist::Solver&lt; InputDim, OutputDim &gt;</a></li>
+<li>FirstDerivative&#160;:&#160;<a class="el" href="class_optimist_1_1_scalar_solver_1_1_scalar_solver.html#aafdc9a6f91c904740b0e6268732add57">Optimist::ScalarSolver::ScalarSolver</a>, <a class="el" href="class_optimist_1_1_solver.html#adbceb153d3daa5493db0254f159d6d2a">Optimist::Solver&lt; InputDim, OutputDim &gt;</a></li>
+<li>FirstDerivativeType&#160;:&#160;<a class="el" href="class_optimist_1_1_solver.html#a20ae122025d5eb5470a799a42274465d">Optimist::Solver&lt; InputDim, OutputDim &gt;</a></li>
+<li>Function&#160;:&#160;<a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#aab4994d18178dd9241eb625fef9a06e3">Optimist::Optimizer::Optimizer&lt; N &gt;</a>, <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html#a03692ac2bcaa20f41e9758f249005f01">Optimist::RootFinder::Broyden&lt; N &gt;</a>, <a class="el" href="class_optimist_1_1_root_finder_1_1_greenstadt.html#a0b3543686688166b6a0c2946cf7210ed">Optimist::RootFinder::Greenstadt&lt; N &gt;</a>, <a class="el" href="class_optimist_1_1_root_finder_1_1_newton.html#a66de0a1918fca827384d7c9727cf2c8a">Optimist::RootFinder::Newton&lt; N &gt;</a>, <a class="el" href="class_optimist_1_1_root_finder_1_1_root_finder.html#a969717bcb3c067d1094ace643d6c582e">Optimist::RootFinder::RootFinder&lt; N &gt;</a>, <a class="el" href="class_optimist_1_1_scalar_solver_1_1_scalar_solver.html#acd772ae0f64f18fe2fadbfdb217826d9">Optimist::ScalarSolver::ScalarSolver</a>, <a class="el" href="class_optimist_1_1_solver.html#aa9e667e233a7eb374081fbc96d0f8dcd">Optimist::Solver&lt; InputDim, OutputDim &gt;</a></li>
+<li>function_evaluations()&#160;:&#160;<a class="el" href="class_optimist_1_1_solver.html#ac97c840de26f32bc8416982e49800997">Optimist::Solver&lt; InputDim, OutputDim &gt;</a></li>
+</ul>
+
+
+<h3><a id="index_g" name="index_g"></a>- g -</h3><ul>
+<li>Gradient&#160;:&#160;<a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#abc982ee7713fa8112f70add8ee66962c">Optimist::Optimizer::Optimizer&lt; N &gt;</a></li>
+<li>gradient_evaluations()&#160;:&#160;<a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#adb0fd1829605d6cd61478c31da8d9966">Optimist::Optimizer::Optimizer&lt; N &gt;</a></li>
+<li>Greenstadt()&#160;:&#160;<a class="el" href="class_optimist_1_1_root_finder_1_1_greenstadt.html#a043babdd78a34b7a343fbdb6a0de066c">Optimist::RootFinder::Greenstadt&lt; N &gt;</a></li>
+</ul>
+
+
+<h3><a id="index_h" name="index_h"></a>- h -</h3><ul>
+<li>Hessian&#160;:&#160;<a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#a78195c0e9364cabc385b4e6dce90458e">Optimist::Optimizer::Optimizer&lt; N &gt;</a></li>
+<li>hessian_evaluations()&#160;:&#160;<a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#a72ab14a2b6c15e7dd14a852014c29ae1">Optimist::Optimizer::Optimizer&lt; N &gt;</a></li>
 </ul>
 
 
 <h3><a id="index_i" name="index_i"></a>- i -</h3><ul>
-<li>iterations()&#160;:&#160;<a class="el" href="class_optimist_1_1_nonlinear_solver.html#ac58c3d353eb6cf9fad885ec27c39a9ea">Optimist::NonlinearSolver&lt; N &gt;</a></li>
+<li>InputType&#160;:&#160;<a class="el" href="class_optimist_1_1_solver.html#a5864cd0f35177520fac1d9a54dec3880">Optimist::Solver&lt; InputDim, OutputDim &gt;</a></li>
+<li>iterations()&#160;:&#160;<a class="el" href="class_optimist_1_1_solver.html#a2f618f0c2b612c671f70effa53ff6f5a">Optimist::Solver&lt; InputDim, OutputDim &gt;</a></li>
 </ul>
 
 
 <h3><a id="index_j" name="index_j"></a>- j -</h3><ul>
-<li>Jacobian&#160;:&#160;<a class="el" href="class_optimist_1_1_broyden.html#aeb16efc2637fc29c3956e5576cd26eb3">Optimist::Broyden&lt; N &gt;</a>, <a class="el" href="class_optimist_1_1_newton.html#a8670a97567eaefbb0cf1390635c92ded">Optimist::Newton&lt; N &gt;</a>, <a class="el" href="class_optimist_1_1_nonlinear_solver.html#a157be6102d8799e9295b0849cf3b23e0">Optimist::NonlinearSolver&lt; N &gt;</a></li>
-<li>jacobian_evaluations()&#160;:&#160;<a class="el" href="class_optimist_1_1_nonlinear_solver.html#a3b493dab31b04c3b2cabcaad70408c98">Optimist::NonlinearSolver&lt; N &gt;</a></li>
+<li>Jacobian&#160;:&#160;<a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html#ae2a36d3e7902c92639063f7e4d345e5b">Optimist::RootFinder::Broyden&lt; N &gt;</a>, <a class="el" href="class_optimist_1_1_root_finder_1_1_greenstadt.html#a7e8300b593fd89d0759b3e7ec051abc1">Optimist::RootFinder::Greenstadt&lt; N &gt;</a>, <a class="el" href="class_optimist_1_1_root_finder_1_1_newton.html#a3f0481cf6c48fc93c1c234446a0cd070">Optimist::RootFinder::Newton&lt; N &gt;</a>, <a class="el" href="class_optimist_1_1_root_finder_1_1_root_finder.html#abfa901105cfdee0db697d4cbc1019ca7">Optimist::RootFinder::RootFinder&lt; N &gt;</a></li>
+<li>jacobian_evaluations()&#160;:&#160;<a class="el" href="class_optimist_1_1_root_finder_1_1_root_finder.html#a33a931aff1a2ec4cfe4b1c249a776f61">Optimist::RootFinder::RootFinder&lt; N &gt;</a></li>
 </ul>
 
 
 <h3><a id="index_m" name="index_m"></a>- m -</h3><ul>
-<li>m_alpha&#160;:&#160;<a class="el" href="class_optimist_1_1_nonlinear_solver.html#a6c285ee03d40784885ca63fe798743b0">Optimist::NonlinearSolver&lt; N &gt;</a></li>
-<li>m_converged&#160;:&#160;<a class="el" href="class_optimist_1_1_nonlinear_solver.html#a232b4da92c46cf12c5be6f0f10f5c529">Optimist::NonlinearSolver&lt; N &gt;</a></li>
+<li>m_alpha&#160;:&#160;<a class="el" href="class_optimist_1_1_solver.html#a1ba646a4ec1ca502624fc965d91bc2c4">Optimist::Solver&lt; InputDim, OutputDim &gt;</a></li>
+<li>m_converged&#160;:&#160;<a class="el" href="class_optimist_1_1_solver.html#a0bfb7fa70893a4d91f34be6cc5ada76e">Optimist::Solver&lt; InputDim, OutputDim &gt;</a></li>
+<li>m_damped&#160;:&#160;<a class="el" href="class_optimist_1_1_solver.html#ab0fe998f5da775f7b4c1aa947db74f20">Optimist::Solver&lt; InputDim, OutputDim &gt;</a></li>
 <li>m_elapsed_time&#160;:&#160;<a class="el" href="class_optimist_1_1_tic_toc.html#adb7ef854e3fdfe6b5fb407aa34b2945a">Optimist::TicToc</a></li>
-<li>m_function&#160;:&#160;<a class="el" href="class_optimist_1_1_nonlinear_solver.html#a5f9a0d8f85f2fff3065ede0b0dfe7574">Optimist::NonlinearSolver&lt; N &gt;</a></li>
-<li>m_function_evaluations&#160;:&#160;<a class="el" href="class_optimist_1_1_nonlinear_solver.html#a1c7dec7df1b372779c9c506a59542e48">Optimist::NonlinearSolver&lt; N &gt;</a></li>
-<li>m_iterations&#160;:&#160;<a class="el" href="class_optimist_1_1_nonlinear_solver.html#adcb0876421dbcb5eed15509b18e769ad">Optimist::NonlinearSolver&lt; N &gt;</a></li>
-<li>m_jacobian&#160;:&#160;<a class="el" href="class_optimist_1_1_nonlinear_solver.html#a2259928995f1beb87651cd898df6899a">Optimist::NonlinearSolver&lt; N &gt;</a></li>
-<li>m_jacobian_evaluations&#160;:&#160;<a class="el" href="class_optimist_1_1_nonlinear_solver.html#a4059d82109b40c0212e7988bdd927ce8">Optimist::NonlinearSolver&lt; N &gt;</a></li>
-<li>m_lu&#160;:&#160;<a class="el" href="class_optimist_1_1_newton.html#a142342454c1440913c4994bd9c10d107">Optimist::Newton&lt; N &gt;</a></li>
-<li>m_max_function_evaluations&#160;:&#160;<a class="el" href="class_optimist_1_1_nonlinear_solver.html#a343218586c6a23b9e394afefe239e5c4">Optimist::NonlinearSolver&lt; N &gt;</a></li>
-<li>m_max_iterations&#160;:&#160;<a class="el" href="class_optimist_1_1_nonlinear_solver.html#ad092bb8f334f67cb5eb420484ac1fce5">Optimist::NonlinearSolver&lt; N &gt;</a></li>
-<li>m_max_jacobian_evaluations&#160;:&#160;<a class="el" href="class_optimist_1_1_nonlinear_solver.html#af015da2fe88ff5d93e52110089da9a21">Optimist::NonlinearSolver&lt; N &gt;</a></li>
-<li>m_max_relaxations&#160;:&#160;<a class="el" href="class_optimist_1_1_nonlinear_solver.html#a08a4e4ddef45fce5366f3311e65150a6">Optimist::NonlinearSolver&lt; N &gt;</a></li>
-<li>m_relaxations&#160;:&#160;<a class="el" href="class_optimist_1_1_nonlinear_solver.html#a75532c17cf5f05715306fd89571c315d">Optimist::NonlinearSolver&lt; N &gt;</a></li>
-<li>m_residuals&#160;:&#160;<a class="el" href="class_optimist_1_1_nonlinear_solver.html#abf5307352bda8eaea5fb3f0ab6d15c87">Optimist::NonlinearSolver&lt; N &gt;</a></li>
+<li>m_first_derivative&#160;:&#160;<a class="el" href="class_optimist_1_1_solver.html#af96f30825a1fad2f339e1c781ce49aa1">Optimist::Solver&lt; InputDim, OutputDim &gt;</a></li>
+<li>m_first_derivative_evaluations&#160;:&#160;<a class="el" href="class_optimist_1_1_solver.html#aec3b968228e350b0669c7f3034e4b82d">Optimist::Solver&lt; InputDim, OutputDim &gt;</a></li>
+<li>m_function&#160;:&#160;<a class="el" href="class_optimist_1_1_solver.html#aa2fc851e3532c96d0c0c2d47dd844eed">Optimist::Solver&lt; InputDim, OutputDim &gt;</a></li>
+<li>m_function_evaluations&#160;:&#160;<a class="el" href="class_optimist_1_1_solver.html#ac71a6632a6ebe68c17daabda46ce7c84">Optimist::Solver&lt; InputDim, OutputDim &gt;</a></li>
+<li>m_iterations&#160;:&#160;<a class="el" href="class_optimist_1_1_solver.html#a39a6b162838c4f5c05397f1ac22fd663">Optimist::Solver&lt; InputDim, OutputDim &gt;</a></li>
+<li>m_lu&#160;:&#160;<a class="el" href="class_optimist_1_1_root_finder_1_1_newton.html#adc21a494042227ee1d964f8d8b8a4352">Optimist::RootFinder::Newton&lt; N &gt;</a></li>
+<li>m_max_first_derivative_evaluations&#160;:&#160;<a class="el" href="class_optimist_1_1_solver.html#ae88395ee6e19029cdaa47c7b5c38fd23">Optimist::Solver&lt; InputDim, OutputDim &gt;</a></li>
+<li>m_max_function_evaluations&#160;:&#160;<a class="el" href="class_optimist_1_1_solver.html#a37600afd7aa87948b8633ca12c5cae28">Optimist::Solver&lt; InputDim, OutputDim &gt;</a></li>
+<li>m_max_iterations&#160;:&#160;<a class="el" href="class_optimist_1_1_solver.html#a6d3d6954152c4349bc0ee100501d82fa">Optimist::Solver&lt; InputDim, OutputDim &gt;</a></li>
+<li>m_max_relaxations&#160;:&#160;<a class="el" href="class_optimist_1_1_solver.html#a142b0cfd4157caed4345393a106ceffd">Optimist::Solver&lt; InputDim, OutputDim &gt;</a></li>
+<li>m_max_second_derivative_evaluations&#160;:&#160;<a class="el" href="class_optimist_1_1_solver.html#a622beb0f85e758044838573b684ac045">Optimist::Solver&lt; InputDim, OutputDim &gt;</a></li>
+<li>m_method&#160;:&#160;<a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html#a3ff7df6210fdb86f0ed11fbbf411e448">Optimist::RootFinder::Broyden&lt; N &gt;</a>, <a class="el" href="class_optimist_1_1_root_finder_1_1_greenstadt.html#ad2e76f32848942c2e5caddd101835e91">Optimist::RootFinder::Greenstadt&lt; N &gt;</a></li>
+<li>m_relaxations&#160;:&#160;<a class="el" href="class_optimist_1_1_solver.html#ae0606a12d8eb876009e317d8df6029e2">Optimist::Solver&lt; InputDim, OutputDim &gt;</a></li>
+<li>m_second_derivative&#160;:&#160;<a class="el" href="class_optimist_1_1_solver.html#a043aba6d2acc6d065f77ceff34f65221">Optimist::Solver&lt; InputDim, OutputDim &gt;</a></li>
+<li>m_second_derivative_evaluations&#160;:&#160;<a class="el" href="class_optimist_1_1_solver.html#a0e38f9d884df89c3f81f455fe102b57b">Optimist::Solver&lt; InputDim, OutputDim &gt;</a></li>
 <li>m_start_time&#160;:&#160;<a class="el" href="class_optimist_1_1_tic_toc.html#a2542f53cb612724eedcf1a0a5cee4d51">Optimist::TicToc</a></li>
 <li>m_stop_time&#160;:&#160;<a class="el" href="class_optimist_1_1_tic_toc.html#ac4a10124cbea5c20eb7a2f9452658fd4">Optimist::TicToc</a></li>
-<li>m_tolerance&#160;:&#160;<a class="el" href="class_optimist_1_1_nonlinear_solver.html#a0dfab507bdcc3df4f9cb0de3f7cd4490">Optimist::NonlinearSolver&lt; N &gt;</a></li>
-<li>m_type&#160;:&#160;<a class="el" href="class_optimist_1_1_broyden.html#a5504d37b7347362c0bcd95325f18d402">Optimist::Broyden&lt; N &gt;</a></li>
-<li>m_verbose&#160;:&#160;<a class="el" href="class_optimist_1_1_nonlinear_solver.html#acbdcfdf86414996bfd5a9c7e79632d0f">Optimist::NonlinearSolver&lt; N &gt;</a></li>
-<li>Matrix&#160;:&#160;<a class="el" href="class_optimist_1_1_broyden.html#a378354c76271cdb6342954dd6a79ba70">Optimist::Broyden&lt; N &gt;</a>, <a class="el" href="class_optimist_1_1_newton.html#a8b64e365db8c41a1215f0139c12f6fd2">Optimist::Newton&lt; N &gt;</a>, <a class="el" href="class_optimist_1_1_nonlinear_solver.html#a78a57795fa5d8f17654e4d99a59caa62">Optimist::NonlinearSolver&lt; N &gt;</a></li>
-<li>max_function_evaluations()&#160;:&#160;<a class="el" href="class_optimist_1_1_nonlinear_solver.html#a81a620b0d850b71c76bf73a2d5c558ee">Optimist::NonlinearSolver&lt; N &gt;</a></li>
-<li>max_iterations()&#160;:&#160;<a class="el" href="class_optimist_1_1_nonlinear_solver.html#a88da62926b5cc75543d47e1e42c5ba74">Optimist::NonlinearSolver&lt; N &gt;</a></li>
-<li>max_jacobian_evaluations()&#160;:&#160;<a class="el" href="class_optimist_1_1_nonlinear_solver.html#a8ecc8cac9b694f59e2b9ce55c91be012">Optimist::NonlinearSolver&lt; N &gt;</a></li>
-<li>max_relaxations()&#160;:&#160;<a class="el" href="class_optimist_1_1_nonlinear_solver.html#a620f083de9b12471d45473e9e63e0e41">Optimist::NonlinearSolver&lt; N &gt;</a></li>
+<li>m_tolerance&#160;:&#160;<a class="el" href="class_optimist_1_1_solver.html#a88bfc9154adbba0383ab1cc423f017f0">Optimist::Solver&lt; InputDim, OutputDim &gt;</a></li>
+<li>m_trace&#160;:&#160;<a class="el" href="class_optimist_1_1_solver.html#a1d1f154b501d5ad2f7cdf79863ff133b">Optimist::Solver&lt; InputDim, OutputDim &gt;</a></li>
+<li>m_verbose&#160;:&#160;<a class="el" href="class_optimist_1_1_solver.html#a638f48e8c46f86f9c65ca0733d0ee212">Optimist::Solver&lt; InputDim, OutputDim &gt;</a></li>
+<li>Matrix&#160;:&#160;<a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#a6af9a2566cf602581d263dd4c62bbfbf">Optimist::Optimizer::Optimizer&lt; N &gt;</a>, <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html#a5cb6755d44a0f576756dd2251e8c78d9">Optimist::RootFinder::Broyden&lt; N &gt;</a>, <a class="el" href="class_optimist_1_1_root_finder_1_1_greenstadt.html#af30610f9359c2e5cb1ad45b698257912">Optimist::RootFinder::Greenstadt&lt; N &gt;</a>, <a class="el" href="class_optimist_1_1_root_finder_1_1_newton.html#a88ce1f97a07eec26eb67ed77faf0f7a2">Optimist::RootFinder::Newton&lt; N &gt;</a>, <a class="el" href="class_optimist_1_1_root_finder_1_1_root_finder.html#af5339efc9ca332ca97ee0668a121e7c1">Optimist::RootFinder::RootFinder&lt; N &gt;</a></li>
+<li>max_first_derivative_evaluations()&#160;:&#160;<a class="el" href="class_optimist_1_1_solver.html#a21d4cb1fb6879b11580b377210d983e5">Optimist::Solver&lt; InputDim, OutputDim &gt;</a></li>
+<li>max_function_evaluations()&#160;:&#160;<a class="el" href="class_optimist_1_1_solver.html#aa836db9d0bf73fb8429e1b08233d22a7">Optimist::Solver&lt; InputDim, OutputDim &gt;</a></li>
+<li>max_gradient_evaluations()&#160;:&#160;<a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#a901940fe0d72f372a8c4dba2ecdc81a5">Optimist::Optimizer::Optimizer&lt; N &gt;</a></li>
+<li>max_hessian_evaluations()&#160;:&#160;<a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#a5f57449bb6261fad4ca1ccc0be1cbe9c">Optimist::Optimizer::Optimizer&lt; N &gt;</a></li>
+<li>max_iterations()&#160;:&#160;<a class="el" href="class_optimist_1_1_solver.html#aa3917b62d81dbfbdf249b8e5e27d0093">Optimist::Solver&lt; InputDim, OutputDim &gt;</a></li>
+<li>max_jacobian_evaluations()&#160;:&#160;<a class="el" href="class_optimist_1_1_root_finder_1_1_root_finder.html#a12899927cd3fbd8c239b5b017a097cbf">Optimist::RootFinder::RootFinder&lt; N &gt;</a></li>
+<li>max_relaxations()&#160;:&#160;<a class="el" href="class_optimist_1_1_solver.html#a4100c5c4c3d9612dc13bffcd79274cd7">Optimist::Solver&lt; InputDim, OutputDim &gt;</a></li>
+<li>max_second_derivative_evaluations()&#160;:&#160;<a class="el" href="class_optimist_1_1_solver.html#a5445313b2244cb8dd662b1ae2b25ce42">Optimist::Solver&lt; InputDim, OutputDim &gt;</a></li>
+<li>Method&#160;:&#160;<a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html#a7e6458b5b2d4be756c7f46a1648d0983">Optimist::RootFinder::Broyden&lt; N &gt;</a>, <a class="el" href="class_optimist_1_1_root_finder_1_1_greenstadt.html#ac45de207d20f9a1019bd924fc9678f15">Optimist::RootFinder::Greenstadt&lt; N &gt;</a></li>
+<li>method()&#160;:&#160;<a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html#a2ff62cc0a0714579225e7d49e39b3445">Optimist::RootFinder::Broyden&lt; N &gt;</a>, <a class="el" href="class_optimist_1_1_root_finder_1_1_greenstadt.html#a8e66ba8b7d9ce67cc23f8634a69c6766">Optimist::RootFinder::Greenstadt&lt; N &gt;</a></li>
 </ul>
 
 
 <h3><a id="index_n" name="index_n"></a>- n -</h3><ul>
-<li>name()&#160;:&#160;<a class="el" href="class_optimist_1_1_broyden.html#abb19b65fae183446c111c1fe44ea472e">Optimist::Broyden&lt; N &gt;</a>, <a class="el" href="class_optimist_1_1_newton.html#a1da5bd5a5087dc828a9c1ef66f2eb8e9">Optimist::Newton&lt; N &gt;</a>, <a class="el" href="class_optimist_1_1_nonlinear_solver.html#a9ae165c5c80fff1d80969fbfd99132ce">Optimist::NonlinearSolver&lt; N &gt;</a></li>
-<li>Newton()&#160;:&#160;<a class="el" href="class_optimist_1_1_newton.html#a2d9d26ac9a5028dd3ad49d9776756db1">Optimist::Newton&lt; N &gt;</a></li>
-<li>NonlinearSolver()&#160;:&#160;<a class="el" href="class_optimist_1_1_nonlinear_solver.html#abce8d25d376d9a3e0544ffacf52f5ab5">Optimist::NonlinearSolver&lt; N &gt;</a></li>
+<li>name()&#160;:&#160;<a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html#acf20275f0df1fb6632ce7a732b5d205f">Optimist::RootFinder::Broyden&lt; N &gt;</a>, <a class="el" href="class_optimist_1_1_root_finder_1_1_greenstadt.html#a8be60f06d356effa33b2f26a419f3d49">Optimist::RootFinder::Greenstadt&lt; N &gt;</a>, <a class="el" href="class_optimist_1_1_root_finder_1_1_newton.html#aa1cf74249ecf51d7dfb671c99683f378">Optimist::RootFinder::Newton&lt; N &gt;</a>, <a class="el" href="class_optimist_1_1_solver.html#a50cb8ac3f0b0bebba0bcf2d0e6ac3a03">Optimist::Solver&lt; InputDim, OutputDim &gt;</a></li>
+<li>Newton()&#160;:&#160;<a class="el" href="class_optimist_1_1_root_finder_1_1_newton.html#aeb68b92713036f3e7ac47dee70388b37">Optimist::RootFinder::Newton&lt; N &gt;</a></li>
 </ul>
 
 
 <h3><a id="index_o" name="index_o"></a>- o -</h3><ul>
 <li>operator=()&#160;:&#160;<a class="el" href="class_optimist_1_1_tic_toc.html#a84712e1115e33712d073e9a900cbf12b">Optimist::TicToc</a></li>
+<li>Optimizer()&#160;:&#160;<a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#a331193811f12deb24a3d54be2297aeb1">Optimist::Optimizer::Optimizer&lt; N &gt;</a></li>
+<li>OutputType&#160;:&#160;<a class="el" href="class_optimist_1_1_solver.html#aaf0426e67bb84540d334127baecbb99f">Optimist::Solver&lt; InputDim, OutputDim &gt;</a></li>
 </ul>
 
 
 <h3><a id="index_r" name="index_r"></a>- r -</h3><ul>
-<li>relaxations()&#160;:&#160;<a class="el" href="class_optimist_1_1_nonlinear_solver.html#a1c1f4dff7d1051bcb22bb75179123ba5">Optimist::NonlinearSolver&lt; N &gt;</a></li>
-<li>reset()&#160;:&#160;<a class="el" href="class_optimist_1_1_nonlinear_solver.html#adcff2909760bff732c799e4f0dd3198f">Optimist::NonlinearSolver&lt; N &gt;</a></li>
-<li>residuals()&#160;:&#160;<a class="el" href="class_optimist_1_1_nonlinear_solver.html#ad3981ba6a2aeab1aea3c6856c09b15e2">Optimist::NonlinearSolver&lt; N &gt;</a></li>
+<li>relaxations()&#160;:&#160;<a class="el" href="class_optimist_1_1_solver.html#ae8f86d935c9086e5dfd3bf34e2ecc6a8">Optimist::Solver&lt; InputDim, OutputDim &gt;</a></li>
+<li>reset()&#160;:&#160;<a class="el" href="class_optimist_1_1_solver.html#aa6c1d9d1e640b61adc05296241db463a">Optimist::Solver&lt; InputDim, OutputDim &gt;</a></li>
+<li>RootFinder()&#160;:&#160;<a class="el" href="class_optimist_1_1_root_finder_1_1_root_finder.html#a91e0803a7f4803e5c600cb59420e3660">Optimist::RootFinder::RootFinder&lt; N &gt;</a></li>
+<li>RowVector&#160;:&#160;<a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#aa379c41a6cc33afa7dc4a36dfb865a95">Optimist::Optimizer::Optimizer&lt; N &gt;</a></li>
 </ul>
 
 
 <h3><a id="index_s" name="index_s"></a>- s -</h3><ul>
-<li>set_type()&#160;:&#160;<a class="el" href="class_optimist_1_1_broyden.html#a9d262d895ad3079e505f52074be05921">Optimist::Broyden&lt; N &gt;</a></li>
-<li>solve()&#160;:&#160;<a class="el" href="class_optimist_1_1_broyden.html#ad21f0f3cf486b54b857ef9f827464a88">Optimist::Broyden&lt; N &gt;</a>, <a class="el" href="class_optimist_1_1_newton.html#a3fdb022e8e84627e5488c9d3abf93abc">Optimist::Newton&lt; N &gt;</a>, <a class="el" href="class_optimist_1_1_nonlinear_solver.html#ae404c82f8f7d769dca0e83e966b213e6">Optimist::NonlinearSolver&lt; N &gt;</a></li>
-<li>solve_damped()&#160;:&#160;<a class="el" href="class_optimist_1_1_broyden.html#aa094550d9ca3b22a2dc5f89f5c0c8d6a">Optimist::Broyden&lt; N &gt;</a>, <a class="el" href="class_optimist_1_1_newton.html#a52c2131a2bd81fd7acf0cbb25f32fb43">Optimist::Newton&lt; N &gt;</a>, <a class="el" href="class_optimist_1_1_nonlinear_solver.html#ae0e1b16b0f63bf783c39e3a4878ee62c">Optimist::NonlinearSolver&lt; N &gt;</a></li>
+<li>ScalarSolver()&#160;:&#160;<a class="el" href="class_optimist_1_1_scalar_solver_1_1_scalar_solver.html#a6df68ae78d993e36181709340b07345c">Optimist::ScalarSolver::ScalarSolver</a></li>
+<li>second_derivative_evaluations()&#160;:&#160;<a class="el" href="class_optimist_1_1_solver.html#a6cef76baba85628506816c12af2d4980">Optimist::Solver&lt; InputDim, OutputDim &gt;</a></li>
+<li>SecondDerivative&#160;:&#160;<a class="el" href="class_optimist_1_1_scalar_solver_1_1_scalar_solver.html#af5992db899d0ac1cc6ca5fc6b578687d">Optimist::ScalarSolver::ScalarSolver</a>, <a class="el" href="class_optimist_1_1_solver.html#a70fc1a9c7e648d67cc5d5fa80af4afbc">Optimist::Solver&lt; InputDim, OutputDim &gt;</a></li>
+<li>SecondDerivativeType&#160;:&#160;<a class="el" href="class_optimist_1_1_solver.html#a4315eea3a6cf229da08a47986bc9f32b">Optimist::Solver&lt; InputDim, OutputDim &gt;</a></li>
+<li>set_method()&#160;:&#160;<a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html#a4093823a0704719a32d597d63aa51614">Optimist::RootFinder::Broyden&lt; N &gt;</a>, <a class="el" href="class_optimist_1_1_root_finder_1_1_greenstadt.html#a7cfcf36e3d0c2a621f942a3de4e5e8f2">Optimist::RootFinder::Greenstadt&lt; N &gt;</a></li>
+<li>solve()&#160;:&#160;<a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html#aecba08aa3187ec2a9d0d2e29279976c4">Optimist::RootFinder::Broyden&lt; N &gt;</a>, <a class="el" href="class_optimist_1_1_root_finder_1_1_greenstadt.html#ad5e2f1b13dd56f07cd1d8c1e6f5087a0">Optimist::RootFinder::Greenstadt&lt; N &gt;</a>, <a class="el" href="class_optimist_1_1_root_finder_1_1_newton.html#adf075b6f30314f358119dc69d8ac67b0">Optimist::RootFinder::Newton&lt; N &gt;</a>, <a class="el" href="class_optimist_1_1_solver.html#a06ee68ca22fabef6b8b2ed1644d7601d">Optimist::Solver&lt; InputDim, OutputDim &gt;</a></li>
+<li>Solver()&#160;:&#160;<a class="el" href="class_optimist_1_1_solver.html#a075a6f0c1b4a0c2147fda17782e24b85">Optimist::Solver&lt; InputDim, OutputDim &gt;</a></li>
+<li>store_trace()&#160;:&#160;<a class="el" href="class_optimist_1_1_solver.html#a2f9e19d9fb6648e998bb724962806cf7">Optimist::Solver&lt; InputDim, OutputDim &gt;</a></li>
 </ul>
 
 
@@ -252,20 +295,20 @@ $(function(){initNavTree('functions.html',''); initResizable(true); });
 <li>TicToc()&#160;:&#160;<a class="el" href="class_optimist_1_1_tic_toc.html#a26779a4b5dcd799554479f941bf53750">Optimist::TicToc</a></li>
 <li>Time&#160;:&#160;<a class="el" href="class_optimist_1_1_tic_toc.html#a5885bcf2aa480457550c15733b64bb45">Optimist::TicToc</a></li>
 <li>toc()&#160;:&#160;<a class="el" href="class_optimist_1_1_tic_toc.html#afbfd2a45f4bbc938345375bc5d53ed8c">Optimist::TicToc</a></li>
-<li>tolerance()&#160;:&#160;<a class="el" href="class_optimist_1_1_nonlinear_solver.html#a8774de2b8e54d0fc63374a162facf2b6">Optimist::NonlinearSolver&lt; N &gt;</a></li>
-<li>Type&#160;:&#160;<a class="el" href="class_optimist_1_1_broyden.html#ac3684d9c28953333f29708d3701cca4b">Optimist::Broyden&lt; N &gt;</a></li>
-<li>type()&#160;:&#160;<a class="el" href="class_optimist_1_1_broyden.html#ab0a56fbf33ed5b7b840049df6c232b12">Optimist::Broyden&lt; N &gt;</a></li>
+<li>tolerance()&#160;:&#160;<a class="el" href="class_optimist_1_1_solver.html#ad25694d70009fae966613de68c367328">Optimist::Solver&lt; InputDim, OutputDim &gt;</a></li>
+<li>trace()&#160;:&#160;<a class="el" href="class_optimist_1_1_solver.html#a25a58fda5e26e32df2a41daab061f3d7">Optimist::Solver&lt; InputDim, OutputDim &gt;</a></li>
+<li>TraceType&#160;:&#160;<a class="el" href="class_optimist_1_1_solver.html#a15994bb286ebbf3ecf41b39837518d32">Optimist::Solver&lt; InputDim, OutputDim &gt;</a></li>
 </ul>
 
 
 <h3><a id="index_u" name="index_u"></a>- u -</h3><ul>
-<li>update()&#160;:&#160;<a class="el" href="class_optimist_1_1_broyden.html#adc7b2522dba02af7c13575769b6bba04">Optimist::Broyden&lt; N &gt;</a></li>
+<li>update()&#160;:&#160;<a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html#ab445c0f579765e11e288d166c1901262">Optimist::RootFinder::Broyden&lt; N &gt;</a>, <a class="el" href="class_optimist_1_1_root_finder_1_1_greenstadt.html#a96fce506f3cef98c145cc9595babd8b2">Optimist::RootFinder::Greenstadt&lt; N &gt;</a></li>
 </ul>
 
 
 <h3><a id="index_v" name="index_v"></a>- v -</h3><ul>
-<li>Vector&#160;:&#160;<a class="el" href="class_optimist_1_1_broyden.html#a0ae531a0f991150292ca480f5ce9d727">Optimist::Broyden&lt; N &gt;</a>, <a class="el" href="class_optimist_1_1_newton.html#a4a043570b1b0bffdc285603fb1ab7222">Optimist::Newton&lt; N &gt;</a>, <a class="el" href="class_optimist_1_1_nonlinear_solver.html#a9a948e32a9d028fef8d2e95619004c5f">Optimist::NonlinearSolver&lt; N &gt;</a></li>
-<li>verbose_mode()&#160;:&#160;<a class="el" href="class_optimist_1_1_nonlinear_solver.html#a6d040d868311be703d6bc013d7622d9e">Optimist::NonlinearSolver&lt; N &gt;</a></li>
+<li>Vector&#160;:&#160;<a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#a1c14080f489fdb69cfe1b11c0aef1ba4">Optimist::Optimizer::Optimizer&lt; N &gt;</a>, <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html#ab9c4da2dc1a8d297d142bf32cac210f8">Optimist::RootFinder::Broyden&lt; N &gt;</a>, <a class="el" href="class_optimist_1_1_root_finder_1_1_greenstadt.html#a008d20ba63c650e54831ea5ee498e685">Optimist::RootFinder::Greenstadt&lt; N &gt;</a>, <a class="el" href="class_optimist_1_1_root_finder_1_1_newton.html#adfe12a269cfa0d34e625f50c178c0a55">Optimist::RootFinder::Newton&lt; N &gt;</a>, <a class="el" href="class_optimist_1_1_root_finder_1_1_root_finder.html#a88c2c09c65fae62713ae537261f09456">Optimist::RootFinder::RootFinder&lt; N &gt;</a></li>
+<li>verbose_mode()&#160;:&#160;<a class="el" href="class_optimist_1_1_solver.html#ade2a96652917cd15241237c0c14a2880">Optimist::Solver&lt; InputDim, OutputDim &gt;</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

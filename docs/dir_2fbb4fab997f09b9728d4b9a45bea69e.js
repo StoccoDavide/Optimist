@@ -1,5 +1,10 @@
 var dir_2fbb4fab997f09b9728d4b9a45bea69e =
 [
-    [ "NonlinearSolver", "dir_9caed863fe98f4c22cf292f9ef6fba12.html", "dir_9caed863fe98f4c22cf292f9ef6fba12" ],
+    [ "RootFinder", "dir_71df0d5a5c526979c3ee0d4a659e2226.html", "dir_71df0d5a5c526979c3ee0d4a659e2226" ],
+    [ "Factory.hxx", "_factory_8hxx.html", "_factory_8hxx" ],
+    [ "Optimizer.hxx", "_optimizer_8hxx.html", "_optimizer_8hxx" ],
+    [ "RootFinder.hxx", "_root_finder_8hxx.html", "_root_finder_8hxx" ],
+    [ "ScalarSolver.hxx", "_scalar_solver_8hxx.html", "_scalar_solver_8hxx" ],
+    [ "Solver.hxx", "_solver_8hxx.html", "_solver_8hxx" ],
     [ "TicToc.hxx", "_tic_toc_8hxx.html", "_tic_toc_8hxx" ]
 ];

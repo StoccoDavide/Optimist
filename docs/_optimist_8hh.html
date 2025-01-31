@@ -157,17 +157,18 @@ $(function(){initNavTree('_optimist_8hh.html',''); initResizable(true); });
 <code>#include &lt;chrono&gt;</code><br />
 <code>#include &lt;Eigen/Dense&gt;</code><br />
 <code>#include &quot;<a class="el" href="_tic_toc_8hxx_source.html">Optimist/TicToc.hxx</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_nonlinear_solver_8hxx_source.html">Optimist/NonlinearSolver/NonlinearSolver.hxx</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_newton_8hxx_source.html">Optimist/NonlinearSolver/Newton.hxx</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_broyden_8hxx_source.html">Optimist/NonlinearSolver/Broyden.hxx</a>&quot;</code><br />
-<code>#include &quot;Optimist/System/Implicit.hxx&quot;</code><br />
-<code>#include &quot;Optimist/System/Explicit.hxx&quot;</code><br />
-<code>#include &quot;Optimist/System/SemiExplicit.hxx&quot;</code><br />
-<code>#include &quot;Optimist/System/Linear.hxx&quot;</code><br />
+<code>#include &quot;<a class="el" href="_solver_8hxx_source.html">Optimist/Solver.hxx</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_scalar_solver_8hxx_source.html">Optimist/ScalarSolver.hxx</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_root_finder_8hxx_source.html">Optimist/RootFinder.hxx</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_newton_8hxx_source.html">Optimist/RootFinder/Newton.hxx</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_broyden_8hxx_source.html">Optimist/RootFinder/Broyden.hxx</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_greenstadt_8hxx_source.html">Optimist/RootFinder/Greenstadt.hxx</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_optimizer_8hxx_source.html">Optimist/Optimizer.hxx</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_factory_8hxx_source.html">Optimist/Factory.hxx</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for Optimist.hh:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="_optimist_8hh__incl.svg" width="2306" height="126"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="_optimist_8hh__incl.svg" width="2228" height="126"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="_optimist_8hh_source.html">Go to the source code of this file.</a></p>
@@ -197,14 +198,6 @@ Typedefs</h2></td></tr>
 <tr class="separator:a81198c1084f49913c4731c80160f6713"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab19305b546a50d1fdd20905b1b457452" id="r_ab19305b546a50d1fdd20905b1b457452"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Optimist::Integer</a> = int</td></tr>
 <tr class="separator:ab19305b546a50d1fdd20905b1b457452"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af17fdc8ffe58574d0bb928923087fa8f" id="r_af17fdc8ffe58574d0bb928923087fa8f"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_optimist.html#af17fdc8ffe58574d0bb928923087fa8f">Optimist::Vector0</a> = Eigen::Vector&lt;<a class="el" href="namespace_optimist.html#a81198c1084f49913c4731c80160f6713">Real</a>, 0&gt;</td></tr>
-<tr class="separator:af17fdc8ffe58574d0bb928923087fa8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab8c72cfdb1916858aa0177ad71808f75" id="r_ab8c72cfdb1916858aa0177ad71808f75"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_optimist.html#ab8c72cfdb1916858aa0177ad71808f75">Optimist::Matrix0</a> = Eigen::Matrix&lt;<a class="el" href="namespace_optimist.html#a81198c1084f49913c4731c80160f6713">Real</a>, 0, 0&gt;</td></tr>
-<tr class="separator:ab8c72cfdb1916858aa0177ad71808f75"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afc206bb093888d7fa8e6821b0a7dfd86" id="r_afc206bb093888d7fa8e6821b0a7dfd86"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_optimist.html#afc206bb093888d7fa8e6821b0a7dfd86">Optimist::Vector1</a> = Eigen::Vector&lt;<a class="el" href="namespace_optimist.html#a81198c1084f49913c4731c80160f6713">Real</a>, 1&gt;</td></tr>
-<tr class="separator:afc206bb093888d7fa8e6821b0a7dfd86"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9ffdb7e49e182bba9f54ed65a4b310eb" id="r_a9ffdb7e49e182bba9f54ed65a4b310eb"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_optimist.html#a9ffdb7e49e182bba9f54ed65a4b310eb">Optimist::Matrix1</a> = Eigen::Matrix&lt;<a class="el" href="namespace_optimist.html#a81198c1084f49913c4731c80160f6713">Real</a>, 1, 1&gt;</td></tr>
-<tr class="separator:a9ffdb7e49e182bba9f54ed65a4b310eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a75cad763b359459eaa3fc52e1c6087a9" id="r_a75cad763b359459eaa3fc52e1c6087a9"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_optimist.html#a75cad763b359459eaa3fc52e1c6087a9">Optimist::Vector2</a> = Eigen::Vector&lt;<a class="el" href="namespace_optimist.html#a81198c1084f49913c4731c80160f6713">Real</a>, 2&gt;</td></tr>
 <tr class="separator:a75cad763b359459eaa3fc52e1c6087a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4a916affa31c4851f364a725449a74a3" id="r_a4a916affa31c4851f364a725449a74a3"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_optimist.html#a4a916affa31c4851f364a725449a74a3">Optimist::Matrix2</a> = Eigen::Matrix&lt;<a class="el" href="namespace_optimist.html#a81198c1084f49913c4731c80160f6713">Real</a>, 2, 2&gt;</td></tr>
@@ -267,20 +260,6 @@ Variables</h2></td></tr>
 <tr class="separator:a6a033098d795d5163acb342655389f6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5040751c537612a9ffbe4548000e7d94" id="r_a5040751c537612a9ffbe4548000e7d94"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespace_optimist.html#a81198c1084f49913c4731c80160f6713">Real</a> const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_optimist.html#a5040751c537612a9ffbe4548000e7d94">Optimist::QUIET_NAN</a> = std::numeric_limits&lt;<a class="el" href="namespace_optimist.html#a81198c1084f49913c4731c80160f6713">Real</a>&gt;::quiet_NaN()</td></tr>
 <tr class="separator:a5040751c537612a9ffbe4548000e7d94"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8de2c4bfe2a03b0e31cb9f42ca0a9331" id="r_a8de2c4bfe2a03b0e31cb9f42ca0a9331"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespace_optimist.html#afc206bb093888d7fa8e6821b0a7dfd86">Vector1</a> const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_optimist.html#a8de2c4bfe2a03b0e31cb9f42ca0a9331">Optimist::NAN_VEC1</a> = Vector1::Constant(<a class="el" href="namespace_optimist.html#a5040751c537612a9ffbe4548000e7d94">QUIET_NAN</a>)</td></tr>
-<tr class="separator:a8de2c4bfe2a03b0e31cb9f42ca0a9331"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a666cc6fdc3c64aa5bab5ea850295769b" id="r_a666cc6fdc3c64aa5bab5ea850295769b"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespace_optimist.html#a9ffdb7e49e182bba9f54ed65a4b310eb">Matrix1</a> const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_optimist.html#a666cc6fdc3c64aa5bab5ea850295769b">Optimist::NAN_MAT1</a> = Matrix1::Constant(<a class="el" href="namespace_optimist.html#a5040751c537612a9ffbe4548000e7d94">QUIET_NAN</a>)</td></tr>
-<tr class="separator:a666cc6fdc3c64aa5bab5ea850295769b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a915156e66ff1ea0892a5e352b14d8354" id="r_a915156e66ff1ea0892a5e352b14d8354"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespace_optimist.html#afc206bb093888d7fa8e6821b0a7dfd86">Vector1</a> const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_optimist.html#a915156e66ff1ea0892a5e352b14d8354">Optimist::ZEROS_VEC1</a> = Vector1::Zero()</td></tr>
-<tr class="separator:a915156e66ff1ea0892a5e352b14d8354"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab80c0019f6170821d22bf41e61e8d719" id="r_ab80c0019f6170821d22bf41e61e8d719"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespace_optimist.html#a9ffdb7e49e182bba9f54ed65a4b310eb">Matrix1</a> const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_optimist.html#ab80c0019f6170821d22bf41e61e8d719">Optimist::ZEROS_MAT1</a> = Matrix1::Zero()</td></tr>
-<tr class="separator:ab80c0019f6170821d22bf41e61e8d719"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acf26e7d7c8571805712d571266b04190" id="r_acf26e7d7c8571805712d571266b04190"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespace_optimist.html#afc206bb093888d7fa8e6821b0a7dfd86">Vector1</a> const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_optimist.html#acf26e7d7c8571805712d571266b04190">Optimist::ONES_VEC1</a> = Vector1::Ones()</td></tr>
-<tr class="separator:acf26e7d7c8571805712d571266b04190"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa52d46500cb1ae73d5914c0338895c12" id="r_aa52d46500cb1ae73d5914c0338895c12"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespace_optimist.html#a9ffdb7e49e182bba9f54ed65a4b310eb">Matrix1</a> const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_optimist.html#aa52d46500cb1ae73d5914c0338895c12">Optimist::ONES_MAT1</a> = Matrix1::Ones()</td></tr>
-<tr class="separator:aa52d46500cb1ae73d5914c0338895c12"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af3d9b5f3567f5cc8d316a7e3640ce845" id="r_af3d9b5f3567f5cc8d316a7e3640ce845"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespace_optimist.html#a9ffdb7e49e182bba9f54ed65a4b310eb">Matrix1</a> const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_optimist.html#af3d9b5f3567f5cc8d316a7e3640ce845">Optimist::IDENTITY_MAT1</a> = Matrix1::Identity()</td></tr>
-<tr class="separator:af3d9b5f3567f5cc8d316a7e3640ce845"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a89ee36c6442124f1aa3c0d2028d12f23" id="r_a89ee36c6442124f1aa3c0d2028d12f23"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespace_optimist.html#a75cad763b359459eaa3fc52e1c6087a9">Vector2</a> const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_optimist.html#a89ee36c6442124f1aa3c0d2028d12f23">Optimist::NAN_VEC2</a> = Vector2::Constant(<a class="el" href="namespace_optimist.html#a5040751c537612a9ffbe4548000e7d94">QUIET_NAN</a>)</td></tr>
 <tr class="separator:a89ee36c6442124f1aa3c0d2028d12f23"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6cc547d5382fd8c518043c03267af3c5" id="r_a6cc547d5382fd8c518043c03267af3c5"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespace_optimist.html#a4a916affa31c4851f364a725449a74a3">Matrix2</a> const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_optimist.html#a6cc547d5382fd8c518043c03267af3c5">Optimist::NAN_MAT2</a> = Matrix2::Constant(<a class="el" href="namespace_optimist.html#a5040751c537612a9ffbe4548000e7d94">QUIET_NAN</a>)</td></tr>

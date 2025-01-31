@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['max_5ffunction_5fevaluations_0',['max_function_evaluations',['../class_optimist_1_1_nonlinear_solver.html#a81a620b0d850b71c76bf73a2d5c558ee',1,'Optimist::NonlinearSolver::max_function_evaluations() const'],['../class_optimist_1_1_nonlinear_solver.html#a66ed51a488bc5499abd6c65e0b84e3aa',1,'Optimist::NonlinearSolver::max_function_evaluations(Integer t_max_fun_evaluations)']]],
-  ['max_5fiterations_1',['max_iterations',['../class_optimist_1_1_nonlinear_solver.html#a88da62926b5cc75543d47e1e42c5ba74',1,'Optimist::NonlinearSolver::max_iterations() const'],['../class_optimist_1_1_nonlinear_solver.html#aff0ea25927ea071d2759b14349bf1d3a',1,'Optimist::NonlinearSolver::max_iterations(Integer t_max_iterations)']]],
-  ['max_5fjacobian_5fevaluations_2',['max_jacobian_evaluations',['../class_optimist_1_1_nonlinear_solver.html#a8ecc8cac9b694f59e2b9ce55c91be012',1,'Optimist::NonlinearSolver::max_jacobian_evaluations() const'],['../class_optimist_1_1_nonlinear_solver.html#a912b2304896986f80fb4017b1cef2399',1,'Optimist::NonlinearSolver::max_jacobian_evaluations(Integer t_max_jac_evaluations)']]],
-  ['max_5frelaxations_3',['max_relaxations',['../class_optimist_1_1_nonlinear_solver.html#a620f083de9b12471d45473e9e63e0e41',1,'Optimist::NonlinearSolver::max_relaxations() const'],['../class_optimist_1_1_nonlinear_solver.html#ac4afdd00688beddb9409df969e997921',1,'Optimist::NonlinearSolver::max_relaxations(Integer t_max_relaxations)']]]
+  ['info_0',['Info',['../namespace_optimist.html#ae6184c22dec9000a023fd85bb158faef',1,'Optimist::Info()'],['../namespace_optimist.html#a28db3cffe02163a4d3cea999bf0d65bc',1,'Optimist::Info(std::ostream &amp;os)']]],
+  ['iterations_1',['iterations',['../class_optimist_1_1_solver.html#a2f618f0c2b612c671f70effa53ff6f5a',1,'Optimist::Solver']]]
 ];
