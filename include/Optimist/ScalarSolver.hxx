@@ -39,11 +39,10 @@ namespace Optimist
     */
     class ScalarSolver : public Solver<1, 1>
     {
-
     public:
       // Function types
-      using Function         = typename Solver<1, 1>::Function;        /**< Function type. */
-      using FirstDerivative  = typename Solver<1, 1>::FirstDerivative; /**<  First derivative type. */
+      using Function         = typename Solver<1, 1>::Function;         /**< Function type. */
+      using FirstDerivative  = typename Solver<1, 1>::FirstDerivative;  /**<  First derivative type. */
       using SecondDerivative = typename Solver<1, 1>::SecondDerivative; /**< Second derivative type. */
 
       /**

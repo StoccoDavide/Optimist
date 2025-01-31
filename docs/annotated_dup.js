@@ -11,6 +11,7 @@ var annotated_dup =
         [ "RootFinder", "class_optimist_1_1_root_finder_1_1_root_finder.html", "class_optimist_1_1_root_finder_1_1_root_finder" ]
       ] ],
       [ "ScalarSolver", "namespace_optimist_1_1_scalar_solver.html", [
+        [ "Newton", "class_optimist_1_1_scalar_solver_1_1_newton.html", "class_optimist_1_1_scalar_solver_1_1_newton" ],
         [ "ScalarSolver", "class_optimist_1_1_scalar_solver_1_1_scalar_solver.html", "class_optimist_1_1_scalar_solver_1_1_scalar_solver" ]
       ] ],
       [ "Solver", "class_optimist_1_1_solver.html", "class_optimist_1_1_solver" ],

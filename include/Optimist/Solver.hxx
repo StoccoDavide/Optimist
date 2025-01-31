@@ -81,13 +81,16 @@ namespace Optimist
     Integer m_max_relaxations{10}; /**< Maximum allowed algorithm relaxations. */
 
     // Settings
-    Real m_tolerance{EPSILON_HIGH}; /**< Solver tolerance \f$ \epsilon \f$ for convergence. */
-    bool m_verbose{false};          /**< Verbose mode boolean flag. */
-    bool m_damped{false};           /**< Damped mode boolean flag. */
+    Real m_tolerance{EPSILON_HIGH};       /**< Solver tolerance \f$ \epsilon \f$ for convergence. */
+    bool m_verbose{true};                 /**< Verbose mode boolean flag. */
+    bool m_damped{true};                  /**< Damped mode boolean flag. */
+    std::ostream * m_ostream{&std::cout}; /**< Output stream for verbose mode. */
 
     // Convergence output flag and trace
     bool      m_converged{false}; /**< Convergence boolean flag. */
     TraceType m_trace;            /**< Trace for points \f$ \mathbf{x} \f$ values. */
+
+    // Ouput stream for verbose mode
 
   public:
     /**
@@ -341,6 +344,18 @@ namespace Optimist
     const TraceType & trace() const {return this->m_trace;}
 
     /**
+    * Get the output stream for verbose mode.
+    * \return The output stream for verbose mode.
+    */
+    std::ostream & ostream() const {return *this->m_ostream;}
+
+    /**
+    * Set the output stream for verbose mode.
+    * \param[in] t_ostream The output stream for verbose mode.
+    */
+    void ostream(std::ostream & t_ostream) {this->m_ostream = &t_ostream;}
+
+    /**
     * Solve the root-finding/optimization problem without derivatives given the function.
     * \param[in] t_function The function.
     * \param[in] x_ini The initialization point.
@@ -351,6 +366,8 @@ namespace Optimist
       this->m_function          = t_function;
       this->m_first_derivative  = nullptr;
       this->m_second_derivative = nullptr;
+      OPTIMIST_ASSERT(this->check(), "Optimist::Solver::solve(...): in solver " << this->name() <<
+        ", insufficient information is provided.");
       return this->solve(x_ini, x_sol);
     }
 
@@ -367,6 +384,8 @@ namespace Optimist
       this->m_function          = t_function;
       this->m_first_derivative  = t_first_derivative;
       this->m_second_derivative = nullptr;
+      OPTIMIST_ASSERT(this->check(), "Optimist::Solver::solve(...): in solver " << this->name() <<
+        ", insufficient information is provided.");
       return this->solve(x_ini, x_sol);
     }
 
@@ -385,6 +404,8 @@ namespace Optimist
       this->m_function          = t_function;
       this->m_first_derivative  = t_first_derivative;
       this->m_second_derivative = t_second_derivative;
+      OPTIMIST_ASSERT(this->check(), "Optimist::Solver::solve(...): in solver " << this->name() <<
+        ", insufficient information is provided.");
       return this->solve(x_ini, x_sol);
     }
 
@@ -393,6 +414,12 @@ namespace Optimist
     * \return The solver name.
     */
     virtual std::string name() const = 0;
+
+    /**
+    * Check if the solver is able to solve the problem with the given input.
+    * \return The check boolean flag.
+    */
+    virtual bool check() const = 0;
 
   protected:
     /**
@@ -449,9 +476,52 @@ namespace Optimist
     void store_trace(const InputType & x) {this->m_trace.push_back(x);}
 
     /**
+    * Print the table header solver information.
+    * \note This has to be properly placed in the derived classes.
+    */
+    void header()
+    {
+      *this->m_ostream
+        << "Solver Name: " << this->name() << std::endl
+        << "┌--------------┬-------┬-------┬-------┬-------┐" << std::endl
+        << "|    ║f(x)║₂   | #Iter |    #f |   #Df |  #DDf | Additional notes" << std::endl
+        << "├--------------┼-------┼-------┼-------┼-------┤" << std::endl;
+    }
+
+    /**
+    * Print the table bottom solver information.
+    * \note This has to be properly placed in the derived classes.
+    */
+    void bottom()
+    {
+      *this->m_ostream
+        << "└--------------┴-------┴-------┴-------┴-------┘" << std::endl
+        << this->name() << ": " << (this->m_converged ? "CONVERGED" : "NOT CONVERGED") << std::endl;
+    }
+
+    /**
+    * Print the solver information during the algorithm iterations.
+    * \note This has to be properly placed in the derived classes.
+    */
+    void info(Real residuals, std::string notes = "")
+    {
+      if (this->m_verbose)
+      {
+        *this->m_ostream << "| "
+          << std::setw(10) << std::scientific << std::setprecision(6) << residuals << " | "
+          << std::setw(5) << this->m_iterations << " | "
+          << std::setw(5) << this->m_function_evaluations << " | "
+          << std::setw(5) << this->m_first_derivative_evaluations << " | "
+          << std::setw(5) << this->m_second_derivative_evaluations << " | "
+          << notes << std::endl;
+      }
+    }
+
+    /**
     * Solve root-finding/optimization problem according to the solver.
     * \param[in] x_ini The initialization point.
     * \param[out] x_sol The solution point.
+    * \return The convergence boolean flag.
     */
     virtual bool solve(const InputType & x_ini, OutputType &x_sol) = 0;
 

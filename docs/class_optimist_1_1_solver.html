@@ -210,6 +210,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ae5024c851e91c16a8c25226fc7730598"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a25a58fda5e26e32df2a41daab061f3d7" id="r_a25a58fda5e26e32df2a41daab061f3d7"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="#a15994bb286ebbf3ecf41b39837518d32">TraceType</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a25a58fda5e26e32df2a41daab061f3d7">trace</a> () const</td></tr>
 <tr class="separator:a25a58fda5e26e32df2a41daab061f3d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26795d56fc9c211ce464d7e4374d93dc" id="r_a26795d56fc9c211ce464d7e4374d93dc"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a26795d56fc9c211ce464d7e4374d93dc">ostream</a> () const</td></tr>
+<tr class="separator:a26795d56fc9c211ce464d7e4374d93dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4275b87a4d2f27ca073cccf315c8ee70" id="r_a4275b87a4d2f27ca073cccf315c8ee70"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4275b87a4d2f27ca073cccf315c8ee70">ostream</a> (std::ostream &amp;t_ostream)</td></tr>
+<tr class="separator:a4275b87a4d2f27ca073cccf315c8ee70"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a06ee68ca22fabef6b8b2ed1644d7601d" id="r_a06ee68ca22fabef6b8b2ed1644d7601d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a06ee68ca22fabef6b8b2ed1644d7601d">solve</a> (<a class="el" href="#aa9e667e233a7eb374081fbc96d0f8dcd">Function</a> t_function, const <a class="el" href="#a5864cd0f35177520fac1d9a54dec3880">InputType</a> &amp;x_ini, <a class="el" href="#aaf0426e67bb84540d334127baecbb99f">OutputType</a> &amp;x_sol)</td></tr>
 <tr class="separator:a06ee68ca22fabef6b8b2ed1644d7601d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2652cbd7bd2f8df8901fcf2349ff1310" id="r_a2652cbd7bd2f8df8901fcf2349ff1310"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2652cbd7bd2f8df8901fcf2349ff1310">solve</a> (<a class="el" href="#aa9e667e233a7eb374081fbc96d0f8dcd">Function</a> t_function, <a class="el" href="#adbceb153d3daa5493db0254f159d6d2a">FirstDerivative</a> t_first_derivative, const <a class="el" href="#a5864cd0f35177520fac1d9a54dec3880">InputType</a> &amp;x_ini, <a class="el" href="#aaf0426e67bb84540d334127baecbb99f">OutputType</a> &amp;x_sol)</td></tr>
@@ -218,6 +222,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a46f589f9e1748d2ab713ca910e410e79"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a50cb8ac3f0b0bebba0bcf2d0e6ac3a03" id="r_a50cb8ac3f0b0bebba0bcf2d0e6ac3a03"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a50cb8ac3f0b0bebba0bcf2d0e6ac3a03">name</a> () const =0</td></tr>
 <tr class="separator:a50cb8ac3f0b0bebba0bcf2d0e6ac3a03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e4842a6bcd8e0c4c37d99093f75afd1" id="r_a3e4842a6bcd8e0c4c37d99093f75afd1"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3e4842a6bcd8e0c4c37d99093f75afd1">check</a> () const =0</td></tr>
+<tr class="separator:a3e4842a6bcd8e0c4c37d99093f75afd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-types" name="pro-types"></a>
 Protected Types</h2></td></tr>
@@ -262,6 +268,12 @@ Protected Member Functions</h2></td></tr>
 <tr class="separator:ad028fe8fbea37e8967ef14e4ca9fb523"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2f9e19d9fb6648e998bb724962806cf7" id="r_a2f9e19d9fb6648e998bb724962806cf7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2f9e19d9fb6648e998bb724962806cf7">store_trace</a> (const <a class="el" href="#a5864cd0f35177520fac1d9a54dec3880">InputType</a> &amp;x)</td></tr>
 <tr class="separator:a2f9e19d9fb6648e998bb724962806cf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50cfb192080a748f886a8e3a256cdb16" id="r_a50cfb192080a748f886a8e3a256cdb16"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a50cfb192080a748f886a8e3a256cdb16">header</a> ()</td></tr>
+<tr class="separator:a50cfb192080a748f886a8e3a256cdb16"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23b62d304abc6d6e945bd9df9cd23f2c" id="r_a23b62d304abc6d6e945bd9df9cd23f2c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a23b62d304abc6d6e945bd9df9cd23f2c">bottom</a> ()</td></tr>
+<tr class="separator:a23b62d304abc6d6e945bd9df9cd23f2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ecfd65869bf0e2ecbbcfc3fdc31c983" id="r_a7ecfd65869bf0e2ecbbcfc3fdc31c983"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7ecfd65869bf0e2ecbbcfc3fdc31c983">info</a> (<a class="el" href="namespace_optimist.html#a81198c1084f49913c4731c80160f6713">Real</a> residuals, std::string notes=&quot;&quot;)</td></tr>
+<tr class="separator:a7ecfd65869bf0e2ecbbcfc3fdc31c983"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a43a533f50de0a1d3df826eea34c27f38" id="r_a43a533f50de0a1d3df826eea34c27f38"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a43a533f50de0a1d3df826eea34c27f38">solve</a> (const <a class="el" href="#a5864cd0f35177520fac1d9a54dec3880">InputType</a> &amp;x_ini, <a class="el" href="#aaf0426e67bb84540d334127baecbb99f">OutputType</a> &amp;x_sol)=0</td></tr>
 <tr class="separator:a43a533f50de0a1d3df826eea34c27f38"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -297,10 +309,12 @@ Protected Attributes</h2></td></tr>
 <tr class="separator:a142b0cfd4157caed4345393a106ceffd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a88bfc9154adbba0383ab1cc423f017f0" id="r_a88bfc9154adbba0383ab1cc423f017f0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_optimist.html#a81198c1084f49913c4731c80160f6713">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a88bfc9154adbba0383ab1cc423f017f0">m_tolerance</a> {<a class="el" href="namespace_optimist.html#ada71d2db8b0264842fb80b738cbaf9b8">EPSILON_HIGH</a>}</td></tr>
 <tr class="separator:a88bfc9154adbba0383ab1cc423f017f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a638f48e8c46f86f9c65ca0733d0ee212" id="r_a638f48e8c46f86f9c65ca0733d0ee212"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a638f48e8c46f86f9c65ca0733d0ee212">m_verbose</a> {false}</td></tr>
+<tr class="memitem:a638f48e8c46f86f9c65ca0733d0ee212" id="r_a638f48e8c46f86f9c65ca0733d0ee212"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a638f48e8c46f86f9c65ca0733d0ee212">m_verbose</a> {true}</td></tr>
 <tr class="separator:a638f48e8c46f86f9c65ca0733d0ee212"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab0fe998f5da775f7b4c1aa947db74f20" id="r_ab0fe998f5da775f7b4c1aa947db74f20"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab0fe998f5da775f7b4c1aa947db74f20">m_damped</a> {false}</td></tr>
+<tr class="memitem:ab0fe998f5da775f7b4c1aa947db74f20" id="r_ab0fe998f5da775f7b4c1aa947db74f20"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab0fe998f5da775f7b4c1aa947db74f20">m_damped</a> {true}</td></tr>
 <tr class="separator:ab0fe998f5da775f7b4c1aa947db74f20"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ce55515855c06b0810deebfcb571a27" id="r_a0ce55515855c06b0810deebfcb571a27"><td class="memItemLeft" align="right" valign="top">std::ostream *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0ce55515855c06b0810deebfcb571a27">m_ostream</a> {&amp;std::cout}</td></tr>
+<tr class="separator:a0ce55515855c06b0810deebfcb571a27"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0bfb7fa70893a4d91f34be6cc5ada76e" id="r_a0bfb7fa70893a4d91f34be6cc5ada76e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0bfb7fa70893a4d91f34be6cc5ada76e">m_converged</a> {false}</td></tr>
 <tr class="separator:a0bfb7fa70893a4d91f34be6cc5ada76e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1d1f154b501d5ad2f7cdf79863ff133b" id="r_a1d1f154b501d5ad2f7cdf79863ff133b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a15994bb286ebbf3ecf41b39837518d32">TraceType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1d1f154b501d5ad2f7cdf79863ff133b">m_trace</a></td></tr>
@@ -760,6 +774,64 @@ template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905
 
 </div>
 </div>
+<a id="a23b62d304abc6d6e945bd9df9cd23f2c" name="a23b62d304abc6d6e945bd9df9cd23f2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a23b62d304abc6d6e945bd9df9cd23f2c">&#9670;&#160;</a></span>bottom()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a> InputDim, <a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a> OutputDim&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_optimist_1_1_solver.html">Optimist::Solver</a>&lt; InputDim, OutputDim &gt;::bottom </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Print the table bottom solver information. </p><dl class="section note"><dt>Note</dt><dd>This has to be properly placed in the derived classes. </dd></dl>
+
+</div>
+</div>
+<a id="a3e4842a6bcd8e0c4c37d99093f75afd1" name="a3e4842a6bcd8e0c4c37d99093f75afd1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e4842a6bcd8e0c4c37d99093f75afd1">&#9670;&#160;</a></span>check()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a> InputDim, <a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a> OutputDim&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool <a class="el" href="class_optimist_1_1_solver.html">Optimist::Solver</a>&lt; InputDim, OutputDim &gt;::check </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Check if the solver is able to solve the problem with the given input. </p><dl class="section return"><dt>Returns</dt><dd>The check boolean flag. </dd></dl>
+
+<p>Implemented in <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html#af7cb153e363ea1d88221245d83e6026c">Optimist::RootFinder::Broyden&lt; N &gt;</a>, <a class="el" href="class_optimist_1_1_root_finder_1_1_greenstadt.html#a6bc766e14d5681b886db1c2df13ce748">Optimist::RootFinder::Greenstadt&lt; N &gt;</a>, <a class="el" href="class_optimist_1_1_root_finder_1_1_newton.html#a5d9858470882880a50c53925435c50b6">Optimist::RootFinder::Newton&lt; N &gt;</a>, and <a class="el" href="class_optimist_1_1_scalar_solver_1_1_newton.html#acb2fabee511d66a9d112bc7e4bf9636a">Optimist::ScalarSolver::Newton</a>.</p>
+
+</div>
+</div>
 <a id="ae5024c851e91c16a8c25226fc7730598" name="ae5024c851e91c16a8c25226fc7730598"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae5024c851e91c16a8c25226fc7730598">&#9670;&#160;</a></span>converged()</h2>
 
@@ -1131,6 +1203,66 @@ template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905
 
 </div>
 </div>
+<a id="a50cfb192080a748f886a8e3a256cdb16" name="a50cfb192080a748f886a8e3a256cdb16"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a50cfb192080a748f886a8e3a256cdb16">&#9670;&#160;</a></span>header()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a> InputDim, <a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a> OutputDim&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_optimist_1_1_solver.html">Optimist::Solver</a>&lt; InputDim, OutputDim &gt;::header </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Print the table header solver information. </p><dl class="section note"><dt>Note</dt><dd>This has to be properly placed in the derived classes. </dd></dl>
+
+</div>
+</div>
+<a id="a7ecfd65869bf0e2ecbbcfc3fdc31c983" name="a7ecfd65869bf0e2ecbbcfc3fdc31c983"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ecfd65869bf0e2ecbbcfc3fdc31c983">&#9670;&#160;</a></span>info()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a> InputDim, <a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a> OutputDim&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_optimist_1_1_solver.html">Optimist::Solver</a>&lt; InputDim, OutputDim &gt;::info </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_optimist.html#a81198c1084f49913c4731c80160f6713">Real</a></td>          <td class="paramname"><span class="paramname"><em>residuals</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>notes</em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;&quot;</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Print the solver information during the algorithm iterations. </p><dl class="section note"><dt>Note</dt><dd>This has to be properly placed in the derived classes. </dd></dl>
+
+</div>
+</div>
 <a id="a2f618f0c2b612c671f70effa53ff6f5a" name="a2f618f0c2b612c671f70effa53ff6f5a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2f618f0c2b612c671f70effa53ff6f5a">&#9670;&#160;</a></span>iterations()</h2>
 
@@ -1490,7 +1622,68 @@ template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905
 </div><div class="memdoc">
 <p>Get the solver name. </p><dl class="section return"><dt>Returns</dt><dd>The solver name. </dd></dl>
 
-<p>Implemented in <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html#acf20275f0df1fb6632ce7a732b5d205f">Optimist::RootFinder::Broyden&lt; N &gt;</a>, <a class="el" href="class_optimist_1_1_root_finder_1_1_greenstadt.html#a8be60f06d356effa33b2f26a419f3d49">Optimist::RootFinder::Greenstadt&lt; N &gt;</a>, and <a class="el" href="class_optimist_1_1_root_finder_1_1_newton.html#aa1cf74249ecf51d7dfb671c99683f378">Optimist::RootFinder::Newton&lt; N &gt;</a>.</p>
+<p>Implemented in <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html#acf20275f0df1fb6632ce7a732b5d205f">Optimist::RootFinder::Broyden&lt; N &gt;</a>, <a class="el" href="class_optimist_1_1_root_finder_1_1_greenstadt.html#a8be60f06d356effa33b2f26a419f3d49">Optimist::RootFinder::Greenstadt&lt; N &gt;</a>, <a class="el" href="class_optimist_1_1_root_finder_1_1_newton.html#aa1cf74249ecf51d7dfb671c99683f378">Optimist::RootFinder::Newton&lt; N &gt;</a>, and <a class="el" href="class_optimist_1_1_scalar_solver_1_1_newton.html#ae0060d17471c09b9d09563a9ffa8ea40">Optimist::ScalarSolver::Newton</a>.</p>
+
+</div>
+</div>
+<a id="a26795d56fc9c211ce464d7e4374d93dc" name="a26795d56fc9c211ce464d7e4374d93dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26795d56fc9c211ce464d7e4374d93dc">&#9670;&#160;</a></span>ostream() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a> InputDim, <a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a> OutputDim&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::ostream &amp; <a class="el" href="class_optimist_1_1_solver.html">Optimist::Solver</a>&lt; InputDim, OutputDim &gt;::ostream </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Get the output stream for verbose mode. </p><dl class="section return"><dt>Returns</dt><dd>The output stream for verbose mode. </dd></dl>
+
+</div>
+</div>
+<a id="a4275b87a4d2f27ca073cccf315c8ee70" name="a4275b87a4d2f27ca073cccf315c8ee70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4275b87a4d2f27ca073cccf315c8ee70">&#9670;&#160;</a></span>ostream() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a> InputDim, <a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a> OutputDim&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_optimist_1_1_solver.html">Optimist::Solver</a>&lt; InputDim, OutputDim &gt;::ostream </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;</td>          <td class="paramname"><span class="paramname"><em>t_ostream</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Set the output stream for verbose mode. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">t_ostream</td><td>The output stream for verbose mode. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -1613,6 +1806,7 @@ template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>The convergence boolean flag. </dd></dl>
 
 <p>Implemented in <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html#aecba08aa3187ec2a9d0d2e29279976c4">Optimist::RootFinder::Broyden&lt; N &gt;</a>, <a class="el" href="class_optimist_1_1_root_finder_1_1_greenstadt.html#ad5e2f1b13dd56f07cd1d8c1e6f5087a0">Optimist::RootFinder::Greenstadt&lt; N &gt;</a>, and <a class="el" href="class_optimist_1_1_root_finder_1_1_newton.html#adf075b6f30314f358119dc69d8ac67b0">Optimist::RootFinder::Newton&lt; N &gt;</a>.</p>
 
@@ -2014,7 +2208,7 @@ template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool <a class="el" href="class_optimist_1_1_solver.html">Optimist::Solver</a>&lt; InputDim, OutputDim &gt;::m_damped {false}</td>
+          <td class="memname">bool <a class="el" href="class_optimist_1_1_solver.html">Optimist::Solver</a>&lt; InputDim, OutputDim &gt;::m_damped {true}</td>
         </tr>
       </table>
   </td>
@@ -2277,6 +2471,31 @@ template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905
 
 </div>
 </div>
+<a id="a0ce55515855c06b0810deebfcb571a27" name="a0ce55515855c06b0810deebfcb571a27"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ce55515855c06b0810deebfcb571a27">&#9670;&#160;</a></span>m_ostream</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a> InputDim, <a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a> OutputDim&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::ostream* <a class="el" href="class_optimist_1_1_solver.html">Optimist::Solver</a>&lt; InputDim, OutputDim &gt;::m_ostream {&amp;std::cout}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Output stream for verbose mode. </p>
+
+</div>
+</div>
 <a id="ae0606a12d8eb876009e317d8df6029e2" name="ae0606a12d8eb876009e317d8df6029e2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae0606a12d8eb876009e317d8df6029e2">&#9670;&#160;</a></span>m_relaxations</h2>
 
@@ -2414,7 +2633,7 @@ template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool <a class="el" href="class_optimist_1_1_solver.html">Optimist::Solver</a>&lt; InputDim, OutputDim &gt;::m_verbose {false}</td>
+          <td class="memname">bool <a class="el" href="class_optimist_1_1_solver.html">Optimist::Solver</a>&lt; InputDim, OutputDim &gt;::m_verbose {true}</td>
         </tr>
       </table>
   </td>

@@ -11,8 +11,8 @@
 
 #pragma once
 
-#ifndef OPTIMIST_NEWTON_HXX
-#define OPTIMIST_NEWTON_HXX
+#ifndef OPTIMIST_ROOTFINDER_NEWTON_HXX
+#define OPTIMIST_ROOTFINDER_NEWTON_HXX
 
 namespace Optimist
 {
@@ -29,7 +29,7 @@ namespace Optimist
     \*/
 
     /**
-    * \brief Class container for the (damped) Newton's method with affine invariant step.
+    * \brief Class container for the Newton's method with affine invariant step.
     *
     * \includedoc docs/markdown/Newton.md
     *
@@ -52,7 +52,7 @@ namespace Optimist
       /**
       * Class constructor for the Newton solver.
       */
-      Newton() : RootFinder<N>() {}
+      Newton() {}
 
       /**
       * Get the Newton solver name.
@@ -61,14 +61,32 @@ namespace Optimist
       std::string name() const override {return "Newton";}
 
       /**
-      * Solve nonlinear system of equations \f$ \mathbf{F}(\mathbf{x}) = \mathbf{0} \f$ with damping.
+      * Check if the Broyden solver is able to solve the problem with the given input.
+      * \return The check boolean flag.
+      */
+      bool check() const override
+      {
+        if (this->m_function != nullptr && this->m_first_derivative != nullptr) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+
+      /**
+      * Solve nonlinear system of equations \f$ f(x) = 0 \f$, with \f$ f: \mathbb{R} \rightarrow
+      * \mathbb{R} \f$.
       * \param[in] x_ini The initialization point.
       * \param[out] x_sol The solution point.
+      * \return The convergence boolean flag.
       */
       bool solve(Vector const &x_ini, Vector &x_sol) override
       {
         // Setup internal variables
         this->reset();
+
+        // Print header
+        if (this->m_verbose) {this->header();}
 
         // Initialize variables
         Real residuals_old, residuals_new, step_norm_old, step_norm_new, tau;
@@ -85,16 +103,19 @@ namespace Optimist
         Real tolerance_step_norm{this->m_tolerance * this->m_tolerance};
         for (this->m_iterations = Integer(1); this->m_iterations < this->m_max_iterations; ++this->m_iterations)
         {
+          // Store trace
+          this->store_trace(x_old);
 
           // Calculate step
           this->m_lu.compute(jacobian);
-          OPTIMIST_ASSERT(this->m_lu.rank() == N, "Optimist:Newton::solved(...): singular Jacobian detected.");
+          OPTIMIST_ASSERT(this->m_lu.rank() == N,
+            "Optimist::RootFinder::Newton::solve(...): singular Jacobian detected.");
           step_old = -this->m_lu.solve(function_old);
 
           // Check convergence
           residuals_old = function_old.norm();
           step_norm_old = step_old.norm();
-          this->store_trace(x_old);
+          if (this->m_verbose) {this->info(residuals_old);}
           if (residuals_old < tolerance_residuals || step_norm_old < tolerance_step_norm) {
             this->m_converged = true;
             break;
@@ -134,6 +155,9 @@ namespace Optimist
           step_old     = step_new;
         }
 
+        // Print bottom
+        if (this->m_verbose) {this->bottom();}
+
         // Convergence data
         x_sol = x_old;
         return this->m_converged;
@@ -145,4 +169,4 @@ namespace Optimist
 
 } // namespace Optimist
 
-#endif // OPTIMIST_NEWTON_HXX
+#endif // OPTIMIST_ROOTFINDER_NEWTON_HXX

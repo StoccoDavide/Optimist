@@ -16,12 +16,13 @@ var searchData=
   ['m_5fmax_5frelaxations_13',['m_max_relaxations',['../class_optimist_1_1_solver.html#a142b0cfd4157caed4345393a106ceffd',1,'Optimist::Solver']]],
   ['m_5fmax_5fsecond_5fderivative_5fevaluations_14',['m_max_second_derivative_evaluations',['../class_optimist_1_1_solver.html#a622beb0f85e758044838573b684ac045',1,'Optimist::Solver']]],
   ['m_5fmethod_15',['m_method',['../class_optimist_1_1_root_finder_1_1_broyden.html#a3ff7df6210fdb86f0ed11fbbf411e448',1,'Optimist::RootFinder::Broyden::m_method'],['../class_optimist_1_1_root_finder_1_1_greenstadt.html#ad2e76f32848942c2e5caddd101835e91',1,'Optimist::RootFinder::Greenstadt::m_method']]],
-  ['m_5frelaxations_16',['m_relaxations',['../class_optimist_1_1_solver.html#ae0606a12d8eb876009e317d8df6029e2',1,'Optimist::Solver']]],
-  ['m_5fsecond_5fderivative_17',['m_second_derivative',['../class_optimist_1_1_solver.html#a043aba6d2acc6d065f77ceff34f65221',1,'Optimist::Solver']]],
-  ['m_5fsecond_5fderivative_5fevaluations_18',['m_second_derivative_evaluations',['../class_optimist_1_1_solver.html#a0e38f9d884df89c3f81f455fe102b57b',1,'Optimist::Solver']]],
-  ['m_5fstart_5ftime_19',['m_start_time',['../class_optimist_1_1_tic_toc.html#a2542f53cb612724eedcf1a0a5cee4d51',1,'Optimist::TicToc']]],
-  ['m_5fstop_5ftime_20',['m_stop_time',['../class_optimist_1_1_tic_toc.html#ac4a10124cbea5c20eb7a2f9452658fd4',1,'Optimist::TicToc']]],
-  ['m_5ftolerance_21',['m_tolerance',['../class_optimist_1_1_solver.html#a88bfc9154adbba0383ab1cc423f017f0',1,'Optimist::Solver']]],
-  ['m_5ftrace_22',['m_trace',['../class_optimist_1_1_solver.html#a1d1f154b501d5ad2f7cdf79863ff133b',1,'Optimist::Solver']]],
-  ['m_5fverbose_23',['m_verbose',['../class_optimist_1_1_solver.html#a638f48e8c46f86f9c65ca0733d0ee212',1,'Optimist::Solver']]]
+  ['m_5fostream_16',['m_ostream',['../class_optimist_1_1_solver.html#a0ce55515855c06b0810deebfcb571a27',1,'Optimist::Solver']]],
+  ['m_5frelaxations_17',['m_relaxations',['../class_optimist_1_1_solver.html#ae0606a12d8eb876009e317d8df6029e2',1,'Optimist::Solver']]],
+  ['m_5fsecond_5fderivative_18',['m_second_derivative',['../class_optimist_1_1_solver.html#a043aba6d2acc6d065f77ceff34f65221',1,'Optimist::Solver']]],
+  ['m_5fsecond_5fderivative_5fevaluations_19',['m_second_derivative_evaluations',['../class_optimist_1_1_solver.html#a0e38f9d884df89c3f81f455fe102b57b',1,'Optimist::Solver']]],
+  ['m_5fstart_5ftime_20',['m_start_time',['../class_optimist_1_1_tic_toc.html#a2542f53cb612724eedcf1a0a5cee4d51',1,'Optimist::TicToc']]],
+  ['m_5fstop_5ftime_21',['m_stop_time',['../class_optimist_1_1_tic_toc.html#ac4a10124cbea5c20eb7a2f9452658fd4',1,'Optimist::TicToc']]],
+  ['m_5ftolerance_22',['m_tolerance',['../class_optimist_1_1_solver.html#a88bfc9154adbba0383ab1cc423f017f0',1,'Optimist::Solver']]],
+  ['m_5ftrace_23',['m_trace',['../class_optimist_1_1_solver.html#a1d1f154b501d5ad2f7cdf79863ff133b',1,'Optimist::Solver']]],
+  ['m_5fverbose_24',['m_verbose',['../class_optimist_1_1_solver.html#a638f48e8c46f86f9c65ca0733d0ee212',1,'Optimist::Solver']]]
 ];

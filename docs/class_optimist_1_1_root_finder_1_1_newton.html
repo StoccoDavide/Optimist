@@ -148,10 +148,10 @@ $(function(){initNavTree('class_optimist_1_1_root_finder_1_1_newton.html',''); i
 </div><!--header-->
 <div class="contents">
 
-<p>Class container for the (damped) <a class="el" href="class_optimist_1_1_root_finder_1_1_newton.html" title="Class container for the (damped) Newton&#39;s method with affine invariant step.">Newton</a>'s method with affine invariant step.  
+<p>Class container for the <a class="el" href="class_optimist_1_1_root_finder_1_1_newton.html" title="Class container for the Newton&#39;s method with affine invariant step.">Newton</a>'s method with affine invariant step.  
  <a href="#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="_newton_8hxx_source.html">Newton.hxx</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="_root_finder_2_newton_8hxx_source.html">Newton.hxx</a>&gt;</code></p>
 
 <p>Inherits <a class="el" href="class_optimist_1_1_root_finder_1_1_root_finder.html">Optimist::RootFinder::RootFinder&lt; N &gt;</a>.</p>
 <table class="memberdecls">
@@ -181,6 +181,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aeb68b92713036f3e7ac47dee70388b37"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa1cf74249ecf51d7dfb671c99683f378" id="r_aa1cf74249ecf51d7dfb671c99683f378"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa1cf74249ecf51d7dfb671c99683f378">name</a> () const override</td></tr>
 <tr class="separator:aa1cf74249ecf51d7dfb671c99683f378"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d9858470882880a50c53925435c50b6" id="r_a5d9858470882880a50c53925435c50b6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5d9858470882880a50c53925435c50b6">check</a> () const override</td></tr>
+<tr class="separator:a5d9858470882880a50c53925435c50b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adf075b6f30314f358119dc69d8ac67b0" id="r_adf075b6f30314f358119dc69d8ac67b0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adf075b6f30314f358119dc69d8ac67b0">solve</a> (<a class="el" href="#adfe12a269cfa0d34e625f50c178c0a55">Vector</a> const &amp;x_ini, <a class="el" href="#adfe12a269cfa0d34e625f50c178c0a55">Vector</a> &amp;x_sol) override</td></tr>
 <tr class="separator:adf075b6f30314f358119dc69d8ac67b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_optimist_1_1_root_finder_1_1_root_finder"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_class_optimist_1_1_root_finder_1_1_root_finder')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_optimist_1_1_root_finder_1_1_root_finder.html">Optimist::RootFinder::RootFinder&lt; N &gt;</a></td></tr>
@@ -247,6 +249,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ae5024c851e91c16a8c25226fc7730598 inherit pub_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a25a58fda5e26e32df2a41daab061f3d7 inherit pub_methods_class_optimist_1_1_solver" id="r_a25a58fda5e26e32df2a41daab061f3d7"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_optimist_1_1_solver.html#a15994bb286ebbf3ecf41b39837518d32">TraceType</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a25a58fda5e26e32df2a41daab061f3d7">trace</a> () const</td></tr>
 <tr class="separator:a25a58fda5e26e32df2a41daab061f3d7 inherit pub_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26795d56fc9c211ce464d7e4374d93dc inherit pub_methods_class_optimist_1_1_solver" id="r_a26795d56fc9c211ce464d7e4374d93dc"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a26795d56fc9c211ce464d7e4374d93dc">ostream</a> () const</td></tr>
+<tr class="separator:a26795d56fc9c211ce464d7e4374d93dc inherit pub_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4275b87a4d2f27ca073cccf315c8ee70 inherit pub_methods_class_optimist_1_1_solver" id="r_a4275b87a4d2f27ca073cccf315c8ee70"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a4275b87a4d2f27ca073cccf315c8ee70">ostream</a> (std::ostream &amp;t_ostream)</td></tr>
+<tr class="separator:a4275b87a4d2f27ca073cccf315c8ee70 inherit pub_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a06ee68ca22fabef6b8b2ed1644d7601d inherit pub_methods_class_optimist_1_1_solver" id="r_a06ee68ca22fabef6b8b2ed1644d7601d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a06ee68ca22fabef6b8b2ed1644d7601d">solve</a> (<a class="el" href="class_optimist_1_1_solver.html#aa9e667e233a7eb374081fbc96d0f8dcd">Function</a> t_function, const <a class="el" href="class_optimist_1_1_solver.html#a5864cd0f35177520fac1d9a54dec3880">InputType</a> &amp;x_ini, <a class="el" href="class_optimist_1_1_solver.html#aaf0426e67bb84540d334127baecbb99f">OutputType</a> &amp;x_sol)</td></tr>
 <tr class="separator:a06ee68ca22fabef6b8b2ed1644d7601d inherit pub_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2652cbd7bd2f8df8901fcf2349ff1310 inherit pub_methods_class_optimist_1_1_solver" id="r_a2652cbd7bd2f8df8901fcf2349ff1310"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a2652cbd7bd2f8df8901fcf2349ff1310">solve</a> (<a class="el" href="class_optimist_1_1_solver.html#aa9e667e233a7eb374081fbc96d0f8dcd">Function</a> t_function, <a class="el" href="class_optimist_1_1_solver.html#adbceb153d3daa5493db0254f159d6d2a">FirstDerivative</a> t_first_derivative, const <a class="el" href="class_optimist_1_1_solver.html#a5864cd0f35177520fac1d9a54dec3880">InputType</a> &amp;x_ini, <a class="el" href="class_optimist_1_1_solver.html#aaf0426e67bb84540d334127baecbb99f">OutputType</a> &amp;x_sol)</td></tr>
@@ -304,6 +310,12 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:ad028fe8fbea37e8967ef14e4ca9fb523 inherit pro_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2f9e19d9fb6648e998bb724962806cf7 inherit pro_methods_class_optimist_1_1_solver" id="r_a2f9e19d9fb6648e998bb724962806cf7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a2f9e19d9fb6648e998bb724962806cf7">store_trace</a> (const <a class="el" href="class_optimist_1_1_solver.html#a5864cd0f35177520fac1d9a54dec3880">InputType</a> &amp;x)</td></tr>
 <tr class="separator:a2f9e19d9fb6648e998bb724962806cf7 inherit pro_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50cfb192080a748f886a8e3a256cdb16 inherit pro_methods_class_optimist_1_1_solver" id="r_a50cfb192080a748f886a8e3a256cdb16"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a50cfb192080a748f886a8e3a256cdb16">header</a> ()</td></tr>
+<tr class="separator:a50cfb192080a748f886a8e3a256cdb16 inherit pro_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23b62d304abc6d6e945bd9df9cd23f2c inherit pro_methods_class_optimist_1_1_solver" id="r_a23b62d304abc6d6e945bd9df9cd23f2c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a23b62d304abc6d6e945bd9df9cd23f2c">bottom</a> ()</td></tr>
+<tr class="separator:a23b62d304abc6d6e945bd9df9cd23f2c inherit pro_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ecfd65869bf0e2ecbbcfc3fdc31c983 inherit pro_methods_class_optimist_1_1_solver" id="r_a7ecfd65869bf0e2ecbbcfc3fdc31c983"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a7ecfd65869bf0e2ecbbcfc3fdc31c983">info</a> (<a class="el" href="namespace_optimist.html#a81198c1084f49913c4731c80160f6713">Real</a> residuals, std::string notes=&quot;&quot;)</td></tr>
+<tr class="separator:a7ecfd65869bf0e2ecbbcfc3fdc31c983 inherit pro_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_class_optimist_1_1_solver"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_attribs_class_optimist_1_1_solver')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="class_optimist_1_1_solver.html">Optimist::Solver&lt; N, N &gt;</a></td></tr>
 <tr class="memitem:aa2fc851e3532c96d0c0c2d47dd844eed inherit pro_attribs_class_optimist_1_1_solver" id="r_aa2fc851e3532c96d0c0c2d47dd844eed"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_optimist_1_1_solver.html#aa9e667e233a7eb374081fbc96d0f8dcd">Function</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#aa2fc851e3532c96d0c0c2d47dd844eed">m_function</a></td></tr>
 <tr class="separator:aa2fc851e3532c96d0c0c2d47dd844eed inherit pro_attribs_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -339,6 +351,8 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:a638f48e8c46f86f9c65ca0733d0ee212 inherit pro_attribs_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab0fe998f5da775f7b4c1aa947db74f20 inherit pro_attribs_class_optimist_1_1_solver" id="r_ab0fe998f5da775f7b4c1aa947db74f20"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#ab0fe998f5da775f7b4c1aa947db74f20">m_damped</a></td></tr>
 <tr class="separator:ab0fe998f5da775f7b4c1aa947db74f20 inherit pro_attribs_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ce55515855c06b0810deebfcb571a27 inherit pro_attribs_class_optimist_1_1_solver" id="r_a0ce55515855c06b0810deebfcb571a27"><td class="memItemLeft" align="right" valign="top">std::ostream *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a0ce55515855c06b0810deebfcb571a27">m_ostream</a></td></tr>
+<tr class="separator:a0ce55515855c06b0810deebfcb571a27 inherit pro_attribs_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0bfb7fa70893a4d91f34be6cc5ada76e inherit pro_attribs_class_optimist_1_1_solver" id="r_a0bfb7fa70893a4d91f34be6cc5ada76e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a0bfb7fa70893a4d91f34be6cc5ada76e">m_converged</a></td></tr>
 <tr class="separator:a0bfb7fa70893a4d91f34be6cc5ada76e inherit pro_attribs_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1d1f154b501d5ad2f7cdf79863ff133b inherit pro_attribs_class_optimist_1_1_solver" id="r_a1d1f154b501d5ad2f7cdf79863ff133b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_optimist_1_1_solver.html#a15994bb286ebbf3ecf41b39837518d32">TraceType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a1d1f154b501d5ad2f7cdf79863ff133b">m_trace</a></td></tr>
@@ -348,7 +362,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="textblock"><div class="compoundTemplParams">template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a> N&gt;<br />
 class Optimist::RootFinder::Newton&lt; N &gt;</div><h1><a class="anchor" id="autotoc_md4"></a>
 Newton's method</h1>
-<p><a class="el" href="class_optimist_1_1_root_finder_1_1_newton.html" title="Class container for the (damped) Newton&#39;s method with affine invariant step.">Newton</a>'s method, including its damped variant with an affine-invariant step, is implemented for solving problems of the form   </p><p class="formulaDsp">
+<p><a class="el" href="class_optimist_1_1_root_finder_1_1_newton.html" title="Class container for the Newton&#39;s method with affine invariant step.">Newton</a>'s method, including its damped variant with an affine-invariant step, is implemented for solving problems of the form   </p><p class="formulaDsp">
 \[      \mathbf{F}(\mathbf{x}) = \mathbf{0} \text{,} \quad \mathbf{F}: \mathbb{R}^{n} \rightarrow \mathbb{R}^{n} \text{.}
 \]
 </p>
@@ -367,7 +381,7 @@ Newton's method</h1>
       \left\|\mathbf{h}_k\right\| \text{.}
 \]
 </p>
-<p> For detailed information on the affine-invariant <a class="el" href="class_optimist_1_1_root_finder_1_1_newton.html" title="Class container for the (damped) Newton&#39;s method with affine invariant step.">Newton</a>'s method, refer to <a href="https://www.zib.de/deuflhard/research/algorithm/ainewton.en.html">this link</a>.  </p>
+<p> For detailed information on the affine-invariant <a class="el" href="class_optimist_1_1_root_finder_1_1_newton.html" title="Class container for the Newton&#39;s method with affine invariant step.">Newton</a>'s method, refer to <a href="https://www.zib.de/deuflhard/research/algorithm/ainewton.en.html">this link</a>.  </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">N</td><td>The dimension of the nonlinear system of equations. </td></tr>
@@ -464,11 +478,41 @@ template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Class constructor for the <a class="el" href="class_optimist_1_1_root_finder_1_1_newton.html" title="Class container for the (damped) Newton&#39;s method with affine invariant step.">Newton</a> solver. </p>
+<p>Class constructor for the <a class="el" href="class_optimist_1_1_root_finder_1_1_newton.html" title="Class container for the Newton&#39;s method with affine invariant step.">Newton</a> solver. </p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a5d9858470882880a50c53925435c50b6" name="a5d9858470882880a50c53925435c50b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d9858470882880a50c53925435c50b6">&#9670;&#160;</a></span>check()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a> N&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="class_optimist_1_1_root_finder_1_1_newton.html">Optimist::RootFinder::Newton</a>&lt; N &gt;::check </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Check if the <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the (damped) Broyden&#39;s method.">Broyden</a> solver is able to solve the problem with the given input. </p><dl class="section return"><dt>Returns</dt><dd>The check boolean flag. </dd></dl>
+
+<p>Implements <a class="el" href="class_optimist_1_1_solver.html#a3e4842a6bcd8e0c4c37d99093f75afd1">Optimist::Solver&lt; N, N &gt;</a>.</p>
+
+</div>
+</div>
 <a id="aa1cf74249ecf51d7dfb671c99683f378" name="aa1cf74249ecf51d7dfb671c99683f378"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa1cf74249ecf51d7dfb671c99683f378">&#9670;&#160;</a></span>name()</h2>
 
@@ -493,7 +537,7 @@ template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Get the <a class="el" href="class_optimist_1_1_root_finder_1_1_newton.html" title="Class container for the (damped) Newton&#39;s method with affine invariant step.">Newton</a> solver name. </p><dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="class_optimist_1_1_root_finder_1_1_newton.html" title="Class container for the (damped) Newton&#39;s method with affine invariant step.">Newton</a> solver name. </dd></dl>
+<p>Get the <a class="el" href="class_optimist_1_1_root_finder_1_1_newton.html" title="Class container for the Newton&#39;s method with affine invariant step.">Newton</a> solver name. </p><dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="class_optimist_1_1_root_finder_1_1_newton.html" title="Class container for the Newton&#39;s method with affine invariant step.">Newton</a> solver name. </dd></dl>
 
 <p>Implements <a class="el" href="class_optimist_1_1_solver.html#a50cb8ac3f0b0bebba0bcf2d0e6ac3a03">Optimist::Solver&lt; N, N &gt;</a>.</p>
 
@@ -527,13 +571,15 @@ template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Solve nonlinear system of equations \( \mathbf{F}(\mathbf{x}) = \mathbf{0} \) with damping. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Solve nonlinear system of equations \( f(x) = 0 \), with  \( f: \mathbb{R} \rightarrow
+\mathbb{R} \). </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">x_ini</td><td>The initialization point. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">x_sol</td><td>The solution point. </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>The convergence boolean flag. </dd></dl>
 
 <p>Implements <a class="el" href="class_optimist_1_1_solver.html#a43a533f50de0a1d3df826eea34c27f38">Optimist::Solver&lt; N, N &gt;</a>.</p>
 
@@ -566,7 +612,7 @@ template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>include/Optimist/RootFinder/<a class="el" href="_newton_8hxx_source.html">Newton.hxx</a></li>
+<li>include/Optimist/RootFinder/<a class="el" href="_root_finder_2_newton_8hxx_source.html">Newton.hxx</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

@@ -6,6 +6,7 @@ var class_optimist_1_1_root_finder_1_1_broyden =
     [ "Method", "class_optimist_1_1_root_finder_1_1_broyden.html#a7e6458b5b2d4be756c7f46a1648d0983", null ],
     [ "Vector", "class_optimist_1_1_root_finder_1_1_broyden.html#ab9c4da2dc1a8d297d142bf32cac210f8", null ],
     [ "Broyden", "class_optimist_1_1_root_finder_1_1_broyden.html#adbdcb9abfec907265ca2d313e589beeb", null ],
+    [ "check", "class_optimist_1_1_root_finder_1_1_broyden.html#af7cb153e363ea1d88221245d83e6026c", null ],
     [ "enable_bad_method", "class_optimist_1_1_root_finder_1_1_broyden.html#a8aaf158b584038a6c50733fe4edfc8a7", null ],
     [ "enable_combined_method", "class_optimist_1_1_root_finder_1_1_broyden.html#aaa021e841c72b7eebf61a41de752bcb5", null ],
     [ "enable_good_method", "class_optimist_1_1_root_finder_1_1_broyden.html#a1ab8b5d6f9b0a78a08320393a39f8592", null ],

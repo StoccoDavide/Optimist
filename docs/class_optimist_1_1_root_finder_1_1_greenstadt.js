@@ -6,6 +6,7 @@ var class_optimist_1_1_root_finder_1_1_greenstadt =
     [ "Method", "class_optimist_1_1_root_finder_1_1_greenstadt.html#ac45de207d20f9a1019bd924fc9678f15", null ],
     [ "Vector", "class_optimist_1_1_root_finder_1_1_greenstadt.html#a008d20ba63c650e54831ea5ee498e685", null ],
     [ "Greenstadt", "class_optimist_1_1_root_finder_1_1_greenstadt.html#a043babdd78a34b7a343fbdb6a0de066c", null ],
+    [ "check", "class_optimist_1_1_root_finder_1_1_greenstadt.html#a6bc766e14d5681b886db1c2df13ce748", null ],
     [ "enable_one_method", "class_optimist_1_1_root_finder_1_1_greenstadt.html#a2d243b4f2560897e60fa91538b8048c3", null ],
     [ "enable_two_method", "class_optimist_1_1_root_finder_1_1_greenstadt.html#a8ed08c363aa1e229aad87a4342b98a73", null ],
     [ "method", "class_optimist_1_1_root_finder_1_1_greenstadt.html#a8e66ba8b7d9ce67cc23f8634a69c6766", null ],

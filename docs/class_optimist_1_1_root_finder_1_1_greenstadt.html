@@ -148,7 +148,7 @@ $(function(){initNavTree('class_optimist_1_1_root_finder_1_1_greenstadt.html',''
 </div><!--header-->
 <div class="contents">
 
-<p>Class container for the (damped) <a class="el" href="class_optimist_1_1_root_finder_1_1_greenstadt.html" title="Class container for the (damped) Greenstadt&#39;s method.">Greenstadt</a>'s method.  
+<p>Class container for the <a class="el" href="class_optimist_1_1_root_finder_1_1_greenstadt.html" title="Class container for the Greenstadt&#39;s method.">Greenstadt</a>'s method.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_greenstadt_8hxx_source.html">Greenstadt.hxx</a>&gt;</code></p>
@@ -193,6 +193,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a8ed08c363aa1e229aad87a4342b98a73"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7cfcf36e3d0c2a621f942a3de4e5e8f2" id="r_a7cfcf36e3d0c2a621f942a3de4e5e8f2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7cfcf36e3d0c2a621f942a3de4e5e8f2">set_method</a> (<a class="el" href="#ac45de207d20f9a1019bd924fc9678f15">Method</a> t_method)</td></tr>
 <tr class="separator:a7cfcf36e3d0c2a621f942a3de4e5e8f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6bc766e14d5681b886db1c2df13ce748" id="r_a6bc766e14d5681b886db1c2df13ce748"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6bc766e14d5681b886db1c2df13ce748">check</a> () const override</td></tr>
+<tr class="separator:a6bc766e14d5681b886db1c2df13ce748"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad5e2f1b13dd56f07cd1d8c1e6f5087a0" id="r_ad5e2f1b13dd56f07cd1d8c1e6f5087a0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad5e2f1b13dd56f07cd1d8c1e6f5087a0">solve</a> (<a class="el" href="#a008d20ba63c650e54831ea5ee498e685">Vector</a> const &amp;x_ini, <a class="el" href="#a008d20ba63c650e54831ea5ee498e685">Vector</a> &amp;x_sol) override</td></tr>
 <tr class="separator:ad5e2f1b13dd56f07cd1d8c1e6f5087a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a96fce506f3cef98c145cc9595babd8b2" id="r_a96fce506f3cef98c145cc9595babd8b2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a96fce506f3cef98c145cc9595babd8b2">update</a> (<a class="el" href="#af30610f9359c2e5cb1ad45b698257912">Matrix</a> const &amp;jacobian_old, <a class="el" href="#a008d20ba63c650e54831ea5ee498e685">Vector</a> const &amp;delta_x_new, <a class="el" href="#a008d20ba63c650e54831ea5ee498e685">Vector</a> const &amp;delta_function_new, <a class="el" href="#a008d20ba63c650e54831ea5ee498e685">Vector</a> const &amp;function_new, <a class="el" href="#af30610f9359c2e5cb1ad45b698257912">Matrix</a> &amp;jacobian_new)</td></tr>
@@ -261,6 +263,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ae5024c851e91c16a8c25226fc7730598 inherit pub_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a25a58fda5e26e32df2a41daab061f3d7 inherit pub_methods_class_optimist_1_1_solver" id="r_a25a58fda5e26e32df2a41daab061f3d7"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_optimist_1_1_solver.html#a15994bb286ebbf3ecf41b39837518d32">TraceType</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a25a58fda5e26e32df2a41daab061f3d7">trace</a> () const</td></tr>
 <tr class="separator:a25a58fda5e26e32df2a41daab061f3d7 inherit pub_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26795d56fc9c211ce464d7e4374d93dc inherit pub_methods_class_optimist_1_1_solver" id="r_a26795d56fc9c211ce464d7e4374d93dc"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a26795d56fc9c211ce464d7e4374d93dc">ostream</a> () const</td></tr>
+<tr class="separator:a26795d56fc9c211ce464d7e4374d93dc inherit pub_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4275b87a4d2f27ca073cccf315c8ee70 inherit pub_methods_class_optimist_1_1_solver" id="r_a4275b87a4d2f27ca073cccf315c8ee70"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a4275b87a4d2f27ca073cccf315c8ee70">ostream</a> (std::ostream &amp;t_ostream)</td></tr>
+<tr class="separator:a4275b87a4d2f27ca073cccf315c8ee70 inherit pub_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a06ee68ca22fabef6b8b2ed1644d7601d inherit pub_methods_class_optimist_1_1_solver" id="r_a06ee68ca22fabef6b8b2ed1644d7601d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a06ee68ca22fabef6b8b2ed1644d7601d">solve</a> (<a class="el" href="class_optimist_1_1_solver.html#aa9e667e233a7eb374081fbc96d0f8dcd">Function</a> t_function, const <a class="el" href="class_optimist_1_1_solver.html#a5864cd0f35177520fac1d9a54dec3880">InputType</a> &amp;x_ini, <a class="el" href="class_optimist_1_1_solver.html#aaf0426e67bb84540d334127baecbb99f">OutputType</a> &amp;x_sol)</td></tr>
 <tr class="separator:a06ee68ca22fabef6b8b2ed1644d7601d inherit pub_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2652cbd7bd2f8df8901fcf2349ff1310 inherit pub_methods_class_optimist_1_1_solver" id="r_a2652cbd7bd2f8df8901fcf2349ff1310"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a2652cbd7bd2f8df8901fcf2349ff1310">solve</a> (<a class="el" href="class_optimist_1_1_solver.html#aa9e667e233a7eb374081fbc96d0f8dcd">Function</a> t_function, <a class="el" href="class_optimist_1_1_solver.html#adbceb153d3daa5493db0254f159d6d2a">FirstDerivative</a> t_first_derivative, const <a class="el" href="class_optimist_1_1_solver.html#a5864cd0f35177520fac1d9a54dec3880">InputType</a> &amp;x_ini, <a class="el" href="class_optimist_1_1_solver.html#aaf0426e67bb84540d334127baecbb99f">OutputType</a> &amp;x_sol)</td></tr>
@@ -318,6 +324,12 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:ad028fe8fbea37e8967ef14e4ca9fb523 inherit pro_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2f9e19d9fb6648e998bb724962806cf7 inherit pro_methods_class_optimist_1_1_solver" id="r_a2f9e19d9fb6648e998bb724962806cf7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a2f9e19d9fb6648e998bb724962806cf7">store_trace</a> (const <a class="el" href="class_optimist_1_1_solver.html#a5864cd0f35177520fac1d9a54dec3880">InputType</a> &amp;x)</td></tr>
 <tr class="separator:a2f9e19d9fb6648e998bb724962806cf7 inherit pro_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50cfb192080a748f886a8e3a256cdb16 inherit pro_methods_class_optimist_1_1_solver" id="r_a50cfb192080a748f886a8e3a256cdb16"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a50cfb192080a748f886a8e3a256cdb16">header</a> ()</td></tr>
+<tr class="separator:a50cfb192080a748f886a8e3a256cdb16 inherit pro_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23b62d304abc6d6e945bd9df9cd23f2c inherit pro_methods_class_optimist_1_1_solver" id="r_a23b62d304abc6d6e945bd9df9cd23f2c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a23b62d304abc6d6e945bd9df9cd23f2c">bottom</a> ()</td></tr>
+<tr class="separator:a23b62d304abc6d6e945bd9df9cd23f2c inherit pro_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ecfd65869bf0e2ecbbcfc3fdc31c983 inherit pro_methods_class_optimist_1_1_solver" id="r_a7ecfd65869bf0e2ecbbcfc3fdc31c983"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a7ecfd65869bf0e2ecbbcfc3fdc31c983">info</a> (<a class="el" href="namespace_optimist.html#a81198c1084f49913c4731c80160f6713">Real</a> residuals, std::string notes=&quot;&quot;)</td></tr>
+<tr class="separator:a7ecfd65869bf0e2ecbbcfc3fdc31c983 inherit pro_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_class_optimist_1_1_solver"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_attribs_class_optimist_1_1_solver')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="class_optimist_1_1_solver.html">Optimist::Solver&lt; N, N &gt;</a></td></tr>
 <tr class="memitem:aa2fc851e3532c96d0c0c2d47dd844eed inherit pro_attribs_class_optimist_1_1_solver" id="r_aa2fc851e3532c96d0c0c2d47dd844eed"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_optimist_1_1_solver.html#aa9e667e233a7eb374081fbc96d0f8dcd">Function</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#aa2fc851e3532c96d0c0c2d47dd844eed">m_function</a></td></tr>
 <tr class="separator:aa2fc851e3532c96d0c0c2d47dd844eed inherit pro_attribs_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -353,6 +365,8 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:a638f48e8c46f86f9c65ca0733d0ee212 inherit pro_attribs_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab0fe998f5da775f7b4c1aa947db74f20 inherit pro_attribs_class_optimist_1_1_solver" id="r_ab0fe998f5da775f7b4c1aa947db74f20"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#ab0fe998f5da775f7b4c1aa947db74f20">m_damped</a></td></tr>
 <tr class="separator:ab0fe998f5da775f7b4c1aa947db74f20 inherit pro_attribs_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ce55515855c06b0810deebfcb571a27 inherit pro_attribs_class_optimist_1_1_solver" id="r_a0ce55515855c06b0810deebfcb571a27"><td class="memItemLeft" align="right" valign="top">std::ostream *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a0ce55515855c06b0810deebfcb571a27">m_ostream</a></td></tr>
+<tr class="separator:a0ce55515855c06b0810deebfcb571a27 inherit pro_attribs_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0bfb7fa70893a4d91f34be6cc5ada76e inherit pro_attribs_class_optimist_1_1_solver" id="r_a0bfb7fa70893a4d91f34be6cc5ada76e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a0bfb7fa70893a4d91f34be6cc5ada76e">m_converged</a></td></tr>
 <tr class="separator:a0bfb7fa70893a4d91f34be6cc5ada76e inherit pro_attribs_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1d1f154b501d5ad2f7cdf79863ff133b inherit pro_attribs_class_optimist_1_1_solver" id="r_a1d1f154b501d5ad2f7cdf79863ff133b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_optimist_1_1_solver.html#a15994bb286ebbf3ecf41b39837518d32">TraceType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a1d1f154b501d5ad2f7cdf79863ff133b">m_trace</a></td></tr>
@@ -431,7 +445,7 @@ template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905
         </tr>
       </table>
 </div><div class="memdoc">
-<p><a class="el" href="class_optimist_1_1_root_finder_1_1_greenstadt.html" title="Class container for the (damped) Greenstadt&#39;s method.">Greenstadt</a> solver type. </p>
+<p><a class="el" href="class_optimist_1_1_root_finder_1_1_greenstadt.html" title="Class container for the Greenstadt&#39;s method.">Greenstadt</a> solver type. </p>
 
 </div>
 </div>
@@ -476,11 +490,41 @@ template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Class constructor for the <a class="el" href="class_optimist_1_1_root_finder_1_1_greenstadt.html" title="Class container for the (damped) Greenstadt&#39;s method.">Greenstadt</a> solver. </p>
+<p>Class constructor for the <a class="el" href="class_optimist_1_1_root_finder_1_1_greenstadt.html" title="Class container for the Greenstadt&#39;s method.">Greenstadt</a> solver. </p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a6bc766e14d5681b886db1c2df13ce748" name="a6bc766e14d5681b886db1c2df13ce748"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6bc766e14d5681b886db1c2df13ce748">&#9670;&#160;</a></span>check()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a> N&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="class_optimist_1_1_root_finder_1_1_greenstadt.html">Optimist::RootFinder::Greenstadt</a>&lt; N &gt;::check </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Check if the <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the (damped) Broyden&#39;s method.">Broyden</a> solver is able to solve the problem with the given input. </p><dl class="section return"><dt>Returns</dt><dd>The check boolean flag. </dd></dl>
+
+<p>Implements <a class="el" href="class_optimist_1_1_solver.html#a3e4842a6bcd8e0c4c37d99093f75afd1">Optimist::Solver&lt; N, N &gt;</a>.</p>
+
+</div>
+</div>
 <a id="a2d243b4f2560897e60fa91538b8048c3" name="a2d243b4f2560897e60fa91538b8048c3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2d243b4f2560897e60fa91538b8048c3">&#9670;&#160;</a></span>enable_one_method()</h2>
 
@@ -561,7 +605,7 @@ template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Get the enumeration type of the <a class="el" href="class_optimist_1_1_root_finder_1_1_greenstadt.html" title="Class container for the (damped) Greenstadt&#39;s method.">Greenstadt</a> solver method. </p><dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="class_optimist_1_1_root_finder_1_1_greenstadt.html" title="Class container for the (damped) Greenstadt&#39;s method.">Greenstadt</a> solver enumeration type. </dd></dl>
+<p>Get the enumeration type of the <a class="el" href="class_optimist_1_1_root_finder_1_1_greenstadt.html" title="Class container for the Greenstadt&#39;s method.">Greenstadt</a> solver method. </p><dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="class_optimist_1_1_root_finder_1_1_greenstadt.html" title="Class container for the Greenstadt&#39;s method.">Greenstadt</a> solver enumeration type. </dd></dl>
 
 </div>
 </div>
@@ -589,9 +633,9 @@ template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Set the enumeration type of the <a class="el" href="class_optimist_1_1_root_finder_1_1_greenstadt.html" title="Class container for the (damped) Greenstadt&#39;s method.">Greenstadt</a> solver method. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Set the enumeration type of the <a class="el" href="class_optimist_1_1_root_finder_1_1_greenstadt.html" title="Class container for the Greenstadt&#39;s method.">Greenstadt</a> solver method. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">t_method</td><td>The <a class="el" href="class_optimist_1_1_root_finder_1_1_greenstadt.html" title="Class container for the (damped) Greenstadt&#39;s method.">Greenstadt</a> solver method enumeration type. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">t_method</td><td>The <a class="el" href="class_optimist_1_1_root_finder_1_1_greenstadt.html" title="Class container for the Greenstadt&#39;s method.">Greenstadt</a> solver method enumeration type. </td></tr>
   </table>
   </dd>
 </dl>
@@ -622,7 +666,7 @@ template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Get the <a class="el" href="class_optimist_1_1_root_finder_1_1_greenstadt.html" title="Class container for the (damped) Greenstadt&#39;s method.">Greenstadt</a> solver name. </p><dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="class_optimist_1_1_root_finder_1_1_greenstadt.html" title="Class container for the (damped) Greenstadt&#39;s method.">Greenstadt</a> solver name. </dd></dl>
+<p>Get the <a class="el" href="class_optimist_1_1_root_finder_1_1_greenstadt.html" title="Class container for the Greenstadt&#39;s method.">Greenstadt</a> solver name. </p><dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="class_optimist_1_1_root_finder_1_1_greenstadt.html" title="Class container for the Greenstadt&#39;s method.">Greenstadt</a> solver name. </dd></dl>
 
 <p>Implements <a class="el" href="class_optimist_1_1_solver.html#a50cb8ac3f0b0bebba0bcf2d0e6ac3a03">Optimist::Solver&lt; N, N &gt;</a>.</p>
 
@@ -652,9 +696,9 @@ template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Set the <a class="el" href="class_optimist_1_1_root_finder_1_1_greenstadt.html" title="Class container for the (damped) Greenstadt&#39;s method.">Greenstadt</a> solver method. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Set the <a class="el" href="class_optimist_1_1_root_finder_1_1_greenstadt.html" title="Class container for the Greenstadt&#39;s method.">Greenstadt</a> solver method. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">t_method</td><td>The <a class="el" href="class_optimist_1_1_root_finder_1_1_greenstadt.html" title="Class container for the (damped) Greenstadt&#39;s method.">Greenstadt</a> solver method enumeration type. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">t_method</td><td>The <a class="el" href="class_optimist_1_1_root_finder_1_1_greenstadt.html" title="Class container for the Greenstadt&#39;s method.">Greenstadt</a> solver method enumeration type. </td></tr>
   </table>
   </dd>
 </dl>
@@ -696,6 +740,7 @@ template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>The convergence boolean flag. </dd></dl>
 
 <p>Implements <a class="el" href="class_optimist_1_1_solver.html#a43a533f50de0a1d3df826eea34c27f38">Optimist::Solver&lt; N, N &gt;</a>.</p>
 
@@ -744,7 +789,7 @@ template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905
   </tr>
 </table>
 </div><div class="memdoc">
-<p><a class="el" href="#a7e8300b593fd89d0759b3e7ec051abc1">Jacobian</a> approximation update rule for the <a class="el" href="class_optimist_1_1_root_finder_1_1_greenstadt.html" title="Class container for the (damped) Greenstadt&#39;s method.">Greenstadt</a>'s method. </p><dl class="params"><dt>Parameters</dt><dd>
+<p><a class="el" href="#a7e8300b593fd89d0759b3e7ec051abc1">Jacobian</a> approximation update rule for the <a class="el" href="class_optimist_1_1_root_finder_1_1_greenstadt.html" title="Class container for the Greenstadt&#39;s method.">Greenstadt</a>'s method. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">jacobian_old</td><td>Old jacobian approximation. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">delta_x_new</td><td>New difference between points. </td></tr>
@@ -779,7 +824,7 @@ template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905
   </tr>
 </table>
 </div><div class="memdoc">
-<p><a class="el" href="class_optimist_1_1_root_finder_1_1_greenstadt.html" title="Class container for the (damped) Greenstadt&#39;s method.">Greenstadt</a> solver type. </p>
+<p><a class="el" href="class_optimist_1_1_root_finder_1_1_greenstadt.html" title="Class container for the Greenstadt&#39;s method.">Greenstadt</a> solver type. </p>
 
 </div>
 </div>

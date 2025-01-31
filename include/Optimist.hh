@@ -16,6 +16,7 @@
 
 // C++ standard libraries
 #include <iostream>
+#include <iomanip>
 #include <string>
 #include <cmath>
 #include <vector>
@@ -219,6 +220,7 @@ namespace Optimist
 
 // Scalar solvers
 #include "Optimist/ScalarSolver.hxx"
+#include "Optimist/ScalarSolver/Newton.hxx"
 
 // Root-finding solvers
 #include "Optimist/RootFinder.hxx"

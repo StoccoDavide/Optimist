@@ -2,7 +2,9 @@ var hierarchy =
 [
     [ "Optimist::Solver< InputDim, OutputDim >", "class_optimist_1_1_solver.html", null ],
     [ "Optimist::Solver< 1, 1 >", "class_optimist_1_1_solver.html", [
-      [ "Optimist::ScalarSolver::ScalarSolver", "class_optimist_1_1_scalar_solver_1_1_scalar_solver.html", null ]
+      [ "Optimist::ScalarSolver::ScalarSolver", "class_optimist_1_1_scalar_solver_1_1_scalar_solver.html", [
+        [ "Optimist::ScalarSolver::Newton", "class_optimist_1_1_scalar_solver_1_1_newton.html", null ]
+      ] ]
     ] ],
     [ "Optimist::Solver< N, 1 >", "class_optimist_1_1_solver.html", [
       [ "Optimist::Optimizer::Optimizer< N >", "class_optimist_1_1_optimizer_1_1_optimizer.html", null ]

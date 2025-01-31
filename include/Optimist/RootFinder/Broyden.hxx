@@ -20,12 +20,12 @@ namespace Optimist
   {
 
     /*\
-    |   ____                      _
-    |  | __ ) _ __ ___  _   _  __| | ___ _ __
-    |  |  _ \| '__/ _ \| | | |/ _` |/ _ \ '_ \
-    |  | |_) | | | (_) | |_| | (_| |  __/ | | |
-    |  |____/|_|  \___/ \__, |\__,_|\___|_| |_|
-    |                   |___/
+     |   ____                      _
+     |  | __ ) _ __ ___  _   _  __| | ___ _ __
+     |  |  _ \| '__/ _ \| | | |/ _` |/ _ \ '_ \
+     |  | |_) | | | (_) | |_| | (_| |  __/ | | |
+     |  |____/|_|  \___/ \__, |\__,_|\___|_| |_|
+     |                   |___/
     \*/
 
     /**
@@ -53,7 +53,7 @@ namespace Optimist
       /**
       * Class constructor for the Broyden solver.
       */
-      Broyden() : RootFinder<N>() {}
+      Broyden() {}
 
       /**
       * Get the Broyden solver name.
@@ -107,15 +107,32 @@ namespace Optimist
       void set_method(Method t_method) {this->m_method = t_method;}
 
       /**
+      * Check if the Broyden solver is able to solve the problem with the given input.
+      * \return The check boolean flag.
+      */
+      bool check() const override
+      {
+        if (this->m_function != nullptr && this->m_first_derivative != nullptr) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+
+      /**
       * Solve nonlinear system of equations \f$ \mathbf{F}(\mathbf{x}) = \mathbf{0} \f$
       * with damping factor \f$ \alpha \f$.
       * \param[in] x_ini The initialization point.
       * \param[out] x_sol The solution point.
+      * \return The convergence boolean flag.
       */
       bool solve(Vector const &x_ini, Vector &x_sol) override
       {
         // Setup internal variables
         this->reset();
+
+        // Print header
+        if (this->m_verbose) {this->header();}
 
         // Initialize variables
         Real residuals_old, residuals_new, step_norm_old, step_norm_new, tau;
@@ -133,6 +150,8 @@ namespace Optimist
         Real tolerance_step_norm{this->m_tolerance * this->m_tolerance};
         for (this->m_iterations = Integer(1); this->m_iterations < this->m_max_iterations; ++this->m_iterations)
         {
+          // Store trace
+          this->store_trace(x_old);
 
           // Calculate step
           step_old = -jacobian_old * function_old;
@@ -140,7 +159,7 @@ namespace Optimist
           // Check convergence
           residuals_old = function_old.norm();
           step_norm_old = step_old.norm();
-          this->store_trace(x_old);
+          if (this->m_verbose) {this->info(residuals_old);}
           if (residuals_old < tolerance_residuals || step_norm_old < tolerance_step_norm) {
             this->m_converged = true;
             break;
@@ -188,6 +207,9 @@ namespace Optimist
           step_old           = step_new;
           jacobian_old       = jacobian_new;
         }
+
+        // Print bottom
+        if (this->m_verbose) {this->bottom();}
 
         // Convergence data
         x_sol = x_old;
