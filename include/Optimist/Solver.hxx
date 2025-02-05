@@ -276,8 +276,8 @@ namespace Optimist
     Real tolerance() const {return this->m_tolerance;}
 
     /**
-    * Set the tolerance \f$ \epsilon \f$ for which the nonlinear solver
-    * stops, i.e., \f$ \left\| \mathbf{F}(\mathbf{x}) \right\| < \epsilon \f$.
+    * Set the tolerance \f$ \epsilon \f$ for which the nonlinear solver stops, i.e., \f$ \left\|
+    * \mathbf{F}(\mathbf{x}) \right\|_{2} < \epsilon \f$.
     * \param[in] t_tolerance The tolerance \f$ \epsilon \f$.
     */
     void tolerance(Real t_tolerance) {
@@ -476,6 +476,48 @@ namespace Optimist
     void store_trace(const InputType & x) {this->m_trace.push_back(x);}
 
     /**
+    * Damp the step using the affine invariant criterion.
+    * \param[in] x_old Old point.
+    * \param[in] function_old Old function value.
+    * \param[in] step_old Old step.
+    * \param[out] x_new New point.
+    * \param[out] function_new New function value.
+    * \param[out] step_new New step.
+    * \return The damping boolean flag, true if the damping is successful, false otherwise.
+    */
+    bool damp(InputType const & x_old, InputType const & function_old, InputType const & step_old,
+      InputType & x_new, InputType & function_new, InputType & step_new)
+    {
+      Real step_norm_old, step_norm_new, residuals_old, residuals_new, tau{1.0};
+      for (this->m_relaxations = Integer(0); this->m_relaxations < this->m_max_relaxations; ++this->m_relaxations)
+      {
+        // Update point
+        step_new = tau * step_old;
+        x_new = x_old + step_new;
+        this->evaluate_function(x_new, function_new);
+
+        // Check relaxation
+        if constexpr (InputDim == 1 && OutputDim == 1) {
+          residuals_old = std::abs(function_old);
+          residuals_new = std::abs(function_new);
+          step_norm_old = std::abs(step_old);
+          step_norm_new = std::abs(step_new);
+        } else {
+          residuals_old = function_old.norm();
+          residuals_new = function_new.norm();
+          step_norm_old = step_old.norm();
+          step_norm_new = step_new.norm();
+        }
+        if (residuals_new < residuals_old || step_norm_new < (Real(1.0)-tau/Real(2.0))*step_norm_old) {
+          return true;
+        } else {
+          tau *= this->m_alpha;
+        }
+      }
+      return false;
+    }
+
+    /**
     * Print the table header solver information.
     * \note This has to be properly placed in the derived classes.
     */
@@ -483,9 +525,9 @@ namespace Optimist
     {
       *this->m_ostream
         << "Solver Name: " << this->name() << std::endl
-        << "┌--------------┬-------┬-------┬-------┬-------┐" << std::endl
-        << "|    ║f(x)║₂   | #Iter |    #f |   #Df |  #DDf | Additional notes" << std::endl
-        << "├--------------┼-------┼-------┼-------┼-------┤" << std::endl;
+        << CTL << H14 << TU << H7 << TU << H7 << TU << H7 << TU << H7 << CTR << std::endl
+        << VL << "   ║f(x)║₂  " << VC << "#Iter" << VC << "   #f" << VC << "  #Df" << VC << " #DDf" << VC << "Additional notes" << std::endl
+        << TL << H14 << C << H7 << C << H7 << C << H7 << C << H7 << TR << std::endl;
     }
 
     /**
@@ -495,7 +537,7 @@ namespace Optimist
     void bottom()
     {
       *this->m_ostream
-        << "└--------------┴-------┴-------┴-------┴-------┘" << std::endl
+        << CBL << H14 << TD << H7 << TD << H7 << TD << H7 << TD << H7 << CBR << std::endl
         << this->name() << ": " << (this->m_converged ? "CONVERGED" : "NOT CONVERGED") << std::endl;
     }
 
@@ -507,12 +549,12 @@ namespace Optimist
     {
       if (this->m_verbose)
       {
-        *this->m_ostream << "| "
-          << std::setw(10) << std::scientific << std::setprecision(6) << residuals << " | "
-          << std::setw(5) << this->m_iterations << " | "
-          << std::setw(5) << this->m_function_evaluations << " | "
-          << std::setw(5) << this->m_first_derivative_evaluations << " | "
-          << std::setw(5) << this->m_second_derivative_evaluations << " | "
+        *this->m_ostream << VL
+          << std::setw(12) << std::scientific << std::setprecision(6) << residuals << VC
+          << std::setw(5) << this->m_iterations << VC
+          << std::setw(5) << this->m_function_evaluations << VC
+          << std::setw(5) << this->m_first_derivative_evaluations << VC
+          << std::setw(5) << this->m_second_derivative_evaluations << VC
           << notes << std::endl;
       }
     }

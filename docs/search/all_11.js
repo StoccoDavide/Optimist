@@ -1,11 +1,10 @@
 var searchData=
 [
-  ['tic_0',['tic',['../class_optimist_1_1_tic_toc.html#aaaaffa4a10b5f92e6ad29f26e1f4c974',1,'Optimist::TicToc']]],
-  ['tictoc_1',['TicToc',['../class_optimist_1_1_tic_toc.html',1,'Optimist::TicToc'],['../class_optimist_1_1_tic_toc.html#a26779a4b5dcd799554479f941bf53750',1,'Optimist::TicToc::TicToc(const TicToc &amp;)=delete'],['../class_optimist_1_1_tic_toc.html#ac14a6ef1b0b1a474e58ea97f9dfa6b62',1,'Optimist::TicToc::TicToc()']]],
-  ['tictoc_2ehxx_2',['TicToc.hxx',['../_tic_toc_8hxx.html',1,'']]],
-  ['time_3',['Time',['../class_optimist_1_1_tic_toc.html#a5885bcf2aa480457550c15733b64bb45',1,'Optimist::TicToc']]],
-  ['toc_4',['toc',['../class_optimist_1_1_tic_toc.html#afbfd2a45f4bbc938345375bc5d53ed8c',1,'Optimist::TicToc']]],
-  ['tolerance_5',['tolerance',['../class_optimist_1_1_solver.html#ad25694d70009fae966613de68c367328',1,'Optimist::Solver::tolerance() const'],['../class_optimist_1_1_solver.html#a110516adcdaa3462d3096c8236bf123b',1,'Optimist::Solver::tolerance(Real t_tolerance)']]],
-  ['trace_6',['trace',['../class_optimist_1_1_solver.html#a25a58fda5e26e32df2a41daab061f3d7',1,'Optimist::Solver']]],
-  ['tracetype_7',['TraceType',['../class_optimist_1_1_solver.html#a15994bb286ebbf3ecf41b39837518d32',1,'Optimist::Solver']]]
+  ['td_0',['TD',['../namespace_optimist.html#a275dd2a1f0c7e6dbea526c84ab42d4ce',1,'Optimist']]],
+  ['tl_1',['TL',['../namespace_optimist.html#ab1dafd7f3b9f5b874353da25ff603335',1,'Optimist']]],
+  ['tolerance_2',['tolerance',['../class_optimist_1_1_solver.html#ad25694d70009fae966613de68c367328',1,'Optimist::Solver::tolerance() const'],['../class_optimist_1_1_solver.html#a110516adcdaa3462d3096c8236bf123b',1,'Optimist::Solver::tolerance(Real t_tolerance)']]],
+  ['tr_3',['TR',['../namespace_optimist.html#a1ecb39d41c3c5dcef5f981b8ddfd292f',1,'Optimist']]],
+  ['trace_4',['trace',['../class_optimist_1_1_solver.html#a25a58fda5e26e32df2a41daab061f3d7',1,'Optimist::Solver']]],
+  ['tracetype_5',['TraceType',['../class_optimist_1_1_solver.html#a15994bb286ebbf3ecf41b39837518d32',1,'Optimist::Solver']]],
+  ['tu_6',['TU',['../namespace_optimist.html#a6e7bc2c5b77e8b6f7b0e32f8f58f18be',1,'Optimist']]]
 ];

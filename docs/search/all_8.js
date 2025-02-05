@@ -13,7 +13,8 @@ var searchData=
   ['info_10',['info',['../class_optimist_1_1_solver.html#a7ecfd65869bf0e2ecbbcfc3fdc31c983',1,'Optimist::Solver']]],
   ['infty_11',['INFTY',['../namespace_optimist.html#a6a033098d795d5163acb342655389f6b',1,'Optimist']]],
   ['inputtype_12',['InputType',['../class_optimist_1_1_solver.html#a5864cd0f35177520fac1d9a54dec3880',1,'Optimist::Solver']]],
-  ['installation_13',['Installation',['../index.html#autotoc_md8',1,'']]],
+  ['installation_13',['Installation',['../index.html#autotoc_md12',1,'']]],
   ['integer_14',['Integer',['../namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452',1,'Optimist']]],
-  ['iterations_15',['iterations',['../class_optimist_1_1_solver.html#a2f618f0c2b612c671f70effa53ff6f5a',1,'Optimist::Solver']]]
+  ['invariant_20step_15',['invariant step',['../class_optimist_1_1_root_finder_1_1_root_finder.html#autotoc_md2',1,'Affine-invariant step'],['../class_optimist_1_1_scalar_root_finder_1_1_scalar_root_finder.html#autotoc_md8',1,'Affine-invariant step']]],
+  ['iterations_16',['iterations',['../class_optimist_1_1_solver.html#a2f618f0c2b612c671f70effa53ff6f5a',1,'Optimist::Solver']]]
 ];

@@ -268,6 +268,8 @@ Protected Member Functions</h2></td></tr>
 <tr class="separator:ad028fe8fbea37e8967ef14e4ca9fb523"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2f9e19d9fb6648e998bb724962806cf7" id="r_a2f9e19d9fb6648e998bb724962806cf7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2f9e19d9fb6648e998bb724962806cf7">store_trace</a> (const <a class="el" href="#a5864cd0f35177520fac1d9a54dec3880">InputType</a> &amp;x)</td></tr>
 <tr class="separator:a2f9e19d9fb6648e998bb724962806cf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1c41abe42674f7d9466076ee05ac51b" id="r_ab1c41abe42674f7d9466076ee05ac51b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab1c41abe42674f7d9466076ee05ac51b">damp</a> (<a class="el" href="#a5864cd0f35177520fac1d9a54dec3880">InputType</a> const &amp;x_old, <a class="el" href="#a5864cd0f35177520fac1d9a54dec3880">InputType</a> const &amp;function_old, <a class="el" href="#a5864cd0f35177520fac1d9a54dec3880">InputType</a> const &amp;step_old, <a class="el" href="#a5864cd0f35177520fac1d9a54dec3880">InputType</a> &amp;x_new, <a class="el" href="#a5864cd0f35177520fac1d9a54dec3880">InputType</a> &amp;function_new, <a class="el" href="#a5864cd0f35177520fac1d9a54dec3880">InputType</a> &amp;step_new)</td></tr>
+<tr class="separator:ab1c41abe42674f7d9466076ee05ac51b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a50cfb192080a748f886a8e3a256cdb16" id="r_a50cfb192080a748f886a8e3a256cdb16"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a50cfb192080a748f886a8e3a256cdb16">header</a> ()</td></tr>
 <tr class="separator:a50cfb192080a748f886a8e3a256cdb16"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a23b62d304abc6d6e945bd9df9cd23f2c" id="r_a23b62d304abc6d6e945bd9df9cd23f2c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a23b62d304abc6d6e945bd9df9cd23f2c">bottom</a> ()</td></tr>
@@ -322,9 +324,18 @@ Protected Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a> InputDim, <a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a> OutputDim&gt;<br />
-class Optimist::Solver&lt; InputDim, OutputDim &gt;</div><h1><a class="anchor" id="autotoc_md6"></a>
+class Optimist::Solver&lt; InputDim, OutputDim &gt;</div><h1><a class="anchor" id="autotoc_md10"></a>
 Solver</h1>
-<p>TODO: Add content.  </p>
+<p>The solvers implemented in <code><a class="el" href="namespace_optimist.html" title="Namespace for the Optimist library.">Optimist</a></code> are derived from the <code><a class="el" href="class_optimist_1_1_solver.html" title="Class container for the generic root-finding/optimization problem solver.">Solver</a></code> class, which provides a common interface for solving nonlinear systems of equations. The <code><a class="el" href="class_optimist_1_1_solver.html" title="Class container for the generic root-finding/optimization problem solver.">Solver</a></code> class is an abstract base class that defines the methods and attributes required by the derived classes. The derived classes implement the specific algorithms for solving the nonlinear systems of equations.</p>
+<p>This class provides a base class for developing solvers that handle a generic function \(\mathbf{f}(\mathbf{x}): \mathbb{R}^{n} \rightarrow \mathbb{R}^{m}\). In general, the derived classes are designed to solve root-finding problems of the form   </p><p class="formulaDsp">
+\[    \mathbf{f}(\mathbf{x}) = \mathbf{0} \text{,} \quad \text{with} \quad \mathbf{f}: \mathbb{R}^{n} \rightarrow \mathbb{R}^{n} \text{,}
+\]
+</p>
+<p> as well as optimization problems of the form   </p><p class="formulaDsp">
+\[    \min_{\mathbf{x}} f(\mathbf{x}) \text{,} \quad f: \mathbb{R}^{n} \rightarrow \mathbb{R} \text{.}
+\]
+</p>
+<p> If \( n &gt; 1 \) the solver is a multi-dimensional solver, otherwise, it is a scalar solver. The linear algebra operations are performed using the <code>Eigen</code> library, which provides a high-level interface for matrix operations. Otherwise, for \( n = 1 \), the base type changes to <code><a class="el" href="namespace_optimist.html#a81198c1084f49913c4731c80160f6713">Real</a></code>, a scalar type defined in the <code><a class="el" href="namespace_optimist.html" title="Namespace for the Optimist library.">Optimist</a></code> library.</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">InputDim</td><td>The root-finding/optimization problem input dimension. </td></tr>
@@ -828,7 +839,7 @@ template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905
 </div><div class="memdoc">
 <p>Check if the solver is able to solve the problem with the given input. </p><dl class="section return"><dt>Returns</dt><dd>The check boolean flag. </dd></dl>
 
-<p>Implemented in <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html#af7cb153e363ea1d88221245d83e6026c">Optimist::RootFinder::Broyden&lt; N &gt;</a>, <a class="el" href="class_optimist_1_1_root_finder_1_1_greenstadt.html#a6bc766e14d5681b886db1c2df13ce748">Optimist::RootFinder::Greenstadt&lt; N &gt;</a>, <a class="el" href="class_optimist_1_1_root_finder_1_1_newton.html#a5d9858470882880a50c53925435c50b6">Optimist::RootFinder::Newton&lt; N &gt;</a>, and <a class="el" href="class_optimist_1_1_scalar_solver_1_1_newton.html#acb2fabee511d66a9d112bc7e4bf9636a">Optimist::ScalarSolver::Newton</a>.</p>
+<p>Implemented in <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html#af7cb153e363ea1d88221245d83e6026c">Optimist::RootFinder::Broyden&lt; N &gt;</a>, <a class="el" href="class_optimist_1_1_root_finder_1_1_greenstadt.html#a6bc766e14d5681b886db1c2df13ce748">Optimist::RootFinder::Greenstadt&lt; N &gt;</a>, <a class="el" href="class_optimist_1_1_root_finder_1_1_newton.html#a5d9858470882880a50c53925435c50b6">Optimist::RootFinder::Newton&lt; N &gt;</a>, and <a class="el" href="class_optimist_1_1_scalar_root_finder_1_1_newton.html#a1abce8f75e5d12a98d74cbfa5318f6fa">Optimist::ScalarRootFinder::Newton</a>.</p>
 
 </div>
 </div>
@@ -857,6 +868,69 @@ template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905
 </table>
 </div><div class="memdoc">
 <p>Get the convergence boolean flag. </p><dl class="section return"><dt>Returns</dt><dd>The convergence boolean flag. </dd></dl>
+
+</div>
+</div>
+<a id="ab1c41abe42674f7d9466076ee05ac51b" name="ab1c41abe42674f7d9466076ee05ac51b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1c41abe42674f7d9466076ee05ac51b">&#9670;&#160;</a></span>damp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a> InputDim, <a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a> OutputDim&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="class_optimist_1_1_solver.html">Optimist::Solver</a>&lt; InputDim, OutputDim &gt;::damp </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#a5864cd0f35177520fac1d9a54dec3880">InputType</a> const &amp;</td>          <td class="paramname"><span class="paramname"><em>x_old</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#a5864cd0f35177520fac1d9a54dec3880">InputType</a> const &amp;</td>          <td class="paramname"><span class="paramname"><em>function_old</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#a5864cd0f35177520fac1d9a54dec3880">InputType</a> const &amp;</td>          <td class="paramname"><span class="paramname"><em>step_old</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#a5864cd0f35177520fac1d9a54dec3880">InputType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>x_new</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#a5864cd0f35177520fac1d9a54dec3880">InputType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>function_new</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#a5864cd0f35177520fac1d9a54dec3880">InputType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>step_new</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Damp the step using the affine invariant criterion. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">x_old</td><td>Old point. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">function_old</td><td>Old function value. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">step_old</td><td>Old step. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">x_new</td><td>New point. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">function_new</td><td>New function value. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">step_new</td><td>New step. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The damping boolean flag, true if the damping is successful, false otherwise. </dd></dl>
 
 </div>
 </div>
@@ -1622,7 +1696,7 @@ template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905
 </div><div class="memdoc">
 <p>Get the solver name. </p><dl class="section return"><dt>Returns</dt><dd>The solver name. </dd></dl>
 
-<p>Implemented in <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html#acf20275f0df1fb6632ce7a732b5d205f">Optimist::RootFinder::Broyden&lt; N &gt;</a>, <a class="el" href="class_optimist_1_1_root_finder_1_1_greenstadt.html#a8be60f06d356effa33b2f26a419f3d49">Optimist::RootFinder::Greenstadt&lt; N &gt;</a>, <a class="el" href="class_optimist_1_1_root_finder_1_1_newton.html#aa1cf74249ecf51d7dfb671c99683f378">Optimist::RootFinder::Newton&lt; N &gt;</a>, and <a class="el" href="class_optimist_1_1_scalar_solver_1_1_newton.html#ae0060d17471c09b9d09563a9ffa8ea40">Optimist::ScalarSolver::Newton</a>.</p>
+<p>Implemented in <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html#acf20275f0df1fb6632ce7a732b5d205f">Optimist::RootFinder::Broyden&lt; N &gt;</a>, <a class="el" href="class_optimist_1_1_root_finder_1_1_greenstadt.html#a8be60f06d356effa33b2f26a419f3d49">Optimist::RootFinder::Greenstadt&lt; N &gt;</a>, <a class="el" href="class_optimist_1_1_root_finder_1_1_newton.html#aa1cf74249ecf51d7dfb671c99683f378">Optimist::RootFinder::Newton&lt; N &gt;</a>, and <a class="el" href="class_optimist_1_1_scalar_root_finder_1_1_newton.html#a9067b5abf473de6b34e9043b5586ef22">Optimist::ScalarRootFinder::Newton</a>.</p>
 
 </div>
 </div>
@@ -2047,7 +2121,8 @@ template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Set the tolerance \( \epsilon \) for which the nonlinear solver stops, i.e., \( \left\| \mathbf{F}(\mathbf{x}) \right\| &lt; \epsilon \). </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Set the tolerance \( \epsilon \) for which the nonlinear solver stops, i.e.,  \( \left\|
+\mathbf{F}(\mathbf{x}) \right\|_{2} &lt; \epsilon \). </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">t_tolerance</td><td>The tolerance \( \epsilon \). </td></tr>
   </table>

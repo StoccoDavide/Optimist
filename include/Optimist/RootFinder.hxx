@@ -18,7 +18,7 @@ namespace Optimist
 {
 
   /**
-  * Namespace for the root-finding algorithms.
+  * \brief Namespace for multi-dimensional root-finding algorithms.
   */
   namespace RootFinder
   {
@@ -33,7 +33,7 @@ namespace Optimist
     \*/
 
     /**
-    * \brief Class container for the root finder.
+    * \brief Class container for the multi-dimensional root finder.
     *
     * \includedoc docs/markdown/RootFinder.md
     *
@@ -62,9 +62,9 @@ namespace Optimist
       using Jacobian = typename Solver<N, N>::FirstDerivative; /**< Jacobian function type. */
 
       /**
-      * Class constructor for the root finder.
+      * Class constructor for the multi-dimensional root finder.
       */
-      RootFinder() : Solver<N, N>() {}
+      RootFinder() {}
 
       /**
       * Get the number of function first derivative evaluations.

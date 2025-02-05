@@ -139,19 +139,19 @@ $(function(){initNavTree('index.html',''); initResizable(true); });
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title"><a class="el" href="namespace_optimist.html" title="The namespace for the Optimist library.">Optimist</a> </div></div>
+  <div class="headertitle"><div class="title"><a class="el" href="namespace_optimist.html" title="Namespace for the Optimist library.">Optimist</a> </div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="md_docs_2markdown_2_mainpage"></a></p>
-<p><code><a class="el" href="namespace_optimist.html" title="The namespace for the Optimist library.">Optimist</a></code> is a library for the numerical solution of optimization problems and zero-finding problems. It is based on the <a href="https://eigen.tuxfamily.org/index.php?title=Main_Page"><code>Eigen</code></a> library and written in C++17.</p>
+<p><code><a class="el" href="namespace_optimist.html" title="Namespace for the Optimist library.">Optimist</a></code> is a library for the numerical solution of optimization problems and zero-finding problems. It is based on the <a href="https://eigen.tuxfamily.org/index.php?title=Main_Page"><code>Eigen</code></a> library and written in C++17.</p>
 <p>Are you looking for the online documentation? Visit <a href="https://stoccodavide.github.io/Optimist/">this link</a>!</p>
-<h1><a class="anchor" id="autotoc_md8"></a>
+<h1><a class="anchor" id="autotoc_md12"></a>
 Installation</h1>
-<h2><a class="anchor" id="autotoc_md9"></a>
+<h2><a class="anchor" id="autotoc_md13"></a>
 Quick and dirty</h2>
-<p><code><a class="el" href="namespace_optimist.html" title="The namespace for the Optimist library.">Optimist</a></code> is a header-only library that depends only on <a href="https://eigen.tuxfamily.org/index.php?title=Main_Page"><code>Eigen</code></a> (version &gt;= 3.4.0), so the quick and dirty way of installing it is by simply copying the <code>include</code> directory to your project and make sure to have <a href="https://eigen.tuxfamily.org/index.php?title=Main_Page"><code>Eigen</code></a> available however you see fit. Alternatively, you can do things properly and use <code>CMake</code> (version &gt;= 3.14).</p>
+<p><code><a class="el" href="namespace_optimist.html" title="Namespace for the Optimist library.">Optimist</a></code> is a header-only library that depends only on <a href="https://eigen.tuxfamily.org/index.php?title=Main_Page"><code>Eigen</code></a> (version &gt;= 3.4.0), so the quick and dirty way of installing it is by simply copying the <code>include</code> directory to your project and make sure to have <a href="https://eigen.tuxfamily.org/index.php?title=Main_Page"><code>Eigen</code></a> available however you see fit. Alternatively, you can do things properly and use <code>CMake</code> (version &gt;= 3.14).</p>
 <p>Optionally, you can also install <a href="https://alandefreitas.github.io/matplotplusplus/"><code>Matplot++</code></a> (version &gt;= 1.2.0) to plot the results of your simulations.</p>
-<h2><a class="anchor" id="autotoc_md10"></a>
+<h2><a class="anchor" id="autotoc_md14"></a>
 CMake</h2>
 <p>If you are using CMake, you can add the library as a subdirectory in your project.</p>
 <div class="fragment"><div class="line">add_subdirectory(path/to/Optimist)</div>
@@ -168,7 +168,7 @@ CMake</h2>
 <div class="line">)</div>
 <div class="line">fetchcontent_makeavailable(Optimist)</div>
 <div class="line">target_link_libraries(your_target PRIVATE Optimist::Optimist)</div>
-</div><!-- fragment --><p>If you already have <code><a class="el" href="namespace_optimist.html" title="The namespace for the Optimist library.">Optimist</a></code> somewhere on your system, you can use <code>find_pacakge</code> directly.</p>
+</div><!-- fragment --><p>If you already have <code><a class="el" href="namespace_optimist.html" title="Namespace for the Optimist library.">Optimist</a></code> somewhere on your system, you can use <code>find_pacakge</code> directly.</p>
 <div class="fragment"><div class="line"># Optionally specify a custom path to find content from</div>
 <div class="line">list(APPEND CMAKE_PREFIX_PATH &quot;path/to/your/dependencies&quot;)</div>
 <div class="line">find_package(</div>
@@ -202,7 +202,7 @@ CMake</h2>
 <div class="line">endif()</div>
 <div class="line"> </div>
 <div class="line">target_link_libraries(your_target PRIVATE Optimist::Optimist)</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md11"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md15"></a>
 Authors</h1>
 <ul>
 <li>Davide Stocco <br  />
@@ -219,9 +219,9 @@ Authors</h1>
  email: <a href="#" onclick="location.href='mai'+'lto:'+'enr'+'ic'+'o.b'+'er'+'tol'+'az'+'zi@'+'un'+'itn'+'.i'+'t'; return false;">enric<span class="obfuscator">.nosp@m.</span>o.be<span class="obfuscator">.nosp@m.</span>rtola<span class="obfuscator">.nosp@m.</span>zzi@<span class="obfuscator">.nosp@m.</span>unitn<span class="obfuscator">.nosp@m.</span>.it</a></li>
 </ul>
 <p>Aka...</p>
-<h1><a class="anchor" id="autotoc_md12"></a>
+<h1><a class="anchor" id="autotoc_md16"></a>
 License</h1>
-<p>The <code><a class="el" href="namespace_optimist.html" title="The namespace for the Optimist library.">Optimist</a></code> project is distributed under the BSD 2-Clause License - see the <a href="https://StoccoDavide.github.io/Optimist/LICENSE">LICENSE</a> file for details.</p>
+<p>The <code><a class="el" href="namespace_optimist.html" title="Namespace for the Optimist library.">Optimist</a></code> project is distributed under the BSD 2-Clause License - see the <a href="https://StoccoDavide.github.io/Optimist/LICENSE">LICENSE</a> file for details.</p>
 <p>Here's what the license entails:</p>
 <ol type="1">
 <li>Anyone can copy, modify and distribute this software.</li>

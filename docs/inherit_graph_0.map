@@ -1,7 +1,9 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$class_optimist_1_1_solver.html" title=" " alt="" coords="5,13,167,38"/>
-<area shape="rect" id="Node000001" href="$class_optimist_1_1_scalar_solver_1_1_scalar_solver.html" title="Class container for the scalar solver." alt="" coords="215,5,367,46"/>
-<area shape="poly" id="edge1_Node000000_Node000001" title=" " alt="" coords="182,23,214,23,214,28,182,28"/>
-<area shape="rect" id="Node000002" href="$class_optimist_1_1_scalar_solver_1_1_newton.html" title="Class container for the Newton&#39;s method with affine invariant step." alt="" coords="415,5,567,46"/>
-<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="383,23,415,23,415,28,383,28"/>
+<area shape="rect" id="Node000000" href="$class_optimist_1_1_solver.html" title=" " alt="" coords="5,46,167,72"/>
+<area shape="rect" id="Node000001" href="$class_optimist_1_1_scalar_optimizer_1_1_scalar_optimizer.html" title="Class container for the scalar optimizer." alt="" coords="219,5,390,46"/>
+<area shape="poly" id="edge1_Node000000_Node000001" title=" " alt="" coords="182,42,218,36,219,41,182,47"/>
+<area shape="rect" id="Node000002" href="$class_optimist_1_1_scalar_root_finder_1_1_scalar_root_finder.html" title="Class container for the scalar scalar root&#45;finder." alt="" coords="215,71,394,111"/>
+<area shape="poly" id="edge2_Node000000_Node000002" title=" " alt="" coords="182,70,215,75,214,80,182,76"/>
+<area shape="rect" id="Node000003" href="$class_optimist_1_1_scalar_root_finder_1_1_newton.html" title="Class container for the Newton&#39;s method." alt="" coords="442,71,621,111"/>
+<area shape="poly" id="edge3_Node000002_Node000003" title=" " alt="" coords="409,88,441,88,441,94,409,94"/>
 </map>

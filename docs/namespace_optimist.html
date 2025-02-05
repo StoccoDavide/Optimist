@@ -149,25 +149,28 @@ $(function(){initNavTree('namespace_optimist.html',''); initResizable(true); });
 </div><!--header-->
 <div class="contents">
 
-<p>The namespace for the <a class="el" href="namespace_optimist.html" title="The namespace for the Optimist library.">Optimist</a> library.  
-<a href="#details">More...</a></p>
+<p>Namespace for the <a class="el" href="namespace_optimist.html" title="Namespace for the Optimist library.">Optimist</a> library.  
+</p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_optimist_1_1_optimizer.html">Optimizer</a></td></tr>
+<tr class="memdesc:namespace_optimist_1_1_optimizer"><td class="mdescLeft">&#160;</td><td class="mdescRight">Namespace for multi-dimensional optimization algorithms. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_optimist_1_1_root_finder.html">RootFinder</a></td></tr>
+<tr class="memdesc:namespace_optimist_1_1_root_finder"><td class="mdescLeft">&#160;</td><td class="mdescRight">Namespace for multi-dimensional root-finding algorithms. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_optimist_1_1_scalar_solver.html">ScalarSolver</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_optimist_1_1_scalar_optimizer.html">ScalarOptimizer</a></td></tr>
+<tr class="memdesc:namespace_optimist_1_1_scalar_optimizer"><td class="mdescLeft">&#160;</td><td class="mdescRight">Namespace for scalar optimization algorithms. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_optimist_1_1_scalar_root_finder.html">ScalarRootFinder</a></td></tr>
+<tr class="memdesc:namespace_optimist_1_1_scalar_root_finder"><td class="mdescLeft">&#160;</td><td class="mdescRight">Namespace for scalar root-finding algorithms. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html">Solver</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class container for the generic root-finding/optimization problem solver.  <a href="class_optimist_1_1_solver.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_tic_toc.html">TicToc</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class container for a timer.  <a href="class_optimist_1_1_tic_toc.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
@@ -377,10 +380,40 @@ Variables</h2></td></tr>
 <tr class="separator:a6c3cf794fa013bd666103fc55dd25b89"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adc82099ce978f7cbde869b413f10bfab" id="r_adc82099ce978f7cbde869b413f10bfab"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="#a45df55dea43a7363bb36b0b3bfdcd9a3">Matrix9</a> const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adc82099ce978f7cbde869b413f10bfab">IDENTITY_MAT9</a> = Matrix9::Identity()</td></tr>
 <tr class="separator:adc82099ce978f7cbde869b413f10bfab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98d7383e6911d85c4ed189df5d0928a9" id="r_a98d7383e6911d85c4ed189df5d0928a9"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a98d7383e6911d85c4ed189df5d0928a9">CTL</a> = &quot;\u250F&quot;</td></tr>
+<tr class="separator:a98d7383e6911d85c4ed189df5d0928a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab489d2defa1da7228d933f3ad8a2a857" id="r_ab489d2defa1da7228d933f3ad8a2a857"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab489d2defa1da7228d933f3ad8a2a857">CTR</a> = &quot;\u2513&quot;</td></tr>
+<tr class="separator:ab489d2defa1da7228d933f3ad8a2a857"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92b7cf150a5e1f3fe8a934b9db04fbdd" id="r_a92b7cf150a5e1f3fe8a934b9db04fbdd"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a92b7cf150a5e1f3fe8a934b9db04fbdd">CBL</a> = &quot;\u2517&quot;</td></tr>
+<tr class="separator:a92b7cf150a5e1f3fe8a934b9db04fbdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a6edbe4428f4b8a21c4390363f14e78" id="r_a4a6edbe4428f4b8a21c4390363f14e78"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4a6edbe4428f4b8a21c4390363f14e78">CBR</a> = &quot;\u251B&quot;</td></tr>
+<tr class="separator:a4a6edbe4428f4b8a21c4390363f14e78"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44123b7ee979a3b710e72f389610f05f" id="r_a44123b7ee979a3b710e72f389610f05f"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a44123b7ee979a3b710e72f389610f05f">V</a> = &quot;\u2503&quot;</td></tr>
+<tr class="separator:a44123b7ee979a3b710e72f389610f05f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e9f9bc72b701d5c55ed2ff78490415b" id="r_a8e9f9bc72b701d5c55ed2ff78490415b"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8e9f9bc72b701d5c55ed2ff78490415b">VC</a> = &quot; \u2503 &quot;</td></tr>
+<tr class="separator:a8e9f9bc72b701d5c55ed2ff78490415b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a905d4893324756e9f95cc769b030e826" id="r_a905d4893324756e9f95cc769b030e826"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a905d4893324756e9f95cc769b030e826">VL</a> = &quot;\u2503 &quot;</td></tr>
+<tr class="separator:a905d4893324756e9f95cc769b030e826"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a829640ede06f1dec6fea49978ac8791e" id="r_a829640ede06f1dec6fea49978ac8791e"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a829640ede06f1dec6fea49978ac8791e">VR</a> = &quot; \u2503&quot;</td></tr>
+<tr class="separator:a829640ede06f1dec6fea49978ac8791e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad44453c3f88f2a65a4c2fa532047d62c" id="r_ad44453c3f88f2a65a4c2fa532047d62c"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad44453c3f88f2a65a4c2fa532047d62c">H</a> = &quot;\u2501&quot;</td></tr>
+<tr class="separator:ad44453c3f88f2a65a4c2fa532047d62c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e1ebc7e09fca3852345da17c6394f61" id="r_a2e1ebc7e09fca3852345da17c6394f61"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2e1ebc7e09fca3852345da17c6394f61">H7</a> = <a class="el" href="#ad44453c3f88f2a65a4c2fa532047d62c">H</a>+<a class="el" href="#ad44453c3f88f2a65a4c2fa532047d62c">H</a>+<a class="el" href="#ad44453c3f88f2a65a4c2fa532047d62c">H</a>+<a class="el" href="#ad44453c3f88f2a65a4c2fa532047d62c">H</a>+<a class="el" href="#ad44453c3f88f2a65a4c2fa532047d62c">H</a>+<a class="el" href="#ad44453c3f88f2a65a4c2fa532047d62c">H</a>+<a class="el" href="#ad44453c3f88f2a65a4c2fa532047d62c">H</a></td></tr>
+<tr class="separator:a2e1ebc7e09fca3852345da17c6394f61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7da99a64d309af96c3abe64a2f4a2d3b" id="r_a7da99a64d309af96c3abe64a2f4a2d3b"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7da99a64d309af96c3abe64a2f4a2d3b">H14</a> = <a class="el" href="#a2e1ebc7e09fca3852345da17c6394f61">H7</a>+<a class="el" href="#a2e1ebc7e09fca3852345da17c6394f61">H7</a></td></tr>
+<tr class="separator:a7da99a64d309af96c3abe64a2f4a2d3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51fe8252bb2f62cf0884ca0589f8e2da" id="r_a51fe8252bb2f62cf0884ca0589f8e2da"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a51fe8252bb2f62cf0884ca0589f8e2da">C</a> = &quot;\u254B&quot;</td></tr>
+<tr class="separator:a51fe8252bb2f62cf0884ca0589f8e2da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e7bc2c5b77e8b6f7b0e32f8f58f18be" id="r_a6e7bc2c5b77e8b6f7b0e32f8f58f18be"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6e7bc2c5b77e8b6f7b0e32f8f58f18be">TU</a> = &quot;\u2533&quot;</td></tr>
+<tr class="separator:a6e7bc2c5b77e8b6f7b0e32f8f58f18be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a275dd2a1f0c7e6dbea526c84ab42d4ce" id="r_a275dd2a1f0c7e6dbea526c84ab42d4ce"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a275dd2a1f0c7e6dbea526c84ab42d4ce">TD</a> = &quot;\u253B&quot;</td></tr>
+<tr class="separator:a275dd2a1f0c7e6dbea526c84ab42d4ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1dafd7f3b9f5b874353da25ff603335" id="r_ab1dafd7f3b9f5b874353da25ff603335"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab1dafd7f3b9f5b874353da25ff603335">TL</a> = &quot;\u2523&quot;</td></tr>
+<tr class="separator:ab1dafd7f3b9f5b874353da25ff603335"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ecb39d41c3c5dcef5f981b8ddfd292f" id="r_a1ecb39d41c3c5dcef5f981b8ddfd292f"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1ecb39d41c3c5dcef5f981b8ddfd292f">TR</a> = &quot;\u252B&quot;</td></tr>
+<tr class="separator:a1ecb39d41c3c5dcef5f981b8ddfd292f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>The namespace contains all the classes and functions of the <a class="el" href="namespace_optimist.html" title="The namespace for the Optimist library.">Optimist</a> library. </p>
-</div><h2 class="groupheader">Typedef Documentation</h2>
+<h2 class="groupheader">Typedef Documentation</h2>
 <a id="ab19305b546a50d1fdd20905b1b457452" name="ab19305b546a50d1fdd20905b1b457452"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab19305b546a50d1fdd20905b1b457452">&#9670;&#160;</a></span>Integer</h2>
 
@@ -961,7 +994,7 @@ template&lt;<a class="el" href="#ab19305b546a50d1fdd20905b1b457452">Integer</a> 
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Print <a class="el" href="namespace_optimist.html" title="The namespace for the Optimist library.">Optimist</a> library information on a string. </p><dl class="section return"><dt>Returns</dt><dd>A string with the <a class="el" href="namespace_optimist.html" title="The namespace for the Optimist library.">Optimist</a> library information. </dd></dl>
+<p>Print <a class="el" href="namespace_optimist.html" title="Namespace for the Optimist library.">Optimist</a> library information on a string. </p><dl class="section return"><dt>Returns</dt><dd>A string with the <a class="el" href="namespace_optimist.html" title="Namespace for the Optimist library.">Optimist</a> library information. </dd></dl>
 
 </div>
 </div>
@@ -979,7 +1012,7 @@ template&lt;<a class="el" href="#ab19305b546a50d1fdd20905b1b457452">Integer</a> 
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Print <a class="el" href="namespace_optimist.html" title="The namespace for the Optimist library.">Optimist</a> library information on a stream. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Print <a class="el" href="namespace_optimist.html" title="Namespace for the Optimist library.">Optimist</a> library information on a stream. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">os</td><td>Output stream. </td></tr>
   </table>
@@ -1076,6 +1109,75 @@ template&lt;<a class="el" href="#ab19305b546a50d1fdd20905b1b457452">Integer</a> 
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
+<a id="a51fe8252bb2f62cf0884ca0589f8e2da" name="a51fe8252bb2f62cf0884ca0589f8e2da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a51fe8252bb2f62cf0884ca0589f8e2da">&#9670;&#160;</a></span>C</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Optimist::C = &quot;\u254B&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Unicode character for the cross of a table. </p>
+
+</div>
+</div>
+<a id="a92b7cf150a5e1f3fe8a934b9db04fbdd" name="a92b7cf150a5e1f3fe8a934b9db04fbdd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a92b7cf150a5e1f3fe8a934b9db04fbdd">&#9670;&#160;</a></span>CBL</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Optimist::CBL = &quot;\u2517&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Unicode character for the bottom-left corner of a table. </p>
+
+</div>
+</div>
+<a id="a4a6edbe4428f4b8a21c4390363f14e78" name="a4a6edbe4428f4b8a21c4390363f14e78"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a6edbe4428f4b8a21c4390363f14e78">&#9670;&#160;</a></span>CBR</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Optimist::CBR = &quot;\u251B&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Unicode character for the bottom-right corner of a table. </p>
+
+</div>
+</div>
 <a id="a48b01b505cb1147a6e331ad698dd2db4" name="a48b01b505cb1147a6e331ad698dd2db4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a48b01b505cb1147a6e331ad698dd2db4">&#9670;&#160;</a></span>CBRT_EPSILON</h2>
 
@@ -1096,6 +1198,52 @@ template&lt;<a class="el" href="#ab19305b546a50d1fdd20905b1b457452">Integer</a> 
 </table>
 </div><div class="memdoc">
 <p>Cubic root of machine epsilon epsilon static constant value. </p>
+
+</div>
+</div>
+<a id="a98d7383e6911d85c4ed189df5d0928a9" name="a98d7383e6911d85c4ed189df5d0928a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a98d7383e6911d85c4ed189df5d0928a9">&#9670;&#160;</a></span>CTL</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Optimist::CTL = &quot;\u250F&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Unicode character for the top-left corner of a table. </p>
+
+</div>
+</div>
+<a id="ab489d2defa1da7228d933f3ad8a2a857" name="ab489d2defa1da7228d933f3ad8a2a857"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab489d2defa1da7228d933f3ad8a2a857">&#9670;&#160;</a></span>CTR</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Optimist::CTR = &quot;\u2513&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Unicode character for the top-right corner of a table. </p>
 
 </div>
 </div>
@@ -1188,6 +1336,75 @@ template&lt;<a class="el" href="#ab19305b546a50d1fdd20905b1b457452">Integer</a> 
 </table>
 </div><div class="memdoc">
 <p>Medium precision epsilon static constant value. </p>
+
+</div>
+</div>
+<a id="ad44453c3f88f2a65a4c2fa532047d62c" name="ad44453c3f88f2a65a4c2fa532047d62c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad44453c3f88f2a65a4c2fa532047d62c">&#9670;&#160;</a></span>H</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Optimist::H = &quot;\u2501&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Unicode character for the horizontal line of a table. </p>
+
+</div>
+</div>
+<a id="a7da99a64d309af96c3abe64a2f4a2d3b" name="a7da99a64d309af96c3abe64a2f4a2d3b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7da99a64d309af96c3abe64a2f4a2d3b">&#9670;&#160;</a></span>H14</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Optimist::H14 = <a class="el" href="#a2e1ebc7e09fca3852345da17c6394f61">H7</a>+<a class="el" href="#a2e1ebc7e09fca3852345da17c6394f61">H7</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Unicode character for 14 horizontal lines of a table. </p>
+
+</div>
+</div>
+<a id="a2e1ebc7e09fca3852345da17c6394f61" name="a2e1ebc7e09fca3852345da17c6394f61"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e1ebc7e09fca3852345da17c6394f61">&#9670;&#160;</a></span>H7</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Optimist::H7 = <a class="el" href="#ad44453c3f88f2a65a4c2fa532047d62c">H</a>+<a class="el" href="#ad44453c3f88f2a65a4c2fa532047d62c">H</a>+<a class="el" href="#ad44453c3f88f2a65a4c2fa532047d62c">H</a>+<a class="el" href="#ad44453c3f88f2a65a4c2fa532047d62c">H</a>+<a class="el" href="#ad44453c3f88f2a65a4c2fa532047d62c">H</a>+<a class="el" href="#ad44453c3f88f2a65a4c2fa532047d62c">H</a>+<a class="el" href="#ad44453c3f88f2a65a4c2fa532047d62c">H</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Unicode character for 7 horizontal lines of a table. </p>
 
 </div>
 </div>
@@ -2177,6 +2394,190 @@ template&lt;<a class="el" href="#ab19305b546a50d1fdd20905b1b457452">Integer</a> 
 </table>
 </div><div class="memdoc">
 <p>Square root of machine epsilon epsilon static constant value. </p>
+
+</div>
+</div>
+<a id="a275dd2a1f0c7e6dbea526c84ab42d4ce" name="a275dd2a1f0c7e6dbea526c84ab42d4ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a275dd2a1f0c7e6dbea526c84ab42d4ce">&#9670;&#160;</a></span>TD</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Optimist::TD = &quot;\u253B&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Unicode character for the bottom cross of a table. </p>
+
+</div>
+</div>
+<a id="ab1dafd7f3b9f5b874353da25ff603335" name="ab1dafd7f3b9f5b874353da25ff603335"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1dafd7f3b9f5b874353da25ff603335">&#9670;&#160;</a></span>TL</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Optimist::TL = &quot;\u2523&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Unicode character for the left cross of a table. </p>
+
+</div>
+</div>
+<a id="a1ecb39d41c3c5dcef5f981b8ddfd292f" name="a1ecb39d41c3c5dcef5f981b8ddfd292f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ecb39d41c3c5dcef5f981b8ddfd292f">&#9670;&#160;</a></span>TR</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Optimist::TR = &quot;\u252B&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Unicode character for the right cross of a table. </p>
+
+</div>
+</div>
+<a id="a6e7bc2c5b77e8b6f7b0e32f8f58f18be" name="a6e7bc2c5b77e8b6f7b0e32f8f58f18be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e7bc2c5b77e8b6f7b0e32f8f58f18be">&#9670;&#160;</a></span>TU</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Optimist::TU = &quot;\u2533&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Unicode character for the top cross of a table. </p>
+
+</div>
+</div>
+<a id="a44123b7ee979a3b710e72f389610f05f" name="a44123b7ee979a3b710e72f389610f05f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44123b7ee979a3b710e72f389610f05f">&#9670;&#160;</a></span>V</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Optimist::V = &quot;\u2503&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Unicode character for the vertical line of a table. </p>
+
+</div>
+</div>
+<a id="a8e9f9bc72b701d5c55ed2ff78490415b" name="a8e9f9bc72b701d5c55ed2ff78490415b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e9f9bc72b701d5c55ed2ff78490415b">&#9670;&#160;</a></span>VC</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Optimist::VC = &quot; \u2503 &quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Unicode character for the center vertical line of a table. </p>
+
+</div>
+</div>
+<a id="a905d4893324756e9f95cc769b030e826" name="a905d4893324756e9f95cc769b030e826"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a905d4893324756e9f95cc769b030e826">&#9670;&#160;</a></span>VL</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Optimist::VL = &quot;\u2503 &quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Unicode character for the left vertical line of a table. </p>
+
+</div>
+</div>
+<a id="a829640ede06f1dec6fea49978ac8791e" name="a829640ede06f1dec6fea49978ac8791e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a829640ede06f1dec6fea49978ac8791e">&#9670;&#160;</a></span>VR</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Optimist::VR = &quot; \u2503&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Unicode character for the right vertical line of a table. </p>
 
 </div>
 </div>

@@ -18,7 +18,7 @@ namespace Optimist
 {
 
   /**
-  * Namespace for the optimization algorithms.
+  * \brief Namespace for multi-dimensional optimization algorithms.
   */
   namespace Optimizer
   {
@@ -33,7 +33,7 @@ namespace Optimist
     \*/
 
     /**
-    * \brief Class container for the optimizer.
+    * \brief Class container for the multi-dimensional optimizer.
     *
     * \includedoc docs/markdown/Optimizer.md
     *
@@ -62,9 +62,9 @@ namespace Optimist
       using Hessian  = typename Solver<N, 1>::SecondDerivative; /**< Hessian function type. */
 
       /**
-      * Class constructor for the optimizer.
+      * Class constructor for the multi-dimensional optimizer.
       */
-      Optimizer() : Solver<N, 1>() {}
+      Optimizer() {}
 
       /**
       * Get the number of function first derivative evaluations.

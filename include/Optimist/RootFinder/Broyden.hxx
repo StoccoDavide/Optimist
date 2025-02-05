@@ -29,9 +29,9 @@ namespace Optimist
     \*/
 
     /**
-    * \brief Class container for the (damped) Broyden's method.
+    * \brief Class container for the Broyden's method.
     *
-    * \includedoc docs/markdown/Broyden.md
+    * \includedoc docs/markdown/RootFinder/Broyden.md
     *
     * \tparam N The dimension of the nonlinear system of equations.
     */
@@ -120,8 +120,8 @@ namespace Optimist
       }
 
       /**
-      * Solve nonlinear system of equations \f$ \mathbf{F}(\mathbf{x}) = \mathbf{0} \f$
-      * with damping factor \f$ \alpha \f$.
+      * Solve the nonlinear system of equations \f$ \mathbf{f}(\mathbf{x}) = 0 \f$, with \f$
+      * \mathbf{f}: \mathbb{R}^n \rightarrow \mathbb{R}^n \f$.
       * \param[in] x_ini The initialization point.
       * \param[out] x_sol The solution point.
       * \return The convergence boolean flag.
@@ -135,7 +135,7 @@ namespace Optimist
         if (this->m_verbose) {this->header();}
 
         // Initialize variables
-        Real residuals_old, residuals_new, step_norm_old, step_norm_new, tau;
+        Real residuals, step_norm;
         Vector x_old, x_new, function_old, function_new, step_old, step_new, delta_x_old, delta_x_new,
           delta_function_old, delta_function_new;
         Matrix jacobian_old, jacobian_new;
@@ -157,10 +157,10 @@ namespace Optimist
           step_old = -jacobian_old * function_old;
 
           // Check convergence
-          residuals_old = function_old.norm();
-          step_norm_old = step_old.norm();
-          if (this->m_verbose) {this->info(residuals_old);}
-          if (residuals_old < tolerance_residuals || step_norm_old < tolerance_step_norm) {
+          residuals = function_old.norm();
+          step_norm = step_old.norm();
+          if (this->m_verbose) {this->info(residuals);}
+          if (residuals < tolerance_residuals || step_norm < tolerance_step_norm) {
             this->m_converged = true;
             break;
           }
@@ -168,23 +168,9 @@ namespace Optimist
           if (this->m_damped)
           {
             // Relax the iteration process
-            tau = Real(1.0);
-            for (this->m_relaxations = Integer(0); this->m_relaxations < this->m_max_relaxations; ++this->m_relaxations)
-            {
-              // Update point
-              step_new = tau * step_old;
-              x_new = x_old + step_new;
-              this->evaluate_function(x_new, function_new);
-
-              // Check relaxation
-              residuals_new = function_new.norm();
-              step_norm_new = step_new.norm();
-              if (residuals_new < residuals_old || step_norm_new < (Real(1.0)-tau/Real(2.0))*step_norm_old) {
-                break;
-              } else {
-                tau *= this->m_alpha;
-              }
-            }
+            bool damped{this->damp(x_old, function_old, step_old, x_new, function_new, step_new)};
+            OPTIMIST_ASSERT_WARNING(damped,
+              "Optimist::RootFinder::Broyden::solve(...): damping failed.");
           } else {
             // Update point
             x_new = x_old + step_old;

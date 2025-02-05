@@ -148,7 +148,7 @@ $(function(){initNavTree('class_optimist_1_1_root_finder_1_1_root_finder.html','
 </div><!--header-->
 <div class="contents">
 
-<p>Class container for the root finder.  
+<p>Class container for the multi-dimensional root finder.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_root_finder_8hxx_source.html">RootFinder.hxx</a>&gt;</code></p>
@@ -277,6 +277,8 @@ Protected Member Functions</h2></td></tr>
 <tr class="separator:ad028fe8fbea37e8967ef14e4ca9fb523 inherit pro_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2f9e19d9fb6648e998bb724962806cf7 inherit pro_methods_class_optimist_1_1_solver" id="r_a2f9e19d9fb6648e998bb724962806cf7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a2f9e19d9fb6648e998bb724962806cf7">store_trace</a> (const <a class="el" href="class_optimist_1_1_solver.html#a5864cd0f35177520fac1d9a54dec3880">InputType</a> &amp;x)</td></tr>
 <tr class="separator:a2f9e19d9fb6648e998bb724962806cf7 inherit pro_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1c41abe42674f7d9466076ee05ac51b inherit pro_methods_class_optimist_1_1_solver" id="r_ab1c41abe42674f7d9466076ee05ac51b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#ab1c41abe42674f7d9466076ee05ac51b">damp</a> (<a class="el" href="class_optimist_1_1_solver.html#a5864cd0f35177520fac1d9a54dec3880">InputType</a> const &amp;x_old, <a class="el" href="class_optimist_1_1_solver.html#a5864cd0f35177520fac1d9a54dec3880">InputType</a> const &amp;function_old, <a class="el" href="class_optimist_1_1_solver.html#a5864cd0f35177520fac1d9a54dec3880">InputType</a> const &amp;step_old, <a class="el" href="class_optimist_1_1_solver.html#a5864cd0f35177520fac1d9a54dec3880">InputType</a> &amp;x_new, <a class="el" href="class_optimist_1_1_solver.html#a5864cd0f35177520fac1d9a54dec3880">InputType</a> &amp;function_new, <a class="el" href="class_optimist_1_1_solver.html#a5864cd0f35177520fac1d9a54dec3880">InputType</a> &amp;step_new)</td></tr>
+<tr class="separator:ab1c41abe42674f7d9466076ee05ac51b inherit pro_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a50cfb192080a748f886a8e3a256cdb16 inherit pro_methods_class_optimist_1_1_solver" id="r_a50cfb192080a748f886a8e3a256cdb16"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a50cfb192080a748f886a8e3a256cdb16">header</a> ()</td></tr>
 <tr class="separator:a50cfb192080a748f886a8e3a256cdb16 inherit pro_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a23b62d304abc6d6e945bd9df9cd23f2c inherit pro_methods_class_optimist_1_1_solver" id="r_a23b62d304abc6d6e945bd9df9cd23f2c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a23b62d304abc6d6e945bd9df9cd23f2c">bottom</a> ()</td></tr>
@@ -349,12 +351,26 @@ Additional Inherited Members</h2></td></tr>
 <div class="textblock"><div class="compoundTemplParams">template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a> N&gt;<br />
 class Optimist::RootFinder::RootFinder&lt; N &gt;</div><h1><a class="anchor" id="autotoc_md1"></a>
 Root finder</h1>
-<p>This section describes the nonlinear solvers implemented in <code><a class="el" href="namespace_optimist.html" title="The namespace for the Optimist library.">Optimist</a></code>. The available solvers are <em><a class="el" href="class_optimist_1_1_root_finder_1_1_newton.html" title="Class container for the Newton&#39;s method with affine invariant step.">Newton</a></em>'s method and <em><a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the (damped) Broyden&#39;s method.">Broyden</a></em>'s method, both designed to solve nonlinear systems of equations. <a class="el" href="class_optimist_1_1_root_finder_1_1_newton.html" title="Class container for the Newton&#39;s method with affine invariant step.">Newton</a>'s method is a well-known classical approach, while <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the (damped) Broyden&#39;s method.">Broyden</a>'s method is a quasi-Newton technique that approximates the <a class="el" href="#abfa901105cfdee0db697d4cbc1019ca7">Jacobian</a> matrix for improved efficiency in certain scenarios.</p>
-<p>The nonlinear solvers are implemented for solving problems of the form   </p><p class="formulaDsp">
-\[      \mathbf{F}(\mathbf{x}) = \mathbf{0} \text{,} \quad \mathbf{F}: \mathbb{R}^{n} \rightarrow \mathbb{R}^{n} \text{.}
+<p>This section describes the multi-dimensional root-finders implemented in <code><a class="el" href="namespace_optimist.html" title="Namespace for the Optimist library.">Optimist</a></code>. The available root-finding solvers are <em><a class="el" href="class_optimist_1_1_root_finder_1_1_newton.html" title="Class container for the Newton&#39;s method.">Newton</a></em> (derivative) and <em>quasi-Newton</em> (non-derivative) methods. Derivative methods employ the function's derivative to find the root with high accuracy, while non-derivative methods approximate the derivative for improved efficiency in certain scenarios.</p>
+<p>Here, the solvers are implemented for solving problems of the form   </p><p class="formulaDsp">
+\[      \mathbf{f}(\mathbf{x}) = \mathbf{0} \text{,} \quad \text{with} \quad \mathbf{f}: \mathbb{R}^{n} \rightarrow \mathbb{R}^{n} \text{,}
 \]
 </p>
-<p> and finding the root of the function \(\mathbf{F}\) by iteratively updating the current iterate \(\mathbf{x}_k\) until convergence is achieved. The solvers require the function \(\mathbf{F}\) and its <a class="el" href="#abfa901105cfdee0db697d4cbc1019ca7">Jacobian</a> matrix \(\mathbf{JF}_{\mathbf{x}}\) to be provided by the user. The <a class="el" href="#abfa901105cfdee0db697d4cbc1019ca7">Jacobian</a> matrix can be computed analytically or numerically, depending on the problem's complexity and the user's preference. Nontheless, quasi-Newton methods, such as <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the (damped) Broyden&#39;s method.">Broyden</a>'s method, are designed to approximate the <a class="el" href="#abfa901105cfdee0db697d4cbc1019ca7">Jacobian</a> matrix iteratively, avoiding the need to compute it explicitly.  </p>
+<p> which consist in finding the root of the function \(\mathbf{f}\) by iteratively updating the current iterate \(\mathbf{x}_k\) until convergence is achieved. The solvers require the function \(\mathbf{f}\) and its <a class="el" href="#abfa901105cfdee0db697d4cbc1019ca7">Jacobian</a> matrix \(\mathbf{Jf}_{\mathbf{x}}\) to be provided by the user. The <a class="el" href="#abfa901105cfdee0db697d4cbc1019ca7">Jacobian</a> matrix can be computed analytically or numerically, depending on the problem's complexity and the user's preference. Alternatively, the <a class="el" href="#abfa901105cfdee0db697d4cbc1019ca7">Jacobian</a> can be approximated numerically using finite differences, depending on the problem's complexity and the user's preference.</p>
+<h2><a class="anchor" id="autotoc_md2"></a>
+Affine-invariant step</h2>
+<p>By default, the multi-dimensional root-finders in <code><a class="el" href="namespace_optimist.html" title="Namespace for the Optimist library.">Optimist</a></code> use optionally an affine-invariant advancing step to ensure convergence. The generic advancing step \(\mathbf{h}_k\) is computed as   </p><p class="formulaDsp">
+\[      \mathbf{x}_{k+1} = \mathbf{x}_k + \alpha_k \mathbf{h}_k \text{,}
+\]
+</p>
+<p> where \(\alpha_k\) is a damping coefficient that ensures convergence by satisfying      </p><p class="formulaDsp">
+\[      \left\|\mathbf{Jf}_{\mathbf{x}}(\mathbf{x}_k)^{-1} \mathbf{f}(\mathbf{x}_{k+1})\right\|
+      \leq \left(1 - \displaystyle\frac{\alpha_k}{2}\right) \left\|\mathbf{Jf}_{\mathbf{x}}(\mathbf{x}_k)^{-1}
+      \mathbf{f}(\mathbf{x}_k)\right\| = \left(1 - \displaystyle\frac{\alpha_k}{2} \right)
+      \left\|\mathbf{h}_k\right\| \text{.}
+\]
+</p>
+<p> For detailed information on the affine-invariant <a class="el" href="class_optimist_1_1_root_finder_1_1_newton.html" title="Class container for the Newton&#39;s method.">Newton</a>'s method, refer to <a href="https://www.zib.de/deuflhard/research/algorithm/ainewton.en.html">this link</a>, or the works by P. Deuflhard.  </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">N</td><td>The dimension of the root-finding problem. </td></tr>
@@ -455,7 +471,7 @@ template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Class constructor for the root finder. </p>
+<p>Class constructor for the multi-dimensional root finder. </p>
 
 </div>
 </div>

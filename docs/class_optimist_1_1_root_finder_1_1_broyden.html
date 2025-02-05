@@ -148,7 +148,7 @@ $(function(){initNavTree('class_optimist_1_1_root_finder_1_1_broyden.html',''); 
 </div><!--header-->
 <div class="contents">
 
-<p>Class container for the (damped) <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the (damped) Broyden&#39;s method.">Broyden</a>'s method.  
+<p>Class container for the <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the Broyden&#39;s method.">Broyden</a>'s method.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_broyden_8hxx_source.html">Broyden.hxx</a>&gt;</code></p>
@@ -326,6 +326,8 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:ad028fe8fbea37e8967ef14e4ca9fb523 inherit pro_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2f9e19d9fb6648e998bb724962806cf7 inherit pro_methods_class_optimist_1_1_solver" id="r_a2f9e19d9fb6648e998bb724962806cf7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a2f9e19d9fb6648e998bb724962806cf7">store_trace</a> (const <a class="el" href="class_optimist_1_1_solver.html#a5864cd0f35177520fac1d9a54dec3880">InputType</a> &amp;x)</td></tr>
 <tr class="separator:a2f9e19d9fb6648e998bb724962806cf7 inherit pro_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1c41abe42674f7d9466076ee05ac51b inherit pro_methods_class_optimist_1_1_solver" id="r_ab1c41abe42674f7d9466076ee05ac51b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#ab1c41abe42674f7d9466076ee05ac51b">damp</a> (<a class="el" href="class_optimist_1_1_solver.html#a5864cd0f35177520fac1d9a54dec3880">InputType</a> const &amp;x_old, <a class="el" href="class_optimist_1_1_solver.html#a5864cd0f35177520fac1d9a54dec3880">InputType</a> const &amp;function_old, <a class="el" href="class_optimist_1_1_solver.html#a5864cd0f35177520fac1d9a54dec3880">InputType</a> const &amp;step_old, <a class="el" href="class_optimist_1_1_solver.html#a5864cd0f35177520fac1d9a54dec3880">InputType</a> &amp;x_new, <a class="el" href="class_optimist_1_1_solver.html#a5864cd0f35177520fac1d9a54dec3880">InputType</a> &amp;function_new, <a class="el" href="class_optimist_1_1_solver.html#a5864cd0f35177520fac1d9a54dec3880">InputType</a> &amp;step_new)</td></tr>
+<tr class="separator:ab1c41abe42674f7d9466076ee05ac51b inherit pro_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a50cfb192080a748f886a8e3a256cdb16 inherit pro_methods_class_optimist_1_1_solver" id="r_a50cfb192080a748f886a8e3a256cdb16"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a50cfb192080a748f886a8e3a256cdb16">header</a> ()</td></tr>
 <tr class="separator:a50cfb192080a748f886a8e3a256cdb16 inherit pro_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a23b62d304abc6d6e945bd9df9cd23f2c inherit pro_methods_class_optimist_1_1_solver" id="r_a23b62d304abc6d6e945bd9df9cd23f2c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a23b62d304abc6d6e945bd9df9cd23f2c">bottom</a> ()</td></tr>
@@ -376,32 +378,33 @@ Additional Inherited Members</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a> N&gt;<br />
-class Optimist::RootFinder::Broyden&lt; N &gt;</div><h1><a class="anchor" id="autotoc_md2"></a>
+class Optimist::RootFinder::Broyden&lt; N &gt;</div><h1><a class="anchor" id="autotoc_md3"></a>
 Broyden's method</h1>
-<p>The <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the (damped) Broyden&#39;s method.">Broyden</a> family includes the good, bad, and combined methods. These methods are quasi-Newton approaches that approximate the <a class="el" href="#ae2a36d3e7902c92639063f7e4d345e5b">Jacobian</a> matrix or its inverse. The combined method integrates the updates of the good and bad methods, offering an alternative approach to the classical <a class="el" href="class_optimist_1_1_root_finder_1_1_newton.html" title="Class container for the Newton&#39;s method with affine invariant step.">Newton</a>'s method. The <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the (damped) Broyden&#39;s method.">Broyden</a>'s methods are designed to solve problems of the form   </p><p class="formulaDsp">
-\[      \mathbf{F}(\mathbf{x}) = \mathbf{0} \text{,} \quad \mathbf{F}: \mathbb{R}^{n} \rightarrow \mathbb{R}^{n} \text{,}
+<p>The <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the Broyden&#39;s method.">Broyden</a> family includes the good, bad, and combined methods. These methods are quasi-Newton approaches that approximate the <a class="el" href="#ae2a36d3e7902c92639063f7e4d345e5b">Jacobian</a> matrix or its inverse. The combined method integrates the updates of the good and bad methods, offering an alternative approach to the classical <a class="el" href="class_optimist_1_1_root_finder_1_1_newton.html" title="Class container for the Newton&#39;s method.">Newton</a>'s method. The <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the Broyden&#39;s method.">Broyden</a>'s methods are based on the linearization of the function \(\mathbf{f}(\mathbf{x})\) around the current iterate \(\mathbf{x}_k\), which leads to the linear system   </p><p class="formulaDsp">
+\[      \mathbf{Jf}_{\mathbf{x}}(\mathbf{x}_k) \mathbf{h}_k = -\mathbf{f}(\mathbf{x}_k) \text{.}
 \]
 </p>
-<p> where the <a class="el" href="#ae2a36d3e7902c92639063f7e4d345e5b">Jacobian</a> matrix \(\mathbf{JF}_{\mathbf{x}}\) is not explicitly available or computationally expensive to compute. <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the (damped) Broyden&#39;s method.">Broyden</a>'s methods approximate the <a class="el" href="#ae2a36d3e7902c92639063f7e4d345e5b">Jacobian</a> matrix by updating the inverse of the <a class="el" href="#ae2a36d3e7902c92639063f7e4d345e5b">Jacobian</a> matrix iteratively. The <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the (damped) Broyden&#39;s method.">Broyden</a>'s method is defined as   </p><p class="formulaDsp">
-\[      \mathbf{H}_k(\mathbf{x}_k) \mathbf{h}_k = -\mathbf{F}(\mathbf{x}_k) \text{,}
+<p> Here, the <a class="el" href="#ae2a36d3e7902c92639063f7e4d345e5b">Jacobian</a> matrix \(\mathbf{Jf}_{\mathbf{x}}\) is supposed not to be explicitly available or computationally expensive to compute. For this reason, <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the Broyden&#39;s method.">Broyden</a>'s methods approximate the <a class="el" href="#ae2a36d3e7902c92639063f7e4d345e5b">Jacobian</a> matrix by updating the inverse of the <a class="el" href="#ae2a36d3e7902c92639063f7e4d345e5b">Jacobian</a> matrix iteratively. The <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the Broyden&#39;s method.">Broyden</a>'s method is defined as   </p><p class="formulaDsp">
+\[      \mathbf{H}_k(\mathbf{x}_k) \mathbf{h}_k = -\mathbf{f}(\mathbf{x}_k) \text{,}
 \]
 </p>
 <p> where \(\mathbf{H}_k\) is the (inverse) <a class="el" href="#ae2a36d3e7902c92639063f7e4d345e5b">Jacobian</a> approximation at the \(k\)-th iteration. The generic advancing step is then defined as   </p><p class="formulaDsp">
 \[      \mathbf{x}_{k+1} = \mathbf{x}_k + \alpha_k \mathbf{h}_k \text{.}
 \]
 </p>
-<p> What distinguishes <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the (damped) Broyden&#39;s method.">Broyden</a>'s <em>combined</em> method from the generic <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the (damped) Broyden&#39;s method.">Broyden</a>'s method is the update of the <a class="el" href="#ae2a36d3e7902c92639063f7e4d345e5b">Jacobian</a> approximation. The <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the (damped) Broyden&#39;s method.">Broyden</a>'s <em>combined</em> method uses the following update rule        </p><p class="formulaDsp">
+<p> where \(\alpha_k\) is a damping coefficient that ensures affine-invariant criteria is satisfied.</p>
+<p>What distinguishes <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the Broyden&#39;s method.">Broyden</a>'s <em>combined</em> method from the generic <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the Broyden&#39;s method.">Broyden</a>'s method is the update of the <a class="el" href="#ae2a36d3e7902c92639063f7e4d345e5b">Jacobian</a> approximation. The <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the Broyden&#39;s method.">Broyden</a>'s <em>combined</em> method uses the following update rule        </p><p class="formulaDsp">
 \[      \begin{cases}
-        \mathbf{H}_{k+1}^{-1} = \mathbf{H}_k^{-1} - \displaystyle\frac{\mathbf{H}_k^{-1} \Delta\mathbf{F}_k - \Delta\mathbf{x}_k}{\mathbf{C}_g \Delta\mathbf{F}_k} \mathbf{C}_g  &amp;
-        \left\| \displaystyle\frac{\Delta\mathbf{x}_k^\top \Delta\mathbf{x}_{k-1}}{\Delta\mathbf{x}_k^\top \mathbf{H}_k^{-1} \Delta\mathbf{F}_k} \right\| &lt; \left\| \displaystyle\frac{\Delta\mathbf{F}_k^\top  \Delta\mathbf{F}_{k-1}}{\Delta\mathbf{F}_k^\top\Delta\mathbf{F}_k} \right\| \\
-        \mathbf{H}_{k+1}^{-1} = \mathbf{H}_k^{-1} - \displaystyle\frac{\mathbf{H}_k^{-1} \Delta\mathbf{F}_k-\Delta\mathbf{x}_k}{\mathbf{C}_b \Delta\mathbf{F}_k} \mathbf{C}_b &amp;
+        \mathbf{H}_{k+1}^{-1} = \mathbf{H}_k^{-1} - \displaystyle\frac{\mathbf{H}_k^{-1} \Delta\mathbf{f}_k - \Delta\mathbf{x}_k}{\mathbf{C}_g \Delta\mathbf{f}_k} \mathbf{C}_g  &amp;
+        \left\| \displaystyle\frac{\Delta\mathbf{x}_k^\top \Delta\mathbf{x}_{k-1}}{\Delta\mathbf{x}_k^\top \mathbf{H}_k^{-1} \Delta\mathbf{f}_k} \right\| &lt; \left\| \displaystyle\frac{\Delta\mathbf{f}_k^\top  \Delta\mathbf{f}_{k-1}}{\Delta\mathbf{f}_k^\top\Delta\mathbf{f}_k} \right\| \\
+        \mathbf{H}_{k+1}^{-1} = \mathbf{H}_k^{-1} - \displaystyle\frac{\mathbf{H}_k^{-1} \Delta\mathbf{f}_k-\Delta\mathbf{x}_k}{\mathbf{C}_b \Delta\mathbf{f}_k} \mathbf{C}_b &amp;
         \text{otherwise}
       \end{cases} \text{,}
 \]
 </p>
-<p> with \(\mathbf{C}_g = \Delta\mathbf{x}_k^\top \mathbf{H}_k^{-1}\), \(\mathbf{C}_b = \Delta\mathbf{F}_k^\top\), \(\Delta\mathbf{x}_k = \mathbf{x}_{k+1} - \mathbf{x}_k\), and \(\Delta\mathbf{F}_k = \mathbf{F}(\mathbf{x}_{k+1}) - \mathbf{F}(\mathbf{x}_k)\). Such a rule allows <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the (damped) Broyden&#39;s method.">Broyden</a>'s <em>combined</em> method to adapt to the problem's behavior, switching between the good and bad methods based on the convergence history. For more details on the <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the (damped) Broyden&#39;s method.">Broyden</a>'s <em>combined</em> method refer to the reference: <em>"Sobre dois métodos de Broyden"</em> by J. M. Martínez and J. M. Martínez, Matemática Aplicada e Computacional, IV Congresso Nacional de Matemática Aplicada e Computacional, Rio de Janeiro, Brasil, setembro de 1981.</p>
+<p> with \(\mathbf{C}_g = \Delta\mathbf{x}_k^\top \mathbf{H}_k^{-1}\), \(\mathbf{C}_b = \Delta\mathbf{f}_k^\top\), \(\Delta\mathbf{x}_k = \mathbf{x}_{k+1} - \mathbf{x}_k\), and \(\Delta\mathbf{f}_k = \mathbf{f}(\mathbf{x}_{k+1}) - \mathbf{f}(\mathbf{x}_k)\). Such a rule allows <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the Broyden&#39;s method.">Broyden</a>'s <em>combined</em> method to adapt to the problem's behavior, switching between the good and bad methods based on the convergence history. For more details on the <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the Broyden&#39;s method.">Broyden</a>'s <em>combined</em> method refer to the reference: <em>"Sobre dois métodos de Broyden"</em> by J. M. Martínez and J. M. Martínez, Matemática Aplicada e Computacional, IV Congresso Nacional de Matemática Aplicada e Computacional, Rio de Janeiro, Brasil, setembro de 1981.</p>
 <blockquote class="doxtable">
-<p><b>NOTE:</b> In <code><a class="el" href="namespace_optimist.html" title="The namespace for the Optimist library.">Optimist</a></code>, the implemented <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the (damped) Broyden&#39;s method.">Broyden</a>'s class for the <em>combined</em> method can be used as a <em>good</em> or <em>bad</em> solver by setting the appropriate parameters.  </p>
+<p><b>NOTE:</b> In <code><a class="el" href="namespace_optimist.html" title="Namespace for the Optimist library.">Optimist</a></code>, the implemented <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the Broyden&#39;s method.">Broyden</a>'s class for the <em>combined</em> method can be used as a <em>good</em> or <em>bad</em> solver by setting the appropriate parameters.  </p>
 <p></p>
 </blockquote>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
@@ -472,7 +475,7 @@ template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905
         </tr>
       </table>
 </div><div class="memdoc">
-<p><a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the (damped) Broyden&#39;s method.">Broyden</a> solver type. </p>
+<p><a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the Broyden&#39;s method.">Broyden</a> solver type. </p>
 
 </div>
 </div>
@@ -517,7 +520,7 @@ template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Class constructor for the <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the (damped) Broyden&#39;s method.">Broyden</a> solver. </p>
+<p>Class constructor for the <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the Broyden&#39;s method.">Broyden</a> solver. </p>
 
 </div>
 </div>
@@ -546,7 +549,7 @@ template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Check if the <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the (damped) Broyden&#39;s method.">Broyden</a> solver is able to solve the problem with the given input. </p><dl class="section return"><dt>Returns</dt><dd>The check boolean flag. </dd></dl>
+<p>Check if the <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the Broyden&#39;s method.">Broyden</a> solver is able to solve the problem with the given input. </p><dl class="section return"><dt>Returns</dt><dd>The check boolean flag. </dd></dl>
 
 <p>Implements <a class="el" href="class_optimist_1_1_solver.html#a3e4842a6bcd8e0c4c37d99093f75afd1">Optimist::Solver&lt; N, N &gt;</a>.</p>
 
@@ -576,7 +579,7 @@ template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Enable the <em>bad</em> <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the (damped) Broyden&#39;s method.">Broyden</a> solver method. </p>
+<p>Enable the <em>bad</em> <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the Broyden&#39;s method.">Broyden</a> solver method. </p>
 
 </div>
 </div>
@@ -604,7 +607,7 @@ template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Enable the <em>combined</em> <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the (damped) Broyden&#39;s method.">Broyden</a> solver method. </p>
+<p>Enable the <em>combined</em> <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the Broyden&#39;s method.">Broyden</a> solver method. </p>
 
 </div>
 </div>
@@ -632,7 +635,7 @@ template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Enable the <em>good</em> <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the (damped) Broyden&#39;s method.">Broyden</a> solver method. </p>
+<p>Enable the <em>good</em> <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the Broyden&#39;s method.">Broyden</a> solver method. </p>
 
 </div>
 </div>
@@ -660,7 +663,7 @@ template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Get the enumeration type of the <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the (damped) Broyden&#39;s method.">Broyden</a> solver method. </p><dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the (damped) Broyden&#39;s method.">Broyden</a> solver enumeration type. </dd></dl>
+<p>Get the enumeration type of the <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the Broyden&#39;s method.">Broyden</a> solver method. </p><dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the Broyden&#39;s method.">Broyden</a> solver enumeration type. </dd></dl>
 
 </div>
 </div>
@@ -688,9 +691,9 @@ template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Set the enumeration type of the <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the (damped) Broyden&#39;s method.">Broyden</a> solver method. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Set the enumeration type of the <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the Broyden&#39;s method.">Broyden</a> solver method. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">t_method</td><td>The <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the (damped) Broyden&#39;s method.">Broyden</a> solver enumeration type. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">t_method</td><td>The <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the Broyden&#39;s method.">Broyden</a> solver enumeration type. </td></tr>
   </table>
   </dd>
 </dl>
@@ -721,7 +724,7 @@ template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Get the <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the (damped) Broyden&#39;s method.">Broyden</a> solver name. </p><dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the (damped) Broyden&#39;s method.">Broyden</a> solver name. </dd></dl>
+<p>Get the <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the Broyden&#39;s method.">Broyden</a> solver name. </p><dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the Broyden&#39;s method.">Broyden</a> solver name. </dd></dl>
 
 <p>Implements <a class="el" href="class_optimist_1_1_solver.html#a50cb8ac3f0b0bebba0bcf2d0e6ac3a03">Optimist::Solver&lt; N, N &gt;</a>.</p>
 
@@ -751,9 +754,9 @@ template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Set the <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the (damped) Broyden&#39;s method.">Broyden</a> solver type. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Set the <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the Broyden&#39;s method.">Broyden</a> solver type. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">t_method</td><td>The <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the (damped) Broyden&#39;s method.">Broyden</a> solver type enumeration. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">t_method</td><td>The <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the Broyden&#39;s method.">Broyden</a> solver type enumeration. </td></tr>
   </table>
   </dd>
 </dl>
@@ -788,7 +791,7 @@ template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Solve nonlinear system of equations \( \mathbf{F}(\mathbf{x}) = \mathbf{0} \) with damping factor \( \alpha \). </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Solve the nonlinear system of equations \( \mathbf{f}(\mathbf{x}) = 0 \), with  \(\mathbf{f}: \mathbb{R}^n \rightarrow \mathbb{R}^n \). </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">x_ini</td><td>The initialization point. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">x_sol</td><td>The solution point. </td></tr>
@@ -849,7 +852,7 @@ template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905
   </tr>
 </table>
 </div><div class="memdoc">
-<p><a class="el" href="#ae2a36d3e7902c92639063f7e4d345e5b">Jacobian</a> approximation update rule for the <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the (damped) Broyden&#39;s method.">Broyden</a>'s method. </p><dl class="params"><dt>Parameters</dt><dd>
+<p><a class="el" href="#ae2a36d3e7902c92639063f7e4d345e5b">Jacobian</a> approximation update rule for the <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the Broyden&#39;s method.">Broyden</a>'s method. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">delta_x_old</td><td>Old difference between points. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">delta_function_old</td><td>Old difference between function values. </td></tr>
@@ -885,7 +888,7 @@ template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905
   </tr>
 </table>
 </div><div class="memdoc">
-<p><a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the (damped) Broyden&#39;s method.">Broyden</a> solver type. </p>
+<p><a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the Broyden&#39;s method.">Broyden</a> solver type. </p>
 
 </div>
 </div>

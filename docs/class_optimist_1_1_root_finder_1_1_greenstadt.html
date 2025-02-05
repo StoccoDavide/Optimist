@@ -324,6 +324,8 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:ad028fe8fbea37e8967ef14e4ca9fb523 inherit pro_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2f9e19d9fb6648e998bb724962806cf7 inherit pro_methods_class_optimist_1_1_solver" id="r_a2f9e19d9fb6648e998bb724962806cf7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a2f9e19d9fb6648e998bb724962806cf7">store_trace</a> (const <a class="el" href="class_optimist_1_1_solver.html#a5864cd0f35177520fac1d9a54dec3880">InputType</a> &amp;x)</td></tr>
 <tr class="separator:a2f9e19d9fb6648e998bb724962806cf7 inherit pro_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1c41abe42674f7d9466076ee05ac51b inherit pro_methods_class_optimist_1_1_solver" id="r_ab1c41abe42674f7d9466076ee05ac51b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#ab1c41abe42674f7d9466076ee05ac51b">damp</a> (<a class="el" href="class_optimist_1_1_solver.html#a5864cd0f35177520fac1d9a54dec3880">InputType</a> const &amp;x_old, <a class="el" href="class_optimist_1_1_solver.html#a5864cd0f35177520fac1d9a54dec3880">InputType</a> const &amp;function_old, <a class="el" href="class_optimist_1_1_solver.html#a5864cd0f35177520fac1d9a54dec3880">InputType</a> const &amp;step_old, <a class="el" href="class_optimist_1_1_solver.html#a5864cd0f35177520fac1d9a54dec3880">InputType</a> &amp;x_new, <a class="el" href="class_optimist_1_1_solver.html#a5864cd0f35177520fac1d9a54dec3880">InputType</a> &amp;function_new, <a class="el" href="class_optimist_1_1_solver.html#a5864cd0f35177520fac1d9a54dec3880">InputType</a> &amp;step_new)</td></tr>
+<tr class="separator:ab1c41abe42674f7d9466076ee05ac51b inherit pro_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a50cfb192080a748f886a8e3a256cdb16 inherit pro_methods_class_optimist_1_1_solver" id="r_a50cfb192080a748f886a8e3a256cdb16"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a50cfb192080a748f886a8e3a256cdb16">header</a> ()</td></tr>
 <tr class="separator:a50cfb192080a748f886a8e3a256cdb16 inherit pro_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a23b62d304abc6d6e945bd9df9cd23f2c inherit pro_methods_class_optimist_1_1_solver" id="r_a23b62d304abc6d6e945bd9df9cd23f2c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a23b62d304abc6d6e945bd9df9cd23f2c">bottom</a> ()</td></tr>
@@ -374,9 +376,18 @@ Additional Inherited Members</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a> N&gt;<br />
-class Optimist::RootFinder::Greenstadt&lt; N &gt;</div><h1><a class="anchor" id="autotoc_md3"></a>
+class Optimist::RootFinder::Greenstadt&lt; N &gt;</div><h1><a class="anchor" id="autotoc_md4"></a>
 Greenstadt's method</h1>
-<p>TODO: Add content.  </p>
+<p>Similarly to the <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the Broyden&#39;s method.">Broyden</a>'s methods, <a class="el" href="class_optimist_1_1_root_finder_1_1_greenstadt.html" title="Class container for the Greenstadt&#39;s method.">Greenstadt</a>'s methods are quasi-Newton methods that approximates the <a class="el" href="#a7e8300b593fd89d0759b3e7ec051abc1">Jacobian</a> matrix \(\mathbf{Jf}_{\mathbf{x}}\) an update rule. The generic <a class="el" href="class_optimist_1_1_root_finder_1_1_greenstadt.html" title="Class container for the Greenstadt&#39;s method.">Greenstadt</a>'s method is defined as   </p><p class="formulaDsp">
+\[      \mathbf{H}_k(\mathbf{x}_k) \mathbf{h}_k = -\mathbf{f}(\mathbf{x}_k) \text{,}
+\]
+</p>
+<p> where \(\mathbf{H}_k\) is the (inverse) <a class="el" href="#a7e8300b593fd89d0759b3e7ec051abc1">Jacobian</a> approximation at the \(k\)-th iteration.</p>
+<p>Based on the update rule, <a class="el" href="class_optimist_1_1_root_finder_1_1_greenstadt.html" title="Class container for the Greenstadt&#39;s method.">Greenstadt</a>'s method is classified into two methods: trivially <em>method 1</em> and <em>method 2</em>. The update of the <a class="el" href="#a7e8300b593fd89d0759b3e7ec051abc1">Jacobian</a> approximation is performed as   </p><p class="formulaDsp">
+\[      \mathbf{H}_{k+1}^{-1} = \mathbf{H}_k^{-1} - \displaystyle\frac{\mathbf{H}_k^{-1} \Delta\mathbf{f}_k - \Delta\mathbf{x}_k}{\mathbf{g} \Delta\mathbf{f}_k} \mathbf{g} \text{,}
+\]
+</p>
+<p> where \(\Delta\mathbf{x}_k = \mathbf{x}_k - \mathbf{x}_{k-1}\), and \(\Delta\mathbf{f}_k = \mathbf{f}(\mathbf{x}_k) - \mathbf{f}(\mathbf{x}_{k-1})\). The quantity \(\mathbf{g}\) is \(\mathbf{g} = \mathbf{f}_k^\top\) for <em>method 1</em> and \(\mathbf{g} = \mathbf{H}_{k\top}^{-1} \mathbf{H}_k^{-1} \Delta\mathbf{f}_k^{\top}\) for <em>method 2</em>. The choice of the method is based on the convergence history, switching between the methods to adapt to the problem's behavior.  </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">N</td><td>The dimension of the nonlinear system of equations. </td></tr>
@@ -519,7 +530,7 @@ template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Check if the <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the (damped) Broyden&#39;s method.">Broyden</a> solver is able to solve the problem with the given input. </p><dl class="section return"><dt>Returns</dt><dd>The check boolean flag. </dd></dl>
+<p>Check if the <a class="el" href="class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the Broyden&#39;s method.">Broyden</a> solver is able to solve the problem with the given input. </p><dl class="section return"><dt>Returns</dt><dd>The check boolean flag. </dd></dl>
 
 <p>Implements <a class="el" href="class_optimist_1_1_solver.html#a3e4842a6bcd8e0c4c37d99093f75afd1">Optimist::Solver&lt; N, N &gt;</a>.</p>
 
@@ -733,7 +744,7 @@ template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Solve nonlinear system of equations \( \mathbf{F}(\mathbf{x}) = \mathbf{0} \) with damping factor \( \alpha \). </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Solve the nonlinear system of equations \( \mathbf{f}(\mathbf{x}) = 0 \), with  \(\mathbf{f}: \mathbb{R}^n \rightarrow \mathbb{R}^n \). </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">x_ini</td><td>The initialization point. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">x_sol</td><td>The solution point. </td></tr>

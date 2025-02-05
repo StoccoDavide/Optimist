@@ -64,9 +64,7 @@
 #endif
 
 /**
-* \brief The namespace for the Optimist library.
-*
-* The namespace contains all the classes and functions of the Optimist library.
+* \brief Namespace for the Optimist library.
 */
 namespace Optimist
 {
@@ -185,6 +183,27 @@ namespace Optimist
   static Matrix9 const ONES_MAT9     = Matrix9::Ones();              /**< Ones \f$ 9 \times 9 \f$ matrix static constant object. */
   static Matrix9 const IDENTITY_MAT9 = Matrix9::Identity();          /**< Identity \f$ 9 \times 9 \f$ matrix static constant object. */
 
+  static std::string CTL = "\u250F"; /**< Unicode character for the top-left corner of a table. */
+  static std::string CTR = "\u2513"; /**< Unicode character for the top-right corner of a table. */
+  static std::string CBL = "\u2517"; /**< Unicode character for the bottom-left corner of a table. */
+  static std::string CBR = "\u251B"; /**< Unicode character for the bottom-right corner of a table. */
+
+  static std::string V  = "\u2503";   /**< Unicode character for the vertical line of a table. */
+  static std::string VC = " \u2503 "; /**< Unicode character for the center vertical line of a table. */
+  static std::string VL = "\u2503 ";  /**< Unicode character for the left vertical line of a table. */
+  static std::string VR = " \u2503";  /**< Unicode character for the right vertical line of a table. */
+
+  static std::string H   = "\u2501";      /**< Unicode character for the horizontal line of a table. */
+  static std::string H7  = H+H+H+H+H+H+H; /**< Unicode character for 7 horizontal lines of a table. */
+  static std::string H14 = H7+H7;         /**< Unicode character for 14 horizontal lines of a table. */
+
+  static std::string C = "\u254B"; /**< Unicode character for the cross of a table. */
+
+  static std::string TU = "\u2533"; /**< Unicode character for the top cross of a table. */
+  static std::string TD = "\u253B"; /**< Unicode character for the bottom cross of a table. */
+  static std::string TL = "\u2523"; /**< Unicode character for the left cross of a table. */
+  static std::string TR = "\u252B"; /**< Unicode character for the right cross of a table. */
+
   /**
   * Print Optimist library information on a string.
   * \return A string with the Optimist library information.
@@ -212,15 +231,12 @@ namespace Optimist
 
 } // namespace Optimist
 
-// Time measurement
-#include "Optimist/TicToc.hxx"
-
 // The generic solver
 #include "Optimist/Solver.hxx"
 
-// Scalar solvers
-#include "Optimist/ScalarSolver.hxx"
-#include "Optimist/ScalarSolver/Newton.hxx"
+// Scalar root-finding solvers
+#include "Optimist/ScalarRootFinder.hxx"
+#include "Optimist/ScalarRootFinder/Newton.hxx"
 
 // Root-finding solvers
 #include "Optimist/RootFinder.hxx"
@@ -230,6 +246,9 @@ namespace Optimist
 
 // Optimization solvers
 #include "Optimist/Optimizer.hxx"
+
+// Scalar optimization solvers
+#include "Optimist/ScalarOptimizer.hxx"
 
 // Mapping solvers to functions
 #include "Optimist/Factory.hxx"

@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['real_0',['Real',['../namespace_optimist.html#a81198c1084f49913c4731c80160f6713',1,'Optimist']]],
-  ['rootfindfunction_1',['RootfindFunction',['../namespace_optimist.html#a8a7bd9f0ca5e319f0ade961d3dba933b',1,'Optimist']]],
-  ['rowvector_2',['RowVector',['../class_optimist_1_1_optimizer_1_1_optimizer.html#aa379c41a6cc33afa7dc4a36dfb865a95',1,'Optimist::Optimizer::Optimizer']]]
+  ['secondderivative_0',['SecondDerivative',['../class_optimist_1_1_scalar_optimizer_1_1_scalar_optimizer.html#a18104f791f7c4f776951ffff884809b9',1,'Optimist::ScalarOptimizer::ScalarOptimizer::SecondDerivative'],['../class_optimist_1_1_scalar_root_finder_1_1_scalar_root_finder.html#a948ca30cc104a1dce35cc077b27abd66',1,'Optimist::ScalarRootFinder::ScalarRootFinder::SecondDerivative'],['../class_optimist_1_1_scalar_root_finder_1_1_newton.html#ab0cc5e186c05fbb5a7376d661033537e',1,'Optimist::ScalarRootFinder::Newton::SecondDerivative'],['../class_optimist_1_1_solver.html#a70fc1a9c7e648d67cc5d5fa80af4afbc',1,'Optimist::Solver::SecondDerivative']]],
+  ['secondderivativetype_1',['SecondDerivativeType',['../class_optimist_1_1_solver.html#a4315eea3a6cf229da08a47986bc9f32b',1,'Optimist::Solver']]]
 ];

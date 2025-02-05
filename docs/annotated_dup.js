@@ -10,11 +10,13 @@ var annotated_dup =
         [ "Newton", "class_optimist_1_1_root_finder_1_1_newton.html", "class_optimist_1_1_root_finder_1_1_newton" ],
         [ "RootFinder", "class_optimist_1_1_root_finder_1_1_root_finder.html", "class_optimist_1_1_root_finder_1_1_root_finder" ]
       ] ],
-      [ "ScalarSolver", "namespace_optimist_1_1_scalar_solver.html", [
-        [ "Newton", "class_optimist_1_1_scalar_solver_1_1_newton.html", "class_optimist_1_1_scalar_solver_1_1_newton" ],
-        [ "ScalarSolver", "class_optimist_1_1_scalar_solver_1_1_scalar_solver.html", "class_optimist_1_1_scalar_solver_1_1_scalar_solver" ]
+      [ "ScalarOptimizer", "namespace_optimist_1_1_scalar_optimizer.html", [
+        [ "ScalarOptimizer", "class_optimist_1_1_scalar_optimizer_1_1_scalar_optimizer.html", "class_optimist_1_1_scalar_optimizer_1_1_scalar_optimizer" ]
       ] ],
-      [ "Solver", "class_optimist_1_1_solver.html", "class_optimist_1_1_solver" ],
-      [ "TicToc", "class_optimist_1_1_tic_toc.html", "class_optimist_1_1_tic_toc" ]
+      [ "ScalarRootFinder", "namespace_optimist_1_1_scalar_root_finder.html", [
+        [ "Newton", "class_optimist_1_1_scalar_root_finder_1_1_newton.html", "class_optimist_1_1_scalar_root_finder_1_1_newton" ],
+        [ "ScalarRootFinder", "class_optimist_1_1_scalar_root_finder_1_1_scalar_root_finder.html", "class_optimist_1_1_scalar_root_finder_1_1_scalar_root_finder" ]
+      ] ],
+      [ "Solver", "class_optimist_1_1_solver.html", "class_optimist_1_1_solver" ]
     ] ]
 ];

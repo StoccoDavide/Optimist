@@ -17,6 +17,7 @@ var class_optimist_1_1_solver =
     [ "bottom", "class_optimist_1_1_solver.html#a23b62d304abc6d6e945bd9df9cd23f2c", null ],
     [ "check", "class_optimist_1_1_solver.html#a3e4842a6bcd8e0c4c37d99093f75afd1", null ],
     [ "converged", "class_optimist_1_1_solver.html#ae5024c851e91c16a8c25226fc7730598", null ],
+    [ "damp", "class_optimist_1_1_solver.html#ab1c41abe42674f7d9466076ee05ac51b", null ],
     [ "damped_mode", "class_optimist_1_1_solver.html#af62e8c87cc9bf7a5b534a45fe7eac8b2", null ],
     [ "damped_mode", "class_optimist_1_1_solver.html#a4506d1681725ae14ff41654014d3a683", null ],
     [ "disable_damped_mode", "class_optimist_1_1_solver.html#a6286f49953c25160eef3e1c6e998c3de", null ],
