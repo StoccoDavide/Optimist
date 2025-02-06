@@ -206,6 +206,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a525b6a459d620a66a5491b201f125a35"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6286f49953c25160eef3e1c6e998c3de" id="r_a6286f49953c25160eef3e1c6e998c3de"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6286f49953c25160eef3e1c6e998c3de">disable_damped_mode</a> ()</td></tr>
 <tr class="separator:a6286f49953c25160eef3e1c6e998c3de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a416ea1b7dc02141707f863147df9daa2" id="r_a416ea1b7dc02141707f863147df9daa2"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a416ea1b7dc02141707f863147df9daa2">task</a> () const</td></tr>
+<tr class="separator:a416ea1b7dc02141707f863147df9daa2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5bdafb0c60ae07ee538877c3b79b4309" id="r_a5bdafb0c60ae07ee538877c3b79b4309"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5bdafb0c60ae07ee538877c3b79b4309">task</a> (std::string t_task)</td></tr>
+<tr class="separator:a5bdafb0c60ae07ee538877c3b79b4309"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae5024c851e91c16a8c25226fc7730598" id="r_ae5024c851e91c16a8c25226fc7730598"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae5024c851e91c16a8c25226fc7730598">converged</a> () const</td></tr>
 <tr class="separator:ae5024c851e91c16a8c25226fc7730598"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a25a58fda5e26e32df2a41daab061f3d7" id="r_a25a58fda5e26e32df2a41daab061f3d7"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="#a15994bb286ebbf3ecf41b39837518d32">TraceType</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a25a58fda5e26e32df2a41daab061f3d7">trace</a> () const</td></tr>
@@ -274,8 +278,8 @@ Protected Member Functions</h2></td></tr>
 <tr class="separator:a50cfb192080a748f886a8e3a256cdb16"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a23b62d304abc6d6e945bd9df9cd23f2c" id="r_a23b62d304abc6d6e945bd9df9cd23f2c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a23b62d304abc6d6e945bd9df9cd23f2c">bottom</a> ()</td></tr>
 <tr class="separator:a23b62d304abc6d6e945bd9df9cd23f2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7ecfd65869bf0e2ecbbcfc3fdc31c983" id="r_a7ecfd65869bf0e2ecbbcfc3fdc31c983"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7ecfd65869bf0e2ecbbcfc3fdc31c983">info</a> (<a class="el" href="namespace_optimist.html#a81198c1084f49913c4731c80160f6713">Real</a> residuals, std::string notes=&quot;&quot;)</td></tr>
-<tr class="separator:a7ecfd65869bf0e2ecbbcfc3fdc31c983"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d9cad856d476915d889a7a0dd296cc1" id="r_a2d9cad856d476915d889a7a0dd296cc1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2d9cad856d476915d889a7a0dd296cc1">info</a> (<a class="el" href="namespace_optimist.html#a81198c1084f49913c4731c80160f6713">Real</a> residuals, std::string const &amp;notes=&quot;-&quot;)</td></tr>
+<tr class="separator:a2d9cad856d476915d889a7a0dd296cc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a43a533f50de0a1d3df826eea34c27f38" id="r_a43a533f50de0a1d3df826eea34c27f38"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a43a533f50de0a1d3df826eea34c27f38">solve</a> (const <a class="el" href="#a5864cd0f35177520fac1d9a54dec3880">InputType</a> &amp;x_ini, <a class="el" href="#aaf0426e67bb84540d334127baecbb99f">OutputType</a> &amp;x_sol)=0</td></tr>
 <tr class="separator:a43a533f50de0a1d3df826eea34c27f38"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -311,12 +315,14 @@ Protected Attributes</h2></td></tr>
 <tr class="separator:a142b0cfd4157caed4345393a106ceffd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a88bfc9154adbba0383ab1cc423f017f0" id="r_a88bfc9154adbba0383ab1cc423f017f0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_optimist.html#a81198c1084f49913c4731c80160f6713">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a88bfc9154adbba0383ab1cc423f017f0">m_tolerance</a> {<a class="el" href="namespace_optimist.html#ada71d2db8b0264842fb80b738cbaf9b8">EPSILON_HIGH</a>}</td></tr>
 <tr class="separator:a88bfc9154adbba0383ab1cc423f017f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a638f48e8c46f86f9c65ca0733d0ee212" id="r_a638f48e8c46f86f9c65ca0733d0ee212"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a638f48e8c46f86f9c65ca0733d0ee212">m_verbose</a> {true}</td></tr>
+<tr class="memitem:a638f48e8c46f86f9c65ca0733d0ee212" id="r_a638f48e8c46f86f9c65ca0733d0ee212"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a638f48e8c46f86f9c65ca0733d0ee212">m_verbose</a> {false}</td></tr>
 <tr class="separator:a638f48e8c46f86f9c65ca0733d0ee212"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab0fe998f5da775f7b4c1aa947db74f20" id="r_ab0fe998f5da775f7b4c1aa947db74f20"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab0fe998f5da775f7b4c1aa947db74f20">m_damped</a> {true}</td></tr>
 <tr class="separator:ab0fe998f5da775f7b4c1aa947db74f20"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ce55515855c06b0810deebfcb571a27" id="r_a0ce55515855c06b0810deebfcb571a27"><td class="memItemLeft" align="right" valign="top">std::ostream *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0ce55515855c06b0810deebfcb571a27">m_ostream</a> {&amp;std::cout}</td></tr>
 <tr class="separator:a0ce55515855c06b0810deebfcb571a27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a150b2a9bf981ae8bdee4505c5774922e" id="r_a150b2a9bf981ae8bdee4505c5774922e"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a150b2a9bf981ae8bdee4505c5774922e">m_task</a> {&quot;Undefined&quot;}</td></tr>
+<tr class="separator:a150b2a9bf981ae8bdee4505c5774922e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0bfb7fa70893a4d91f34be6cc5ada76e" id="r_a0bfb7fa70893a4d91f34be6cc5ada76e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0bfb7fa70893a4d91f34be6cc5ada76e">m_converged</a> {false}</td></tr>
 <tr class="separator:a0bfb7fa70893a4d91f34be6cc5ada76e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1d1f154b501d5ad2f7cdf79863ff133b" id="r_a1d1f154b501d5ad2f7cdf79863ff133b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a15994bb286ebbf3ecf41b39837518d32">TraceType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1d1f154b501d5ad2f7cdf79863ff133b">m_trace</a></td></tr>
@@ -1305,8 +1311,8 @@ template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905
 
 </div>
 </div>
-<a id="a7ecfd65869bf0e2ecbbcfc3fdc31c983" name="a7ecfd65869bf0e2ecbbcfc3fdc31c983"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7ecfd65869bf0e2ecbbcfc3fdc31c983">&#9670;&#160;</a></span>info()</h2>
+<a id="a2d9cad856d476915d889a7a0dd296cc1" name="a2d9cad856d476915d889a7a0dd296cc1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d9cad856d476915d889a7a0dd296cc1">&#9670;&#160;</a></span>info()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1324,7 +1330,7 @@ template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>notes</em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;&quot;</span>&#160;)</td>
+          <td class="paramtype">std::string const &amp;</td>          <td class="paramname"><span class="paramname"><em>notes</em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;-&quot;</span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -2069,6 +2075,67 @@ template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905
 
 </div>
 </div>
+<a id="a416ea1b7dc02141707f863147df9daa2" name="a416ea1b7dc02141707f863147df9daa2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a416ea1b7dc02141707f863147df9daa2">&#9670;&#160;</a></span>task() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a> InputDim, <a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a> OutputDim&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string <a class="el" href="class_optimist_1_1_solver.html">Optimist::Solver</a>&lt; InputDim, OutputDim &gt;::task </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Get the task name. </p><dl class="section return"><dt>Returns</dt><dd>The task name. </dd></dl>
+
+</div>
+</div>
+<a id="a5bdafb0c60ae07ee538877c3b79b4309" name="a5bdafb0c60ae07ee538877c3b79b4309"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5bdafb0c60ae07ee538877c3b79b4309">&#9670;&#160;</a></span>task() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a> InputDim, <a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a> OutputDim&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_optimist_1_1_solver.html">Optimist::Solver</a>&lt; InputDim, OutputDim &gt;::task </td>
+          <td>(</td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>t_task</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Set the task name. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">t_task</td><td>The task name. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="ad25694d70009fae966613de68c367328" name="ad25694d70009fae966613de68c367328"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad25694d70009fae966613de68c367328">&#9670;&#160;</a></span>tolerance() <span class="overload">[1/2]</span></h2>
 
@@ -2646,6 +2713,31 @@ template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905
 
 </div>
 </div>
+<a id="a150b2a9bf981ae8bdee4505c5774922e" name="a150b2a9bf981ae8bdee4505c5774922e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a150b2a9bf981ae8bdee4505c5774922e">&#9670;&#160;</a></span>m_task</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a> InputDim, <a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a> OutputDim&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string <a class="el" href="class_optimist_1_1_solver.html">Optimist::Solver</a>&lt; InputDim, OutputDim &gt;::m_task {&quot;Undefined&quot;}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Task name. </p>
+
+</div>
+</div>
 <a id="a88bfc9154adbba0383ab1cc423f017f0" name="a88bfc9154adbba0383ab1cc423f017f0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a88bfc9154adbba0383ab1cc423f017f0">&#9670;&#160;</a></span>m_tolerance</h2>
 
@@ -2708,7 +2800,7 @@ template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool <a class="el" href="class_optimist_1_1_solver.html">Optimist::Solver</a>&lt; InputDim, OutputDim &gt;::m_verbose {true}</td>
+          <td class="memname">bool <a class="el" href="class_optimist_1_1_solver.html">Optimist::Solver</a>&lt; InputDim, OutputDim &gt;::m_verbose {false}</td>
         </tr>
       </table>
   </td>

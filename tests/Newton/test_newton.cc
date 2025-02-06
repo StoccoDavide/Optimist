@@ -18,6 +18,7 @@ using namespace Optimist::RootFinder;
 TEST(Newton, Booth) {
   // Non-linear solver
   Newton<2> nlsolver;
+  nlsolver.task("Booth");
   // Starting entries
   Vector2 x_ini = Vector2::Zero();
   Vector2 x_out = Vector2::Zero();
@@ -43,6 +44,7 @@ TEST(Newton, Booth) {
 TEST(Newton, Rosenbrock2D) {
   // Non-linear solver
   Newton<2> nlsolver;
+  nlsolver.task("Rosenbrock2D");
   for (Real a = 1.0; a <= 5.0; a += 1.0) {
     for (Real b = 1.0; b <= 5.0; b += 1.0) {
       // Starting entries
@@ -72,6 +74,7 @@ TEST(Newton, Rosenbrock2D) {
 TEST(Newton, Rosenbrock3D) {
   // Non-linear solver
   Newton<3> nlsolver;
+  nlsolver.task("Rosenbrock3D");
   for (Real a = 1.0; a <= 10.0; a += 1.0) {
     for (Real b = 1.0; b <= 10.0; b += 1.0) {
         // Starting entries
@@ -114,6 +117,7 @@ TEST(Newton, RosenbrockND) {
     using Matrix = typename Newton<D>::Matrix;
     // Non-linear solver
     Newton<D> nlsolver;
+    nlsolver.task("RosenbrockND(" + std::to_string(D) + ")");
     for (Real a = 1.0; a <= 10.0; a += 1.0) {
       for (Real b = 1.0; b <= 10.0; b += 1.0) {
         // Starting entries

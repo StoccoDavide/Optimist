@@ -82,13 +82,14 @@ namespace Optimist
 
     // Settings
     Real m_tolerance{EPSILON_HIGH};       /**< Solver tolerance \f$ \epsilon \f$ for convergence. */
-    bool m_verbose{true};                 /**< Verbose mode boolean flag. */
+    bool m_verbose{false};                /**< Verbose mode boolean flag. */
     bool m_damped{true};                  /**< Damped mode boolean flag. */
     std::ostream * m_ostream{&std::cout}; /**< Output stream for verbose mode. */
 
     // Convergence output flag and trace
-    bool      m_converged{false}; /**< Convergence boolean flag. */
-    TraceType m_trace;            /**< Trace for points \f$ \mathbf{x} \f$ values. */
+    std::string m_task{"Undefined"}; /**< Task name. */
+    bool        m_converged{false};  /**< Convergence boolean flag. */
+    TraceType   m_trace;             /**< Trace for points \f$ \mathbf{x} \f$ values. */
 
     // Ouput stream for verbose mode
 
@@ -332,6 +333,18 @@ namespace Optimist
     void disable_damped_mode() {this->m_damped = false;}
 
     /**
+    * Get the task name.
+    * \return The task name.
+    */
+    std::string task() const {return this->m_task;}
+
+    /**
+    * Set the task name.
+    * \param[in] t_task The task name.
+    */
+    void task(std::string t_task) {this->m_task = t_task;}
+
+    /**
     * Get the convergence boolean flag.
     * \return The convergence boolean flag.
     */
@@ -523,11 +536,28 @@ namespace Optimist
     */
     void header()
     {
+      std::string c_tl{table_top_left_corner()};
+      std::string c_tr{table_top_right_corner()};
+      std::string h_7{table_horizontal_line<7>()};
+      std::string h_14{table_horizontal_line<14>()};
+      std::string h_23{table_horizontal_line<23>()};
+      std::string h_78{table_horizontal_line<78>()};
+      std::string v_ll{table_vertical_line() + " "};
+      std::string v_rr{" " + table_vertical_line()};
+      std::string v_lc{" " + table_vertical_line() + " "};
+      std::string j_tt{table_top_junction()};
+      std::string j_cc{table_center_cross()};
+      std::string j_ll{table_left_junction()};
+      std::string j_rr{table_right_junction()};
+
       *this->m_ostream
-        << "Solver Name: " << this->name() << std::endl
-        << CTL << H14 << TU << H7 << TU << H7 << TU << H7 << TU << H7 << CTR << std::endl
-        << VL << "   ║f(x)║₂  " << VC << "#Iter" << VC << "   #f" << VC << "  #Df" << VC << " #DDf" << VC << "Additional notes" << std::endl
-        << TL << H14 << C << H7 << C << H7 << C << H7 << C << H7 << TR << std::endl;
+        << c_tl << h_78 << c_tr << std::endl
+        << v_ll << "Solver:" << std::setw(69) << this->name() << v_rr << std::endl
+        << v_ll << "Task:  " << std::setw(69) << this->task() << v_rr << std::endl
+        << j_ll << h_7 << j_tt << h_7 << j_tt << h_7 << j_tt << h_7 << j_tt << h_7 << j_tt << h_14 << j_tt << h_23 << j_rr << std::endl
+        << v_ll << "#Iter" << v_lc << "   #f" << v_lc << "  #Df" << v_lc << " #DDf" << v_lc << " #Rlx" << v_lc
+        << "   ║f(x)║₂  " << v_lc << "Additional notes" << std::setw(9) << v_rr << std::endl
+        << j_ll << h_7 << j_cc << h_7 << j_cc << h_7 << j_cc << h_7 << j_cc << h_7 << j_cc << h_14 << j_cc << h_23 << j_rr << std::endl;
     }
 
     /**
@@ -536,27 +566,42 @@ namespace Optimist
     */
     void bottom()
     {
+      std::string c_bl{table_bottom_left_corner()};
+      std::string c_br{table_bottom_right_corner()};
+      std::string h_7{table_horizontal_line<7>()};
+      std::string h_14{table_horizontal_line<14>()};
+      std::string h_23{table_horizontal_line<23>()};
+      std::string h_78{table_horizontal_line<78>()};
+      std::string v_ll{table_vertical_line() + " "};
+      std::string v_rr{" " + table_vertical_line()};
+      std::string j_ll{table_left_junction()};
+      std::string j_rr{table_right_junction()};
+      std::string j_bb{table_bottom_junction()};
+
       *this->m_ostream
-        << CBL << H14 << TD << H7 << TD << H7 << TD << H7 << TD << H7 << CBR << std::endl
-        << this->name() << ": " << (this->m_converged ? "CONVERGED" : "NOT CONVERGED") << std::endl;
+        << j_ll << h_7 << j_bb << h_7 << j_bb << h_7 << j_bb << h_7 << j_bb << h_7 << j_bb << h_14 << j_bb << h_23 << j_rr << std::endl
+        << v_ll << std::setw(40) << (this->m_converged ? "CONVERGED" : "NOT CONVERGED") << std::setw(40) << v_rr << std::endl
+        << c_bl << h_78 << c_br << std::endl;
     }
 
     /**
     * Print the solver information during the algorithm iterations.
     * \note This has to be properly placed in the derived classes.
     */
-    void info(Real residuals, std::string notes = "")
+    void info(Real residuals, std::string const & notes = "-")
     {
-      if (this->m_verbose)
-      {
-        *this->m_ostream << VL
-          << std::setw(12) << std::scientific << std::setprecision(6) << residuals << VC
-          << std::setw(5) << this->m_iterations << VC
-          << std::setw(5) << this->m_function_evaluations << VC
-          << std::setw(5) << this->m_first_derivative_evaluations << VC
-          << std::setw(5) << this->m_second_derivative_evaluations << VC
-          << notes << std::endl;
-      }
+      std::string v_rr{" " + table_vertical_line()};
+      std::string v_ll{table_vertical_line() + " "};
+      std::string v_lc{" " + table_vertical_line() + " "};
+
+      *this->m_ostream << v_ll
+        << std::setw(5) << this->m_iterations << v_lc
+        << std::setw(5) << this->m_function_evaluations << v_lc
+        << std::setw(5) << this->m_first_derivative_evaluations << v_lc
+        << std::setw(5) << this->m_second_derivative_evaluations << v_lc
+        << std::setw(5) << this->m_relaxations << v_lc
+        << std::setw(12) << std::scientific << std::setprecision(6) << residuals << v_lc
+        << notes << std::setw(25-notes.length()) << v_rr << std::endl;
     }
 
     /**

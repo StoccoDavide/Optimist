@@ -64,7 +64,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_broyden_8hxx.html",
-"class_optimist_1_1_solver.html#a21d4cb1fb6879b11580b377210d983e5",
+"class_optimist_1_1_solver.html#a21a6ccccf79c99bc8e969c118e633282",
 "namespace_optimist.html#ae074a9215dbba3d50719877f6d2adf4f"
 ];
 

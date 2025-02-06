@@ -16,6 +16,7 @@
 
 // C++ standard libraries
 #include <iostream>
+#include <ios>
 #include <iomanip>
 #include <string>
 #include <cmath>
@@ -183,26 +184,83 @@ namespace Optimist
   static Matrix9 const ONES_MAT9     = Matrix9::Ones();              /**< Ones \f$ 9 \times 9 \f$ matrix static constant object. */
   static Matrix9 const IDENTITY_MAT9 = Matrix9::Identity();          /**< Identity \f$ 9 \times 9 \f$ matrix static constant object. */
 
-  static std::string CTL = "\u250F"; /**< Unicode character for the top-left corner of a table. */
-  static std::string CTR = "\u2513"; /**< Unicode character for the top-right corner of a table. */
-  static std::string CBL = "\u2517"; /**< Unicode character for the bottom-left corner of a table. */
-  static std::string CBR = "\u251B"; /**< Unicode character for the bottom-right corner of a table. */
+  /**
+  * \brief Retrieve the Unicode character for the top-left corner of a table.
+  * \return Unicode character for the top-left corner of a table.
+  */
+  static std::string table_top_left_corner() {return "┌";}
 
-  static std::string V  = "\u2503";   /**< Unicode character for the vertical line of a table. */
-  static std::string VC = " \u2503 "; /**< Unicode character for the center vertical line of a table. */
-  static std::string VL = "\u2503 ";  /**< Unicode character for the left vertical line of a table. */
-  static std::string VR = " \u2503";  /**< Unicode character for the right vertical line of a table. */
+  /**
+  * \brief Retrieve the Unicode character for the top-right corner of a table.
+  * \return Unicode character for the top-right corner of a table.
+  */
+  static std::string table_top_right_corner() {return "┐";}
 
-  static std::string H   = "\u2501";      /**< Unicode character for the horizontal line of a table. */
-  static std::string H7  = H+H+H+H+H+H+H; /**< Unicode character for 7 horizontal lines of a table. */
-  static std::string H14 = H7+H7;         /**< Unicode character for 14 horizontal lines of a table. */
+  /**
+  * \brief Retrieve the Unicode character for the bottom-left corner of a table.
+  * \return Unicode character for the bottom-left corner of a table.
+  */
+  static std::string table_bottom_left_corner() {return "└";}
 
-  static std::string C = "\u254B"; /**< Unicode character for the cross of a table. */
+  /**
+  * \brief Retrieve the Unicode character for the bottom-right corner of a table.
+  * \return Unicode character for the bottom-right corner of a table.
+  */
+  static std::string table_bottom_right_corner() {return "┘";}
 
-  static std::string TU = "\u2533"; /**< Unicode character for the top cross of a table. */
-  static std::string TD = "\u253B"; /**< Unicode character for the bottom cross of a table. */
-  static std::string TL = "\u2523"; /**< Unicode character for the left cross of a table. */
-  static std::string TR = "\u252B"; /**< Unicode character for the right cross of a table. */
+  /**
+  * \brief Retrieve the Unicode character for the left junction of a table.
+  * \return Unicode character for the left junction of a table.
+  */
+  static std::string table_left_junction() {return "├";}
+
+  /**
+  * \brief Retrieve the Unicode character for the right junction of a table.
+  * \return Unicode character for the right junction of a table.
+  */
+  static std::string table_right_junction() {return "┤";}
+
+  /**
+  * \brief Retrieve the Unicode character for the top junction of a table.
+  * \return Unicode character for the top junction of a table.
+  */
+  static std::string table_top_junction() {return "┬";}
+
+  /**
+  * \brief Retrieve the Unicode character for the bottom junction of a table.
+  * \return Unicode character for the bottom junction of a table.
+  */
+  static std::string table_bottom_junction() {return "┴";}
+
+  /**
+  * \brief Retrieve the Unicode character for the center cross of a table.
+  * \return Unicode character for the center cross of a table.
+  */
+  static std::string table_center_cross() {return "┼";}
+
+  /**
+  * \brief Retrieve the Unicode character for the horizontal line of a table.
+  * \return Unicode character for the horizontal line of a table.
+  */
+  static std::string table_horizontal_line() {return "─";}
+
+  /**
+  * \brief Retrieve the Unicode character for a number of horizontal lines of a table.
+  * \return Unicode character for the horizontal lines of a table.
+  * \tparam N Number of horizontal lines.
+  */
+  template <Integer N>
+  static std::string table_horizontal_line() {
+    std::string line;
+    for (Integer i = 0; i < N; ++i) {line += table_horizontal_line();}
+    return line;
+  }
+
+  /**
+  * \brief Retrieve the Unicode character for the vertical line of a table.
+  * \return Unicode character for the vertical line of a table.
+  */
+  static std::string table_vertical_line() {return "│";}
 
   /**
   * Print Optimist library information on a string.

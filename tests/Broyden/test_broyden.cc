@@ -38,6 +38,7 @@ void for_unrolled(F&& f) {
 TEST(BroydenBad, Booth) {
   // Non-linear solver
   Broyden<2> nlsolver;
+  nlsolver.task("Booth");
   nlsolver.enable_bad_method();
   // Starting entries
   Vector2 x_ini = Vector2::Zero();
@@ -50,12 +51,12 @@ TEST(BroydenBad, Booth) {
   };
   // Solve without damping
   nlsolver.disable_damped_mode();
-  Rootfind<2>("BroydenBad", fun, jac, x_ini, x_out);
+  nlsolver.solve(fun, jac, x_ini, x_out);
   EXPECT_LE((x_out - Vector2(1.0, 3.0)).maxCoeff(), EPSILON_LOW);
   EXPECT_TRUE(nlsolver.converged());
   // Solve with damping
   nlsolver.enable_damped_mode();
-  Rootfind<2>("BroydenBad", fun, jac, x_ini, x_out);
+  nlsolver.solve(fun, jac, x_ini, x_out);
   EXPECT_LE((x_out - Vector2(1.0, 3.0)).maxCoeff(), EPSILON_LOW);
   EXPECT_TRUE(nlsolver.converged());
 }
@@ -64,6 +65,7 @@ TEST(BroydenBad, Booth) {
 TEST(BroydenBad, Rosenbrock2D) {
   // Non-linear solver
   Broyden<2> nlsolver;
+  nlsolver.task("Rosenbrock2D");
   nlsolver.enable_bad_method();
   for (Real a = 1.0; a <= 5.0; a += 1.0) {
     for (Real b = 1.0; b <= 5.0; b += 1.0) {
@@ -94,6 +96,7 @@ TEST(BroydenBad, Rosenbrock2D) {
 TEST(BroydenBad, Rosenbrock3D) {
   // Non-linear solver
   Broyden<3> nlsolver;
+  nlsolver.task("Rosenbrock3D");
   nlsolver.enable_bad_method();
   for (Real a = 1.0; a <= 10.0; a += 1.0) {
     for (Real b = 1.0; b <= 10.0; b += 1.0) {
@@ -127,6 +130,7 @@ TEST(BroydenBad, RosenbrockND) {
     using Matrix = typename Broyden<D>::Matrix;
     // Non-linear solver
     Broyden<D> nlsolver;
+    nlsolver.task("RosenbrockND(" + std::to_string(D) + ")");
     nlsolver.enable_bad_method();
     for (Real a = 1.0; a <= 10.0; a += 1.0) {
       for (Real b = 1.0; b <= 10.0; b += 1.0) {
@@ -175,6 +179,7 @@ TEST(BroydenBad, RosenbrockND) {
 TEST(BroydenGood, Booth) {
   // Non-linear solver
   Broyden<2> nlsolver;
+  nlsolver.task("Booth");
   nlsolver.enable_good_method();
   // Starting entries
   Vector2 x_ini = Vector2::Zero();
@@ -201,6 +206,7 @@ TEST(BroydenGood, Booth) {
 TEST(BroydenGood, Rosenbrock2D) {
   // Non-linear solver
   Broyden<2> nlsolver;
+  nlsolver.task("Rosenbrock2D");
   nlsolver.enable_good_method();
   for (Real a = 1.0; a <= 5.0; a += 1.0) {
     for (Real b = 1.0; b <= 5.0; b += 1.0) {
@@ -231,6 +237,7 @@ TEST(BroydenGood, Rosenbrock2D) {
 TEST(BroydenGood, Rosenbrock3D) {
   // Non-linear solver
   Broyden<3> nlsolver;
+  nlsolver.task("Rosenbrock3D");
   nlsolver.enable_good_method();
   for (Real a = 1.0; a <= 10.0; a += 1.0) {
     for (Real b = 1.0; b <= 10.0; b += 1.0) {
@@ -264,6 +271,7 @@ TEST(BroydenGood, RosenbrockND) {
     using Matrix = typename Broyden<D>::Matrix;
     // Non-linear solver
     Broyden<D> nlsolver;
+    nlsolver.task("RosenbrockND(" + std::to_string(D) + ")");
     nlsolver.enable_good_method();
     for (Real a = 1.0; a <= 10.0; a += 1.0) {
       for (Real b = 1.0; b <= 10.0; b += 1.0) {
@@ -312,6 +320,7 @@ TEST(BroydenGood, RosenbrockND) {
 TEST(BroydenCombined, Booth) {
   // Non-linear solver
   Broyden<2> nlsolver;
+  nlsolver.task("Booth");
   nlsolver.enable_combined_method();
   // Starting entries
   Vector2 x_ini = Vector2::Zero();
@@ -338,6 +347,7 @@ TEST(BroydenCombined, Booth) {
 TEST(BroydenCombined, Rosenbrock2D) {
   // Non-linear solver
   Broyden<2> nlsolver;
+  nlsolver.task("Rosenbrock2D");
   nlsolver.enable_combined_method();
   for (Real a = 1.0; a <= 5.0; a += 1.0) {
     for (Real b = 1.0; b <= 5.0; b += 1.0) {
@@ -368,6 +378,7 @@ TEST(BroydenCombined, Rosenbrock2D) {
 TEST(BroydenCombined, Rosenbrock3D) {
   // Non-linear solver
   Broyden<3> nlsolver;
+  nlsolver.task("Rosenbrock3D");
   nlsolver.enable_combined_method();
   for (Real a = 1.0; a <= 10.0; a += 1.0) {
     for (Real b = 1.0; b <= 10.0; b += 1.0) {
@@ -401,6 +412,7 @@ TEST(BroydenCombined, RosenbrockND) {
     using Matrix = typename Broyden<D>::Matrix;
     // Non-linear solver
     Broyden<D> nlsolver;
+    nlsolver.task("RosenbrockND(" + std::to_string(D) + ")");
     nlsolver.enable_combined_method();
     for (Real a = 1.0; a <= 10.0; a += 1.0) {
       for (Real b = 1.0; b <= 10.0; b += 1.0) {
