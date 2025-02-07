@@ -33,18 +33,22 @@ namespace Optimist
     *
     * \includedoc docs/markdown/RootFinder/Broyden.md
     *
-    * \tparam N The dimension of the nonlinear system of equations.
+    * \tparam N Dimension of the root-finding problem.
     */
     template <Integer N>
-    class Broyden : public RootFinder<N>
+    class Broyden : public RootFinder<N, Broyden<N>>
     {
+    static constexpr bool requires_function          = true;
+    static constexpr bool requires_first_derivative  = false;
+    static constexpr bool requires_second_derivative = false;
+
     public:
       using Method = enum class Method : Integer {GOOD = 0, BAD = 1, COMBINED = 2}; /**< Broyden solver type. */
-      using Vector   = typename RootFinder<N>::Vector;
-      using Matrix   = typename RootFinder<N>::Matrix;
-      using Function = typename RootFinder<N>::Function;
-      using Jacobian = typename RootFinder<N>::Jacobian;
-      using RootFinder<N>::solve;
+      using Vector   = typename RootFinder<N, Broyden<N>>::Vector;
+      using Matrix   = typename RootFinder<N, Broyden<N>>::Matrix;
+      using Function = typename RootFinder<N, Broyden<N>>::Function;
+      using Jacobian = typename RootFinder<N, Broyden<N>>::Jacobian;
+      using RootFinder<N, Broyden<N>>::solve;
 
     private:
       Method m_method{Method::COMBINED}; /**< Broyden solver type. */
@@ -59,7 +63,7 @@ namespace Optimist
       * Get the Broyden solver name.
       * \return The Broyden solver name.
       */
-      std::string name() const override
+      std::string name_impl() const
       {
         std::ostringstream os;
         os << "Broyden";
@@ -107,26 +111,13 @@ namespace Optimist
       void set_method(Method t_method) {this->m_method = t_method;}
 
       /**
-      * Check if the Broyden solver is able to solve the problem with the given input.
-      * \return The check boolean flag.
-      */
-      bool check() const override
-      {
-        if (this->m_function != nullptr && this->m_first_derivative != nullptr) {
-          return true;
-        } else {
-          return false;
-        }
-      }
-
-      /**
       * Solve the nonlinear system of equations \f$ \mathbf{f}(\mathbf{x}) = 0 \f$, with \f$
       * \mathbf{f}: \mathbb{R}^n \rightarrow \mathbb{R}^n \f$.
-      * \param[in] x_ini The initialization point.
-      * \param[out] x_sol The solution point.
+      * \param[in] x_ini Initialization point.
+      * \param[out] x_sol Solution point.
       * \return The convergence boolean flag.
       */
-      bool solve(Vector const &x_ini, Vector &x_sol) override
+      bool solve_impl(Function t_function, Jacobian t_jacobian, Vector const &x_ini, Vector &x_sol)
       {
         // Setup internal variables
         this->reset();
@@ -135,6 +126,7 @@ namespace Optimist
         if (this->m_verbose) {this->header();}
 
         // Initialize variables
+        bool damped;
         Real residuals, step_norm;
         Vector x_old, x_new, function_old, function_new, step_old, step_new, delta_x_old, delta_x_new,
           delta_function_old, delta_function_new;
@@ -142,8 +134,8 @@ namespace Optimist
 
         // Set initial iteration
         x_old = x_ini;
-        this->evaluate_function(x_old, function_old);
-        this->evaluate_jacobian(x_old, jacobian_old);
+        this->evaluate_function(t_function, x_old, function_old);
+        this->evaluate_jacobian(t_jacobian, x_old, jacobian_old);
 
         // Algorithm iterations
         Real tolerance_residuals{this->m_tolerance};
@@ -168,13 +160,13 @@ namespace Optimist
           if (this->m_damped)
           {
             // Relax the iteration process
-            bool damped{this->damp(x_old, function_old, step_old, x_new, function_new, step_new)};
+            damped = this->damp(t_function, x_old, function_old, step_old, x_new, function_new, step_new);
             OPTIMIST_ASSERT_WARNING(damped,
               "Optimist::RootFinder::Broyden::solve(...): damping failed.");
           } else {
             // Update point
             x_new = x_old + step_old;
-            this->evaluate_function(x_new, function_new);
+            this->evaluate_function(t_function, x_new, function_new);
           }
 
           // Update jacobian approximation

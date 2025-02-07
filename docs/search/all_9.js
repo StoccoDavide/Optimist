@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['jacobian_0',['Jacobian',['../class_optimist_1_1_root_finder_1_1_root_finder.html#abfa901105cfdee0db697d4cbc1019ca7',1,'Optimist::RootFinder::RootFinder::Jacobian'],['../class_optimist_1_1_root_finder_1_1_broyden.html#ae2a36d3e7902c92639063f7e4d345e5b',1,'Optimist::RootFinder::Broyden::Jacobian'],['../class_optimist_1_1_root_finder_1_1_greenstadt.html#a7e8300b593fd89d0759b3e7ec051abc1',1,'Optimist::RootFinder::Greenstadt::Jacobian'],['../class_optimist_1_1_root_finder_1_1_newton.html#a3f0481cf6c48fc93c1c234446a0cd070',1,'Optimist::RootFinder::Newton::Jacobian']]],
-  ['jacobian_5fevaluations_1',['jacobian_evaluations',['../class_optimist_1_1_root_finder_1_1_root_finder.html#a33a931aff1a2ec4cfe4b1c249a776f61',1,'Optimist::RootFinder::RootFinder']]]
+  ['jacobian_0',['Jacobian',['../class_optimist_1_1_root_finder_1_1_root_finder.html#a522b4122fe521d92eeea83a87fe3f7ff',1,'Optimist::RootFinder::RootFinder::Jacobian'],['../class_optimist_1_1_root_finder_1_1_broyden.html#ad6905271dbcb103874fbf83ad6362c66',1,'Optimist::RootFinder::Broyden::Jacobian'],['../class_optimist_1_1_root_finder_1_1_greenstadt.html#af33ed8e2da31d2e39ebc16d4d4035c91',1,'Optimist::RootFinder::Greenstadt::Jacobian'],['../class_optimist_1_1_root_finder_1_1_newton.html#a3e43ef0a3e3bcc0be0b48bafc4ad84b5',1,'Optimist::RootFinder::Newton::Jacobian']]],
+  ['jacobian_5fevaluations_1',['jacobian_evaluations',['../class_optimist_1_1_root_finder_1_1_root_finder.html#abc25acd6abd92bbef45a84882341d7fe',1,'Optimist::RootFinder::RootFinder']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['outputtype_0',['OutputType',['../class_optimist_1_1_solver.html#aaf0426e67bb84540d334127baecbb99f',1,'Optimist::Solver']]]
+  ['outputtype_0',['OutputType',['../class_optimist_1_1_solver.html#a799ba3e9b05b949cc069189bf0f23479',1,'Optimist::Solver']]]
 ];

@@ -96,8 +96,6 @@ target_link_libraries(your_target PRIVATE Optimist::Optimist)
   Department of Industrial Engineering <br>
   email: enrico.bertolazzi@unitn.it
 
-Aka...
-
 ## License
 
 The `Optimist` project is distributed under the BSD 2-Clause License - see the [LICENSE](https://StoccoDavide.github.io/Optimist/LICENSE) file for details.

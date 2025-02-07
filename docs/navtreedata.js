@@ -64,8 +64,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_broyden_8hxx.html",
-"class_optimist_1_1_solver.html#a21a6ccccf79c99bc8e969c118e633282",
-"namespace_optimist.html#ae074a9215dbba3d50719877f6d2adf4f"
+"class_optimist_1_1_scalar_root_finder_1_1_scalar_root_finder.html#a2317cbd5666d8891f1c38b535078c2ef",
+"namespace_optimist.html#a90662ca27675523ddfc4f1e85827cc80"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

@@ -164,6 +164,7 @@ end
 task :clean_gen do
   FileUtils.rm_rf 'bin'
   FileUtils.rm_rf 'build'
+  FileUtils.rm_rf 'third_party'
 end
 
 desc "Clean for OsX"

@@ -11,7 +11,7 @@ var searchData=
   ['table_5ftop_5fleft_5fcorner_8',['table_top_left_corner',['../namespace_optimist.html#a5ab2e8f24dad17a60b32c57058b7189e',1,'Optimist']]],
   ['table_5ftop_5fright_5fcorner_9',['table_top_right_corner',['../namespace_optimist.html#abc4fc14da73035c18afb240947aea154',1,'Optimist']]],
   ['table_5fvertical_5fline_10',['table_vertical_line',['../namespace_optimist.html#a0f174a8298a3a1d692f7db44b02052b4',1,'Optimist']]],
-  ['task_11',['task',['../class_optimist_1_1_solver.html#a416ea1b7dc02141707f863147df9daa2',1,'Optimist::Solver::task() const'],['../class_optimist_1_1_solver.html#a5bdafb0c60ae07ee538877c3b79b4309',1,'Optimist::Solver::task(std::string t_task)']]],
-  ['tolerance_12',['tolerance',['../class_optimist_1_1_solver.html#ad25694d70009fae966613de68c367328',1,'Optimist::Solver::tolerance() const'],['../class_optimist_1_1_solver.html#a110516adcdaa3462d3096c8236bf123b',1,'Optimist::Solver::tolerance(Real t_tolerance)']]],
-  ['trace_13',['trace',['../class_optimist_1_1_solver.html#a25a58fda5e26e32df2a41daab061f3d7',1,'Optimist::Solver']]]
+  ['task_11',['task',['../class_optimist_1_1_solver.html#ac334fd7f564af903cc4873aa000d052e',1,'Optimist::Solver::task() const'],['../class_optimist_1_1_solver.html#a1ccbe9e2600f6873a39942ca4f6b5b7e',1,'Optimist::Solver::task(std::string t_task)']]],
+  ['tolerance_12',['tolerance',['../class_optimist_1_1_solver.html#ad409a6ed2d38fe942dd005081234f3e5',1,'Optimist::Solver::tolerance() const'],['../class_optimist_1_1_solver.html#ac58db6067d0b78a0c8d04b749f6a89d8',1,'Optimist::Solver::tolerance(Real t_tolerance)']]],
+  ['trace_13',['trace',['../class_optimist_1_1_solver.html#a69fe94ac04b6d884045771f01e3990f6',1,'Optimist::Solver']]]
 ];

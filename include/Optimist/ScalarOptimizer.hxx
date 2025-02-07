@@ -36,19 +36,30 @@ namespace Optimist
     * \brief Class container for the scalar optimizer.
     *
     * \includedoc docs/markdown/ScalarOptimizer.md
+    *
+    * \tparam DerivedSolver Derived solver class.
     */
-    class ScalarOptimizer : public Solver<1, 1>
+    template <typename DerivedSolver>
+    class ScalarOptimizer : public Solver<1, 1, DerivedSolver>
     {
+      friend Solver<1, 1, ScalarOptimizer<DerivedSolver>>;
+
     public:
       // Function types
-      using Function         = typename Solver<1, 1>::Function;         /**< Function type. */
-      using FirstDerivative  = typename Solver<1, 1>::FirstDerivative;  /**<  First derivative type. */
-      using SecondDerivative = typename Solver<1, 1>::SecondDerivative; /**< Second derivative type. */
+      using Function         = typename Solver<1, 1, DerivedSolver>::Function;         /**< Function type. */
+      using FirstDerivative  = typename Solver<1, 1, DerivedSolver>::FirstDerivative;  /**<  First derivative type. */
+      using SecondDerivative = typename Solver<1, 1, DerivedSolver>::SecondDerivative; /**< Second derivative type. */
 
       /**
       * Class constructor for the scalar optimizer.
       */
       ScalarOptimizer() {}
+
+      /**
+      * Get the solver name.
+      * \return The solver name.
+      */
+      std::string name() const {return static_cast<const DerivedSolver *>(this)->name_impl();}
 
     }; // class ScalarOptimizer
 

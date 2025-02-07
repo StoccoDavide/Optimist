@@ -33,8 +33,13 @@ namespace Optimist
     *
     * \includedoc docs/markdown/ScalarRootFinder/Newton.md
     */
-    class Newton : public ScalarRootFinder
+    class Newton : public ScalarRootFinder<Newton>
     {
+
+      static constexpr bool requires_function          = true;
+      static constexpr bool requires_first_derivative  = true;
+      static constexpr bool requires_second_derivative = false;
+
     public:
       // Function types
       using Function         = typename ScalarRootFinder::Function;        /**< Function type. */
@@ -50,28 +55,15 @@ namespace Optimist
       * Get the Newton solver name.
       * \return The Newton solver name.
       */
-      std::string name() const override {return "Newton";}
-
-      /**
-      * Check if the Broyden solver is able to solve the problem with the given input.
-      * \return The check boolean flag.
-      */
-      bool check() const override
-      {
-        if (this->m_function != nullptr && this->m_first_derivative != nullptr) {
-          return true;
-        } else {
-          return false;
-        }
-      }
+      std::string name_impl() const {return "Newton";}
 
       /**
       * Solve the nonlinear equation \f$ f(x) = 0 \f$, with \f$ f: \mathbb{R} \rightarrow \mathbb{R} \f$.
-      * \param[in] x_ini The initialization point.
-      * \param[out] x_sol The solution point.
+      * \param[in] x_ini Initialization point.
+      * \param[out] x_sol Solution point.
       * \return The convergence boolean flag.
       */
-      bool solve(Real const &x_ini, Real &x_sol) override
+      bool solve_impl(Function t_function, FirstDerivative t_first_derivative, Real const &x_ini, Real &x_sol)
       {
         // Setup internal variables
         this->reset();
@@ -80,13 +72,14 @@ namespace Optimist
         if (this->m_verbose) {this->header();}
 
         // Initialize variables
+        bool damped;
         Real residuals, step_norm;
         Real x_old, x_new, function_old, function_new, step_old, step_new;
         Real first_derivative;
 
         // Set initial iteration
         x_old = x_ini;
-        this->evaluate_function(x_old, function_old);
+        this->evaluate_function(t_function, x_old, function_old);
 
         // Algorithm iterations
         Real tolerance_residuals{this->m_tolerance};
@@ -94,7 +87,7 @@ namespace Optimist
         for (this->m_iterations = Integer(1); this->m_iterations < this->m_max_iterations; ++this->m_iterations)
         {
           // Store trace
-          this->evaluate_first_derivative(x_new, first_derivative);
+          this->evaluate_first_derivative(t_first_derivative, x_new, first_derivative);
           this->store_trace(x_old);
 
           // Calculate step
@@ -114,13 +107,13 @@ namespace Optimist
           if (this->m_damped)
           {
             // Relax the iteration process
-            bool damped{this->damp(x_old, function_old, step_old, x_new, function_new, step_new)};
+            damped = this->damp(t_function, x_old, function_old, step_old, x_new, function_new, step_new);
             OPTIMIST_ASSERT_WARNING(damped,
               "Optimist::ScalarRootFinder::Newton::solve(...): damping failed.");
           } else {
             // Update point
             x_new = x_old + step_old;
-            this->evaluate_function(x_new, function_new);
+            this->evaluate_function(t_function, x_new, function_new);
           }
 
           // Update internal variables

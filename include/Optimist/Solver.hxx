@@ -33,8 +33,9 @@ namespace Optimist
   *
   * \tparam InputDim The root-finding/optimization problem input dimension.
   * \tparam OutputDim The root-finding/optimization problem output dimension.
+  * \tparam DerivedSolver Derived solver class.
   */
-  template <Integer InputDim, Integer OutputDim>
+  template <Integer InputDim, Integer OutputDim, typename DerivedSolver>
   class Solver
   {
     // Fancy static assertions (just for fun, don't take it too seriously)
@@ -57,11 +58,6 @@ namespace Optimist
     using Function         = typename std::function<void(const InputType &, OutputType &)>;           /**< Function type. */
     using FirstDerivative  = typename std::function<void(const InputType &, FirstDerivativeType &)>;  /**< First derivative type. */
     using SecondDerivative = typename std::function<void(const InputType &, SecondDerivativeType &)>; /**< Second derivative type. */
-
-    // Function pointers
-    Function         m_function{nullptr};          /**< Function pointer. */
-    FirstDerivative  m_first_derivative{nullptr};  /**< First derivative pointer. */
-    SecondDerivative m_second_derivative{nullptr}; /**< Second derivative pointer. */
 
     // Evaluations
     Integer m_function_evaluations{0};          /**< Function evaluations. */
@@ -101,39 +97,39 @@ namespace Optimist
 
     /**
     * Class constructor for the nonlinear solver.
-    * \param[in] t_function The function.
-    * \param[in] x_ini The initialization point.
-    * \param[out] x_sol The solution point.
+    * \param[in] function Function pointer.
+    * \param[in] x_ini Initialization point.
+    * \param[out] x_sol Solution point.
     */
-    Solver(Function t_function, const InputType & x_ini, OutputType & x_sol) : Solver() {
-      this->solve(t_function, x_ini, x_sol);
+    Solver(Function fun, const InputType & x_ini, OutputType & x_sol) : Solver() {
+      this->solve(fun, x_ini, x_sol);
     }
 
     /**
     * Class constructor for the nonlinear solver.
-    * \param[in] t_function The function.
-    * \param[in] t_first_derivative The first derivative of the function.
-    * \param[in] x_ini The initialization point.
-    * \param[out] x_sol The solution point.
+    * \param[in] function Function pointer.
+    * \param[in] first_derivative First derivative of the function.
+    * \param[in] x_ini Initialization point.
+    * \param[out] x_sol Solution point.
     */
-    Solver(Function t_function, FirstDerivative t_first_derivative, const InputType & x_ini,
+    Solver(Function fun, FirstDerivative first_derivative, const InputType & x_ini,
       OutputType & x_sol) : Solver()
     {
-      this->solve(t_function, t_first_derivative, x_ini, x_sol);
+      this->solve(fun, first_derivative, x_ini, x_sol);
     }
 
     /**
     * Class constructor for the nonlinear solver.
-    * \param[in] t_function The function.
-    * \param[in] t_first_derivative The first derivative of the function.
-    * \param[in] t_second_derivative The second derivative of the function.
-    * \param[in] x_ini The initialization point.
-    * \param[out] x_sol The solution point.
+    * \param[in] function Function pointer.
+    * \param[in] first_derivative First derivative of the function.
+    * \param[in] second_derivative The second derivative of the function.
+    * \param[in] x_ini Initialization point.
+    * \param[out] x_sol Solution point.
     */
-    Solver(Function t_function, FirstDerivative t_first_derivative, SecondDerivative t_second_derivative,
+    Solver(Function fun, FirstDerivative first_derivative, SecondDerivative second_derivative,
       const InputType & x_ini, OutputType & x_sol) : Solver()
     {
-      this->solve(t_function, t_first_derivative, t_second_derivative, x_ini, x_sol);
+      this->solve(fun, first_derivative, second_derivative, x_ini, x_sol);
     }
 
     /**
@@ -161,8 +157,8 @@ namespace Optimist
 
   protected:
     /**
-    * Get the number of function first derivative evaluations.
-    * \return The number of function first derivative evaluations.
+    * Get the number of function derivative evaluations.
+    * \return The number of function derivative evaluations.
     */
     Integer first_derivative_evaluations() const {return this->m_first_derivative_evaluations;}
 
@@ -174,19 +170,19 @@ namespace Optimist
 
     /**
     * Set the number of maximum allowed first derivative evaluations.
-    * \param[in] t_first_derivative_evaluations The number of maximum allowed first derivative evaluations.
+    * \param[in] first_derivative_evaluations The number of maximum allowed first derivative evaluations.
     */
-    void max_first_derivative_evaluations(Integer t_first_derivative_evaluations)
+    void max_first_derivative_evaluations(Integer first_derivative_evaluations)
     {
       OPTIMIST_ASSERT(
-        !std::isnan(t_first_derivative_evaluations) && std::isfinite(t_first_derivative_evaluations),
+        !std::isnan(first_derivative_evaluations) && std::isfinite(first_derivative_evaluations),
         "Optimist::Solver::max_first_derivative_evaluations(...): invalid input detected.");
-      this->m_max_first_derivative_evaluations = t_first_derivative_evaluations;
+      this->m_max_first_derivative_evaluations = first_derivative_evaluations;
     }
 
     /**
-    * Get the number of function second derivative evaluations.
-    * \return The number of function second derivative evaluations.
+    * Get the number of second derivative evaluations.
+    * \return The number of second derivative evaluations.
     */
     Integer second_derivative_evaluations() const {return this->m_second_derivative_evaluations;}
 
@@ -198,14 +194,14 @@ namespace Optimist
 
     /**
     * Set the number of maximum allowed second derivative evaluations.
-    * \param[in] t_second_derivative_evaluations The number of maximum allowed second derivative evaluations.
+    * \param[in] second_derivative_evaluations The number of maximum allowed second derivative evaluations.
     */
-    void max_second_derivative_evaluations(Integer t_second_derivative_evaluations)
+    void max_second_derivative_evaluations(Integer second_derivative_evaluations)
     {
       OPTIMIST_ASSERT(
-        !std::isnan(t_second_derivative_evaluations) && std::isfinite(t_second_derivative_evaluations),
+        !std::isnan(second_derivative_evaluations) && std::isfinite(second_derivative_evaluations),
         "Optimist::Solver::max_second_derivative_evaluations(...): invalid input detected.");
-      this->m_max_second_derivative_evaluations = t_second_derivative_evaluations;
+      this->m_max_second_derivative_evaluations = second_derivative_evaluations;
     }
 
   public:
@@ -369,70 +365,78 @@ namespace Optimist
     void ostream(std::ostream & t_ostream) {this->m_ostream = &t_ostream;}
 
     /**
-    * Solve the root-finding/optimization problem without derivatives given the function.
-    * \param[in] t_function The function.
-    * \param[in] x_ini The initialization point.
-    * \param[out] x_sol The solution point.
+    * Solve the root-finding/optimization problem given the function, and without derivatives.
+    * \param[in] function Function pointer.
+    * \param[in] x_ini Initialization point.
+    * \param[out] x_sol Solution point.
     */
-    bool solve(Function t_function, const InputType & x_ini, OutputType & x_sol)
+    bool solve(Function function, const InputType & x_ini, OutputType & x_sol)
     {
-      this->m_function          = t_function;
-      this->m_first_derivative  = nullptr;
-      this->m_second_derivative = nullptr;
-      OPTIMIST_ASSERT(this->check(), "Optimist::Solver::solve(...): in solver " << this->name() <<
-        ", insufficient information is provided.");
-      return this->solve(x_ini, x_sol);
+      #define CMD "Optimist::Solver::solve(...): "
+
+      static_assert(DerivedSolver::requires_function,
+        CMD "the solver requires a function.");
+      static_assert(!DerivedSolver::requires_first_derivative,
+        CMD "the solver requires the first derivative.");
+      static_assert(!DerivedSolver::requires_second_derivative,
+        CMD "the solver requires a the second derivative.");
+      return static_cast<DerivedSolver *>(this)->solve(x_ini, function, nullptr, nullptr, x_sol);
+
+      #undef CMD
     }
 
     /**
-    * Solve the root-finding/optimization problem given the function and its first derivative.
-    * \param[in] t_function The function.
-    * \param[in] t_first_derivative The first derivative of the function.
-    * \param[in] x_ini The initialization point.
-    * \param[out] x_sol The solution point.
+    * Solve the root-finding/optimization problem given the function, and its first derivative.
+    * \param[in] function Function pointer.
+    * \param[in] first_derivative First derivative of the function.
+    * \param[in] x_ini Initialization point.
+    * \param[out] x_sol Solution point.
     */
-    bool solve(Function t_function, FirstDerivative t_first_derivative, const InputType & x_ini,
+    bool solve(Function function, FirstDerivative first_derivative, const InputType & x_ini,
       OutputType & x_sol)
     {
-      this->m_function          = t_function;
-      this->m_first_derivative  = t_first_derivative;
-      this->m_second_derivative = nullptr;
-      OPTIMIST_ASSERT(this->check(), "Optimist::Solver::solve(...): in solver " << this->name() <<
-        ", insufficient information is provided.");
-      return this->solve(x_ini, x_sol);
+      #define CMD "Optimist::Solver::solve(...): "
+
+      static_assert(DerivedSolver::requires_function,
+        CMD "the solver requires a function.");
+      static_assert(DerivedSolver::requires_first_derivative,
+        CMD "the solver requires the first derivative.");
+      static_assert(!DerivedSolver::requires_second_derivative,
+        CMD "the solver requires a the second derivative.");
+      return static_cast<DerivedSolver *>(this)->solve(x_ini, function, first_derivative, nullptr, x_sol);
+
+      #undef CMD
     }
 
     /**
-    * Solve the root-finding/optimization problem given the function and its first and second
-    * derivatives.
-    * \param[in] t_function The function.
-    * \param[in] t_first_derivative The first derivative of the function.
-    * \param[in] t_second_derivative The second derivative of the function.
-    * \param[in] x_ini The initialization point.
-    * \param[out] x_sol The solution point.
+    * Solve the root-finding/optimization problem given the function, and its first and second derivatives.
+    * \param[in] function Function pointer.
+    * \param[in] first_derivative First derivative of the function.
+    * \param[in] second_derivative The second derivative of the function.
+    * \param[in] x_ini Initialization point.
+    * \param[out] x_sol Solution point.
     */
-    bool solve(Function t_function, FirstDerivative t_first_derivative, SecondDerivative t_second_derivative,
+    bool solve(Function function, FirstDerivative first_derivative, SecondDerivative second_derivative,
       const InputType & x_ini, OutputType & x_sol)
     {
-      this->m_function          = t_function;
-      this->m_first_derivative  = t_first_derivative;
-      this->m_second_derivative = t_second_derivative;
-      OPTIMIST_ASSERT(this->check(), "Optimist::Solver::solve(...): in solver " << this->name() <<
-        ", insufficient information is provided.");
-      return this->solve(x_ini, x_sol);
+      #define CMD "Optimist::Solver::solve(...): "
+
+      static_assert(DerivedSolver::requires_function,
+        CMD "the solver requires the function.");
+      static_assert(DerivedSolver::requires_first_derivative,
+        CMD "the solver requires the first derivative.");
+      static_assert(DerivedSolver::requires_second_derivative,
+        CMD "the solver requires the second derivative.");
+      return static_cast<DerivedSolver *>(this)->solve(x_ini, function, first_derivative, second_derivative, x_sol);
+
+      #undef CMD
     }
 
     /**
     * Get the solver name.
     * \return The solver name.
     */
-    virtual std::string name() const = 0;
-
-    /**
-    * Check if the solver is able to solve the problem with the given input.
-    * \return The check boolean flag.
-    */
-    virtual bool check() const = 0;
+    std::string name() const {return static_cast<const DerivedSolver *>(this)->name();};
 
   protected:
     /**
@@ -451,35 +455,38 @@ namespace Optimist
 
     /**
     * Evaluate the function.
-    * \param[in] x Input point.
-    * \param[out] function Function value.
+    * \param[in] function Function pointer.
+    * \param[in] in Input point.
+    * \param[out] out Function value.
     */
-    void evaluate_function(const InputType & x, OutputType & function)
+    void evaluate_function(Function function, const InputType & in, OutputType & out)
     {
       ++this->m_function_evaluations;
-      this->m_function(x, function);
+      function(in, out);
     }
 
     /**
     * Evaluate the first derivative.
-    * \param[in] x Input point.
-    * \param[out] first_derivative First derivative value.
+    * \param[in] function First derivative pointer.
+    * \param[in] in Input point.
+    * \param[out] out First derivative value.
     */
-    void evaluate_first_derivative(const InputType & x, FirstDerivativeType & first_derivative)
+    void evaluate_first_derivative(FirstDerivative function, const InputType & in, FirstDerivativeType & out)
     {
       ++this->m_first_derivative_evaluations;
-      this->m_first_derivative(x, first_derivative);
+      function(in, out);
     }
 
     /**
     * Evaluate the second derivative.
-    * \param[in] x Input point.
-    * \param[out] second_derivative Second derivative value.
+    * \param[in] function Second derivative pointer.
+    * \param[in] in Input point.
+    * \param[out] out Second derivative value.
     */
-    void evaluate_second_derivative(const InputType & x, SecondDerivativeType & second_derivative)
+    void evaluate_second_derivative(SecondDerivative function, const InputType & in, SecondDerivativeType & out)
     {
       ++this->m_second_derivative_evaluations;
-      this->m_second_derivative(x, second_derivative);
+      function(in, out);
     }
 
     /**
@@ -490,6 +497,7 @@ namespace Optimist
 
     /**
     * Damp the step using the affine invariant criterion.
+    * \param[in] function Function pointer.
     * \param[in] x_old Old point.
     * \param[in] function_old Old function value.
     * \param[in] step_old Old step.
@@ -498,8 +506,8 @@ namespace Optimist
     * \param[out] step_new New step.
     * \return The damping boolean flag, true if the damping is successful, false otherwise.
     */
-    bool damp(InputType const & x_old, InputType const & function_old, InputType const & step_old,
-      InputType & x_new, InputType & function_new, InputType & step_new)
+    bool damp(Function function, InputType const & x_old, InputType const & function_old, InputType
+      const & step_old, InputType & x_new, InputType & function_new, InputType & step_new)
     {
       Real step_norm_old, step_norm_new, residuals_old, residuals_new, tau{1.0};
       for (this->m_relaxations = Integer(0); this->m_relaxations < this->m_max_relaxations; ++this->m_relaxations)
@@ -507,7 +515,7 @@ namespace Optimist
         // Update point
         step_new = tau * step_old;
         x_new = x_old + step_new;
-        this->evaluate_function(x_new, function_new);
+        this->evaluate_function(function, x_new, function_new);
 
         // Check relaxation
         if constexpr (InputDim == 1 && OutputDim == 1) {
@@ -603,14 +611,6 @@ namespace Optimist
         << std::setw(12) << std::scientific << std::setprecision(6) << residuals << v_lc
         << notes << std::setw(25-notes.length()) << v_rr << std::endl;
     }
-
-    /**
-    * Solve root-finding/optimization problem according to the solver.
-    * \param[in] x_ini The initialization point.
-    * \param[out] x_sol The solution point.
-    * \return The convergence boolean flag.
-    */
-    virtual bool solve(const InputType & x_ini, OutputType &x_sol) = 0;
 
   }; // class Solver
 

@@ -23,6 +23,8 @@ What distinguishes Broyden's *combined* method from the generic Broyden's method
     \text{otherwise}
   \end{cases} \text{,}
 \f]
-with \f$\mathbf{C}_g = \Delta\mathbf{x}_k^\top \mathbf{H}_k^{-1}\f$, \f$\mathbf{C}_b = \Delta\mathbf{f}_k^\top\f$, \f$\Delta\mathbf{x}_k = \mathbf{x}_{k+1} - \mathbf{x}_k\f$, and \f$\Delta\mathbf{f}_k = \mathbf{f}(\mathbf{x}_{k+1}) - \mathbf{f}(\mathbf{x}_k)\f$. Such a rule allows Broyden's *combined* method to adapt to the problem's behavior, switching between the good and bad methods based on the convergence history. For more details on the Broyden's *combined* method refer to the reference: *"Sobre dois métodos de Broyden"* by J. M. Martínez and J. M. Martínez, Matemática Aplicada e Computacional, IV Congresso Nacional de Matemática Aplicada e Computacional, Rio de Janeiro, Brasil, setembro de 1981.
+with \f$\mathbf{C}_g = \Delta\mathbf{x}_k^\top \mathbf{H}_k^{-1}\f$, \f$\mathbf{C}_b = \Delta\mathbf{f}_k^\top\f$, \f$\Delta\mathbf{x}_k = \mathbf{x}_{k+1} - \mathbf{x}_k\f$, and \f$\Delta\mathbf{f}_k = \mathbf{f}(\mathbf{x}_{k+1}) - \mathbf{f}(\mathbf{x}_k)\f$. Such a rule allows Broyden's *combined* method to adapt to the problem's behavior, switching between the good and bad methods based on the convergence history.
+
+> For more details on the Broyden's methods refer to the references: Broyden C.G., *A class of methods for solving nonlinear simultaneous equations*, Mathematics of Computation, 19 (1965), pp. 577-593, 10.1090/s0025-5718-1965-0198670-6, and Martinez J., Ochi L., *Sobre dois métodos de broyden*, Matemática Aplicada e Computacional, IV Congresso Nacional de Matemática Aplicada e Computacional, Rio de Janeiro, Brasil, setembro de 1981.
 
 > **NOTE:** In `Optimist`, the implemented Broyden's class for the *combined* method can be used as a *good* or *bad* solver by setting the appropriate parameters.

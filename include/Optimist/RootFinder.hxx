@@ -38,10 +38,13 @@ namespace Optimist
     * \includedoc docs/markdown/RootFinder.md
     *
     * \tparam N The dimension of the root-finding problem.
+    * \tparam DerivedSolver Derived solver class.
     */
-    template <Integer N>
-    class RootFinder : public Solver<N, N>
+    template <Integer N, typename DerivedSolver>
+    class RootFinder : public Solver<N, N, DerivedSolver>
     {
+      friend Solver<N, N, RootFinder<N, DerivedSolver>>;
+
       // Fancy static assertions (just for fun, don't take it too seriously)
       static_assert(N != Integer(0),
         "Are you sure you want to solve a zero-dimensional system of equations?");
@@ -49,17 +52,18 @@ namespace Optimist
         "C'mon, let's not kid ourselves. Use a scalar solver...");
 
     public:
-      using Solver<N, N>::Solver;
+      using Solver<N, N, DerivedSolver>::Solver;
 
       // I/O types
-      using Vector = typename Solver<N, N>::InputType; /**< Vector type. */
+      using Vector = typename Solver<N, N, DerivedSolver>::InputType; /**< Vector type. */
 
       // Derivative types
-      using Matrix = typename Solver<N, N>::FirstDerivativeType; /**< Jacobian matrix type. */
+      using Matrix = typename Solver<N, N, DerivedSolver>::FirstDerivativeType; /**< Jacobian matrix type. */
 
       // Function types
-      using Function = typename Solver<N, N>::Function;        /**< Function type. */
-      using Jacobian = typename Solver<N, N>::FirstDerivative; /**< Jacobian function type. */
+      using Function = typename Solver<N, N, DerivedSolver>::Function;         /**< Function type. */
+      using Jacobian = typename Solver<N, N, DerivedSolver>::FirstDerivative;  /**< Jacobian function type. */
+      using Hessian  = typename Solver<N, N, DerivedSolver>::SecondDerivative; /**< Hessian function type. */
 
       /**
       * Class constructor for the multi-dimensional root finder.
@@ -67,8 +71,14 @@ namespace Optimist
       RootFinder() {}
 
       /**
-      * Get the number of function first derivative evaluations.
-      * \return The number of function first derivative evaluations.
+      * Get the solver name.
+      * \return The solver name.
+      */
+      std::string name() const {return static_cast<const DerivedSolver *>(this)->name_impl();}
+
+      /**
+      * Get the number of Jacobian evaluations.
+      * \return The number of Jacobian evaluations.
       */
       Integer jacobian_evaluations() const {return this->first_derivative_evaluations();}
 
@@ -90,12 +100,38 @@ namespace Optimist
     protected:
       /**
       * Evaluate the Jacobian function.
-      * \param[in] x Input point.
-      * \param[out] jacobian Jacobian value.
+      * \param[in] jacobian Jacobian function pointer.
+      * \param[in] in Input point.
+      * \param[out] out Jacobian value.
       */
-      void evaluate_jacobian(const Vector & x, Matrix & jacobian)
+      void evaluate_jacobian(Jacobian jacobian, const Vector & in, Matrix & out)
       {
-        this->evaluate_first_derivative(x, jacobian);
+        this->evaluate_first_derivative(jacobian, in, out);
+      }
+
+      /**
+      * Solve the root-finding problem given the function, and without derivatives.
+      * \param[in] function Function pointer.
+      * \param[in] x_ini Initialization point.
+      * \param[out] x_sol Solution point.
+      * \return The convergence boolean flag.
+      */
+      bool solve(Function function, Vector const &x_ini, Vector &x_sol)
+      {
+        return static_cast<DerivedSolver *>(this)->solve_impl(function, x_ini, x_sol);
+      }
+
+      /**
+      * Solve the root-finding problem given the function, and its first derivative.
+      * \param[in] function Function pointer.
+      * \param[in] jacobian The Jacobian function pointer.
+      * \param[in] x_ini Initialization point.
+      * \param[out] x_sol Solution point.
+      * \return The convergence boolean flag.
+      */
+      bool solve(Function function, Jacobian jacobian, Vector const &x_ini, Vector &x_sol)
+      {
+        return static_cast<DerivedSolver *>(this)->solve_impl(function, jacobian, x_ini, x_sol);
       }
 
     }; // class RootFinder

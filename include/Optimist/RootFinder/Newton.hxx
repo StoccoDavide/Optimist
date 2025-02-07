@@ -33,17 +33,21 @@ namespace Optimist
     *
     * \includedoc docs/markdown/RootFinder/Newton.md
     *
-    * \tparam N The dimension of the nonlinear system of equations.
+    * \tparam N Dimension of the root-finding problem.
     */
     template <Integer N>
-    class Newton : public RootFinder<N>
+    class Newton : public RootFinder<N, Newton<N>>
     {
+      static constexpr bool requires_function          = true;
+      static constexpr bool requires_first_derivative  = true;
+      static constexpr bool requires_second_derivative = false;
+
     public:
-      using Vector   = typename RootFinder<N>::Vector;
-      using Matrix   = typename RootFinder<N>::Matrix;
-      using Function = typename RootFinder<N>::Function;
-      using Jacobian = typename RootFinder<N>::Jacobian;
-      using RootFinder<N>::solve;
+      using Vector   = typename RootFinder<N, Newton<N>>::Vector;
+      using Matrix   = typename RootFinder<N, Newton<N>>::Matrix;
+      using Function = typename RootFinder<N, Newton<N>>::Function;
+      using Jacobian = typename RootFinder<N, Newton<N>>::Jacobian;
+      using RootFinder<N, Newton<N>>::solve;
 
     private:
       Eigen::FullPivLU<Matrix> m_lu; /**< LU decomposition. */
@@ -58,29 +62,16 @@ namespace Optimist
       * Get the Newton solver name.
       * \return The Newton solver name.
       */
-      std::string name() const override {return "Newton";}
-
-      /**
-      * Check if the Broyden solver is able to solve the problem with the given input.
-      * \return The check boolean flag.
-      */
-      bool check() const override
-      {
-        if (this->m_function != nullptr && this->m_first_derivative != nullptr) {
-          return true;
-        } else {
-          return false;
-        }
-      }
+      std::string name_impl() const {return "Newton";}
 
       /**
       * Solve the nonlinear system of equations \f$ \mathbf{f}(\mathbf{x}) = 0 \f$, with \f$
       * \mathbf{f}: \mathbb{R}^n \rightarrow \mathbb{R}^n \f$.
-      * \param[in] x_ini The initialization point.
-      * \param[out] x_sol The solution point.
+      * \param[in] x_ini Initialization point.
+      * \param[out] x_sol Solution point.
       * \return The convergence boolean flag.
       */
-      bool solve(Vector const &x_ini, Vector &x_sol) override
+      bool solve_impl(Function t_function, Jacobian t_jacobian, Vector const &x_ini, Vector &x_sol)
       {
         // Setup internal variables
         this->reset();
@@ -89,13 +80,14 @@ namespace Optimist
         if (this->m_verbose) {this->header();}
 
         // Initialize variables
+        bool damped;
         Real residuals, step_norm;
         Vector x_old, x_new, function_old, function_new, step_old, step_new;
         Matrix jacobian;
 
         // Set initial iteration
         x_old = x_ini;
-        this->evaluate_function(x_old, function_old);
+        this->evaluate_function(t_function, x_old, function_old);
 
         // Algorithm iterations
         Real tolerance_residuals{this->m_tolerance};
@@ -106,7 +98,7 @@ namespace Optimist
           this->store_trace(x_old);
 
           // Calculate step
-          this->evaluate_jacobian(x_old, jacobian);
+          this->evaluate_jacobian(t_jacobian, x_old, jacobian);
           this->m_lu.compute(jacobian);
           OPTIMIST_ASSERT(this->m_lu.rank() == N,
             "Optimist::RootFinder::Newton::solve(...): singular Jacobian detected.");
@@ -124,13 +116,13 @@ namespace Optimist
           if (this->m_damped)
           {
             // Relax the iteration process
-            bool damped{this->damp(x_old, function_old, step_old, x_new, function_new, step_new)};
+            damped = this->damp(t_function, x_old, function_old, step_old, x_new, function_new, step_new);
             OPTIMIST_ASSERT_WARNING(damped,
               "Optimist::RootFinder::Newton::solve(...): damping failed.");
           } else {
             // Update point
             x_new = x_old + step_old;
-            this->evaluate_function(x_new, function_new);
+            this->evaluate_function(t_function, x_new, function_new);
           }
 
           // Update internal variables

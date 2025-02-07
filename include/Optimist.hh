@@ -308,7 +308,4 @@ namespace Optimist
 // Scalar optimization solvers
 #include "Optimist/ScalarOptimizer.hxx"
 
-// Mapping solvers to functions
-#include "Optimist/Factory.hxx"
-
 #endif // INCLUDE_OPTIMIST_HH

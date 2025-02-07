@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['tracetype_0',['TraceType',['../class_optimist_1_1_solver.html#a15994bb286ebbf3ecf41b39837518d32',1,'Optimist::Solver']]]
+  ['tracetype_0',['TraceType',['../class_optimist_1_1_solver.html#aba55138e6c7c69ea658bda0bdab8fd95',1,'Optimist::Solver']]]
 ];

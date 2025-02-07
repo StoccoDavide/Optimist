@@ -37,11 +37,14 @@ namespace Optimist
     *
     * \includedoc docs/markdown/Optimizer.md
     *
-    * \tparam N The dimension of the optimization problem.
+    * \tparam N Dimension of the optimization problem.
+    * \tparam DerivedSolver Derived solver class.
     */
-    template <Integer N>
-    class Optimizer : public Solver<N, 1>
+    template <Integer N, typename DerivedSolver>
+    class Optimizer : public Solver<N, 1, DerivedSolver>
     {
+      friend Solver<N, 1, Optimizer<N, DerivedSolver>>;
+
       // Fancy static assertions (just for fun, don't take it too seriously)
       static_assert(N != Integer(0),
         "Have you ever heard of a zero-dimensional optimization problem?");
@@ -50,16 +53,16 @@ namespace Optimist
 
     public:
       // I/O types
-      using Vector = typename Solver<N, 1>::InputType; /**< Vector type. */
+      using Vector = typename Solver<N, 1, DerivedSolver>::InputType; /**< Vector type. */
 
       // Derivative types
-      using RowVector = typename Solver<N, 1>::FirstDerivativeType;  /**< Gradient (row) vector type. */
-      using Matrix    = typename Solver<N, 1>::SecondDerivativeType; /**< Hessian matrix type. */
+      using RowVector = typename Solver<N, 1, DerivedSolver>::FirstDerivativeType;  /**< Gradient (row) vector type. */
+      using Matrix    = typename Solver<N, 1, DerivedSolver>::SecondDerivativeType; /**< Hessian matrix type. */
 
       // Function types
-      using Function = typename Solver<N, 1>::Function;         /**< Function type. */
-      using Gradient = typename Solver<N, 1>::FirstDerivative;  /**< Gradient function type. */
-      using Hessian  = typename Solver<N, 1>::SecondDerivative; /**< Hessian function type. */
+      using Function = typename Solver<N, 1, DerivedSolver>::Function;         /**< Function type. */
+      using Gradient = typename Solver<N, 1, DerivedSolver>::FirstDerivative;  /**< Gradient function type. */
+      using Hessian  = typename Solver<N, 1, DerivedSolver>::SecondDerivative; /**< Hessian function type. */
 
       /**
       * Class constructor for the multi-dimensional optimizer.
@@ -67,16 +70,34 @@ namespace Optimist
       Optimizer() {}
 
       /**
-      * Get the number of function first derivative evaluations.
-      * \return The number of function first derivative evaluations.
+      * Get the solver name.
+      * \return The solver name.
+      */
+      std::string name() const {return static_cast<DerivedSolver *>(this)->name_impl();}
+
+      /**
+      * Get the number of gradient evaluations.
+      * \return The number of gradient evaluations.
       */
       Integer gradient_evaluations() const {return this->first_derivative_evaluations();}
+
+      /**
+      * Get the number of hessian evaluations.
+      * \return The number of hessian evaluations.
+      */
+      Integer hessian_evaluations() const {return this->second_derivative_evaluations();}
 
       /**
       * Get the number of maximum allowed gradient evaluations.
       * \return The number of maximum allowed gradient evaluations.
       */
       Integer max_gradient_evaluations() const {return this->max_first_derivative_evaluations();}
+
+      /**
+      * Get the number of maximum allowed hessian evaluations.
+      * \return The number of maximum allowed hessian evaluations.
+      */
+      Integer max_hessian_evaluations() const {return this->max_second_derivative_evaluations();}
 
       /**
       * Set the number of maximum allowed gradient evaluations.
@@ -88,45 +109,74 @@ namespace Optimist
       }
 
       /**
-      * Get the number of function first derivative evaluations.
-      * \return The number of function first derivative evaluations.
-      */
-      Integer hessian_evaluations() const {return this->first_derivative_evaluations();}
-
-      /**
-      * Get the number of maximum allowed hessian evaluations.
-      * \return The number of maximum allowed hessian evaluations.
-      */
-      Integer max_hessian_evaluations() const {return this->max_first_derivative_evaluations();}
-
-      /**
       * Set the number of maximum allowed hessian evaluations.
       * \param[in] t_hessian_evaluations The number of maximum allowed hessian evaluations.
       */
       void max_hessian_evaluations(Integer t_hessian_evaluations)
       {
-        this->first_derivative_evaluations(t_hessian_evaluations);
+        this->second_derivative_evaluations(t_hessian_evaluations);
       }
 
     protected:
       /**
-      * Evaluate the gradient.
-      * \param[in] x Input point.
-      * \param[out] gradient gradient value.
+      * Evaluate the gradient function.
+      * \param[in] gradient Gradient function pointer.
+      * \param[in] in Input point.
+      * \param[out] out Gradient value.
       */
-      void evaluate_gradient(const Vector & x, RowVector & gradient)
+      void evaluate_gradient(Gradient gradient, const Vector & in, Matrix & out)
       {
-        this->evaluate_first_derivative(x, gradient);
+        this->evaluate_first_derivative(gradient, in, out);
       }
 
       /**
-      * Evaluate the hessian.
-      * \param[in] x Input point.
-      * \param[out] hessian hessian value.
+      * Evaluate the hessian function.
+      * \param[in] hessian Hessian function pointer.
+      * \param[in] in Input point.
+      * \param[out] out Hessian value.
       */
-      void evaluate_hessian(const Vector & x, Matrix & hessian)
+      void evaluate_hessian(Hessian hessian, const Vector & in, Matrix & out)
       {
-        this->evaluate_first_derivative(x, hessian);
+        this->evaluate_second_derivative(hessian, in, out);
+      }
+
+      /**
+      * Solve the root-finding problem given the function, and without derivatives.
+      * \param[in] function Function pointer.
+      * \param[in] x_ini Initialization point.
+      * \param[out] x_sol Solution point.
+      * \return The convergence boolean flag.
+      */
+      bool solve(Function function, Vector const &x_ini, Vector &x_sol)
+      {
+        return static_cast<DerivedSolver *>(this)->solve_impl(function, x_ini, x_sol);
+      }
+
+      /**
+      * Solve the root-finding problem given the function, and its first derivative.
+      * \param[in] function Function pointer.
+      * \param[in] gradient Gradient function pointer.
+      * \param[in] x_ini Initialization point.
+      * \param[out] x_sol Solution point.
+      * \return The convergence boolean flag.
+      */
+      bool solve(Function function, Gradient gradient, Vector const &x_ini, Vector &x_sol)
+      {
+        return static_cast<DerivedSolver *>(this)->solve_impl(function, gradient, x_ini, x_sol);
+      }
+
+      /**
+      * Solve the root-finding problem given the function, and its first and second derivatives.
+      * \param[in] function Function pointer.
+      * \param[in] gradient Gradient function pointer.
+      * \param[in] hessian Hessian function pointer.
+      * \param[in] x_ini Initialization point.
+      * \param[out] x_sol Solution point.
+      * \return The convergence boolean flag.
+      */
+      bool solve(Function function, Gradient gradient, Hessian hessian, Vector const &x_ini, Vector &x_sol)
+      {
+        return static_cast<DerivedSolver *>(this)->solve_impl(function, gradient, hessian, x_ini, x_sol);
       }
 
     }; // class Optimizer

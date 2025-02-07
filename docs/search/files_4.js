@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['newton_2ehxx_0',['Newton.hxx',['../_root_finder_2_newton_8hxx.html',1,'(Global Namespace)'],['../_scalar_root_finder_2_newton_8hxx.html',1,'(Global Namespace)']]]
+  ['optimist_2ehh_0',['Optimist.hh',['../_optimist_8hh.html',1,'']]],
+  ['optimizer_2ehxx_1',['Optimizer.hxx',['../_optimizer_8hxx.html',1,'']]]
 ];

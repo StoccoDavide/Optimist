@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['mainpage_2emd_0',['Mainpage.md',['../_mainpage_8md.html',1,'']]]
+  ['newton_2ehxx_0',['Newton.hxx',['../_root_finder_2_newton_8hxx.html',1,'(Global Namespace)'],['../_scalar_root_finder_2_newton_8hxx.html',1,'(Global Namespace)']]]
 ];

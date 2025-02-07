@@ -36,54 +36,71 @@ namespace Optimist
     * \brief Class container for the scalar scalar root-finder.
     *
     * \includedoc docs/markdown/ScalarRootFinder.md
+    *
+    * \tparam DerivedSolver Derived solver class.
     */
-    class ScalarRootFinder : public Solver<1, 1>
+    template <typename DerivedSolver>
+    class ScalarRootFinder : public Solver<1, 1, DerivedSolver>
     {
+      friend Solver<1, 1, ScalarRootFinder<DerivedSolver>>;
+
     public:
       // Function types
-      using Function         = typename Solver<1, 1>::Function;         /**< Function type. */
-      using FirstDerivative  = typename Solver<1, 1>::FirstDerivative;  /**<  First derivative type. */
-      using SecondDerivative = typename Solver<1, 1>::SecondDerivative; /**< Second derivative type. */
+      using Function         = typename Solver<1, 1, DerivedSolver>::Function;         /**< Function type. */
+      using FirstDerivative  = typename Solver<1, 1, DerivedSolver>::FirstDerivative;  /**<  First derivative type. */
+      using SecondDerivative = typename Solver<1, 1, DerivedSolver>::SecondDerivative; /**< Second derivative type. */
 
       /**
       * Class constructor for the scalar root-finder.
       */
       ScalarRootFinder() {}
 
+      /**
+      * Get the solver name.
+      * \return The solver name.
+      */
+      std::string name() const {return static_cast<const DerivedSolver *>(this)->name_impl();}
+
     protected:
       /**
-      * Damp the step using the affine invariant criterion.
-      * \param[in] x_old Old point.
-      * \param[in] function_old Old function value.
-      * \param[in] step_old Old step.
-      * \param[out] x_new New point.
-      * \param[out] function_new New function value.
-      * \param[out] step_new New step.
-      * \return The damping boolean flag, true if the damping is successful, false otherwise.
+      * Solve the root-finding problem given the function, and without derivatives.
+      * \param[in] function Function pointer.
+      * \param[in] x_ini Initialization point.
+      * \param[out] x_sol Solution point.
+      * \return The convergence boolean flag.
       */
-      bool damp(Real const & x_old, Real const & function_old, Real const & step_old,
-        Real & x_new, Real & function_new, Real & step_new)
+      bool solve(Function function, Real const &x_ini, Real &x_sol)
       {
-        Real step_norm_old, step_norm_new, residuals_old, residuals_new, tau{1.0};
-        for (this->m_relaxations = Integer(0); this->m_relaxations < this->m_max_relaxations; ++this->m_relaxations)
-        {
-          // Update point
-          step_new = tau * step_old;
-          x_new = x_old + step_new;
-          this->evaluate_function(x_new, function_new);
+        return static_cast<DerivedSolver *>(this)->solve_impl(x_ini, function, x_sol);
+      }
 
-          // Check relaxation
-          residuals_old = std::abs(function_old);
-          residuals_new = std::abs(function_new);
-          step_norm_old = std::abs(step_old);
-          step_norm_new = std::abs(step_new);
-          if (residuals_new < residuals_old || step_norm_new < (Real(1.0)-tau/Real(2.0))*step_norm_old) {
-            return true;
-          } else {
-            tau *= this->m_alpha;
-          }
-        }
-        return false;
+      /**
+      * Solve the root-finding problem given the function, and its first derivative.
+      * \param[in] function Function pointer.
+      * \param[in] first_derivative First derivative of the function.
+      * \param[in] x_ini Initialization point.
+      * \param[out] x_sol Solution point.
+      * \return The convergence boolean flag.
+      */
+      bool solve(Function function, FirstDerivative first_derivative, Real const &x_ini, Real &x_sol)
+      {
+        return static_cast<DerivedSolver *>(this)->solve_impl(x_ini, function, first_derivative, x_sol);
+      }
+
+      /**
+      * Solve the root-finding problem given the function, and its first and second derivatives.
+      * \param[in] function Function pointer.
+      * \param[in] first_derivative First derivative of the function.
+      * \param[in] second_derivative Second derivative of the function.
+      * \param[in] x_ini Initialization point.
+      * \param[out] x_sol Solution point.
+      * \return The convergence boolean flag.
+      */
+      bool solve(Function function, FirstDerivative first_derivative, SecondDerivative second_derivate,
+        Real const &x_ini, Real &x_sol)
+      {
+        return static_cast<DerivedSolver *>(this)->solve_impl(x_ini, function, first_derivative,
+          second_derivate, x_sol);
       }
 
     }; // class ScalarRootFinder
