@@ -46,9 +46,9 @@ namespace Optimist
 
     public:
       // Function types
-      using Function         = typename Solver<1, 1, DerivedSolver>::Function;         /**< Function type. */
-      using FirstDerivative  = typename Solver<1, 1, DerivedSolver>::FirstDerivative;  /**<  First derivative type. */
-      using SecondDerivative = typename Solver<1, 1, DerivedSolver>::SecondDerivative; /**< Second derivative type. */
+      using FunctionWrapper         = typename Solver<1, 1, DerivedSolver>::FunctionWrapper;         /**< Function wrapper type. */
+      using FirstDerivativeWrapper  = typename Solver<1, 1, DerivedSolver>::FirstDerivativeWrapper;  /**< First derivative wrapper type. */
+      using SecondDerivativeWrapper = typename Solver<1, 1, DerivedSolver>::SecondDerivativeWrapper; /**< Second derivative wrapper type. */
 
       /**
       * Class constructor for the scalar root-finder.
@@ -64,40 +64,41 @@ namespace Optimist
     protected:
       /**
       * Solve the root-finding problem given the function, and without derivatives.
-      * \param[in] function Function pointer.
+      * \param[in] function Function wrapper.
       * \param[in] x_ini Initialization point.
       * \param[out] x_sol Solution point.
       * \return The convergence boolean flag.
       */
-      bool solve(Function function, Real const &x_ini, Real &x_sol)
+      bool solve(FunctionWrapper function, Real const &x_ini, Real &x_sol)
       {
         return static_cast<DerivedSolver *>(this)->solve_impl(x_ini, function, x_sol);
       }
 
       /**
       * Solve the root-finding problem given the function, and its first derivative.
-      * \param[in] function Function pointer.
-      * \param[in] first_derivative First derivative of the function.
+      * \param[in] function Function wrapper.
+      * \param[in] first_derivative First derivative wrapper.
       * \param[in] x_ini Initialization point.
       * \param[out] x_sol Solution point.
       * \return The convergence boolean flag.
       */
-      bool solve(Function function, FirstDerivative first_derivative, Real const &x_ini, Real &x_sol)
+      bool solve(FunctionWrapper function, FirstDerivativeWrapper first_derivative, Real const &x_ini,
+        Real &x_sol)
       {
         return static_cast<DerivedSolver *>(this)->solve_impl(x_ini, function, first_derivative, x_sol);
       }
 
       /**
       * Solve the root-finding problem given the function, and its first and second derivatives.
-      * \param[in] function Function pointer.
-      * \param[in] first_derivative First derivative of the function.
-      * \param[in] second_derivative Second derivative of the function.
+      * \param[in] function Function wrapper.
+      * \param[in] first_derivative First derivative wrapper.
+      * \param[in] second_derivative Second derivative wrapper.
       * \param[in] x_ini Initialization point.
       * \param[out] x_sol Solution point.
       * \return The convergence boolean flag.
       */
-      bool solve(Function function, FirstDerivative first_derivative, SecondDerivative second_derivate,
-        Real const &x_ini, Real &x_sol)
+      bool solve(FunctionWrapper function, FirstDerivativeWrapper first_derivative, SecondDerivativeWrapper
+        second_derivate, Real const &x_ini, Real &x_sol)
       {
         return static_cast<DerivedSolver *>(this)->solve_impl(x_ini, function, first_derivative,
           second_derivate, x_sol);

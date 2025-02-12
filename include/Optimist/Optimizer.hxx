@@ -60,9 +60,9 @@ namespace Optimist
       using Matrix    = typename Solver<N, 1, DerivedSolver>::SecondDerivativeType; /**< Hessian matrix type. */
 
       // Function types
-      using Function = typename Solver<N, 1, DerivedSolver>::Function;         /**< Function type. */
-      using Gradient = typename Solver<N, 1, DerivedSolver>::FirstDerivative;  /**< Gradient function type. */
-      using Hessian  = typename Solver<N, 1, DerivedSolver>::SecondDerivative; /**< Hessian function type. */
+      using FunctionWrapper = typename Solver<N, 1, DerivedSolver>::FunctionWrapper;         /**< Function wrapper type. */
+      using GradientWrapper = typename Solver<N, 1, DerivedSolver>::FirstDerivativeWrapper;  /**< Gradient function wrapper type. */
+      using HessianWrapper  = typename Solver<N, 1, DerivedSolver>::SecondDerivativeWrapper; /**< Hessian function wrapper type. */
 
       /**
       * Class constructor for the multi-dimensional optimizer.
@@ -120,61 +120,62 @@ namespace Optimist
     protected:
       /**
       * Evaluate the gradient function.
-      * \param[in] gradient Gradient function pointer.
-      * \param[in] in Input point.
+      * \param[in] gradient Gradient function wrapper.
+      * \param[in] x Input point.
       * \param[out] out Gradient value.
       */
-      void evaluate_gradient(Gradient gradient, const Vector & in, Matrix & out)
+      void evaluate_gradient(GradientWrapper gradient, const Vector & x, Matrix & out)
       {
-        this->evaluate_first_derivative(gradient, in, out);
+        this->evaluate_first_derivative(gradient, x, out);
       }
 
       /**
       * Evaluate the hessian function.
-      * \param[in] hessian Hessian function pointer.
-      * \param[in] in Input point.
+      * \param[in] hessian Hessian function wrapper.
+      * \param[in] x Input point.
       * \param[out] out Hessian value.
       */
-      void evaluate_hessian(Hessian hessian, const Vector & in, Matrix & out)
+      void evaluate_hessian(HessianWrapper hessian, const Vector & x, Matrix & out)
       {
-        this->evaluate_second_derivative(hessian, in, out);
+        this->evaluate_second_derivative(hessian, x, out);
       }
 
       /**
       * Solve the root-finding problem given the function, and without derivatives.
-      * \param[in] function Function pointer.
+      * \param[in] function Function wrapper.
       * \param[in] x_ini Initialization point.
       * \param[out] x_sol Solution point.
       * \return The convergence boolean flag.
       */
-      bool solve(Function function, Vector const &x_ini, Vector &x_sol)
+      bool solve(FunctionWrapper function, Vector const &x_ini, Vector &x_sol)
       {
         return static_cast<DerivedSolver *>(this)->solve_impl(function, x_ini, x_sol);
       }
 
       /**
-      * Solve the root-finding problem given the function, and its first derivative.
-      * \param[in] function Function pointer.
-      * \param[in] gradient Gradient function pointer.
+      * Solve the root-finding problem given the function, and its gradient.
+      * \param[in] function Function wrapper.
+      * \param[in] gradient Gradient function wrapper.
       * \param[in] x_ini Initialization point.
       * \param[out] x_sol Solution point.
       * \return The convergence boolean flag.
       */
-      bool solve(Function function, Gradient gradient, Vector const &x_ini, Vector &x_sol)
+      bool solve(FunctionWrapper function, GradientWrapper gradient, Vector const &x_ini, Vector &x_sol)
       {
         return static_cast<DerivedSolver *>(this)->solve_impl(function, gradient, x_ini, x_sol);
       }
 
       /**
-      * Solve the root-finding problem given the function, and its first and second derivatives.
-      * \param[in] function Function pointer.
-      * \param[in] gradient Gradient function pointer.
-      * \param[in] hessian Hessian function pointer.
+      * Solve the root-finding problem given the function, and its gradient and Hessian.
+      * \param[in] function Function wrapper.
+      * \param[in] gradient Gradient function wrapper.
+      * \param[in] hessian Hessian function wrapper.
       * \param[in] x_ini Initialization point.
       * \param[out] x_sol Solution point.
       * \return The convergence boolean flag.
       */
-      bool solve(Function function, Gradient gradient, Hessian hessian, Vector const &x_ini, Vector &x_sol)
+      bool solve(FunctionWrapper function, GradientWrapper gradient, HessianWrapper hessian, Vector
+        const &x_ini, Vector &x_sol)
       {
         return static_cast<DerivedSolver *>(this)->solve_impl(function, gradient, hessian, x_ini, x_sol);
       }

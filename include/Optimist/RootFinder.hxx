@@ -58,12 +58,13 @@ namespace Optimist
       using Vector = typename Solver<N, N, DerivedSolver>::InputType; /**< Vector type. */
 
       // Derivative types
-      using Matrix = typename Solver<N, N, DerivedSolver>::FirstDerivativeType; /**< Jacobian matrix type. */
+      using Matrix = typename Solver<N, N, DerivedSolver>::FirstDerivativeType;  /**< Jacobian matrix type. */
+      using Tensor = typename Solver<N, N, DerivedSolver>::SecondDerivativeType; /**< Hessian tensor type. */
 
       // Function types
-      using Function = typename Solver<N, N, DerivedSolver>::Function;         /**< Function type. */
-      using Jacobian = typename Solver<N, N, DerivedSolver>::FirstDerivative;  /**< Jacobian function type. */
-      using Hessian  = typename Solver<N, N, DerivedSolver>::SecondDerivative; /**< Hessian function type. */
+      using FunctionWrapper = typename Solver<N, N, DerivedSolver>::FunctionWrapper;         /**< Function wrapper type. */
+      using JacobianWrapper = typename Solver<N, N, DerivedSolver>::FirstDerivativeWrapper;  /**< Jacobian function wrapper type. */
+      using HessianWrapper  = typename Solver<N, N, DerivedSolver>::SecondDerivativeWrapper; /**< Hessian function wrapper type. */
 
       /**
       * Class constructor for the multi-dimensional root finder.
@@ -97,41 +98,88 @@ namespace Optimist
         this->first_derivative_evaluations(t_jacobian_evaluations);
       }
 
+      /**
+      * Get the number of Hessian evaluations.
+      * \return The number of Hessian evaluations.
+      */
+      Integer hessian_evaluations() const {return this->first_derivative_evaluations();}
+
+      /**
+      * Get the number of maximum allowed Hessian evaluations.
+      * \return The number of maximum allowed Hessian evaluations.
+      */
+      Integer max_hessian_evaluations() const {return this->max_first_derivative_evaluations();}
+
+      /**
+      * Set the number of maximum allowed Hessian evaluations.
+      * \param[in] t_hessian_evaluations The number of maximum allowed Hessian evaluations.
+      */
+      void max_hessian_evaluations(Integer t_hessian_evaluations)
+      {
+        this->first_derivative_evaluations(t_hessian_evaluations);
+      }
+
     protected:
       /**
       * Evaluate the Jacobian function.
-      * \param[in] jacobian Jacobian function pointer.
-      * \param[in] in Input point.
+      * \param[in] jacobian Jacobian function wrapper.
+      * \param[in] x Input point.
       * \param[out] out Jacobian value.
       */
-      void evaluate_jacobian(Jacobian jacobian, const Vector & in, Matrix & out)
+      void evaluate_jacobian(JacobianWrapper jacobian, const Vector & x, Matrix & out)
       {
-        this->evaluate_first_derivative(jacobian, in, out);
+        this->evaluate_first_derivative(jacobian, x, out);
+      }
+
+      /**
+      * Evaluate the Hessian function.
+      * \param[in] hessian Hessian function wrapper.
+      * \param[in] x Input point.
+      * \param[out] out Hessian value.
+      */
+      void evaluate_hessian(HessianWrapper hessian, const Vector & x, Matrix & out)
+      {
+        this->evaluate_first_derivative(hessian, x, out);
       }
 
       /**
       * Solve the root-finding problem given the function, and without derivatives.
-      * \param[in] function Function pointer.
+      * \param[in] function Function wrapper.
       * \param[in] x_ini Initialization point.
       * \param[out] x_sol Solution point.
       * \return The convergence boolean flag.
       */
-      bool solve(Function function, Vector const &x_ini, Vector &x_sol)
+      bool solve(FunctionWrapper function, Vector const &x_ini, Vector &x_sol)
       {
         return static_cast<DerivedSolver *>(this)->solve_impl(function, x_ini, x_sol);
       }
 
       /**
-      * Solve the root-finding problem given the function, and its first derivative.
-      * \param[in] function Function pointer.
-      * \param[in] jacobian The Jacobian function pointer.
+      * Solve the root-finding problem given the function, and its Jacobian.
+      * \param[in] function Function wrapper.
+      * \param[in] jacobian The Jacobian function wrapper.
       * \param[in] x_ini Initialization point.
       * \param[out] x_sol Solution point.
       * \return The convergence boolean flag.
       */
-      bool solve(Function function, Jacobian jacobian, Vector const &x_ini, Vector &x_sol)
+      bool solve(FunctionWrapper function, JacobianWrapper jacobian, Vector const &x_ini, Vector &x_sol)
       {
         return static_cast<DerivedSolver *>(this)->solve_impl(function, jacobian, x_ini, x_sol);
+      }
+
+      /**
+      * Solve the root-finding problem given the function, and its Jacobian and Hessian.
+      * \param[in] function Function wrapper.
+      * \param[in] jacobian The Jacobian function wrapper.
+      * \param[in] hessian The Hessian function wrapper.
+      * \param[in] x_ini Initialization point.
+      * \param[out] x_sol Solution point.
+      * \return The convergence boolean flag.
+      */
+      bool solve(FunctionWrapper function, JacobianWrapper jacobian, HessianWrapper hessian, Vector
+        const &x_ini, Vector &x_sol)
+      {
+        return static_cast<DerivedSolver *>(this)->solve_impl(function, jacobian, hessian, x_ini, x_sol);
       }
 
     }; // class RootFinder

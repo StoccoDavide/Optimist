@@ -9,35 +9,39 @@
 \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #include "Optimist.hh"
+#include "Optimist/TestSet.hh"
 #include <gtest/gtest.h>
 
 using namespace Optimist;
 using namespace Optimist::RootFinder;
+using namespace Optimist::TestSet;
 
 // Funzione di Booth.
 TEST(Newton, Booth) {
+  // Function
+  Booth nlfunction;
   // Non-linear solver
   Newton<2> nlsolver;
-  nlsolver.task("Booth");
+  nlsolver.task(nlfunction.name());
   // Starting entries
   Vector2 x_ini = Vector2::Zero();
   Vector2 x_out = Vector2::Zero();
-  Newton<2>::Function fun = [](Vector2 const & X, Vector2 & F) {
-    F << X(0) + 2.0*X(1) - 7.0, 2.0*X(0) + X(1) - 5.0;
-  };
-  Newton<2>::Jacobian jac = [](Vector2 const & /*X*/, Matrix2 & JF) {
-    JF << 1.0, 2.0, 2.0, 1.0;
-  };
-  // Solve without damping
-  nlsolver.disable_damped_mode();
-  nlsolver.solve(fun, jac, x_ini, x_out);
-  EXPECT_LE((x_out - Vector2(1.0, 3.0)).maxCoeff(), EPSILON_LOW);
-  EXPECT_TRUE(nlsolver.converged());
-  // Solve with damping
-  nlsolver.enable_damped_mode();
-  nlsolver.solve(fun, jac, x_ini, x_out);
-  EXPECT_LE((x_out - Vector2(1.0, 3.0)).maxCoeff(), EPSILON_LOW);
-  EXPECT_TRUE(nlsolver.converged());
+  for (Integer i{0}; i < static_cast<Integer>(nlfunction.guesses().size()); ++i) {
+    x_ini = nlfunction.guess(i);
+    // Solve without damping
+    nlsolver.disable_damped_mode();
+    //nlsolver.solve(fun, jac, x_ini, x_out);
+    nlsolver.optimize(nlfunction, x_ini, x_out);
+    EXPECT_LE((x_out - Vector2(1.0, 3.0)).maxCoeff(), EPSILON_LOW);
+    EXPECT_TRUE(nlsolver.converged());
+    EXPECT_TRUE(nlfunction.is_solution(x_out));
+    // Solve with damping
+    nlsolver.enable_damped_mode();
+    //nlsolver.rootfind(nlfunction, x_ini, x_out);
+    EXPECT_LE((x_out - Vector2(1.0, 3.0)).maxCoeff(), EPSILON_LOW);
+    EXPECT_TRUE(nlsolver.converged());
+    EXPECT_TRUE(nlfunction.is_solution(x_out));
+  }
 }
 
 // 2D Rosenbrock function

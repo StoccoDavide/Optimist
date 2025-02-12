@@ -46,9 +46,9 @@ namespace Optimist
 
     public:
       // Function types
-      using Function         = typename Solver<1, 1, DerivedSolver>::Function;         /**< Function type. */
-      using FirstDerivative  = typename Solver<1, 1, DerivedSolver>::FirstDerivative;  /**<  First derivative type. */
-      using SecondDerivative = typename Solver<1, 1, DerivedSolver>::SecondDerivative; /**< Second derivative type. */
+      using FunctionWrapper         = typename Solver<1, 1, DerivedSolver>::FunctionWrapper;         /**< Function wrapper type. */
+      using FirstDerivativeWrapper  = typename Solver<1, 1, DerivedSolver>::FirstDerivativeWrapper;  /**< First derivative wrapper type. */
+      using SecondDerivativeWrapper = typename Solver<1, 1, DerivedSolver>::SecondDerivativeWrapper; /**< Second derivative wrapper type. */
 
       /**
       * Class constructor for the scalar optimizer.

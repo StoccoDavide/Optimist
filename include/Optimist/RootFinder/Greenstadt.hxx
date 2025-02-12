@@ -38,16 +38,16 @@ namespace Optimist
     template <Integer N>
     class Greenstadt : public RootFinder<N, Greenstadt<N>>
     {
+    public:
       static constexpr bool requires_function          = true;
       static constexpr bool requires_first_derivative  = false;
       static constexpr bool requires_second_derivative = false;
 
-    public:
       using Method = enum class Method : Integer {ONE = 1, TWO = 2}; /**< Greenstadt solver type. */
-      using Vector   = typename RootFinder<N, Greenstadt<N>>::Vector;
-      using Matrix   = typename RootFinder<N, Greenstadt<N>>::Matrix;
-      using Function = typename RootFinder<N, Greenstadt<N>>::Function;
-      using Jacobian = typename RootFinder<N, Greenstadt<N>>::Jacobian;
+      using Vector = typename RootFinder<N, Greenstadt<N>>::Vector;
+      using Matrix = typename RootFinder<N, Greenstadt<N>>::Matrix;
+      using FunctionWrapper = typename RootFinder<N, Greenstadt<N>>::FunctionWrapper;
+      using JacobianWrapper = typename RootFinder<N, Greenstadt<N>>::JacobianWrapper;
       using RootFinder<N, Greenstadt<N>>::solve;
 
     private:
@@ -110,7 +110,7 @@ namespace Optimist
       * \param[out] x_sol Solution point.
       * \return The convergence boolean flag.
       */
-      bool solve_impl(Function t_function, Jacobian t_jacobian, Vector const &x_ini, Vector &x_sol)
+      bool solve_impl(FunctionWrapper function, JacobianWrapper jacobian, Vector const &x_ini, Vector &x_sol)
       {
         // Setup internal variables
         this->reset();
@@ -127,8 +127,8 @@ namespace Optimist
 
         // Set initial iteration
         x_old = x_ini;
-        this->evaluate_function(t_function, x_old, function_old);
-        this->evaluate_jacobian(t_jacobian, x_old, jacobian_old);
+        this->evaluate_function(function, x_old, function_old);
+        this->evaluate_jacobian(jacobian, x_old, jacobian_old);
 
         // Algorithm iterations
         Real tolerance_residuals{this->m_tolerance};
@@ -153,13 +153,13 @@ namespace Optimist
           if (this->m_damped)
           {
             // Relax the iteration process
-            damped = this->damp(t_function, x_old, function_old, step_old, x_new, function_new, step_new);
+            damped = this->damp(function, x_old, function_old, step_old, x_new, function_new, step_new);
             OPTIMIST_ASSERT_WARNING(damped,
               "Optimist::RootFinder::Greenstadt::solve(...): damping failed.");
           } else {
             // Update point
             x_new = x_old + step_old;
-            this->evaluate_function(t_function, x_new, function_new);
+            this->evaluate_function(function, x_new, function_new);
           }
 
           // Update jacobian approximation

@@ -35,16 +35,15 @@ namespace Optimist
     */
     class Newton : public ScalarRootFinder<Newton>
     {
-
+    public:
       static constexpr bool requires_function          = true;
       static constexpr bool requires_first_derivative  = true;
       static constexpr bool requires_second_derivative = false;
 
-    public:
       // Function types
-      using Function         = typename ScalarRootFinder::Function;        /**< Function type. */
-      using FirstDerivative  = typename ScalarRootFinder::FirstDerivative; /**<  First derivative type. */
-      using SecondDerivative = typename ScalarRootFinder::SecondDerivative; /**< Second derivative type. */
+      using FunctionWrapper         = typename ScalarRootFinder::FunctionWrapper;        /**< Function wrapper type. */
+      using FirstDerivativeWrapper  = typename ScalarRootFinder::FirstDerivativeWrapper; /**<  First derivative wrapper type. */
+      using SecondDerivativeWrapper = typename ScalarRootFinder::SecondDerivativeWrapper; /**< Second derivative wrapper type. */
 
       /**
       * Class constructor for the Newton solver.
@@ -59,11 +58,14 @@ namespace Optimist
 
       /**
       * Solve the nonlinear equation \f$ f(x) = 0 \f$, with \f$ f: \mathbb{R} \rightarrow \mathbb{R} \f$.
+      * \param[in] function Function wrapper.
+      * \param[in] first_derivative First derivative wrapper.
       * \param[in] x_ini Initialization point.
       * \param[out] x_sol Solution point.
       * \return The convergence boolean flag.
       */
-      bool solve_impl(Function t_function, FirstDerivative t_first_derivative, Real const &x_ini, Real &x_sol)
+      bool solve_impl(FunctionWrapper function, FirstDerivativeWrapper first_derivative, Real const &x_ini,
+        Real &x_sol)
       {
         // Setup internal variables
         this->reset();
@@ -75,11 +77,11 @@ namespace Optimist
         bool damped;
         Real residuals, step_norm;
         Real x_old, x_new, function_old, function_new, step_old, step_new;
-        Real first_derivative;
+        Real first_derivative_old;
 
         // Set initial iteration
         x_old = x_ini;
-        this->evaluate_function(t_function, x_old, function_old);
+        this->evaluate_function(function, x_old, function_old);
 
         // Algorithm iterations
         Real tolerance_residuals{this->m_tolerance};
@@ -87,13 +89,13 @@ namespace Optimist
         for (this->m_iterations = Integer(1); this->m_iterations < this->m_max_iterations; ++this->m_iterations)
         {
           // Store trace
-          this->evaluate_first_derivative(t_first_derivative, x_new, first_derivative);
+          this->evaluate_first_derivative(first_derivative, x_old, first_derivative_old);
           this->store_trace(x_old);
 
           // Calculate step
-          OPTIMIST_ASSERT(std::abs(first_derivative) > EPSILON_LOW,
+          OPTIMIST_ASSERT(std::abs(first_derivative_old) > EPSILON_LOW,
             "Optimist::ScalarRootFinder::Newton::solve(...): singular first derivative detected.");
-          step_old = -function_old/first_derivative;
+          step_old = -function_old/first_derivative_old;
 
           // Check convergence
           residuals = std::abs(function_old);
@@ -107,13 +109,13 @@ namespace Optimist
           if (this->m_damped)
           {
             // Relax the iteration process
-            damped = this->damp(t_function, x_old, function_old, step_old, x_new, function_new, step_new);
+            damped = this->damp(function, x_old, function_old, step_old, x_new, function_new, step_new);
             OPTIMIST_ASSERT_WARNING(damped,
               "Optimist::ScalarRootFinder::Newton::solve(...): damping failed.");
           } else {
             // Update point
             x_new = x_old + step_old;
-            this->evaluate_function(t_function, x_new, function_new);
+            this->evaluate_function(function, x_new, function_new);
           }
 
           // Update internal variables

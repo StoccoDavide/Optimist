@@ -52,12 +52,14 @@ namespace Optimist
 
     // Derivative types
     using FirstDerivativeType  = std::conditional_t<InputDim == 1 && OutputDim == 1, Real, Eigen::Matrix<Real, OutputDim, InputDim>>; /**< First derivative type. */
-    using SecondDerivativeType = std::conditional_t<InputDim == 1 && OutputDim == 1, Real, Eigen::Matrix<Real, InputDim, InputDim>>;  /**< Second derivative type. */
+    using SecondDerivativeType = std::conditional_t<InputDim == 1 && OutputDim == 1, Real,
+      std::conditional_t<InputDim == 1 || OutputDim == 1, Eigen::Matrix<Real, InputDim, InputDim>,
+      std::vector<Eigen::Matrix<Real, InputDim, InputDim>>>>;  /**< Second derivative type. */
 
     // Function types
-    using Function         = typename std::function<void(const InputType &, OutputType &)>;           /**< Function type. */
-    using FirstDerivative  = typename std::function<void(const InputType &, FirstDerivativeType &)>;  /**< First derivative type. */
-    using SecondDerivative = typename std::function<void(const InputType &, SecondDerivativeType &)>; /**< Second derivative type. */
+    using FunctionWrapper         = typename std::function<void(const InputType &, OutputType &)>;           /**< Function type. */
+    using FirstDerivativeWrapper  = typename std::function<void(const InputType &, FirstDerivativeType &)>;  /**< First derivative type. */
+    using SecondDerivativeWrapper = typename std::function<void(const InputType &, SecondDerivativeType &)>; /**< Second derivative type. */
 
     // Evaluations
     Integer m_function_evaluations{0};          /**< Function evaluations. */
@@ -97,40 +99,52 @@ namespace Optimist
 
     /**
     * Class constructor for the nonlinear solver.
-    * \param[in] function Function pointer.
+    * \param[in] function Function wrapper.
     * \param[in] x_ini Initialization point.
     * \param[out] x_sol Solution point.
     */
-    Solver(Function fun, const InputType & x_ini, OutputType & x_sol) : Solver() {
-      this->solve(fun, x_ini, x_sol);
+    Solver(FunctionWrapper function, const InputType & x_ini, OutputType & x_sol) : Solver() {
+      this->solve(function, x_ini, x_sol);
     }
 
     /**
     * Class constructor for the nonlinear solver.
-    * \param[in] function Function pointer.
-    * \param[in] first_derivative First derivative of the function.
+    * \param[in] function Function wrapper.
+    * \param[in] first_derivative First derivative wrapper.
     * \param[in] x_ini Initialization point.
     * \param[out] x_sol Solution point.
     */
-    Solver(Function fun, FirstDerivative first_derivative, const InputType & x_ini,
+    Solver(FunctionWrapper function, FirstDerivativeWrapper first_derivative, const InputType & x_ini,
       OutputType & x_sol) : Solver()
     {
-      this->solve(fun, first_derivative, x_ini, x_sol);
+      this->solve(function, first_derivative, x_ini, x_sol);
     }
 
     /**
     * Class constructor for the nonlinear solver.
-    * \param[in] function Function pointer.
-    * \param[in] first_derivative First derivative of the function.
-    * \param[in] second_derivative The second derivative of the function.
+    * \param[in] function Function wrapper.
+    * \param[in] first_derivative First derivative wrapper.
+    * \param[in] second_derivative The second derivative wrapper.
     * \param[in] x_ini Initialization point.
     * \param[out] x_sol Solution point.
     */
-    Solver(Function fun, FirstDerivative first_derivative, SecondDerivative second_derivative,
-      const InputType & x_ini, OutputType & x_sol) : Solver()
+    Solver(FunctionWrapper function, FirstDerivativeWrapper first_derivative, SecondDerivativeWrapper
+      second_derivative, const InputType & x_ini, OutputType & x_sol) : Solver()
     {
-      this->solve(fun, first_derivative, second_derivative, x_ini, x_sol);
+      this->solve(function, first_derivative, second_derivative, x_ini, x_sol);
     }
+
+    /**
+    * Get the input dimension of the function.
+    * \return The input dimension of the function.
+    */
+    constexpr Integer input_dimension() const {return InputDim;}
+
+    /**
+    * Get the output dimension of the function.
+    * \return The output dimension of the function.
+    */
+    constexpr Integer output_dimension() const {return OutputDim;}
 
     /**
     * Get the number of function evaluations.
@@ -366,11 +380,11 @@ namespace Optimist
 
     /**
     * Solve the root-finding/optimization problem given the function, and without derivatives.
-    * \param[in] function Function pointer.
+    * \param[in] function Function wrapper.
     * \param[in] x_ini Initialization point.
     * \param[out] x_sol Solution point.
     */
-    bool solve(Function function, const InputType & x_ini, OutputType & x_sol)
+    bool solve(FunctionWrapper function, const InputType & x_ini, OutputType & x_sol)
     {
       #define CMD "Optimist::Solver::solve(...): "
 
@@ -387,12 +401,12 @@ namespace Optimist
 
     /**
     * Solve the root-finding/optimization problem given the function, and its first derivative.
-    * \param[in] function Function pointer.
-    * \param[in] first_derivative First derivative of the function.
+    * \param[in] function Function wrapper.
+    * \param[in] first_derivative First derivative wrapper
     * \param[in] x_ini Initialization point.
     * \param[out] x_sol Solution point.
     */
-    bool solve(Function function, FirstDerivative first_derivative, const InputType & x_ini,
+    bool solve(FunctionWrapper function, FirstDerivativeWrapper first_derivative, const InputType & x_ini,
       OutputType & x_sol)
     {
       #define CMD "Optimist::Solver::solve(...): "
@@ -410,13 +424,13 @@ namespace Optimist
 
     /**
     * Solve the root-finding/optimization problem given the function, and its first and second derivatives.
-    * \param[in] function Function pointer.
-    * \param[in] first_derivative First derivative of the function.
-    * \param[in] second_derivative The second derivative of the function.
+    * \param[in] function Function wrapper.
+    * \param[in] first_derivative First derivative wrapper.
+    * \param[in] second_derivative The second derivative wrapper.
     * \param[in] x_ini Initialization point.
     * \param[out] x_sol Solution point.
     */
-    bool solve(Function function, FirstDerivative first_derivative, SecondDerivative second_derivative,
+    bool solve(FunctionWrapper function, FirstDerivativeWrapper first_derivative, SecondDerivativeWrapper second_derivative,
       const InputType & x_ini, OutputType & x_sol)
     {
       #define CMD "Optimist::Solver::solve(...): "
@@ -428,6 +442,181 @@ namespace Optimist
       static_assert(DerivedSolver::requires_second_derivative,
         CMD "the solver requires the second derivative.");
       return static_cast<DerivedSolver *>(this)->solve(x_ini, function, first_derivative, second_derivative, x_sol);
+
+      #undef CMD
+    }
+
+    /**
+    * Solve the root-finding problem given a function class.
+    * \param[in] function Function class.
+    * \param[in] x_ini Initialization point.
+    * \param[out] x_sol Solution point.
+    */
+    template <Integer N, Integer M, typename T>
+    bool rootfind(Function<N, M, T> function, const InputType & x_ini,
+      OutputType & x_sol)
+    {
+      #define CMD "Optimist::Solver::rootfind(...): "
+
+      static_assert(N == InputDim,
+        CMD "the function class dimensions do not match the solver dimensions.");
+
+      if constexpr (InputDim == OutputDim) {
+
+        // Same solution signature for root-finding/optimization problems
+        auto function_wrapper = [&function](const InputType & x, OutputType & out)
+          {function.evaluate(x, out);};
+        auto first_derivative_wrapper = [&function](const InputType & x, FirstDerivativeType & out)
+          {function.first_derivative(x, out);};
+        auto second_derivative_wrapper = [&function](const InputType & x, SecondDerivativeType & out)
+          {function.second_derivative(x, out);};
+
+        if constexpr (DerivedSolver::requires_function && !DerivedSolver::requires_first_derivative &&
+          !DerivedSolver::requires_second_derivative) {
+          return static_cast<DerivedSolver *>(this)->solve(function_wrapper, x_ini, x_sol);
+        } else if constexpr (DerivedSolver::requires_function && DerivedSolver::requires_first_derivative &&
+          !DerivedSolver::requires_second_derivative) {
+          return static_cast<DerivedSolver *>(this)->solve(function_wrapper, first_derivative_wrapper,
+            x_ini, x_sol);
+        } else if constexpr (DerivedSolver::requires_function && DerivedSolver::requires_first_derivative &&
+          DerivedSolver::requires_second_derivative) {
+          return static_cast<DerivedSolver *>(this)->solve(function_wrapper, first_derivative_wrapper,
+            second_derivative_wrapper, x_ini, x_sol
+          );
+        } else {
+          OPTIMIST_ERROR(CMD "no matching function signature found for the solver.");
+        }
+
+      } else {
+
+        // Solve the root-finding problem using as output the function value
+        OPTIMIST_ASSERT_WARNING(this->m_verbose,
+          CMD "solving the problem as a nonlinear least squares problem.");
+
+        auto function_wrapper = [&function]
+          (const InputType & x, OutputType & out)
+          {function.evaluate(x, out);};
+        auto first_derivative_wrapper = [&function, function_wrapper, this]
+          (const InputType & x, FirstDerivativeType & out)
+          {
+            OutputType f;          this->evaluate_function(function_wrapper, x, f);
+            FirstDerivativeType J; function.first_derivative(x, J);
+            out = J.transpose() * f;
+          };
+        auto second_derivative_wrapper = [&function, function_wrapper, first_derivative_wrapper, this]
+          (const InputType & x, SecondDerivativeType & out)
+          {
+            OutputType f;           this->evaluate_function(function_wrapper, x, f);
+            FirstDerivativeType J;  this->evaluate_first_derivative(first_derivative_wrapper, J);
+            SecondDerivativeType H; function.second_derivative(x, H);
+            out = J.transpose() * H * J + f.transpose() * H;
+          };
+
+        if constexpr (DerivedSolver::requires_function && !DerivedSolver::requires_first_derivative &&
+          !DerivedSolver::requires_second_derivative) {
+          return static_cast<DerivedSolver *>(this)->solve(function_wrapper, x_ini, x_sol);
+        } else if constexpr (DerivedSolver::requires_function && DerivedSolver::requires_first_derivative &&
+          !DerivedSolver::requires_second_derivative) {
+          return static_cast<DerivedSolver *>(this)->solve(function_wrapper, first_derivative_wrapper,
+            x_ini, x_sol);
+        } else if constexpr (DerivedSolver::requires_function && DerivedSolver::requires_first_derivative &&
+          DerivedSolver::requires_second_derivative) {
+          return static_cast<DerivedSolver *>(this)->solve(function_wrapper, first_derivative_wrapper,
+            second_derivative_wrapper, x_ini, x_sol
+          );
+        } else {
+          OPTIMIST_ERROR(CMD "no matching function signature found for the solver.");
+        }
+      }
+
+      #undef CMD
+    }
+
+    /**
+    * Solve the root-finding problem given a function class.
+    * \param[in] function Function class.
+    * \param[in] x_ini Initialization point.
+    * \param[out] x_sol Solution point.
+    */
+    template <Integer N, Integer M, typename T>
+    bool optimize(Function<N, M, T> function, const InputType & x_ini,
+      OutputType & x_sol)
+    {
+      #define CMD "Optimist::Solver::optimize(...): "
+
+      static_assert(N == InputDim,
+        CMD "the function class dimensions do not match the solver dimensions.");
+
+      if constexpr (OutputDim == 1) {
+
+        // Same solution signature for root-finding/optimization problems
+        auto function_wrapper = [&function](const InputType & x, OutputType & out)
+          {function.evaluate(x, out);};
+        auto first_derivative_wrapper = [&function](const InputType & x, FirstDerivativeType & out)
+          {function.first_derivative(x, out);};
+        auto second_derivative_wrapper = [&function](const InputType & x, SecondDerivativeType & out)
+          {function.second_derivative(x, out);};
+
+        if constexpr (DerivedSolver::requires_function && !DerivedSolver::requires_first_derivative &&
+          !DerivedSolver::requires_second_derivative) {
+          return static_cast<DerivedSolver *>(this)->solve(function_wrapper, x_ini, x_sol);
+        } else if constexpr (DerivedSolver::requires_function && DerivedSolver::requires_first_derivative &&
+          !DerivedSolver::requires_second_derivative) {
+          return static_cast<DerivedSolver *>(this)->solve(function_wrapper, first_derivative_wrapper,
+            x_ini, x_sol);
+        } else if constexpr (DerivedSolver::requires_function && DerivedSolver::requires_first_derivative &&
+          DerivedSolver::requires_second_derivative) {
+          return static_cast<DerivedSolver *>(this)->solve(function_wrapper, first_derivative_wrapper,
+            second_derivative_wrapper, x_ini, x_sol
+          );
+        } else {
+          OPTIMIST_ERROR(CMD "no matching function signature found for the solver.");
+        }
+
+      } else {
+
+        // Solve the root-finding problem using as output the function value
+        OPTIMIST_ASSERT_WARNING(this->m_verbose,
+          CMD "solving the optimization problem as a root-finding problem.");
+
+        auto function_wrapper = [&function]
+          (const InputType & x, OutputType & out)
+          {
+            OutputType f; function.first_derivative(x, f);
+            out = f.squaredNorm();
+          };
+        auto first_derivative_wrapper = [&function, function_wrapper, this]
+          (const InputType & x, FirstDerivativeType & out)
+          {
+            OutputType f;          this->evaluate_function(function_wrapper, x, f);
+            FirstDerivativeType J; function.first_derivative(x, J);
+            out = J.transpose() * f;
+          };
+        auto second_derivative_wrapper = [&function, function_wrapper, first_derivative_wrapper, this]
+          (const InputType & x, SecondDerivativeType & out)
+          {
+            OutputType f;           this->evaluate_function(function_wrapper, x, f);
+            FirstDerivativeType J;  this->evaluate_first_derivative(first_derivative_wrapper, x, J);
+            SecondDerivativeType H; function.second_derivative(x, H);
+            out = J.transpose() * H * J + f.transpose() * H;
+          };
+
+        if constexpr (DerivedSolver::requires_function && !DerivedSolver::requires_first_derivative &&
+          !DerivedSolver::requires_second_derivative) {
+          return static_cast<DerivedSolver *>(this)->solve(function_wrapper, x_ini, x_sol);
+        } else if constexpr (DerivedSolver::requires_function && DerivedSolver::requires_first_derivative &&
+          !DerivedSolver::requires_second_derivative) {
+          return static_cast<DerivedSolver *>(this)->solve(function_wrapper, first_derivative_wrapper,
+            x_ini, x_sol);
+        } else if constexpr (DerivedSolver::requires_function && DerivedSolver::requires_first_derivative &&
+          DerivedSolver::requires_second_derivative) {
+          return static_cast<DerivedSolver *>(this)->solve(function_wrapper, first_derivative_wrapper,
+            second_derivative_wrapper, x_ini, x_sol
+          );
+        } else {
+          OPTIMIST_ERROR(CMD "no matching function signature found for the solver.");
+        }
+      }
 
       #undef CMD
     }
@@ -455,38 +644,38 @@ namespace Optimist
 
     /**
     * Evaluate the function.
-    * \param[in] function Function pointer.
-    * \param[in] in Input point.
+    * \param[in] function Function wrapper.
+    * \param[in] x Input point.
     * \param[out] out Function value.
     */
-    void evaluate_function(Function function, const InputType & in, OutputType & out)
+    void evaluate_function(FunctionWrapper function, const InputType & x, OutputType & out)
     {
       ++this->m_function_evaluations;
-      function(in, out);
+      function(x, out);
     }
 
     /**
     * Evaluate the first derivative.
-    * \param[in] function First derivative pointer.
-    * \param[in] in Input point.
+    * \param[in] function First derivative wrapper.
+    * \param[in] x Input point.
     * \param[out] out First derivative value.
     */
-    void evaluate_first_derivative(FirstDerivative function, const InputType & in, FirstDerivativeType & out)
+    void evaluate_first_derivative(FirstDerivativeWrapper function, const InputType & x, FirstDerivativeType & out)
     {
       ++this->m_first_derivative_evaluations;
-      function(in, out);
+      function(x, out);
     }
 
     /**
     * Evaluate the second derivative.
-    * \param[in] function Second derivative pointer.
-    * \param[in] in Input point.
+    * \param[in] function Second derivative wrapper.
+    * \param[in] x Input point.
     * \param[out] out Second derivative value.
     */
-    void evaluate_second_derivative(SecondDerivative function, const InputType & in, SecondDerivativeType & out)
+    void evaluate_second_derivative(SecondDerivativeWrapper function, const InputType & x, SecondDerivativeType & out)
     {
       ++this->m_second_derivative_evaluations;
-      function(in, out);
+      function(x, out);
     }
 
     /**
@@ -497,7 +686,7 @@ namespace Optimist
 
     /**
     * Damp the step using the affine invariant criterion.
-    * \param[in] function Function pointer.
+    * \param[in] function Function wrapper.
     * \param[in] x_old Old point.
     * \param[in] function_old Old function value.
     * \param[in] step_old Old step.
@@ -506,8 +695,8 @@ namespace Optimist
     * \param[out] step_new New step.
     * \return The damping boolean flag, true if the damping is successful, false otherwise.
     */
-    bool damp(Function function, InputType const & x_old, InputType const & function_old, InputType
-      const & step_old, InputType & x_new, InputType & function_new, InputType & step_new)
+    bool damp(FunctionWrapper function, InputType const & x_old, InputType const & function_old,
+      InputType const & step_old, InputType & x_new, InputType & function_new, InputType & step_new)
     {
       Real step_norm_old, step_norm_new, residuals_old, residuals_new, tau{1.0};
       for (this->m_relaxations = Integer(0); this->m_relaxations < this->m_max_relaxations; ++this->m_relaxations)

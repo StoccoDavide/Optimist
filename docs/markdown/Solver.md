@@ -10,5 +10,5 @@ as well as optimization problems of the form
 \f[
   \min_{\mathbf{x}} f(\mathbf{x}) \text{,} \quad f: \mathbb{R}^{n} \rightarrow \mathbb{R} \text{.}
 \f]
-If \f$ n > 1 \f$ the solver is a multi-dimensional solver, otherwise, it is a scalar solver. The linear algebra operations are performed using the `Eigen` library, which provides a high-level interface for matrix operations. Otherwise, for \f$ n = 1 \f$, the base type changes to `Real`, a scalar type defined in the `Optimist` library.
+If \f$n > 1\f$ the solver is a multi-dimensional solver, otherwise, it is a scalar solver. The linear algebra operations are performed using the `Eigen` library, which provides a high-level interface for matrix operations. Otherwise, for \f$n = 1\f$, the base type changes to `Real`, a scalar type defined in the `Optimist` library.
 
