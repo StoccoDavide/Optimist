@@ -42,13 +42,16 @@ namespace Optimist
     template <typename DerivedSolver>
     class ScalarOptimizer : public Solver<1, 1, DerivedSolver>
     {
+    public:
       friend Solver<1, 1, ScalarOptimizer<DerivedSolver>>;
 
-    public:
-      // Function types
-      using FunctionWrapper         = typename Solver<1, 1, DerivedSolver>::FunctionWrapper;         /**< Function wrapper type. */
-      using FirstDerivativeWrapper  = typename Solver<1, 1, DerivedSolver>::FirstDerivativeWrapper;  /**< First derivative wrapper type. */
-      using SecondDerivativeWrapper = typename Solver<1, 1, DerivedSolver>::SecondDerivativeWrapper; /**< Second derivative wrapper type. */
+      static constexpr bool requires_function          = DerivedSolver::requires_function;
+      static constexpr bool requires_first_derivative  = DerivedSolver::requires_first_derivative;
+      static constexpr bool requires_second_derivative = DerivedSolver::requires_second_derivative;
+
+      using FunctionWrapper         = typename Solver<1, 1, DerivedSolver>::FunctionWrapper;
+      using FirstDerivativeWrapper  = typename Solver<1, 1, DerivedSolver>::FirstDerivativeWrapper;
+      using SecondDerivativeWrapper = typename Solver<1, 1, DerivedSolver>::SecondDerivativeWrapper;
 
       /**
       * Class constructor for the scalar optimizer.

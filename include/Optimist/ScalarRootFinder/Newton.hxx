@@ -41,9 +41,9 @@ namespace Optimist
       static constexpr bool requires_second_derivative = false;
 
       // Function types
-      using FunctionWrapper         = typename ScalarRootFinder::FunctionWrapper;        /**< Function wrapper type. */
-      using FirstDerivativeWrapper  = typename ScalarRootFinder::FirstDerivativeWrapper; /**<  First derivative wrapper type. */
-      using SecondDerivativeWrapper = typename ScalarRootFinder::SecondDerivativeWrapper; /**< Second derivative wrapper type. */
+      using FunctionWrapper         = typename ScalarRootFinder::FunctionWrapper;
+      using FirstDerivativeWrapper  = typename ScalarRootFinder::FirstDerivativeWrapper;
+      using SecondDerivativeWrapper = typename ScalarRootFinder::SecondDerivativeWrapper;
 
       /**
       * Class constructor for the Newton solver.
@@ -64,7 +64,7 @@ namespace Optimist
       * \param[out] x_sol Solution point.
       * \return The convergence boolean flag.
       */
-      bool solve_impl(FunctionWrapper function, FirstDerivativeWrapper first_derivative, Real const &x_ini,
+      bool solve_impl(FunctionWrapper function, FirstDerivativeWrapper first_derivative, Real x_ini,
         Real &x_sol)
       {
         // Setup internal variables

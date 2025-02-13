@@ -23,7 +23,8 @@
 #include <vector>
 #include <map>
 #include <memory>
-#include <chrono>
+#include <numeric>
+#include <algorithm>
 
 // Eigen library
 #include <Eigen/Dense>
@@ -313,7 +314,7 @@ namespace Optimist
 #include "Optimist/Function/CostFunction.hxx"
 #include "Optimist/Function/CutFunction.hxx"
 
-// The solvers
+// The solver base class
 #include "Optimist/Solver.hxx"
 
 // Scalar root-finding solvers
@@ -323,11 +324,13 @@ namespace Optimist
 // Root-finding solvers
 #include "Optimist/RootFinder.hxx"
 #include "Optimist/RootFinder/Newton.hxx"
+#include "Optimist/RootFinder/QuasiNewton.hxx"
 #include "Optimist/RootFinder/Broyden.hxx"
 #include "Optimist/RootFinder/Greenstadt.hxx"
 
 // Optimization solvers
 #include "Optimist/Optimizer.hxx"
+#include "Optimist/Optimizer/NelderMead.hxx"
 
 // Scalar optimization solvers
 #include "Optimist/ScalarOptimizer.hxx"

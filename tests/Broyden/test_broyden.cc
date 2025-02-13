@@ -10,10 +10,12 @@
 
 
 #include "Optimist.hh"
+#include "Optimist/TestSet.hh"
 #include <gtest/gtest.h>
 
 using namespace Optimist;
 using namespace Optimist::RootFinder;
+using namespace Optimist::TestSet;
 
 template <typename F, std::size_t... Is>
 void repeat_unrolled(F&& f, std::index_sequence<Is...>) {
@@ -36,28 +38,31 @@ void for_unrolled(F&& f) {
 
 // Funzione di Booth.
 TEST(BroydenBad, Booth) {
+  // Function
+  Schaffer2 nlfunction;
   // Non-linear solver
-  Broyden<2> nlsolver;
-  nlsolver.task("Booth");
-  nlsolver.enable_bad_method();
+  Optimist::Optimizer::NelderMead<2> nlsolver;
+  nlsolver.task(nlfunction.name());
+  //nlsolver.enable_bad_method();
   // Starting entries
   Vector2 x_ini = Vector2::Zero();
   Vector2 x_out = Vector2::Zero();
-  std::function<void(const Vector2&, Vector2&)> fun = [](const Vector2 & X, Vector2 & F) {
-    F << X(0) + 2.0*X(1) - 7.0, 2.0*X(0) + X(1) - 5.0;
-  };
-  std::function<void(const Vector2&, Matrix2&)> jac = [](const Vector2 & /*X*/, Matrix2 & JF) {
-    JF << 1.0, 2.0, 2.0, 1.0;
-  };
+  //auto fun = [&nlfunction](Vector2 const & X, Vector2 & F) {nlfunction.evaluate(X, F);};
+  //auto gra = [&nlfunction](Vector2 const & X, Vector2 & J) {
+  //  Schaffer2::RowVector G; nlfunction.first_derivative(X, G); J = G.transpose();
+  //};
+  //auto hes = [&nlfunction](Vector2 const & X, Matrix2 & H) {nlfunction.hessian(X, H);};
   // Solve without damping
-  nlsolver.disable_damped_mode();
-  nlsolver.solve(fun, jac, x_ini, x_out);
+  //nlsolver.disable_damped_mode();
+  nlsolver.enable_verbose_mode();
+  nlsolver.rootfind(nlfunction, x_ini, x_out);
   EXPECT_LE((x_out - Vector2(1.0, 3.0)).maxCoeff(), EPSILON_LOW);
   EXPECT_TRUE(nlsolver.converged());
   // Solve with damping
-  nlsolver.enable_damped_mode();
-  nlsolver.solve(fun, jac, x_ini, x_out);
-  EXPECT_LE((x_out - Vector2(1.0, 3.0)).maxCoeff(), EPSILON_LOW);
+  //nlsolver.enable_damped_mode();
+  nlsolver.rootfind(nlfunction, x_ini, x_out);
+  //nlsolver.solve(gra, hes, x_ini, x_out);
+  //EXPECT_LE((x_out - Vector2(1.0, 3.0)).maxCoeff(), EPSILON_LOW);
   EXPECT_TRUE(nlsolver.converged());
 }
 

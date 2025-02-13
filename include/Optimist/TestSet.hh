@@ -33,6 +33,7 @@ namespace Optimist
   */
   namespace TestSet
   {
+    static constexpr Real PI{3.14159265358979323846}; /**< The value of \f$\pi\f$. */
 
     /**
     * Map of vector-valued functions.
@@ -45,7 +46,17 @@ namespace Optimist
 
 } // namespace Optimist
 
+// Objective functions
+#include "TestSet/CostFunction/Schaffer2.hxx"
+
+// Scalar-valued functions
+#include "TestSet/ScalarFunction/Sin.hxx"
+#include "TestSet/ScalarFunction/Cos.hxx"
+#include "TestSet/ScalarFunction/Cosh.hxx"
+
 // Vector-valued functions
 #include "TestSet/VectorFunction/Booth.hxx"
+#include "TestSet/VectorFunction/Brown.hxx"
+#include "TestSet/VectorFunction/Rosenbrock2.hxx"
 
 #endif // INCLUDE_OPTIMIST_TESTSET_HH

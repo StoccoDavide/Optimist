@@ -10,8 +10,8 @@
 
 #pragma once
 
-#ifndef OPTIMIST_BOOTH_HXX
-#define OPTIMIST_BOOTH_HXX
+#ifndef OPTIMIST_WOOD_HXX
+#define OPTIMIST_WOOD_HXX
 
 namespace Optimist
 {
@@ -20,58 +20,61 @@ namespace Optimist
   {
 
     /**
-    * \brief Class container for the Booth function.
+    * \brief Class container for the Brown badly scaled function.
     *
-    * Class container for the Booth function, which is defined as:
+    * Class container for the Brown badly scaled function, which is defined as:
     * \f[
-    * \mathbf{f}(\mathbf{x}) = \begin{bmatrix} x_1 + 2x_2 - 7 \\ 2x_1 + x_2 - 5 \end{bmatrix} \text{.}
+    * \mathbf{f}(\mathbf{x}) = \begin{bmatrix} x_1 - a \\ x_2 - 2a \\ x_1x_2 - 2 \end{bmatrix} \text{,}
     * \f]
-    * The function has one solution at \f$\mathbf{x} = [1, 3]^\top\f$, with \f$f(\mathbf{x}) = 0\f$.
-    * The initial guesses are generated on the square \f$x_i \in [-10, 10]\f$, for all \f$x_i = 1, 2\f$.
+    * where \f$a = 10^{-6}\f$. The function has one solution at \f$\mathbf{x} = [a, 2a]^\top\f$,
+    * with \f$f(\mathbf{x}) = 0\f$. The initial guess is generated at \f$\mathbf{x} = [1, 1]^\top\f$.
     */
-    class Booth : public VectorFunction<2, 2, Booth>
+    class Brown : public VectorFunction<2, 3, Brown>
     {
+    private:
+      Real m_a{1.0e-6}; /**< Scaling value (keep it low to guarantee bad scaling). */
+
     public:
-      using Vector = typename VectorFunction<2, 2, Booth>::InputVector;
-      using Matrix = typename VectorFunction<2, 2, Booth>::Matrix;
-      using Tensor = typename VectorFunction<2, 2, Booth>::Tensor;
+      using InputVector  = typename VectorFunction<2, 3, Brown>::InputVector;
+      using OutputVector = typename VectorFunction<2, 3, Brown>::OutputVector;
+      using Matrix       = typename VectorFunction<2, 3, Brown>::Matrix;
+      using Tensor       = typename VectorFunction<2, 3, Brown>::Tensor;
 
       /**
-      * Class constructor for the Booth function.
+      * Class constructor for the Brown function.
       */
-      Booth()
+      Brown()
       {
-        this->m_solutions.emplace_back(1.0, 3.0);
-        for (Real x{-10.0}; x < 10.0 + EPSILON; x += 5.0) {
-          for (Real y{-10.0}; y < 10.0 + EPSILON; y += 5.0) {
-            this->m_guesses.emplace_back(x, y);
-          }
-        }
+        this->m_solutions.emplace_back(this->m_a, 2.0*this->m_a);
+        this->m_guesses.emplace_back(1.0, 1.0);
       }
 
       /**
       * Get the function name.
       * \return The function name.
       */
-      std::string name_impl() const {return "Booth";}
+      std::string name_impl() const {return "Brown";}
 
       /**
       * Compute the function value at the input point.
       * \param[in] x Input point.
       * \param[out] out The function value.
       */
-      void evaluate_impl(const Vector & x, Vector & out) const
+      void evaluate_impl(const InputVector & x, OutputVector & out) const
       {
-        out << x(0) + 2.0*x(1) - 7.0, 2.0*x(0) + x(1) - 5.0;
+        out << x(0) - this->m_a,
+               x(1) - 2.0*this->m_a,
+               x(0)*x(1) - 2.0;
       }
       /**
       * Compute the first derivative value at the input point.
       * \param[in] x Input point.
       * \param[out] out The first derivative value.
       */
-      void first_derivative_impl(const Vector & /*x*/, Matrix & out) const
+      void first_derivative_impl(const InputVector & x, Matrix & out) const
       {
-        out << 1.0, 2.0, 2.0, 1.0;
+        out << 1.0, 0.0, x(1),
+               0.0, 1.0, x(0);
       }
 
       /**
@@ -79,16 +82,19 @@ namespace Optimist
       * \param[in] x Input point.
       * \param[out] out The second derivative value.
       */
-      void second_derivative_impl(const Vector & /*x*/, Tensor & out) const
+      void second_derivative_impl(const InputVector & /*x*/, Tensor & out) const
       {
         out.resize(this->output_dimension());
-        std::for_each(out.begin(), out.end(), [](Matrix& m) {m.setZero();});
+        out[0].setZero();
+        out[1].setZero();
+        out[2] << 0.0, 1.0,
+                  1.0, 0.0;
       }
 
-    }; // class Booth
+    }; // class Brown
 
   } // namespace TestSet
 
 } // namespace Optimist
 
-#endif // OPTIMIST_BOOTH_HXX
+#endif // OPTIMIST_WOOD_HXX

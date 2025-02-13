@@ -25,9 +25,9 @@ namespace Optimist
   * \tparam DerivedFunction Derived cost function class.
   */
   template <Integer N, typename DerivedFunction>
-  class CostFunction : public Function<1, N, DerivedFunction>
+  class CostFunction : public Function<N, 1, DerivedFunction>
   {
-    friend Function<1, N, CostFunction<N, DerivedFunction>>;
+    friend Function<N, 1, CostFunction<N, DerivedFunction>>;
 
     // Fancy static assertions (just for fun, don't take it too seriously)
     static_assert(N != Integer(0),
@@ -37,7 +37,7 @@ namespace Optimist
 
   public:
     // I/O types
-    using Vector = typename Function<1, N, DerivedFunction>::Vector; /**< Vector type. */
+    using Vector = typename Function<N, 1, DerivedFunction>::InputType; /**< Vector type. */
 
     // Derivative types
     using RowVector = typename Function<N, 1, DerivedFunction>::FirstDerivativeType;  /**< Gradient (row) vector type. */
@@ -45,11 +45,8 @@ namespace Optimist
 
     /**
     * Class constructor for the function.
-    * \param[in] solutions Number of known solutions.
-    * \param[in] guesses Number of initial guesses.
     */
-    CostFunction(const Integer solutions, const Integer guesses)
-    : Function<1, N, DerivedFunction>(solutions, guesses) {}
+    CostFunction() {}
 
     /**
     * Get the function name.
@@ -62,7 +59,7 @@ namespace Optimist
     * \param[in] x Input point.
     * \param[out] out The function value.
     */
-    void evaluate(const Vector & x, const Vector & out) const
+    void evaluate(const Vector & x, Vector & out) const
     {
       static_cast<const DerivedFunction *>(this)->evaluate_impl(x, out);
     }
@@ -72,7 +69,7 @@ namespace Optimist
     * \param[in] x Input point.
     * \param[out] out The function first derivative.
     */
-    void gradient(const Vector & x, const RowVector & out) const
+    void gradient(const Vector & x, RowVector & out) const
     {
       static_cast<const DerivedFunction *>(this)->first_derivative_impl(x, out);
     }
@@ -82,7 +79,7 @@ namespace Optimist
     * \param[in] x Input point.
     * \param[out] out The function second derivative.
     */
-    void hessian(const Vector & x, const Matrix & out) const
+    void hessian(const Vector & x, Matrix & out) const
     {
       static_cast<const DerivedFunction *>(this)->second_derivative_impl(x, out);
     }

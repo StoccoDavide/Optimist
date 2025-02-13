@@ -31,11 +31,8 @@ namespace Optimist
   public:
     /**
     * Class constructor for the function.
-    * \param[in] solutions Number of known solutions.
-    * \param[in] guesses Number of initial guesses.
     */
-    ScalarFunction(const Integer solutions, const Integer guesses)
-    : Function<1, 1, DerivedFunction>(solutions, guesses) {}
+    ScalarFunction() {}
 
     /**
     * Get the function name.

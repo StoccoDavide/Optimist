@@ -43,7 +43,12 @@ namespace Optimist
     template <Integer N, typename DerivedSolver>
     class Optimizer : public Solver<N, 1, DerivedSolver>
     {
+    public:
       friend Solver<N, 1, Optimizer<N, DerivedSolver>>;
+
+      static constexpr bool requires_function          = DerivedSolver::requires_function;
+      static constexpr bool requires_first_derivative  = DerivedSolver::requires_first_derivative;
+      static constexpr bool requires_second_derivative = DerivedSolver::requires_second_derivative;
 
       // Fancy static assertions (just for fun, don't take it too seriously)
       static_assert(N != Integer(0),
@@ -51,7 +56,6 @@ namespace Optimist
       static_assert(N != Integer(1),
         "Good try, but you should use a scalar solver for a one-dimensional optimization problem.");
 
-    public:
       // I/O types
       using Vector = typename Solver<N, 1, DerivedSolver>::InputType; /**< Vector type. */
 
@@ -60,9 +64,9 @@ namespace Optimist
       using Matrix    = typename Solver<N, 1, DerivedSolver>::SecondDerivativeType; /**< Hessian matrix type. */
 
       // Function types
-      using FunctionWrapper = typename Solver<N, 1, DerivedSolver>::FunctionWrapper;         /**< Function wrapper type. */
-      using GradientWrapper = typename Solver<N, 1, DerivedSolver>::FirstDerivativeWrapper;  /**< Gradient function wrapper type. */
-      using HessianWrapper  = typename Solver<N, 1, DerivedSolver>::SecondDerivativeWrapper; /**< Hessian function wrapper type. */
+      using FunctionWrapper = typename Solver<N, 1, DerivedSolver>::FunctionWrapper;
+      using GradientWrapper = typename Solver<N, 1, DerivedSolver>::FirstDerivativeWrapper;
+      using HessianWrapper  = typename Solver<N, 1, DerivedSolver>::SecondDerivativeWrapper;
 
       /**
       * Class constructor for the multi-dimensional optimizer.
@@ -149,7 +153,13 @@ namespace Optimist
       */
       bool solve(FunctionWrapper function, Vector const &x_ini, Vector &x_sol)
       {
+        #define CMD "Optimist::Optimizer::solve(...): "
+
+        static_assert(DerivedSolver::requires_function,
+          CMD "the solver requires the function.");
         return static_cast<DerivedSolver *>(this)->solve_impl(function, x_ini, x_sol);
+
+        #undef CMD
       }
 
       /**
@@ -162,7 +172,15 @@ namespace Optimist
       */
       bool solve(FunctionWrapper function, GradientWrapper gradient, Vector const &x_ini, Vector &x_sol)
       {
+        #define CMD "Optimist::Optimizer::solve(...): "
+
+        static_assert(DerivedSolver::requires_function,
+          CMD "the solver requires the function.");
+        static_assert(DerivedSolver::requires_first_derivative,
+          CMD "the solver requires the first derivative.");
         return static_cast<DerivedSolver *>(this)->solve_impl(function, gradient, x_ini, x_sol);
+
+        #undef CMD
       }
 
       /**
@@ -177,7 +195,17 @@ namespace Optimist
       bool solve(FunctionWrapper function, GradientWrapper gradient, HessianWrapper hessian, Vector
         const &x_ini, Vector &x_sol)
       {
+        #define CMD "Optimist::Optimizer::solve(...): "
+
+        static_assert(DerivedSolver::requires_function,
+          CMD "the solver requires the function.");
+        static_assert(DerivedSolver::requires_first_derivative,
+          CMD "the solver requires the first derivative.");
+        static_assert(DerivedSolver::requires_second_derivative,
+          CMD "the solver requires the second derivative.");
         return static_cast<DerivedSolver *>(this)->solve_impl(function, gradient, hessian, x_ini, x_sol);
+
+        #undef CMD
       }
 
     }; // class Optimizer

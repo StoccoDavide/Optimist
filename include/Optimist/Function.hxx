@@ -21,41 +21,38 @@ namespace Optimist
   *
   * \includedoc docs/markdown/Function.md
   *
-  * \tparam InputDim The function problem input dimension.
-  * \tparam OutputDim The function problem output dimension.
+  * \tparam FunInDim The function problem input dimension.
+  * \tparam FunOutDim The function problem output dimension.
   * \tparam DerivedFunction Derived function class.
   */
-  template <Integer InputDim, Integer OutputDim, typename DerivedFunction>
+  template <Integer FunInDim, Integer FunOutDim, typename DerivedFunction>
   class Function
   {
 
     // Fancy static assertios (just for fun, don't take it too seriously)
-    static_assert(InputDim > Integer(0) && OutputDim > Integer(0),
+    static_assert(FunInDim > Integer(0) && FunOutDim > Integer(0),
       "Negative-dimensional function? Are you serious?");
 
   public:
     // I/O types
-    using InputType  = typename std::conditional_t<InputDim == 1,  Real, Eigen::Vector<Real, InputDim>>;  /**< Input type. */
-    using OutputType = typename std::conditional_t<OutputDim == 1, Real, Eigen::Vector<Real, OutputDim>>; /**< Output type. */
+    using InputType  = typename std::conditional_t<FunInDim == 1,  Real, Eigen::Vector<Real, FunInDim>>;  /**< Input type. */
+    using OutputType = typename std::conditional_t<FunOutDim == 1, Real, Eigen::Vector<Real, FunOutDim>>; /**< Output type. */
 
     // Derivative types
-    using FirstDerivativeType  = std::conditional_t<InputDim == 1 && OutputDim == 1, Real, Eigen::Matrix<Real, OutputDim, InputDim>>; /**< First derivative type. */
-    using SecondDerivativeType = std::conditional_t<InputDim == 1 && OutputDim == 1, Real,
-      std::conditional_t<InputDim == 1 || OutputDim == 1, Eigen::Matrix<Real, InputDim, InputDim>,
-      std::vector<Eigen::Matrix<Real, InputDim, InputDim>>>>;  /**< Second derivative type. */
+    using FirstDerivativeType  = std::conditional_t<FunInDim == 1 && FunOutDim == 1, Real, Eigen::Matrix<Real, FunOutDim, FunInDim>>; /**< First derivative type. */
+    using SecondDerivativeType = std::conditional_t<FunInDim == 1 && FunOutDim == 1, Real,
+      std::conditional_t<FunInDim == 1 || FunOutDim == 1, Eigen::Matrix<Real, FunInDim, FunInDim>,
+      std::vector<Eigen::Matrix<Real, FunInDim, FunInDim>>>>;  /**< Second derivative type. */
 
   protected:
-    std::vector<InputType>  m_solutions; /** Known solutions used for test purposes. */
-    std::vector<OutputType> m_guesses;   /** Suggested initial guess used for testing. */
+    std::vector<InputType> m_solutions; /** Known solutions used for test purposes. */
+    std::vector<InputType> m_guesses;   /** Suggested initial guess used for testing. */
 
   public:
     /**
     * Class constructor for the function.
-    * \param[in] solutions Number of known solutions.
-    * \param[in] guesses Number of initial guesses.
     */
-    Function(const Integer solutions, const Integer guesses)
-      : m_solutions(solutions), m_guesses(guesses) {}
+    Function() {}
 
     /**
     * Get the function name.
@@ -97,13 +94,13 @@ namespace Optimist
     * Get the input dimension of the function.
     * \return The input dimension of the function.
     */
-    constexpr Integer input_dimension() const {return InputDim;}
+    constexpr Integer input_dimension() const {return FunInDim;}
 
     /**
     * Get the output dimension of the function.
     * \return The output dimension of the function.
     */
-    constexpr Integer output_dimension() const {return OutputDim;}
+    constexpr Integer output_dimension() const {return FunOutDim;}
 
     /**
     * Get the vector of known solutions.

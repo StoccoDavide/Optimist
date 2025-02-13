@@ -10,8 +10,8 @@
 
 #pragma once
 
-#ifndef OPTIMIST_BOOTH_HXX
-#define OPTIMIST_BOOTH_HXX
+#ifndef OPTIMIST_SIN_HXX
+#define OPTIMIST_SIN_HXX
 
 namespace Optimist
 {
@@ -20,75 +20,60 @@ namespace Optimist
   {
 
     /**
-    * \brief Class container for the Booth function.
+    * \brief Class container for the sine function.
     *
-    * Class container for the Booth function, which is defined as:
+    * Class container for the sine function, which is defined as:
     * \f[
-    * \mathbf{f}(\mathbf{x}) = \begin{bmatrix} x_1 + 2x_2 - 7 \\ 2x_1 + x_2 - 5 \end{bmatrix} \text{.}
+    * f(x) = \sin(x) \text{.}
     * \f]
-    * The function has one solution at \f$\mathbf{x} = [1, 3]^\top\f$, with \f$f(\mathbf{x}) = 0\f$.
-    * The initial guesses are generated on the square \f$x_i \in [-10, 10]\f$, for all \f$x_i = 1, 2\f$.
+    * The function has roots at \f$x = \pi/2 + i\pi\f$, with \f$f(x) = 0\f$, and minima at \f$x = 3\pi/2 +
+    * 2i\pi\f$, with \f$f(x) = -1\f$ and \f$i = 0, 1, \ldots, n\f$. The initial guesses are generated
+    * on the range \f$x \in \left[0, 2\pi\right]\f$.
     */
-    class Booth : public VectorFunction<2, 2, Booth>
+    class Sin : public ScalarFunction<Sin>
     {
     public:
-      using Vector = typename VectorFunction<2, 2, Booth>::InputVector;
-      using Matrix = typename VectorFunction<2, 2, Booth>::Matrix;
-      using Tensor = typename VectorFunction<2, 2, Booth>::Tensor;
-
       /**
-      * Class constructor for the Booth function.
+      * Class constructor for the sine function.
       */
-      Booth()
+      Sin()
       {
-        this->m_solutions.emplace_back(1.0, 3.0);
-        for (Real x{-10.0}; x < 10.0 + EPSILON; x += 5.0) {
-          for (Real y{-10.0}; y < 10.0 + EPSILON; y += 5.0) {
-            this->m_guesses.emplace_back(x, y);
-          }
-        }
+        this->m_solutions.emplace_back(0.0);
+        this->m_solutions.emplace_back(3.0/2.0*PI);
+        for (Real x{0.0}; x < 2.0*PI + EPSILON; x += PI/2.0) {this->m_guesses.emplace_back(x);}
       }
 
       /**
       * Get the function name.
       * \return The function name.
       */
-      std::string name_impl() const {return "Booth";}
+      std::string name_impl() const {return "Sin";}
 
       /**
       * Compute the function value at the input point.
       * \param[in] x Input point.
       * \param[out] out The function value.
       */
-      void evaluate_impl(const Vector & x, Vector & out) const
-      {
-        out << x(0) + 2.0*x(1) - 7.0, 2.0*x(0) + x(1) - 5.0;
-      }
+      void evaluate_impl(Real x, Real & out) const {out = std::sin(x);}
+
       /**
       * Compute the first derivative value at the input point.
       * \param[in] x Input point.
       * \param[out] out The first derivative value.
       */
-      void first_derivative_impl(const Vector & /*x*/, Matrix & out) const
-      {
-        out << 1.0, 2.0, 2.0, 1.0;
-      }
+      void first_derivative_impl(Real x, Real & out) const {out = std::cos(x);}
 
       /**
       * Compute the second derivative value at the input point.
       * \param[in] x Input point.
       * \param[out] out The second derivative value.
       */
-      void second_derivative_impl(const Vector & /*x*/, Tensor & out) const
-      {
-        out.resize(this->output_dimension());
-        std::for_each(out.begin(), out.end(), [](Matrix& m) {m.setZero();});
-      }
+      void second_derivative_impl(Real x, Real & out) const {out = -std::sin(x);}
 
-    }; // class Booth
+    }; // class Sin
 
   } // namespace TestSet
 
 } // namespace Optimist
 
-#endif // OPTIMIST_BOOTH_HXX
+#endif // OPTIMIST_SIN_HXX

@@ -21,35 +21,36 @@ namespace Optimist
   *
   * \includedoc docs/markdown/Function.md
   *
-  * \tparam N The dimension of the vector-valued function.
+  * \tparam N The input dimension of the vector-valued function.
+  * \tparam M The output dimension of the vector-valued function.
   * \tparam DerivedFunction Derived vector-valued function class.
   */
-  template <Integer N, typename DerivedFunction>
-  class VectorFunction : public Function<N, N, DerivedFunction>
+  template <Integer N, Integer M, typename DerivedFunction>
+  class VectorFunction : public Function<N, M, DerivedFunction>
   {
-    friend Function<N, N, VectorFunction<N, DerivedFunction>>;
+    friend Function<N, M, VectorFunction<N, M, DerivedFunction>>;
 
     // Fancy static assertions (just for fun, don't take it too seriously)
-    static_assert(N != Integer(0),
+    static_assert(N != Integer(0) && M != Integer(0),
       "Are you sure you want to a zero-dimensional system of equations?");
-    static_assert(N != Integer(1),
+    static_assert(N != Integer(1) && M != Integer(1),
       "C'mon, let's not kid ourselves. Use a scalar function...");
+    static_assert(M != Integer(1),
+      "Good try, but you're looking for an objective function, not a vector-valued function.");
 
   public:
     // I/O types
-    using Vector = typename Function<N, N, DerivedFunction>::InputType; /**< Vector type. */
+    using InputVector = typename Function<N, M, DerivedFunction>::InputType; /**< Input vector type. */
+    using OutputVector = typename Function<N, M, DerivedFunction>::OutputType; /**< Output vector type. */
 
     // Derivative types
-    using Matrix = typename Function<N, N, DerivedFunction>::FirstDerivativeType;  /**< Jacobian matrix type. */
-    using Tensor = typename Function<N, N, DerivedFunction>::SecondDerivativeType; /**< Hessian tensor type. */
+    using Matrix = typename Function<N, M, DerivedFunction>::FirstDerivativeType;  /**< Jacobian matrix type. */
+    using Tensor = typename Function<N, M, DerivedFunction>::SecondDerivativeType; /**< Hessian tensor type. */
 
     /**
-    * Class constructor for the function.
-    * \param[in] solutions Number of known solutions.
-    * \param[in] guesses Number of initial guesses.
+    * Class constructor for the vector-valued function.
     */
-    VectorFunction(const Integer solutions, const Integer guesses)
-    : Function<N, N, DerivedFunction>(solutions, guesses) {}
+    VectorFunction() {}
 
     /**
     * Get the function name.
@@ -62,7 +63,7 @@ namespace Optimist
     * \param[in] x Input point.
     * \param[out] out The function value.
     */
-    void evaluate(const Vector & x, Vector & out) const
+    void evaluate(const InputVector & x, OutputVector & out) const
     {
       static_cast<const DerivedFunction *>(this)->evaluate_impl(x, out);
     }
@@ -72,7 +73,7 @@ namespace Optimist
     * \param[in] x Input point.
     * \param[out] out The function first derivative.
     */
-    void jacobian(const Vector & x, Matrix & out) const
+    void jacobian(const InputVector & x, Matrix & out) const
     {
       static_cast<const DerivedFunction *>(this)->first_derivative_impl(x, out);
     }
@@ -82,7 +83,7 @@ namespace Optimist
     * \param[in] x Input point.
     * \param[out] out The function second derivative.
     */
-    void hessian(const Vector & x, Tensor & out) const
+    void hessian(const InputVector & x, Tensor & out) const
     {
       static_cast<const DerivedFunction *>(this)->second_derivative_impl(x, out);
     }

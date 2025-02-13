@@ -26,18 +26,20 @@ TEST(Newton, Booth) {
   // Starting entries
   Vector2 x_ini = Vector2::Zero();
   Vector2 x_out = Vector2::Zero();
+  auto fun = [&nlfunction](Vector2 const & X, Vector2 & F) {nlfunction.evaluate(X, F);};
+  auto jac = [&nlfunction](Vector2 const & X, Matrix2 & J) {nlfunction.jacobian(X, J);};
   for (Integer i{0}; i < static_cast<Integer>(nlfunction.guesses().size()); ++i) {
     x_ini = nlfunction.guess(i);
     // Solve without damping
     nlsolver.disable_damped_mode();
-    //nlsolver.solve(fun, jac, x_ini, x_out);
-    nlsolver.optimize(nlfunction, x_ini, x_out);
+    nlsolver.rootfind(nlfunction, x_ini, x_out);
+    nlsolver.solve(fun, jac, x_ini, x_out);
     EXPECT_LE((x_out - Vector2(1.0, 3.0)).maxCoeff(), EPSILON_LOW);
     EXPECT_TRUE(nlsolver.converged());
     EXPECT_TRUE(nlfunction.is_solution(x_out));
     // Solve with damping
     nlsolver.enable_damped_mode();
-    //nlsolver.rootfind(nlfunction, x_ini, x_out);
+    nlsolver.solve(fun, jac, x_ini, x_out);
     EXPECT_LE((x_out - Vector2(1.0, 3.0)).maxCoeff(), EPSILON_LOW);
     EXPECT_TRUE(nlsolver.converged());
     EXPECT_TRUE(nlfunction.is_solution(x_out));
