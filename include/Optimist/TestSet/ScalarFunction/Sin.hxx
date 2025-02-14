@@ -39,8 +39,8 @@ namespace Optimist
       Sin()
       {
         this->m_solutions.emplace_back(0.0);
-        this->m_solutions.emplace_back(3.0/2.0*PI);
-        for (Real x{0.0}; x < 2.0*PI + EPSILON; x += PI/2.0) {this->m_guesses.emplace_back(x);}
+        this->m_solutions.emplace_back(3.0/2.0*M_PI);
+        for (Real x{0.0}; x < 2.0*M_PI + EPSILON; x += M_PI/2.0) {this->m_guesses.emplace_back(x);}
       }
 
       /**

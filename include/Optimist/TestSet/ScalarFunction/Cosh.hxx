@@ -38,7 +38,7 @@ namespace Optimist
       Cosh()
       {
         this->m_solutions.emplace_back(0.0);
-        for (Real x{-PI}; x < PI + EPSILON; x += PI/2.0) {this->m_guesses.emplace_back(x);}
+        for (Real x{-M_PI}; x < M_PI + EPSILON; x += M_PI/2.0) {this->m_guesses.emplace_back(x);}
       }
 
       /**

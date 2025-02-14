@@ -8,13 +8,25 @@
  * davide.stocco@unitn.it            mattia.piazza@unitn.it           enrico.bertolazzi@unitn.it *
 \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
+// Optimist library
 #include "Optimist.hh"
 #include "Optimist/TestSet.hh"
-#include <gtest/gtest.h>
+
+// Catch2 library
+#include <catch2/catch_test_macros.hpp>
+#include <catch2/matchers/catch_matchers_floating_point.hpp>
+#include <catch2/generators/catch_generators_range.hpp>
 
 // Run all the tests.
 int main() {
 
-  Optimist::TestSet::Booth fun;
+  Optimist::Info(std::cout);
+  Optimist::TestSet::Info(std::cout);
+  Optimist::TestSet::Cos cos;
+  Optimist::ScalarRootFinder::Newton sol;
+  double x_out;
+  sol.rootfind(cos, 0.0, x_out);
+  Optimist::RootFinder::Greenstadt<4> greenstadt;
+
   return 1;
 }

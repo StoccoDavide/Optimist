@@ -38,10 +38,10 @@ namespace Optimist
       */
       Cos()
       {
-        this->m_solutions.emplace_back(PI);
+        this->m_solutions.emplace_back(M_PI);
         this->m_solutions.emplace_back(0.0);
-        this->m_solutions.emplace_back(-PI);
-        for (Real x{-PI}; x < PI + EPSILON; x += PI/2.0) {this->m_guesses.emplace_back(x);}
+        this->m_solutions.emplace_back(-M_PI);
+        for (Real x{-M_PI}; x < M_PI + EPSILON; x += M_PI/2.0) {this->m_guesses.emplace_back(x);}
       }
 
       /**

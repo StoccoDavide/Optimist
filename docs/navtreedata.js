@@ -25,12 +25,12 @@
 var NAVTREE =
 [
   [ "Optimist", "index.html", [
-    [ "Installation", "index.html#autotoc_md12", [
-      [ "Quick and dirty", "index.html#autotoc_md13", null ],
-      [ "CMake", "index.html#autotoc_md14", null ]
+    [ "Installation", "index.html#autotoc_md17", [
+      [ "Quick and dirty", "index.html#autotoc_md18", null ],
+      [ "CMake", "index.html#autotoc_md19", null ]
     ] ],
-    [ "Authors", "index.html#autotoc_md15", null ],
-    [ "License", "index.html#autotoc_md16", null ],
+    [ "Authors", "index.html#autotoc_md20", null ],
+    [ "License", "index.html#autotoc_md21", null ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
@@ -45,8 +45,8 @@ var NAVTREE =
       [ "Class Index", "classes.html", null ],
       [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
       [ "Class Members", "functions.html", [
-        [ "All", "functions.html", null ],
-        [ "Functions", "functions_func.html", null ],
+        [ "All", "functions.html", "functions_dup" ],
+        [ "Functions", "functions_func.html", "functions_func" ],
         [ "Variables", "functions_vars.html", null ],
         [ "Typedefs", "functions_type.html", null ]
       ] ]
@@ -63,9 +63,11 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_broyden_8hxx.html",
-"class_optimist_1_1_scalar_root_finder_1_1_scalar_root_finder.html#a2317cbd5666d8891f1c38b535078c2ef",
-"namespace_optimist.html#a90662ca27675523ddfc4f1e85827cc80"
+"_booth_8hxx.html",
+"class_optimist_1_1_optimizer_1_1_optimizer.html#a21bf7f23551ac457a595a3ee4e759f7b",
+"class_optimist_1_1_scalar_optimizer_1_1_scalar_optimizer.html#a8059fc3c38c0ab2ef8d31a959c972cae",
+"class_optimist_1_1_test_set_1_1_brown.html#a226eba18d0c2473158303896e0833bf1",
+"namespace_optimist.html#aab556c0365de8d94aad76fc615631840"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

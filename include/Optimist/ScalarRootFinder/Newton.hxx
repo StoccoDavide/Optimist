@@ -41,9 +41,9 @@ namespace Optimist
       static constexpr bool requires_second_derivative = false;
 
       // Function types
-      using FunctionWrapper         = typename ScalarRootFinder::FunctionWrapper;
-      using FirstDerivativeWrapper  = typename ScalarRootFinder::FirstDerivativeWrapper;
-      using SecondDerivativeWrapper = typename ScalarRootFinder::SecondDerivativeWrapper;
+      using FunctionWrapper         = typename ScalarRootFinder<Newton>::FunctionWrapper;
+      using FirstDerivativeWrapper  = typename ScalarRootFinder<Newton>::FirstDerivativeWrapper;
+      using SecondDerivativeWrapper = typename ScalarRootFinder<Newton>::SecondDerivativeWrapper;
 
       /**
       * Class constructor for the Newton solver.

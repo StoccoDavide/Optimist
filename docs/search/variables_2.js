@@ -1,12 +1,6 @@
 var searchData=
 [
-  ['identity_5fmat2_0',['IDENTITY_MAT2',['../namespace_optimist.html#aaf06e1268659c6eb4e4a95e3e35cbd1c',1,'Optimist']]],
-  ['identity_5fmat3_1',['IDENTITY_MAT3',['../namespace_optimist.html#a2fcf7c8f6abb1f3988ebbe018cae4cbe',1,'Optimist']]],
-  ['identity_5fmat4_2',['IDENTITY_MAT4',['../namespace_optimist.html#a1815fdbe1ca36b457a43d688f600951c',1,'Optimist']]],
-  ['identity_5fmat5_3',['IDENTITY_MAT5',['../namespace_optimist.html#a06bb060837094a1ef1ef1af2318ae563',1,'Optimist']]],
-  ['identity_5fmat6_4',['IDENTITY_MAT6',['../namespace_optimist.html#ab958e9b96d71630f41584fa0876b2392',1,'Optimist']]],
-  ['identity_5fmat7_5',['IDENTITY_MAT7',['../namespace_optimist.html#a371e760d4c83c599eaf02aa9c09efb8d',1,'Optimist']]],
-  ['identity_5fmat8_6',['IDENTITY_MAT8',['../namespace_optimist.html#af912e4a662abb27b0d90bc2f964b08db',1,'Optimist']]],
-  ['identity_5fmat9_7',['IDENTITY_MAT9',['../namespace_optimist.html#adc82099ce978f7cbde869b413f10bfab',1,'Optimist']]],
-  ['infty_8',['INFTY',['../namespace_optimist.html#a6a033098d795d5163acb342655389f6b',1,'Optimist']]]
+  ['function_3c_201_2c_201_2c_20scalarfunction_3c_20derivedfunction_20_3e_20_3e_0',['Function&lt; 1, 1, ScalarFunction&lt; DerivedFunction &gt; &gt;',['../class_optimist_1_1_scalar_function.html#a81001a1b77aec16db6edca2b2fbce7c8',1,'Optimist::ScalarFunction']]],
+  ['function_3c_20n_2c_201_2c_20costfunction_3c_20n_2c_20derivedfunction_20_3e_20_3e_1',['Function&lt; N, 1, CostFunction&lt; N, DerivedFunction &gt; &gt;',['../class_optimist_1_1_cost_function.html#a9e901650b3c3e9089c75b486d95ea99d',1,'Optimist::CostFunction']]],
+  ['function_3c_20n_2c_20m_2c_20vectorfunction_3c_20n_2c_20m_2c_20derivedfunction_20_3e_20_3e_2',['Function&lt; N, M, VectorFunction&lt; N, M, DerivedFunction &gt; &gt;',['../class_optimist_1_1_vector_function.html#a6133b01792fcb1702e3054410be0fb0c',1,'Optimist::VectorFunction']]]
 ];

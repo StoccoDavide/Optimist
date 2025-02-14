@@ -1,4 +1,19 @@
 var searchData=
 [
-  ['quiet_5fnan_0',['QUIET_NAN',['../namespace_optimist.html#a5040751c537612a9ffbe4548000e7d94',1,'Optimist']]]
+  ['ones_5fmat2_0',['ONES_MAT2',['../namespace_optimist.html#a7379692f3a090a9ae04ae760163b0c13',1,'Optimist']]],
+  ['ones_5fmat3_1',['ONES_MAT3',['../namespace_optimist.html#ab67241b3622c94d0b88e58e71d3385e0',1,'Optimist']]],
+  ['ones_5fmat4_2',['ONES_MAT4',['../namespace_optimist.html#ad17c5d9cf28b3aee3767d1f76f86b8ba',1,'Optimist']]],
+  ['ones_5fmat5_3',['ONES_MAT5',['../namespace_optimist.html#a4eeedd604088ca2046635b4929ad3116',1,'Optimist']]],
+  ['ones_5fmat6_4',['ONES_MAT6',['../namespace_optimist.html#ab7b58e5ec4cf0d5c4901985174c9d7a6',1,'Optimist']]],
+  ['ones_5fmat7_5',['ONES_MAT7',['../namespace_optimist.html#aa5be04c28b1eb9acf0afdce31fe095e1',1,'Optimist']]],
+  ['ones_5fmat8_6',['ONES_MAT8',['../namespace_optimist.html#a3414c03ecec61f6859c26513c3009568',1,'Optimist']]],
+  ['ones_5fmat9_7',['ONES_MAT9',['../namespace_optimist.html#af3afa651528308eef38f73da99d4502f',1,'Optimist']]],
+  ['ones_5fvec2_8',['ONES_VEC2',['../namespace_optimist.html#a678cf68fc6767b634ebdac0629b29463',1,'Optimist']]],
+  ['ones_5fvec3_9',['ONES_VEC3',['../namespace_optimist.html#a3574132264fa862b12a6dca4c0691e3e',1,'Optimist']]],
+  ['ones_5fvec4_10',['ONES_VEC4',['../namespace_optimist.html#a76b3862d4de57745b0a79d0a1eba120c',1,'Optimist']]],
+  ['ones_5fvec5_11',['ONES_VEC5',['../namespace_optimist.html#a46e74c33df2a2570d29c6df09ed211cd',1,'Optimist']]],
+  ['ones_5fvec6_12',['ONES_VEC6',['../namespace_optimist.html#ab9240fbe1a4f4c2ea5c7e4045d64a4f3',1,'Optimist']]],
+  ['ones_5fvec7_13',['ONES_VEC7',['../namespace_optimist.html#ae50e2e781019691be0eb2d1333c4d8ea',1,'Optimist']]],
+  ['ones_5fvec8_14',['ONES_VEC8',['../namespace_optimist.html#a9a9b664271542a7235ea38068322e457',1,'Optimist']]],
+  ['ones_5fvec9_15',['ONES_VEC9',['../namespace_optimist.html#a38b9e0325bd4053120d8dd0fff357da0',1,'Optimist']]]
 ];

@@ -45,6 +45,9 @@ namespace Optimist
     public:
       friend Solver<1, 1, ScalarRootFinder<DerivedSolver>>;
 
+      static constexpr bool is_rootfinder = true;
+      static constexpr bool is_optimizer  = false;
+
       static constexpr bool requires_function          = DerivedSolver::requires_function;
       static constexpr bool requires_first_derivative  = DerivedSolver::requires_first_derivative;
       static constexpr bool requires_second_derivative = DerivedSolver::requires_second_derivative;
@@ -64,7 +67,7 @@ namespace Optimist
       */
       std::string name() const {return static_cast<const DerivedSolver *>(this)->name_impl();}
 
-    protected:
+    public:
       /**
       * Solve the root-finding problem given the function, and without derivatives.
       * \param[in] function Function wrapper.
@@ -72,9 +75,9 @@ namespace Optimist
       * \param[out] x_sol Solution point.
       * \return The convergence boolean flag.
       */
-      bool solve(FunctionWrapper function, Real x_ini, Real &x_sol)
+      bool solve(FunctionWrapper function, Real x_ini, Real & x_sol)
       {
-        return static_cast<DerivedSolver *>(this)->solve_impl(x_ini, function, x_sol);
+        return static_cast<DerivedSolver *>(this)->solve_impl(function, x_ini, x_sol);
       }
 
       /**
@@ -86,9 +89,9 @@ namespace Optimist
       * \return The convergence boolean flag.
       */
       bool solve(FunctionWrapper function, FirstDerivativeWrapper first_derivative, Real x_ini,
-        Real &x_sol)
+        Real & x_sol)
       {
-        return static_cast<DerivedSolver *>(this)->solve_impl(x_ini, function, first_derivative, x_sol);
+        return static_cast<DerivedSolver *>(this)->solve_impl(function, first_derivative, x_ini, x_sol);
       }
 
       /**
@@ -101,10 +104,10 @@ namespace Optimist
       * \return The convergence boolean flag.
       */
       bool solve(FunctionWrapper function, FirstDerivativeWrapper first_derivative, SecondDerivativeWrapper
-        second_derivate, Real x_ini, Real &x_sol)
+        second_derivate, Real x_ini, Real & x_sol)
       {
-        return static_cast<DerivedSolver *>(this)->solve_impl(x_ini, function, first_derivative,
-          second_derivate, x_sol);
+        return static_cast<DerivedSolver *>(this)->solve_impl(function, first_derivative,
+          second_derivate, x_ini, x_sol);
       }
 
     }; // class ScalarRootFinder

@@ -1,0 +1,27 @@
+var class_optimist_1_1_optimizer_1_1_nelder_mead =
+[
+    [ "FunctionWrapper", "class_optimist_1_1_optimizer_1_1_nelder_mead.html#adfe4781534da34dc41c930b6e2914e35", null ],
+    [ "Matrix", "class_optimist_1_1_optimizer_1_1_nelder_mead.html#aa9ac64c046480399b1c65dae3ee9835e", null ],
+    [ "Simplex", "class_optimist_1_1_optimizer_1_1_nelder_mead.html#a12b07359c3347731f18a7198c38adb3b", null ],
+    [ "Vector", "class_optimist_1_1_optimizer_1_1_nelder_mead.html#acb385a5b788c68a2ebf86afec3a3eab8", null ],
+    [ "NelderMead", "class_optimist_1_1_optimizer_1_1_nelder_mead.html#a1b51fdf285282453589edf93215636c5", null ],
+    [ "centroid", "class_optimist_1_1_optimizer_1_1_nelder_mead.html#a6aa1064ffe71762103705ace8b69830f", null ],
+    [ "expansion", "class_optimist_1_1_optimizer_1_1_nelder_mead.html#a7600ffd9d614e4521fee3deba2527391", null ],
+    [ "initialize", "class_optimist_1_1_optimizer_1_1_nelder_mead.html#ad2aae69e4606ef86963bda20b4e0a6ce", null ],
+    [ "inward_contraction", "class_optimist_1_1_optimizer_1_1_nelder_mead.html#ab53882e5eaabc33a0610398d4991014c", null ],
+    [ "name_impl", "class_optimist_1_1_optimizer_1_1_nelder_mead.html#a03eccaee81d3a9715debfdba25e184b7", null ],
+    [ "outward_contraction", "class_optimist_1_1_optimizer_1_1_nelder_mead.html#aeb27925d6e1d3f6e72fccd13a5ab1f94", null ],
+    [ "reflection", "class_optimist_1_1_optimizer_1_1_nelder_mead.html#a7a672402d27aa1706a936c5da6874b6b", null ],
+    [ "shrink", "class_optimist_1_1_optimizer_1_1_nelder_mead.html#a3c88d70606903509b02e8cadf8c230c0", null ],
+    [ "solve_impl", "class_optimist_1_1_optimizer_1_1_nelder_mead.html#adcd1768df1f5e77e9e03ef1d075d07e0", null ],
+    [ "sort", "class_optimist_1_1_optimizer_1_1_nelder_mead.html#aae078496a24c98a2a010198904daaaaa", null ],
+    [ "m_alpha", "class_optimist_1_1_optimizer_1_1_nelder_mead.html#a79fb642b1b0cdd212d4577c3138b8dbe", null ],
+    [ "m_c", "class_optimist_1_1_optimizer_1_1_nelder_mead.html#a7fc2965eaed69f12fca4813a730db57d", null ],
+    [ "m_gamma", "class_optimist_1_1_optimizer_1_1_nelder_mead.html#a2ae0ad4e3dab7e7da7456c003c012620", null ],
+    [ "m_rho", "class_optimist_1_1_optimizer_1_1_nelder_mead.html#a662a1c65ab0d164ed59b1482ebda3014", null ],
+    [ "m_s", "class_optimist_1_1_optimizer_1_1_nelder_mead.html#ab0d074b5179441b4d0576763a48f27ee", null ],
+    [ "m_sigma", "class_optimist_1_1_optimizer_1_1_nelder_mead.html#a508fdddefe2d1390588460620fe94497", null ],
+    [ "requires_first_derivative", "class_optimist_1_1_optimizer_1_1_nelder_mead.html#aabe65d7bdccf924c5d41ad1f0e5b2a71", null ],
+    [ "requires_function", "class_optimist_1_1_optimizer_1_1_nelder_mead.html#a0ba1938404fc4c83550291b555ef558e", null ],
+    [ "requires_second_derivative", "class_optimist_1_1_optimizer_1_1_nelder_mead.html#a5ac8b6d8709b4e5e2a46609e42c823aa", null ]
+];

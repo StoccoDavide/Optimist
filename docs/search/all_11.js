@@ -11,8 +11,10 @@ var searchData=
   ['table_5ftop_5fleft_5fcorner_8',['table_top_left_corner',['../namespace_optimist.html#a5ab2e8f24dad17a60b32c57058b7189e',1,'Optimist']]],
   ['table_5ftop_5fright_5fcorner_9',['table_top_right_corner',['../namespace_optimist.html#abc4fc14da73035c18afb240947aea154',1,'Optimist']]],
   ['table_5fvertical_5fline_10',['table_vertical_line',['../namespace_optimist.html#a0f174a8298a3a1d692f7db44b02052b4',1,'Optimist']]],
-  ['task_11',['task',['../class_optimist_1_1_solver.html#ac334fd7f564af903cc4873aa000d052e',1,'Optimist::Solver::task() const'],['../class_optimist_1_1_solver.html#a1ccbe9e2600f6873a39942ca4f6b5b7e',1,'Optimist::Solver::task(std::string t_task)']]],
-  ['tolerance_12',['tolerance',['../class_optimist_1_1_solver.html#ad409a6ed2d38fe942dd005081234f3e5',1,'Optimist::Solver::tolerance() const'],['../class_optimist_1_1_solver.html#ac58db6067d0b78a0c8d04b749f6a89d8',1,'Optimist::Solver::tolerance(Real t_tolerance)']]],
-  ['trace_13',['trace',['../class_optimist_1_1_solver.html#a69fe94ac04b6d884045771f01e3990f6',1,'Optimist::Solver']]],
-  ['tracetype_14',['TraceType',['../class_optimist_1_1_solver.html#aba55138e6c7c69ea658bda0bdab8fd95',1,'Optimist::Solver']]]
+  ['task_11',['task',['../class_optimist_1_1_solver.html#ac0bb6080b5577e77cf4e1a463d1f3efa',1,'Optimist::Solver::task() const'],['../class_optimist_1_1_solver.html#a54234154f44ff7625e5062f7f2fc8bc7',1,'Optimist::Solver::task(std::string t_task)']]],
+  ['tensor_12',['Tensor',['../class_optimist_1_1_vector_function.html#adc8f828f6fcbefefdd6f34ce931da77a',1,'Optimist::VectorFunction::Tensor'],['../class_optimist_1_1_root_finder_1_1_root_finder.html#a9b17eb73923d5259c7d5b6d3b993e588',1,'Optimist::RootFinder::RootFinder::Tensor'],['../class_optimist_1_1_test_set_1_1_booth.html#a49cc968e21be78c4ea2760ce45438aab',1,'Optimist::TestSet::Booth::Tensor'],['../class_optimist_1_1_test_set_1_1_brown.html#a8c38cf4f54413fc84ed841806103cc1a',1,'Optimist::TestSet::Brown::Tensor'],['../class_optimist_1_1_test_set_1_1_rosenbrock.html#aa9e81100b0ea09aad43b42a8181acef0',1,'Optimist::TestSet::Rosenbrock::Tensor']]],
+  ['testset_2ehh_13',['TestSet.hh',['../_test_set_8hh.html',1,'']]],
+  ['tolerance_14',['tolerance',['../class_optimist_1_1_solver.html#a40d2093884e3ce8b3fe5b8d46e7e8f8d',1,'Optimist::Solver::tolerance() const'],['../class_optimist_1_1_solver.html#ac5ff74d62e86d447ad11df0db473a96b',1,'Optimist::Solver::tolerance(Real t_tolerance)']]],
+  ['trace_15',['trace',['../class_optimist_1_1_solver.html#ac9074309b65354deb0025cca78f109c8',1,'Optimist::Solver']]],
+  ['tracetype_16',['TraceType',['../class_optimist_1_1_solver.html#a01cb13872a3cf6c90b9c442c626874b0',1,'Optimist::Solver']]]
 ];

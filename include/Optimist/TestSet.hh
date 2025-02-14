@@ -16,6 +16,20 @@
 
 // Optimist library
 #include "Optimist.hh"
+#include <variant>
+
+// Cost functions
+#include "TestSet/CostFunction/Schaffer2.hxx"
+
+// Scalar-valued functions
+#include "TestSet/ScalarFunction/Sin.hxx"
+#include "TestSet/ScalarFunction/Cos.hxx"
+#include "TestSet/ScalarFunction/Cosh.hxx"
+
+// Vector-valued functions
+#include "TestSet/VectorFunction/Booth.hxx"
+#include "TestSet/VectorFunction/Brown.hxx"
+#include "TestSet/VectorFunction/Rosenbrock.hxx"
 
 namespace Optimist
 {
@@ -33,30 +47,60 @@ namespace Optimist
   */
   namespace TestSet
   {
-    static constexpr Real PI{3.14159265358979323846}; /**< The value of \f$\pi\f$. */
 
     /**
-    * Map of vector-valued functions.
+    * List of cost functions.
     */
-    static const std::vector<std::string> vector_functions = {
-      "Wood"
+    static const std::vector<std::string> COST_FUNCTIONS = {
+      "Schaffer2"
     };
+
+    /**
+    * List of scalar-valued functions.
+    */
+    static const std::vector<std::string> SCALAR_FUNCTIONS = {
+      "Sin",
+      "Cos",
+      "Cosh"
+    };
+
+    /**
+    * List of vector-valued functions.
+    */
+    static const std::vector<std::string> VECTOR_FUNCTIONS = {
+      "Booth",
+      "Brown",
+      "Rosenbrock",
+    };
+
+    /**
+    * Print Optimist library test-set information on a string.
+    * \return A string with the Optimist library test-set information.
+    */
+    std::string Info() {
+      std::ostringstream os;
+      os
+        << Optimist::Info() << std::endl
+        << " Test set cost functions:" << std::endl
+        << std::accumulate(COST_FUNCTIONS.begin(), COST_FUNCTIONS.end(), std::string(" ")).substr(0, 100) << std::endl
+        << " Test set scalar-valued functions:" << std::endl
+        << std::accumulate(SCALAR_FUNCTIONS.begin(), SCALAR_FUNCTIONS.end(), std::string(" ")).substr(0, 100) << std::endl
+        << " Test set vector-valued functions:" << std::endl
+        << std::accumulate(VECTOR_FUNCTIONS.begin(), VECTOR_FUNCTIONS.end(), std::string(" ")).substr(0, 100) << std::endl;
+
+      return os.str();
+    }
+
+    /**
+    * Print Optimist library test-set information on a stream.
+    * \param[in] os Output stream.
+    */
+    void Info(std::ostream &os) {os << Info();}
+
+
 
   } // namespace TestSet
 
 } // namespace Optimist
-
-// Objective functions
-#include "TestSet/CostFunction/Schaffer2.hxx"
-
-// Scalar-valued functions
-#include "TestSet/ScalarFunction/Sin.hxx"
-#include "TestSet/ScalarFunction/Cos.hxx"
-#include "TestSet/ScalarFunction/Cosh.hxx"
-
-// Vector-valued functions
-#include "TestSet/VectorFunction/Booth.hxx"
-#include "TestSet/VectorFunction/Brown.hxx"
-#include "TestSet/VectorFunction/Rosenbrock2.hxx"
 
 #endif // INCLUDE_OPTIMIST_TESTSET_HH

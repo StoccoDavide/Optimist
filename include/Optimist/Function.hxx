@@ -137,7 +137,14 @@ namespace Optimist
     bool is_solution(const InputType & x, const Real tol = EPSILON_LOW) const
     {
       for (const auto & s : this->m_solutions) {
-        if (x.isApprox(s, tol)) {return true;}
+        if constexpr (FunInDim == 1) {
+          if (std::abs(x - s) < tol) {return true;}
+        } else if constexpr (FunInDim > 1) {
+          if(x.isApprox(s, tol)) {return true;}
+        } else {
+          OPTIMIST_ERROR("Optimist::Function::is_solution(...): invalid input dimension.");
+          return false;
+        }
       }
       return false;
     }
