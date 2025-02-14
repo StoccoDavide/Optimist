@@ -108,7 +108,7 @@ namespace Optimist
       void sort(FunctionWrapper function)
       {
         std::sort(this->m_s.begin(), this->m_s.end(),
-          [&](const Vector & a, const Vector & b) {
+          [function, this] (const Vector & a, const Vector & b) {
             Real function_a, function_b;
             this->evaluate_function(function, a, function_a);
             this->evaluate_function(function, b, function_b);

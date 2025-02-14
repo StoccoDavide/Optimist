@@ -82,7 +82,7 @@ namespace Optimist
       void second_derivative_impl(const Vector & /*x*/, Tensor & out) const
       {
         out.resize(this->output_dimension());
-        std::for_each(out.begin(), out.end(), [](Matrix& m) {m.setZero();});
+        std::for_each(out.begin(), out.end(), [] (Matrix& m) {m.setZero();});
       }
 
     }; // class Booth

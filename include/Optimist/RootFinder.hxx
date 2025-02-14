@@ -99,7 +99,7 @@ namespace Optimist
       */
       void max_jacobian_evaluations(Integer t_jacobian_evaluations)
       {
-        this->first_derivative_evaluations(t_jacobian_evaluations);
+        this->max_first_derivative_evaluations(t_jacobian_evaluations);
       }
 
       /**
@@ -120,7 +120,7 @@ namespace Optimist
       */
       void max_hessian_evaluations(Integer t_hessian_evaluations)
       {
-        this->first_derivative_evaluations(t_hessian_evaluations);
+        this->max_first_derivative_evaluations(t_hessian_evaluations);
       }
 
     protected:

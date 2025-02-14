@@ -86,16 +86,25 @@ namespace Optimist
       Integer gradient_evaluations() const {return this->first_derivative_evaluations();}
 
       /**
-      * Get the number of hessian evaluations.
-      * \return The number of hessian evaluations.
-      */
-      Integer hessian_evaluations() const {return this->second_derivative_evaluations();}
-
-      /**
       * Get the number of maximum allowed gradient evaluations.
       * \return The number of maximum allowed gradient evaluations.
       */
       Integer max_gradient_evaluations() const {return this->max_first_derivative_evaluations();}
+
+      /**
+      * Set the number of maximum allowed gradient evaluations.
+      * \param[in] t_gradient_evaluations The number of maximum allowed gradient evaluations.
+      */
+      void max_gradient_evaluations(Integer t_gradient_evaluations)
+      {
+        this->max_first_derivative_evaluations(t_gradient_evaluations);
+      }
+
+      /**
+      * Get the number of hessian evaluations.
+      * \return The number of hessian evaluations.
+      */
+      Integer hessian_evaluations() const {return this->second_derivative_evaluations();}
 
       /**
       * Get the number of maximum allowed hessian evaluations.
@@ -104,21 +113,12 @@ namespace Optimist
       Integer max_hessian_evaluations() const {return this->max_second_derivative_evaluations();}
 
       /**
-      * Set the number of maximum allowed gradient evaluations.
-      * \param[in] t_gradient_evaluations The number of maximum allowed gradient evaluations.
-      */
-      void max_gradient_evaluations(Integer t_gradient_evaluations)
-      {
-        this->first_derivative_evaluations(t_gradient_evaluations);
-      }
-
-      /**
       * Set the number of maximum allowed hessian evaluations.
       * \param[in] t_hessian_evaluations The number of maximum allowed hessian evaluations.
       */
       void max_hessian_evaluations(Integer t_hessian_evaluations)
       {
-        this->second_derivative_evaluations(t_hessian_evaluations);
+        this->max_second_derivative_evaluations(t_hessian_evaluations);
       }
 
     protected:
@@ -130,7 +130,7 @@ namespace Optimist
       */
       void evaluate_gradient(GradientWrapper gradient, const Vector & x, Matrix & out)
       {
-        this->evaluate_first_derivative(gradient, x, out);
+        this->evaluate_first_derivative_impl(gradient, x, out);
       }
 
       /**
@@ -141,7 +141,7 @@ namespace Optimist
       */
       void evaluate_hessian(HessianWrapper hessian, const Vector & x, Matrix & out)
       {
-        this->evaluate_second_derivative(hessian, x, out);
+        this->evaluate_second_derivative_impl(hessian, x, out);
       }
 
       /**

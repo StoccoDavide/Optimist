@@ -39,11 +39,11 @@ void for_unrolled(F&& f) {
 // Funzione di Booth.
 TEST(BroydenBad, Booth) {
   // Function
-  Schaffer2 nlfunction;
+  Brown nlfunction;
   // Non-linear solver
-  Optimist::Optimizer::NelderMead<2> nlsolver;
+  Broyden<2> nlsolver;
   nlsolver.task(nlfunction.name());
-  //nlsolver.enable_bad_method();
+  nlsolver.enable_bad_method();
   // Starting entries
   Vector2 x_ini = Vector2::Zero();
   Vector2 x_out = Vector2::Zero();
