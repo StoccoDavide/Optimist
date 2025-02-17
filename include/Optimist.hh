@@ -303,9 +303,6 @@ namespace Optimist
 
 } // namespace Optimist
 
-// Finite difference
-//#include "Optimist/FiniteDifference.hxx"
-
 // The functions
 #include "Optimist/Function.hxx"
 #include "Optimist/Function/ScalarFunction.hxx"

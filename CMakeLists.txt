@@ -116,22 +116,23 @@ export(EXPORT OptimistTargets
   FILE ${CMAKE_CURRENT_BINARY_DIR}/OptimistTargets.cmake
   NAMESPACE Optimist::
 )
+
 install(EXPORT OptimistTargets
   FILE OptimistTargets.cmake
   NAMESPACE Optimist::
   DESTINATION lib/cmake/Optimist
 )
 
-write_basic_package_version_file(
-  OptimistConfigVersion.cmake
-  VERSION ${PROJECT_VERSION}
-  COMPATIBILITY SameMajorVersion
-)
-
 configure_package_config_file(
   ${CMAKE_CURRENT_SOURCE_DIR}/cmake/Config.cmake.in
   ${CMAKE_CURRENT_BINARY_DIR}/OptimistConfig.cmake
   INSTALL_DESTINATION lib/cmake/Optimist
+)
+
+write_basic_package_version_file(
+  OptimistConfigVersion.cmake
+  VERSION ${PROJECT_VERSION}
+  COMPATIBILITY SameMajorVersion
 )
 
 install(FILES

@@ -10,8 +10,8 @@
 
 #pragma once
 
-#ifndef OPTIMIST_BOOTH_HXX
-#define OPTIMIST_BOOTH_HXX
+#ifndef OPTIMIST_VECTOR_FUNCTION_BOOTH_HXX
+#define OPTIMIST_VECTOR_FUNCTION_BOOTH_HXX
 
 namespace Optimist
 {
@@ -91,4 +91,4 @@ namespace Optimist
 
 } // namespace Optimist
 
-#endif // OPTIMIST_BOOTH_HXX
+#endif // OPTIMIST_VECTOR_FUNCTION_BOOTH_HXX

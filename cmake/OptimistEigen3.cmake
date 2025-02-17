@@ -12,8 +12,8 @@ find_package(
 if(NOT TARGET Eigen3::Eigen)
   message(STATUS "Optimist: Did not find Eigen3 ${EIGEN_REQUIRED_VERSION} installed, downloading to "
     "${OPTIMIST_THIRD_PARTY_DIR}")
-
   include(FetchContent)
+
   set(FETCHCONTENT_BASE_DIR "${OPTIMIST_THIRD_PARTY_DIR}")
   fetchcontent_declare(
     Eigen3
@@ -21,13 +21,10 @@ if(NOT TARGET Eigen3::Eigen)
   )
 
   fetchcontent_makeavailable(Eigen3)
-
-  # Manually define Eigen3::Eigen target
-  add_library(Eigen3::Eigen INTERFACE IMPORTED)
-  set_target_properties(Eigen3::Eigen PROPERTIES
-    INTERFACE_INCLUDE_DIRECTORIES "${eigen_SOURCE_DIR}"
-  )
 else()
-  get_target_property(EIGEN_INCLUDE_DIRS Eigen3::Eigen INTERFACE_INCLUDE_DIRECTORIES)
+  get_target_property(EIGEN_INCLUDE_DIRS
+    Eigen3::Eigen
+    INTERFACE_INCLUDE_DIRECTORIES
+  )
   message(STATUS "Optimist: Found Eigen3 installed in ${EIGEN_INCLUDE_DIRS}")
 endif()

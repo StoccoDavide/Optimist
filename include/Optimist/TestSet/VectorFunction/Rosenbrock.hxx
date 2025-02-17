@@ -10,8 +10,8 @@
 
 #pragma once
 
-#ifndef OPTIMIST_ROSENBROCK_HXX
-#define OPTIMIST_ROSENBROCK_HXX
+#ifndef OPTIMIST_VECTOR_FUNCTION_ROSENBROCK_HXX
+#define OPTIMIST_VECTOR_FUNCTION_ROSENBROCK_HXX
 
 namespace Optimist
 {
@@ -112,4 +112,4 @@ namespace Optimist
 
 } // namespace Optimist
 
-#endif // OPTIMIST_ROSENBROCKN_HXX
+#endif // OPTIMIST_VECTOR_FUNCTION_ROSENBROCK_HXX

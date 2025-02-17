@@ -10,8 +10,8 @@
 
 #pragma once
 
-#ifndef OPTIMIST_WOOD_HXX
-#define OPTIMIST_WOOD_HXX
+#ifndef OPTIMIST_VECTOR_FUNCTION_BROWN_HXX
+#define OPTIMIST_VECTOR_FUNCTION_BROWN_HXX
 
 namespace Optimist
 {
@@ -97,4 +97,4 @@ namespace Optimist
 
 } // namespace Optimist
 
-#endif // OPTIMIST_WOOD_HXX
+#endif // OPTIMIST_VECTOR_FUNCTION_BROWN_HXX
