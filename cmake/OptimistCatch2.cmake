@@ -10,22 +10,15 @@ find_package(
 )
 
 if(NOT TARGET Catch2::Catch2WithMain)
-  # We have to do this manually since the install process of
-  # Catch2 does not make the target directly discoverable by find_package
   if(EXISTS "${OPTIMIST_THIRD_PARTY_DIR}/catch2-src")
-    message(STATUS
-      "Optimist: "
-      "Found Catch2 installed in ${OPTIMIST_THIRD_PARTY_DIR}/catch2-src"
-    )
+    message(STATUS "Optimist: Found Catch2 installed in ${OPTIMIST_THIRD_PARTY_DIR}/catch2-src")
     add_subdirectory(
       "${OPTIMIST_THIRD_PARTY_DIR}/catch2-src"
       "${OPTIMIST_THIRD_PARTY_DIR}/catch2-build"
     )
   else()
-    message(STATUS "Optimist: "
-      "Did not find Catch2 ${CATCH2_REQUIRED_VERSION} installed, "
-      "downloading to ${OPTIMIST_THIRD_PARTY_DIR}"
-    )
+    message(STATUS "Optimist: Did not find Catch2 ${CATCH2_REQUIRED_VERSION} installed, "
+      "downloading to ${OPTIMIST_THIRD_PARTY_DIR}")
     include(FetchContent)
 
     set(FETCHCONTENT_BASE_DIR "${OPTIMIST_THIRD_PARTY_DIR}")
