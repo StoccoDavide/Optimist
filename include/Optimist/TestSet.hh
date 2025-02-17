@@ -13,10 +13,6 @@
 #ifndef INCLUDE_OPTIMIST_TESTSET_HH
 #define INCLUDE_OPTIMIST_TESTSET_HH
 
-// Optimist library
-#include "Optimist.hh"
-#include <variant>
-
 // Cost functions
 #include "TestSet/CostFunction/EllipticParaboloid.hxx"
 #include "TestSet/CostFunction/Schaffer2.hxx"
