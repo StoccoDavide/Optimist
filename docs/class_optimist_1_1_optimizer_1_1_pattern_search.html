@@ -1,0 +1,843 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>Optimist: Optimist::Optimizer::PatternSearch&lt; N &gt; Class Template Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.png"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/StoccoDavide/Optimist" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Optimist
+   &#160;<span id="projectnumber">v0.0.0</span>
+   </div>
+   <div id="projectbrief">A C++ library for optimization</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('class_optimist_1_1_optimizer_1_1_pattern_search.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="class_optimist_1_1_optimizer_1_1_pattern_search-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">Optimist::Optimizer::PatternSearch&lt; N &gt; Class Template Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Class container for the Hooke and Jeeves Pattern Search algorithm.  
+ <a href="#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_pattern_search_8hxx_source.html">PatternSearch.hxx</a>&gt;</code></p>
+
+<p>Inherits <a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html">Optimist::Optimizer::Optimizer&lt; N, PatternSearch&lt; N &gt; &gt;</a>.</p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:ab9acaef4bc41432fa7172f61265a904d" id="r_ab9acaef4bc41432fa7172f61265a904d"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab9acaef4bc41432fa7172f61265a904d">Vector</a> = typename <a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html">Optimizer</a>&lt;N, <a class="el" href="class_optimist_1_1_optimizer_1_1_pattern_search.html">PatternSearch</a>&lt;N&gt;&gt;::Vector</td></tr>
+<tr class="separator:ab9acaef4bc41432fa7172f61265a904d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf03c461d6b4760e739d9aed5baef766" id="r_acf03c461d6b4760e739d9aed5baef766"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acf03c461d6b4760e739d9aed5baef766">Matrix</a> = typename <a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html">Optimizer</a>&lt;N, <a class="el" href="class_optimist_1_1_optimizer_1_1_pattern_search.html">PatternSearch</a>&lt;N&gt;&gt;::Matrix</td></tr>
+<tr class="separator:acf03c461d6b4760e739d9aed5baef766"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2af886386fb53c43974178647078184e" id="r_a2af886386fb53c43974178647078184e"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2af886386fb53c43974178647078184e">FunctionWrapper</a> = typename <a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html">Optimizer</a>&lt;N, <a class="el" href="class_optimist_1_1_optimizer_1_1_pattern_search.html">PatternSearch</a>&lt;N&gt;&gt;::FunctionWrapper</td></tr>
+<tr class="separator:a2af886386fb53c43974178647078184e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68ed5fa17b512f7d8a7b3c39c1bbefac" id="r_a68ed5fa17b512f7d8a7b3c39c1bbefac"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a68ed5fa17b512f7d8a7b3c39c1bbefac">Simplex</a> = std::vector&lt;<a class="el" href="#ab9acaef4bc41432fa7172f61265a904d">Vector</a>&gt;</td></tr>
+<tr class="separator:a68ed5fa17b512f7d8a7b3c39c1bbefac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_types_class_optimist_1_1_optimizer_1_1_optimizer"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_types_class_optimist_1_1_optimizer_1_1_optimizer')"><img src="closed.png" alt="-"/>&#160;Public Types inherited from <a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html">Optimist::Optimizer::Optimizer&lt; N, PatternSearch&lt; N &gt; &gt;</a></td></tr>
+<tr class="memitem:af8c26f4b7cab9a4df952e24923492bbe inherit pub_types_class_optimist_1_1_optimizer_1_1_optimizer" id="r_af8c26f4b7cab9a4df952e24923492bbe"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#af8c26f4b7cab9a4df952e24923492bbe">Vector</a></td></tr>
+<tr class="separator:af8c26f4b7cab9a4df952e24923492bbe inherit pub_types_class_optimist_1_1_optimizer_1_1_optimizer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2da7d5ba987aa529092f5a1fb9684ee inherit pub_types_class_optimist_1_1_optimizer_1_1_optimizer" id="r_af2da7d5ba987aa529092f5a1fb9684ee"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#af2da7d5ba987aa529092f5a1fb9684ee">RowVector</a></td></tr>
+<tr class="separator:af2da7d5ba987aa529092f5a1fb9684ee inherit pub_types_class_optimist_1_1_optimizer_1_1_optimizer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56fbf84c1dbaa7ab951879ea8b9e4349 inherit pub_types_class_optimist_1_1_optimizer_1_1_optimizer" id="r_a56fbf84c1dbaa7ab951879ea8b9e4349"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#a56fbf84c1dbaa7ab951879ea8b9e4349">Matrix</a></td></tr>
+<tr class="separator:a56fbf84c1dbaa7ab951879ea8b9e4349 inherit pub_types_class_optimist_1_1_optimizer_1_1_optimizer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d6bdd70d62469e06c95c535c5c53e90 inherit pub_types_class_optimist_1_1_optimizer_1_1_optimizer" id="r_a8d6bdd70d62469e06c95c535c5c53e90"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#a8d6bdd70d62469e06c95c535c5c53e90">FunctionWrapper</a></td></tr>
+<tr class="separator:a8d6bdd70d62469e06c95c535c5c53e90 inherit pub_types_class_optimist_1_1_optimizer_1_1_optimizer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acdae8e5d63e49d989596987516097772 inherit pub_types_class_optimist_1_1_optimizer_1_1_optimizer" id="r_acdae8e5d63e49d989596987516097772"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#acdae8e5d63e49d989596987516097772">GradientWrapper</a></td></tr>
+<tr class="separator:acdae8e5d63e49d989596987516097772 inherit pub_types_class_optimist_1_1_optimizer_1_1_optimizer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abcad72680b9d60c9c359f142b5b24664 inherit pub_types_class_optimist_1_1_optimizer_1_1_optimizer" id="r_abcad72680b9d60c9c359f142b5b24664"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#abcad72680b9d60c9c359f142b5b24664">HessianWrapper</a></td></tr>
+<tr class="separator:abcad72680b9d60c9c359f142b5b24664 inherit pub_types_class_optimist_1_1_optimizer_1_1_optimizer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:ae13637adc0d2511fff49fbb36e616d87" id="r_ae13637adc0d2511fff49fbb36e616d87"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae13637adc0d2511fff49fbb36e616d87">PatternSearch</a> ()</td></tr>
+<tr class="separator:ae13637adc0d2511fff49fbb36e616d87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b70beb6f7f275cff45122a69e1b2ef6" id="r_a1b70beb6f7f275cff45122a69e1b2ef6"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1b70beb6f7f275cff45122a69e1b2ef6">name_impl</a> () const</td></tr>
+<tr class="separator:a1b70beb6f7f275cff45122a69e1b2ef6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb61c2bb7c2bbaa11189280a7ec258f6" id="r_afb61c2bb7c2bbaa11189280a7ec258f6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afb61c2bb7c2bbaa11189280a7ec258f6">set_max_num_stagnation</a> (integer nstg)</td></tr>
+<tr class="separator:afb61c2bb7c2bbaa11189280a7ec258f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad787f2d8f2f210c021a285f48e556e92" id="r_ad787f2d8f2f210c021a285f48e556e92"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad787f2d8f2f210c021a285f48e556e92">search</a> ()</td></tr>
+<tr class="separator:ad787f2d8f2f210c021a285f48e556e92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa46d774cec064d442abf23b0f368b2c7" id="r_aa46d774cec064d442abf23b0f368b2c7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa46d774cec064d442abf23b0f368b2c7">best_nearby</a> ()</td></tr>
+<tr class="separator:aa46d774cec064d442abf23b0f368b2c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a497b0d20cbc541f109fdb94d432f19b8" id="r_a497b0d20cbc541f109fdb94d432f19b8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a497b0d20cbc541f109fdb94d432f19b8">solve_impl</a> (<a class="el" href="#a2af886386fb53c43974178647078184e">FunctionWrapper</a> function, <a class="el" href="#ab9acaef4bc41432fa7172f61265a904d">Vector</a> const &amp;x_ini, <a class="el" href="#ab9acaef4bc41432fa7172f61265a904d">Vector</a> &amp;x_sol)</td></tr>
+<tr class="separator:a497b0d20cbc541f109fdb94d432f19b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_optimist_1_1_optimizer_1_1_optimizer"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_class_optimist_1_1_optimizer_1_1_optimizer')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html">Optimist::Optimizer::Optimizer&lt; N, PatternSearch&lt; N &gt; &gt;</a></td></tr>
+<tr class="memitem:a42603945e6dd84c9fa5cbccff96082dc inherit pub_methods_class_optimist_1_1_optimizer_1_1_optimizer" id="r_a42603945e6dd84c9fa5cbccff96082dc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#a42603945e6dd84c9fa5cbccff96082dc">Optimizer</a> ()</td></tr>
+<tr class="separator:a42603945e6dd84c9fa5cbccff96082dc inherit pub_methods_class_optimist_1_1_optimizer_1_1_optimizer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a647750ca181d43ed3996776e18d1913a inherit pub_methods_class_optimist_1_1_optimizer_1_1_optimizer" id="r_a647750ca181d43ed3996776e18d1913a"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#a647750ca181d43ed3996776e18d1913a">name</a> () const</td></tr>
+<tr class="separator:a647750ca181d43ed3996776e18d1913a inherit pub_methods_class_optimist_1_1_optimizer_1_1_optimizer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d82df465868236c85e0f45b23706358 inherit pub_methods_class_optimist_1_1_optimizer_1_1_optimizer" id="r_a0d82df465868236c85e0f45b23706358"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#a0d82df465868236c85e0f45b23706358">gradient_evaluations</a> () const</td></tr>
+<tr class="separator:a0d82df465868236c85e0f45b23706358 inherit pub_methods_class_optimist_1_1_optimizer_1_1_optimizer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2dbfa8af42d6c38f7f8527e5b90e1ea3 inherit pub_methods_class_optimist_1_1_optimizer_1_1_optimizer" id="r_a2dbfa8af42d6c38f7f8527e5b90e1ea3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#a2dbfa8af42d6c38f7f8527e5b90e1ea3">max_gradient_evaluations</a> () const</td></tr>
+<tr class="separator:a2dbfa8af42d6c38f7f8527e5b90e1ea3 inherit pub_methods_class_optimist_1_1_optimizer_1_1_optimizer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21bf7f23551ac457a595a3ee4e759f7b inherit pub_methods_class_optimist_1_1_optimizer_1_1_optimizer" id="r_a21bf7f23551ac457a595a3ee4e759f7b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#a21bf7f23551ac457a595a3ee4e759f7b">max_gradient_evaluations</a> (<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a> t_gradient_evaluations)</td></tr>
+<tr class="separator:a21bf7f23551ac457a595a3ee4e759f7b inherit pub_methods_class_optimist_1_1_optimizer_1_1_optimizer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af93264798b2f06e1049c2ba8785cae5a inherit pub_methods_class_optimist_1_1_optimizer_1_1_optimizer" id="r_af93264798b2f06e1049c2ba8785cae5a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#af93264798b2f06e1049c2ba8785cae5a">hessian_evaluations</a> () const</td></tr>
+<tr class="separator:af93264798b2f06e1049c2ba8785cae5a inherit pub_methods_class_optimist_1_1_optimizer_1_1_optimizer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62b67bea2ae6441c1a02b42a8ad9b840 inherit pub_methods_class_optimist_1_1_optimizer_1_1_optimizer" id="r_a62b67bea2ae6441c1a02b42a8ad9b840"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#a62b67bea2ae6441c1a02b42a8ad9b840">max_hessian_evaluations</a> () const</td></tr>
+<tr class="separator:a62b67bea2ae6441c1a02b42a8ad9b840 inherit pub_methods_class_optimist_1_1_optimizer_1_1_optimizer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac709666f7d5d3bd751ab6c18f1dab284 inherit pub_methods_class_optimist_1_1_optimizer_1_1_optimizer" id="r_ac709666f7d5d3bd751ab6c18f1dab284"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#ac709666f7d5d3bd751ab6c18f1dab284">max_hessian_evaluations</a> (<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a> t_hessian_evaluations)</td></tr>
+<tr class="separator:ac709666f7d5d3bd751ab6c18f1dab284 inherit pub_methods_class_optimist_1_1_optimizer_1_1_optimizer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_optimist_1_1_solver"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_class_optimist_1_1_solver')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_optimist_1_1_solver.html">Optimist::Solver&lt; N, 1, PatternSearch&lt; N &gt; &gt;</a></td></tr>
+<tr class="memitem:a906aeb396d8d479a6b7c3efc795b443c inherit pub_methods_class_optimist_1_1_solver" id="r_a906aeb396d8d479a6b7c3efc795b443c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a906aeb396d8d479a6b7c3efc795b443c">Solver</a> ()</td></tr>
+<tr class="separator:a906aeb396d8d479a6b7c3efc795b443c inherit pub_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08a27cd76ba130a17935c01356e2dc92 inherit pub_methods_class_optimist_1_1_solver" id="r_a08a27cd76ba130a17935c01356e2dc92"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a08a27cd76ba130a17935c01356e2dc92">Solver</a> (<a class="el" href="class_optimist_1_1_solver.html#af0844b262eb48a3f3f6bfe04e100ad13">FunctionWrapper</a> function, const <a class="el" href="class_optimist_1_1_solver.html#a09825f476d9a34df07dc1402f07b85a1">InputType</a> &amp;x_ini, <a class="el" href="class_optimist_1_1_solver.html#a09825f476d9a34df07dc1402f07b85a1">InputType</a> &amp;x_sol)</td></tr>
+<tr class="separator:a08a27cd76ba130a17935c01356e2dc92 inherit pub_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2e06b63f210f8da6e54a9e0ad2aba7b inherit pub_methods_class_optimist_1_1_solver" id="r_ac2e06b63f210f8da6e54a9e0ad2aba7b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#ac2e06b63f210f8da6e54a9e0ad2aba7b">Solver</a> (<a class="el" href="class_optimist_1_1_solver.html#af0844b262eb48a3f3f6bfe04e100ad13">FunctionWrapper</a> function, <a class="el" href="class_optimist_1_1_solver.html#ae38df6d2809b8c18f49eb2f5bb4f8ac5">FirstDerivativeWrapper</a> first_derivative, const <a class="el" href="class_optimist_1_1_solver.html#a09825f476d9a34df07dc1402f07b85a1">InputType</a> &amp;x_ini, <a class="el" href="class_optimist_1_1_solver.html#a09825f476d9a34df07dc1402f07b85a1">InputType</a> &amp;x_sol)</td></tr>
+<tr class="separator:ac2e06b63f210f8da6e54a9e0ad2aba7b inherit pub_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a621a614642da91df989b50e08fd66ba8 inherit pub_methods_class_optimist_1_1_solver" id="r_a621a614642da91df989b50e08fd66ba8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a621a614642da91df989b50e08fd66ba8">Solver</a> (<a class="el" href="class_optimist_1_1_solver.html#af0844b262eb48a3f3f6bfe04e100ad13">FunctionWrapper</a> function, <a class="el" href="class_optimist_1_1_solver.html#ae38df6d2809b8c18f49eb2f5bb4f8ac5">FirstDerivativeWrapper</a> first_derivative, <a class="el" href="class_optimist_1_1_solver.html#a1952d0729c8bb1066597b42c46e9f9ba">SecondDerivativeWrapper</a> second_derivative, const <a class="el" href="class_optimist_1_1_solver.html#a09825f476d9a34df07dc1402f07b85a1">InputType</a> &amp;x_ini, <a class="el" href="class_optimist_1_1_solver.html#a09825f476d9a34df07dc1402f07b85a1">InputType</a> &amp;x_sol)</td></tr>
+<tr class="separator:a621a614642da91df989b50e08fd66ba8 inherit pub_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abec0482af24a5d97b329f901f4fec462 inherit pub_methods_class_optimist_1_1_solver" id="r_abec0482af24a5d97b329f901f4fec462"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#abec0482af24a5d97b329f901f4fec462">input_dimension</a> () const</td></tr>
+<tr class="separator:abec0482af24a5d97b329f901f4fec462 inherit pub_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a4fed61639cd121e5a18d572edc7fb1 inherit pub_methods_class_optimist_1_1_solver" id="r_a0a4fed61639cd121e5a18d572edc7fb1"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a0a4fed61639cd121e5a18d572edc7fb1">output_dimension</a> () const</td></tr>
+<tr class="separator:a0a4fed61639cd121e5a18d572edc7fb1 inherit pub_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68df019ef3b7d4b186e4fd45935ce13b inherit pub_methods_class_optimist_1_1_solver" id="r_a68df019ef3b7d4b186e4fd45935ce13b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a68df019ef3b7d4b186e4fd45935ce13b">function_evaluations</a> () const</td></tr>
+<tr class="separator:a68df019ef3b7d4b186e4fd45935ce13b inherit pub_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a304a5e0c39a4206e651ca096b691bf34 inherit pub_methods_class_optimist_1_1_solver" id="r_a304a5e0c39a4206e651ca096b691bf34"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a304a5e0c39a4206e651ca096b691bf34">max_function_evaluations</a> (<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a> t_max_function_evaluations)</td></tr>
+<tr class="separator:a304a5e0c39a4206e651ca096b691bf34 inherit pub_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3991a5c537fb5cd3d3b53592214cecab inherit pub_methods_class_optimist_1_1_solver" id="r_a3991a5c537fb5cd3d3b53592214cecab"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a3991a5c537fb5cd3d3b53592214cecab">max_function_evaluations</a> () const</td></tr>
+<tr class="separator:a3991a5c537fb5cd3d3b53592214cecab inherit pub_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d834fcb3af25e668e70c81b386b949b inherit pub_methods_class_optimist_1_1_solver" id="r_a4d834fcb3af25e668e70c81b386b949b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a4d834fcb3af25e668e70c81b386b949b">iterations</a> () const</td></tr>
+<tr class="separator:a4d834fcb3af25e668e70c81b386b949b inherit pub_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e7da58d6cf99d0372bed07f262009f3 inherit pub_methods_class_optimist_1_1_solver" id="r_a9e7da58d6cf99d0372bed07f262009f3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a9e7da58d6cf99d0372bed07f262009f3">max_iterations</a> () const</td></tr>
+<tr class="separator:a9e7da58d6cf99d0372bed07f262009f3 inherit pub_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48886f9c805a44c792b471b5c6111139 inherit pub_methods_class_optimist_1_1_solver" id="r_a48886f9c805a44c792b471b5c6111139"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a48886f9c805a44c792b471b5c6111139">max_iterations</a> (<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a> t_max_iterations)</td></tr>
+<tr class="separator:a48886f9c805a44c792b471b5c6111139 inherit pub_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a882a0021fe2aeefde6959c1e5ce5ee04 inherit pub_methods_class_optimist_1_1_solver" id="r_a882a0021fe2aeefde6959c1e5ce5ee04"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_optimist.html#a81198c1084f49913c4731c80160f6713">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a882a0021fe2aeefde6959c1e5ce5ee04">alpha</a> () const</td></tr>
+<tr class="separator:a882a0021fe2aeefde6959c1e5ce5ee04 inherit pub_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3189e40c929b99e54dd775d5f7d9026b inherit pub_methods_class_optimist_1_1_solver" id="r_a3189e40c929b99e54dd775d5f7d9026b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a3189e40c929b99e54dd775d5f7d9026b">alpha</a> (<a class="el" href="namespace_optimist.html#a81198c1084f49913c4731c80160f6713">Real</a> t_alpha)</td></tr>
+<tr class="separator:a3189e40c929b99e54dd775d5f7d9026b inherit pub_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa158c523eaee5077b68529a2c2a21c09 inherit pub_methods_class_optimist_1_1_solver" id="r_aa158c523eaee5077b68529a2c2a21c09"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#aa158c523eaee5077b68529a2c2a21c09">relaxations</a> () const</td></tr>
+<tr class="separator:aa158c523eaee5077b68529a2c2a21c09 inherit pub_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58982c8ae9efee7ba02bc67b66d43080 inherit pub_methods_class_optimist_1_1_solver" id="r_a58982c8ae9efee7ba02bc67b66d43080"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a58982c8ae9efee7ba02bc67b66d43080">max_relaxations</a> () const</td></tr>
+<tr class="separator:a58982c8ae9efee7ba02bc67b66d43080 inherit pub_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a306457a3fc92599d19c08beff3fa79cd inherit pub_methods_class_optimist_1_1_solver" id="r_a306457a3fc92599d19c08beff3fa79cd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a306457a3fc92599d19c08beff3fa79cd">max_relaxations</a> (<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a> t_max_relaxations)</td></tr>
+<tr class="separator:a306457a3fc92599d19c08beff3fa79cd inherit pub_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40d2093884e3ce8b3fe5b8d46e7e8f8d inherit pub_methods_class_optimist_1_1_solver" id="r_a40d2093884e3ce8b3fe5b8d46e7e8f8d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_optimist.html#a81198c1084f49913c4731c80160f6713">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a40d2093884e3ce8b3fe5b8d46e7e8f8d">tolerance</a> () const</td></tr>
+<tr class="separator:a40d2093884e3ce8b3fe5b8d46e7e8f8d inherit pub_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5ff74d62e86d447ad11df0db473a96b inherit pub_methods_class_optimist_1_1_solver" id="r_ac5ff74d62e86d447ad11df0db473a96b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#ac5ff74d62e86d447ad11df0db473a96b">tolerance</a> (<a class="el" href="namespace_optimist.html#a81198c1084f49913c4731c80160f6713">Real</a> t_tolerance)</td></tr>
+<tr class="separator:ac5ff74d62e86d447ad11df0db473a96b inherit pub_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb41ae3cf6a625d579a5cb3db49ba01f inherit pub_methods_class_optimist_1_1_solver" id="r_adb41ae3cf6a625d579a5cb3db49ba01f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#adb41ae3cf6a625d579a5cb3db49ba01f">verbose_mode</a> (bool t_verbose)</td></tr>
+<tr class="separator:adb41ae3cf6a625d579a5cb3db49ba01f inherit pub_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a185bda5a577f691005bc9ffe3bf7e112 inherit pub_methods_class_optimist_1_1_solver" id="r_a185bda5a577f691005bc9ffe3bf7e112"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a185bda5a577f691005bc9ffe3bf7e112">verbose_mode</a> () const</td></tr>
+<tr class="separator:a185bda5a577f691005bc9ffe3bf7e112 inherit pub_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98891dabeca623592b2e1ab06b702caf inherit pub_methods_class_optimist_1_1_solver" id="r_a98891dabeca623592b2e1ab06b702caf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a98891dabeca623592b2e1ab06b702caf">enable_verbose_mode</a> ()</td></tr>
+<tr class="separator:a98891dabeca623592b2e1ab06b702caf inherit pub_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5488519ab06bc70c82cc8a7672b1857 inherit pub_methods_class_optimist_1_1_solver" id="r_ac5488519ab06bc70c82cc8a7672b1857"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#ac5488519ab06bc70c82cc8a7672b1857">disable_verbose_mode</a> ()</td></tr>
+<tr class="separator:ac5488519ab06bc70c82cc8a7672b1857 inherit pub_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac86c85267b942d9e7569089436cfffb inherit pub_methods_class_optimist_1_1_solver" id="r_aac86c85267b942d9e7569089436cfffb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#aac86c85267b942d9e7569089436cfffb">damped_mode</a> (bool t_damped)</td></tr>
+<tr class="separator:aac86c85267b942d9e7569089436cfffb inherit pub_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f7f01d88c99e2f19aec4f9f8421aa40 inherit pub_methods_class_optimist_1_1_solver" id="r_a4f7f01d88c99e2f19aec4f9f8421aa40"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a4f7f01d88c99e2f19aec4f9f8421aa40">damped_mode</a> () const</td></tr>
+<tr class="separator:a4f7f01d88c99e2f19aec4f9f8421aa40 inherit pub_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20f7910c273223fae2330b1f74aa5c0a inherit pub_methods_class_optimist_1_1_solver" id="r_a20f7910c273223fae2330b1f74aa5c0a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a20f7910c273223fae2330b1f74aa5c0a">enable_damped_mode</a> ()</td></tr>
+<tr class="separator:a20f7910c273223fae2330b1f74aa5c0a inherit pub_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a239b7ccc45e8753b0e4c61131c89f7b3 inherit pub_methods_class_optimist_1_1_solver" id="r_a239b7ccc45e8753b0e4c61131c89f7b3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a239b7ccc45e8753b0e4c61131c89f7b3">disable_damped_mode</a> ()</td></tr>
+<tr class="separator:a239b7ccc45e8753b0e4c61131c89f7b3 inherit pub_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0bb6080b5577e77cf4e1a463d1f3efa inherit pub_methods_class_optimist_1_1_solver" id="r_ac0bb6080b5577e77cf4e1a463d1f3efa"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#ac0bb6080b5577e77cf4e1a463d1f3efa">task</a> () const</td></tr>
+<tr class="separator:ac0bb6080b5577e77cf4e1a463d1f3efa inherit pub_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54234154f44ff7625e5062f7f2fc8bc7 inherit pub_methods_class_optimist_1_1_solver" id="r_a54234154f44ff7625e5062f7f2fc8bc7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a54234154f44ff7625e5062f7f2fc8bc7">task</a> (std::string t_task)</td></tr>
+<tr class="separator:a54234154f44ff7625e5062f7f2fc8bc7 inherit pub_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f797b97aa114f2cd60d098b2acb7385 inherit pub_methods_class_optimist_1_1_solver" id="r_a8f797b97aa114f2cd60d098b2acb7385"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a8f797b97aa114f2cd60d098b2acb7385">converged</a> () const</td></tr>
+<tr class="separator:a8f797b97aa114f2cd60d098b2acb7385 inherit pub_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9074309b65354deb0025cca78f109c8 inherit pub_methods_class_optimist_1_1_solver" id="r_ac9074309b65354deb0025cca78f109c8"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_optimist_1_1_solver.html#a01cb13872a3cf6c90b9c442c626874b0">TraceType</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#ac9074309b65354deb0025cca78f109c8">trace</a> () const</td></tr>
+<tr class="separator:ac9074309b65354deb0025cca78f109c8 inherit pub_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc31c4045777b56feae6a09dcbfd087f inherit pub_methods_class_optimist_1_1_solver" id="r_adc31c4045777b56feae6a09dcbfd087f"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#adc31c4045777b56feae6a09dcbfd087f">ostream</a> () const</td></tr>
+<tr class="separator:adc31c4045777b56feae6a09dcbfd087f inherit pub_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a516d1ff27cb8ab7f4add0b3ccf0b4629 inherit pub_methods_class_optimist_1_1_solver" id="r_a516d1ff27cb8ab7f4add0b3ccf0b4629"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a516d1ff27cb8ab7f4add0b3ccf0b4629">ostream</a> (std::ostream &amp;t_ostream)</td></tr>
+<tr class="separator:a516d1ff27cb8ab7f4add0b3ccf0b4629 inherit pub_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19492d57f7ffa57eca793767678e65b2 inherit pub_methods_class_optimist_1_1_solver" id="r_a19492d57f7ffa57eca793767678e65b2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a19492d57f7ffa57eca793767678e65b2">solve</a> (<a class="el" href="class_optimist_1_1_solver.html#af0844b262eb48a3f3f6bfe04e100ad13">FunctionWrapper</a> function, const <a class="el" href="class_optimist_1_1_solver.html#a09825f476d9a34df07dc1402f07b85a1">InputType</a> &amp;x_ini, <a class="el" href="class_optimist_1_1_solver.html#a09825f476d9a34df07dc1402f07b85a1">InputType</a> &amp;x_sol)</td></tr>
+<tr class="separator:a19492d57f7ffa57eca793767678e65b2 inherit pub_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abcdba1315a227e0da897bd90081c371c inherit pub_methods_class_optimist_1_1_solver" id="r_abcdba1315a227e0da897bd90081c371c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#abcdba1315a227e0da897bd90081c371c">solve</a> (<a class="el" href="class_optimist_1_1_solver.html#af0844b262eb48a3f3f6bfe04e100ad13">FunctionWrapper</a> function, <a class="el" href="class_optimist_1_1_solver.html#ae38df6d2809b8c18f49eb2f5bb4f8ac5">FirstDerivativeWrapper</a> first_derivative, const <a class="el" href="class_optimist_1_1_solver.html#a09825f476d9a34df07dc1402f07b85a1">InputType</a> &amp;x_ini, <a class="el" href="class_optimist_1_1_solver.html#a09825f476d9a34df07dc1402f07b85a1">InputType</a> &amp;x_sol)</td></tr>
+<tr class="separator:abcdba1315a227e0da897bd90081c371c inherit pub_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1ee8ca9fe0eaee873832a88fd71c887 inherit pub_methods_class_optimist_1_1_solver" id="r_ab1ee8ca9fe0eaee873832a88fd71c887"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#ab1ee8ca9fe0eaee873832a88fd71c887">solve</a> (<a class="el" href="class_optimist_1_1_solver.html#af0844b262eb48a3f3f6bfe04e100ad13">FunctionWrapper</a> function, <a class="el" href="class_optimist_1_1_solver.html#ae38df6d2809b8c18f49eb2f5bb4f8ac5">FirstDerivativeWrapper</a> first_derivative, <a class="el" href="class_optimist_1_1_solver.html#a1952d0729c8bb1066597b42c46e9f9ba">SecondDerivativeWrapper</a> second_derivative, const <a class="el" href="class_optimist_1_1_solver.html#a09825f476d9a34df07dc1402f07b85a1">InputType</a> &amp;x_ini, <a class="el" href="class_optimist_1_1_solver.html#a09825f476d9a34df07dc1402f07b85a1">InputType</a> &amp;x_sol)</td></tr>
+<tr class="separator:ab1ee8ca9fe0eaee873832a88fd71c887 inherit pub_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6ccae3d9cb7418f5687e1964d49f4e0 inherit pub_methods_class_optimist_1_1_solver" id="r_ac6ccae3d9cb7418f5687e1964d49f4e0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#ac6ccae3d9cb7418f5687e1964d49f4e0">rootfind</a> (<a class="el" href="class_optimist_1_1_function.html">Function</a>&lt; FunInDim, FunOutDim, DerivedFunction &gt; const &amp;function, const <a class="el" href="class_optimist_1_1_solver.html#a09825f476d9a34df07dc1402f07b85a1">InputType</a> &amp;x_ini, <a class="el" href="class_optimist_1_1_solver.html#a09825f476d9a34df07dc1402f07b85a1">InputType</a> &amp;x_sol)</td></tr>
+<tr class="separator:ac6ccae3d9cb7418f5687e1964d49f4e0 inherit pub_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0eef56affcd11f8f63690ff83f54bc5b inherit pub_methods_class_optimist_1_1_solver" id="r_a0eef56affcd11f8f63690ff83f54bc5b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a0eef56affcd11f8f63690ff83f54bc5b">optimize</a> (<a class="el" href="class_optimist_1_1_function.html">Function</a>&lt; FunInDim, FunOutDim, DerivedFunction &gt; const &amp;function, const <a class="el" href="class_optimist_1_1_solver.html#a09825f476d9a34df07dc1402f07b85a1">InputType</a> &amp;x_ini, <a class="el" href="class_optimist_1_1_solver.html#a09825f476d9a34df07dc1402f07b85a1">InputType</a> &amp;x_sol)</td></tr>
+<tr class="separator:a0eef56affcd11f8f63690ff83f54bc5b inherit pub_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd59a2429829f002c9bb47e933eb3ad9 inherit pub_methods_class_optimist_1_1_solver" id="r_afd59a2429829f002c9bb47e933eb3ad9"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#afd59a2429829f002c9bb47e933eb3ad9">name</a> () const</td></tr>
+<tr class="separator:afd59a2429829f002c9bb47e933eb3ad9 inherit pub_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:af317e1e4e8a55ac301d1f9ac1209d98a" id="r_af317e1e4e8a55ac301d1f9ac1209d98a"><td class="memItemLeft" align="right" valign="top">static constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af317e1e4e8a55ac301d1f9ac1209d98a">requires_function</a> = true</td></tr>
+<tr class="separator:af317e1e4e8a55ac301d1f9ac1209d98a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9741f90b902177889bd3405c98437bd" id="r_ac9741f90b902177889bd3405c98437bd"><td class="memItemLeft" align="right" valign="top">static constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac9741f90b902177889bd3405c98437bd">requires_first_derivative</a> = false</td></tr>
+<tr class="separator:ac9741f90b902177889bd3405c98437bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1add1cdb447fdf51c1f95faffad34aee" id="r_a1add1cdb447fdf51c1f95faffad34aee"><td class="memItemLeft" align="right" valign="top">static constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1add1cdb447fdf51c1f95faffad34aee">requires_second_derivative</a> = false</td></tr>
+<tr class="separator:a1add1cdb447fdf51c1f95faffad34aee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_static_attribs_class_optimist_1_1_optimizer_1_1_optimizer"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_static_attribs_class_optimist_1_1_optimizer_1_1_optimizer')"><img src="closed.png" alt="-"/>&#160;Static Public Attributes inherited from <a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html">Optimist::Optimizer::Optimizer&lt; N, PatternSearch&lt; N &gt; &gt;</a></td></tr>
+<tr class="memitem:a322ccd23dc3369fb938a11a545224f75 inherit pub_static_attribs_class_optimist_1_1_optimizer_1_1_optimizer" id="r_a322ccd23dc3369fb938a11a545224f75"><td class="memItemLeft" align="right" valign="top">static constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#a322ccd23dc3369fb938a11a545224f75">is_rootfinder</a></td></tr>
+<tr class="separator:a322ccd23dc3369fb938a11a545224f75 inherit pub_static_attribs_class_optimist_1_1_optimizer_1_1_optimizer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20f153e4892a7a183528d76a6630f86a inherit pub_static_attribs_class_optimist_1_1_optimizer_1_1_optimizer" id="r_a20f153e4892a7a183528d76a6630f86a"><td class="memItemLeft" align="right" valign="top">static constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#a20f153e4892a7a183528d76a6630f86a">is_optimizer</a></td></tr>
+<tr class="separator:a20f153e4892a7a183528d76a6630f86a inherit pub_static_attribs_class_optimist_1_1_optimizer_1_1_optimizer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac200c9b6656d1fb461aeeb8f4dabc21e inherit pub_static_attribs_class_optimist_1_1_optimizer_1_1_optimizer" id="r_ac200c9b6656d1fb461aeeb8f4dabc21e"><td class="memItemLeft" align="right" valign="top">static constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#ac200c9b6656d1fb461aeeb8f4dabc21e">requires_function</a></td></tr>
+<tr class="separator:ac200c9b6656d1fb461aeeb8f4dabc21e inherit pub_static_attribs_class_optimist_1_1_optimizer_1_1_optimizer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2cd9384b1913b8fa3ad1ccfa22137211 inherit pub_static_attribs_class_optimist_1_1_optimizer_1_1_optimizer" id="r_a2cd9384b1913b8fa3ad1ccfa22137211"><td class="memItemLeft" align="right" valign="top">static constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#a2cd9384b1913b8fa3ad1ccfa22137211">requires_first_derivative</a></td></tr>
+<tr class="separator:a2cd9384b1913b8fa3ad1ccfa22137211 inherit pub_static_attribs_class_optimist_1_1_optimizer_1_1_optimizer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a816f0c74d9b792ad710799b8c9bf6e8e inherit pub_static_attribs_class_optimist_1_1_optimizer_1_1_optimizer" id="r_a816f0c74d9b792ad710799b8c9bf6e8e"><td class="memItemLeft" align="right" valign="top">static constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#a816f0c74d9b792ad710799b8c9bf6e8e">requires_second_derivative</a></td></tr>
+<tr class="separator:a816f0c74d9b792ad710799b8c9bf6e8e inherit pub_static_attribs_class_optimist_1_1_optimizer_1_1_optimizer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:acd00c00135ab03cfe4fa529aa2770879" id="r_acd00c00135ab03cfe4fa529aa2770879"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_optimist.html#a81198c1084f49913c4731c80160f6713">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acd00c00135ab03cfe4fa529aa2770879">m_rho</a> {<a class="el" href="namespace_optimist.html#a81198c1084f49913c4731c80160f6713">Real</a>(0.9)}</td></tr>
+<tr class="separator:acd00c00135ab03cfe4fa529aa2770879"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f4ee18e0738ad6ef6323e6de1c0450e" id="r_a4f4ee18e0738ad6ef6323e6de1c0450e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_optimist.html#a81198c1084f49913c4731c80160f6713">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4f4ee18e0738ad6ef6323e6de1c0450e">m_h</a> {<a class="el" href="namespace_optimist.html#a81198c1084f49913c4731c80160f6713">Real</a>(0.1)}</td></tr>
+<tr class="separator:a4f4ee18e0738ad6ef6323e6de1c0450e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41af00efb6de501dc0c2053c03303969" id="r_a41af00efb6de501dc0c2053c03303969"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a41af00efb6de501dc0c2053c03303969">m_stencil_failure</a> {false}</td></tr>
+<tr class="separator:a41af00efb6de501dc0c2053c03303969"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pub_attribs_class_optimist_1_1_optimizer_1_1_optimizer"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_attribs_class_optimist_1_1_optimizer_1_1_optimizer')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html">Optimist::Optimizer::Optimizer&lt; N, PatternSearch&lt; N &gt; &gt;</a></td></tr>
+<tr class="memitem:a433185f02774fefb110cef2d8697e5bb inherit pub_attribs_class_optimist_1_1_optimizer_1_1_optimizer" id="r_a433185f02774fefb110cef2d8697e5bb"><td class="memItemLeft" align="right" valign="top">friend&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#a433185f02774fefb110cef2d8697e5bb">Solver&lt; N, 1, Optimizer&lt; N, DerivedSolver &gt; &gt;</a></td></tr>
+<tr class="separator:a433185f02774fefb110cef2d8697e5bb inherit pub_attribs_class_optimist_1_1_optimizer_1_1_optimizer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_types_class_optimist_1_1_solver"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_types_class_optimist_1_1_solver')"><img src="closed.png" alt="-"/>&#160;Protected Types inherited from <a class="el" href="class_optimist_1_1_solver.html">Optimist::Solver&lt; N, 1, PatternSearch&lt; N &gt; &gt;</a></td></tr>
+<tr class="memitem:a09825f476d9a34df07dc1402f07b85a1 inherit pro_types_class_optimist_1_1_solver" id="r_a09825f476d9a34df07dc1402f07b85a1"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a09825f476d9a34df07dc1402f07b85a1">InputType</a></td></tr>
+<tr class="separator:a09825f476d9a34df07dc1402f07b85a1 inherit pro_types_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab05d4b5ea998964cbea09354410e3551 inherit pro_types_class_optimist_1_1_solver" id="r_ab05d4b5ea998964cbea09354410e3551"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#ab05d4b5ea998964cbea09354410e3551">OutputType</a></td></tr>
+<tr class="separator:ab05d4b5ea998964cbea09354410e3551 inherit pro_types_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01cb13872a3cf6c90b9c442c626874b0 inherit pro_types_class_optimist_1_1_solver" id="r_a01cb13872a3cf6c90b9c442c626874b0"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a01cb13872a3cf6c90b9c442c626874b0">TraceType</a></td></tr>
+<tr class="separator:a01cb13872a3cf6c90b9c442c626874b0 inherit pro_types_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3ec9be32c32ced1eca7312791cd0121 inherit pro_types_class_optimist_1_1_solver" id="r_ae3ec9be32c32ced1eca7312791cd0121"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#ae3ec9be32c32ced1eca7312791cd0121">FirstDerivativeType</a></td></tr>
+<tr class="separator:ae3ec9be32c32ced1eca7312791cd0121 inherit pro_types_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43dfcdd6e57a405a79a48cce176d7d99 inherit pro_types_class_optimist_1_1_solver" id="r_a43dfcdd6e57a405a79a48cce176d7d99"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a43dfcdd6e57a405a79a48cce176d7d99">SecondDerivativeType</a></td></tr>
+<tr class="separator:a43dfcdd6e57a405a79a48cce176d7d99 inherit pro_types_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0844b262eb48a3f3f6bfe04e100ad13 inherit pro_types_class_optimist_1_1_solver" id="r_af0844b262eb48a3f3f6bfe04e100ad13"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#af0844b262eb48a3f3f6bfe04e100ad13">FunctionWrapper</a></td></tr>
+<tr class="separator:af0844b262eb48a3f3f6bfe04e100ad13 inherit pro_types_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae38df6d2809b8c18f49eb2f5bb4f8ac5 inherit pro_types_class_optimist_1_1_solver" id="r_ae38df6d2809b8c18f49eb2f5bb4f8ac5"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#ae38df6d2809b8c18f49eb2f5bb4f8ac5">FirstDerivativeWrapper</a></td></tr>
+<tr class="separator:ae38df6d2809b8c18f49eb2f5bb4f8ac5 inherit pro_types_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1952d0729c8bb1066597b42c46e9f9ba inherit pro_types_class_optimist_1_1_solver" id="r_a1952d0729c8bb1066597b42c46e9f9ba"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a1952d0729c8bb1066597b42c46e9f9ba">SecondDerivativeWrapper</a></td></tr>
+<tr class="separator:a1952d0729c8bb1066597b42c46e9f9ba inherit pro_types_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_methods_class_optimist_1_1_optimizer_1_1_optimizer"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_methods_class_optimist_1_1_optimizer_1_1_optimizer')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html">Optimist::Optimizer::Optimizer&lt; N, PatternSearch&lt; N &gt; &gt;</a></td></tr>
+<tr class="memitem:ab72e34b86001e7a28673122b8feae9b0 inherit pro_methods_class_optimist_1_1_optimizer_1_1_optimizer" id="r_ab72e34b86001e7a28673122b8feae9b0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#ab72e34b86001e7a28673122b8feae9b0">evaluate_gradient</a> (<a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#acdae8e5d63e49d989596987516097772">GradientWrapper</a> gradient, const <a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#af8c26f4b7cab9a4df952e24923492bbe">Vector</a> &amp;x, <a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#a56fbf84c1dbaa7ab951879ea8b9e4349">Matrix</a> &amp;out)</td></tr>
+<tr class="separator:ab72e34b86001e7a28673122b8feae9b0 inherit pro_methods_class_optimist_1_1_optimizer_1_1_optimizer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81b6304ae2d1b3b96db2f8d682ec61c8 inherit pro_methods_class_optimist_1_1_optimizer_1_1_optimizer" id="r_a81b6304ae2d1b3b96db2f8d682ec61c8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#a81b6304ae2d1b3b96db2f8d682ec61c8">evaluate_hessian</a> (<a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#abcad72680b9d60c9c359f142b5b24664">HessianWrapper</a> hessian, const <a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#af8c26f4b7cab9a4df952e24923492bbe">Vector</a> &amp;x, <a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#a56fbf84c1dbaa7ab951879ea8b9e4349">Matrix</a> &amp;out)</td></tr>
+<tr class="separator:a81b6304ae2d1b3b96db2f8d682ec61c8 inherit pro_methods_class_optimist_1_1_optimizer_1_1_optimizer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63a6c9eaefcc042fdd5b7d9e7110f52c inherit pro_methods_class_optimist_1_1_optimizer_1_1_optimizer" id="r_a63a6c9eaefcc042fdd5b7d9e7110f52c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#a63a6c9eaefcc042fdd5b7d9e7110f52c">solve</a> (<a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#a8d6bdd70d62469e06c95c535c5c53e90">FunctionWrapper</a> function, <a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#af8c26f4b7cab9a4df952e24923492bbe">Vector</a> const &amp;x_ini, <a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#af8c26f4b7cab9a4df952e24923492bbe">Vector</a> &amp;x_sol)</td></tr>
+<tr class="separator:a63a6c9eaefcc042fdd5b7d9e7110f52c inherit pro_methods_class_optimist_1_1_optimizer_1_1_optimizer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95347fe4e4d3c213a7964236fe3e1328 inherit pro_methods_class_optimist_1_1_optimizer_1_1_optimizer" id="r_a95347fe4e4d3c213a7964236fe3e1328"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#a95347fe4e4d3c213a7964236fe3e1328">solve</a> (<a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#a8d6bdd70d62469e06c95c535c5c53e90">FunctionWrapper</a> function, <a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#acdae8e5d63e49d989596987516097772">GradientWrapper</a> gradient, <a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#af8c26f4b7cab9a4df952e24923492bbe">Vector</a> const &amp;x_ini, <a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#af8c26f4b7cab9a4df952e24923492bbe">Vector</a> &amp;x_sol)</td></tr>
+<tr class="separator:a95347fe4e4d3c213a7964236fe3e1328 inherit pro_methods_class_optimist_1_1_optimizer_1_1_optimizer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73ba42048b310f8c80f8044c07b5bcf4 inherit pro_methods_class_optimist_1_1_optimizer_1_1_optimizer" id="r_a73ba42048b310f8c80f8044c07b5bcf4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#a73ba42048b310f8c80f8044c07b5bcf4">solve</a> (<a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#a8d6bdd70d62469e06c95c535c5c53e90">FunctionWrapper</a> function, <a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#acdae8e5d63e49d989596987516097772">GradientWrapper</a> gradient, <a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#abcad72680b9d60c9c359f142b5b24664">HessianWrapper</a> hessian, <a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#af8c26f4b7cab9a4df952e24923492bbe">Vector</a> const &amp;x_ini, <a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#af8c26f4b7cab9a4df952e24923492bbe">Vector</a> &amp;x_sol)</td></tr>
+<tr class="separator:a73ba42048b310f8c80f8044c07b5bcf4 inherit pro_methods_class_optimist_1_1_optimizer_1_1_optimizer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_methods_class_optimist_1_1_solver"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_methods_class_optimist_1_1_solver')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="class_optimist_1_1_solver.html">Optimist::Solver&lt; N, 1, PatternSearch&lt; N &gt; &gt;</a></td></tr>
+<tr class="memitem:ab3bfc7439a776790be861a724db2d245 inherit pro_methods_class_optimist_1_1_solver" id="r_ab3bfc7439a776790be861a724db2d245"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#ab3bfc7439a776790be861a724db2d245">first_derivative_evaluations</a> () const</td></tr>
+<tr class="separator:ab3bfc7439a776790be861a724db2d245 inherit pro_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2040012d54fed72c809da17d18aa132f inherit pro_methods_class_optimist_1_1_solver" id="r_a2040012d54fed72c809da17d18aa132f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a2040012d54fed72c809da17d18aa132f">max_first_derivative_evaluations</a> () const</td></tr>
+<tr class="separator:a2040012d54fed72c809da17d18aa132f inherit pro_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4898c5532910b8c4f5fc7040ee57ef6c inherit pro_methods_class_optimist_1_1_solver" id="r_a4898c5532910b8c4f5fc7040ee57ef6c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a4898c5532910b8c4f5fc7040ee57ef6c">max_first_derivative_evaluations</a> (<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a> <a class="el" href="class_optimist_1_1_solver.html#ab3bfc7439a776790be861a724db2d245">first_derivative_evaluations</a>)</td></tr>
+<tr class="separator:a4898c5532910b8c4f5fc7040ee57ef6c inherit pro_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21d5fcb44f9376c4bb71be7e0afc53ca inherit pro_methods_class_optimist_1_1_solver" id="r_a21d5fcb44f9376c4bb71be7e0afc53ca"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a21d5fcb44f9376c4bb71be7e0afc53ca">second_derivative_evaluations</a> () const</td></tr>
+<tr class="separator:a21d5fcb44f9376c4bb71be7e0afc53ca inherit pro_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad46fb6501370b8b2fa14c47946584d03 inherit pro_methods_class_optimist_1_1_solver" id="r_ad46fb6501370b8b2fa14c47946584d03"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#ad46fb6501370b8b2fa14c47946584d03">max_second_derivative_evaluations</a> () const</td></tr>
+<tr class="separator:ad46fb6501370b8b2fa14c47946584d03 inherit pro_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4afd56a421dd4e18c1060a32b25a8b16 inherit pro_methods_class_optimist_1_1_solver" id="r_a4afd56a421dd4e18c1060a32b25a8b16"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a4afd56a421dd4e18c1060a32b25a8b16">max_second_derivative_evaluations</a> (<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a> <a class="el" href="class_optimist_1_1_solver.html#a21d5fcb44f9376c4bb71be7e0afc53ca">second_derivative_evaluations</a>)</td></tr>
+<tr class="separator:a4afd56a421dd4e18c1060a32b25a8b16 inherit pro_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad07abada810583f86557466603f78688 inherit pro_methods_class_optimist_1_1_solver" id="r_ad07abada810583f86557466603f78688"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#ad07abada810583f86557466603f78688">solve</a> (<a class="el" href="class_optimist_1_1_function.html">Function</a>&lt; FunInDim, FunOutDim, DerivedFunction &gt; const &amp;function, const <a class="el" href="class_optimist_1_1_solver.html#a09825f476d9a34df07dc1402f07b85a1">InputType</a> &amp;x_ini, <a class="el" href="class_optimist_1_1_solver.html#a09825f476d9a34df07dc1402f07b85a1">InputType</a> &amp;x_sol, bool is_optimization)</td></tr>
+<tr class="separator:ad07abada810583f86557466603f78688 inherit pro_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af573ca9fe8a776ec0db3d50ea86b4808 inherit pro_methods_class_optimist_1_1_solver" id="r_af573ca9fe8a776ec0db3d50ea86b4808"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#af573ca9fe8a776ec0db3d50ea86b4808">reset</a> ()</td></tr>
+<tr class="separator:af573ca9fe8a776ec0db3d50ea86b4808 inherit pro_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a544e538b3ddbc8c1c7f16123f0fcd9c9 inherit pro_methods_class_optimist_1_1_solver" id="r_a544e538b3ddbc8c1c7f16123f0fcd9c9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a544e538b3ddbc8c1c7f16123f0fcd9c9">evaluate_function</a> (<a class="el" href="class_optimist_1_1_solver.html#af0844b262eb48a3f3f6bfe04e100ad13">FunctionWrapper</a> function, const <a class="el" href="class_optimist_1_1_solver.html#a09825f476d9a34df07dc1402f07b85a1">InputType</a> &amp;x, <a class="el" href="class_optimist_1_1_solver.html#ab05d4b5ea998964cbea09354410e3551">OutputType</a> &amp;out)</td></tr>
+<tr class="separator:a544e538b3ddbc8c1c7f16123f0fcd9c9 inherit pro_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84de52b743458d0d214a830e22674910 inherit pro_methods_class_optimist_1_1_solver" id="r_a84de52b743458d0d214a830e22674910"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a84de52b743458d0d214a830e22674910">evaluate_first_derivative</a> (<a class="el" href="class_optimist_1_1_solver.html#ae38df6d2809b8c18f49eb2f5bb4f8ac5">FirstDerivativeWrapper</a> function, const <a class="el" href="class_optimist_1_1_solver.html#a09825f476d9a34df07dc1402f07b85a1">InputType</a> &amp;x, <a class="el" href="class_optimist_1_1_solver.html#ae3ec9be32c32ced1eca7312791cd0121">FirstDerivativeType</a> &amp;out)</td></tr>
+<tr class="separator:a84de52b743458d0d214a830e22674910 inherit pro_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ffc4cbee45648aa79a670c1e0419cab inherit pro_methods_class_optimist_1_1_solver" id="r_a5ffc4cbee45648aa79a670c1e0419cab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a5ffc4cbee45648aa79a670c1e0419cab">evaluate_second_derivative</a> (<a class="el" href="class_optimist_1_1_solver.html#a1952d0729c8bb1066597b42c46e9f9ba">SecondDerivativeWrapper</a> function, const <a class="el" href="class_optimist_1_1_solver.html#a09825f476d9a34df07dc1402f07b85a1">InputType</a> &amp;x, <a class="el" href="class_optimist_1_1_solver.html#a43dfcdd6e57a405a79a48cce176d7d99">SecondDerivativeType</a> &amp;out)</td></tr>
+<tr class="separator:a5ffc4cbee45648aa79a670c1e0419cab inherit pro_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a673ba77198511942c6e8c821522c7255 inherit pro_methods_class_optimist_1_1_solver" id="r_a673ba77198511942c6e8c821522c7255"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a673ba77198511942c6e8c821522c7255">store_trace</a> (const <a class="el" href="class_optimist_1_1_solver.html#a09825f476d9a34df07dc1402f07b85a1">InputType</a> &amp;x)</td></tr>
+<tr class="separator:a673ba77198511942c6e8c821522c7255 inherit pro_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0bf66c16b36d9ddf22fac273e931c007 inherit pro_methods_class_optimist_1_1_solver" id="r_a0bf66c16b36d9ddf22fac273e931c007"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a0bf66c16b36d9ddf22fac273e931c007">damp</a> (<a class="el" href="class_optimist_1_1_solver.html#af0844b262eb48a3f3f6bfe04e100ad13">FunctionWrapper</a> function, <a class="el" href="class_optimist_1_1_solver.html#a09825f476d9a34df07dc1402f07b85a1">InputType</a> const &amp;x_old, <a class="el" href="class_optimist_1_1_solver.html#a09825f476d9a34df07dc1402f07b85a1">InputType</a> const &amp;function_old, <a class="el" href="class_optimist_1_1_solver.html#a09825f476d9a34df07dc1402f07b85a1">InputType</a> const &amp;step_old, <a class="el" href="class_optimist_1_1_solver.html#a09825f476d9a34df07dc1402f07b85a1">InputType</a> &amp;x_new, <a class="el" href="class_optimist_1_1_solver.html#a09825f476d9a34df07dc1402f07b85a1">InputType</a> &amp;function_new, <a class="el" href="class_optimist_1_1_solver.html#a09825f476d9a34df07dc1402f07b85a1">InputType</a> &amp;step_new)</td></tr>
+<tr class="separator:a0bf66c16b36d9ddf22fac273e931c007 inherit pro_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89601fbc1f31ec1492ea2ef0b3426a7d inherit pro_methods_class_optimist_1_1_solver" id="r_a89601fbc1f31ec1492ea2ef0b3426a7d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a89601fbc1f31ec1492ea2ef0b3426a7d">header</a> ()</td></tr>
+<tr class="separator:a89601fbc1f31ec1492ea2ef0b3426a7d inherit pro_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a90209c57e391d99859797c1741549317 inherit pro_methods_class_optimist_1_1_solver" id="r_a90209c57e391d99859797c1741549317"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a90209c57e391d99859797c1741549317">bottom</a> ()</td></tr>
+<tr class="separator:a90209c57e391d99859797c1741549317 inherit pro_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add46dfec82c6d40f581fa765c0ba9fba inherit pro_methods_class_optimist_1_1_solver" id="r_add46dfec82c6d40f581fa765c0ba9fba"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#add46dfec82c6d40f581fa765c0ba9fba">info</a> (<a class="el" href="namespace_optimist.html#a81198c1084f49913c4731c80160f6713">Real</a> residuals, std::string const &amp;notes=&quot;-&quot;)</td></tr>
+<tr class="separator:add46dfec82c6d40f581fa765c0ba9fba inherit pro_methods_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_class_optimist_1_1_solver"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_attribs_class_optimist_1_1_solver')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="class_optimist_1_1_solver.html">Optimist::Solver&lt; N, 1, PatternSearch&lt; N &gt; &gt;</a></td></tr>
+<tr class="memitem:ab666e955cd72a3b02dc8f99e0ff8c3da inherit pro_attribs_class_optimist_1_1_solver" id="r_ab666e955cd72a3b02dc8f99e0ff8c3da"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#ab666e955cd72a3b02dc8f99e0ff8c3da">m_function_evaluations</a></td></tr>
+<tr class="separator:ab666e955cd72a3b02dc8f99e0ff8c3da inherit pro_attribs_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a977adf858f4042f2739ab018a92c7e38 inherit pro_attribs_class_optimist_1_1_solver" id="r_a977adf858f4042f2739ab018a92c7e38"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a977adf858f4042f2739ab018a92c7e38">m_first_derivative_evaluations</a></td></tr>
+<tr class="separator:a977adf858f4042f2739ab018a92c7e38 inherit pro_attribs_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5cd9d5099865e1500615233f6ecf287b inherit pro_attribs_class_optimist_1_1_solver" id="r_a5cd9d5099865e1500615233f6ecf287b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a5cd9d5099865e1500615233f6ecf287b">m_second_derivative_evaluations</a></td></tr>
+<tr class="separator:a5cd9d5099865e1500615233f6ecf287b inherit pro_attribs_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ffd0fb218da6a697101807a31c2e5f8 inherit pro_attribs_class_optimist_1_1_solver" id="r_a9ffd0fb218da6a697101807a31c2e5f8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a9ffd0fb218da6a697101807a31c2e5f8">m_max_function_evaluations</a></td></tr>
+<tr class="separator:a9ffd0fb218da6a697101807a31c2e5f8 inherit pro_attribs_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43bde7eab951a8433bd4725516d6b7e3 inherit pro_attribs_class_optimist_1_1_solver" id="r_a43bde7eab951a8433bd4725516d6b7e3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a43bde7eab951a8433bd4725516d6b7e3">m_max_first_derivative_evaluations</a></td></tr>
+<tr class="separator:a43bde7eab951a8433bd4725516d6b7e3 inherit pro_attribs_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa1f8e9113efd3e70016a4a06804700a inherit pro_attribs_class_optimist_1_1_solver" id="r_aaa1f8e9113efd3e70016a4a06804700a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#aaa1f8e9113efd3e70016a4a06804700a">m_max_second_derivative_evaluations</a></td></tr>
+<tr class="separator:aaa1f8e9113efd3e70016a4a06804700a inherit pro_attribs_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee57bd112660211609efa3164285e90c inherit pro_attribs_class_optimist_1_1_solver" id="r_aee57bd112660211609efa3164285e90c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#aee57bd112660211609efa3164285e90c">m_iterations</a></td></tr>
+<tr class="separator:aee57bd112660211609efa3164285e90c inherit pro_attribs_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a255577cb519b668c4f55f9d289982044 inherit pro_attribs_class_optimist_1_1_solver" id="r_a255577cb519b668c4f55f9d289982044"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a255577cb519b668c4f55f9d289982044">m_max_iterations</a></td></tr>
+<tr class="separator:a255577cb519b668c4f55f9d289982044 inherit pro_attribs_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b66c97a1103786a09c72792c4408513 inherit pro_attribs_class_optimist_1_1_solver" id="r_a7b66c97a1103786a09c72792c4408513"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_optimist.html#a81198c1084f49913c4731c80160f6713">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a7b66c97a1103786a09c72792c4408513">m_alpha</a></td></tr>
+<tr class="separator:a7b66c97a1103786a09c72792c4408513 inherit pro_attribs_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acbfb2b40234a39fec15c027f5b5696f1 inherit pro_attribs_class_optimist_1_1_solver" id="r_acbfb2b40234a39fec15c027f5b5696f1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#acbfb2b40234a39fec15c027f5b5696f1">m_relaxations</a></td></tr>
+<tr class="separator:acbfb2b40234a39fec15c027f5b5696f1 inherit pro_attribs_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae59d154ff4fa30c8e28da604f59c0d4 inherit pro_attribs_class_optimist_1_1_solver" id="r_aae59d154ff4fa30c8e28da604f59c0d4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#aae59d154ff4fa30c8e28da604f59c0d4">m_max_relaxations</a></td></tr>
+<tr class="separator:aae59d154ff4fa30c8e28da604f59c0d4 inherit pro_attribs_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adad1077e69b87ea2957ce3d1e903b736 inherit pro_attribs_class_optimist_1_1_solver" id="r_adad1077e69b87ea2957ce3d1e903b736"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_optimist.html#a81198c1084f49913c4731c80160f6713">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#adad1077e69b87ea2957ce3d1e903b736">m_tolerance</a></td></tr>
+<tr class="separator:adad1077e69b87ea2957ce3d1e903b736 inherit pro_attribs_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61132e4656e573eac79e4e2053834ab5 inherit pro_attribs_class_optimist_1_1_solver" id="r_a61132e4656e573eac79e4e2053834ab5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a61132e4656e573eac79e4e2053834ab5">m_verbose</a></td></tr>
+<tr class="separator:a61132e4656e573eac79e4e2053834ab5 inherit pro_attribs_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6ac104d4dd4c18ef89f4048988b825b inherit pro_attribs_class_optimist_1_1_solver" id="r_ab6ac104d4dd4c18ef89f4048988b825b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#ab6ac104d4dd4c18ef89f4048988b825b">m_damped</a></td></tr>
+<tr class="separator:ab6ac104d4dd4c18ef89f4048988b825b inherit pro_attribs_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f0f289bb998c46b8100b225fca59ae8 inherit pro_attribs_class_optimist_1_1_solver" id="r_a5f0f289bb998c46b8100b225fca59ae8"><td class="memItemLeft" align="right" valign="top">std::ostream *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a5f0f289bb998c46b8100b225fca59ae8">m_ostream</a></td></tr>
+<tr class="separator:a5f0f289bb998c46b8100b225fca59ae8 inherit pro_attribs_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e073a665097066c903ed4b6376bb031 inherit pro_attribs_class_optimist_1_1_solver" id="r_a9e073a665097066c903ed4b6376bb031"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a9e073a665097066c903ed4b6376bb031">m_task</a></td></tr>
+<tr class="separator:a9e073a665097066c903ed4b6376bb031 inherit pro_attribs_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adead4e9bab6a56c89ef66263fa3675f8 inherit pro_attribs_class_optimist_1_1_solver" id="r_adead4e9bab6a56c89ef66263fa3675f8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#adead4e9bab6a56c89ef66263fa3675f8">m_converged</a></td></tr>
+<tr class="separator:adead4e9bab6a56c89ef66263fa3675f8 inherit pro_attribs_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0bdac15d19f7338533d7a97f603f0c49 inherit pro_attribs_class_optimist_1_1_solver" id="r_a0bdac15d19f7338533d7a97f603f0c49"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_optimist_1_1_solver.html#a01cb13872a3cf6c90b9c442c626874b0">TraceType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_solver.html#a0bdac15d19f7338533d7a97f603f0c49">m_trace</a></td></tr>
+<tr class="separator:a0bdac15d19f7338533d7a97f603f0c49 inherit pro_attribs_class_optimist_1_1_solver"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><div class="compoundTemplParams">template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a> N&gt;<br />
+class Optimist::Optimizer::PatternSearch&lt; N &gt;</div><dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">N</td><td>Dimension of the root-finding problem. </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Member Typedef Documentation</h2>
+<a id="a2af886386fb53c43974178647078184e" name="a2af886386fb53c43974178647078184e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2af886386fb53c43974178647078184e">&#9670;&#160;</a></span>FunctionWrapper</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a> N&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="class_optimist_1_1_optimizer_1_1_pattern_search.html">Optimist::Optimizer::PatternSearch</a>&lt; N &gt;::FunctionWrapper = typename <a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html">Optimizer</a>&lt;N, <a class="el" href="class_optimist_1_1_optimizer_1_1_pattern_search.html">PatternSearch</a>&lt;N&gt;&gt;::FunctionWrapper</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acf03c461d6b4760e739d9aed5baef766" name="acf03c461d6b4760e739d9aed5baef766"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf03c461d6b4760e739d9aed5baef766">&#9670;&#160;</a></span>Matrix</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a> N&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="class_optimist_1_1_optimizer_1_1_pattern_search.html">Optimist::Optimizer::PatternSearch</a>&lt; N &gt;::Matrix = typename <a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html">Optimizer</a>&lt;N, <a class="el" href="class_optimist_1_1_optimizer_1_1_pattern_search.html">PatternSearch</a>&lt;N&gt;&gt;::Matrix</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a68ed5fa17b512f7d8a7b3c39c1bbefac" name="a68ed5fa17b512f7d8a7b3c39c1bbefac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a68ed5fa17b512f7d8a7b3c39c1bbefac">&#9670;&#160;</a></span>Simplex</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a> N&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="class_optimist_1_1_optimizer_1_1_pattern_search.html">Optimist::Optimizer::PatternSearch</a>&lt; N &gt;::Simplex = std::vector&lt;<a class="el" href="#ab9acaef4bc41432fa7172f61265a904d">Vector</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p><a class="el" href="#a68ed5fa17b512f7d8a7b3c39c1bbefac">Simplex</a> type. </p>
+
+</div>
+</div>
+<a id="ab9acaef4bc41432fa7172f61265a904d" name="ab9acaef4bc41432fa7172f61265a904d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9acaef4bc41432fa7172f61265a904d">&#9670;&#160;</a></span>Vector</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a> N&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="class_optimist_1_1_optimizer_1_1_pattern_search.html">Optimist::Optimizer::PatternSearch</a>&lt; N &gt;::Vector = typename <a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html">Optimizer</a>&lt;N, <a class="el" href="class_optimist_1_1_optimizer_1_1_pattern_search.html">PatternSearch</a>&lt;N&gt;&gt;::Vector</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="ae13637adc0d2511fff49fbb36e616d87" name="ae13637adc0d2511fff49fbb36e616d87"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae13637adc0d2511fff49fbb36e616d87">&#9670;&#160;</a></span>PatternSearch()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a> N&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_optimist_1_1_optimizer_1_1_pattern_search.html">Optimist::Optimizer::PatternSearch</a>&lt; N &gt;::PatternSearch </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Class constructor for the <a class="el" href="class_optimist_1_1_optimizer_1_1_pattern_search.html" title="Class container for the Hooke and Jeeves Pattern Search algorithm.">PatternSearch</a> solver. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="aa46d774cec064d442abf23b0f368b2c7" name="aa46d774cec064d442abf23b0f368b2c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa46d774cec064d442abf23b0f368b2c7">&#9670;&#160;</a></span>best_nearby()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a> N&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_optimist_1_1_optimizer_1_1_pattern_search.html">Optimist::Optimizer::PatternSearch</a>&lt; N &gt;::best_nearby </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1b70beb6f7f275cff45122a69e1b2ef6" name="a1b70beb6f7f275cff45122a69e1b2ef6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b70beb6f7f275cff45122a69e1b2ef6">&#9670;&#160;</a></span>name_impl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a> N&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string <a class="el" href="class_optimist_1_1_optimizer_1_1_pattern_search.html">Optimist::Optimizer::PatternSearch</a>&lt; N &gt;::name_impl </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Get the Nelder-Mead's solver name. </p><dl class="section return"><dt>Returns</dt><dd>The Nelder-Mead's solver name. </dd></dl>
+
+</div>
+</div>
+<a id="ad787f2d8f2f210c021a285f48e556e92" name="ad787f2d8f2f210c021a285f48e556e92"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad787f2d8f2f210c021a285f48e556e92">&#9670;&#160;</a></span>search()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a> N&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_optimist_1_1_optimizer_1_1_pattern_search.html">Optimist::Optimizer::PatternSearch</a>&lt; N &gt;::search </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afb61c2bb7c2bbaa11189280a7ec258f6" name="afb61c2bb7c2bbaa11189280a7ec258f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb61c2bb7c2bbaa11189280a7ec258f6">&#9670;&#160;</a></span>set_max_num_stagnation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a> N&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_optimist_1_1_optimizer_1_1_pattern_search.html">Optimist::Optimizer::PatternSearch</a>&lt; N &gt;::set_max_num_stagnation </td>
+          <td>(</td>
+          <td class="paramtype">integer</td>          <td class="paramname"><span class="paramname"><em>nstg</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a497b0d20cbc541f109fdb94d432f19b8" name="a497b0d20cbc541f109fdb94d432f19b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a497b0d20cbc541f109fdb94d432f19b8">&#9670;&#160;</a></span>solve_impl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a> N&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="class_optimist_1_1_optimizer_1_1_pattern_search.html">Optimist::Optimizer::PatternSearch</a>&lt; N &gt;::solve_impl </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#a2af886386fb53c43974178647078184e">FunctionWrapper</a></td>          <td class="paramname"><span class="paramname"><em>function</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#ab9acaef4bc41432fa7172f61265a904d">Vector</a> const &amp;</td>          <td class="paramname"><span class="paramname"><em>x_ini</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#ab9acaef4bc41432fa7172f61265a904d">Vector</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>x_sol</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Solve the nonlinear system of equations \( \mathbf{f}(\mathbf{x}) = 0 \), with  \(\mathbf{f}: \mathbb{R}^n \rightarrow \mathbb{R}^n \). </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">function</td><td><a class="el" href="class_optimist_1_1_function.html" title="Class container for the generic function.">Function</a> wrapper. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">x_ini</td><td>Initialization point. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">x_sol</td><td>Solution point. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The convergence boolean flag. </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a4f4ee18e0738ad6ef6323e6de1c0450e" name="a4f4ee18e0738ad6ef6323e6de1c0450e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f4ee18e0738ad6ef6323e6de1c0450e">&#9670;&#160;</a></span>m_h</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a> N&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_optimist.html#a81198c1084f49913c4731c80160f6713">Real</a> <a class="el" href="class_optimist_1_1_optimizer_1_1_pattern_search.html">Optimist::Optimizer::PatternSearch</a>&lt; N &gt;::m_h {<a class="el" href="namespace_optimist.html#a81198c1084f49913c4731c80160f6713">Real</a>(0.1)}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acd00c00135ab03cfe4fa529aa2770879" name="acd00c00135ab03cfe4fa529aa2770879"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd00c00135ab03cfe4fa529aa2770879">&#9670;&#160;</a></span>m_rho</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a> N&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_optimist.html#a81198c1084f49913c4731c80160f6713">Real</a> <a class="el" href="class_optimist_1_1_optimizer_1_1_pattern_search.html">Optimist::Optimizer::PatternSearch</a>&lt; N &gt;::m_rho {<a class="el" href="namespace_optimist.html#a81198c1084f49913c4731c80160f6713">Real</a>(0.9)}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a41af00efb6de501dc0c2053c03303969" name="a41af00efb6de501dc0c2053c03303969"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41af00efb6de501dc0c2053c03303969">&#9670;&#160;</a></span>m_stencil_failure</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a> N&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="class_optimist_1_1_optimizer_1_1_pattern_search.html">Optimist::Optimizer::PatternSearch</a>&lt; N &gt;::m_stencil_failure {false}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac9741f90b902177889bd3405c98437bd" name="ac9741f90b902177889bd3405c98437bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac9741f90b902177889bd3405c98437bd">&#9670;&#160;</a></span>requires_first_derivative</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a> N&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="class_optimist_1_1_optimizer_1_1_pattern_search.html">Optimist::Optimizer::PatternSearch</a>&lt; N &gt;::requires_first_derivative = false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af317e1e4e8a55ac301d1f9ac1209d98a" name="af317e1e4e8a55ac301d1f9ac1209d98a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af317e1e4e8a55ac301d1f9ac1209d98a">&#9670;&#160;</a></span>requires_function</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a> N&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="class_optimist_1_1_optimizer_1_1_pattern_search.html">Optimist::Optimizer::PatternSearch</a>&lt; N &gt;::requires_function = true</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1add1cdb447fdf51c1f95faffad34aee" name="a1add1cdb447fdf51c1f95faffad34aee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1add1cdb447fdf51c1f95faffad34aee">&#9670;&#160;</a></span>requires_second_derivative</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452">Integer</a> N&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="class_optimist_1_1_optimizer_1_1_pattern_search.html">Optimist::Optimizer::PatternSearch</a>&lt; N &gt;::requires_second_derivative = false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>include/Optimist/Optimizer/<a class="el" href="_pattern_search_8hxx_source.html">PatternSearch.hxx</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespace_optimist.html">Optimist</a></li><li class="navelem"><a class="el" href="namespace_optimist_1_1_optimizer.html">Optimizer</a></li><li class="navelem"><a class="el" href="class_optimist_1_1_optimizer_1_1_pattern_search.html">PatternSearch</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
+</html>

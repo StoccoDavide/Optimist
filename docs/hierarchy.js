@@ -15,14 +15,32 @@ var hierarchy =
     [ "Optimist::Function< 1, 1, DerivedFunction >", "class_optimist_1_1_function.html", [
       [ "Optimist::ScalarFunction< DerivedFunction >", "class_optimist_1_1_scalar_function.html", null ]
     ] ],
+    [ "Optimist::Function< 1, 1, Linear >", "class_optimist_1_1_function.html", [
+      [ "Optimist::ScalarFunction< Linear >", "class_optimist_1_1_scalar_function.html", [
+        [ "Optimist::TestSet::Linear", "class_optimist_1_1_test_set_1_1_linear.html", null ]
+      ] ]
+    ] ],
+    [ "Optimist::Function< 1, 1, Quadratic >", "class_optimist_1_1_function.html", [
+      [ "Optimist::ScalarFunction< Quadratic >", "class_optimist_1_1_scalar_function.html", [
+        [ "Optimist::TestSet::Quadratic", "class_optimist_1_1_test_set_1_1_quadratic.html", null ]
+      ] ]
+    ] ],
     [ "Optimist::Function< 1, 1, Sin >", "class_optimist_1_1_function.html", [
       [ "Optimist::ScalarFunction< Sin >", "class_optimist_1_1_scalar_function.html", [
         [ "Optimist::TestSet::Sin", "class_optimist_1_1_test_set_1_1_sin.html", null ]
       ] ]
     ] ],
+    [ "Optimist::Function< 1, 1, Sinh >", "class_optimist_1_1_function.html", [
+      [ "Optimist::ScalarFunction< Sinh >", "class_optimist_1_1_scalar_function.html", [
+        [ "Optimist::TestSet::Sinh", "class_optimist_1_1_test_set_1_1_sinh.html", null ]
+      ] ]
+    ] ],
     [ "Optimist::Function< N, 1, DerivedFunction >", "class_optimist_1_1_function.html", [
-      [ "Optimist::CostFunction< N, DerivedFunction >", "class_optimist_1_1_cost_function.html", [
-        [ "Optimist::CutFunction< N, DerivedFunction >", "class_optimist_1_1_cut_function.html", null ]
+      [ "Optimist::CostFunction< N, DerivedFunction >", "class_optimist_1_1_cost_function.html", null ]
+    ] ],
+    [ "Optimist::Function< N, 1, EllipticParaboloid >", "class_optimist_1_1_function.html", [
+      [ "Optimist::CostFunction< 2, EllipticParaboloid >", "class_optimist_1_1_cost_function.html", [
+        [ "Optimist::TestSet::EllipticParaboloid", "class_optimist_1_1_test_set_1_1_elliptic_paraboloid.html", null ]
       ] ]
     ] ],
     [ "Optimist::Function< N, 1, Schaffer2 >", "class_optimist_1_1_function.html", [
@@ -64,6 +82,11 @@ var hierarchy =
     [ "Optimist::Solver< N, 1, NelderMead< N > >", "class_optimist_1_1_solver.html", [
       [ "Optimist::Optimizer::Optimizer< N, NelderMead< N > >", "class_optimist_1_1_optimizer_1_1_optimizer.html", [
         [ "Optimist::Optimizer::NelderMead< N >", "class_optimist_1_1_optimizer_1_1_nelder_mead.html", null ]
+      ] ]
+    ] ],
+    [ "Optimist::Solver< N, 1, PatternSearch< N > >", "class_optimist_1_1_solver.html", [
+      [ "Optimist::Optimizer::Optimizer< N, PatternSearch< N > >", "class_optimist_1_1_optimizer_1_1_optimizer.html", [
+        [ "Optimist::Optimizer::PatternSearch< N >", "class_optimist_1_1_optimizer_1_1_pattern_search.html", null ]
       ] ]
     ] ],
     [ "Optimist::Solver< N, N, Broyden< N > >", "class_optimist_1_1_solver.html", [

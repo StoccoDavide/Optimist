@@ -8,7 +8,6 @@
  * davide.stocco@unitn.it            mattia.piazza@unitn.it           enrico.bertolazzi@unitn.it *
 \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-
 #pragma once
 
 #ifndef OPTIMIST_OPTIMIZER_NELDER_MEAD_HXX
@@ -18,7 +17,6 @@ namespace Optimist
 {
   namespace Optimizer
   {
-
 
     /*\
      |   _   _      _     _           __  __                _
@@ -59,7 +57,6 @@ namespace Optimist
       Real    m_gamma{2.0}; /** Nelder-Mead expansion coefficient. */
       Real    m_rho{0.5};   /** Nelder-Mead contraction coefficient. */
       Real    m_sigma{0.5}; /** Nelder-Mead shrink coefficient. */
-
 
       public:
       /**
@@ -188,7 +185,7 @@ namespace Optimist
         Real function_x_r, function_x_1, function_x_last, function_x_e, function_x_c;
 
         // Set initial iteration
-        this->initialize(x_ini, 1.0);
+        this->initialize(x_ini, 100.0);
 
         // Algorithm iterations
         for (this->m_iterations = Integer(1); this->m_iterations < this->m_max_iterations; ++this->m_iterations)
@@ -197,7 +194,7 @@ namespace Optimist
           this->sort(function);
 
           // Store trace
-          this->store_trace(this->m_s.at(1));
+          this->store_trace(this->m_s.back());
 
           // Compute the reflection point
           x_r = this->reflection();

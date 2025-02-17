@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['testset_2ehh_0',['TestSet.hh',['../_test_set_8hh.html',1,'']]]
+  ['quadratic_2ehxx_0',['Quadratic.hxx',['../_quadratic_8hxx.html',1,'']]],
+  ['quasinewton_2ehxx_1',['QuasiNewton.hxx',['../_quasi_newton_8hxx.html',1,'']]]
 ];

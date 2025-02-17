@@ -1,7 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$class_optimist_1_1_function.html" title=" " alt="" coords="5,5,134,46"/>
-<area shape="rect" id="Node000001" href="$class_optimist_1_1_vector_function.html" title=" " alt="" coords="182,5,348,46"/>
-<area shape="poly" id="edge14_Node000000_Node000001" title=" " alt="" coords="149,23,181,23,181,28,149,28"/>
-<area shape="rect" id="Node000002" href="$class_optimist_1_1_test_set_1_1_brown.html" title="Class container for the Brown badly scaled function." alt="" coords="396,5,527,46"/>
-<area shape="poly" id="edge15_Node000001_Node000002" title=" " alt="" coords="364,23,396,23,396,28,364,28"/>
+<area shape="rect" id="Node000000" href="$class_optimist_1_1_function.html" title=" " alt="" coords="5,5,179,46"/>
+<area shape="rect" id="Node000001" href="$class_optimist_1_1_cost_function.html" title="Class container for the cost function." alt="" coords="227,5,385,46"/>
+<area shape="poly" id="edge14_Node000000_Node000001" title=" " alt="" coords="194,23,226,23,226,28,194,28"/>
 </map>

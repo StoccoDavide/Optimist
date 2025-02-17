@@ -8,7 +8,6 @@
  * davide.stocco@unitn.it            mattia.piazza@unitn.it           enrico.bertolazzi@unitn.it *
 \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-
 #pragma once
 
 #ifndef INCLUDE_OPTIMIST_TESTSET_HH
@@ -19,11 +18,15 @@
 #include <variant>
 
 // Cost functions
+#include "TestSet/CostFunction/EllipticParaboloid.hxx"
 #include "TestSet/CostFunction/Schaffer2.hxx"
 
 // Scalar-valued functions
+#include "TestSet/ScalarFunction/Linear.hxx"
+#include "TestSet/ScalarFunction/Quadratic.hxx"
 #include "TestSet/ScalarFunction/Sin.hxx"
 #include "TestSet/ScalarFunction/Cos.hxx"
+#include "TestSet/ScalarFunction/Sinh.hxx"
 #include "TestSet/ScalarFunction/Cosh.hxx"
 
 // Vector-valued functions
@@ -77,7 +80,7 @@ namespace Optimist
     * Print Optimist library test-set information on a string.
     * \return A string with the Optimist library test-set information.
     */
-    std::string Info() {
+    std::string TestSetInfo() {
       std::ostringstream os;
       os
         << Optimist::Info() << std::endl
@@ -95,7 +98,7 @@ namespace Optimist
     * Print Optimist library test-set information on a stream.
     * \param[in] os Output stream.
     */
-    void Info(std::ostream &os) {os << Info();}
+    void TestSetInfo(std::ostream &os) {os << Info();}
 
 
 

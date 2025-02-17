@@ -10,8 +10,8 @@
 
 #pragma once
 
-#ifndef OPTIMIST_SIN_HXX
-#define OPTIMIST_SIN_HXX
+#ifndef OPTIMIST_SCALAR_FUNCTION_SIN_HXX
+#define OPTIMIST_SCALAR_FUNCTION_SIN_HXX
 
 namespace Optimist
 {
@@ -28,7 +28,7 @@ namespace Optimist
     * \f]
     * The function has roots at \f$x = \pi/2 + i\pi\f$, with \f$f(x) = 0\f$, and minima at \f$x = 3\pi/2 +
     * 2i\pi\f$, with \f$f(x) = -1\f$ and \f$i = 0, 1, \ldots, n\f$. The initial guesses are generated
-    * on the range \f$x \in \left[0, 2\pi\right]\f$.
+    * on the range \f$x \in \left[-\pi, \pi\right]\f$.
     */
     class Sin : public ScalarFunction<Sin>
     {
@@ -38,9 +38,12 @@ namespace Optimist
       */
       Sin()
       {
-        this->m_solutions.emplace_back(0.0);
-        this->m_solutions.emplace_back(3.0/2.0*M_PI);
-        for (Real x{0.0}; x < 2.0*M_PI + EPSILON; x += M_PI/2.0) {this->m_guesses.emplace_back(x);}
+        this->m_solutions.emplace_back(-M_PI); // Zero
+        this->m_solutions.emplace_back(0.0); // Zero
+        this->m_solutions.emplace_back(M_PI); // Zero
+        this->m_solutions.emplace_back(-M_PI/2.0); // Minimum
+        this->m_guesses.emplace_back(-3.0/4.0*M_PI);
+        this->m_guesses.emplace_back(3.0/4.0*M_PI);
       }
 
       /**
@@ -76,4 +79,4 @@ namespace Optimist
 
 } // namespace Optimist
 
-#endif // OPTIMIST_SIN_HXX
+#endif // OPTIMIST_SCALAR_FUNCTION_SIN_HXX

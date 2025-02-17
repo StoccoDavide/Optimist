@@ -8,7 +8,6 @@
  * davide.stocco@unitn.it            mattia.piazza@unitn.it           enrico.bertolazzi@unitn.it *
 \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-
 #pragma once
 
 #ifndef OPTIMIST_OPTIMIZER_HXX
@@ -80,7 +79,7 @@ namespace Optimist
       * Get the solver name.
       * \return The solver name.
       */
-      std::string name() const {return static_cast<DerivedSolver *>(this)->name_impl();}
+      std::string name() const {return static_cast<const DerivedSolver *>(this)->name_impl();}
 
       /**
       * Get the number of gradient evaluations.

@@ -8,7 +8,6 @@
  * davide.stocco@unitn.it            mattia.piazza@unitn.it           enrico.bertolazzi@unitn.it *
 \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-
 #pragma once
 
 #ifndef OPTIMIST_ROOT_FINDER_HXX
@@ -146,7 +145,7 @@ namespace Optimist
       */
       void evaluate_hessian(HessianWrapper hessian, const Vector & x, Matrix & out)
       {
-        this->evaluate_first_derivative(hessian, x, out);
+        this->evaluate_second_derivative(hessian, x, out);
       }
 
     public:

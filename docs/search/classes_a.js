@@ -1,7 +1,8 @@
 var searchData=
 [
-  ['vectorfunction_0',['VectorFunction',['../class_optimist_1_1_vector_function.html',1,'Optimist']]],
-  ['vectorfunction_3c_202_2c_202_2c_20booth_20_3e_1',['VectorFunction&lt; 2, 2, Booth &gt;',['../class_optimist_1_1_vector_function.html',1,'Optimist']]],
-  ['vectorfunction_3c_202_2c_203_2c_20brown_20_3e_2',['VectorFunction&lt; 2, 3, Brown &gt;',['../class_optimist_1_1_vector_function.html',1,'Optimist']]],
-  ['vectorfunction_3c_20n_2c_20n_2c_20rosenbrock_3c_20n_20_3e_20_3e_3',['VectorFunction&lt; N, N, Rosenbrock&lt; N &gt; &gt;',['../class_optimist_1_1_vector_function.html',1,'Optimist']]]
+  ['rootfinder_0',['RootFinder',['../class_optimist_1_1_root_finder_1_1_root_finder.html',1,'Optimist::RootFinder']]],
+  ['rootfinder_3c_20n_2c_20broyden_3c_20n_20_3e_20_3e_1',['RootFinder&lt; N, Broyden&lt; N &gt; &gt;',['../class_optimist_1_1_root_finder_1_1_root_finder.html',1,'Optimist::RootFinder']]],
+  ['rootfinder_3c_20n_2c_20greenstadt_3c_20n_20_3e_20_3e_2',['RootFinder&lt; N, Greenstadt&lt; N &gt; &gt;',['../class_optimist_1_1_root_finder_1_1_root_finder.html',1,'Optimist::RootFinder']]],
+  ['rootfinder_3c_20n_2c_20newton_3c_20n_20_3e_20_3e_3',['RootFinder&lt; N, Newton&lt; N &gt; &gt;',['../class_optimist_1_1_root_finder_1_1_root_finder.html',1,'Optimist::RootFinder']]],
+  ['rosenbrock_4',['Rosenbrock',['../class_optimist_1_1_test_set_1_1_rosenbrock.html',1,'Optimist::TestSet']]]
 ];

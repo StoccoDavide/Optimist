@@ -28,7 +28,7 @@ namespace Optimist
   {
     friend Function<1, 1, ScalarFunction<DerivedFunction>>;
 
-  public:
+    public:
     /**
     * Class constructor for the function.
     */

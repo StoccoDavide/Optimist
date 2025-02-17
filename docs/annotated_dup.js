@@ -6,7 +6,8 @@ var annotated_dup =
       ] ],
       [ "Optimizer", "namespace_optimist_1_1_optimizer.html", [
         [ "NelderMead", "class_optimist_1_1_optimizer_1_1_nelder_mead.html", "class_optimist_1_1_optimizer_1_1_nelder_mead" ],
-        [ "Optimizer", "class_optimist_1_1_optimizer_1_1_optimizer.html", "class_optimist_1_1_optimizer_1_1_optimizer" ]
+        [ "Optimizer", "class_optimist_1_1_optimizer_1_1_optimizer.html", "class_optimist_1_1_optimizer_1_1_optimizer" ],
+        [ "PatternSearch", "class_optimist_1_1_optimizer_1_1_pattern_search.html", "class_optimist_1_1_optimizer_1_1_pattern_search" ]
       ] ],
       [ "RootFinder", "namespace_optimist_1_1_root_finder.html", [
         [ "Broyden", "class_optimist_1_1_root_finder_1_1_broyden.html", "class_optimist_1_1_root_finder_1_1_broyden" ],
@@ -27,12 +28,15 @@ var annotated_dup =
         [ "Brown", "class_optimist_1_1_test_set_1_1_brown.html", "class_optimist_1_1_test_set_1_1_brown" ],
         [ "Cos", "class_optimist_1_1_test_set_1_1_cos.html", "class_optimist_1_1_test_set_1_1_cos" ],
         [ "Cosh", "class_optimist_1_1_test_set_1_1_cosh.html", "class_optimist_1_1_test_set_1_1_cosh" ],
+        [ "EllipticParaboloid", "class_optimist_1_1_test_set_1_1_elliptic_paraboloid.html", "class_optimist_1_1_test_set_1_1_elliptic_paraboloid" ],
+        [ "Linear", "class_optimist_1_1_test_set_1_1_linear.html", "class_optimist_1_1_test_set_1_1_linear" ],
+        [ "Quadratic", "class_optimist_1_1_test_set_1_1_quadratic.html", "class_optimist_1_1_test_set_1_1_quadratic" ],
         [ "Rosenbrock", "class_optimist_1_1_test_set_1_1_rosenbrock.html", "class_optimist_1_1_test_set_1_1_rosenbrock" ],
         [ "Schaffer2", "class_optimist_1_1_test_set_1_1_schaffer2.html", "class_optimist_1_1_test_set_1_1_schaffer2" ],
-        [ "Sin", "class_optimist_1_1_test_set_1_1_sin.html", "class_optimist_1_1_test_set_1_1_sin" ]
+        [ "Sin", "class_optimist_1_1_test_set_1_1_sin.html", "class_optimist_1_1_test_set_1_1_sin" ],
+        [ "Sinh", "class_optimist_1_1_test_set_1_1_sinh.html", "class_optimist_1_1_test_set_1_1_sinh" ]
       ] ],
       [ "CostFunction", "class_optimist_1_1_cost_function.html", "class_optimist_1_1_cost_function" ],
-      [ "CutFunction", "class_optimist_1_1_cut_function.html", "class_optimist_1_1_cut_function" ],
       [ "Function", "class_optimist_1_1_function.html", "class_optimist_1_1_function" ],
       [ "ScalarFunction", "class_optimist_1_1_scalar_function.html", "class_optimist_1_1_scalar_function" ],
       [ "Solver", "class_optimist_1_1_solver.html", "class_optimist_1_1_solver" ],

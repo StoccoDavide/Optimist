@@ -10,8 +10,8 @@
 
 #pragma once
 
-#ifndef OPTIMIST_COS_HXX
-#define OPTIMIST_COS_HXX
+#ifndef OPTIMIST_SCALAR_FUNCTION_COS_HXX
+#define OPTIMIST_SCALAR_FUNCTION_COS_HXX
 
 namespace Optimist
 {
@@ -38,10 +38,12 @@ namespace Optimist
       */
       Cos()
       {
-        this->m_solutions.emplace_back(M_PI);
-        this->m_solutions.emplace_back(0.0);
-        this->m_solutions.emplace_back(-M_PI);
-        for (Real x{-M_PI}; x < M_PI + EPSILON; x += M_PI/2.0) {this->m_guesses.emplace_back(x);}
+        this->m_solutions.emplace_back(-M_PI/2.0); // Zero
+        this->m_solutions.emplace_back(M_PI/2.0); // Zero
+        this->m_solutions.emplace_back(-M_PI); // Minimum
+        this->m_solutions.emplace_back(M_PI); // Minimum
+        this->m_guesses.emplace_back(-3.0/4.0*M_PI);
+        this->m_guesses.emplace_back(3.0/4.0*M_PI);
       }
 
       /**
@@ -77,4 +79,4 @@ namespace Optimist
 
 } // namespace Optimist
 
-#endif // OPTIMIST_COS_HXX
+#endif // OPTIMIST_SCALAR_FUNCTION_COS_HXX

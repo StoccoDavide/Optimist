@@ -8,7 +8,6 @@
  * davide.stocco@unitn.it            mattia.piazza@unitn.it           enrico.bertolazzi@unitn.it *
 \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-
 #pragma once
 
 #ifndef INCLUDE_OPTIMIST_HH
@@ -312,7 +311,6 @@ namespace Optimist
 #include "Optimist/Function/ScalarFunction.hxx"
 #include "Optimist/Function/VectorFunction.hxx"
 #include "Optimist/Function/CostFunction.hxx"
-#include "Optimist/Function/CutFunction.hxx"
 
 // The solver base class
 #include "Optimist/Solver.hxx"

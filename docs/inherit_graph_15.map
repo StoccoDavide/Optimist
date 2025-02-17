@@ -1,7 +1,7 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$class_optimist_1_1_solver.html" title=" " alt="" coords="5,13,162,54"/>
-<area shape="rect" id="Node000001" href="$class_optimist_1_1_optimizer_1_1_optimizer.html" title=" " alt="" coords="210,5,395,61"/>
-<area shape="poly" id="edge24_Node000000_Node000001" title=" " alt="" coords="178,30,209,30,209,36,178,36"/>
-<area shape="rect" id="Node000002" href="$class_optimist_1_1_optimizer_1_1_nelder_mead.html" title="Class container for the Nelder&#45;Mead&#39;s method." alt="" coords="443,13,577,54"/>
-<area shape="poly" id="edge25_Node000001_Node000002" title=" " alt="" coords="411,30,442,30,442,36,411,36"/>
+<area shape="rect" id="Node000000" href="$class_optimist_1_1_function.html" title=" " alt="" coords="5,5,192,46"/>
+<area shape="rect" id="Node000001" href="$class_optimist_1_1_vector_function.html" title=" " alt="" coords="240,5,425,46"/>
+<area shape="poly" id="edge24_Node000000_Node000001" title=" " alt="" coords="207,23,239,23,239,28,207,28"/>
+<area shape="rect" id="Node000002" href="$class_optimist_1_1_test_set_1_1_rosenbrock.html" title="Class container for the extended Rosenbrock function." alt="" coords="473,5,604,46"/>
+<area shape="poly" id="edge25_Node000001_Node000002" title=" " alt="" coords="440,23,473,23,473,28,440,28"/>
 </map>

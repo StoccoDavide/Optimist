@@ -7,7 +7,6 @@ var namespace_optimist =
     [ "ScalarRootFinder", "namespace_optimist_1_1_scalar_root_finder.html", "namespace_optimist_1_1_scalar_root_finder" ],
     [ "TestSet", "namespace_optimist_1_1_test_set.html", "namespace_optimist_1_1_test_set" ],
     [ "CostFunction", "class_optimist_1_1_cost_function.html", "class_optimist_1_1_cost_function" ],
-    [ "CutFunction", "class_optimist_1_1_cut_function.html", "class_optimist_1_1_cut_function" ],
     [ "Function", "class_optimist_1_1_function.html", "class_optimist_1_1_function" ],
     [ "ScalarFunction", "class_optimist_1_1_scalar_function.html", "class_optimist_1_1_scalar_function" ],
     [ "Solver", "class_optimist_1_1_solver.html", "class_optimist_1_1_solver" ],

@@ -21,7 +21,7 @@
 int main() {
 
   Optimist::Info(std::cout);
-  Optimist::TestSet::Info(std::cout);
+  Optimist::TestSet::TestSetInfo(std::cout);
   Optimist::TestSet::Cos cos;
   Optimist::ScalarRootFinder::Newton sol;
   double x_out;

@@ -10,8 +10,8 @@
 
 #pragma once
 
-#ifndef OPTIMIST_SCHAFFER2_HXX
-#define OPTIMIST_SCHAFFER2_HXX
+#ifndef OPTIMIST_COST_FUNCTION_SCHAFFER2_HXX
+#define OPTIMIST_COST_FUNCTION_SCHAFFER2_HXX
 
 namespace Optimist
 {
@@ -26,7 +26,7 @@ namespace Optimist
     * \f[
     * f(\mathbf{x}) = 0.5 + \displaystyle\frac{\sin^{2}(x_1^2 - x_2^2) - 0.5}{(1 + 0.001(x_1^2 + x_2^2))^2} \text{.}
     * \f]
-    * The function has global minima at \f$\mathbf{x} = (0, 0)\f$, with \f$f(\mathbf{x}) = 0.0\f$.
+    * The function has global minima at \f$\mathbf{x} = (0, 0)\f$, with \f$f(\mathbf{x}) = 0\f$.
     * The initial guesses are generated on the square \f$x_i \in \left[-100, 100\right]\f$.
     */
     class Schaffer2 : public CostFunction<2, Schaffer2>
@@ -119,4 +119,4 @@ namespace Optimist
 
 } // namespace Optimist
 
-#endif // OPTIMIST_COS_HXX
+#endif // OPTIMIST_COST_FUNCTION_SCHAFFER2_HXX

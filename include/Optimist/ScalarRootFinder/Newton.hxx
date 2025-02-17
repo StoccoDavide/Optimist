@@ -8,7 +8,6 @@
  * davide.stocco@unitn.it            mattia.piazza@unitn.it           enrico.bertolazzi@unitn.it *
 \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-
 #pragma once
 
 #ifndef OPTIMIST_SCALAR_ROOT_FINDER_NEWTON_HXX
@@ -67,6 +66,8 @@ namespace Optimist
       bool solve_impl(FunctionWrapper function, FirstDerivativeWrapper first_derivative, Real x_ini,
         Real &x_sol)
       {
+        #define CMD "Optimist::ScalarRootFinder::Newton::solve(...): "
+
         // Setup internal variables
         this->reset();
 
@@ -93,8 +94,10 @@ namespace Optimist
           this->store_trace(x_old);
 
           // Calculate step
-          OPTIMIST_ASSERT(std::abs(first_derivative_old) > EPSILON_LOW,
-            "Optimist::ScalarRootFinder::Newton::solve(...): singular first derivative detected.");
+          if (std::abs(first_derivative_old) < EPSILON_LOW) {
+            OPTIMIST_WARNING( CMD "singular first derivative detected.");
+            first_derivative_old = (first_derivative_old > Real(0.0)) ? EPSILON_LOW : -EPSILON_LOW;
+          }
           step_old = -function_old/first_derivative_old;
 
           // Check convergence
@@ -110,8 +113,7 @@ namespace Optimist
           {
             // Relax the iteration process
             damped = this->damp(function, x_old, function_old, step_old, x_new, function_new, step_new);
-            OPTIMIST_ASSERT_WARNING(damped,
-              "Optimist::ScalarRootFinder::Newton::solve(...): damping failed.");
+            OPTIMIST_ASSERT_WARNING(damped, CMD "damping failed.");
           } else {
             // Update point
             x_new = x_old + step_old;
@@ -130,6 +132,8 @@ namespace Optimist
         // Convergence data
         x_sol = x_old;
         return this->m_converged;
+
+        #undef CMD
       }
 
     }; // class Newton

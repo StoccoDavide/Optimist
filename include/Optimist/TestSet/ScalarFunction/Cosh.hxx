@@ -10,8 +10,8 @@
 
 #pragma once
 
-#ifndef OPTIMIST_COSH_HXX
-#define OPTIMIST_COSH_HXX
+#ifndef OPTIMIST_SCALAR_FUNCTION_COSH_HXX
+#define OPTIMIST_SCALAR_FUNCTION_COSH_HXX
 
 namespace Optimist
 {
@@ -26,8 +26,8 @@ namespace Optimist
     * \f[
     * f(x) = \cosh(x) = \displaystyle\frac{e^x + e^{-x}}{2} \text{.}
     * \f]
-    * The function has a minimum at \f$x = 0\f$, with \f$f(x) = 1\f$. The initial guesses are generated on the
-    * range \f$x \in \left[-\pi, \pi\right]\f$.
+    * The function has a minimum at \f$x = 0\f$, with \f$f(x) = 1\f$. The initial guesses are
+    * generated on the range \f$x \in \left[-10, 10\right]\f$.
     */
     class Cosh : public ScalarFunction<Cosh>
     {
@@ -37,8 +37,9 @@ namespace Optimist
       */
       Cosh()
       {
-        this->m_solutions.emplace_back(0.0);
-        for (Real x{-M_PI}; x < M_PI + EPSILON; x += M_PI/2.0) {this->m_guesses.emplace_back(x);}
+        this->m_solutions.emplace_back(0.0); // Minimum
+        this->m_guesses.emplace_back(-10.0);
+        this->m_guesses.emplace_back(10.0);
       }
 
       /**
@@ -74,4 +75,4 @@ namespace Optimist
 
 } // namespace Optimist
 
-#endif // OPTIMIST_COSH_HXX
+#endif // OPTIMIST_SCALAR_FUNCTION_COSH_HXX

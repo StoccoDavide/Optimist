@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['optimizer_0',['Optimizer',['../class_optimist_1_1_optimizer_1_1_optimizer.html',1,'Optimist::Optimizer']]],
-  ['optimizer_3c_20n_2c_20neldermead_3c_20n_20_3e_20_3e_1',['Optimizer&lt; N, NelderMead&lt; N &gt; &gt;',['../class_optimist_1_1_optimizer_1_1_optimizer.html',1,'Optimist::Optimizer']]]
+  ['neldermead_0',['NelderMead',['../class_optimist_1_1_optimizer_1_1_nelder_mead.html',1,'Optimist::Optimizer']]],
+  ['newton_1',['Newton',['../class_optimist_1_1_root_finder_1_1_newton.html',1,'Optimist::RootFinder::Newton&lt; N &gt;'],['../class_optimist_1_1_scalar_root_finder_1_1_newton.html',1,'Optimist::ScalarRootFinder::Newton']]]
 ];

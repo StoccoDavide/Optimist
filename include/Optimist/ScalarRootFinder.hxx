@@ -8,7 +8,6 @@
  * davide.stocco@unitn.it            mattia.piazza@unitn.it           enrico.bertolazzi@unitn.it *
 \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-
 #pragma once
 
 #ifndef OPTIMIST_SCALAR_ROOT_FINDER_HXX
@@ -67,7 +66,6 @@ namespace Optimist
       */
       std::string name() const {return static_cast<const DerivedSolver *>(this)->name_impl();}
 
-    public:
       /**
       * Solve the root-finding problem given the function, and without derivatives.
       * \param[in] function Function wrapper.

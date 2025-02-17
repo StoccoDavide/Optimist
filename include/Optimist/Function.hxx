@@ -140,7 +140,7 @@ namespace Optimist
         if constexpr (FunInDim == 1) {
           if (std::abs(x - s) < tol) {return true;}
         } else if constexpr (FunInDim > 1) {
-          if(x.isApprox(s, tol)) {return true;}
+          if((x - s).norm() < tol) {return true;}
         } else {
           OPTIMIST_ERROR("Optimist::Function::is_solution(...): invalid input dimension.");
           return false;

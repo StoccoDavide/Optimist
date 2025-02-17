@@ -5,6 +5,6 @@
 int main()
 {
   Optimist::Info(std::cout);
-  Optimist::TestSet::Info(std::cout);
+  Optimist::TestSet::TestSetInfo(std::cout);
   return 0;
 }
