@@ -1,0 +1,27 @@
+var class_optimist_1_1_scalar_root_finder_1_1_bracketing =
+[
+    [ "FirstDerivativeWrapper", "class_optimist_1_1_scalar_root_finder_1_1_bracketing.html#a4d352108b0a4bf9662a3dbfd5872cada", null ],
+    [ "FunctionWrapper", "class_optimist_1_1_scalar_root_finder_1_1_bracketing.html#a3caf8f912f0255e6cad54007840f3003", null ],
+    [ "SecondDerivativeWrapper", "class_optimist_1_1_scalar_root_finder_1_1_bracketing.html#a4890d0c8bfd281309c1f8e23db053be1", null ],
+    [ "Bracketing", "class_optimist_1_1_scalar_root_finder_1_1_bracketing.html#a8e124019bad71119704796ae9316d92b", null ],
+    [ "find_root", "class_optimist_1_1_scalar_root_finder_1_1_bracketing.html#aef51f4666c06ac08e5efee52a5a284bd", null ],
+    [ "name_impl", "class_optimist_1_1_scalar_root_finder_1_1_bracketing.html#a73a7c8817fe6aaba61747d6b7c52e351", null ],
+    [ "solve_impl", "class_optimist_1_1_scalar_root_finder_1_1_bracketing.html#ac78983dd24fba845b7be5259af9433ed", null ],
+    [ "tolerance_bracketing", "class_optimist_1_1_scalar_root_finder_1_1_bracketing.html#a32e818316342308fdb2cae7ad205e4d7", null ],
+    [ "m_a", "class_optimist_1_1_scalar_root_finder_1_1_bracketing.html#ac701c774c1872237db8b421ce0773fc4", null ],
+    [ "m_b", "class_optimist_1_1_scalar_root_finder_1_1_bracketing.html#a85a40e83695d4429c13c46daabbcb46e", null ],
+    [ "m_c", "class_optimist_1_1_scalar_root_finder_1_1_bracketing.html#a3ab7ba91c7327ea5ea6c1420994469c3", null ],
+    [ "m_d", "class_optimist_1_1_scalar_root_finder_1_1_bracketing.html#a19fc88448c90c0db946225358b2d985c", null ],
+    [ "m_e", "class_optimist_1_1_scalar_root_finder_1_1_bracketing.html#af4b49f2205fc78e78348d148fdb5440c", null ],
+    [ "m_fa", "class_optimist_1_1_scalar_root_finder_1_1_bracketing.html#a45c5323fcf6f5b058b4d5e87fade6ac2", null ],
+    [ "m_fb", "class_optimist_1_1_scalar_root_finder_1_1_bracketing.html#a83a92282b065709117fce3675afb1d35", null ],
+    [ "m_fc", "class_optimist_1_1_scalar_root_finder_1_1_bracketing.html#adeac8bbfbd4f48907e73fa7e8ae3ab14", null ],
+    [ "m_fd", "class_optimist_1_1_scalar_root_finder_1_1_bracketing.html#a1bb2ca78e81c5df1a278a216d5068125", null ],
+    [ "m_fe", "class_optimist_1_1_scalar_root_finder_1_1_bracketing.html#a7f94365c41fbfca5e8a51da7af48d979", null ],
+    [ "m_interval_shink", "class_optimist_1_1_scalar_root_finder_1_1_bracketing.html#a79d30896830e7ec2ebff6d1f43b2fca8", null ],
+    [ "m_mu", "class_optimist_1_1_scalar_root_finder_1_1_bracketing.html#aa6433e145f0e2c581017ba9710d373ba", null ],
+    [ "m_tolerance_bracketing", "class_optimist_1_1_scalar_root_finder_1_1_bracketing.html#a73aaaa46c9b959397f49bc292b582cd9", null ],
+    [ "requires_first_derivative", "class_optimist_1_1_scalar_root_finder_1_1_bracketing.html#a0627b6cfa2ca9a018cd7150671d129be", null ],
+    [ "requires_function", "class_optimist_1_1_scalar_root_finder_1_1_bracketing.html#a7bce3c104b6e5061cb6e37f5b7ea46bc", null ],
+    [ "requires_second_derivative", "class_optimist_1_1_scalar_root_finder_1_1_bracketing.html#ab2844bea094092eba586e324e4b30262", null ]
+];

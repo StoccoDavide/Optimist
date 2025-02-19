@@ -371,7 +371,7 @@ $(function(){initNavTree('_optimist_8hh_source.html',''); initResizable(true); }
 <div class="line"><a id="l00277" name="l00277"></a><span class="lineno"><a class="line" href="namespace_optimist.html#a0f174a8298a3a1d692f7db44b02052b4">  277</a></span>  <span class="keyword">static</span> std::string <a class="code hl_function" href="namespace_optimist.html#a0f174a8298a3a1d692f7db44b02052b4">table_vertical_line</a>() {<span class="keywordflow">return</span> <span class="stringliteral">&quot;│&quot;</span>;}</div>
 <div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span></div>
 <div class="foldopen" id="foldopen00283" data-start="{" data-end="}">
-<div class="line"><a id="l00283" name="l00283"></a><span class="lineno"><a class="line" href="namespace_optimist.html#ae6184c22dec9000a023fd85bb158faef">  283</a></span>  std::string <a class="code hl_function" href="namespace_optimist.html#ae6184c22dec9000a023fd85bb158faef">Info</a>() {</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno"><a class="line" href="namespace_optimist.html#ae6184c22dec9000a023fd85bb158faef">  283</a></span>  <span class="keyword">inline</span> std::string <a class="code hl_function" href="namespace_optimist.html#ae6184c22dec9000a023fd85bb158faef">Info</a>() {</div>
 <div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>    std::ostringstream os;</div>
 <div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>    os</div>
 <div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>      &lt;&lt; <span class="stringliteral">&quot;* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *&quot;</span> &lt;&lt; std::endl</div>
@@ -387,46 +387,54 @@ $(function(){initNavTree('_optimist_8hh_source.html',''); initResizable(true); }
 <div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>  }</div>
 </div>
 <div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span></div>
-<div class="line"><a id="l00302" name="l00302"></a><span class="lineno"><a class="line" href="namespace_optimist.html#a28db3cffe02163a4d3cea999bf0d65bc">  302</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="namespace_optimist.html#ae6184c22dec9000a023fd85bb158faef">Info</a>(std::ostream &amp;os) {os &lt;&lt; <a class="code hl_function" href="namespace_optimist.html#ae6184c22dec9000a023fd85bb158faef">Info</a>();}</div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno"><a class="line" href="namespace_optimist.html#a28db3cffe02163a4d3cea999bf0d65bc">  302</a></span>  <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="namespace_optimist.html#ae6184c22dec9000a023fd85bb158faef">Info</a>(std::ostream &amp;os) {os &lt;&lt; <a class="code hl_function" href="namespace_optimist.html#ae6184c22dec9000a023fd85bb158faef">Info</a>();}</div>
 <div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span> </div>
 <div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>} <span class="comment">// namespace Optimist</span></div>
 </div>
 <div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span> </div>
-<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span><span class="comment">// Finite difference</span></div>
-<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span><span class="comment">//#include &quot;Optimist/FiniteDifference.hxx&quot;</span></div>
-<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span> </div>
-<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span><span class="comment">// The functions</span></div>
-<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span><span class="preprocessor">#include &quot;<a class="code" href="_function_8hxx.html">Optimist/Function.hxx</a>&quot;</span></div>
-<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span><span class="preprocessor">#include &quot;<a class="code" href="_scalar_function_8hxx.html">Optimist/Function/ScalarFunction.hxx</a>&quot;</span></div>
-<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span><span class="preprocessor">#include &quot;<a class="code" href="_vector_function_8hxx.html">Optimist/Function/VectorFunction.hxx</a>&quot;</span></div>
-<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span><span class="preprocessor">#include &quot;<a class="code" href="_cost_function_8hxx.html">Optimist/Function/CostFunction.hxx</a>&quot;</span></div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span><span class="comment">// The functions</span></div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span><span class="preprocessor">#include &quot;<a class="code" href="_function_8hxx.html">Optimist/Function.hxx</a>&quot;</span></div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span><span class="preprocessor">#include &quot;<a class="code" href="_scalar_function_8hxx.html">Optimist/Function/ScalarFunction.hxx</a>&quot;</span></div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span><span class="preprocessor">#include &quot;<a class="code" href="_vector_function_8hxx.html">Optimist/Function/VectorFunction.hxx</a>&quot;</span></div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span><span class="preprocessor">#include &quot;<a class="code" href="_cost_function_8hxx.html">Optimist/Function/CostFunction.hxx</a>&quot;</span></div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span> </div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span><span class="comment">// The solver base class</span></div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span><span class="preprocessor">#include &quot;<a class="code" href="_solver_8hxx.html">Optimist/Solver.hxx</a>&quot;</span></div>
 <div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span> </div>
-<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span><span class="comment">// The solver base class</span></div>
-<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span><span class="preprocessor">#include &quot;<a class="code" href="_solver_8hxx.html">Optimist/Solver.hxx</a>&quot;</span></div>
-<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span> </div>
-<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span><span class="comment">// Scalar root-finding solvers</span></div>
-<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span><span class="preprocessor">#include &quot;<a class="code" href="_scalar_root_finder_8hxx.html">Optimist/ScalarRootFinder.hxx</a>&quot;</span></div>
-<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span><span class="preprocessor">#include &quot;<a class="code" href="_scalar_root_finder_2_newton_8hxx.html">Optimist/ScalarRootFinder/Newton.hxx</a>&quot;</span></div>
-<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span> </div>
-<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span><span class="comment">// Root-finding solvers</span></div>
-<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span><span class="preprocessor">#include &quot;<a class="code" href="_root_finder_8hxx.html">Optimist/RootFinder.hxx</a>&quot;</span></div>
-<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span><span class="preprocessor">#include &quot;<a class="code" href="_root_finder_2_newton_8hxx.html">Optimist/RootFinder/Newton.hxx</a>&quot;</span></div>
-<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span><span class="preprocessor">#include &quot;<a class="code" href="_quasi_newton_8hxx.html">Optimist/RootFinder/QuasiNewton.hxx</a>&quot;</span></div>
-<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span><span class="preprocessor">#include &quot;<a class="code" href="_broyden_8hxx.html">Optimist/RootFinder/Broyden.hxx</a>&quot;</span></div>
-<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span><span class="preprocessor">#include &quot;<a class="code" href="_greenstadt_8hxx.html">Optimist/RootFinder/Greenstadt.hxx</a>&quot;</span></div>
-<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span> </div>
-<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span><span class="comment">// Optimization solvers</span></div>
-<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span><span class="preprocessor">#include &quot;<a class="code" href="_optimizer_8hxx.html">Optimist/Optimizer.hxx</a>&quot;</span></div>
-<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span><span class="preprocessor">#include &quot;<a class="code" href="_nelder_mead_8hxx.html">Optimist/Optimizer/NelderMead.hxx</a>&quot;</span></div>
-<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span> </div>
-<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span><span class="comment">// Scalar optimization solvers</span></div>
-<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span><span class="preprocessor">#include &quot;<a class="code" href="_scalar_optimizer_8hxx.html">Optimist/ScalarOptimizer.hxx</a>&quot;</span></div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span><span class="comment">// Scalar root-finding solvers</span></div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span><span class="preprocessor">#include &quot;<a class="code" href="_scalar_root_finder_8hxx.html">Optimist/ScalarRootFinder.hxx</a>&quot;</span></div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span><span class="preprocessor">#include &quot;<a class="code" href="_bracketing_8hxx.html">Optimist/ScalarRootFinder/Bracketing.hxx</a>&quot;</span></div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span><span class="preprocessor">#include &quot;<a class="code" href="_algo748_8hxx.html">Optimist/ScalarRootFinder/Algo748.hxx</a>&quot;</span></div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span><span class="preprocessor">#include &quot;<a class="code" href="_chandrupatla_8hxx.html">Optimist/ScalarRootFinder/Chandrupatla.hxx</a>&quot;</span></div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span><span class="preprocessor">#include &quot;<a class="code" href="_chebyshev_8hxx.html">Optimist/ScalarRootFinder/Chebyshev.hxx</a>&quot;</span></div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span><span class="preprocessor">#include &quot;<a class="code" href="_halley_8hxx.html">Optimist/ScalarRootFinder/Halley.hxx</a>&quot;</span></div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span><span class="preprocessor">#include &quot;<a class="code" href="_scalar_root_finder_2_newton_8hxx.html">Optimist/ScalarRootFinder/Newton.hxx</a>&quot;</span></div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span><span class="preprocessor">#include &quot;<a class="code" href="_varona_8hxx.html">Optimist/ScalarRootFinder/Varona.hxx</a>&quot;</span></div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span> </div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span><span class="comment">// Root-finding solvers</span></div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span><span class="preprocessor">#include &quot;<a class="code" href="_root_finder_8hxx.html">Optimist/RootFinder.hxx</a>&quot;</span></div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span><span class="preprocessor">#include &quot;<a class="code" href="_root_finder_2_newton_8hxx.html">Optimist/RootFinder/Newton.hxx</a>&quot;</span></div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span><span class="preprocessor">#include &quot;<a class="code" href="_quasi_newton_8hxx.html">Optimist/RootFinder/QuasiNewton.hxx</a>&quot;</span></div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span><span class="preprocessor">#include &quot;<a class="code" href="_broyden_8hxx.html">Optimist/RootFinder/Broyden.hxx</a>&quot;</span></div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span><span class="preprocessor">#include &quot;<a class="code" href="_greenstadt_8hxx.html">Optimist/RootFinder/Greenstadt.hxx</a>&quot;</span></div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span> </div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span><span class="comment">// Optimization solvers</span></div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span><span class="preprocessor">#include &quot;<a class="code" href="_optimizer_8hxx.html">Optimist/Optimizer.hxx</a>&quot;</span></div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span><span class="preprocessor">#include &quot;<a class="code" href="_nelder_mead_8hxx.html">Optimist/Optimizer/NelderMead.hxx</a>&quot;</span></div>
 <div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span> </div>
-<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span><span class="preprocessor">#endif </span><span class="comment">// INCLUDE_OPTIMIST_HH</span></div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span><span class="comment">// Scalar optimization solvers</span></div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span><span class="preprocessor">#include &quot;<a class="code" href="_scalar_optimizer_8hxx.html">Optimist/ScalarOptimizer.hxx</a>&quot;</span></div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span> </div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span><span class="preprocessor">#endif </span><span class="comment">// INCLUDE_OPTIMIST_HH</span></div>
+<div class="ttc" id="a_algo748_8hxx_html"><div class="ttname"><a href="_algo748_8hxx.html">Algo748.hxx</a></div></div>
+<div class="ttc" id="a_bracketing_8hxx_html"><div class="ttname"><a href="_bracketing_8hxx.html">Bracketing.hxx</a></div></div>
 <div class="ttc" id="a_broyden_8hxx_html"><div class="ttname"><a href="_broyden_8hxx.html">Broyden.hxx</a></div></div>
+<div class="ttc" id="a_chandrupatla_8hxx_html"><div class="ttname"><a href="_chandrupatla_8hxx.html">Chandrupatla.hxx</a></div></div>
+<div class="ttc" id="a_chebyshev_8hxx_html"><div class="ttname"><a href="_chebyshev_8hxx.html">Chebyshev.hxx</a></div></div>
 <div class="ttc" id="a_cost_function_8hxx_html"><div class="ttname"><a href="_cost_function_8hxx.html">CostFunction.hxx</a></div></div>
 <div class="ttc" id="a_function_8hxx_html"><div class="ttname"><a href="_function_8hxx.html">Function.hxx</a></div></div>
 <div class="ttc" id="a_greenstadt_8hxx_html"><div class="ttname"><a href="_greenstadt_8hxx.html">Greenstadt.hxx</a></div></div>
+<div class="ttc" id="a_halley_8hxx_html"><div class="ttname"><a href="_halley_8hxx.html">Halley.hxx</a></div></div>
 <div class="ttc" id="a_nelder_mead_8hxx_html"><div class="ttname"><a href="_nelder_mead_8hxx.html">NelderMead.hxx</a></div></div>
 <div class="ttc" id="a_optimizer_8hxx_html"><div class="ttname"><a href="_optimizer_8hxx.html">Optimizer.hxx</a></div></div>
 <div class="ttc" id="a_quasi_newton_8hxx_html"><div class="ttname"><a href="_quasi_newton_8hxx.html">QuasiNewton.hxx</a></div></div>
@@ -437,6 +445,7 @@ $(function(){initNavTree('_optimist_8hh_source.html',''); initResizable(true); }
 <div class="ttc" id="a_scalar_root_finder_2_newton_8hxx_html"><div class="ttname"><a href="_scalar_root_finder_2_newton_8hxx.html">Newton.hxx</a></div></div>
 <div class="ttc" id="a_scalar_root_finder_8hxx_html"><div class="ttname"><a href="_scalar_root_finder_8hxx.html">ScalarRootFinder.hxx</a></div></div>
 <div class="ttc" id="a_solver_8hxx_html"><div class="ttname"><a href="_solver_8hxx.html">Solver.hxx</a></div></div>
+<div class="ttc" id="a_varona_8hxx_html"><div class="ttname"><a href="_varona_8hxx.html">Varona.hxx</a></div></div>
 <div class="ttc" id="a_vector_function_8hxx_html"><div class="ttname"><a href="_vector_function_8hxx.html">VectorFunction.hxx</a></div></div>
 <div class="ttc" id="anamespace_optimist_html"><div class="ttname"><a href="namespace_optimist.html">Optimist</a></div><div class="ttdoc">Namespace for the Optimist library.</div><div class="ttdef"><b>Definition</b> Optimist.hh:71</div></div>
 <div class="ttc" id="anamespace_optimist_html_a0247b741908904f9f04f669aad403e83"><div class="ttname"><a href="namespace_optimist.html#a0247b741908904f9f04f669aad403e83">Optimist::NAN_VEC6</a></div><div class="ttdeci">static const Vector6 NAN_VEC6</div><div class="ttdef"><b>Definition</b> Optimist.hh:169</div></div>

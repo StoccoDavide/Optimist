@@ -146,7 +146,6 @@ namespace Optimist
 
       /**
       * Computes the inward contraction point.
-      * \param x The reflection point.
       * \return The contraction point.
       */
       Vector inward_contraction() const

@@ -60,6 +60,10 @@ namespace Optimist
     using FirstDerivativeWrapper  = typename std::function<void(const InputType &, FirstDerivativeType &)>;  /**< First derivative type. */
     using SecondDerivativeWrapper = typename std::function<void(const InputType &, SecondDerivativeType &)>; /**< Second derivative type. */
 
+    // Bounds (may not be used)
+    InputType m_lower_bound; /**< Lower bound. */
+    InputType m_upper_bound; /**< Upper bound. */
+
     // Evaluations
     Integer m_function_evaluations{0};          /**< Function evaluations. */
     Integer m_first_derivative_evaluations{0};  /**< First derivative evaluations. */
@@ -88,13 +92,20 @@ namespace Optimist
     bool        m_converged{false};  /**< Convergence boolean flag. */
     TraceType   m_trace;             /**< Trace for points \f$ \mathbf{x} \f$ values. */
 
-    // Ouput stream for verbose mode
-
   public:
     /**
     * Class constructor for the nonlinear solver.
     */
-    Solver() {this->m_trace.reserve(this->m_max_iterations * this->m_max_relaxations);}
+    Solver() {
+      if constexpr (SolInDim == 1) {
+        this->m_lower_bound = -INFTY;
+        this->m_upper_bound = INFTY;
+      } else if constexpr (SolInDim > 1) {
+        this->m_lower_bound.setConstant(-INFTY);
+        this->m_upper_bound.setConstant(INFTY);
+      }
+      this->m_trace.reserve(this->m_max_iterations * this->m_max_relaxations);
+    }
 
     /**
     * Class constructor for the nonlinear solver.
@@ -131,6 +142,78 @@ namespace Optimist
       second_derivative, const InputType & x_ini, InputType & x_sol) : Solver()
     {
       this->solve_impl(function, first_derivative, second_derivative, x_ini, x_sol);
+    }
+
+    /**
+    * Get the lower bound.
+    * \return The lower bound.
+    */
+    const InputType & lower_bound() const {return this->m_lower_bound;}
+
+    /**
+    * Set the lower bound.
+    * \param[in] t_lower_bound The lower bound.
+    */
+    void lower_bound(const InputType & t_lower_bound) {
+      #define CMD "Optimist::Solver::bounds(...): "
+
+      if constexpr (SolInDim == 1) {
+        OPTIMIST_ASSERT(this->m_upper_bound > t_lower_bound,
+          CMD "invalid or degenarate bounds detected.");
+      } else if constexpr (SolInDim > 1) {
+        OPTIMIST_ASSERT((this->m_upper_bound - t_lower_bound).minCoeff() <= Real(0.0),
+          CMD "invalid or degenarate bounds detected.");
+      }
+      this->m_lower_bound = t_lower_bound;
+
+      #undef CMD
+    }
+
+    /**
+    * Get the upper bound.
+    * \return The upper bound.
+    */
+    const InputType & upper_bound() const {return this->m_upper_bound;}
+
+    /**
+    * Set the upper bound.
+    * \param[in] t_upper_bound The upper bound.
+    */
+    void upper_bound(const InputType & t_upper_bound) {
+      #define CMD "Optimist::Solver::bounds(...): "
+
+      if constexpr (SolInDim == 1) {
+        OPTIMIST_ASSERT(t_upper_bound > this->m_lower_bound,
+          CMD "invalid or degenarate bounds detected.");
+      } else if constexpr (SolInDim > 1) {
+        OPTIMIST_ASSERT((t_upper_bound - this->m_lower_bound).minCoeff() <= Real(0.0),
+          CMD "invalid or degenarate bounds detected.");
+      }
+      this->m_upper_bound = t_upper_bound;
+
+      #undef CMD
+    }
+
+    /**
+    * Set the bounds.
+    * \param[in] t_lower_bound The lower bound.
+    * \param[in] t_upper_bound The upper bound.
+    */
+    void bounds(const InputType & t_lower_bound, const InputType & t_upper_bound)
+    {
+      #define CMD "Optimist::Solver::bounds(...): "
+
+      if constexpr (SolInDim == 1) {
+        OPTIMIST_ASSERT(t_upper_bound > t_lower_bound,
+          CMD "invalid or degenarate bounds detected.");
+      } else if constexpr (SolInDim > 1) {
+        OPTIMIST_ASSERT((t_upper_bound - t_lower_bound).minCoeff() <= Real(0.0),
+          CMD "invalid or degenarate bounds detected.");
+      }
+      this->m_lower_bound = t_lower_bound;
+      this->m_upper_bound = t_upper_bound;
+
+      #undef CMD
     }
 
     /**

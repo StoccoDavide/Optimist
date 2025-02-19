@@ -10,10 +10,7 @@ if (OPTIMIST_ENABLE_PLOTTING)
     QUIET
   )
 
-  get_target_property(MATPLOT_INCLUDE_DIRS
-    Matplot++::matplot
-    INTERFACE_INCLUDE_DIRECTORIES
-  )
+  get_target_property(MATPLOT_INCLUDE_DIRS Matplot++::matplot INTERFACE_INCLUDE_DIRECTORIES)
 
   message(STATUS "Optimist: Found Matplot++ installed in ${MATPLOT_INCLUDE_DIRS}")
 

@@ -4,7 +4,7 @@ The Broyden family includes the good, bad, and combined methods. These methods a
 \f[
   \mathbf{Jf}_{\mathbf{x}}(\mathbf{x}_k) \mathbf{h}_k = -\mathbf{f}(\mathbf{x}_k) \text{.}
 \f]
-Here, the Jacobian matrix \f$\mathbf{Jf}_{\mathbf{x}}\f$ is supposed not to be explicitly available or computationally expensive to compute. For this reason, Broyden's methods approximate the Jacobian matrix by updating the inverse of the Jacobian matrix iteratively. The Broyden's method is defined as
+Here, the Jacobian matrix \f$\mathbf{Jf}_{\mathbf{x}}\f$ is supposed not to be explicitly available or computationally expensive to compute. For this reason, Broyden's methods approximate the Jacobian matrix iteratively. The Broyden's method is defined as
 \f[
   \mathbf{H}_k(\mathbf{x}_k) \mathbf{h}_k = -\mathbf{f}(\mathbf{x}_k) \text{,}
 \f]

@@ -1,8 +1,9 @@
 var searchData=
 [
-  ['cos_0',['Cos',['../class_optimist_1_1_test_set_1_1_cos.html',1,'Optimist::TestSet']]],
-  ['cosh_1',['Cosh',['../class_optimist_1_1_test_set_1_1_cosh.html',1,'Optimist::TestSet']]],
-  ['costfunction_2',['CostFunction',['../class_optimist_1_1_cost_function.html',1,'Optimist']]],
-  ['costfunction_3c_202_2c_20ellipticparaboloid_20_3e_3',['CostFunction&lt; 2, EllipticParaboloid &gt;',['../class_optimist_1_1_cost_function.html',1,'Optimist']]],
-  ['costfunction_3c_202_2c_20schaffer2_20_3e_4',['CostFunction&lt; 2, Schaffer2 &gt;',['../class_optimist_1_1_cost_function.html',1,'Optimist']]]
+  ['booth_0',['Booth',['../class_optimist_1_1_test_set_1_1_booth.html',1,'Optimist::TestSet']]],
+  ['bracketing_1',['Bracketing',['../class_optimist_1_1_scalar_root_finder_1_1_bracketing.html',1,'Optimist::ScalarRootFinder']]],
+  ['bracketing_3c_20algo748_20_3e_2',['Bracketing&lt; Algo748 &gt;',['../class_optimist_1_1_scalar_root_finder_1_1_bracketing.html',1,'Optimist::ScalarRootFinder']]],
+  ['bracketing_3c_20chandrupatla_20_3e_3',['Bracketing&lt; Chandrupatla &gt;',['../class_optimist_1_1_scalar_root_finder_1_1_bracketing.html',1,'Optimist::ScalarRootFinder']]],
+  ['brown_4',['Brown',['../class_optimist_1_1_test_set_1_1_brown.html',1,'Optimist::TestSet']]],
+  ['broyden_5',['Broyden',['../class_optimist_1_1_root_finder_1_1_broyden.html',1,'Optimist::RootFinder']]]
 ];

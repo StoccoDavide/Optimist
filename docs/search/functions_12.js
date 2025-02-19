@@ -14,5 +14,6 @@ var searchData=
   ['task_11',['task',['../class_optimist_1_1_solver.html#ac0bb6080b5577e77cf4e1a463d1f3efa',1,'Optimist::Solver::task() const'],['../class_optimist_1_1_solver.html#a54234154f44ff7625e5062f7f2fc8bc7',1,'Optimist::Solver::task(std::string t_task)']]],
   ['testsetinfo_12',['TestSetInfo',['../namespace_optimist_1_1_test_set.html#aaec5bea904512558c391be27de577c99',1,'Optimist::TestSet::TestSetInfo()'],['../namespace_optimist_1_1_test_set.html#a86f0a3ea5219ab186d25711f3c3509a6',1,'Optimist::TestSet::TestSetInfo(std::ostream &amp;os)']]],
   ['tolerance_13',['tolerance',['../class_optimist_1_1_solver.html#a40d2093884e3ce8b3fe5b8d46e7e8f8d',1,'Optimist::Solver::tolerance() const'],['../class_optimist_1_1_solver.html#ac5ff74d62e86d447ad11df0db473a96b',1,'Optimist::Solver::tolerance(Real t_tolerance)']]],
-  ['trace_14',['trace',['../class_optimist_1_1_solver.html#ac9074309b65354deb0025cca78f109c8',1,'Optimist::Solver']]]
+  ['tolerance_5fbracketing_14',['tolerance_bracketing',['../class_optimist_1_1_scalar_root_finder_1_1_bracketing.html#a32e818316342308fdb2cae7ad205e4d7',1,'Optimist::ScalarRootFinder::Bracketing']]],
+  ['trace_15',['trace',['../class_optimist_1_1_solver.html#ac9074309b65354deb0025cca78f109c8',1,'Optimist::Solver']]]
 ];

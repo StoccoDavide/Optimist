@@ -26,6 +26,7 @@ TEMPLATE_TEST_CASE("Algo748", "[template]", TEST_SCALAR_FUNCTIONS) {
   TestType fun;
   SECTION(fun.name()) {
     ScalarRootFinder::Algo748 sol;
+    sol.bounds(-10.0, 10.0);
     sol.task(fun.name());
     typename TestType::InputType x_ini, x_out;
     for (Integer i{0}; i < static_cast<Integer>(fun.guesses().size()); ++i) {

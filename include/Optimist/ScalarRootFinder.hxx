@@ -96,7 +96,6 @@ namespace Optimist
       * Solve the root-finding problem given the function, and its first and second derivatives.
       * \param[in] function Function wrapper.
       * \param[in] first_derivative First derivative wrapper.
-      * \param[in] second_derivative Second derivative wrapper.
       * \param[in] x_ini Initialization point.
       * \param[out] x_sol Solution point.
       * \return The convergence boolean flag.

@@ -1,7 +1,9 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$class_optimist_1_1_solver.html" title=" " alt="" coords="5,13,162,54"/>
-<area shape="rect" id="Node000001" href="$class_optimist_1_1_optimizer_1_1_optimizer.html" title=" " alt="" coords="210,5,395,61"/>
-<area shape="poly" id="edge31_Node000000_Node000001" title=" " alt="" coords="178,30,209,30,209,36,178,36"/>
-<area shape="rect" id="Node000002" href="$class_optimist_1_1_optimizer_1_1_nelder_mead.html" title="Class container for the Nelder&#45;Mead&#39;s method." alt="" coords="443,13,577,54"/>
-<area shape="poly" id="edge32_Node000001_Node000002" title=" " alt="" coords="411,30,442,30,442,36,411,36"/>
+<area shape="rect" id="Node000000" href="$class_optimist_1_1_solver.html" title=" " alt="" coords="5,39,144,79"/>
+<area shape="rect" id="Node000001" href="$class_optimist_1_1_scalar_optimizer_1_1_scalar_optimizer.html" title="Class container for the scalar optimizer." alt="" coords="196,5,424,46"/>
+<area shape="poly" id="edge34_Node000000_Node000001" title=" " alt="" coords="158,45,195,39,196,45,159,50"/>
+<area shape="rect" id="Node000002" href="$class_optimist_1_1_scalar_root_finder_1_1_scalar_root_finder.html" title="Class container for the scalar scalar root&#45;finder." alt="" coords="192,71,428,111"/>
+<area shape="poly" id="edge35_Node000000_Node000002" title=" " alt="" coords="159,68,191,72,191,77,158,73"/>
+<area shape="rect" id="Node000003" href="$class_optimist_1_1_scalar_root_finder_1_1_bracketing.html" title="Class container for the Bracketing algorithms." alt="" coords="476,71,673,111"/>
+<area shape="poly" id="edge36_Node000002_Node000003" title=" " alt="" coords="444,88,475,88,475,94,444,94"/>
 </map>

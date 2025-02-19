@@ -314,7 +314,9 @@ namespace Optimist
 
 // Scalar root-finding solvers
 #include "Optimist/ScalarRootFinder.hxx"
+#include "Optimist/ScalarRootFinder/Bracketing.hxx"
 #include "Optimist/ScalarRootFinder/Algo748.hxx"
+#include "Optimist/ScalarRootFinder/Chandrupatla.hxx"
 #include "Optimist/ScalarRootFinder/Chebyshev.hxx"
 #include "Optimist/ScalarRootFinder/Halley.hxx"
 #include "Optimist/ScalarRootFinder/Newton.hxx"

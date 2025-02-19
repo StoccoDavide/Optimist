@@ -10,5 +10,5 @@ var searchData=
   ['matrix8_7',['Matrix8',['../namespace_optimist.html#a1a155ead734ebdb4bf55d60f9dddf5c3',1,'Optimist']]],
   ['matrix9_8',['Matrix9',['../namespace_optimist.html#a45df55dea43a7363bb36b0b3bfdcd9a3',1,'Optimist']]],
   ['matrixx_9',['MatrixX',['../namespace_optimist.html#a903100f55cfc991dbd7b5e5fb9fcba1b',1,'Optimist']]],
-  ['method_10',['Method',['../class_optimist_1_1_root_finder_1_1_broyden.html#a7e6458b5b2d4be756c7f46a1648d0983',1,'Optimist::RootFinder::Broyden::Method'],['../class_optimist_1_1_root_finder_1_1_greenstadt.html#ac45de207d20f9a1019bd924fc9678f15',1,'Optimist::RootFinder::Greenstadt::Method'],['../class_optimist_1_1_root_finder_1_1_quasi_newton.html#a615c6d45cf546b4b2169e787332a3cb7',1,'Optimist::RootFinder::QuasiNewton::Method']]]
+  ['method_10',['Method',['../class_optimist_1_1_root_finder_1_1_broyden.html#a7e6458b5b2d4be756c7f46a1648d0983',1,'Optimist::RootFinder::Broyden::Method'],['../class_optimist_1_1_root_finder_1_1_greenstadt.html#ac45de207d20f9a1019bd924fc9678f15',1,'Optimist::RootFinder::Greenstadt::Method'],['../class_optimist_1_1_root_finder_1_1_quasi_newton.html#a615c6d45cf546b4b2169e787332a3cb7',1,'Optimist::RootFinder::QuasiNewton::Method'],['../class_optimist_1_1_scalar_root_finder_1_1_varona.html#a2360ecea89e7e9d5fc78f1a755c54d49',1,'Optimist::ScalarRootFinder::Varona::Method']]]
 ];

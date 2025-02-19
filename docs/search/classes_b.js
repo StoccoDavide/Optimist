@@ -1,26 +1,7 @@
 var searchData=
 [
-  ['scalarfunction_0',['ScalarFunction',['../class_optimist_1_1_scalar_function.html',1,'Optimist']]],
-  ['scalarfunction_3c_20cos_20_3e_1',['ScalarFunction&lt; Cos &gt;',['../class_optimist_1_1_scalar_function.html',1,'Optimist']]],
-  ['scalarfunction_3c_20cosh_20_3e_2',['ScalarFunction&lt; Cosh &gt;',['../class_optimist_1_1_scalar_function.html',1,'Optimist']]],
-  ['scalarfunction_3c_20linear_20_3e_3',['ScalarFunction&lt; Linear &gt;',['../class_optimist_1_1_scalar_function.html',1,'Optimist']]],
-  ['scalarfunction_3c_20quadratic_20_3e_4',['ScalarFunction&lt; Quadratic &gt;',['../class_optimist_1_1_scalar_function.html',1,'Optimist']]],
-  ['scalarfunction_3c_20sin_20_3e_5',['ScalarFunction&lt; Sin &gt;',['../class_optimist_1_1_scalar_function.html',1,'Optimist']]],
-  ['scalarfunction_3c_20sinh_20_3e_6',['ScalarFunction&lt; Sinh &gt;',['../class_optimist_1_1_scalar_function.html',1,'Optimist']]],
-  ['scalaroptimizer_7',['ScalarOptimizer',['../class_optimist_1_1_scalar_optimizer_1_1_scalar_optimizer.html',1,'Optimist::ScalarOptimizer']]],
-  ['scalarrootfinder_8',['ScalarRootFinder',['../class_optimist_1_1_scalar_root_finder_1_1_scalar_root_finder.html',1,'Optimist::ScalarRootFinder']]],
-  ['scalarrootfinder_3c_20newton_20_3e_9',['ScalarRootFinder&lt; Newton &gt;',['../class_optimist_1_1_scalar_root_finder_1_1_scalar_root_finder.html',1,'Optimist::ScalarRootFinder']]],
-  ['schaffer2_10',['Schaffer2',['../class_optimist_1_1_test_set_1_1_schaffer2.html',1,'Optimist::TestSet']]],
-  ['sin_11',['Sin',['../class_optimist_1_1_test_set_1_1_sin.html',1,'Optimist::TestSet']]],
-  ['sinh_12',['Sinh',['../class_optimist_1_1_test_set_1_1_sinh.html',1,'Optimist::TestSet']]],
-  ['solver_13',['Solver',['../class_optimist_1_1_solver.html',1,'Optimist']]],
-  ['solver_3c_201_2c_201_2c_20derivedsolver_20_3e_14',['Solver&lt; 1, 1, DerivedSolver &gt;',['../class_optimist_1_1_solver.html',1,'Optimist']]],
-  ['solver_3c_201_2c_201_2c_20newton_20_3e_15',['Solver&lt; 1, 1, Newton &gt;',['../class_optimist_1_1_solver.html',1,'Optimist']]],
-  ['solver_3c_20n_2c_201_2c_20derivedsolver_20_3e_16',['Solver&lt; N, 1, DerivedSolver &gt;',['../class_optimist_1_1_solver.html',1,'Optimist']]],
-  ['solver_3c_20n_2c_201_2c_20neldermead_3c_20n_20_3e_20_3e_17',['Solver&lt; N, 1, NelderMead&lt; N &gt; &gt;',['../class_optimist_1_1_solver.html',1,'Optimist']]],
-  ['solver_3c_20n_2c_201_2c_20patternsearch_3c_20n_20_3e_20_3e_18',['Solver&lt; N, 1, PatternSearch&lt; N &gt; &gt;',['../class_optimist_1_1_solver.html',1,'Optimist']]],
-  ['solver_3c_20n_2c_20n_2c_20broyden_3c_20n_20_3e_20_3e_19',['Solver&lt; N, N, Broyden&lt; N &gt; &gt;',['../class_optimist_1_1_solver.html',1,'Optimist']]],
-  ['solver_3c_20n_2c_20n_2c_20derivedsolver_20_3e_20',['Solver&lt; N, N, DerivedSolver &gt;',['../class_optimist_1_1_solver.html',1,'Optimist']]],
-  ['solver_3c_20n_2c_20n_2c_20greenstadt_3c_20n_20_3e_20_3e_21',['Solver&lt; N, N, Greenstadt&lt; N &gt; &gt;',['../class_optimist_1_1_solver.html',1,'Optimist']]],
-  ['solver_3c_20n_2c_20n_2c_20newton_3c_20n_20_3e_20_3e_22',['Solver&lt; N, N, Newton&lt; N &gt; &gt;',['../class_optimist_1_1_solver.html',1,'Optimist']]]
+  ['quadratic_0',['Quadratic',['../class_optimist_1_1_test_set_1_1_quadratic.html',1,'Optimist::TestSet']]],
+  ['quasinewton_1',['QuasiNewton',['../class_optimist_1_1_root_finder_1_1_quasi_newton.html',1,'Optimist::RootFinder']]],
+  ['quasinewton_3c_20n_2c_20broyden_3c_20n_20_3e_20_3e_2',['QuasiNewton&lt; N, Broyden&lt; N &gt; &gt;',['../class_optimist_1_1_root_finder_1_1_quasi_newton.html',1,'Optimist::RootFinder']]],
+  ['quasinewton_3c_20n_2c_20greenstadt_3c_20n_20_3e_20_3e_3',['QuasiNewton&lt; N, Greenstadt&lt; N &gt; &gt;',['../class_optimist_1_1_root_finder_1_1_quasi_newton.html',1,'Optimist::RootFinder']]]
 ];

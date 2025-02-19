@@ -1,0 +1,7 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$class_optimist_1_1_solver.html" title=" " alt="" coords="5,13,147,54"/>
+<area shape="rect" id="Node000001" href="$class_optimist_1_1_root_finder_1_1_root_finder.html" title=" " alt="" coords="195,5,363,61"/>
+<area shape="poly" id="edge56_Node000000_Node000001" title=" " alt="" coords="162,30,194,30,194,36,162,36"/>
+<area shape="rect" id="Node000002" href="$class_optimist_1_1_root_finder_1_1_newton.html" title="Class container for the Newton&#39;s method." alt="" coords="411,13,553,54"/>
+<area shape="poly" id="edge57_Node000001_Node000002" title=" " alt="" coords="379,30,411,30,411,36,379,36"/>
+</map>

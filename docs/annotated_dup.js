@@ -20,8 +20,14 @@ var annotated_dup =
         [ "ScalarOptimizer", "class_optimist_1_1_scalar_optimizer_1_1_scalar_optimizer.html", "class_optimist_1_1_scalar_optimizer_1_1_scalar_optimizer" ]
       ] ],
       [ "ScalarRootFinder", "namespace_optimist_1_1_scalar_root_finder.html", [
+        [ "Algo748", "class_optimist_1_1_scalar_root_finder_1_1_algo748.html", "class_optimist_1_1_scalar_root_finder_1_1_algo748" ],
+        [ "Bracketing", "class_optimist_1_1_scalar_root_finder_1_1_bracketing.html", "class_optimist_1_1_scalar_root_finder_1_1_bracketing" ],
+        [ "Chandrupatla", "class_optimist_1_1_scalar_root_finder_1_1_chandrupatla.html", "class_optimist_1_1_scalar_root_finder_1_1_chandrupatla" ],
+        [ "Chebyshev", "class_optimist_1_1_scalar_root_finder_1_1_chebyshev.html", "class_optimist_1_1_scalar_root_finder_1_1_chebyshev" ],
+        [ "Halley", "class_optimist_1_1_scalar_root_finder_1_1_halley.html", "class_optimist_1_1_scalar_root_finder_1_1_halley" ],
         [ "Newton", "class_optimist_1_1_scalar_root_finder_1_1_newton.html", "class_optimist_1_1_scalar_root_finder_1_1_newton" ],
-        [ "ScalarRootFinder", "class_optimist_1_1_scalar_root_finder_1_1_scalar_root_finder.html", "class_optimist_1_1_scalar_root_finder_1_1_scalar_root_finder" ]
+        [ "ScalarRootFinder", "class_optimist_1_1_scalar_root_finder_1_1_scalar_root_finder.html", "class_optimist_1_1_scalar_root_finder_1_1_scalar_root_finder" ],
+        [ "Varona", "class_optimist_1_1_scalar_root_finder_1_1_varona.html", "class_optimist_1_1_scalar_root_finder_1_1_varona" ]
       ] ],
       [ "TestSet", "namespace_optimist_1_1_test_set.html", [
         [ "Booth", "class_optimist_1_1_test_set_1_1_booth.html", "class_optimist_1_1_test_set_1_1_booth" ],

@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['cos_2ehxx_0',['Cos.hxx',['../_cos_8hxx.html',1,'']]],
-  ['cosh_2ehxx_1',['Cosh.hxx',['../_cosh_8hxx.html',1,'']]],
-  ['costfunction_2ehxx_2',['CostFunction.hxx',['../_cost_function_8hxx.html',1,'']]]
+  ['booth_2ehxx_0',['Booth.hxx',['../_booth_8hxx.html',1,'']]],
+  ['bracketing_2ehxx_1',['Bracketing.hxx',['../_bracketing_8hxx.html',1,'']]],
+  ['brown_2ehxx_2',['Brown.hxx',['../_brown_8hxx.html',1,'']]],
+  ['broyden_2ehxx_3',['Broyden.hxx',['../_broyden_8hxx.html',1,'']]]
 ];

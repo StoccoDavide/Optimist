@@ -16,6 +16,7 @@ var searchData=
   ['testset_2ehh_13',['TestSet.hh',['../_test_set_8hh.html',1,'']]],
   ['testsetinfo_14',['TestSetInfo',['../namespace_optimist_1_1_test_set.html#aaec5bea904512558c391be27de577c99',1,'Optimist::TestSet::TestSetInfo()'],['../namespace_optimist_1_1_test_set.html#a86f0a3ea5219ab186d25711f3c3509a6',1,'Optimist::TestSet::TestSetInfo(std::ostream &amp;os)']]],
   ['tolerance_15',['tolerance',['../class_optimist_1_1_solver.html#a40d2093884e3ce8b3fe5b8d46e7e8f8d',1,'Optimist::Solver::tolerance() const'],['../class_optimist_1_1_solver.html#ac5ff74d62e86d447ad11df0db473a96b',1,'Optimist::Solver::tolerance(Real t_tolerance)']]],
-  ['trace_16',['trace',['../class_optimist_1_1_solver.html#ac9074309b65354deb0025cca78f109c8',1,'Optimist::Solver']]],
-  ['tracetype_17',['TraceType',['../class_optimist_1_1_solver.html#a01cb13872a3cf6c90b9c442c626874b0',1,'Optimist::Solver']]]
+  ['tolerance_5fbracketing_16',['tolerance_bracketing',['../class_optimist_1_1_scalar_root_finder_1_1_bracketing.html#a32e818316342308fdb2cae7ad205e4d7',1,'Optimist::ScalarRootFinder::Bracketing']]],
+  ['trace_17',['trace',['../class_optimist_1_1_solver.html#ac9074309b65354deb0025cca78f109c8',1,'Optimist::Solver']]],
+  ['tracetype_18',['TraceType',['../class_optimist_1_1_solver.html#a01cb13872a3cf6c90b9c442c626874b0',1,'Optimist::Solver']]]
 ];

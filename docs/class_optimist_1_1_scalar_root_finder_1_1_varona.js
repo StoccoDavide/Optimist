@@ -1,0 +1,26 @@
+var class_optimist_1_1_scalar_root_finder_1_1_varona =
+[
+    [ "FirstDerivativeWrapper", "class_optimist_1_1_scalar_root_finder_1_1_varona.html#a5615f72f3497ea176fb390179dd60767", null ],
+    [ "FunctionWrapper", "class_optimist_1_1_scalar_root_finder_1_1_varona.html#a3fec4179a46bee58cd002238d16557a4", null ],
+    [ "Method", "class_optimist_1_1_scalar_root_finder_1_1_varona.html#a2360ecea89e7e9d5fc78f1a755c54d49", null ],
+    [ "SecondDerivativeWrapper", "class_optimist_1_1_scalar_root_finder_1_1_varona.html#af12aca72c532e83048f1dd3fdb268128", null ],
+    [ "Varona", "class_optimist_1_1_scalar_root_finder_1_1_varona.html#a83af644714dcbb2f3be63a66d895150a", null ],
+    [ "compute_step", "class_optimist_1_1_scalar_root_finder_1_1_varona.html#a7e52d7bbaf70fbe9cde836ed557f4751", null ],
+    [ "enable_16th_order_method", "class_optimist_1_1_scalar_root_finder_1_1_varona.html#a265be66449296000c569e81705e746eb", null ],
+    [ "enable_32th_order_method", "class_optimist_1_1_scalar_root_finder_1_1_varona.html#a64314dee14143044e75c1a2544017adb", null ],
+    [ "enable_4th_order_method", "class_optimist_1_1_scalar_root_finder_1_1_varona.html#afe5b6e08aff0e611386c4f4304e79155", null ],
+    [ "enable_8th_order_method", "class_optimist_1_1_scalar_root_finder_1_1_varona.html#af7ed1e3714e3be659116f27636d869e2", null ],
+    [ "H", "class_optimist_1_1_scalar_root_finder_1_1_varona.html#a2fe360acf0167c4862f7e21f4118ff9f", null ],
+    [ "J", "class_optimist_1_1_scalar_root_finder_1_1_varona.html#aac057f3dd5ef408a506d184122a2fe32", null ],
+    [ "method", "class_optimist_1_1_scalar_root_finder_1_1_varona.html#a128d535e1b3ba24f8d68b4ac76f87957", null ],
+    [ "method", "class_optimist_1_1_scalar_root_finder_1_1_varona.html#aacd456ba994e0a05ca83bf786eccaecd", null ],
+    [ "name_impl", "class_optimist_1_1_scalar_root_finder_1_1_varona.html#afba0c37a1cceebba5755c0d2caba664c", null ],
+    [ "Q", "class_optimist_1_1_scalar_root_finder_1_1_varona.html#a3706fbc2b65ca0229097dc7fbbe5a685", null ],
+    [ "set_method", "class_optimist_1_1_scalar_root_finder_1_1_varona.html#ab2d150df73f5fcd522b6cc25c1433acf", null ],
+    [ "solve_impl", "class_optimist_1_1_scalar_root_finder_1_1_varona.html#a8c9030f7aa5de7eee4f5b33df0a61d3b", null ],
+    [ "W", "class_optimist_1_1_scalar_root_finder_1_1_varona.html#a05f8f356f83718c46dc459a232ff331f", null ],
+    [ "m_method", "class_optimist_1_1_scalar_root_finder_1_1_varona.html#a87257bbf65681d0e552f5b35d70bff8c", null ],
+    [ "requires_first_derivative", "class_optimist_1_1_scalar_root_finder_1_1_varona.html#a2dcd5a1ef949713c094294e63138f3e9", null ],
+    [ "requires_function", "class_optimist_1_1_scalar_root_finder_1_1_varona.html#a5d5c1c1f1ed2e7cec6f7f07a940904ed", null ],
+    [ "requires_second_derivative", "class_optimist_1_1_scalar_root_finder_1_1_varona.html#a0a84ccdadbe9f89975b872a3524c36f5", null ]
+];

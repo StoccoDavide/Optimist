@@ -67,13 +67,44 @@ var hierarchy =
       ] ]
     ] ],
     [ "Optimist::Solver< SolInDim, SolOutDim, DerivedSolver >", "class_optimist_1_1_solver.html", null ],
+    [ "Optimist::Solver< 1, 1, Algo748 >", "class_optimist_1_1_solver.html", [
+      [ "Optimist::ScalarRootFinder::ScalarRootFinder< Algo748 >", "class_optimist_1_1_scalar_root_finder_1_1_scalar_root_finder.html", [
+        [ "Optimist::ScalarRootFinder::Bracketing< Algo748 >", "class_optimist_1_1_scalar_root_finder_1_1_bracketing.html", [
+          [ "Optimist::ScalarRootFinder::Algo748", "class_optimist_1_1_scalar_root_finder_1_1_algo748.html", null ]
+        ] ]
+      ] ]
+    ] ],
+    [ "Optimist::Solver< 1, 1, Chandrupatla >", "class_optimist_1_1_solver.html", [
+      [ "Optimist::ScalarRootFinder::ScalarRootFinder< Chandrupatla >", "class_optimist_1_1_scalar_root_finder_1_1_scalar_root_finder.html", [
+        [ "Optimist::ScalarRootFinder::Bracketing< Chandrupatla >", "class_optimist_1_1_scalar_root_finder_1_1_bracketing.html", [
+          [ "Optimist::ScalarRootFinder::Chandrupatla", "class_optimist_1_1_scalar_root_finder_1_1_chandrupatla.html", null ]
+        ] ]
+      ] ]
+    ] ],
+    [ "Optimist::Solver< 1, 1, Chebyshev >", "class_optimist_1_1_solver.html", [
+      [ "Optimist::ScalarRootFinder::ScalarRootFinder< Chebyshev >", "class_optimist_1_1_scalar_root_finder_1_1_scalar_root_finder.html", [
+        [ "Optimist::ScalarRootFinder::Chebyshev", "class_optimist_1_1_scalar_root_finder_1_1_chebyshev.html", null ]
+      ] ]
+    ] ],
     [ "Optimist::Solver< 1, 1, DerivedSolver >", "class_optimist_1_1_solver.html", [
       [ "Optimist::ScalarOptimizer::ScalarOptimizer< DerivedSolver >", "class_optimist_1_1_scalar_optimizer_1_1_scalar_optimizer.html", null ],
-      [ "Optimist::ScalarRootFinder::ScalarRootFinder< DerivedSolver >", "class_optimist_1_1_scalar_root_finder_1_1_scalar_root_finder.html", null ]
+      [ "Optimist::ScalarRootFinder::ScalarRootFinder< DerivedSolver >", "class_optimist_1_1_scalar_root_finder_1_1_scalar_root_finder.html", [
+        [ "Optimist::ScalarRootFinder::Bracketing< DerivedSolver >", "class_optimist_1_1_scalar_root_finder_1_1_bracketing.html", null ]
+      ] ]
+    ] ],
+    [ "Optimist::Solver< 1, 1, Halley >", "class_optimist_1_1_solver.html", [
+      [ "Optimist::ScalarRootFinder::ScalarRootFinder< Halley >", "class_optimist_1_1_scalar_root_finder_1_1_scalar_root_finder.html", [
+        [ "Optimist::ScalarRootFinder::Halley", "class_optimist_1_1_scalar_root_finder_1_1_halley.html", null ]
+      ] ]
     ] ],
     [ "Optimist::Solver< 1, 1, Newton >", "class_optimist_1_1_solver.html", [
       [ "Optimist::ScalarRootFinder::ScalarRootFinder< Newton >", "class_optimist_1_1_scalar_root_finder_1_1_scalar_root_finder.html", [
         [ "Optimist::ScalarRootFinder::Newton", "class_optimist_1_1_scalar_root_finder_1_1_newton.html", null ]
+      ] ]
+    ] ],
+    [ "Optimist::Solver< 1, 1, Varona >", "class_optimist_1_1_solver.html", [
+      [ "Optimist::ScalarRootFinder::ScalarRootFinder< Varona >", "class_optimist_1_1_scalar_root_finder_1_1_scalar_root_finder.html", [
+        [ "Optimist::ScalarRootFinder::Varona", "class_optimist_1_1_scalar_root_finder_1_1_varona.html", null ]
       ] ]
     ] ],
     [ "Optimist::Solver< N, 1, DerivedSolver >", "class_optimist_1_1_solver.html", [

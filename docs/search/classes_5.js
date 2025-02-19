@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['linear_0',['Linear',['../class_optimist_1_1_test_set_1_1_linear.html',1,'Optimist::TestSet']]]
+  ['greenstadt_0',['Greenstadt',['../class_optimist_1_1_root_finder_1_1_greenstadt.html',1,'Optimist::RootFinder']]]
 ];
