@@ -12,16 +12,34 @@
 #include "Optimist.hh"
 #include "Optimist/TestSet.hh"
 
-// Run all the tests.
-int main() {
+// Catch2 library
+#include <catch2/catch_test_macros.hpp>
+#include <catch2/generators/catch_generators_range.hpp>
+#include <catch2/catch_template_test_macros.hpp>
 
-  Optimist::Info(std::cout);
-  Optimist::TestSet::TestSetInfo(std::cout);
-  Optimist::TestSet::Cos cos;
-  Optimist::ScalarRootFinder::Newton sol;
-  double x_out;
-  sol.rootfind(cos, 0.0, x_out);
-  Optimist::RootFinder::Greenstadt<4> greenstadt;
+using namespace Optimist;
+using namespace Optimist::TestSet;
 
-  return 1;
+#include "test_scalar_functions.hh"
+
+TEMPLATE_TEST_CASE("Algo748", "[template]", TEST_SCALAR_FUNCTIONS) {
+  TestType fun;
+  SECTION(fun.name()) {
+    ScalarRootFinder::Algo748 sol;
+    sol.task(fun.name());
+    typename TestType::InputType x_ini, x_out;
+    for (Integer i{0}; i < static_cast<Integer>(fun.guesses().size()); ++i) {
+      x_ini = fun.guess(i);
+      // Solve without damping
+      sol.disable_damped_mode();
+      sol.rootfind(fun, x_ini, x_out);
+      REQUIRE(sol.converged());
+      REQUIRE(fun.is_solution(x_out, EPSILON_LOW));
+      // Solve with damping
+      sol.enable_damped_mode();
+      sol.rootfind(fun, x_ini, x_out);
+      REQUIRE(sol.converged());
+      REQUIRE(fun.is_solution(x_out, EPSILON_LOW));
+    }
+  }
 }

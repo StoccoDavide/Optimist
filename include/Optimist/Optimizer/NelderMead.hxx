@@ -39,9 +39,9 @@ namespace Optimist
     class NelderMead : public Optimizer<N, NelderMead<N>>
     {
     public:
-      static constexpr bool requires_function          = true;
-      static constexpr bool requires_first_derivative  = false;
-      static constexpr bool requires_second_derivative = false;
+      static constexpr bool requires_function{true};
+      static constexpr bool requires_first_derivative{false};
+      static constexpr bool requires_second_derivative{false};
 
       using Vector = typename Optimizer<N, NelderMead<N>>::Vector;
       using Matrix = typename Optimizer<N, NelderMead<N>>::Matrix;

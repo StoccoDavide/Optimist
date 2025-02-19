@@ -45,12 +45,12 @@ namespace Optimist
     public:
       friend Solver<N, 1, Optimizer<N, DerivedSolver>>;
 
-      static constexpr bool is_rootfinder = false;
-      static constexpr bool is_optimizer  = true;
+      static constexpr bool is_rootfinder{false};
+      static constexpr bool is_optimizer{true};
 
-      static constexpr bool requires_function          = DerivedSolver::requires_function;
-      static constexpr bool requires_first_derivative  = DerivedSolver::requires_first_derivative;
-      static constexpr bool requires_second_derivative = DerivedSolver::requires_second_derivative;
+      static constexpr bool requires_function{DerivedSolver::requires_function};
+      static constexpr bool requires_first_derivative{DerivedSolver::requires_first_derivative};
+      static constexpr bool requires_second_derivative{DerivedSolver::requires_second_derivative};
 
       // Fancy static assertions (just for fun, don't take it too seriously)
       static_assert(N != Integer(0),

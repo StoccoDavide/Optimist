@@ -38,9 +38,9 @@ namespace Optimist
     class Newton : public RootFinder<N, Newton<N>>
     {
     public:
-      static constexpr bool requires_function          = true;
-      static constexpr bool requires_first_derivative  = true;
-      static constexpr bool requires_second_derivative = false;
+      static constexpr bool requires_function{true};
+      static constexpr bool requires_first_derivative{true};
+      static constexpr bool requires_second_derivative{false};
 
       using Vector = typename RootFinder<N, Newton<N>>::Vector;
       using Matrix = typename RootFinder<N, Newton<N>>::Matrix;

@@ -15,14 +15,34 @@ include(OptimistMatplot)
 
 file(GLOB_RECURSE TESTSET_TESTS "${CMAKE_CURRENT_SOURCE_DIR}/TestSet/test_*.cc")
 add_executable(test_testset ${TESTSET_TESTS})
-target_link_libraries(test_testset PRIVATE Optimist Catch2::Catch2WithMain)
+target_link_libraries(test_testset PRIVATE Optimist)
 
 # ScalarRootFinder
+
+#file(GLOB_RECURSE TEST_SCALARROOTFINDER_ALGO748 "${CMAKE_CURRENT_SOURCE_DIR}/ScalarRootFinder/test_algo748.cc")
+#add_executable(test_scalarrootfinder_algo748 ${TEST_SCALARROOTFINDER_ALGO748})
+#target_link_libraries(test_scalarrootfinder_algo748 PRIVATE Optimist Catch2::Catch2WithMain)
+#catch_discover_tests(test_scalarrootfinder_algo748)
+
+file(GLOB_RECURSE TEST_SCALARROOTFINDER_CHEBYSHEV "${CMAKE_CURRENT_SOURCE_DIR}/ScalarRootFinder/test_chebyshev.cc")
+add_executable(test_scalarrootfinder_chebyshev ${TEST_SCALARROOTFINDER_CHEBYSHEV})
+target_link_libraries(test_scalarrootfinder_chebyshev PRIVATE Optimist Catch2::Catch2WithMain)
+catch_discover_tests(test_scalarrootfinder_chebyshev)
+
+file(GLOB_RECURSE TEST_SCALARROOTFINDER_HALLEY "${CMAKE_CURRENT_SOURCE_DIR}/ScalarRootFinder/test_halley.cc")
+add_executable(test_scalarrootfinder_halley ${TEST_SCALARROOTFINDER_HALLEY})
+target_link_libraries(test_scalarrootfinder_halley PRIVATE Optimist Catch2::Catch2WithMain)
+catch_discover_tests(test_scalarrootfinder_halley)
 
 file(GLOB_RECURSE TEST_SCALARROOTFINDER_NEWTON "${CMAKE_CURRENT_SOURCE_DIR}/ScalarRootFinder/test_newton.cc")
 add_executable(test_scalarrootfinder_newton ${TEST_SCALARROOTFINDER_NEWTON})
 target_link_libraries(test_scalarrootfinder_newton PRIVATE Optimist Catch2::Catch2WithMain)
 catch_discover_tests(test_scalarrootfinder_newton)
+
+file(GLOB_RECURSE TEST_SCALARROOTFINDER_VARONA "${CMAKE_CURRENT_SOURCE_DIR}/ScalarRootFinder/test_varona.cc")
+add_executable(test_scalarrootfinder_varona ${TEST_SCALARROOTFINDER_VARONA})
+target_link_libraries(test_scalarrootfinder_varona PRIVATE Optimist Catch2::Catch2WithMain)
+catch_discover_tests(test_scalarrootfinder_varona)
 
 # RootFinder
 

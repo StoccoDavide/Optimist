@@ -22,24 +22,29 @@ using namespace Optimist::TestSet;
 
 #include "test_scalar_functions.hh"
 
-TEMPLATE_TEST_CASE("Newton", "[template]", TEST_SCALAR_FUNCTIONS) {
+TEMPLATE_TEST_CASE("Varona", "[template]", TEST_SCALAR_FUNCTIONS) {
   TestType fun;
   SECTION(fun.name()) {
-    ScalarRootFinder::Newton sol;
-    sol.task(fun.name());
-    typename TestType::InputType x_ini, x_out;
-    for (Integer i{0}; i < static_cast<Integer>(fun.guesses().size()); ++i) {
-      x_ini = fun.guess(i);
-      // Solve without damping
-      sol.disable_damped_mode();
-      sol.rootfind(fun, x_ini, x_out);
-      REQUIRE(sol.converged());
-      REQUIRE(fun.is_solution(x_out, EPSILON_LOW));
-      // Solve with damping
-      sol.enable_damped_mode();
-      sol.rootfind(fun, x_ini, x_out);
-      REQUIRE(sol.converged());
-      REQUIRE(fun.is_solution(x_out, EPSILON_LOW));
+    ScalarRootFinder::Varona sol;
+    using VaronaMethod = typename ScalarRootFinder::Varona::Method;
+    auto met = GENERATE(VaronaMethod::ORDER_4, VaronaMethod::ORDER_8, VaronaMethod::ORDER_16, VaronaMethod::ORDER_32);
+    sol.method(met);
+    SECTION(sol.name()) {
+      sol.task(fun.name());
+      typename TestType::InputType x_ini, x_out;
+      for (Integer i{0}; i < static_cast<Integer>(fun.guesses().size()); ++i) {
+        x_ini = fun.guess(i);
+        // Solve without damping
+        sol.disable_damped_mode();
+        sol.rootfind(fun, x_ini, x_out);
+        REQUIRE(sol.converged());
+        REQUIRE(fun.is_solution(x_out, EPSILON_LOW));
+        // Solve with damping
+        sol.enable_damped_mode();
+        sol.rootfind(fun, x_ini, x_out);
+        REQUIRE(sol.converged());
+        REQUIRE(fun.is_solution(x_out, EPSILON_LOW));
+      }
     }
   }
 }

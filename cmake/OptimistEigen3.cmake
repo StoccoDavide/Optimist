@@ -12,13 +12,12 @@ find_package(
 if(NOT TARGET Eigen3::Eigen)
   message(STATUS "Optimist: Did not find Eigen3 ${EIGEN_REQUIRED_VERSION} installed, downloading to "
     "${OPTIMIST_THIRD_PARTY_DIR}")
-  include(FetchContent)
 
+  include(FetchContent)
   set(FETCHCONTENT_BASE_DIR "${OPTIMIST_THIRD_PARTY_DIR}")
   fetchcontent_declare(
     Eigen3
-    URL "https://gitlab.com/libeigen/eigen/-/archive/${EIGEN_REQUIRED_VERSION}/eigen-${EIGEN_REQUIRED_VERSION}.tar.gz"
-  )
+    URL "https://gitlab.com/libeigen/eigen/-/archive/${EIGEN_REQUIRED_VERSION}/eigen-${EIGEN_REQUIRED_VERSION}.tar.gz")
 
   fetchcontent_makeavailable(Eigen3)
 else()

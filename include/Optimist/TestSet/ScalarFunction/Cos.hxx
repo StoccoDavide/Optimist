@@ -42,8 +42,8 @@ namespace Optimist
         this->m_solutions.emplace_back(M_PI/2.0); // Zero
         this->m_solutions.emplace_back(-M_PI); // Minimum
         this->m_solutions.emplace_back(M_PI); // Minimum
-        this->m_guesses.emplace_back(-3.0/4.0*M_PI);
-        this->m_guesses.emplace_back(3.0/4.0*M_PI);
+        this->m_guesses.emplace_back(-3.0/8.0*M_PI);
+        this->m_guesses.emplace_back(3.0/8.0*M_PI);
       }
 
       /**

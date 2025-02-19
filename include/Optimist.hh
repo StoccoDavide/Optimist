@@ -280,7 +280,7 @@ namespace Optimist
   * Print Optimist library information on a string.
   * \return A string with the Optimist library information.
   */
-  std::string Info() {
+  inline std::string Info() {
     std::ostringstream os;
     os
       << "* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *" << std::endl
@@ -299,7 +299,7 @@ namespace Optimist
   * Print Optimist library information on a stream.
   * \param[in] os Output stream.
   */
-  void Info(std::ostream &os) {os << Info();}
+  inline void Info(std::ostream &os) {os << Info();}
 
 } // namespace Optimist
 
@@ -314,7 +314,11 @@ namespace Optimist
 
 // Scalar root-finding solvers
 #include "Optimist/ScalarRootFinder.hxx"
+#include "Optimist/ScalarRootFinder/Algo748.hxx"
+#include "Optimist/ScalarRootFinder/Chebyshev.hxx"
+#include "Optimist/ScalarRootFinder/Halley.hxx"
 #include "Optimist/ScalarRootFinder/Newton.hxx"
+#include "Optimist/ScalarRootFinder/Varona.hxx"
 
 // Root-finding solvers
 #include "Optimist/RootFinder.hxx"

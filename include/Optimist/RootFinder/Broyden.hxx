@@ -38,9 +38,9 @@ namespace Optimist
     class Broyden : public QuasiNewton<N, Broyden<N>>
     {
     public:
-      static constexpr bool requires_function          = true;
-      static constexpr bool requires_first_derivative  = true;
-      static constexpr bool requires_second_derivative = false;
+      static constexpr bool requires_function{true};
+      static constexpr bool requires_first_derivative{true};
+      static constexpr bool requires_second_derivative{false};
 
       using Method = enum class Method : Integer {GOOD = 0, BAD = 1, COMBINED = 2}; /**< Broyden solver type. */
       using Vector = typename QuasiNewton<N, Broyden<N>>::Vector;
