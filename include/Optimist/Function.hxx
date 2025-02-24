@@ -21,19 +21,21 @@ namespace Optimist
   *
   * \includedoc docs/markdown/Function.md
   *
+  * \tparam Real Scalar number type.
   * \tparam FunInDim The function problem input dimension.
   * \tparam FunOutDim The function problem output dimension.
   * \tparam DerivedFunction Derived function class.
   */
-  template <Integer FunInDim, Integer FunOutDim, typename DerivedFunction>
+  template <typename Real, Integer FunInDim, Integer FunOutDim, typename DerivedFunction>
   class Function
   {
-
+  public:
     // Fancy static assertios (just for fun, don't take it too seriously)
     static_assert(FunInDim > Integer(0) && FunOutDim > Integer(0),
       "Negative-dimensional function? Are you serious?");
 
-  public:
+    OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
+
     // I/O types
     using InputType  = typename std::conditional_t<FunInDim == 1,  Real, Eigen::Vector<Real, FunInDim>>;  /**< Input type. */
     using OutputType = typename std::conditional_t<FunOutDim == 1, Real, Eigen::Vector<Real, FunOutDim>>; /**< Output type. */

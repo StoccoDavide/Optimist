@@ -33,20 +33,21 @@ namespace Optimist
     *
     * \includedoc docs/markdown/Optimizer/NelderMead.md
     *
+    * \tparam Real Scalar number type.
     * \tparam N Dimension of the root-finding problem.
     */
-    template <Integer N>
-    class NelderMead : public Optimizer<N, NelderMead<N>>
+    template <typename Real, Integer N>
+    class NelderMead : public Optimizer<Real, N, NelderMead<Real, N>>
     {
     public:
       static constexpr bool requires_function{true};
       static constexpr bool requires_first_derivative{false};
       static constexpr bool requires_second_derivative{false};
 
-      using Vector = typename Optimizer<N, NelderMead<N>>::Vector;
-      using Matrix = typename Optimizer<N, NelderMead<N>>::Matrix;
-      using FunctionWrapper = typename Optimizer<N, NelderMead<N>>::FunctionWrapper;
-      using Optimizer<N, NelderMead<N>>::solve;
+      using Vector = typename Optimizer<Real, N, NelderMead<Real, N>>::Vector;
+      using Matrix = typename Optimizer<Real, N, NelderMead<Real, N>>::Matrix;
+      using FunctionWrapper = typename Optimizer<Real, N, NelderMead<Real, N>>::FunctionWrapper;
+      using Optimizer<Real, N, NelderMead<Real, N>>::solve;
 
       using Simplex = std::vector<Vector>; /**< Simplex type. */
 
@@ -171,7 +172,7 @@ namespace Optimist
       * \param[out] x_sol Solution point.
       * \return The convergence boolean flag.
       */
-      bool solve_impl(FunctionWrapper function, Vector const &x_ini, Vector &x_sol)
+      bool solve_impl(FunctionWrapper function, Vector const & x_ini, Vector & x_sol)
       {
         // Setup internal variables
         this->reset();

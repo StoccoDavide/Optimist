@@ -17,11 +17,11 @@ int main() {
 
   Optimist::Info(std::cout);
   Optimist::TestSet::TestSetInfo(std::cout);
-  Optimist::TestSet::Cos cos;
-  Optimist::ScalarRootFinder::Newton sol;
+  Optimist::TestSet::Cos<double> cos;
+  Optimist::ScalarRootFinder::Newton<double> sol;
   double x_out;
   sol.rootfind(cos, 0.0, x_out);
-  Optimist::RootFinder::Greenstadt<4> greenstadt;
+  Optimist::RootFinder::Greenstadt<double, 4> greenstadt;
 
   return 1;
 }

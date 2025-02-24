@@ -28,10 +28,14 @@ namespace Optimist
     * \f]
     * The function has a zero at \f$x = 0\f$, with \f$f(x) = 0\f$. The initial guesses are generated
     * on the range \f$x \in \left[-10, 10\right]\f$.
+    * \tparam Real Scalar number type.
     */
-    class Sinh : public ScalarFunction<Sinh>
+    template <typename Real>
+    class Sinh : public ScalarFunction<Real, Sinh<Real>>
     {
     public:
+      OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
+
       /**
       * Class constructor for the hyperbolic sine function.
       */

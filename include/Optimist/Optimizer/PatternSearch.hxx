@@ -33,28 +33,30 @@ namespace Optimist
     *
     * \includedoc docs/markdown/Optimizer/PatternSearch.md
     *
+    * \tparam Real Scalar number type.
     * \tparam N Dimension of the root-finding problem.
     */
+    template <typename Real>
     template <Integer N>
-    class PatternSearch : public Optimizer<N, PatternSearch<N>>
+    class PatternSearch : public Optimizer<Real, N, PatternSearch<Real, N>>
     {
     public:
       static constexpr bool requires_function{true};
       static constexpr bool requires_first_derivative{false};
       static constexpr bool requires_second_derivative{false};
 
-      using Vector = typename Optimizer<N, PatternSearch<N>>::Vector;
-      using Matrix = typename Optimizer<N, PatternSearch<N>>::Matrix;
-      using FunctionWrapper = typename Optimizer<N, PatternSearch<N>>::FunctionWrapper;
-      using Optimizer<N, PatternSearch<N>>::solve;
+      using Vector = typename Optimizer<Real, N, PatternSearch<Real, N>>::Vector;
+      using Matrix = typename Optimizer<Real, N, PatternSearch<Real, N>>::Matrix;
+      using FunctionWrapper = typename Optimizer<Real, N, PatternSearch<Real, N>>::FunctionWrapper;
+      using Optimizer<Real, N, PatternSearch<Real, N>>::solve;
 
       using Simplex = std::vector<Vector>; /**< Simplex type. */
 
     private:
-      Real   m_rho{Real(0.9)}; // stencil step decreasing factor (must be 0 < rho < 1)
-      Real   m_h{Real(0.1)};
-      bool   m_stencil_failure{false}; // stencil failure flag - used to shrink h,
-                                      // stencil_failure = true means failure
+      Real m_rho{0.9}; // stencil step decreasing factor (must be 0 < rho < 1)
+      Real m_h{0.1};
+      bool m_stencil_failure{false}; // stencil failure flag - used to shrink h,
+                                    // stencil_failure = true means failure
 
     public:
       /**
@@ -162,7 +164,7 @@ namespace Optimist
       * \param[out] x_sol Solution point.
       * \return The convergence boolean flag.
       */
-      bool solve_impl(FunctionWrapper function, Vector const &x_ini, Vector &x_sol)
+      bool solve_impl(FunctionWrapper function, Vector const & x_ini, Vector & x_sol)
       {
         // Setup internal variables
         this->reset();

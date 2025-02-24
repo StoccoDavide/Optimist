@@ -25,7 +25,7 @@ using namespace Optimist::TestSet;
 TEMPLATE_TEST_CASE("Halley", "[template]", TEST_SCALAR_FUNCTIONS) {
   TestType fun;
   SECTION(fun.name()) {
-    ScalarRootFinder::Halley sol;
+    ScalarRootFinder::Halley<double> sol;
     sol.task(fun.name());
     typename TestType::InputType x_ini, x_out;
     for (Integer i{0}; i < static_cast<Integer>(fun.guesses().size()); ++i) {
@@ -34,12 +34,12 @@ TEMPLATE_TEST_CASE("Halley", "[template]", TEST_SCALAR_FUNCTIONS) {
       sol.disable_damped_mode();
       sol.rootfind(fun, x_ini, x_out);
       REQUIRE(sol.converged());
-      REQUIRE(fun.is_solution(x_out, EPSILON_LOW));
+      REQUIRE(fun.is_solution(x_out, TestType::EPSILON_LOW));
       // Solve with damping
       sol.enable_damped_mode();
       sol.rootfind(fun, x_ini, x_out);
       REQUIRE(sol.converged());
-      REQUIRE(fun.is_solution(x_out, EPSILON_LOW));
+      REQUIRE(fun.is_solution(x_out, TestType::EPSILON_LOW));
     }
   }
 }

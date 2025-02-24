@@ -1,7 +1,7 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$class_optimist_1_1_solver.html" title=" " alt="" coords="5,13,162,54"/>
-<area shape="rect" id="Node000001" href="$class_optimist_1_1_optimizer_1_1_optimizer.html" title=" " alt="" coords="210,5,395,61"/>
-<area shape="poly" id="edge44_Node000000_Node000001" title=" " alt="" coords="178,30,209,30,209,36,178,36"/>
-<area shape="rect" id="Node000002" href="$class_optimist_1_1_optimizer_1_1_nelder_mead.html" title="Class container for the Nelder&#45;Mead&#39;s method." alt="" coords="443,13,577,54"/>
-<area shape="poly" id="edge45_Node000001_Node000002" title=" " alt="" coords="411,30,442,30,442,36,411,36"/>
+<area shape="rect" id="Node000000" href="$class_optimist_1_1_solver.html" title=" " alt="" coords="5,5,177,61"/>
+<area shape="rect" id="Node000001" href="$class_optimist_1_1_optimizer_1_1_optimizer.html" title=" " alt="" coords="225,5,401,61"/>
+<area shape="poly" id="edge49_Node000000_Node000001" title=" " alt="" coords="192,30,224,30,224,36,192,36"/>
+<area shape="rect" id="Node000002" href="$class_optimist_1_1_optimizer_1_1_nelder_mead.html" title="Class container for the Nelder&#45;Mead&#39;s method." alt="" coords="449,13,617,54"/>
+<area shape="poly" id="edge50_Node000001_Node000002" title=" " alt="" coords="416,30,448,30,448,36,416,36"/>
 </map>

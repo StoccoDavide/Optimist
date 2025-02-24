@@ -1,12 +1,12 @@
 var class_optimist_1_1_scalar_root_finder_1_1_chebyshev =
 [
-    [ "FirstDerivativeWrapper", "class_optimist_1_1_scalar_root_finder_1_1_chebyshev.html#a94a05b5893891a002762dd0f6be88d7f", null ],
-    [ "FunctionWrapper", "class_optimist_1_1_scalar_root_finder_1_1_chebyshev.html#ac53790b7689559d0af21802ed3dbe7f4", null ],
-    [ "SecondDerivativeWrapper", "class_optimist_1_1_scalar_root_finder_1_1_chebyshev.html#a9cddb630627fc69b82978ab067f8de8b", null ],
-    [ "Chebyshev", "class_optimist_1_1_scalar_root_finder_1_1_chebyshev.html#a9e7f56b75825b40b900df26cd65c8c16", null ],
-    [ "name_impl", "class_optimist_1_1_scalar_root_finder_1_1_chebyshev.html#ae8cef6c22b775431efe32f64f58ec15c", null ],
-    [ "solve_impl", "class_optimist_1_1_scalar_root_finder_1_1_chebyshev.html#a06cf6a5a01b97eea3d8c5ac3710272a2", null ],
-    [ "requires_first_derivative", "class_optimist_1_1_scalar_root_finder_1_1_chebyshev.html#a13f28c6ddef4974f82cd4805a4107a30", null ],
-    [ "requires_function", "class_optimist_1_1_scalar_root_finder_1_1_chebyshev.html#a4784c00b35b6bddfa0a7628ab2824772", null ],
-    [ "requires_second_derivative", "class_optimist_1_1_scalar_root_finder_1_1_chebyshev.html#a486c5110b2928ca6e41d29e54be9caf0", null ]
+    [ "FirstDerivativeWrapper", "class_optimist_1_1_scalar_root_finder_1_1_chebyshev.html#a56c2c78f68df1ad72e29d7a7c6c19204", null ],
+    [ "FunctionWrapper", "class_optimist_1_1_scalar_root_finder_1_1_chebyshev.html#a181d6b7a82c756b8ae5829f18a462228", null ],
+    [ "SecondDerivativeWrapper", "class_optimist_1_1_scalar_root_finder_1_1_chebyshev.html#abc6689c0fdba2032018443f586faa578", null ],
+    [ "Chebyshev", "class_optimist_1_1_scalar_root_finder_1_1_chebyshev.html#aebb4f34c85c24a7bb84b394b2afd5a34", null ],
+    [ "name_impl", "class_optimist_1_1_scalar_root_finder_1_1_chebyshev.html#ae8596bfbfec075243077b714eda8f897", null ],
+    [ "solve_impl", "class_optimist_1_1_scalar_root_finder_1_1_chebyshev.html#ac5b95a552d32549824c1d1cfb6048b2f", null ],
+    [ "requires_first_derivative", "class_optimist_1_1_scalar_root_finder_1_1_chebyshev.html#aa987caf35a1695652466389bdbec4c58", null ],
+    [ "requires_function", "class_optimist_1_1_scalar_root_finder_1_1_chebyshev.html#af38dd34b739657996e2f0666abac2262", null ],
+    [ "requires_second_derivative", "class_optimist_1_1_scalar_root_finder_1_1_chebyshev.html#abed192d0a419911d236c99b626882cca", null ]
 ];

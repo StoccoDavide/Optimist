@@ -25,8 +25,8 @@ using namespace Optimist::TestSet;
 TEMPLATE_TEST_CASE("Varona", "[template]", TEST_SCALAR_FUNCTIONS) {
   TestType fun;
   SECTION(fun.name()) {
-    ScalarRootFinder::Varona sol;
-    using VaronaMethod = typename ScalarRootFinder::Varona::Method;
+    ScalarRootFinder::Varona<double> sol;
+    using VaronaMethod = typename ScalarRootFinder::Varona<double>::Method;
     auto met = GENERATE(VaronaMethod::ORDER_4, VaronaMethod::ORDER_8, VaronaMethod::ORDER_16, VaronaMethod::ORDER_32);
     sol.method(met);
     SECTION(sol.name()) {
@@ -38,12 +38,12 @@ TEMPLATE_TEST_CASE("Varona", "[template]", TEST_SCALAR_FUNCTIONS) {
         sol.disable_damped_mode();
         sol.rootfind(fun, x_ini, x_out);
         REQUIRE(sol.converged());
-        REQUIRE(fun.is_solution(x_out, EPSILON_LOW));
+        REQUIRE(fun.is_solution(x_out,TestType::EPSILON_LOW));
         // Solve with damping
         sol.enable_damped_mode();
         sol.rootfind(fun, x_ini, x_out);
         REQUIRE(sol.converged());
-        REQUIRE(fun.is_solution(x_out, EPSILON_LOW));
+        REQUIRE(fun.is_solution(x_out,TestType::EPSILON_LOW));
       }
     }
   }

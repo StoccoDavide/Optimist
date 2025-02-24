@@ -1,11 +1,11 @@
 var searchData=
 [
-  ['best_5fnearby_0',['best_nearby',['../class_optimist_1_1_optimizer_1_1_pattern_search.html#aa46d774cec064d442abf23b0f368b2c7',1,'Optimist::Optimizer::PatternSearch']]],
-  ['booth_1',['Booth',['../class_optimist_1_1_test_set_1_1_booth.html#af8dbe3e3eb589844dc8e48013f20f1ba',1,'Optimist::TestSet::Booth']]],
-  ['bottom_2',['bottom',['../class_optimist_1_1_solver.html#a90209c57e391d99859797c1741549317',1,'Optimist::Solver']]],
-  ['bounds_3',['bounds',['../class_optimist_1_1_solver.html#a43ed852d18a0b298d6dbdcdb89d264cc',1,'Optimist::Solver']]],
-  ['bracketing_4',['Bracketing',['../class_optimist_1_1_scalar_root_finder_1_1_bracketing.html#a8e124019bad71119704796ae9316d92b',1,'Optimist::ScalarRootFinder::Bracketing']]],
-  ['bracketing_5',['bracketing',['../class_optimist_1_1_scalar_root_finder_1_1_algo748.html#a1e5cd3f53f28cf4fa4ef12ea6d9bbfc0',1,'Optimist::ScalarRootFinder::Algo748']]],
-  ['brown_6',['Brown',['../class_optimist_1_1_test_set_1_1_brown.html#abe9a9e1afb00ab6b5abcc8371e1f4893',1,'Optimist::TestSet::Brown']]],
-  ['broyden_7',['Broyden',['../class_optimist_1_1_root_finder_1_1_broyden.html#adbdcb9abfec907265ca2d313e589beeb',1,'Optimist::RootFinder::Broyden']]]
+  ['best_5fnearby_0',['best_nearby',['../class_optimist_1_1_optimizer_1_1_pattern_search.html#ac0d9b7f0e7cedc995583f1e507a22f35',1,'Optimist::Optimizer::PatternSearch']]],
+  ['booth_1',['Booth',['../class_optimist_1_1_test_set_1_1_booth.html#a32334585392684637138c5adfa4f7e79',1,'Optimist::TestSet::Booth']]],
+  ['bottom_2',['bottom',['../class_optimist_1_1_solver.html#ad44627c7d7b2437c39aae571da1a099c',1,'Optimist::Solver']]],
+  ['bounds_3',['bounds',['../class_optimist_1_1_solver.html#a95029ded22cbe3fb243cb6e2baad51ea',1,'Optimist::Solver']]],
+  ['bracketing_4',['Bracketing',['../class_optimist_1_1_scalar_root_finder_1_1_bracketing.html#a0756a6cc8b7101300c5218961a4a8949',1,'Optimist::ScalarRootFinder::Bracketing']]],
+  ['bracketing_5',['bracketing',['../class_optimist_1_1_scalar_root_finder_1_1_algo748.html#a12e31647a5c33717db473623cf233c28',1,'Optimist::ScalarRootFinder::Algo748']]],
+  ['brown_6',['Brown',['../class_optimist_1_1_test_set_1_1_brown.html#aa300f21640b63afc0de762cd6fd2311a',1,'Optimist::TestSet::Brown']]],
+  ['broyden_7',['Broyden',['../class_optimist_1_1_root_finder_1_1_broyden.html#a1f1893ac2670aa59d604ebba79396929',1,'Optimist::RootFinder::Broyden']]]
 ];

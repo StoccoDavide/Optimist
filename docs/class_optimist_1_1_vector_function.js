@@ -1,13 +1,13 @@
 var class_optimist_1_1_vector_function =
 [
-    [ "InputVector", "class_optimist_1_1_vector_function.html#a1b296516ddb685b41cf9390580b48d4e", null ],
-    [ "Matrix", "class_optimist_1_1_vector_function.html#ad860d87d5fa25838017f819798a6f427", null ],
-    [ "OutputVector", "class_optimist_1_1_vector_function.html#a466841fd2f82422781a3ead2570ceacf", null ],
-    [ "Tensor", "class_optimist_1_1_vector_function.html#adc8f828f6fcbefefdd6f34ce931da77a", null ],
-    [ "VectorFunction", "class_optimist_1_1_vector_function.html#abe8a910686e20aba7164674a3dbbca71", null ],
-    [ "evaluate", "class_optimist_1_1_vector_function.html#aa06e204a3037de545df35a77f1a401ba", null ],
-    [ "hessian", "class_optimist_1_1_vector_function.html#a50b20ab2cb4f6d8b2958b9aa73935a13", null ],
-    [ "jacobian", "class_optimist_1_1_vector_function.html#a3ca90e5ca3bdb01ae809366dfae75256", null ],
-    [ "name", "class_optimist_1_1_vector_function.html#a18b372a270fe555d90ec1d75085e81d7", null ],
-    [ "Function< N, M, VectorFunction< N, M, DerivedFunction > >", "class_optimist_1_1_vector_function.html#a6133b01792fcb1702e3054410be0fb0c", null ]
+    [ "InputVector", "class_optimist_1_1_vector_function.html#a8d9319d625fbce0c690904db6ac05325", null ],
+    [ "Matrix", "class_optimist_1_1_vector_function.html#a95a694b91cd777ac63857d2de0727dee", null ],
+    [ "OutputVector", "class_optimist_1_1_vector_function.html#ab311121859b5b33f14266183bd0b8325", null ],
+    [ "Tensor", "class_optimist_1_1_vector_function.html#a219e6aafafd44b0845f9fcd1815d81a7", null ],
+    [ "VectorFunction", "class_optimist_1_1_vector_function.html#a4c672a62c1171ad2acd2f26bc14bebda", null ],
+    [ "evaluate", "class_optimist_1_1_vector_function.html#a7330db9deb32f5989c9ceb89e5b575e1", null ],
+    [ "hessian", "class_optimist_1_1_vector_function.html#ae46b4d4eceb940ac5ec5a9e1f37950cf", null ],
+    [ "jacobian", "class_optimist_1_1_vector_function.html#a51a40323dc5f4c8ade31e898539bdbe2", null ],
+    [ "name", "class_optimist_1_1_vector_function.html#acfe8125e578e8259934dcc09429378d5", null ],
+    [ "Function< Real, N, M, VectorFunction< Real, N, M, DerivedFunction > >", "class_optimist_1_1_vector_function.html#ac0d3b0bd6be1adb74b0d680fb6d714ce", null ]
 ];

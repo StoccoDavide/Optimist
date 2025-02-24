@@ -28,13 +28,17 @@ namespace Optimist
     * \f]
     * The function has global minima at \f$\mathbf{x} = (0, 0)\f$, with \f$f(\mathbf{x}) = 0\f$.
     * The initial guesses are generated on the square \f$x_i \in \left[-100, 100\right]\f$.
+    * \tparam Real Scalar number type.
     */
-    class Schaffer2 : public CostFunction<2, Schaffer2>
+    template <typename Real>
+    class Schaffer2 : public CostFunction<Real, 2, Schaffer2<Real>>
     {
     public:
-      using Vector    = typename CostFunction<2, Schaffer2>::Vector;
-      using RowVector = typename CostFunction<2, Schaffer2>::RowVector;
-      using Matrix    = typename CostFunction<2, Schaffer2>::Matrix;
+      using Vector    = typename CostFunction<Real, 2, Schaffer2<Real>>::Vector;
+      using RowVector = typename CostFunction<Real, 2, Schaffer2<Real>>::RowVector;
+      using Matrix    = typename CostFunction<Real, 2, Schaffer2<Real>>::Matrix;
+
+      OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
 
       /**
       * Class constructor for the Schaffer2 function.

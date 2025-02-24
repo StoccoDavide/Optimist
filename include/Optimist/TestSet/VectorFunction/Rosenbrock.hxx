@@ -33,16 +33,20 @@ namespace Optimist
     * \f]
     * The function has one solution at \f$\mathbf{x} = [1, \dots 1]^\top\f$, with \f$f(\mathbf{x}) = 0\f$.
     * The initial guess is \f$x_i = [-1.2, 1, -1.2, 1, \dots, -1.2, 1]^\top\f$.
+    * \tparam Real Scalar number type.
+    * \tparam N Dimension of the function.
     */
-    template <Integer N>
-    class Rosenbrock : public VectorFunction<N, N, Rosenbrock<N>>
+    template <typename Real, Integer N>
+    class Rosenbrock : public VectorFunction<Real, N, N, Rosenbrock<Real, N>>
     {
       static_assert(N > 0 && N % 2 == 0, "please use an even number of dimensions");
 
     public:
-      using Vector = typename VectorFunction<N, N, Rosenbrock<N>>::InputVector;
-      using Matrix = typename VectorFunction<N, N, Rosenbrock<N>>::Matrix;
-      using Tensor = typename VectorFunction<N, N, Rosenbrock<N>>::Tensor;
+      OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
+
+      using Vector = typename VectorFunction<Real, N, N, Rosenbrock<Real, N>>::InputVector;
+      using Matrix = typename VectorFunction<Real, N, N, Rosenbrock<Real, N>>::Matrix;
+      using Tensor = typename VectorFunction<Real, N, N, Rosenbrock<Real, N>>::Tensor;
 
       /**
       * Class constructor for the extended Rosenbrock function.
@@ -106,7 +110,43 @@ namespace Optimist
         }
       }
 
-    }; // class Rosenbrock<N>
+    }; // class Rosenbrock
+
+    /**
+    * \brief Class container for the 2D Rosenbrock function.
+    * \tparam Real Scalar number type.
+    */
+    template <typename Real>
+    using Rosenbrock2 = Rosenbrock<Real, 2>;
+
+    /**
+    * \brief Class container for the 4D Rosenbrock function.
+    * \tparam Real Scalar number type.
+    */
+    template <typename Real>
+    using Rosenbrock4 = Rosenbrock<Real, 4>;
+
+    /**
+    * \brief Class container for the 6D Rosenbrock function.
+    * \tparam Real Scalar number type.
+    */
+    template <typename Real>
+    using Rosenbrock6 = Rosenbrock<Real, 6>;
+
+    /**
+    * \brief Class container for the 8D Rosenbrock function.
+    * \tparam Real Scalar number type.
+    */
+    template <typename Real>
+    using Rosenbrock8 = Rosenbrock<Real, 8>;
+
+    /**
+    * \brief Class container for the 10D Rosenbrock function.
+    * \tparam Real Scalar number type.
+    */
+    template <typename Real>
+    using Rosenbrock10 = Rosenbrock<Real, 10>;
+
 
   } // namespace TestSet
 

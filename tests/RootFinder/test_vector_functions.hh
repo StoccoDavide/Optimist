@@ -10,8 +10,7 @@
 
 #ifndef TEST_VECTOR_FUNCTIONS
 #define TEST_VECTOR_FUNCTIONS \
-  Booth,                      \
-  Rosenbrock<2>,              \
-  Rosenbrock<4>,              \
-  Rosenbrock<8>
+  Booth<double>,              \
+  Rosenbrock2<double>,        \
+  Rosenbrock4<double>
 #endif

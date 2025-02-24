@@ -33,21 +33,24 @@ namespace Optimist
     * \includedoc docs/markdown/RootFinder/Broyden.md
     *
     * \tparam N Dimension of the root-finding problem.
+    * \tparam Real Scalar number type.
     */
-    template <Integer N>
-    class Broyden : public QuasiNewton<N, Broyden<N>>
+    template <typename Real, Integer N>
+    class Broyden : public QuasiNewton<Real, N, Broyden<Real, N>>
     {
     public:
       static constexpr bool requires_function{true};
       static constexpr bool requires_first_derivative{true};
       static constexpr bool requires_second_derivative{false};
 
+      OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
+
       using Method = enum class Method : Integer {GOOD = 0, BAD = 1, COMBINED = 2}; /**< Broyden solver type. */
-      using Vector = typename QuasiNewton<N, Broyden<N>>::Vector;
-      using Matrix = typename QuasiNewton<N, Broyden<N>>::Matrix;
-      using FunctionWrapper = typename QuasiNewton<N, Broyden<N>>::FunctionWrapper;
-      using JacobianWrapper = typename QuasiNewton<N, Broyden<N>>::JacobianWrapper;
-      using QuasiNewton<N, Broyden<N>>::solve;
+      using Vector = typename QuasiNewton<Real, N, Broyden<Real, N>>::Vector;
+      using Matrix = typename QuasiNewton<Real, N, Broyden<Real, N>>::Matrix;
+      using FunctionWrapper = typename QuasiNewton<Real, N, Broyden<Real, N>>::FunctionWrapper;
+      using JacobianWrapper = typename QuasiNewton<Real, N, Broyden<Real, N>>::JacobianWrapper;
+      using QuasiNewton<Real, N, Broyden<Real, N>>::solve;
 
     private:
       Method m_method{Method::COMBINED}; /**< Broyden solver type. */

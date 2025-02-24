@@ -9,8 +9,8 @@
 \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #ifndef TEST_COST_FUNCTIONS
-#define TEST_COST_FUNCTIONS \
-  EllipticParaboloid,       \
-  Schaffer2,                \
-  Brown
+#define TEST_COST_FUNCTIONS   \
+  EllipticParaboloid<double>, \
+  Schaffer2<double>,          \
+  Brown<double>
 #endif

@@ -34,18 +34,22 @@ namespace Optimist
     * interval \f$[a, b]\f$. The algorithm is based on the work of T. Chandrupatla, *A new hybrid
     * quadratic/bisection algorithm for finding the zero of a nonlinear function without using
     * derivatives*, Advances in Engineering Software, 28 (1997), pp. 145-149.
+    * \tparam Real Scalar number type.
     */
-    class Chandrupatla : public Bracketing<Chandrupatla>
+    template <typename Real>
+    class Chandrupatla : public Bracketing<Real, Chandrupatla<Real>>
     {
     public:
       static constexpr bool requires_function{true};
       static constexpr bool requires_first_derivative{false};
       static constexpr bool requires_second_derivative{false};
 
+      OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
+
       // Function types
-      using FunctionWrapper         = typename ScalarRootFinder<Chandrupatla>::FunctionWrapper;
-      using FirstDerivativeWrapper  = typename ScalarRootFinder<Chandrupatla>::FirstDerivativeWrapper;
-      using SecondDerivativeWrapper = typename ScalarRootFinder<Chandrupatla>::SecondDerivativeWrapper;
+      using FunctionWrapper         = typename ScalarRootFinder<Real, Chandrupatla>::FunctionWrapper;
+      using FirstDerivativeWrapper  = typename ScalarRootFinder<Real, Chandrupatla>::FirstDerivativeWrapper;
+      using SecondDerivativeWrapper = typename ScalarRootFinder<Real, Chandrupatla>::SecondDerivativeWrapper;
 
       /**
       * Class constructor for the Algorithm 748.
@@ -80,7 +84,7 @@ namespace Optimist
         this->m_fe = QUIET_NAN;
 
         // While f(left) or f(right) are infinite perform bisection
-        while (!(std::isfinite(m_fa) && std::isfinite(m_fb))) {
+        while (!(std::isfinite(this->m_fa) && std::isfinite(this->m_fb))) {
           ++this->m_iterations;
           this->m_c  = (this->m_a + this->m_b)/2.0;
           this->evaluate_function(function, this->m_c, this->m_fc);

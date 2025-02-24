@@ -32,13 +32,17 @@ namespace Optimist
     * \f]
     * The default coefficients are \f$m = 1\f$ and \f$q = 1\f$, and the function initial guess is
     * \f$x = 0\f$.
+    * \tparam Real Scalar number type.
     */
-    class Linear : public ScalarFunction<Linear>
+    template <typename Real>
+    class Linear : public ScalarFunction<Real, Linear<Real>>
     {
       Real m_m{1.0}; /**< Coefficient \f$ m \f$. */
       Real m_q{1.0}; /**< Coefficient \f$ q \f$. */
 
     public:
+      OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
+
       /**
       * Class constructor for the linear function.
       */

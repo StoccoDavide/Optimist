@@ -21,14 +21,15 @@ namespace Optimist
   *
   * \includedoc docs/markdown/Function.md
   *
+  * \tparam Real Scalar number type.
   * \tparam DerivedFunction Derived scalar function class.
   */
-  template <typename DerivedFunction>
-  class ScalarFunction : public Function<1, 1, DerivedFunction>
+  template <typename Real, typename DerivedFunction>
+  class ScalarFunction : public Function<Real, 1, 1, DerivedFunction>
   {
-    friend Function<1, 1, ScalarFunction<DerivedFunction>>;
+  public:
+    friend Function<Real, 1, 1, ScalarFunction<Real, DerivedFunction>>;
 
-    public:
     /**
     * Class constructor for the function.
     */

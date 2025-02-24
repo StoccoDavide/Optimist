@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['reflection_0',['reflection',['../class_optimist_1_1_optimizer_1_1_nelder_mead.html#a7a672402d27aa1706a936c5da6874b6b',1,'Optimist::Optimizer::NelderMead']]],
-  ['relaxations_1',['relaxations',['../class_optimist_1_1_solver.html#aa158c523eaee5077b68529a2c2a21c09',1,'Optimist::Solver']]],
-  ['reset_2',['reset',['../class_optimist_1_1_solver.html#af573ca9fe8a776ec0db3d50ea86b4808',1,'Optimist::Solver']]],
-  ['rootfind_3',['rootfind',['../class_optimist_1_1_solver.html#ac6ccae3d9cb7418f5687e1964d49f4e0',1,'Optimist::Solver']]],
-  ['rootfinder_4',['RootFinder',['../class_optimist_1_1_root_finder_1_1_root_finder.html#ac719050890bc00944b6fcf3afe4d4c08',1,'Optimist::RootFinder::RootFinder']]],
-  ['rosenbrock_5',['Rosenbrock',['../class_optimist_1_1_test_set_1_1_rosenbrock.html#a6c62e78d751bf21629c11c28d5e37a4c',1,'Optimist::TestSet::Rosenbrock']]]
+  ['reflection_0',['reflection',['../class_optimist_1_1_optimizer_1_1_nelder_mead.html#ac9bcda37bfdf5583ebe6dca1da4b95c3',1,'Optimist::Optimizer::NelderMead']]],
+  ['relaxations_1',['relaxations',['../class_optimist_1_1_solver.html#a69079e4f3d621dc114c9dcc36aaa9373',1,'Optimist::Solver']]],
+  ['reset_2',['reset',['../class_optimist_1_1_solver.html#a69afabc87de0b051c935fd24eadec07e',1,'Optimist::Solver']]],
+  ['rootfind_3',['rootfind',['../class_optimist_1_1_solver.html#a32a483e8ce3833286b60db5e86c75bfb',1,'Optimist::Solver']]],
+  ['rootfinder_4',['RootFinder',['../class_optimist_1_1_root_finder_1_1_root_finder.html#a10739a6e7aaa93a72e8623b97a8ecf7d',1,'Optimist::RootFinder::RootFinder']]],
+  ['rosenbrock_5',['Rosenbrock',['../class_optimist_1_1_test_set_1_1_rosenbrock.html#a7b47a8d0e5201ee1ab72686608c1a78a',1,'Optimist::TestSet::Rosenbrock']]]
 ];

@@ -28,17 +28,21 @@ namespace Optimist
     * \f]
     * where \f$a = 10^{-6}\f$. The function has one solution at \f$\mathbf{x} = [a, 2a]^\top\f$,
     * with \f$f(\mathbf{x}) = 0\f$. The initial guess is generated at \f$\mathbf{x} = [1, 1]^\top\f$.
+    * \tparam Real Scalar number type.
     */
-    class Brown : public VectorFunction<2, 3, Brown>
+    template <typename Real>
+    class Brown : public VectorFunction<Real, 2, 3, Brown<Real>>
     {
     private:
       Real m_a{1.0e-6}; /**< Scaling value (keep it low to guarantee bad scaling). */
 
     public:
-      using InputVector  = typename VectorFunction<2, 3, Brown>::InputVector;
-      using OutputVector = typename VectorFunction<2, 3, Brown>::OutputVector;
-      using Matrix       = typename VectorFunction<2, 3, Brown>::Matrix;
-      using Tensor       = typename VectorFunction<2, 3, Brown>::Tensor;
+      OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
+
+      using InputVector  = typename VectorFunction<Real, 2, 3, Brown<Real>>::InputVector;
+      using OutputVector = typename VectorFunction<Real, 2, 3, Brown<Real>>::OutputVector;
+      using Matrix       = typename VectorFunction<Real, 2, 3, Brown<Real>>::Matrix;
+      using Tensor       = typename VectorFunction<Real, 2, 3, Brown<Real>>::Tensor;
 
       /**
       * Class constructor for the Brown function.

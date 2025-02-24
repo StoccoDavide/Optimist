@@ -10,8 +10,8 @@
 
 #ifndef TEST_SCALAR_FUNCTIONS
 #define TEST_SCALAR_FUNCTIONS \
-  Quadratic,                  \
-  Cos,                        \
-  Sin,                        \
-  Cosh
+  Quadratic<double>,          \
+  Cos<double>,                \
+  Sin<double>,                \
+  Cosh<double>
 #endif

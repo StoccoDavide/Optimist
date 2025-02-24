@@ -1,10 +1,10 @@
 var searchData=
 [
   ['info_0',['Info',['../namespace_optimist.html#ae6184c22dec9000a023fd85bb158faef',1,'Optimist::Info()'],['../namespace_optimist.html#a28db3cffe02163a4d3cea999bf0d65bc',1,'Optimist::Info(std::ostream &amp;os)']]],
-  ['info_1',['info',['../class_optimist_1_1_solver.html#add46dfec82c6d40f581fa765c0ba9fba',1,'Optimist::Solver']]],
-  ['initialize_2',['initialize',['../class_optimist_1_1_optimizer_1_1_nelder_mead.html#ad2aae69e4606ef86963bda20b4e0a6ce',1,'Optimist::Optimizer::NelderMead']]],
-  ['input_5fdimension_3',['input_dimension',['../class_optimist_1_1_function.html#a0d3dd3d79582accf9f5909a60d227a12',1,'Optimist::Function::input_dimension()'],['../class_optimist_1_1_solver.html#abec0482af24a5d97b329f901f4fec462',1,'Optimist::Solver::input_dimension()']]],
-  ['inward_5fcontraction_4',['inward_contraction',['../class_optimist_1_1_optimizer_1_1_nelder_mead.html#ab53882e5eaabc33a0610398d4991014c',1,'Optimist::Optimizer::NelderMead']]],
-  ['is_5fsolution_5',['is_solution',['../class_optimist_1_1_function.html#a6751632d824e5b311aa7525daff9495f',1,'Optimist::Function']]],
-  ['iterations_6',['iterations',['../class_optimist_1_1_solver.html#a4d834fcb3af25e668e70c81b386b949b',1,'Optimist::Solver']]]
+  ['info_1',['info',['../class_optimist_1_1_solver.html#aeb9f447d9db4a30d587fbaad0307e329',1,'Optimist::Solver']]],
+  ['initialize_2',['initialize',['../class_optimist_1_1_optimizer_1_1_nelder_mead.html#a8c4bac00fea909c84cbd6ea28a5e1e45',1,'Optimist::Optimizer::NelderMead']]],
+  ['input_5fdimension_3',['input_dimension',['../class_optimist_1_1_function.html#a81c97dd2e3e05f2cf88b1e39a4fbfc5f',1,'Optimist::Function::input_dimension()'],['../class_optimist_1_1_solver.html#acbda78139c0d5978b14cf6d5444abe4a',1,'Optimist::Solver::input_dimension()']]],
+  ['inward_5fcontraction_4',['inward_contraction',['../class_optimist_1_1_optimizer_1_1_nelder_mead.html#a18928712307151f4ebc6e8c802d74e9a',1,'Optimist::Optimizer::NelderMead']]],
+  ['is_5fsolution_5',['is_solution',['../class_optimist_1_1_function.html#a01cd5427237632a1f443ebcf579edd0b',1,'Optimist::Function']]],
+  ['iterations_6',['iterations',['../class_optimist_1_1_solver.html#acd584ee3f0098153f6982f974f80c0c7',1,'Optimist::Solver']]]
 ];

@@ -28,13 +28,17 @@ namespace Optimist
     * \f]
     * The function has one solution at \f$\mathbf{x} = [1, 3]^\top\f$, with \f$f(\mathbf{x}) = 0\f$.
     * The initial guesses are generated on the square \f$x_i \in [-10, 10]\f$, for all \f$x_i = 1, 2\f$.
+    * \tparam Real Scalar number type.
     */
-    class Booth : public VectorFunction<2, 2, Booth>
+    template <typename Real>
+    class Booth : public VectorFunction<Real, 2, 2, Booth<Real>>
     {
     public:
-      using Vector = typename VectorFunction<2, 2, Booth>::InputVector;
-      using Matrix = typename VectorFunction<2, 2, Booth>::Matrix;
-      using Tensor = typename VectorFunction<2, 2, Booth>::Tensor;
+      OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
+
+      using Vector = typename VectorFunction<Real, 2, 2, Booth<Real>>::InputVector;
+      using Matrix = typename VectorFunction<Real, 2, 2, Booth<Real>>::Matrix;
+      using Tensor = typename VectorFunction<Real, 2, 2, Booth<Real>>::Tensor;
 
       /**
       * Class constructor for the Booth function.

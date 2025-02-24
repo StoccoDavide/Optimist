@@ -28,16 +28,20 @@ namespace Optimist
     * \f]
     * The function has global minima at \f$\mathbf{x} = (0, 0)\f$, with \f$f(\mathbf{x}) = 0\f$.
     * The initial guesses are generated on the square \f$x_i \in \left[-100, 100\right]\f$.
+    * \tparam Real Scalar number type.
     */
-    class EllipticParaboloid : public CostFunction<2, EllipticParaboloid>
+    template <typename Real>
+    class EllipticParaboloid : public CostFunction<Real, 2, EllipticParaboloid<Real>>
     {
       Real m_a{1.0}; /**< Coefficient \f$ a \f$. */
       Real m_b{1.0}; /**< Coefficient \f$ b \f$. */
 
     public:
-      using Vector    = typename CostFunction<2, EllipticParaboloid>::Vector;
-      using RowVector = typename CostFunction<2, EllipticParaboloid>::RowVector;
-      using Matrix    = typename CostFunction<2, EllipticParaboloid>::Matrix;
+      OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
+
+      using Vector    = typename CostFunction<Real, 2, EllipticParaboloid<Real>>::Vector;
+      using RowVector = typename CostFunction<Real, 2, EllipticParaboloid<Real>>::RowVector;
+      using Matrix    = typename CostFunction<Real, 2, EllipticParaboloid<Real>>::Matrix;
 
       /**
       * Class constructor for the paraboloid function.

@@ -25,7 +25,7 @@ using namespace Optimist::TestSet;
 TEMPLATE_TEST_CASE("NelderMead", "[template]", TEST_COST_FUNCTIONS) {
   TestType fun;
   SECTION(fun.name()) {
-    Optimizer::NelderMead<fun.input_dimension()> sol;
+    Optimizer::NelderMead<double, fun.input_dimension()> sol;
     SECTION(sol.name()) {
       sol.task(fun.name());
       sol.enable_verbose_mode();
@@ -36,12 +36,12 @@ TEMPLATE_TEST_CASE("NelderMead", "[template]", TEST_COST_FUNCTIONS) {
         sol.disable_damped_mode();
         sol.rootfind(fun, x_ini, x_out);
         REQUIRE(sol.converged());
-        REQUIRE(fun.is_solution(x_out, EPSILON_LOW));
+        REQUIRE(fun.is_solution(x_out,TestType::EPSILON_LOW));
         // Solve with damping
         sol.enable_damped_mode();
         sol.rootfind(fun, x_ini, x_out);
         REQUIRE(sol.converged());
-        REQUIRE(fun.is_solution(x_out, EPSILON_LOW));
+        REQUIRE(fun.is_solution(x_out,TestType::EPSILON_LOW));
       }
     }
   }

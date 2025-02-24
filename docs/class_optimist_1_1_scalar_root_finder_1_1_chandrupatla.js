@@ -1,12 +1,12 @@
 var class_optimist_1_1_scalar_root_finder_1_1_chandrupatla =
 [
-    [ "FirstDerivativeWrapper", "class_optimist_1_1_scalar_root_finder_1_1_chandrupatla.html#a31fc741474769acfd555eb284b001d11", null ],
-    [ "FunctionWrapper", "class_optimist_1_1_scalar_root_finder_1_1_chandrupatla.html#af56a9794ace9024acd27eb887a54d3f7", null ],
-    [ "SecondDerivativeWrapper", "class_optimist_1_1_scalar_root_finder_1_1_chandrupatla.html#a39003d7fa3efe86ddb7f56e7aeecdfbe", null ],
-    [ "Chandrupatla", "class_optimist_1_1_scalar_root_finder_1_1_chandrupatla.html#afec600918d4e23db84c8a11715e565c8", null ],
-    [ "find_root_impl", "class_optimist_1_1_scalar_root_finder_1_1_chandrupatla.html#a53f9e4cb657dd21277f32e3d606d898d", null ],
-    [ "name_impl", "class_optimist_1_1_scalar_root_finder_1_1_chandrupatla.html#afb6916dded60fe6d67986b488d253ac9", null ],
-    [ "requires_first_derivative", "class_optimist_1_1_scalar_root_finder_1_1_chandrupatla.html#a4e403fc99948796f70fcfbc87cd53886", null ],
-    [ "requires_function", "class_optimist_1_1_scalar_root_finder_1_1_chandrupatla.html#ac33da867ff35b8aa75a05de304cccc27", null ],
-    [ "requires_second_derivative", "class_optimist_1_1_scalar_root_finder_1_1_chandrupatla.html#a8b410b215814bd703db62585bb5b9840", null ]
+    [ "FirstDerivativeWrapper", "class_optimist_1_1_scalar_root_finder_1_1_chandrupatla.html#ac19bca341be79c7c20b8d43953a67e4b", null ],
+    [ "FunctionWrapper", "class_optimist_1_1_scalar_root_finder_1_1_chandrupatla.html#ab1d278086ef4acabe3472a43101faa17", null ],
+    [ "SecondDerivativeWrapper", "class_optimist_1_1_scalar_root_finder_1_1_chandrupatla.html#a8c5d62e16e3b65b02e91ad4c94fa84b2", null ],
+    [ "Chandrupatla", "class_optimist_1_1_scalar_root_finder_1_1_chandrupatla.html#a3d8b522e89b9190073a08ddc888cc433", null ],
+    [ "find_root_impl", "class_optimist_1_1_scalar_root_finder_1_1_chandrupatla.html#a6d20955fbf867b5b0d42772d3cf6dde1", null ],
+    [ "name_impl", "class_optimist_1_1_scalar_root_finder_1_1_chandrupatla.html#a28848ebf023b4557001125b7373df3a2", null ],
+    [ "requires_first_derivative", "class_optimist_1_1_scalar_root_finder_1_1_chandrupatla.html#a829b378f1d90f507fa343678eb0781cc", null ],
+    [ "requires_function", "class_optimist_1_1_scalar_root_finder_1_1_chandrupatla.html#a55bb6ea194ef6b1f99bbfb02c8f1713c", null ],
+    [ "requires_second_derivative", "class_optimist_1_1_scalar_root_finder_1_1_chandrupatla.html#a50230819b52a1db106fec1a45445dcf6", null ]
 ];

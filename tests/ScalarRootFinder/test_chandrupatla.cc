@@ -25,7 +25,7 @@ using namespace Optimist::TestSet;
 TEMPLATE_TEST_CASE("Chandrupatla", "[template]", TEST_SCALAR_FUNCTIONS) {
   TestType fun;
   SECTION(fun.name()) {
-    ScalarRootFinder::Chandrupatla sol;
+    ScalarRootFinder::Chandrupatla<double> sol;
     sol.bounds(-10.0, 10.0);
     sol.task(fun.name());
     typename TestType::InputType x_ini, x_out;
@@ -35,12 +35,12 @@ TEMPLATE_TEST_CASE("Chandrupatla", "[template]", TEST_SCALAR_FUNCTIONS) {
       sol.disable_damped_mode();
       sol.rootfind(fun, x_ini, x_out);
       REQUIRE(sol.converged());
-      REQUIRE(fun.is_solution(x_out, EPSILON_LOW));
+      REQUIRE(fun.is_solution(x_out,TestType::EPSILON_LOW));
       // Solve with damping
       sol.enable_damped_mode();
       sol.rootfind(fun, x_ini, x_out);
       REQUIRE(sol.converged());
-      REQUIRE(fun.is_solution(x_out, EPSILON_LOW));
+      REQUIRE(fun.is_solution(x_out,TestType::EPSILON_LOW));
     }
   }
 }

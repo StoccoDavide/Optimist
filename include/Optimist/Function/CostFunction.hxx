@@ -24,10 +24,11 @@ namespace Optimist
   * \tparam N The dimension of the cost function input.
   * \tparam DerivedFunction Derived cost function class.
   */
-  template <Integer N, typename DerivedFunction>
-  class CostFunction : public Function<N, 1, DerivedFunction>
+  template <typename Real, Integer N, typename DerivedFunction>
+  class CostFunction : public Function<Real, N, 1, DerivedFunction>
   {
-    friend Function<N, 1, CostFunction<N, DerivedFunction>>;
+  public:
+    friend Function<Real, N, 1, CostFunction<Real, N, DerivedFunction>>;
 
     // Fancy static assertions (just for fun, don't take it too seriously)
     static_assert(N != Integer(0),
@@ -35,13 +36,12 @@ namespace Optimist
     static_assert(N != Integer(1),
       "C'mon, let's not kid ourselves. Use a scalar function...");
 
-  public:
     // I/O types
-    using Vector = typename Function<N, 1, DerivedFunction>::InputType; /**< Vector type. */
+    using Vector = typename Function<Real, N, 1, DerivedFunction>::InputType; /**< Vector type. */
 
     // Derivative types
-    using RowVector = typename Function<N, 1, DerivedFunction>::FirstDerivativeType;  /**< Gradient (row) vector type. */
-    using Matrix    = typename Function<N, 1, DerivedFunction>::SecondDerivativeType; /**< Hessian matrix type. */
+    using RowVector = typename Function<Real, N, 1, DerivedFunction>::FirstDerivativeType;  /**< Gradient (row) vector type. */
+    using Matrix    = typename Function<Real, N, 1, DerivedFunction>::SecondDerivativeType; /**< Hessian matrix type. */
 
     /**
     * Class constructor for the function.

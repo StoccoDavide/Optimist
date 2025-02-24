@@ -30,16 +30,20 @@ namespace Optimist
   *
   * \includedoc docs/markdown/Solver.md
   *
+  * \tparam Real Scalar number type.
   * \tparam SolInDim The root-finding/optimization problem input dimension.
   * \tparam SolOutDim The root-finding/optimization problem output dimension.
   * \tparam DerivedSolver Derived solver class.
   */
-  template <Integer SolInDim, Integer SolOutDim, typename DerivedSolver>
+  template <typename Real, Integer SolInDim, Integer SolOutDim, typename DerivedSolver>
   class Solver
   {
+    public:
     // Fancy static assertions (just for fun, don't take it too seriously)
     static_assert(SolInDim > Integer(0) && SolOutDim > Integer(0),
       "Negative-dimensional optimization problem? Are you serious?");
+
+    OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
 
   protected:
     // I/O types
@@ -161,7 +165,7 @@ namespace Optimist
         OPTIMIST_ASSERT(this->m_upper_bound > t_lower_bound,
           CMD "invalid or degenarate bounds detected.");
       } else if constexpr (SolInDim > 1) {
-        OPTIMIST_ASSERT((this->m_upper_bound - t_lower_bound).minCoeff() <= Real(0.0),
+        OPTIMIST_ASSERT((this->m_upper_bound - t_lower_bound).minCoeff() <= 0.0,
           CMD "invalid or degenarate bounds detected.");
       }
       this->m_lower_bound = t_lower_bound;
@@ -186,7 +190,7 @@ namespace Optimist
         OPTIMIST_ASSERT(t_upper_bound > this->m_lower_bound,
           CMD "invalid or degenarate bounds detected.");
       } else if constexpr (SolInDim > 1) {
-        OPTIMIST_ASSERT((t_upper_bound - this->m_lower_bound).minCoeff() <= Real(0.0),
+        OPTIMIST_ASSERT((t_upper_bound - this->m_lower_bound).minCoeff() <= 0.0,
           CMD "invalid or degenarate bounds detected.");
       }
       this->m_upper_bound = t_upper_bound;
@@ -207,7 +211,7 @@ namespace Optimist
         OPTIMIST_ASSERT(t_upper_bound > t_lower_bound,
           CMD "invalid or degenarate bounds detected.");
       } else if constexpr (SolInDim > 1) {
-        OPTIMIST_ASSERT((t_upper_bound - t_lower_bound).minCoeff() <= Real(0.0),
+        OPTIMIST_ASSERT((t_upper_bound - t_lower_bound).minCoeff() <= 0.0,
           CMD "invalid or degenarate bounds detected.");
       }
       this->m_lower_bound = t_lower_bound;
@@ -335,7 +339,7 @@ namespace Optimist
     void alpha(Real t_alpha)
     {
       OPTIMIST_ASSERT(
-        !std::isnan(t_alpha) && std::isfinite(t_alpha) && Real(0.0) <= t_alpha && t_alpha <= Real(1.0),
+        !std::isnan(t_alpha) && std::isfinite(t_alpha) && 0.0 <= t_alpha && t_alpha <= 1.0,
         "Optimist::Solver::alpha(...): invalid input detected.");
       this->m_alpha = t_alpha;
     }
@@ -376,7 +380,7 @@ namespace Optimist
     */
     void tolerance(Real t_tolerance) {
       OPTIMIST_ASSERT(
-        !std::isnan(t_tolerance) && std::isfinite(t_tolerance) && t_tolerance > Real(0.0),
+        !std::isnan(t_tolerance) && std::isfinite(t_tolerance) && t_tolerance > 0.0,
         "Optimist::Solver::tolerance(...): invalid input detected.");
       this->m_tolerance = t_tolerance;
     }
@@ -534,8 +538,8 @@ namespace Optimist
     * \tparam DerivedFunction Derived function class.
     */
     template <Integer FunInDim, Integer FunOutDim, typename DerivedFunction>
-    bool rootfind(Function<FunInDim, FunOutDim, DerivedFunction> const & function, const InputType & x_ini,
-      InputType & x_sol)
+    bool rootfind(Function<Real, FunInDim, FunOutDim, DerivedFunction> const & function, const InputType
+      & x_ini, InputType & x_sol)
     {
       #define CMD "Optimist::Solver::rootfind(...): "
 
@@ -560,8 +564,8 @@ namespace Optimist
     * \tparam DerivedFunction Derived function class.
     */
     template <Integer FunInDim, Integer FunOutDim, typename DerivedFunction>
-    bool optimize(Function<FunInDim, FunOutDim, DerivedFunction> const & function, const InputType & x_ini,
-      InputType & x_sol)
+    bool optimize(Function<Real, FunInDim, FunOutDim, DerivedFunction> const & function, const InputType
+      & x_ini, InputType & x_sol)
     {
       #define CMD "Optimist::Solver::optimize(...): "
 
@@ -594,12 +598,12 @@ namespace Optimist
     * \tparam DerivedFunction Derived function class.
     */
     template <Integer FunInDim, Integer FunOutDim, typename DerivedFunction>
-    bool solve(Function<FunInDim, FunOutDim, DerivedFunction> const & function, const InputType & x_ini,
+    bool solve(Function<Real, FunInDim, FunOutDim, DerivedFunction> const & function, const InputType & x_ini,
       InputType & x_sol, bool is_optimization)
     {
       #define CMD "Optimist::Solver::solve(...): "
 
-      using FunctionType = Function<FunInDim, FunOutDim, DerivedFunction>;
+      using FunctionType = Function<Real, FunInDim, FunOutDim, DerivedFunction>;
 
       static_assert(SolInDim == FunInDim,
         CMD "solver input dimension must be equal to the function input dimension.");

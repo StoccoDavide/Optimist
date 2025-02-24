@@ -32,19 +32,22 @@ namespace Optimist
     *
     * The Bracketing algorithms allow to find the roots of a scalar function \f$f(x)\f$ in a given
     * interval \f$[a, b]\f$.
+    * \tparam Real Scalar number type.
     */
-    template <typename DerivedSolver>
-    class Bracketing : public ScalarRootFinder<DerivedSolver>
+    template <typename Real, typename DerivedSolver>
+    class Bracketing : public ScalarRootFinder<Real, DerivedSolver>
     {
     public:
       static constexpr bool requires_function{DerivedSolver::requires_function};
       static constexpr bool requires_first_derivative{DerivedSolver::requires_first_derivative};
       static constexpr bool requires_second_derivative{DerivedSolver::requires_second_derivative};
 
+      OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
+
       // Function types
-      using FunctionWrapper         = typename ScalarRootFinder<Bracketing>::FunctionWrapper;
-      using FirstDerivativeWrapper  = typename ScalarRootFinder<Bracketing>::FirstDerivativeWrapper;
-      using SecondDerivativeWrapper = typename ScalarRootFinder<Bracketing>::SecondDerivativeWrapper;
+      using FunctionWrapper         = typename ScalarRootFinder<Real, DerivedSolver>::FunctionWrapper;
+      using FirstDerivativeWrapper  = typename ScalarRootFinder<Real, DerivedSolver>::FirstDerivativeWrapper;
+      using SecondDerivativeWrapper = typename ScalarRootFinder<Real, DerivedSolver>::SecondDerivativeWrapper;
 
     protected:
       Real m_tolerance_bracketing{100*EPSILON}; /**< Tolerance for the Algorithm 748 solver. */
@@ -74,7 +77,7 @@ namespace Optimist
 
       /**
       * Set the tolerance for the Algorithm 748 solver.
-      * \param[in] x The input value at which the tolerance is computed.
+      * \param[in] t_tolerance The input value at which the tolerance is computed.
       * \note To accurately find polynomial roots, the tolerance should be set to \f$ 100\epsilon(0) \f$.
       */
       void tolerance_bracketing(Real t_tolerance) {this->m_tolerance_bracketing = t_tolerance;}
@@ -86,7 +89,7 @@ namespace Optimist
       * \param[out] x_sol Solution point.
       * \return The convergence boolean flag.
       */
-      bool solve_impl(FunctionWrapper function, Real /*x_ini*/, Real &x_sol)
+      bool solve_impl(FunctionWrapper function, Real /*x_ini*/, Real & x_sol)
       {
         // Setup internal variables
         this->reset();

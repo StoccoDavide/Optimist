@@ -32,21 +32,24 @@ namespace Optimist
     *
     * \includedoc docs/markdown/RootFinder/Newton.md
     *
+    * \tparam Real Scalar number type.
     * \tparam N Dimension of the root-finding problem.
     */
-    template <Integer N>
-    class Newton : public RootFinder<N, Newton<N>>
+    template <typename Real, Integer N>
+    class Newton : public RootFinder<Real, N, Newton<Real, N>>
     {
     public:
       static constexpr bool requires_function{true};
       static constexpr bool requires_first_derivative{true};
       static constexpr bool requires_second_derivative{false};
 
-      using Vector = typename RootFinder<N, Newton<N>>::Vector;
-      using Matrix = typename RootFinder<N, Newton<N>>::Matrix;
-      using FunctionWrapper = typename RootFinder<N, Newton<N>>::FunctionWrapper;
-      using JacobianWrapper = typename RootFinder<N, Newton<N>>::JacobianWrapper;
-      using RootFinder<N, Newton<N>>::solve;
+      OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
+
+      using Vector = typename RootFinder<Real, N, Newton<Real, N>>::Vector;
+      using Matrix = typename RootFinder<Real, N, Newton<Real, N>>::Matrix;
+      using FunctionWrapper = typename RootFinder<Real, N, Newton<Real, N>>::FunctionWrapper;
+      using JacobianWrapper = typename RootFinder<Real, N, Newton<Real, N>>::JacobianWrapper;
+      using RootFinder<Real, N, Newton<Real, N>>::solve;
 
     private:
       Eigen::FullPivLU<Matrix> m_lu; /**< LU decomposition. */
@@ -72,7 +75,7 @@ namespace Optimist
       * \param[out] x_sol Solution point.
       * \return The convergence boolean flag.
       */
-      bool solve_impl(FunctionWrapper function, JacobianWrapper jacobian, Vector const &x_ini, Vector &x_sol)
+      bool solve_impl(FunctionWrapper function, JacobianWrapper jacobian, Vector const & x_ini, Vector & x_sol)
       {
         // Setup internal variables
         this->reset();

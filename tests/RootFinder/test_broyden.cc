@@ -25,8 +25,8 @@ using namespace Optimist::TestSet;
 TEMPLATE_TEST_CASE("Broyden", "[template]", TEST_VECTOR_FUNCTIONS) {
   TestType fun;
   SECTION(fun.name()) {
-    RootFinder::Broyden<fun.input_dimension()> sol;
-    using BroydenMethod = typename RootFinder::Broyden<fun.input_dimension()>::Method;
+    RootFinder::Broyden<double, fun.input_dimension()> sol;
+    using BroydenMethod = typename RootFinder::Broyden<double, fun.input_dimension()>::Method;
     auto met = GENERATE(BroydenMethod::GOOD, BroydenMethod::BAD, BroydenMethod::COMBINED);
     sol.method(met);
     SECTION(sol.name()) {
@@ -38,12 +38,12 @@ TEMPLATE_TEST_CASE("Broyden", "[template]", TEST_VECTOR_FUNCTIONS) {
         sol.disable_damped_mode();
         sol.rootfind(fun, x_ini, x_out);
         REQUIRE(sol.converged());
-        REQUIRE(fun.is_solution(x_out, EPSILON_LOW));
+        REQUIRE(fun.is_solution(x_out,TestType::EPSILON_LOW));
         // Solve with damping
         sol.enable_damped_mode();
         sol.rootfind(fun, x_ini, x_out);
         REQUIRE(sol.converged());
-        REQUIRE(fun.is_solution(x_out, EPSILON_LOW));
+        REQUIRE(fun.is_solution(x_out,TestType::EPSILON_LOW));
       }
     }
   }

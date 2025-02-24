@@ -1,6 +1,6 @@
 var _solver_8hxx =
 [
-    [ "Optimist::Solver< SolInDim, SolOutDim, DerivedSolver >", "class_optimist_1_1_solver.html", "class_optimist_1_1_solver" ],
+    [ "Optimist::Solver< Real, SolInDim, SolOutDim, DerivedSolver >", "class_optimist_1_1_solver.html", "class_optimist_1_1_solver" ],
     [ "CMD", "_solver_8hxx.html#a0a5ceb9ceb914e08d345410b561cb37a", null ],
     [ "CMD", "_solver_8hxx.html#a0a5ceb9ceb914e08d345410b561cb37a", null ],
     [ "CMD", "_solver_8hxx.html#a0a5ceb9ceb914e08d345410b561cb37a", null ],

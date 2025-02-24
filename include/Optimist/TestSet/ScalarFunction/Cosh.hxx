@@ -28,10 +28,14 @@ namespace Optimist
     * \f]
     * The function has a minimum at \f$x = 0\f$, with \f$f(x) = 1\f$. The initial guesses are
     * generated on the range \f$x \in \left[-10, 10\right]\f$.
+    * \tparam Real Scalar number type.
     */
-    class Cosh : public ScalarFunction<Cosh>
+    template <typename Real>
+    class Cosh : public ScalarFunction<Real, Cosh<Real>>
     {
     public:
+      OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
+
       /**
       * Class constructor for the hyperbolic cosine function.
       */

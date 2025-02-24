@@ -36,14 +36,18 @@ namespace Optimist
     * \f]
     * The default coefficients are \f$a = 1\f$, \f$b = 1\f$, and \f$c = -1\f$, and the function
     * initial guess is \f$x = 0\f$.
+    * \tparam Real Scalar number type.
     */
-    class Quadratic : public ScalarFunction<Quadratic>
+    template <typename Real>
+    class Quadratic : public ScalarFunction<Real, Quadratic<Real>>
     {
       Real m_a{1.0}; /**< Coefficient \f$a\f$. */
       Real m_b{1.0}; /**< Coefficient \f$b\f$. */
       Real m_c{-1.0}; /**< Coefficient \f$c\f$. */
 
     public:
+      OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
+
       /**
       * Class constructor for the quadratic function.
       */

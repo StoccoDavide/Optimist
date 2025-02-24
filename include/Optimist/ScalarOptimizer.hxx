@@ -36,13 +36,14 @@ namespace Optimist
     *
     * \includedoc docs/markdown/ScalarOptimizer.md
     *
+    * \tparam Real Scalar number type.
     * \tparam DerivedSolver Derived solver class.
     */
-    template <typename DerivedSolver>
-    class ScalarOptimizer : public Solver<1, 1, DerivedSolver>
+    template <typename Real, typename DerivedSolver>
+    class ScalarOptimizer : public Solver<Real, 1, 1, DerivedSolver>
     {
     public:
-      friend Solver<1, 1, ScalarOptimizer<DerivedSolver>>;
+      friend Solver<Real, 1, 1, ScalarOptimizer<Real, DerivedSolver>>;
 
       static constexpr bool is_rootfinder{false};
       static constexpr bool is_optimizer{true};
@@ -51,9 +52,11 @@ namespace Optimist
       static constexpr bool requires_first_derivative{DerivedSolver::requires_first_derivative};
       static constexpr bool requires_second_derivative{DerivedSolver::requires_second_derivative};
 
-      using FunctionWrapper         = typename Solver<1, 1, DerivedSolver>::FunctionWrapper;
-      using FirstDerivativeWrapper  = typename Solver<1, 1, DerivedSolver>::FirstDerivativeWrapper;
-      using SecondDerivativeWrapper = typename Solver<1, 1, DerivedSolver>::SecondDerivativeWrapper;
+      OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
+
+      using FunctionWrapper         = typename Solver<Real, 1, 1, DerivedSolver>::FunctionWrapper;
+      using FirstDerivativeWrapper  = typename Solver<Real, 1, 1, DerivedSolver>::FirstDerivativeWrapper;
+      using SecondDerivativeWrapper = typename Solver<Real, 1, 1, DerivedSolver>::SecondDerivativeWrapper;
 
       /**
       * Class constructor for the scalar optimizer.

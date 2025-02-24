@@ -29,10 +29,14 @@ namespace Optimist
     * The function has roots at \f$x = i\pi\f$, with \f$f(x) = 0\f$, and minima at \f$x = -\pi + 2i\pi\f$,
     * with \f$f(x) = -1\f$ and \f$i = 0, 1, \ldots, n\f$. The initial guesses are generated on the
     * range \f$x \in \left[-\pi, \pi\right]\f$.
+    * \tparam Real Scalar number type.
     */
-    class Cos : public ScalarFunction<Cos>
+    template <typename Real>
+    class Cos : public ScalarFunction<Real, Cos<Real>>
     {
     public:
+      OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
+
       /**
       * Class constructor for the cosine function.
       */

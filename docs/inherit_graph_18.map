@@ -1,7 +1,7 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$class_optimist_1_1_solver.html" title=" " alt="" coords="5,5,144,46"/>
-<area shape="rect" id="Node000001" href="$class_optimist_1_1_scalar_root_finder_1_1_scalar_root_finder.html" title=" " alt="" coords="192,5,412,46"/>
-<area shape="poly" id="edge32_Node000000_Node000001" title=" " alt="" coords="159,23,191,23,191,28,159,28"/>
-<area shape="rect" id="Node000002" href="$class_optimist_1_1_scalar_root_finder_1_1_chebyshev.html" title="Class container for the Chebyshev&#39;s method." alt="" coords="460,5,639,46"/>
-<area shape="poly" id="edge33_Node000001_Node000002" title=" " alt="" coords="428,23,459,23,459,28,428,28"/>
+<area shape="rect" id="Node000000" href="$class_optimist_1_1_solver.html" title=" " alt="" coords="5,13,190,54"/>
+<area shape="rect" id="Node000001" href="$class_optimist_1_1_scalar_root_finder_1_1_scalar_root_finder.html" title=" " alt="" coords="238,5,417,61"/>
+<area shape="poly" id="edge37_Node000000_Node000001" title=" " alt="" coords="205,30,237,30,237,36,205,36"/>
+<area shape="rect" id="Node000002" href="$class_optimist_1_1_scalar_root_finder_1_1_chebyshev.html" title="Class container for the Chebyshev&#39;s method." alt="" coords="465,13,644,54"/>
+<area shape="poly" id="edge38_Node000001_Node000002" title=" " alt="" coords="432,30,464,30,464,36,432,36"/>
 </map>

@@ -23,8 +23,8 @@ namespace Optimist
     {
       Real const m_epsilon{std::numeric_limits<Real>::epsilon()};
       Real const m_epsilon1{std::sqrt(std::numeric_limits<Real>::epsilon())};
-      Real const m_epsilon2{std::pow(std::numeric_limits<Real>::epsilon(), Real(0.75))};
-      Real const m_epsilon3{std::pow(std::numeric_limits<Real>::epsilon(), Real(0.25))};
+      Real const m_epsilon2{std::pow(std::numeric_limits<Real>::epsilon(), 0.75)};
+      Real const m_epsilon3{std::pow(std::numeric_limits<Real>::epsilon(), 0.25)};
     public:
       Real epsilon1( Real v ) const { return (abs(v)+1)*m_epsilon1; }
       Real epsilon2( Real v ) const { return (abs(v)+1)*m_epsilon2; }

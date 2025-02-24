@@ -32,22 +32,25 @@ namespace Optimist
     *
     * \includedoc docs/markdown/RootFinder/QuasiNewton.md
     *
+    * \tparam Real Scalar number type.
     * \tparam N Dimension of the root-finding problem.
     */
-    template <Integer N, typename DerivedSolver>
-    class QuasiNewton : public RootFinder<N, DerivedSolver>
+    template <typename Real, Integer N, typename DerivedSolver>
+    class QuasiNewton : public RootFinder<Real, N, DerivedSolver>
     {
     public:
       static constexpr bool requires_function{true};
       static constexpr bool requires_first_derivative{true};
       static constexpr bool requires_second_derivative{false};
 
+      OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
+
       using Method = enum class Method : Integer {GOOD = 0, BAD = 1, COMBINED = 2}; /**< QuasiNewton solver type. */
-      using Vector = typename RootFinder<N, DerivedSolver>::Vector;
-      using Matrix = typename RootFinder<N, DerivedSolver>::Matrix;
-      using FunctionWrapper = typename RootFinder<N, DerivedSolver>::FunctionWrapper;
-      using JacobianWrapper = typename RootFinder<N, DerivedSolver>::JacobianWrapper;
-      using RootFinder<N, DerivedSolver>::solve;
+      using Vector = typename RootFinder<Real, N, DerivedSolver>::Vector;
+      using Matrix = typename RootFinder<Real, N, DerivedSolver>::Matrix;
+      using FunctionWrapper = typename RootFinder<Real, N, DerivedSolver>::FunctionWrapper;
+      using JacobianWrapper = typename RootFinder<Real, N, DerivedSolver>::JacobianWrapper;
+      using RootFinder<Real, N, DerivedSolver>::solve;
 
     private:
       Method m_method{Method::COMBINED}; /**< QuasiNewton solver type. */
@@ -76,8 +79,8 @@ namespace Optimist
       * \param[out] x_sol Solution point.
       * \return The convergence boolean flag.
       */
-      bool solve_impl(FunctionWrapper function, JacobianWrapper jacobian, Vector const &x_ini,
-        Vector &x_sol)
+      bool solve_impl(FunctionWrapper function, JacobianWrapper jacobian, Vector const & x_ini,
+        Vector & x_sol)
       {
         // Setup internal variables
         this->reset();

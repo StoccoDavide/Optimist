@@ -34,18 +34,22 @@ namespace Optimist
     * \f$[a, b]\f$. The algorithm is based on the work of G. Alefeld, F. Potra, and Y. Shi, *Algorithm
     * 748: Enclosing Zeros of Continuous Functions*, ACM Transactions on Mathematical Software, 21
     * (1995), pp. 327-344, 10.1145/210089.210111.
+    * \tparam Real Scalar number type.
     */
-    class Algo748 : public Bracketing<Algo748>
+    template <typename Real>
+    class Algo748 : public Bracketing<Real, Algo748<Real>>
     {
     public:
       static constexpr bool requires_function{true};
       static constexpr bool requires_first_derivative{false};
       static constexpr bool requires_second_derivative{false};
 
+      OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
+
       // Function types
-      using FunctionWrapper         = typename Bracketing<Algo748>::FunctionWrapper;
-      using FirstDerivativeWrapper  = typename Bracketing<Algo748>::FirstDerivativeWrapper;
-      using SecondDerivativeWrapper = typename Bracketing<Algo748>::SecondDerivativeWrapper;
+      using FunctionWrapper         = typename Bracketing<Real, Algo748<Real>>::FunctionWrapper;
+      using FirstDerivativeWrapper  = typename Bracketing<Real, Algo748<Real>>::FirstDerivativeWrapper;
+      using SecondDerivativeWrapper = typename Bracketing<Real, Algo748<Real>>::SecondDerivativeWrapper;
 
       /**
       * Class constructor for the Algorithm 748.
@@ -84,18 +88,18 @@ namespace Optimist
       bool bracketing(FunctionWrapper function) {
 
         {
-          Real tolerance{Real(0.7)*this->m_tolerance_bracketing};
+          Real tolerance{0.7*this->m_tolerance_bracketing};
           Real hba{(this->m_b - this->m_a)/2.0};
           if (hba <= tolerance) {this->m_c = this->m_a + hba;}
-          else if (this->m_c <= m_a + tolerance) {m_c = m_a + tolerance;}
-          else if (this->m_c >= m_b - tolerance) {m_c = m_b - tolerance;}
+          else if (this->m_c <= this->m_a + tolerance) {this->m_c = this->m_a + tolerance;}
+          else if (this->m_c >= this->m_b - tolerance) {this->m_c = this->m_b - tolerance;}
         }
 
         // If f(c) = 0 set a = c and return true
         this->evaluate_function(function, this->m_c, this->m_fc);
         if (this->m_fc == 0) {
-          this->m_a = m_c; this->m_fa = 0.0;
-          this->m_d = 0.0; this->m_fd = 0.0;
+          this->m_a = this->m_c; this->m_fa = 0.0;
+          this->m_d = 0.0;       this->m_fd = 0.0;
           return true;
         } else {
           // If f(c) is not zero, then determine the new enclosing interval
@@ -203,7 +207,7 @@ namespace Optimist
         this->m_fe = QUIET_NAN;
 
         // While f(left) or f(right) are infinite perform bisection
-        while (!(std::isfinite(m_fa) && std::isfinite(m_fb))) {
+        while (!(std::isfinite(this->m_fa) && std::isfinite(this->m_fb))) {
           ++this->m_iterations;
           this->m_c  = (this->m_a + this->m_b)/2.0;
           this->evaluate_function(function, this->m_c, this->m_fc);

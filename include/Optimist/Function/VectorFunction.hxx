@@ -25,10 +25,11 @@ namespace Optimist
   * \tparam M The output dimension of the vector-valued function.
   * \tparam DerivedFunction Derived vector-valued function class.
   */
-  template <Integer N, Integer M, typename DerivedFunction>
-  class VectorFunction : public Function<N, M, DerivedFunction>
+  template <typename Real, Integer N, Integer M, typename DerivedFunction>
+  class VectorFunction : public Function<Real, N, M, DerivedFunction>
   {
-    friend Function<N, M, VectorFunction<N, M, DerivedFunction>>;
+  public:
+    friend Function<Real, N, M, VectorFunction<Real, N, M, DerivedFunction>>;
 
     // Fancy static assertions (just for fun, don't take it too seriously)
     static_assert(N != Integer(0) && M != Integer(0),
@@ -38,14 +39,13 @@ namespace Optimist
     static_assert(M != Integer(1),
       "Good try, but you're looking for an objective function, not a vector-valued function.");
 
-  public:
     // I/O types
-    using InputVector = typename Function<N, M, DerivedFunction>::InputType; /**< Input vector type. */
-    using OutputVector = typename Function<N, M, DerivedFunction>::OutputType; /**< Output vector type. */
+    using InputVector = typename Function<Real, N, M, DerivedFunction>::InputType; /**< Input vector type. */
+    using OutputVector = typename Function<Real, N, M, DerivedFunction>::OutputType; /**< Output vector type. */
 
     // Derivative types
-    using Matrix = typename Function<N, M, DerivedFunction>::FirstDerivativeType;  /**< Jacobian matrix type. */
-    using Tensor = typename Function<N, M, DerivedFunction>::SecondDerivativeType; /**< Hessian tensor type. */
+    using Matrix = typename Function<Real, N, M, DerivedFunction>::FirstDerivativeType;  /**< Jacobian matrix type. */
+    using Tensor = typename Function<Real, N, M, DerivedFunction>::SecondDerivativeType; /**< Hessian tensor type. */
 
     /**
     * Class constructor for the vector-valued function.

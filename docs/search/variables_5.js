@@ -1,19 +1,8 @@
 var searchData=
 [
-  ['nan_5fmat2_0',['NAN_MAT2',['../namespace_optimist.html#ad29b0bb62128bd7c8e4465d0a93155b0',1,'Optimist']]],
-  ['nan_5fmat3_1',['NAN_MAT3',['../namespace_optimist.html#a69aa36c6e213d7c6268daab7fdeec673',1,'Optimist']]],
-  ['nan_5fmat4_2',['NAN_MAT4',['../namespace_optimist.html#ab5c04a7bb0725d70f8e443ff0553ad4f',1,'Optimist']]],
-  ['nan_5fmat5_3',['NAN_MAT5',['../namespace_optimist.html#a6fe5e2ab57623af2359dc03b15c818ed',1,'Optimist']]],
-  ['nan_5fmat6_4',['NAN_MAT6',['../namespace_optimist.html#aa8dd6aa83514aeee8c84162a5238fb00',1,'Optimist']]],
-  ['nan_5fmat7_5',['NAN_MAT7',['../namespace_optimist.html#ae4c3aaa62ab3feac5acc792b58759644',1,'Optimist']]],
-  ['nan_5fmat8_6',['NAN_MAT8',['../namespace_optimist.html#a5cf8b4480afd63e433b2ae6be170ee41',1,'Optimist']]],
-  ['nan_5fmat9_7',['NAN_MAT9',['../namespace_optimist.html#a5fe3b81531f739e03b18c5c76a4db9ea',1,'Optimist']]],
-  ['nan_5fvec2_8',['NAN_VEC2',['../namespace_optimist.html#a22b301ab1a5fe47d1e967c3a25e1c444',1,'Optimist']]],
-  ['nan_5fvec3_9',['NAN_VEC3',['../namespace_optimist.html#a3b83050d9e50c75e55292f1f140f09b2',1,'Optimist']]],
-  ['nan_5fvec4_10',['NAN_VEC4',['../namespace_optimist.html#adf2c84597a196f5af1e9cff7ea9ffe93',1,'Optimist']]],
-  ['nan_5fvec5_11',['NAN_VEC5',['../namespace_optimist.html#a086db283283eb98c8b7538b5bc473625',1,'Optimist']]],
-  ['nan_5fvec6_12',['NAN_VEC6',['../namespace_optimist.html#a0247b741908904f9f04f669aad403e83',1,'Optimist']]],
-  ['nan_5fvec7_13',['NAN_VEC7',['../namespace_optimist.html#a3d8c2e6a46c857baca26c6721eea729a',1,'Optimist']]],
-  ['nan_5fvec8_14',['NAN_VEC8',['../namespace_optimist.html#ab9ef72370d2784e678ecfbd93874151c',1,'Optimist']]],
-  ['nan_5fvec9_15',['NAN_VEC9',['../namespace_optimist.html#a1a0b46c5c5fe4b50d47d7d21c0b66afc',1,'Optimist']]]
+  ['scalar_5ffunctions_0',['SCALAR_FUNCTIONS',['../namespace_optimist_1_1_test_set.html#aa502a3cc93585bccc9799eb951d1ead3',1,'Optimist::TestSet']]],
+  ['solver_3c_20real_2c_201_2c_201_2c_20scalaroptimizer_3c_20real_2c_20derivedsolver_20_3e_20_3e_1',['Solver&lt; Real, 1, 1, ScalarOptimizer&lt; Real, DerivedSolver &gt; &gt;',['../class_optimist_1_1_scalar_optimizer_1_1_scalar_optimizer.html#ae0fd15cf7c24dddf2be39e86b5abd779',1,'Optimist::ScalarOptimizer::ScalarOptimizer']]],
+  ['solver_3c_20real_2c_201_2c_201_2c_20scalarrootfinder_3c_20real_2c_20derivedsolver_20_3e_20_3e_2',['Solver&lt; Real, 1, 1, ScalarRootFinder&lt; Real, DerivedSolver &gt; &gt;',['../class_optimist_1_1_scalar_root_finder_1_1_scalar_root_finder.html#a502f19d40daab065432b253d56181ce7',1,'Optimist::ScalarRootFinder::ScalarRootFinder']]],
+  ['solver_3c_20real_2c_20n_2c_201_2c_20optimizer_3c_20real_2c_20n_2c_20derivedsolver_20_3e_20_3e_3',['Solver&lt; Real, N, 1, Optimizer&lt; Real, N, DerivedSolver &gt; &gt;',['../class_optimist_1_1_optimizer_1_1_optimizer.html#a3c5aaa676634c9b284da154bb4796366',1,'Optimist::Optimizer::Optimizer']]],
+  ['solver_3c_20real_2c_20n_2c_20n_2c_20rootfinder_3c_20real_2c_20n_2c_20derivedsolver_20_3e_20_3e_4',['Solver&lt; Real, N, N, RootFinder&lt; Real, N, DerivedSolver &gt; &gt;',['../class_optimist_1_1_root_finder_1_1_root_finder.html#a0a49720fdb4453bd6aec363d72224c90',1,'Optimist::RootFinder::RootFinder']]]
 ];

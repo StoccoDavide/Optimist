@@ -32,22 +32,25 @@ namespace Optimist
     *
     * \includedoc docs/markdown/RootFinder/Greenstadt.md
     *
+    * \tparam Real Scalar number type.
     * \tparam N Dimension of the root-finding problem.
     */
-    template <Integer N>
-    class Greenstadt : public QuasiNewton<N, Greenstadt<N>>
+    template <typename Real, Integer N>
+    class Greenstadt : public QuasiNewton<Real, N, Greenstadt<Real, N>>
     {
     public:
       static constexpr bool requires_function{true};
       static constexpr bool requires_first_derivative{true};
       static constexpr bool requires_second_derivative{false};
 
+      OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
+
       using Method = enum class Method : Integer {ONE = 1, TWO = 2}; /**< Greenstadt solver type. */
-      using Vector = typename QuasiNewton<N, Greenstadt<N>>::Vector;
-      using Matrix = typename QuasiNewton<N, Greenstadt<N>>::Matrix;
-      using FunctionWrapper = typename QuasiNewton<N, Greenstadt<N>>::FunctionWrapper;
-      using JacobianWrapper = typename QuasiNewton<N, Greenstadt<N>>::JacobianWrapper;
-      using QuasiNewton<N, Greenstadt<N>>::solve;
+      using Vector = typename QuasiNewton<Real, N, Greenstadt<Real, N>>::Vector;
+      using Matrix = typename QuasiNewton<Real, N, Greenstadt<Real, N>>::Matrix;
+      using FunctionWrapper = typename QuasiNewton<Real, N, Greenstadt<Real, N>>::FunctionWrapper;
+      using JacobianWrapper = typename QuasiNewton<Real, N, Greenstadt<Real, N>>::JacobianWrapper;
+      using QuasiNewton<Real, N, Greenstadt<Real, N>>::solve;
 
     private:
       Method m_method{Method::ONE}; /**< Greenstadt solver type. */

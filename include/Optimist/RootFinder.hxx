@@ -36,14 +36,21 @@ namespace Optimist
     *
     * \includedoc docs/markdown/RootFinder.md
     *
+    * \tparam Real Scalar number type.
     * \tparam N The dimension of the root-finding problem.
     * \tparam DerivedSolver Derived solver class.
     */
-    template <Integer N, typename DerivedSolver>
-    class RootFinder : public Solver<N, N, DerivedSolver>
+    template <typename Real, Integer N, typename DerivedSolver>
+    class RootFinder : public Solver<Real, N, N, DerivedSolver>
     {
     public:
-      friend Solver<N, N, RootFinder<N, DerivedSolver>>;
+      // Fancy static assertions (just for fun, don't take it too seriously)
+      static_assert(N != Integer(0),
+        "Are you sure you want to solve a zero-dimensional system of equations?");
+      static_assert(N != Integer(1),
+        "C'mon, let's not kid ourselves. Use a scalar solver...");
+
+      friend Solver<Real, N, N, RootFinder<Real, N, DerivedSolver>>;
 
       static constexpr bool is_rootfinder{true};
       static constexpr bool is_optimizer{false};
@@ -52,25 +59,21 @@ namespace Optimist
       static constexpr bool requires_first_derivative{DerivedSolver::requires_first_derivative};
       static constexpr bool requires_second_derivative{DerivedSolver::requires_second_derivative};
 
-      // Fancy static assertions (just for fun, don't take it too seriously)
-      static_assert(N != Integer(0),
-        "Are you sure you want to solve a zero-dimensional system of equations?");
-      static_assert(N != Integer(1),
-        "C'mon, let's not kid ourselves. Use a scalar solver...");
+      OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
 
-      using Solver<N, N, DerivedSolver>::Solver;
+      using Solver<Real, N, N, DerivedSolver>::solve;
 
       // I/O types
-      using Vector = typename Solver<N, N, DerivedSolver>::InputType; /**< Vector type. */
+      using Vector = typename Solver<Real, N, N, DerivedSolver>::InputType; /**< Vector type. */
 
       // Derivative types
-      using Matrix = typename Solver<N, N, DerivedSolver>::FirstDerivativeType;  /**< Jacobian matrix type. */
-      using Tensor = typename Solver<N, N, DerivedSolver>::SecondDerivativeType; /**< Hessian tensor type. */
+      using Matrix = typename Solver<Real, N, N, DerivedSolver>::FirstDerivativeType;  /**< Jacobian matrix type. */
+      using Tensor = typename Solver<Real, N, N, DerivedSolver>::SecondDerivativeType; /**< Hessian tensor type. */
 
       // Function types
-      using FunctionWrapper = typename Solver<N, N, DerivedSolver>::FunctionWrapper;
-      using JacobianWrapper = typename Solver<N, N, DerivedSolver>::FirstDerivativeWrapper;
-      using HessianWrapper  = typename Solver<N, N, DerivedSolver>::SecondDerivativeWrapper;
+      using FunctionWrapper = typename Solver<Real, N, N, DerivedSolver>::FunctionWrapper;
+      using JacobianWrapper = typename Solver<Real, N, N, DerivedSolver>::FirstDerivativeWrapper;
+      using HessianWrapper  = typename Solver<Real, N, N, DerivedSolver>::SecondDerivativeWrapper;
 
       /**
       * Class constructor for the multi-dimensional root finder.
@@ -156,7 +159,7 @@ namespace Optimist
       * \param[out] x_sol Solution point.
       * \return The convergence boolean flag.
       */
-      bool solve(FunctionWrapper function, Vector const &x_ini, Vector &x_sol)
+      bool solve(FunctionWrapper function, Vector const & x_ini, Vector & x_sol)
       {
         #define CMD "Optimist::RootFinder::solve(...): "
 
@@ -175,7 +178,7 @@ namespace Optimist
       * \param[out] x_sol Solution point.
       * \return The convergence boolean flag.
       */
-      bool solve(FunctionWrapper function, JacobianWrapper jacobian, Vector const &x_ini, Vector &x_sol)
+      bool solve(FunctionWrapper function, JacobianWrapper jacobian, Vector const & x_ini, Vector & x_sol)
       {
         #define CMD "Optimist::RootFinder::solve(...): "
 
@@ -198,7 +201,7 @@ namespace Optimist
       * \return The convergence boolean flag.
       */
       bool solve(FunctionWrapper function, JacobianWrapper jacobian, HessianWrapper hessian, Vector
-        const &x_ini, Vector &x_sol)
+        const & x_ini, Vector & x_sol)
       {
         #define CMD "Optimist::RootFinder::solve(...): "
 

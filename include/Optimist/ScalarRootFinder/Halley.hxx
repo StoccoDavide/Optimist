@@ -31,18 +31,23 @@ namespace Optimist
     * \brief Class container for the Halley's method.
     *
     * \includedoc docs/markdown/ScalarRootFinder/Halley.md
+    *
+    * \tparam Real Scalar number type.
     */
-    class Halley : public ScalarRootFinder<Halley>
+    template <typename Real>
+    class Halley : public ScalarRootFinder<Real, Halley<Real>>
     {
     public:
       static constexpr bool requires_function{true};
       static constexpr bool requires_first_derivative{true};
       static constexpr bool requires_second_derivative{true};
 
+      OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
+
       // Function types
-      using FunctionWrapper         = typename ScalarRootFinder<Halley>::FunctionWrapper;
-      using FirstDerivativeWrapper  = typename ScalarRootFinder<Halley>::FirstDerivativeWrapper;
-      using SecondDerivativeWrapper = typename ScalarRootFinder<Halley>::SecondDerivativeWrapper;
+      using FunctionWrapper         = typename ScalarRootFinder<Real, Halley<Real>>::FunctionWrapper;
+      using FirstDerivativeWrapper  = typename ScalarRootFinder<Real, Halley<Real>>::FirstDerivativeWrapper;
+      using SecondDerivativeWrapper = typename ScalarRootFinder<Real, Halley<Real>>::SecondDerivativeWrapper;
 
       /**
       * Class constructor for the Halley solver.
@@ -65,7 +70,7 @@ namespace Optimist
       * \return The convergence boolean flag.
       */
       bool solve_impl(FunctionWrapper function, FirstDerivativeWrapper first_derivative,
-        SecondDerivativeWrapper second_derivative, Real x_ini, Real &x_sol)
+        SecondDerivativeWrapper second_derivative, Real x_ini, Real & x_sol)
       {
         #define CMD "Optimist::ScalarRootFinder::Halley::solve(...): "
 
@@ -100,11 +105,11 @@ namespace Optimist
           // Calculate step
           if (std::abs(first_derivative_old) < EPSILON_LOW) {
             OPTIMIST_WARNING( CMD "singular first derivative detected.");
-            first_derivative_old = (first_derivative_old > Real(0.0)) ? EPSILON_LOW : -EPSILON_LOW;
+            first_derivative_old = (first_derivative_old > 0.0) ? EPSILON_LOW : -EPSILON_LOW;
           }
           if (std::abs(second_derivative_old) < EPSILON_LOW) {
             OPTIMIST_WARNING( CMD "singular second derivative detected.");
-            second_derivative_old = (second_derivative_old > Real(0.0)) ? EPSILON_LOW : -EPSILON_LOW;
+            second_derivative_old = (second_derivative_old > 0.0) ? EPSILON_LOW : -EPSILON_LOW;
           }
           step_old = -(function_old / first_derivative_old) * (1.0 - (function_old * second_derivative_old) /
             (first_derivative_old * first_derivative_old));

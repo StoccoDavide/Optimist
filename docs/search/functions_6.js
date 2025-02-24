@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['gradient_0',['gradient',['../class_optimist_1_1_cost_function.html#a305114ef9ebb0171058f70c8fd62a152',1,'Optimist::CostFunction']]],
-  ['gradient_5fevaluations_1',['gradient_evaluations',['../class_optimist_1_1_optimizer_1_1_optimizer.html#a0d82df465868236c85e0f45b23706358',1,'Optimist::Optimizer::Optimizer']]],
-  ['greenstadt_2',['Greenstadt',['../class_optimist_1_1_root_finder_1_1_greenstadt.html#a043babdd78a34b7a343fbdb6a0de066c',1,'Optimist::RootFinder::Greenstadt']]],
-  ['guess_3',['guess',['../class_optimist_1_1_function.html#af84b70f6e2775bdbbf38780bab380e5e',1,'Optimist::Function']]],
-  ['guesses_4',['guesses',['../class_optimist_1_1_function.html#a9de9b34ba481e5987b352d40db55a377',1,'Optimist::Function']]]
+  ['gradient_0',['gradient',['../class_optimist_1_1_cost_function.html#a387f96f46db0ccb05688ef382a2c9ec8',1,'Optimist::CostFunction']]],
+  ['gradient_5fevaluations_1',['gradient_evaluations',['../class_optimist_1_1_optimizer_1_1_optimizer.html#a5bbb68bd56c9997babd4161b6d9581be',1,'Optimist::Optimizer::Optimizer']]],
+  ['greenstadt_2',['Greenstadt',['../class_optimist_1_1_root_finder_1_1_greenstadt.html#ac4e18414e97e6b863f3a788a1fe6b5d6',1,'Optimist::RootFinder::Greenstadt']]],
+  ['guess_3',['guess',['../class_optimist_1_1_function.html#a0d60732def05c47d5c05966452acedf0',1,'Optimist::Function']]],
+  ['guesses_4',['guesses',['../class_optimist_1_1_function.html#a4d26ae0f3324fc2454a60b06acb57129',1,'Optimist::Function']]]
 ];

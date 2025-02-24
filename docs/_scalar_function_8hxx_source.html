@@ -69,7 +69,7 @@ MathJax.Hub.Config({
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Optimist
-   &#160;<span id="projectnumber">v0.0.0</span>
+   &#160;<span id="projectnumber">0.0.0</span>
    </div>
    <div id="projectbrief">A C++ library for optimization</div>
   </td>
@@ -160,52 +160,51 @@ $(function(){initNavTree('_scalar_function_8hxx_source.html',''); initResizable(
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_optimist.html">Optimist</a></div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>{</div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span></div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> DerivedFunction&gt;</div>
-<div class="foldopen" id="foldopen00027" data-start="{" data-end="};">
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="class_optimist_1_1_scalar_function.html">   27</a></span>  <span class="keyword">class </span><a class="code hl_function" href="class_optimist_1_1_scalar_function.html#aed07cf1dcaec525ff0c525f5a7d4ad9b">ScalarFunction</a> : <span class="keyword">public</span> <a class="code hl_function" href="class_optimist_1_1_function.html#ac60cbaf24209fa5591cc792679c26f24">Function</a>&lt;1, 1, DerivedFunction&gt;</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  {</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="class_optimist_1_1_scalar_function.html#a81001a1b77aec16db6edca2b2fbce7c8">   29</a></span>    <span class="keyword">friend</span> <a class="code hl_function" href="class_optimist_1_1_function.html#ac60cbaf24209fa5591cc792679c26f24">Function&lt;1, 1, ScalarFunction&lt;DerivedFunction&gt;</a>&gt;;</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="class_optimist_1_1_scalar_function.html#aed07cf1dcaec525ff0c525f5a7d4ad9b">   35</a></span>    <a class="code hl_function" href="class_optimist_1_1_scalar_function.html#aed07cf1dcaec525ff0c525f5a7d4ad9b">ScalarFunction</a>() {}</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span></div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="class_optimist_1_1_scalar_function.html#aec2a4eb5598e3b9087c90ba28105173c">   41</a></span>    std::string <a class="code hl_function" href="class_optimist_1_1_scalar_function.html#aec2a4eb5598e3b9087c90ba28105173c">name</a>()<span class="keyword"> const </span>{<span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span><span class="keyword">const </span>DerivedFunction *<span class="keyword">&gt;</span>(<span class="keyword">this</span>)-&gt;name_impl();}</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span></div>
-<div class="foldopen" id="foldopen00048" data-start="{" data-end="}">
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="class_optimist_1_1_scalar_function.html#a442aa22bcce0a675f1d9ea382d1d6964">   48</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_optimist_1_1_scalar_function.html#a442aa22bcce0a675f1d9ea382d1d6964">evaluate</a>(<a class="code hl_typedef" href="namespace_optimist.html#a81198c1084f49913c4731c80160f6713">Real</a> x, <a class="code hl_typedef" href="namespace_optimist.html#a81198c1084f49913c4731c80160f6713">Real</a> &amp; out)<span class="keyword"> const</span></div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>      <span class="keyword">static_cast&lt;</span><span class="keyword">const </span>DerivedFunction *<span class="keyword">&gt;</span>(<span class="keyword">this</span>)-&gt;evaluate_impl(x, out);</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    }</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Real, <span class="keyword">typename</span> DerivedFunction&gt;</div>
+<div class="foldopen" id="foldopen00028" data-start="{" data-end="};">
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="class_optimist_1_1_scalar_function.html">   28</a></span>  <span class="keyword">class </span><a class="code hl_function" href="class_optimist_1_1_scalar_function.html#a0a804da7aedb58f797ed212c94880683">ScalarFunction</a> : <span class="keyword">public</span> <a class="code hl_function" href="class_optimist_1_1_function.html#a9842043aa0cac2f7883773b922fa6f6d">Function</a>&lt;Real, 1, 1, DerivedFunction&gt;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  {</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="class_optimist_1_1_scalar_function.html#a8a5b4f34613db27d138683402fc047fb">   31</a></span>    <span class="keyword">friend</span> <a class="code hl_function" href="class_optimist_1_1_function.html#a9842043aa0cac2f7883773b922fa6f6d">Function&lt;Real, 1, 1, ScalarFunction&lt;Real, DerivedFunction&gt;</a>&gt;;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="class_optimist_1_1_scalar_function.html#a0a804da7aedb58f797ed212c94880683">   36</a></span>    <a class="code hl_function" href="class_optimist_1_1_scalar_function.html#a0a804da7aedb58f797ed212c94880683">ScalarFunction</a>() {}</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="class_optimist_1_1_scalar_function.html#a57df2e07aa166f3aa9138a5c5cb832c6">   42</a></span>    std::string <a class="code hl_function" href="class_optimist_1_1_scalar_function.html#a57df2e07aa166f3aa9138a5c5cb832c6">name</a>()<span class="keyword"> const </span>{<span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span><span class="keyword">const </span>DerivedFunction *<span class="keyword">&gt;</span>(<span class="keyword">this</span>)-&gt;name_impl();}</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span></div>
+<div class="foldopen" id="foldopen00049" data-start="{" data-end="}">
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="class_optimist_1_1_scalar_function.html#a86546edd10f1b5f39535eff0c777f40b">   49</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_optimist_1_1_scalar_function.html#a86546edd10f1b5f39535eff0c777f40b">evaluate</a>(Real x, Real &amp; out)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>      <span class="keyword">static_cast&lt;</span><span class="keyword">const </span>DerivedFunction *<span class="keyword">&gt;</span>(<span class="keyword">this</span>)-&gt;evaluate_impl(x, out);</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    }</div>
 </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span></div>
-<div class="foldopen" id="foldopen00058" data-start="{" data-end="}">
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="class_optimist_1_1_scalar_function.html#a9717874d06c7308d4658f0e9170246f2">   58</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_optimist_1_1_scalar_function.html#a9717874d06c7308d4658f0e9170246f2">first_derivative</a>(<a class="code hl_typedef" href="namespace_optimist.html#a81198c1084f49913c4731c80160f6713">Real</a> x, <a class="code hl_typedef" href="namespace_optimist.html#a81198c1084f49913c4731c80160f6713">Real</a> &amp; out)<span class="keyword"> const</span></div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>      <span class="keyword">static_cast&lt;</span><span class="keyword">const </span>DerivedFunction *<span class="keyword">&gt;</span>(<span class="keyword">this</span>)-&gt;first_derivative_impl(x, out);</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    }</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span></div>
+<div class="foldopen" id="foldopen00059" data-start="{" data-end="}">
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="class_optimist_1_1_scalar_function.html#ab39bff942b95d10e3563d7a2817cdc13">   59</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_optimist_1_1_scalar_function.html#ab39bff942b95d10e3563d7a2817cdc13">first_derivative</a>(Real x, Real &amp; out)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>      <span class="keyword">static_cast&lt;</span><span class="keyword">const </span>DerivedFunction *<span class="keyword">&gt;</span>(<span class="keyword">this</span>)-&gt;first_derivative_impl(x, out);</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    }</div>
 </div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span></div>
-<div class="foldopen" id="foldopen00068" data-start="{" data-end="}">
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="class_optimist_1_1_scalar_function.html#aeced6838d8142d12cfb0bb88e0f1cbf3">   68</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_optimist_1_1_scalar_function.html#aeced6838d8142d12cfb0bb88e0f1cbf3">second_derivative</a>(<a class="code hl_typedef" href="namespace_optimist.html#a81198c1084f49913c4731c80160f6713">Real</a> x, <a class="code hl_typedef" href="namespace_optimist.html#a81198c1084f49913c4731c80160f6713">Real</a> &amp; out)<span class="keyword"> const</span></div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>      <span class="keyword">static_cast&lt;</span><span class="keyword">const </span>DerivedFunction *<span class="keyword">&gt;</span>(<span class="keyword">this</span>)-&gt;second_derivative_impl(x, out);</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    }</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span></div>
+<div class="foldopen" id="foldopen00069" data-start="{" data-end="}">
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="class_optimist_1_1_scalar_function.html#a1d64554e1eba8c8ac4037c5dd66ffa2f">   69</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_optimist_1_1_scalar_function.html#a1d64554e1eba8c8ac4037c5dd66ffa2f">second_derivative</a>(Real x, Real &amp; out)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>      <span class="keyword">static_cast&lt;</span><span class="keyword">const </span>DerivedFunction *<span class="keyword">&gt;</span>(<span class="keyword">this</span>)-&gt;second_derivative_impl(x, out);</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    }</div>
 </div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>  }; <span class="comment">// class ScalarFunction</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>  }; <span class="comment">// class ScalarFunction</span></div>
 </div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>} <span class="comment">// namespace Optimist</span></div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="preprocessor">#endif </span><span class="comment">// OPTIMIST_SCALAR_FUNCTION_HXX</span></div>
-<div class="ttc" id="aclass_optimist_1_1_function_html_ac60cbaf24209fa5591cc792679c26f24"><div class="ttname"><a href="class_optimist_1_1_function.html#ac60cbaf24209fa5591cc792679c26f24">Optimist::Function&lt; 1, 1, DerivedFunction &gt;::Function</a></div><div class="ttdeci">Function()</div><div class="ttdef"><b>Definition</b> Function.hxx:55</div></div>
-<div class="ttc" id="aclass_optimist_1_1_scalar_function_html_a442aa22bcce0a675f1d9ea382d1d6964"><div class="ttname"><a href="class_optimist_1_1_scalar_function.html#a442aa22bcce0a675f1d9ea382d1d6964">Optimist::ScalarFunction::evaluate</a></div><div class="ttdeci">void evaluate(Real x, Real &amp;out) const</div><div class="ttdef"><b>Definition</b> ScalarFunction.hxx:48</div></div>
-<div class="ttc" id="aclass_optimist_1_1_scalar_function_html_a9717874d06c7308d4658f0e9170246f2"><div class="ttname"><a href="class_optimist_1_1_scalar_function.html#a9717874d06c7308d4658f0e9170246f2">Optimist::ScalarFunction::first_derivative</a></div><div class="ttdeci">void first_derivative(Real x, Real &amp;out) const</div><div class="ttdef"><b>Definition</b> ScalarFunction.hxx:58</div></div>
-<div class="ttc" id="aclass_optimist_1_1_scalar_function_html_aec2a4eb5598e3b9087c90ba28105173c"><div class="ttname"><a href="class_optimist_1_1_scalar_function.html#aec2a4eb5598e3b9087c90ba28105173c">Optimist::ScalarFunction::name</a></div><div class="ttdeci">std::string name() const</div><div class="ttdef"><b>Definition</b> ScalarFunction.hxx:41</div></div>
-<div class="ttc" id="aclass_optimist_1_1_scalar_function_html_aeced6838d8142d12cfb0bb88e0f1cbf3"><div class="ttname"><a href="class_optimist_1_1_scalar_function.html#aeced6838d8142d12cfb0bb88e0f1cbf3">Optimist::ScalarFunction::second_derivative</a></div><div class="ttdeci">void second_derivative(Real x, Real &amp;out) const</div><div class="ttdef"><b>Definition</b> ScalarFunction.hxx:68</div></div>
-<div class="ttc" id="aclass_optimist_1_1_scalar_function_html_aed07cf1dcaec525ff0c525f5a7d4ad9b"><div class="ttname"><a href="class_optimist_1_1_scalar_function.html#aed07cf1dcaec525ff0c525f5a7d4ad9b">Optimist::ScalarFunction::ScalarFunction</a></div><div class="ttdeci">ScalarFunction()</div><div class="ttdef"><b>Definition</b> ScalarFunction.hxx:35</div></div>
-<div class="ttc" id="anamespace_optimist_html"><div class="ttname"><a href="namespace_optimist.html">Optimist</a></div><div class="ttdoc">Namespace for the Optimist library.</div><div class="ttdef"><b>Definition</b> Optimist.hh:71</div></div>
-<div class="ttc" id="anamespace_optimist_html_a81198c1084f49913c4731c80160f6713"><div class="ttname"><a href="namespace_optimist.html#a81198c1084f49913c4731c80160f6713">Optimist::Real</a></div><div class="ttdeci">double Real</div><div class="ttdef"><b>Definition</b> Optimist.hh:82</div></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>} <span class="comment">// namespace Optimist</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="preprocessor">#endif </span><span class="comment">// OPTIMIST_SCALAR_FUNCTION_HXX</span></div>
+<div class="ttc" id="aclass_optimist_1_1_function_html_a9842043aa0cac2f7883773b922fa6f6d"><div class="ttname"><a href="class_optimist_1_1_function.html#a9842043aa0cac2f7883773b922fa6f6d">Optimist::Function&lt; Real, 1, 1, DerivedFunction &gt;::Function</a></div><div class="ttdeci">Function()</div><div class="ttdef"><b>Definition</b> Function.hxx:57</div></div>
+<div class="ttc" id="aclass_optimist_1_1_scalar_function_html_a0a804da7aedb58f797ed212c94880683"><div class="ttname"><a href="class_optimist_1_1_scalar_function.html#a0a804da7aedb58f797ed212c94880683">Optimist::ScalarFunction::ScalarFunction</a></div><div class="ttdeci">ScalarFunction()</div><div class="ttdef"><b>Definition</b> ScalarFunction.hxx:36</div></div>
+<div class="ttc" id="aclass_optimist_1_1_scalar_function_html_a1d64554e1eba8c8ac4037c5dd66ffa2f"><div class="ttname"><a href="class_optimist_1_1_scalar_function.html#a1d64554e1eba8c8ac4037c5dd66ffa2f">Optimist::ScalarFunction::second_derivative</a></div><div class="ttdeci">void second_derivative(Real x, Real &amp;out) const</div><div class="ttdef"><b>Definition</b> ScalarFunction.hxx:69</div></div>
+<div class="ttc" id="aclass_optimist_1_1_scalar_function_html_a57df2e07aa166f3aa9138a5c5cb832c6"><div class="ttname"><a href="class_optimist_1_1_scalar_function.html#a57df2e07aa166f3aa9138a5c5cb832c6">Optimist::ScalarFunction::name</a></div><div class="ttdeci">std::string name() const</div><div class="ttdef"><b>Definition</b> ScalarFunction.hxx:42</div></div>
+<div class="ttc" id="aclass_optimist_1_1_scalar_function_html_a86546edd10f1b5f39535eff0c777f40b"><div class="ttname"><a href="class_optimist_1_1_scalar_function.html#a86546edd10f1b5f39535eff0c777f40b">Optimist::ScalarFunction::evaluate</a></div><div class="ttdeci">void evaluate(Real x, Real &amp;out) const</div><div class="ttdef"><b>Definition</b> ScalarFunction.hxx:49</div></div>
+<div class="ttc" id="aclass_optimist_1_1_scalar_function_html_ab39bff942b95d10e3563d7a2817cdc13"><div class="ttname"><a href="class_optimist_1_1_scalar_function.html#ab39bff942b95d10e3563d7a2817cdc13">Optimist::ScalarFunction::first_derivative</a></div><div class="ttdeci">void first_derivative(Real x, Real &amp;out) const</div><div class="ttdef"><b>Definition</b> ScalarFunction.hxx:59</div></div>
+<div class="ttc" id="anamespace_optimist_html"><div class="ttname"><a href="namespace_optimist.html">Optimist</a></div><div class="ttdoc">Namespace for the Optimist library.</div><div class="ttdef"><b>Definition</b> Optimist.hh:83</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
