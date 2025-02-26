@@ -75,32 +75,6 @@ namespace Optimist
       "Rosenbrock",
     };
 
-    /**
-    * Print Optimist library test-set information on a string.
-    * \return A string with the Optimist library test-set information.
-    */
-    inline std::string TestSetInfo() {
-      std::ostringstream os;
-      os
-        << Optimist::Info() << std::endl
-        << " Test set cost functions:" << std::endl
-        << std::accumulate(COST_FUNCTIONS.begin(), COST_FUNCTIONS.end(), std::string(" ")).substr(0, 100) << std::endl
-        << " Test set scalar-valued functions:" << std::endl
-        << std::accumulate(SCALAR_FUNCTIONS.begin(), SCALAR_FUNCTIONS.end(), std::string(" ")).substr(0, 100) << std::endl
-        << " Test set vector-valued functions:" << std::endl
-        << std::accumulate(VECTOR_FUNCTIONS.begin(), VECTOR_FUNCTIONS.end(), std::string(" ")).substr(0, 100) << std::endl;
-
-      return os.str();
-    }
-
-    /**
-    * Print Optimist library test-set information on a stream.
-    * \param[in] os Output stream.
-    */
-    inline void TestSetInfo(std::ostream &os) {os << Info();}
-
-
-
   } // namespace TestSet
 
 } // namespace Optimist

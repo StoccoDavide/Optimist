@@ -249,5 +249,5 @@ var NAVTREEINDEX4 =
 "index.html#autotoc_md20":[1],
 "index.html#autotoc_md21":[2],
 "namespace_optimist.html":[3,0,0],
-"namespace_optimist.html#a0f174a8298a3a1d692f7db44b02052b4":[3,0,0,25]
+"namespace_optimist.html#a0f174a8298a3a1d692f7db44b02052b4":[3,0,0,23]
 };

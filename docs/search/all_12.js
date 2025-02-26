@@ -14,9 +14,8 @@ var searchData=
   ['task_11',['task',['../class_optimist_1_1_solver.html#a539fc5df2a52e3760bafffe8652e2e3d',1,'Optimist::Solver::task() const'],['../class_optimist_1_1_solver.html#a3154e3c66e9fce3690d9dfef51f1b2bc',1,'Optimist::Solver::task(std::string t_task)']]],
   ['tensor_12',['Tensor',['../class_optimist_1_1_vector_function.html#a219e6aafafd44b0845f9fcd1815d81a7',1,'Optimist::VectorFunction::Tensor'],['../class_optimist_1_1_root_finder_1_1_root_finder.html#a72c5c340ab77eb8a80c4def373d8bf64',1,'Optimist::RootFinder::RootFinder::Tensor'],['../class_optimist_1_1_test_set_1_1_booth.html#ae13e28918f765c17cb40ba2d3ff84197',1,'Optimist::TestSet::Booth::Tensor'],['../class_optimist_1_1_test_set_1_1_brown.html#a1749a7a45c6a9687d1687b31ae2e6050',1,'Optimist::TestSet::Brown::Tensor'],['../class_optimist_1_1_test_set_1_1_rosenbrock.html#a95a7947a85576d146eaaf03775ab38cc',1,'Optimist::TestSet::Rosenbrock::Tensor']]],
   ['testset_2ehh_13',['TestSet.hh',['../_test_set_8hh.html',1,'']]],
-  ['testsetinfo_14',['TestSetInfo',['../namespace_optimist_1_1_test_set.html#aaec5bea904512558c391be27de577c99',1,'Optimist::TestSet::TestSetInfo()'],['../namespace_optimist_1_1_test_set.html#a86f0a3ea5219ab186d25711f3c3509a6',1,'Optimist::TestSet::TestSetInfo(std::ostream &amp;os)']]],
-  ['tolerance_15',['tolerance',['../class_optimist_1_1_solver.html#ac9f6e1a0eacbcd8722ae6b375e2e610c',1,'Optimist::Solver::tolerance() const'],['../class_optimist_1_1_solver.html#abe13ed15eecb885c50c11cb1f9c7481b',1,'Optimist::Solver::tolerance(Real t_tolerance)']]],
-  ['tolerance_5fbracketing_16',['tolerance_bracketing',['../class_optimist_1_1_scalar_root_finder_1_1_bracketing.html#a2b31de1449a54f84dac65f52d534669e',1,'Optimist::ScalarRootFinder::Bracketing']]],
-  ['trace_17',['trace',['../class_optimist_1_1_solver.html#a0348ecb3189ecf4caaa377364b367123',1,'Optimist::Solver']]],
-  ['tracetype_18',['TraceType',['../class_optimist_1_1_solver.html#a96b023a18498192c5acd7aff3904788c',1,'Optimist::Solver']]]
+  ['tolerance_14',['tolerance',['../class_optimist_1_1_solver.html#ac9f6e1a0eacbcd8722ae6b375e2e610c',1,'Optimist::Solver::tolerance() const'],['../class_optimist_1_1_solver.html#abe13ed15eecb885c50c11cb1f9c7481b',1,'Optimist::Solver::tolerance(Real t_tolerance)']]],
+  ['tolerance_5fbracketing_15',['tolerance_bracketing',['../class_optimist_1_1_scalar_root_finder_1_1_bracketing.html#a2b31de1449a54f84dac65f52d534669e',1,'Optimist::ScalarRootFinder::Bracketing']]],
+  ['trace_16',['trace',['../class_optimist_1_1_solver.html#a0348ecb3189ecf4caaa377364b367123',1,'Optimist::Solver']]],
+  ['tracetype_17',['TraceType',['../class_optimist_1_1_solver.html#a96b023a18498192c5acd7aff3904788c',1,'Optimist::Solver']]]
 ];

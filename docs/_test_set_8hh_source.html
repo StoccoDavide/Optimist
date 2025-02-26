@@ -213,33 +213,13 @@ $(function(){initNavTree('_test_set_8hh_source.html',''); initResizable(true); }
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>      <span class="stringliteral">&quot;Rosenbrock&quot;</span>,</div>
 <div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    };</div>
 </div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span></div>
-<div class="foldopen" id="foldopen00082" data-start="{" data-end="}">
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="namespace_optimist_1_1_test_set.html#aaec5bea904512558c391be27de577c99">   82</a></span>    <span class="keyword">inline</span> std::string <a class="code hl_function" href="namespace_optimist_1_1_test_set.html#aaec5bea904512558c391be27de577c99">TestSetInfo</a>() {</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>      std::ostringstream os;</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>      os</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        &lt;&lt; <a class="code hl_function" href="namespace_optimist.html#ae6184c22dec9000a023fd85bb158faef">Optimist::Info</a>() &lt;&lt; std::endl</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        &lt;&lt; <span class="stringliteral">&quot; Test set cost functions:&quot;</span> &lt;&lt; std::endl</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        &lt;&lt; std::accumulate(<a class="code hl_variable" href="namespace_optimist_1_1_test_set.html#aff814bf3204c0a4926c6c1d6b9c5b370">COST_FUNCTIONS</a>.begin(), <a class="code hl_variable" href="namespace_optimist_1_1_test_set.html#aff814bf3204c0a4926c6c1d6b9c5b370">COST_FUNCTIONS</a>.end(), std::string(<span class="stringliteral">&quot; &quot;</span>)).substr(0, 100) &lt;&lt; std::endl</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        &lt;&lt; <span class="stringliteral">&quot; Test set scalar-valued functions:&quot;</span> &lt;&lt; std::endl</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        &lt;&lt; std::accumulate(<a class="code hl_variable" href="namespace_optimist_1_1_test_set.html#aa502a3cc93585bccc9799eb951d1ead3">SCALAR_FUNCTIONS</a>.begin(), <a class="code hl_variable" href="namespace_optimist_1_1_test_set.html#aa502a3cc93585bccc9799eb951d1ead3">SCALAR_FUNCTIONS</a>.end(), std::string(<span class="stringliteral">&quot; &quot;</span>)).substr(0, 100) &lt;&lt; std::endl</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        &lt;&lt; <span class="stringliteral">&quot; Test set vector-valued functions:&quot;</span> &lt;&lt; std::endl</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        &lt;&lt; std::accumulate(<a class="code hl_variable" href="namespace_optimist_1_1_test_set.html#ad014aa182c1d0e138d827c4939944b67">VECTOR_FUNCTIONS</a>.begin(), <a class="code hl_variable" href="namespace_optimist_1_1_test_set.html#ad014aa182c1d0e138d827c4939944b67">VECTOR_FUNCTIONS</a>.end(), std::string(<span class="stringliteral">&quot; &quot;</span>)).substr(0, 100) &lt;&lt; std::endl;</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>      <span class="keywordflow">return</span> os.str();</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    }</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>  } <span class="comment">// namespace TestSet</span></div>
 </div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span></div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno"><a class="line" href="namespace_optimist_1_1_test_set.html#a86f0a3ea5219ab186d25711f3c3509a6">  100</a></span>    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="namespace_optimist_1_1_test_set.html#aaec5bea904512558c391be27de577c99">TestSetInfo</a>(std::ostream &amp;os) {os &lt;&lt; <a class="code hl_function" href="namespace_optimist.html#ae6184c22dec9000a023fd85bb158faef">Info</a>();}</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>  } <span class="comment">// namespace TestSet</span></div>
-</div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>} <span class="comment">// namespace Optimist</span></div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span><span class="preprocessor">#endif </span><span class="comment">// INCLUDE_OPTIMIST_TESTSET_HH</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>} <span class="comment">// namespace Optimist</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="preprocessor">#endif </span><span class="comment">// INCLUDE_OPTIMIST_TESTSET_HH</span></div>
 <div class="ttc" id="a_booth_8hxx_html"><div class="ttname"><a href="_booth_8hxx.html">Booth.hxx</a></div></div>
 <div class="ttc" id="a_brown_8hxx_html"><div class="ttname"><a href="_brown_8hxx.html">Brown.hxx</a></div></div>
 <div class="ttc" id="a_cos_8hxx_html"><div class="ttname"><a href="_cos_8hxx.html">Cos.hxx</a></div></div>
@@ -254,11 +234,9 @@ $(function(){initNavTree('_test_set_8hh_source.html',''); initResizable(true); }
 <div class="ttc" id="a_sinh_8hxx_html"><div class="ttname"><a href="_sinh_8hxx.html">Sinh.hxx</a></div></div>
 <div class="ttc" id="anamespace_optimist_1_1_test_set_html"><div class="ttname"><a href="namespace_optimist_1_1_test_set.html">Optimist::TestSet</a></div><div class="ttdoc">Namespace for the Optimist library test set functions.</div><div class="ttdef"><b>Definition</b> TestSet.hh:51</div></div>
 <div class="ttc" id="anamespace_optimist_1_1_test_set_html_aa502a3cc93585bccc9799eb951d1ead3"><div class="ttname"><a href="namespace_optimist_1_1_test_set.html#aa502a3cc93585bccc9799eb951d1ead3">Optimist::TestSet::SCALAR_FUNCTIONS</a></div><div class="ttdeci">static const std::vector&lt; std::string &gt; SCALAR_FUNCTIONS</div><div class="ttdef"><b>Definition</b> TestSet.hh:63</div></div>
-<div class="ttc" id="anamespace_optimist_1_1_test_set_html_aaec5bea904512558c391be27de577c99"><div class="ttname"><a href="namespace_optimist_1_1_test_set.html#aaec5bea904512558c391be27de577c99">Optimist::TestSet::TestSetInfo</a></div><div class="ttdeci">std::string TestSetInfo()</div><div class="ttdef"><b>Definition</b> TestSet.hh:82</div></div>
 <div class="ttc" id="anamespace_optimist_1_1_test_set_html_ad014aa182c1d0e138d827c4939944b67"><div class="ttname"><a href="namespace_optimist_1_1_test_set.html#ad014aa182c1d0e138d827c4939944b67">Optimist::TestSet::VECTOR_FUNCTIONS</a></div><div class="ttdeci">static const std::vector&lt; std::string &gt; VECTOR_FUNCTIONS</div><div class="ttdef"><b>Definition</b> TestSet.hh:72</div></div>
 <div class="ttc" id="anamespace_optimist_1_1_test_set_html_aff814bf3204c0a4926c6c1d6b9c5b370"><div class="ttname"><a href="namespace_optimist_1_1_test_set.html#aff814bf3204c0a4926c6c1d6b9c5b370">Optimist::TestSet::COST_FUNCTIONS</a></div><div class="ttdeci">static const std::vector&lt; std::string &gt; COST_FUNCTIONS</div><div class="ttdef"><b>Definition</b> TestSet.hh:56</div></div>
 <div class="ttc" id="anamespace_optimist_html"><div class="ttname"><a href="namespace_optimist.html">Optimist</a></div><div class="ttdoc">Namespace for the Optimist library.</div><div class="ttdef"><b>Definition</b> Optimist.hh:87</div></div>
-<div class="ttc" id="anamespace_optimist_html_ae6184c22dec9000a023fd85bb158faef"><div class="ttname"><a href="namespace_optimist.html#ae6184c22dec9000a023fd85bb158faef">Optimist::Info</a></div><div class="ttdeci">std::string Info()</div><div class="ttdef"><b>Definition</b> Optimist.hh:179</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

@@ -16,8 +16,6 @@ var namespace_optimist_1_1_test_set =
     [ "Rosenbrock4", "namespace_optimist_1_1_test_set.html#a1679f6b3e8784a01b90039c6e316f3c4", null ],
     [ "Rosenbrock6", "namespace_optimist_1_1_test_set.html#aa13e480f1dd5c619b845d992e096d624", null ],
     [ "Rosenbrock8", "namespace_optimist_1_1_test_set.html#a519dd953ef10f22ba4168260298633a9", null ],
-    [ "TestSetInfo", "namespace_optimist_1_1_test_set.html#aaec5bea904512558c391be27de577c99", null ],
-    [ "TestSetInfo", "namespace_optimist_1_1_test_set.html#a86f0a3ea5219ab186d25711f3c3509a6", null ],
     [ "COST_FUNCTIONS", "namespace_optimist_1_1_test_set.html#aff814bf3204c0a4926c6c1d6b9c5b370", null ],
     [ "SCALAR_FUNCTIONS", "namespace_optimist_1_1_test_set.html#aa502a3cc93585bccc9799eb951d1ead3", null ],
     [ "VECTOR_FUNCTIONS", "namespace_optimist_1_1_test_set.html#ad014aa182c1d0e138d827c4939944b67", null ]

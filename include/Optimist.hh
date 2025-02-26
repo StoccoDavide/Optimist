@@ -172,31 +172,6 @@ namespace Optimist
   */
   static inline std::string table_vertical_line() {return "│";}
 
-  /**
-  * Print Optimist library information on a string.
-  * \return A string with the Optimist library information.
-  */
-  inline std::string Info() {
-    std::ostringstream os;
-    os
-      << "* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *" << std::endl
-      << "* Copyright (c) 2025, Davide Stocco, Mattia Piazza and Enrico Bertolazzi.                       *" << std::endl
-      << "*                                                                                               *" << std::endl
-      << "* The Optimist project is distributed under the BSD 2-Clause License.                           *" << std::endl
-      << "*                                                                                               *" << std::endl
-      << "* Davide Stocco                          Mattia Piazza                        Enrico Bertolazzi *" << std::endl
-      << "* University of Trento               University of Trento                  University of Trento *" << std::endl
-      << "* davide.stocco@unitn.it            mattia.piazza@unitn.it           enrico.bertolazzi@unitn.it *" << std::endl
-      << "* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *" << std::endl;
-    return os.str();
-  }
-
-  /**
-  * Print Optimist library information on a stream.
-  * \param[in] os Output stream.
-  */
-  inline void Info(std::ostream &os) {os << Info();}
-
 } // namespace Optimist
 
 // The functions

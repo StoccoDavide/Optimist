@@ -4,7 +4,7 @@
 
 int main()
 {
-  Optimist::Info(std::cout);
-  Optimist::TestSet::TestSetInfo(std::cout);
+  Optimist::ScalarRootFinder::Chandrupatla<double> sol;
+  Optimist::TestSet::Quadratic<double> fun;
   return 0;
 }

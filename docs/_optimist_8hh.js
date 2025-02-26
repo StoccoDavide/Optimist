@@ -8,8 +8,6 @@ var _optimist_8hh =
     [ "OPTIMIST_ERROR", "_optimist_8hh.html#a229041107754c6651e88d66e24ea8188", null ],
     [ "OPTIMIST_WARNING", "_optimist_8hh.html#a18e435251f770acfeb56ada15278ddb4", null ],
     [ "Optimist::Integer", "namespace_optimist.html#a71c803585df543aec4079c8282e83baa", null ],
-    [ "Optimist::Info", "namespace_optimist.html#ae6184c22dec9000a023fd85bb158faef", null ],
-    [ "Optimist::Info", "namespace_optimist.html#a28db3cffe02163a4d3cea999bf0d65bc", null ],
     [ "Optimist::table_bottom_junction", "namespace_optimist.html#a90662ca27675523ddfc4f1e85827cc80", null ],
     [ "Optimist::table_bottom_left_corner", "namespace_optimist.html#a6e78bdf2680dcc4895a9ae3a31a4e5c5", null ],
     [ "Optimist::table_bottom_right_corner", "namespace_optimist.html#a1de27a5a0027370ef3348301bd4360c0", null ],
