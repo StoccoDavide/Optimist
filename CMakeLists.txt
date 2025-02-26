@@ -118,7 +118,7 @@ export(EXPORT OptimistTargets
 )
 
 install(EXPORT OptimistTargets
-  FILE OptimistTargets.cmake
+  FILE ${CMAKE_CURRENT_BINARY_DIR}/OptimistTargets.cmake
   NAMESPACE Optimist::
   DESTINATION lib/cmake/Optimist
 )
