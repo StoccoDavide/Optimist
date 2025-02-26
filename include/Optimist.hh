@@ -76,13 +76,23 @@
   static constexpr Real QUIET_NAN{std::numeric_limits<Real>::quiet_NaN()}; /**< Not-a-number static constant value. */
 #endif
 
+#ifndef OPTIMIST_DEFAULT_INTEGER_TYPE
+#define OPTIMIST_DEFAULT_INTEGER_TYPE int
+#endif
+
 /**
 * \brief Namespace for the Optimist library.
 */
 namespace Optimist
 {
 
-  using Integer = int; /**< Integer number type. */
+  /**
+  * \brief The Integer type as used for the API.
+  *
+  * The Integer type, \c \#define the preprocessor symbol \c OPTIMIST_DEFAULT_INTEGER_TYPE. The default
+  * value is \c int.
+  */
+  using Integer = OPTIMIST_DEFAULT_INTEGER_TYPE;
 
   /**
   * \brief Retrieve the Unicode character for the top-left corner of a table.
@@ -152,7 +162,7 @@ namespace Optimist
   template <Integer N>
   static inline std::string table_horizontal_line() {
     std::string line;
-    for (Integer i = 0; i < N; ++i) {line += table_horizontal_line();}
+    for (Integer i{0}; i < N; ++i) {line += table_horizontal_line();}
     return line;
   }
 

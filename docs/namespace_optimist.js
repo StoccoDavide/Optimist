@@ -11,7 +11,7 @@ var namespace_optimist =
     [ "ScalarFunction", "class_optimist_1_1_scalar_function.html", "class_optimist_1_1_scalar_function" ],
     [ "Solver", "class_optimist_1_1_solver.html", "class_optimist_1_1_solver" ],
     [ "VectorFunction", "class_optimist_1_1_vector_function.html", "class_optimist_1_1_vector_function" ],
-    [ "Integer", "namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452", null ],
+    [ "Integer", "namespace_optimist.html#a71c803585df543aec4079c8282e83baa", null ],
     [ "Info", "namespace_optimist.html#ae6184c22dec9000a023fd85bb158faef", null ],
     [ "Info", "namespace_optimist.html#a28db3cffe02163a4d3cea999bf0d65bc", null ],
     [ "table_bottom_junction", "namespace_optimist.html#a90662ca27675523ddfc4f1e85827cc80", null ],

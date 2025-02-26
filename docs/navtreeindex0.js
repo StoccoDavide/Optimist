@@ -56,9 +56,10 @@ var NAVTREEINDEX0 =
 "_nelder_mead_8hxx_source.html":[5,0,1,0,1,0],
 "_optimist_8hh.html":[5,0,1,1],
 "_optimist_8hh.html#a015102a35d2410ee71b596686ca028c7":[5,0,1,1,0],
-"_optimist_8hh.html#a18e435251f770acfeb56ada15278ddb4":[5,0,1,1,5],
-"_optimist_8hh.html#a229041107754c6651e88d66e24ea8188":[5,0,1,1,4],
+"_optimist_8hh.html#a18e435251f770acfeb56ada15278ddb4":[5,0,1,1,6],
+"_optimist_8hh.html#a229041107754c6651e88d66e24ea8188":[5,0,1,1,5],
 "_optimist_8hh.html#a4e6c912956bba97ce606d5e2e2ae977f":[5,0,1,1,2],
+"_optimist_8hh.html#ac822be0518d3c01aa89881edbd73c505":[5,0,1,1,4],
 "_optimist_8hh.html#ae253c9ddafd61510dd54fa18b038c8a7":[5,0,1,1,3],
 "_optimist_8hh.html#ae84977f5cfcc4fc8178fd20cf52f9068":[5,0,1,1,1],
 "_optimist_8hh_source.html":[5,0,1,1],
@@ -248,6 +249,5 @@ var NAVTREEINDEX0 =
 "class_optimist_1_1_optimizer_1_1_nelder_mead.html#ab67f03f10e4ea857e16b30be00203eda":[4,0,0,1,0,3],
 "class_optimist_1_1_optimizer_1_1_nelder_mead.html#abc14b3262e5583cd4015971e97607fad":[3,0,0,1,0,23],
 "class_optimist_1_1_optimizer_1_1_nelder_mead.html#abc14b3262e5583cd4015971e97607fad":[4,0,0,1,0,23],
-"class_optimist_1_1_optimizer_1_1_nelder_mead.html#ac9bcda37bfdf5583ebe6dca1da4b95c3":[3,0,0,1,0,11],
-"class_optimist_1_1_optimizer_1_1_nelder_mead.html#ac9bcda37bfdf5583ebe6dca1da4b95c3":[4,0,0,1,0,11]
+"class_optimist_1_1_optimizer_1_1_nelder_mead.html#ac9bcda37bfdf5583ebe6dca1da4b95c3":[3,0,0,1,0,11]
 };

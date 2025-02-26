@@ -1,5 +1,6 @@
 var NAVTREEINDEX3 =
 {
+"class_optimist_1_1_scalar_root_finder_1_1_varona.html":[4,0,0,4,7],
 "class_optimist_1_1_scalar_root_finder_1_1_varona.html#a1995e4c215232daf5976ca1826b34b03":[3,0,0,4,7,3],
 "class_optimist_1_1_scalar_root_finder_1_1_varona.html#a1995e4c215232daf5976ca1826b34b03":[4,0,0,4,7,3],
 "class_optimist_1_1_scalar_root_finder_1_1_varona.html#a1f0d317fec28c44da5f32ae59a58e110":[3,0,0,4,7,9],
@@ -248,6 +249,5 @@ var NAVTREEINDEX3 =
 "class_optimist_1_1_test_set_1_1_brown.html#a110e1d2ecab1951e394e44e9d8c62565":[4,0,0,5,1,1],
 "class_optimist_1_1_test_set_1_1_brown.html#a1749a7a45c6a9687d1687b31ae2e6050":[3,0,0,5,1,3],
 "class_optimist_1_1_test_set_1_1_brown.html#a1749a7a45c6a9687d1687b31ae2e6050":[4,0,0,5,1,3],
-"class_optimist_1_1_test_set_1_1_brown.html#a1cf811d7f77a8e958d91481b667527b3":[3,0,0,5,1,8],
-"class_optimist_1_1_test_set_1_1_brown.html#a1cf811d7f77a8e958d91481b667527b3":[4,0,0,5,1,8]
+"class_optimist_1_1_test_set_1_1_brown.html#a1cf811d7f77a8e958d91481b667527b3":[3,0,0,5,1,8]
 };

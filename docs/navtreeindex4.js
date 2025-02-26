@@ -1,5 +1,6 @@
 var NAVTREEINDEX4 =
 {
+"class_optimist_1_1_test_set_1_1_brown.html#a1cf811d7f77a8e958d91481b667527b3":[4,0,0,5,1,8],
 "class_optimist_1_1_test_set_1_1_brown.html#a3bd4e0747b86a1c4a3375379f74d9ff0":[3,0,0,5,1,6],
 "class_optimist_1_1_test_set_1_1_brown.html#a3bd4e0747b86a1c4a3375379f74d9ff0":[4,0,0,5,1,6],
 "class_optimist_1_1_test_set_1_1_brown.html#a5221e037d88b2f6afd55000ae3831ffd":[3,0,0,5,1,9],
@@ -248,6 +249,5 @@ var NAVTREEINDEX4 =
 "index.html#autotoc_md20":[1],
 "index.html#autotoc_md21":[2],
 "namespace_optimist.html":[3,0,0],
-"namespace_optimist.html#a0f174a8298a3a1d692f7db44b02052b4":[3,0,0,25],
-"namespace_optimist.html#a1de27a5a0027370ef3348301bd4360c0":[3,0,0,16]
+"namespace_optimist.html#a0f174a8298a3a1d692f7db44b02052b4":[3,0,0,25]
 };

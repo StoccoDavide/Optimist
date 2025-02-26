@@ -1,13 +1,14 @@
 var NAVTREEINDEX5 =
 {
+"namespace_optimist.html#a1de27a5a0027370ef3348301bd4360c0":[3,0,0,16],
 "namespace_optimist.html#a28db3cffe02163a4d3cea999bf0d65bc":[3,0,0,13],
 "namespace_optimist.html#a5ab2e8f24dad17a60b32c57058b7189e":[3,0,0,23],
 "namespace_optimist.html#a6e78bdf2680dcc4895a9ae3a31a4e5c5":[3,0,0,15],
+"namespace_optimist.html#a71c803585df543aec4079c8282e83baa":[3,0,0,11],
 "namespace_optimist.html#a7d1f62d1a37d8dcb689366d74290e12e":[3,0,0,17],
 "namespace_optimist.html#a900cbdc2fd7fba96232a3a9400917d00":[3,0,0,19],
 "namespace_optimist.html#a90662ca27675523ddfc4f1e85827cc80":[3,0,0,14],
 "namespace_optimist.html#aa9423b9182d022d010fd3d709f3b05ee":[3,0,0,22],
-"namespace_optimist.html#ab19305b546a50d1fdd20905b1b457452":[3,0,0,11],
 "namespace_optimist.html#abc4fc14da73035c18afb240947aea154":[3,0,0,24],
 "namespace_optimist.html#abe372f3d9eb5c9e7ee985d39339ad3bf":[3,0,0,18],
 "namespace_optimist.html#ae6184c22dec9000a023fd85bb158faef":[3,0,0,12],

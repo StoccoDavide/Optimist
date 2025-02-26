@@ -1,5 +1,6 @@
 var NAVTREEINDEX1 =
 {
+"class_optimist_1_1_optimizer_1_1_nelder_mead.html#ac9bcda37bfdf5583ebe6dca1da4b95c3":[4,0,0,1,0,11],
 "class_optimist_1_1_optimizer_1_1_nelder_mead.html#acdb20d6c767d5825f95dbdff192ff625":[3,0,0,1,0,18],
 "class_optimist_1_1_optimizer_1_1_nelder_mead.html#acdb20d6c767d5825f95dbdff192ff625":[4,0,0,1,0,18],
 "class_optimist_1_1_optimizer_1_1_nelder_mead.html#ad9affd00c685e9fd5ae2ff6748b46bcf":[3,0,0,1,0,2],
@@ -248,6 +249,5 @@ var NAVTREEINDEX1 =
 "class_optimist_1_1_root_finder_1_1_root_finder.html#a63b1a8b398c98f4f036117674bf596fc":[4,0,0,2,4,8],
 "class_optimist_1_1_root_finder_1_1_root_finder.html#a72c5c340ab77eb8a80c4def373d8bf64":[3,0,0,2,4,4],
 "class_optimist_1_1_root_finder_1_1_root_finder.html#a72c5c340ab77eb8a80c4def373d8bf64":[4,0,0,2,4,4],
-"class_optimist_1_1_root_finder_1_1_root_finder.html#a8002a494084d3c7052b072c771257b52":[3,0,0,2,4,20],
-"class_optimist_1_1_root_finder_1_1_root_finder.html#a8002a494084d3c7052b072c771257b52":[4,0,0,2,4,20]
+"class_optimist_1_1_root_finder_1_1_root_finder.html#a8002a494084d3c7052b072c771257b52":[3,0,0,2,4,20]
 };

@@ -1,5 +1,6 @@
 var NAVTREEINDEX2 =
 {
+"class_optimist_1_1_root_finder_1_1_root_finder.html#a8002a494084d3c7052b072c771257b52":[4,0,0,2,4,20],
 "class_optimist_1_1_root_finder_1_1_root_finder.html#a8069bb71fbb5a6944e597e3bc2da8ea0":[3,0,0,2,4,0],
 "class_optimist_1_1_root_finder_1_1_root_finder.html#a8069bb71fbb5a6944e597e3bc2da8ea0":[4,0,0,2,4,0],
 "class_optimist_1_1_root_finder_1_1_root_finder.html#a95528f6ef2ed06cc140af6daaaa92838":[3,0,0,2,4,23],
@@ -248,6 +249,5 @@ var NAVTREEINDEX2 =
 "class_optimist_1_1_scalar_root_finder_1_1_scalar_root_finder.html#af766f79b3efe46231c8b56f144974e4f":[4,0,0,4,6,2],
 "class_optimist_1_1_scalar_root_finder_1_1_scalar_root_finder.html#afc39e68a7ce46a19ddbd6f90b40b50cc":[3,0,0,4,6,8],
 "class_optimist_1_1_scalar_root_finder_1_1_scalar_root_finder.html#afc39e68a7ce46a19ddbd6f90b40b50cc":[4,0,0,4,6,8],
-"class_optimist_1_1_scalar_root_finder_1_1_varona.html":[3,0,0,4,7],
-"class_optimist_1_1_scalar_root_finder_1_1_varona.html":[4,0,0,4,7]
+"class_optimist_1_1_scalar_root_finder_1_1_varona.html":[3,0,0,4,7]
 };
