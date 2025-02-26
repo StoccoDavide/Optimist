@@ -15,8 +15,6 @@
 // Run all the tests.
 int main() {
 
-  Optimist::Info(std::cout);
-  Optimist::TestSet::TestSetInfo(std::cout);
   Optimist::TestSet::Cos<double> cos;
   Optimist::ScalarRootFinder::Newton<double> sol;
   double x_out;
