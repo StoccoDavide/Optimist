@@ -9,8 +9,9 @@
 \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 // Optimist library
-#include "Optimist.hh"
-#include "Optimist/TestSet.hh"
+#include "Optimist/TestSet/ScalarFunction/Cos.hh"
+#include "Optimist/ScalarRootFinder/Newton.hh"
+#include "Optimist/RootFinder/Greenstadt.hh"
 
 // Run all the tests.
 int main() {

@@ -68,11 +68,9 @@ if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
   option(BUILD_TESTS "Build tests" OFF)
   option(BUILD_BENCHMARKS "Build benchmarks" OFF)
   option(BUILD_EXAMPLES "Build examples" OFF)
-  option(OPTIMIST_ENABLE_PLOTTING "Enable plotting with Matplot++" OFF)
 
   file(GLOB_RECURSE HEADER_FILES_HH "${CMAKE_CURRENT_SOURCE_DIR}/include/*.hh")
-  file(GLOB_RECURSE HEADER_FILES_HXX "${CMAKE_CURRENT_SOURCE_DIR}/include/*.hxx")
-  foreach(HEADER_FILE IN LISTS HEADER_FILES_HH HEADER_FILES_HXX)
+  foreach(HEADER_FILE IN LISTS HEADER_FILES_HH)
     file(
       RELATIVE_PATH
       RELATIVE_PATH_HEADER_FILE
@@ -102,7 +100,7 @@ endif()
 if(MSVC)
   target_compile_options(Optimist INTERFACE /W4 /WX)
 else()
-  target_compile_options(Optimist INTERFACE -Wall -Wextra -pedantic -Werror)
+  target_compile_options(Optimist INTERFACE -Wall -Wextra -pedantic -Werror) # -Wno-narrowing
 endif()
 
 # Installation

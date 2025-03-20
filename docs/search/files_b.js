@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['patternsearch_2ehxx_0',['PatternSearch.hxx',['../_pattern_search_8hxx.html',1,'']]]
+  ['patternsearch_2ehh_0',['PatternSearch.hh',['../_pattern_search_8hh.html',1,'']]]
 ];

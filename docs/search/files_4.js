@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['finitedifference_2ehxx_0',['FiniteDifference.hxx',['../_finite_difference_8hxx.html',1,'']]],
-  ['function_2ehxx_1',['Function.hxx',['../_function_8hxx.html',1,'']]]
+  ['finitedifference_2ehh_0',['FiniteDifference.hh',['../_finite_difference_8hh.html',1,'']]],
+  ['function_2ehh_1',['Function.hh',['../_function_8hh.html',1,'']]]
 ];

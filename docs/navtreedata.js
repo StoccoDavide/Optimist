@@ -63,7 +63,7 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_algo748_8hxx.html",
+"_algo748_8hh.html",
 "class_optimist_1_1_optimizer_1_1_nelder_mead.html#ac9bcda37bfdf5583ebe6dca1da4b95c3",
 "class_optimist_1_1_root_finder_1_1_root_finder.html#a8002a494084d3c7052b072c771257b52",
 "class_optimist_1_1_scalar_root_finder_1_1_varona.html",

@@ -1,0 +1,11 @@
+<map id="include/Optimist/RootFinder.hh" name="include/Optimist/RootFinder.hh">
+<area shape="rect" id="Node000001" title=" " alt="" coords="101,5,301,31"/>
+<area shape="rect" id="Node000002" href="$_root_finder_2_newton_8hh.html" title=" " alt="" coords="5,79,189,120"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="175,43,124,81,121,76,171,38"/>
+<area shape="rect" id="Node000003" href="$_quasi_newton_8hh.html" title=" " alt="" coords="213,79,397,120"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="231,38,281,76,278,81,227,43"/>
+<area shape="rect" id="Node000004" href="$_broyden_8hh.html" title=" " alt="" coords="109,168,293,208"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="272,132,226,169,223,165,268,128"/>
+<area shape="rect" id="Node000005" href="$_greenstadt_8hh.html" title=" " alt="" coords="317,168,501,208"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="342,128,387,165,384,169,338,132"/>
+</map>

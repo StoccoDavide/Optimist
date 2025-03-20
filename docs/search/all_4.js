@@ -1,7 +1,7 @@
 var searchData=
 [
   ['ellipticparaboloid_0',['EllipticParaboloid',['../class_optimist_1_1_test_set_1_1_elliptic_paraboloid.html',1,'Optimist::TestSet::EllipticParaboloid&lt; Real &gt;'],['../class_optimist_1_1_test_set_1_1_elliptic_paraboloid.html#acb0861390136f51bce3b6ddd09694c1e',1,'Optimist::TestSet::EllipticParaboloid::EllipticParaboloid()']]],
-  ['ellipticparaboloid_2ehxx_1',['EllipticParaboloid.hxx',['../_elliptic_paraboloid_8hxx.html',1,'']]],
+  ['ellipticparaboloid_2ehh_1',['EllipticParaboloid.hh',['../_elliptic_paraboloid_8hh.html',1,'']]],
   ['enable_5f16th_5forder_5fmethod_2',['enable_16th_order_method',['../class_optimist_1_1_scalar_root_finder_1_1_varona.html#a6a8cd723385b0776240be3cbe7d1432e',1,'Optimist::ScalarRootFinder::Varona']]],
   ['enable_5f32th_5forder_5fmethod_3',['enable_32th_order_method',['../class_optimist_1_1_scalar_root_finder_1_1_varona.html#a617cd2c4246f0f4ea2d2cf0cb2f9e3f2',1,'Optimist::ScalarRootFinder::Varona']]],
   ['enable_5f4th_5forder_5fmethod_4',['enable_4th_order_method',['../class_optimist_1_1_scalar_root_finder_1_1_varona.html#ae717cf4feba298a18296a43988ae078b',1,'Optimist::ScalarRootFinder::Varona']]],

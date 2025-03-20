@@ -174,37 +174,4 @@ namespace Optimist
 
 } // namespace Optimist
 
-// The functions
-#include "Optimist/Function.hxx"
-#include "Optimist/Function/ScalarFunction.hxx"
-#include "Optimist/Function/VectorFunction.hxx"
-#include "Optimist/Function/CostFunction.hxx"
-
-// The solver base class
-#include "Optimist/Solver.hxx"
-
-// Scalar root-finding solvers
-#include "Optimist/ScalarRootFinder.hxx"
-#include "Optimist/ScalarRootFinder/Bracketing.hxx"
-#include "Optimist/ScalarRootFinder/Algo748.hxx"
-#include "Optimist/ScalarRootFinder/Chandrupatla.hxx"
-#include "Optimist/ScalarRootFinder/Chebyshev.hxx"
-#include "Optimist/ScalarRootFinder/Halley.hxx"
-#include "Optimist/ScalarRootFinder/Newton.hxx"
-#include "Optimist/ScalarRootFinder/Varona.hxx"
-
-// Root-finding solvers
-#include "Optimist/RootFinder.hxx"
-#include "Optimist/RootFinder/Newton.hxx"
-#include "Optimist/RootFinder/QuasiNewton.hxx"
-#include "Optimist/RootFinder/Broyden.hxx"
-#include "Optimist/RootFinder/Greenstadt.hxx"
-
-// Optimization solvers
-#include "Optimist/Optimizer.hxx"
-#include "Optimist/Optimizer/NelderMead.hxx"
-
-// Scalar optimization solvers
-#include "Optimist/ScalarOptimizer.hxx"
-
 #endif // INCLUDE_OPTIMIST_HH

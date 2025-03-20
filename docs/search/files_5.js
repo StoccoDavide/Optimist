@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['greenstadt_2ehxx_0',['Greenstadt.hxx',['../_greenstadt_8hxx.html',1,'']]]
+  ['greenstadt_2ehh_0',['Greenstadt.hh',['../_greenstadt_8hh.html',1,'']]]
 ];

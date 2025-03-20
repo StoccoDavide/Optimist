@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['neldermead_2ehxx_0',['NelderMead.hxx',['../_nelder_mead_8hxx.html',1,'']]],
-  ['newton_2ehxx_1',['Newton.hxx',['../_root_finder_2_newton_8hxx.html',1,'(Global Namespace)'],['../_scalar_root_finder_2_newton_8hxx.html',1,'(Global Namespace)']]]
+  ['neldermead_2ehh_0',['NelderMead.hh',['../_nelder_mead_8hh.html',1,'']]],
+  ['newton_2ehh_1',['Newton.hh',['../_root_finder_2_newton_8hh.html',1,'(Global Namespace)'],['../_scalar_root_finder_2_newton_8hh.html',1,'(Global Namespace)']]]
 ];

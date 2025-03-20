@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['varona_2ehxx_0',['Varona.hxx',['../_varona_8hxx.html',1,'']]],
-  ['vectorfunction_2ehxx_1',['VectorFunction.hxx',['../_vector_function_8hxx.html',1,'']]]
+  ['varona_2ehh_0',['Varona.hh',['../_varona_8hh.html',1,'']]],
+  ['vectorfunction_2ehh_1',['VectorFunction.hh',['../_vector_function_8hh.html',1,'']]]
 ];

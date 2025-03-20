@@ -8,9 +8,14 @@
  * davide.stocco@unitn.it            mattia.piazza@unitn.it           enrico.bertolazzi@unitn.it *
 \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
+#pragma once
+
+#include "Optimist/TestSet/VectorFunction/Booth.hh"
+#include "Optimist/TestSet/VectorFunction/Rosenbrock.hh"
+
 #ifndef TEST_VECTOR_FUNCTIONS
-#define TEST_VECTOR_FUNCTIONS \
-  Booth<double>,              \
-  Rosenbrock2<double>,        \
-  Rosenbrock4<double>
+#define TEST_VECTOR_FUNCTIONS             \
+  Optimist::TestSet::Booth<double>,       \
+  Optimist::TestSet::Rosenbrock2<double>, \
+  Optimist::TestSet::Rosenbrock4<double>
 #endif

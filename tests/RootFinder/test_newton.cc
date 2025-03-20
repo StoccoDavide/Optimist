@@ -9,18 +9,17 @@
 \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 // Optimist library
-#include "Optimist.hh"
-#include "Optimist/TestSet.hh"
+#include "Optimist/RootFinder/Newton.hh"
 
 // Catch2 library
 #include <catch2/catch_test_macros.hpp>
 #include <catch2/generators/catch_generators_range.hpp>
 #include <catch2/catch_template_test_macros.hpp>
 
+#include "test_vector_functions.hh"
+
 using namespace Optimist;
 using namespace Optimist::TestSet;
-
-#include "test_vector_functions.hh"
 
 TEMPLATE_TEST_CASE("Newton", "[template]", TEST_VECTOR_FUNCTIONS) {
   TestType fun;

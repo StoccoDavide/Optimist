@@ -13,25 +13,7 @@
 #ifndef INCLUDE_OPTIMIST_TESTSET_HH
 #define INCLUDE_OPTIMIST_TESTSET_HH
 
-// Optimist library
 #include "Optimist.hh"
-
-// Cost functions
-#include "TestSet/CostFunction/EllipticParaboloid.hxx"
-#include "TestSet/CostFunction/Schaffer2.hxx"
-
-// Scalar-valued functions
-#include "TestSet/ScalarFunction/Linear.hxx"
-#include "TestSet/ScalarFunction/Quadratic.hxx"
-#include "TestSet/ScalarFunction/Sin.hxx"
-#include "TestSet/ScalarFunction/Cos.hxx"
-#include "TestSet/ScalarFunction/Sinh.hxx"
-#include "TestSet/ScalarFunction/Cosh.hxx"
-
-// Vector-valued functions
-#include "TestSet/VectorFunction/Booth.hxx"
-#include "TestSet/VectorFunction/Brown.hxx"
-#include "TestSet/VectorFunction/Rosenbrock.hxx"
 
 namespace Optimist
 {

@@ -1,6 +1,5 @@
-#include "Optimist.hh"
-#include "Optimist/TestSet.hh"
-#include <iostream>
+#include "Optimist/ScalarRootFinder/Chandrupatla.hh"
+#include "Optimist/TestSet/Quadratic.hh"
 
 int main()
 {
