@@ -1,5 +1,5 @@
 #include "Optimist/ScalarRootFinder/Chandrupatla.hh"
-#include "Optimist/TestSet/Quadratic.hh"
+#include "Optimist/TestSet/ScalarFunction/Quadratic.hh"
 
 int main()
 {
