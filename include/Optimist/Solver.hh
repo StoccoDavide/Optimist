@@ -121,7 +121,7 @@ namespace Optimist
     * \param[out] x_sol Solution point.
     */
     Solver(FunctionWrapper function, const InputType & x_ini, InputType & x_sol) : Solver() {
-      this->solve_impl(function, x_ini, x_sol);
+      static_cast<const DerivedSolver *>(this)->solve_impl(function, x_ini, x_sol);
     }
 
     /**
@@ -134,7 +134,7 @@ namespace Optimist
     Solver(FunctionWrapper function, FirstDerivativeWrapper first_derivative, const InputType & x_ini,
       InputType & x_sol) : Solver()
     {
-      this->solve_impl(function, first_derivative, x_ini, x_sol);
+      static_cast<const DerivedSolver *>(this)->solve_impl(function, first_derivative, x_ini, x_sol);
     }
 
     /**
@@ -148,7 +148,7 @@ namespace Optimist
     Solver(FunctionWrapper function, FirstDerivativeWrapper first_derivative, SecondDerivativeWrapper
       second_derivative, const InputType & x_ini, InputType & x_sol) : Solver()
     {
-      this->solve_impl(function, first_derivative, second_derivative, x_ini, x_sol);
+      static_cast<const DerivedSolver *>(this)->solve_impl(function, first_derivative, second_derivative, x_ini, x_sol);
     }
 
     /**
