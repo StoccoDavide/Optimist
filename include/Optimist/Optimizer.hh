@@ -48,8 +48,6 @@ namespace Optimist
       // Fancy static assertions (just for fun, don't take it too seriously)
       static_assert(N != static_cast<Integer>(0),
         "Have you ever heard of a zero-dimensional optimization problem?");
-      static_assert(N != static_cast<Integer>(1),
-        "Good try, but you should use a scalar solver for a one-dimensional optimization problem.");
 
       friend Solver<Real, N, 1, Optimizer<Real, N, DerivedSolver>>;
 

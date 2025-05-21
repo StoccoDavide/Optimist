@@ -36,10 +36,6 @@ namespace Optimist
     // Fancy static assertions (just for fun, don't take it too seriously)
     static_assert(N != static_cast<Integer>(0) && M != static_cast<Integer>(0),
       "Are you sure you want to a zero-dimensional system of equations?");
-    static_assert(N != static_cast<Integer>(1) && M != static_cast<Integer>(1),
-      "C'mon, let's not kid ourselves. Use a scalar function...");
-    static_assert(M != static_cast<Integer>(1),
-      "Good try, but you're looking for an objective function, not a vector-valued function.");
 
     // I/O types
     using InputVector = typename Function<Real, N, M, DerivedFunction>::InputType; /**< Input vector type. */

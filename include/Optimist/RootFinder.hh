@@ -49,8 +49,6 @@ namespace Optimist
       // Fancy static assertions (just for fun, don't take it too seriously)
       static_assert(N != static_cast<Integer>(0),
         "Are you sure you want to solve a zero-dimensional system of equations?");
-      static_assert(N != static_cast<Integer>(1),
-        "C'mon, let's not kid ourselves. Use a scalar solver...");
 
       friend Solver<Real, N, N, RootFinder<Real, N, DerivedSolver>>;
 
