@@ -10,11 +10,11 @@
 
 #pragma once
 
-#include "Optimist/TestSet/ScalarFunction/Linear.hh"
-#include "Optimist/TestSet/ScalarFunction/Quadratic.hh"
-#include "Optimist/TestSet/ScalarFunction/Cos.hh"
-#include "Optimist/TestSet/ScalarFunction/Sin.hh"
-#include "Optimist/TestSet/ScalarFunction/Sinh.hh"
+#include "Optimist/TestSet/Linear.hh"
+#include "Optimist/TestSet/Quadratic.hh"
+#include "Optimist/TestSet/Cos.hh"
+#include "Optimist/TestSet/Sin.hh"
+#include "Optimist/TestSet/Sinh.hh"
 
 #ifndef TEST_SCALAR_FUNCTIONS
 #define TEST_SCALAR_FUNCTIONS           \

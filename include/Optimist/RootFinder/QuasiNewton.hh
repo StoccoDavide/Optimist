@@ -38,7 +38,7 @@ namespace Optimist
     * \tparam N Dimension of the root-finding problem.
     */
     template <typename Real, Integer N, typename DerivedSolver>
-    class QuasiNewton : public RootFinder<Real, N, DerivedSolver>
+    class QuasiNewton : public RootFinder<Real, N, DerivedSolver, true>
     {
     public:
       static constexpr bool requires_function{true};
@@ -48,11 +48,11 @@ namespace Optimist
       OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
 
       using Method = enum class Method : Integer {GOOD = 0, BAD = 1, COMBINED = 2}; /**< QuasiNewton solver type. */
-      using Vector = typename RootFinder<Real, N, DerivedSolver>::Vector;
-      using Matrix = typename RootFinder<Real, N, DerivedSolver>::Matrix;
-      using FunctionWrapper = typename RootFinder<Real, N, DerivedSolver>::FunctionWrapper;
-      using JacobianWrapper = typename RootFinder<Real, N, DerivedSolver>::JacobianWrapper;
-      using RootFinder<Real, N, DerivedSolver>::solve;
+      using Vector = typename RootFinder<Real, N, DerivedSolver, true>::Vector;
+      using Matrix = typename RootFinder<Real, N, DerivedSolver, true>::Matrix;
+      using FunctionWrapper = typename RootFinder<Real, N, DerivedSolver, true>::FunctionWrapper;
+      using JacobianWrapper = typename RootFinder<Real, N, DerivedSolver, true>::JacobianWrapper;
+      using RootFinder<Real, N, DerivedSolver, true>::solve;
 
     private:
       Method m_method{Method::COMBINED}; /**< QuasiNewton solver type. */

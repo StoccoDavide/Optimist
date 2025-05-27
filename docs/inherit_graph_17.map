@@ -1,7 +1,9 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$class_optimist_1_1_solver.html" title=" " alt="" coords="5,5,177,61"/>
-<area shape="rect" id="Node000001" href="$class_optimist_1_1_optimizer_1_1_optimizer.html" title=" " alt="" coords="225,5,401,61"/>
-<area shape="poly" id="edge43_Node000000_Node000001" title=" " alt="" coords="192,30,224,30,224,36,192,36"/>
-<area shape="rect" id="Node000002" href="$class_optimist_1_1_optimizer_1_1_nelder_mead.html" title="Class container for the Nelder&#45;Mead&#39;s method." alt="" coords="449,13,617,54"/>
-<area shape="poly" id="edge44_Node000001_Node000002" title=" " alt="" coords="416,30,448,30,448,36,416,36"/>
+<area shape="rect" id="Node000000" href="$class_optimist_1_1_solver_base.html" title=" " alt="" coords="5,5,156,61"/>
+<area shape="rect" id="Node000001" href="$class_optimist_1_1_root_finder_1_1_root_finder.html" title=" " alt="" coords="204,5,355,61"/>
+<area shape="poly" id="edge44_Node000000_Node000001" title=" " alt="" coords="171,30,203,30,203,36,171,36"/>
+<area shape="rect" id="Node000002" href="$class_optimist_1_1_root_finder_1_1_bracketing.html" title=" " alt="" coords="403,5,587,61"/>
+<area shape="poly" id="edge45_Node000001_Node000002" title=" " alt="" coords="370,30,402,30,402,36,370,36"/>
+<area shape="rect" id="Node000003" href="$class_optimist_1_1_root_finder_1_1_algo748.html" title="Class container for the Algorithm 748." alt="" coords="635,13,778,54"/>
+<area shape="poly" id="edge46_Node000002_Node000003" title=" " alt="" coords="603,30,635,30,635,36,603,36"/>
 </map>

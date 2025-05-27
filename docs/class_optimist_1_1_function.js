@@ -1,21 +1,13 @@
 var class_optimist_1_1_function =
 [
-    [ "FirstDerivativeType", "class_optimist_1_1_function.html#a8869a214d153619482f78e4f2a1428a0", null ],
-    [ "InputType", "class_optimist_1_1_function.html#a66f325789d616938fd64e877b1731f39", null ],
-    [ "OutputType", "class_optimist_1_1_function.html#afea824063d9cac835fd0dfe1d7b3edbc", null ],
-    [ "SecondDerivativeType", "class_optimist_1_1_function.html#a2b69b5d8fb29ea71553b676889843861", null ],
-    [ "Function", "class_optimist_1_1_function.html#a9842043aa0cac2f7883773b922fa6f6d", null ],
-    [ "evaluate", "class_optimist_1_1_function.html#ab4b1565d0bcbf92925e9e9dc9bbc48f5", null ],
-    [ "first_derivative", "class_optimist_1_1_function.html#a8144d6b7674f8caeb066d79347e07688", null ],
-    [ "guess", "class_optimist_1_1_function.html#a0d60732def05c47d5c05966452acedf0", null ],
-    [ "guesses", "class_optimist_1_1_function.html#a4d26ae0f3324fc2454a60b06acb57129", null ],
-    [ "input_dimension", "class_optimist_1_1_function.html#a81c97dd2e3e05f2cf88b1e39a4fbfc5f", null ],
-    [ "is_solution", "class_optimist_1_1_function.html#a01cd5427237632a1f443ebcf579edd0b", null ],
-    [ "name", "class_optimist_1_1_function.html#ae3dd5d660bc3dd3152c121ae884b5eaf", null ],
-    [ "output_dimension", "class_optimist_1_1_function.html#ae05bb3e3d6b2f45888518fc13fc9078c", null ],
-    [ "second_derivative", "class_optimist_1_1_function.html#a73b17a46dfa6807ef77d78c1ecea2c51", null ],
-    [ "solution", "class_optimist_1_1_function.html#a5508a1dd6eab6cad8d2755792268821e", null ],
-    [ "solutions", "class_optimist_1_1_function.html#a35d807b1fe839d08a08a5a54856ce82f", null ],
-    [ "m_guesses", "class_optimist_1_1_function.html#a952e27f2e4a68463a588f68dcf32ce30", null ],
-    [ "m_solutions", "class_optimist_1_1_function.html#a573598ec818a49d8bb806f7f81852789", null ]
+    [ "InputVector", "class_optimist_1_1_function.html#a5b9b6c13ab1b881a1ec1f9d01223fa55", null ],
+    [ "Matrix", "class_optimist_1_1_function.html#af1d08f7a3b5eccac200b9315a3bfd6a0", null ],
+    [ "OutputVector", "class_optimist_1_1_function.html#a2842d11f94f9067f90bd87d1f483b569", null ],
+    [ "Tensor", "class_optimist_1_1_function.html#a132ed3e37a6e69632e9674c2a8a9da3c", null ],
+    [ "Function", "class_optimist_1_1_function.html#a7bcc423cfa55a8b7b02cf78d94163b9e", null ],
+    [ "evaluate", "class_optimist_1_1_function.html#a8ac7d6b88eca523f082909b451823bc6", null ],
+    [ "hessian", "class_optimist_1_1_function.html#a451c2055485ec08d5d8f2d0c3d64fb20", null ],
+    [ "jacobian", "class_optimist_1_1_function.html#acbe5755a666c3d70019825b2ab11b032", null ],
+    [ "name", "class_optimist_1_1_function.html#ac5e822180237deb02e7b973357828cc1", null ],
+    [ "FunctionBase< Real, N, M, Function< Real, N, M, DerivedFunction > >", "class_optimist_1_1_function.html#a4063a30a7f8169a426eb39b7fc022914", null ]
 ];

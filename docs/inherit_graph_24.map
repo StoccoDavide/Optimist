@@ -1,7 +1,7 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$class_optimist_1_1_solver.html" title=" " alt="" coords="5,13,167,54"/>
-<area shape="rect" id="Node000001" href="$class_optimist_1_1_root_finder_1_1_root_finder.html" title=" " alt="" coords="215,5,366,61"/>
-<area shape="poly" id="edge61_Node000000_Node000001" title=" " alt="" coords="182,30,214,30,214,36,182,36"/>
-<area shape="rect" id="Node000002" href="$class_optimist_1_1_root_finder_1_1_halley.html" title="Class container for the Halley&#39;s method." alt="" coords="414,13,556,54"/>
-<area shape="poly" id="edge62_Node000001_Node000002" title=" " alt="" coords="382,30,414,30,414,36,382,36"/>
+<area shape="rect" id="Node000000" href="$class_optimist_1_1_solver_base.html" title=" " alt="" coords="5,5,182,61"/>
+<area shape="rect" id="Node000001" href="$class_optimist_1_1_root_finder_1_1_root_finder.html" title=" " alt="" coords="230,5,411,61"/>
+<area shape="poly" id="edge62_Node000000_Node000001" title=" " alt="" coords="197,30,229,30,229,36,197,36"/>
+<area shape="rect" id="Node000002" href="$class_optimist_1_1_root_finder_1_1_newton.html" title="Class container for the Newton&#39;s method." alt="" coords="459,13,602,54"/>
+<area shape="poly" id="edge63_Node000001_Node000002" title=" " alt="" coords="427,30,459,30,459,36,427,36"/>
 </map>

@@ -20,9 +20,9 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="_solver_8hh.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="#666666" points="374.88,-185 278.62,-185 278.62,-165.75 374.88,-165.75 374.88,-185"/>
-<text text-anchor="middle" x="326.75" y="-171.5" font-family="Helvetica,sans-Serif" font-size="10.00">Optimist/Solver.hh</text>
+<g id="a_Node000002"><a xlink:href="_solver_base_8hh.html" target="_top" xlink:title=" ">
+<polygon fill="white" stroke="#666666" points="386.5,-185 267,-185 267,-165.75 386.5,-165.75 386.5,-185"/>
+<text text-anchor="middle" x="326.75" y="-171.5" font-family="Helvetica,sans-Serif" font-size="10.00">Optimist/SolverBase.hh</text>
 </a>
 </g>
 </g>
@@ -48,8 +48,8 @@
 <g id="edge2_Node000002_Node000003" class="edge">
 <title>Node2&#45;&gt;Node3</title>
 <g id="a_edge2_Node000002_Node000003"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M323.2,-165.33C318.8,-153 312.15,-130.19 314.75,-110.5 315.84,-102.25 318.01,-93.37 320.22,-85.71"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="323.48,-87 323.1,-76.41 316.8,-84.92 323.48,-87"/>
+<path fill="none" stroke="#63b8ff" d="M321.17,-165.57C316.01,-156.86 308.7,-142.95 305.75,-129.75 302.28,-114.24 308.44,-97.17 314.97,-84.57"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="317.87,-86.54 319.81,-76.13 311.8,-83.06 317.87,-86.54"/>
 </a>
 </g>
 </g>
@@ -57,8 +57,8 @@
 <g id="Node000015" class="node">
 <title>Node15</title>
 <g id="a_Node000015"><a xlink:href="_function_8hh.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="#666666" points="391.25,-129.75 324.25,-129.75 324.25,-110.5 391.25,-110.5 391.25,-129.75"/>
-<text text-anchor="middle" x="357.75" y="-116.25" font-family="Helvetica,sans-Serif" font-size="10.00">Function.hh</text>
+<polygon fill="white" stroke="#666666" points="421.12,-129.75 314.38,-129.75 314.38,-110.5 421.12,-110.5 421.12,-129.75"/>
+<text text-anchor="middle" x="367.75" y="-116.25" font-family="Helvetica,sans-Serif" font-size="10.00">Optimist/Function.hh</text>
 </a>
 </g>
 </g>
@@ -66,8 +66,8 @@
 <g id="edge14_Node000002_Node000015" class="edge">
 <title>Node2&#45;&gt;Node15</title>
 <g id="a_edge14_Node000002_Node000015"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M331.87,-165.58C335.93,-158.61 341.74,-148.62 346.84,-139.87"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="349.75,-141.82 351.76,-131.42 343.7,-138.3 349.75,-141.82"/>
+<path fill="none" stroke="#63b8ff" d="M333.52,-165.58C339.07,-158.38 347.09,-147.96 353.98,-139.01"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="356.58,-141.37 359.91,-131.31 351.04,-137.1 356.58,-141.37"/>
 </a>
 </g>
 </g>
@@ -273,8 +273,8 @@
 <g id="edge15_Node000015_Node000003" class="edge">
 <title>Node15&#45;&gt;Node3</title>
 <g id="a_edge15_Node000015_Node000003"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M352.63,-110.33C348.57,-103.36 342.76,-93.37 337.66,-84.62"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="340.8,-83.05 332.74,-76.17 334.75,-86.57 340.8,-83.05"/>
+<path fill="none" stroke="#63b8ff" d="M360.98,-110.33C355.43,-103.13 347.41,-92.71 340.52,-83.76"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="343.46,-81.85 334.59,-76.06 337.92,-86.12 343.46,-81.85"/>
 </a>
 </g>
 </g>

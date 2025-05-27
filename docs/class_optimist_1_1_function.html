@@ -16,7 +16,7 @@
 <meta name="twitter:title" content="Doxygen Awesome" />
 <meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
 <!-- END twitter metadata -->
-<title>Optimist: Optimist::Function&lt; Real, FunInDim, FunOutDim, DerivedFunction &gt; Class Template Reference</title>
+<title>Optimist: Optimist::Function&lt; Real, N, M, DerivedFunction &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link rel="icon" type="image/svg+xml" href="logo.png"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -131,155 +131,153 @@ $(function(){initNavTree('class_optimist_1_1_function.html','','class_optimist_1
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">Optimist::Function&lt; Real, FunInDim, FunOutDim, DerivedFunction &gt; Class Template Reference</div></div>
+  <div class="headertitle"><div class="title">Optimist::Function&lt; Real, N, M, DerivedFunction &gt; Class Template Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Class container for the generic function.  
+<p>Class container for the vector-valued function.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_function_8hh_source.html">Function.hh</a>&gt;</code></p>
+
+<p>Inherits <a class="el" href="class_optimist_1_1_function_base.html">Optimist::FunctionBase&lt; Real, N, M, DerivedFunction &gt;</a>.</p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-types" class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a66f325789d616938fd64e877b1731f39" id="r_a66f325789d616938fd64e877b1731f39"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a66f325789d616938fd64e877b1731f39">InputType</a> = typename std::conditional_t&lt;FunInDim == 1, Real, Eigen::Vector&lt;Real, FunInDim&gt;&gt;</td></tr>
-<tr class="memitem:afea824063d9cac835fd0dfe1d7b3edbc" id="r_afea824063d9cac835fd0dfe1d7b3edbc"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afea824063d9cac835fd0dfe1d7b3edbc">OutputType</a> = typename std::conditional_t&lt;FunOutDim == 1, Real, Eigen::Vector&lt;Real, FunOutDim&gt;&gt;</td></tr>
-<tr class="memitem:a8869a214d153619482f78e4f2a1428a0" id="r_a8869a214d153619482f78e4f2a1428a0"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8869a214d153619482f78e4f2a1428a0">FirstDerivativeType</a> = std::conditional_t&lt;FunInDim == 1 &amp;&amp; FunOutDim == 1, Real, Eigen::Matrix&lt;Real, FunOutDim, FunInDim&gt;&gt;</td></tr>
-<tr class="memitem:a2b69b5d8fb29ea71553b676889843861" id="r_a2b69b5d8fb29ea71553b676889843861"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2b69b5d8fb29ea71553b676889843861">SecondDerivativeType</a></td></tr>
+<tr class="memitem:a5b9b6c13ab1b881a1ec1f9d01223fa55" id="r_a5b9b6c13ab1b881a1ec1f9d01223fa55"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5b9b6c13ab1b881a1ec1f9d01223fa55">InputVector</a> = typename <a class="el" href="class_optimist_1_1_function_base.html">FunctionBase</a>&lt;Real, N, M, DerivedFunction&gt;<a class="el" href="class_optimist_1_1_function_base.html#a20168112d4a39b47f7b40c06baba0ed4">::InputType</a></td></tr>
+<tr class="memitem:a2842d11f94f9067f90bd87d1f483b569" id="r_a2842d11f94f9067f90bd87d1f483b569"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2842d11f94f9067f90bd87d1f483b569">OutputVector</a> = typename <a class="el" href="class_optimist_1_1_function_base.html">FunctionBase</a>&lt;Real, N, M, DerivedFunction&gt;<a class="el" href="class_optimist_1_1_function_base.html#a70506789a5e4fd313d7726b6871eb55e">::OutputType</a></td></tr>
+<tr class="memitem:af1d08f7a3b5eccac200b9315a3bfd6a0" id="r_af1d08f7a3b5eccac200b9315a3bfd6a0"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af1d08f7a3b5eccac200b9315a3bfd6a0">Matrix</a> = typename <a class="el" href="class_optimist_1_1_function_base.html">FunctionBase</a>&lt;Real, N, M, DerivedFunction&gt;<a class="el" href="class_optimist_1_1_function_base.html#a0395dbedb74bbee18ec2e56a7b0681e0">::FirstDerivativeType</a></td></tr>
+<tr class="memitem:a132ed3e37a6e69632e9674c2a8a9da3c" id="r_a132ed3e37a6e69632e9674c2a8a9da3c"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a132ed3e37a6e69632e9674c2a8a9da3c">Tensor</a> = typename <a class="el" href="class_optimist_1_1_function_base.html">FunctionBase</a>&lt;Real, N, M, DerivedFunction&gt;<a class="el" href="class_optimist_1_1_function_base.html#aba1ff6b2b4bcc7b7b8af35ae1d9e885f">::SecondDerivativeType</a></td></tr>
+<tr class="inherit_header pub_types_class_optimist_1_1_function_base"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_types_class_optimist_1_1_function_base')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Types inherited from <a class="el" href="class_optimist_1_1_function_base.html">Optimist::FunctionBase&lt; Real, N, M, DerivedFunction &gt;</a></td></tr>
+<tr class="memitem:a20168112d4a39b47f7b40c06baba0ed4 inherit pub_types_class_optimist_1_1_function_base" id="r_a20168112d4a39b47f7b40c06baba0ed4"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_function_base.html#a20168112d4a39b47f7b40c06baba0ed4">InputType</a></td></tr>
+<tr class="memitem:a70506789a5e4fd313d7726b6871eb55e inherit pub_types_class_optimist_1_1_function_base" id="r_a70506789a5e4fd313d7726b6871eb55e"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_function_base.html#a70506789a5e4fd313d7726b6871eb55e">OutputType</a></td></tr>
+<tr class="memitem:a0395dbedb74bbee18ec2e56a7b0681e0 inherit pub_types_class_optimist_1_1_function_base" id="r_a0395dbedb74bbee18ec2e56a7b0681e0"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_function_base.html#a0395dbedb74bbee18ec2e56a7b0681e0">FirstDerivativeType</a></td></tr>
+<tr class="memitem:aba1ff6b2b4bcc7b7b8af35ae1d9e885f inherit pub_types_class_optimist_1_1_function_base" id="r_aba1ff6b2b4bcc7b7b8af35ae1d9e885f"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_function_base.html#aba1ff6b2b4bcc7b7b8af35ae1d9e885f">SecondDerivativeType</a></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a9842043aa0cac2f7883773b922fa6f6d" id="r_a9842043aa0cac2f7883773b922fa6f6d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9842043aa0cac2f7883773b922fa6f6d">Function</a> ()</td></tr>
-<tr class="memitem:ae3dd5d660bc3dd3152c121ae884b5eaf" id="r_ae3dd5d660bc3dd3152c121ae884b5eaf"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae3dd5d660bc3dd3152c121ae884b5eaf">name</a> () const</td></tr>
-<tr class="memitem:ab4b1565d0bcbf92925e9e9dc9bbc48f5" id="r_ab4b1565d0bcbf92925e9e9dc9bbc48f5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab4b1565d0bcbf92925e9e9dc9bbc48f5">evaluate</a> (const <a class="el" href="#a66f325789d616938fd64e877b1731f39">InputType</a> &amp;x, <a class="el" href="#afea824063d9cac835fd0dfe1d7b3edbc">OutputType</a> &amp;out) const</td></tr>
-<tr class="memitem:a8144d6b7674f8caeb066d79347e07688" id="r_a8144d6b7674f8caeb066d79347e07688"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8144d6b7674f8caeb066d79347e07688">first_derivative</a> (const <a class="el" href="#a66f325789d616938fd64e877b1731f39">InputType</a> &amp;x, <a class="el" href="#a8869a214d153619482f78e4f2a1428a0">FirstDerivativeType</a> &amp;out) const</td></tr>
-<tr class="memitem:a73b17a46dfa6807ef77d78c1ecea2c51" id="r_a73b17a46dfa6807ef77d78c1ecea2c51"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a73b17a46dfa6807ef77d78c1ecea2c51">second_derivative</a> (const <a class="el" href="#a66f325789d616938fd64e877b1731f39">InputType</a> &amp;x, <a class="el" href="#a2b69b5d8fb29ea71553b676889843861">SecondDerivativeType</a> &amp;out) const</td></tr>
-<tr class="memitem:a81c97dd2e3e05f2cf88b1e39a4fbfc5f" id="r_a81c97dd2e3e05f2cf88b1e39a4fbfc5f"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a81c97dd2e3e05f2cf88b1e39a4fbfc5f">input_dimension</a> () const</td></tr>
-<tr class="memitem:ae05bb3e3d6b2f45888518fc13fc9078c" id="r_ae05bb3e3d6b2f45888518fc13fc9078c"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae05bb3e3d6b2f45888518fc13fc9078c">output_dimension</a> () const</td></tr>
-<tr class="memitem:a35d807b1fe839d08a08a5a54856ce82f" id="r_a35d807b1fe839d08a08a5a54856ce82f"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; <a class="el" href="#a66f325789d616938fd64e877b1731f39">InputType</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a35d807b1fe839d08a08a5a54856ce82f">solutions</a> () const</td></tr>
-<tr class="memitem:a4d26ae0f3324fc2454a60b06acb57129" id="r_a4d26ae0f3324fc2454a60b06acb57129"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; <a class="el" href="#a66f325789d616938fd64e877b1731f39">InputType</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4d26ae0f3324fc2454a60b06acb57129">guesses</a> () const</td></tr>
-<tr class="memitem:a5508a1dd6eab6cad8d2755792268821e" id="r_a5508a1dd6eab6cad8d2755792268821e"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="#a66f325789d616938fd64e877b1731f39">InputType</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5508a1dd6eab6cad8d2755792268821e">solution</a> (const <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> i) const</td></tr>
-<tr class="memitem:a0d60732def05c47d5c05966452acedf0" id="r_a0d60732def05c47d5c05966452acedf0"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="#a66f325789d616938fd64e877b1731f39">InputType</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0d60732def05c47d5c05966452acedf0">guess</a> (const <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> i) const</td></tr>
-<tr class="memitem:a01cd5427237632a1f443ebcf579edd0b" id="r_a01cd5427237632a1f443ebcf579edd0b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a01cd5427237632a1f443ebcf579edd0b">is_solution</a> (const <a class="el" href="#a66f325789d616938fd64e877b1731f39">InputType</a> &amp;x, const Real tol=EPSILON_LOW) const</td></tr>
+<tr class="memitem:a7bcc423cfa55a8b7b02cf78d94163b9e" id="r_a7bcc423cfa55a8b7b02cf78d94163b9e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7bcc423cfa55a8b7b02cf78d94163b9e">Function</a> ()</td></tr>
+<tr class="memitem:ac5e822180237deb02e7b973357828cc1" id="r_ac5e822180237deb02e7b973357828cc1"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac5e822180237deb02e7b973357828cc1">name</a> () const</td></tr>
+<tr class="memitem:a8ac7d6b88eca523f082909b451823bc6" id="r_a8ac7d6b88eca523f082909b451823bc6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8ac7d6b88eca523f082909b451823bc6">evaluate</a> (const <a class="el" href="#a5b9b6c13ab1b881a1ec1f9d01223fa55">InputVector</a> &amp;x, <a class="el" href="#a2842d11f94f9067f90bd87d1f483b569">OutputVector</a> &amp;out) const</td></tr>
+<tr class="memitem:acbe5755a666c3d70019825b2ab11b032" id="r_acbe5755a666c3d70019825b2ab11b032"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acbe5755a666c3d70019825b2ab11b032">jacobian</a> (const <a class="el" href="#a5b9b6c13ab1b881a1ec1f9d01223fa55">InputVector</a> &amp;x, <a class="el" href="#af1d08f7a3b5eccac200b9315a3bfd6a0">Matrix</a> &amp;out) const</td></tr>
+<tr class="memitem:a451c2055485ec08d5d8f2d0c3d64fb20" id="r_a451c2055485ec08d5d8f2d0c3d64fb20"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a451c2055485ec08d5d8f2d0c3d64fb20">hessian</a> (const <a class="el" href="#a5b9b6c13ab1b881a1ec1f9d01223fa55">InputVector</a> &amp;x, <a class="el" href="#a132ed3e37a6e69632e9674c2a8a9da3c">Tensor</a> &amp;out) const</td></tr>
+<tr class="inherit_header pub_methods_class_optimist_1_1_function_base"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_class_optimist_1_1_function_base')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="class_optimist_1_1_function_base.html">Optimist::FunctionBase&lt; Real, N, M, DerivedFunction &gt;</a></td></tr>
+<tr class="memitem:a25754aaf66af79105c80f970990033c9 inherit pub_methods_class_optimist_1_1_function_base" id="r_a25754aaf66af79105c80f970990033c9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_function_base.html#a25754aaf66af79105c80f970990033c9">FunctionBase</a> ()</td></tr>
+<tr class="memitem:a68d9e1add7503dc1ba2f269cb09cc758 inherit pub_methods_class_optimist_1_1_function_base" id="r_a68d9e1add7503dc1ba2f269cb09cc758"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_function_base.html#a68d9e1add7503dc1ba2f269cb09cc758">name</a> () const</td></tr>
+<tr class="memitem:a080b54e61e93c1111281bc548a290072 inherit pub_methods_class_optimist_1_1_function_base" id="r_a080b54e61e93c1111281bc548a290072"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_function_base.html#a080b54e61e93c1111281bc548a290072">evaluate</a> (const <a class="el" href="class_optimist_1_1_function_base.html#a20168112d4a39b47f7b40c06baba0ed4">InputType</a> &amp;x, <a class="el" href="class_optimist_1_1_function_base.html#a70506789a5e4fd313d7726b6871eb55e">OutputType</a> &amp;out) const</td></tr>
+<tr class="memitem:a6f114533cc8aa14edf7bb977455f9992 inherit pub_methods_class_optimist_1_1_function_base" id="r_a6f114533cc8aa14edf7bb977455f9992"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_function_base.html#a6f114533cc8aa14edf7bb977455f9992">first_derivative</a> (const <a class="el" href="class_optimist_1_1_function_base.html#a20168112d4a39b47f7b40c06baba0ed4">InputType</a> &amp;x, <a class="el" href="class_optimist_1_1_function_base.html#a0395dbedb74bbee18ec2e56a7b0681e0">FirstDerivativeType</a> &amp;out) const</td></tr>
+<tr class="memitem:af24f1bb29f67b188184fdb3dc355601f inherit pub_methods_class_optimist_1_1_function_base" id="r_af24f1bb29f67b188184fdb3dc355601f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_function_base.html#af24f1bb29f67b188184fdb3dc355601f">second_derivative</a> (const <a class="el" href="class_optimist_1_1_function_base.html#a20168112d4a39b47f7b40c06baba0ed4">InputType</a> &amp;x, <a class="el" href="class_optimist_1_1_function_base.html#aba1ff6b2b4bcc7b7b8af35ae1d9e885f">SecondDerivativeType</a> &amp;out) const</td></tr>
+<tr class="memitem:aea224549de817790cf275a6e84496e78 inherit pub_methods_class_optimist_1_1_function_base" id="r_aea224549de817790cf275a6e84496e78"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_function_base.html#aea224549de817790cf275a6e84496e78">input_dimension</a> () const</td></tr>
+<tr class="memitem:ab7e25eea2ba4eab48f8ff5d613d916f1 inherit pub_methods_class_optimist_1_1_function_base" id="r_ab7e25eea2ba4eab48f8ff5d613d916f1"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_function_base.html#ab7e25eea2ba4eab48f8ff5d613d916f1">output_dimension</a> () const</td></tr>
+<tr class="memitem:a22bbc0ca1fa6e86793497fc0303c8cc5 inherit pub_methods_class_optimist_1_1_function_base" id="r_a22bbc0ca1fa6e86793497fc0303c8cc5"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; <a class="el" href="class_optimist_1_1_function_base.html#a20168112d4a39b47f7b40c06baba0ed4">InputType</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_function_base.html#a22bbc0ca1fa6e86793497fc0303c8cc5">solutions</a> () const</td></tr>
+<tr class="memitem:a21cb5c64ec200a3827dc66ecdc741385 inherit pub_methods_class_optimist_1_1_function_base" id="r_a21cb5c64ec200a3827dc66ecdc741385"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; <a class="el" href="class_optimist_1_1_function_base.html#a20168112d4a39b47f7b40c06baba0ed4">InputType</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_function_base.html#a21cb5c64ec200a3827dc66ecdc741385">guesses</a> () const</td></tr>
+<tr class="memitem:a4e58a1ade410ec829796b4f9006fa962 inherit pub_methods_class_optimist_1_1_function_base" id="r_a4e58a1ade410ec829796b4f9006fa962"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_optimist_1_1_function_base.html#a20168112d4a39b47f7b40c06baba0ed4">InputType</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_function_base.html#a4e58a1ade410ec829796b4f9006fa962">solution</a> (const <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> i) const</td></tr>
+<tr class="memitem:a39d79de0f773df19bb5bc3884e899e1e inherit pub_methods_class_optimist_1_1_function_base" id="r_a39d79de0f773df19bb5bc3884e899e1e"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_optimist_1_1_function_base.html#a20168112d4a39b47f7b40c06baba0ed4">InputType</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_function_base.html#a39d79de0f773df19bb5bc3884e899e1e">guess</a> (const <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> i) const</td></tr>
+<tr class="memitem:a167f0f58dec02386dd65aa4cd3e73424 inherit pub_methods_class_optimist_1_1_function_base" id="r_a167f0f58dec02386dd65aa4cd3e73424"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_function_base.html#a167f0f58dec02386dd65aa4cd3e73424">is_solution</a> (const <a class="el" href="class_optimist_1_1_function_base.html#a20168112d4a39b47f7b40c06baba0ed4">InputType</a> &amp;x, const Real tol=EPSILON_LOW) const</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
-Protected Attributes</h2></td></tr>
-<tr class="memitem:a573598ec818a49d8bb806f7f81852789" id="r_a573598ec818a49d8bb806f7f81852789"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="#a66f325789d616938fd64e877b1731f39">InputType</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a573598ec818a49d8bb806f7f81852789">m_solutions</a></td></tr>
-<tr class="memitem:a952e27f2e4a68463a588f68dcf32ce30" id="r_a952e27f2e4a68463a588f68dcf32ce30"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="#a66f325789d616938fd64e877b1731f39">InputType</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a952e27f2e4a68463a588f68dcf32ce30">m_guesses</a></td></tr>
+<tr class="heading"><td colspan="2"><h2 id="header-friends" class="groupheader"><a id="friends" name="friends"></a>
+Friends</h2></td></tr>
+<tr class="memitem:a4063a30a7f8169a426eb39b7fc022914" id="r_a4063a30a7f8169a426eb39b7fc022914"><td class="memItemLeft" align="right" valign="top">class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4063a30a7f8169a426eb39b7fc022914">FunctionBase&lt; Real, N, M, Function&lt; Real, N, M, DerivedFunction &gt; &gt;</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pro_attribs_class_optimist_1_1_function_base"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_attribs_class_optimist_1_1_function_base')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Protected Attributes inherited from <a class="el" href="class_optimist_1_1_function_base.html">Optimist::FunctionBase&lt; Real, N, M, DerivedFunction &gt;</a></td></tr>
+<tr class="memitem:a997f62f6a8aa79dedcbd464ef714a57b inherit pro_attribs_class_optimist_1_1_function_base" id="r_a997f62f6a8aa79dedcbd464ef714a57b"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_optimist_1_1_function_base.html#a20168112d4a39b47f7b40c06baba0ed4">InputType</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_function_base.html#a997f62f6a8aa79dedcbd464ef714a57b">m_solutions</a></td></tr>
+<tr class="memitem:a01537b0b2859145202ae3e8d8c554332 inherit pro_attribs_class_optimist_1_1_function_base" id="r_a01537b0b2859145202ae3e8d8c554332"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_optimist_1_1_function_base.html#a20168112d4a39b47f7b40c06baba0ed4">InputType</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_function_base.html#a01537b0b2859145202ae3e8d8c554332">m_guesses</a></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><div class="compoundTemplParams">template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> FunInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> FunOutDim, typename DerivedFunction&gt;<br />
-class Optimist::Function&lt; Real, FunInDim, FunOutDim, DerivedFunction &gt;</div><h1 class="doxsection"><a class="anchor" id="autotoc_md0"></a>
-Function</h1>
-<p>The <span class="tt"><a class="el" href="class_optimist_1_1_function.html" title="Class container for the generic function.">Function</a></span> class in <span class="tt"><a class="el" href="namespace_optimist.html" title="Namespace for the Optimist library.">Optimist</a></span> provides a common interface for representing and evaluating mathematical functions. This class is designed to handle a generic function \(\mathbf{f}(\mathbf{x}): \mathbb{R}^{n} \rightarrow \mathbb{R}^{m}\), where \(\mathbf{x}\) is a vector of input variables and \(\mathbf{f}(\mathbf{x})\) is a vector of output values.</p>
-<p>The <span class="tt"><a class="el" href="class_optimist_1_1_function.html" title="Class container for the generic function.">Function</a></span> class serves as a base class for developing specific function representations that can be used in various numerical algorithms. In general, the <span class="tt"><a class="el" href="class_optimist_1_1_function.html" title="Class container for the generic function.">Function</a></span> class and its derived classes are designed to support:</p><ul>
-<li><b>Root-finding</b> problems of the form   <p class="formulaDsp">
-\[    \mathbf{f}(\mathbf{x}) = \mathbf{0} \text{,} \quad \text{with} \quad \mathbf{f}: \mathbb{R}^{n} \rightarrow \mathbb{R}^{n} \text{,}
-\]
-</p>
-</li>
-<li><b>Optimization</b> problems of the form   <p class="formulaDsp">
-\[    \min_{\mathbf{x}} f(\mathbf{x}) \text{,} \quad f: \mathbb{R}^{n} \rightarrow \mathbb{R} \text{.}
-\]
-</p>
-</li>
-</ul>
-<p>If \(n &gt; 1\), the function is multi-dimensional, otherwise, it is scalar. The linear algebra operations required for multi-dimensional functions are performed using the <span class="tt">Eigen</span> library, which provides a high-level interface for matrix operations. For scalar functions ( \(n = 1\)), the base type changes to <span class="tt">Real</span>, a scalar type defined in the <span class="tt"><a class="el" href="namespace_optimist.html" title="Namespace for the Optimist library.">Optimist</a></span> library.</p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> N, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> M, typename DerivedFunction&gt;<br />
+class Optimist::Function&lt; Real, N, M, DerivedFunction &gt;</div><dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">Real</td><td>Scalar number type. </td></tr>
-    <tr><td class="paramname">FunInDim</td><td>The function problem input dimension. </td></tr>
-    <tr><td class="paramname">FunOutDim</td><td>The function problem output dimension. </td></tr>
-    <tr><td class="paramname">DerivedFunction</td><td>Derived function class. </td></tr>
+    <tr><td class="paramname">N</td><td>The input dimension of the vector-valued function. </td></tr>
+    <tr><td class="paramname">M</td><td>The output dimension of the vector-valued function. </td></tr>
+    <tr><td class="paramname">DerivedFunction</td><td>Derived vector-valued function class. </td></tr>
   </table>
   </dd>
 </dl>
 </div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
-<a id="a8869a214d153619482f78e4f2a1428a0" name="a8869a214d153619482f78e4f2a1428a0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8869a214d153619482f78e4f2a1428a0">&#9670;&#160;</a></span>FirstDerivativeType</h2>
+<a id="a5b9b6c13ab1b881a1ec1f9d01223fa55" name="a5b9b6c13ab1b881a1ec1f9d01223fa55"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b9b6c13ab1b881a1ec1f9d01223fa55">&#9670;&#160;</a></span>InputVector</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> FunInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> FunOutDim, typename DerivedFunction&gt; </div>
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> N, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> M, typename DerivedFunction&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="class_optimist_1_1_function.html">Optimist::Function</a>&lt; Real, FunInDim, FunOutDim, DerivedFunction &gt;::FirstDerivativeType = std::conditional_t&lt;FunInDim == 1 &amp;&amp; FunOutDim == 1, Real, Eigen::Matrix&lt;Real, FunOutDim, FunInDim&gt;&gt;</td>
+          <td class="memname">using <a class="el" href="class_optimist_1_1_function.html">Optimist::Function</a>&lt; Real, N, M, DerivedFunction &gt;::InputVector = typename <a class="el" href="class_optimist_1_1_function_base.html">FunctionBase</a>&lt;Real, N, M, DerivedFunction&gt;<a class="el" href="class_optimist_1_1_function_base.html#a20168112d4a39b47f7b40c06baba0ed4">::InputType</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>First derivative type. </p>
+<p>Input vector type. </p>
 
 </div>
 </div>
-<a id="a66f325789d616938fd64e877b1731f39" name="a66f325789d616938fd64e877b1731f39"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a66f325789d616938fd64e877b1731f39">&#9670;&#160;</a></span>InputType</h2>
+<a id="af1d08f7a3b5eccac200b9315a3bfd6a0" name="af1d08f7a3b5eccac200b9315a3bfd6a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1d08f7a3b5eccac200b9315a3bfd6a0">&#9670;&#160;</a></span>Matrix</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> FunInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> FunOutDim, typename DerivedFunction&gt; </div>
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> N, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> M, typename DerivedFunction&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="class_optimist_1_1_function.html">Optimist::Function</a>&lt; Real, FunInDim, FunOutDim, DerivedFunction &gt;::InputType = typename std::conditional_t&lt;FunInDim == 1, Real, Eigen::Vector&lt;Real, FunInDim&gt;&gt;</td>
+          <td class="memname">using <a class="el" href="class_optimist_1_1_function.html">Optimist::Function</a>&lt; Real, N, M, DerivedFunction &gt;::Matrix = typename <a class="el" href="class_optimist_1_1_function_base.html">FunctionBase</a>&lt;Real, N, M, DerivedFunction&gt;<a class="el" href="class_optimist_1_1_function_base.html#a0395dbedb74bbee18ec2e56a7b0681e0">::FirstDerivativeType</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Basic constants. Input type. </p>
+<p>Jacobian matrix type. </p>
 
 </div>
 </div>
-<a id="afea824063d9cac835fd0dfe1d7b3edbc" name="afea824063d9cac835fd0dfe1d7b3edbc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afea824063d9cac835fd0dfe1d7b3edbc">&#9670;&#160;</a></span>OutputType</h2>
+<a id="a2842d11f94f9067f90bd87d1f483b569" name="a2842d11f94f9067f90bd87d1f483b569"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2842d11f94f9067f90bd87d1f483b569">&#9670;&#160;</a></span>OutputVector</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> FunInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> FunOutDim, typename DerivedFunction&gt; </div>
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> N, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> M, typename DerivedFunction&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="class_optimist_1_1_function.html">Optimist::Function</a>&lt; Real, FunInDim, FunOutDim, DerivedFunction &gt;::OutputType = typename std::conditional_t&lt;FunOutDim == 1, Real, Eigen::Vector&lt;Real, FunOutDim&gt;&gt;</td>
+          <td class="memname">using <a class="el" href="class_optimist_1_1_function.html">Optimist::Function</a>&lt; Real, N, M, DerivedFunction &gt;::OutputVector = typename <a class="el" href="class_optimist_1_1_function_base.html">FunctionBase</a>&lt;Real, N, M, DerivedFunction&gt;<a class="el" href="class_optimist_1_1_function_base.html#a70506789a5e4fd313d7726b6871eb55e">::OutputType</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Output type. </p>
+<p>Output vector type. </p>
 
 </div>
 </div>
-<a id="a2b69b5d8fb29ea71553b676889843861" name="a2b69b5d8fb29ea71553b676889843861"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2b69b5d8fb29ea71553b676889843861">&#9670;&#160;</a></span>SecondDerivativeType</h2>
+<a id="a132ed3e37a6e69632e9674c2a8a9da3c" name="a132ed3e37a6e69632e9674c2a8a9da3c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a132ed3e37a6e69632e9674c2a8a9da3c">&#9670;&#160;</a></span>Tensor</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> FunInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> FunOutDim, typename DerivedFunction&gt; </div>
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> N, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> M, typename DerivedFunction&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="class_optimist_1_1_function.html">Optimist::Function</a>&lt; Real, FunInDim, FunOutDim, DerivedFunction &gt;::SecondDerivativeType</td>
+          <td class="memname">using <a class="el" href="class_optimist_1_1_function.html">Optimist::Function</a>&lt; Real, N, M, DerivedFunction &gt;::Tensor = typename <a class="el" href="class_optimist_1_1_function_base.html">FunctionBase</a>&lt;Real, N, M, DerivedFunction&gt;<a class="el" href="class_optimist_1_1_function_base.html#aba1ff6b2b4bcc7b7b8af35ae1d9e885f">::SecondDerivativeType</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line"> std::conditional_t&lt;FunInDim == 1 &amp;&amp; FunOutDim == 1, Real,</div>
-<div class="line">      std::conditional_t&lt;FunInDim == 1 || FunOutDim == 1, Eigen::Matrix&lt;Real, FunInDim, FunInDim&gt;,</div>
-<div class="line">      std::vector&lt;Eigen::Matrix&lt;Real, FunInDim, FunInDim&gt;&gt;&gt;&gt;</div>
-</div><!-- fragment --><p>Second derivative type. </p>
+<p>Hessian tensor type. </p>
 
 </div>
 </div>
 <a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a9842043aa0cac2f7883773b922fa6f6d" name="a9842043aa0cac2f7883773b922fa6f6d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9842043aa0cac2f7883773b922fa6f6d">&#9670;&#160;</a></span>Function()</h2>
+<a id="a7bcc423cfa55a8b7b02cf78d94163b9e" name="a7bcc423cfa55a8b7b02cf78d94163b9e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7bcc423cfa55a8b7b02cf78d94163b9e">&#9670;&#160;</a></span>Function()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> FunInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> FunOutDim, typename DerivedFunction&gt; </div>
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> N, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> M, typename DerivedFunction&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_optimist_1_1_function.html">Optimist::Function</a>&lt; Real, FunInDim, FunOutDim, DerivedFunction &gt;::Function </td>
+          <td class="memname"><a class="el" href="class_optimist_1_1_function.html">Optimist::Function</a>&lt; Real, N, M, DerivedFunction &gt;::Function </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
@@ -291,31 +289,31 @@ template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c80358
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Suggested initial guess used for testing. Class constructor for the function. </p>
+<p>Class constructor for the vector-valued function. </p>
 
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
-<a id="ab4b1565d0bcbf92925e9e9dc9bbc48f5" name="ab4b1565d0bcbf92925e9e9dc9bbc48f5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab4b1565d0bcbf92925e9e9dc9bbc48f5">&#9670;&#160;</a></span>evaluate()</h2>
+<a id="a8ac7d6b88eca523f082909b451823bc6" name="a8ac7d6b88eca523f082909b451823bc6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ac7d6b88eca523f082909b451823bc6">&#9670;&#160;</a></span>evaluate()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> FunInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> FunOutDim, typename DerivedFunction&gt; </div>
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> N, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> M, typename DerivedFunction&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="class_optimist_1_1_function.html">Optimist::Function</a>&lt; Real, FunInDim, FunOutDim, DerivedFunction &gt;::evaluate </td>
+          <td class="memname">void <a class="el" href="class_optimist_1_1_function.html">Optimist::Function</a>&lt; Real, N, M, DerivedFunction &gt;::evaluate </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="#a66f325789d616938fd64e877b1731f39">InputType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+          <td class="paramtype">const <a class="el" href="#a5b9b6c13ab1b881a1ec1f9d01223fa55">InputVector</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="#afea824063d9cac835fd0dfe1d7b3edbc">OutputType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>out</em></span>&#160;) const</td>
+          <td class="paramtype"><a class="el" href="#a2842d11f94f9067f90bd87d1f483b569">OutputVector</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>out</em></span>&#160;) const</td>
         </tr>
       </table>
   </td>
@@ -334,249 +332,26 @@ template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c80358
 
 </div>
 </div>
-<a id="a8144d6b7674f8caeb066d79347e07688" name="a8144d6b7674f8caeb066d79347e07688"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8144d6b7674f8caeb066d79347e07688">&#9670;&#160;</a></span>first_derivative()</h2>
+<a id="a451c2055485ec08d5d8f2d0c3d64fb20" name="a451c2055485ec08d5d8f2d0c3d64fb20"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a451c2055485ec08d5d8f2d0c3d64fb20">&#9670;&#160;</a></span>hessian()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> FunInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> FunOutDim, typename DerivedFunction&gt; </div>
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> N, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> M, typename DerivedFunction&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="class_optimist_1_1_function.html">Optimist::Function</a>&lt; Real, FunInDim, FunOutDim, DerivedFunction &gt;::first_derivative </td>
+          <td class="memname">void <a class="el" href="class_optimist_1_1_function.html">Optimist::Function</a>&lt; Real, N, M, DerivedFunction &gt;::hessian </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="#a66f325789d616938fd64e877b1731f39">InputType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+          <td class="paramtype">const <a class="el" href="#a5b9b6c13ab1b881a1ec1f9d01223fa55">InputVector</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="#a8869a214d153619482f78e4f2a1428a0">FirstDerivativeType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>out</em></span>&#160;) const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Compute the function first derivative at the input point. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td>Input point. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">out</td><td>The function first derivative. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a0d60732def05c47d5c05966452acedf0" name="a0d60732def05c47d5c05966452acedf0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0d60732def05c47d5c05966452acedf0">&#9670;&#160;</a></span>guess()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> FunInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> FunOutDim, typename DerivedFunction&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">const <a class="el" href="#a66f325789d616938fd64e877b1731f39">InputType</a> &amp; <a class="el" href="class_optimist_1_1_function.html">Optimist::Function</a>&lt; Real, FunInDim, FunOutDim, DerivedFunction &gt;::guess </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a></td>          <td class="paramname"><span class="paramname"><em>i</em></span></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Retrieve the initial guess at the index. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">i</td><td>The index of the initial guess. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The initial guess. </dd></dl>
-
-</div>
-</div>
-<a id="a4d26ae0f3324fc2454a60b06acb57129" name="a4d26ae0f3324fc2454a60b06acb57129"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4d26ae0f3324fc2454a60b06acb57129">&#9670;&#160;</a></span>guesses()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> FunInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> FunOutDim, typename DerivedFunction&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">const std::vector&lt; <a class="el" href="#a66f325789d616938fd64e877b1731f39">InputType</a> &gt; &amp; <a class="el" href="class_optimist_1_1_function.html">Optimist::Function</a>&lt; Real, FunInDim, FunOutDim, DerivedFunction &gt;::guesses </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Get the vector of initial guesses. </p><dl class="section return"><dt>Returns</dt><dd>The vector of initial guesses. </dd></dl>
-
-</div>
-</div>
-<a id="a81c97dd2e3e05f2cf88b1e39a4fbfc5f" name="a81c97dd2e3e05f2cf88b1e39a4fbfc5f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a81c97dd2e3e05f2cf88b1e39a4fbfc5f">&#9670;&#160;</a></span>input_dimension()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> FunInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> FunOutDim, typename DerivedFunction&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> <a class="el" href="class_optimist_1_1_function.html">Optimist::Function</a>&lt; Real, FunInDim, FunOutDim, DerivedFunction &gt;::input_dimension </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel constexpr">constexpr</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Get the input dimension of the function. </p><dl class="section return"><dt>Returns</dt><dd>The input dimension of the function. </dd></dl>
-
-</div>
-</div>
-<a id="a01cd5427237632a1f443ebcf579edd0b" name="a01cd5427237632a1f443ebcf579edd0b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a01cd5427237632a1f443ebcf579edd0b">&#9670;&#160;</a></span>is_solution()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> FunInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> FunOutDim, typename DerivedFunction&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool <a class="el" href="class_optimist_1_1_function.html">Optimist::Function</a>&lt; Real, FunInDim, FunOutDim, DerivedFunction &gt;::is_solution </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="#a66f325789d616938fd64e877b1731f39">InputType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const Real</td>          <td class="paramname"><span class="paramname"><em>tol</em></span><span class="paramdefsep"> = </span><span class="paramdefval">EPSILON_LOW</span>&#160;) const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Check if the input point is a known solution. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td>Input point. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">tol</td><td>Tolerance. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>True if the input point is a known solution, false otherwise. </dd></dl>
-
-</div>
-</div>
-<a id="ae3dd5d660bc3dd3152c121ae884b5eaf" name="ae3dd5d660bc3dd3152c121ae884b5eaf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae3dd5d660bc3dd3152c121ae884b5eaf">&#9670;&#160;</a></span>name()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> FunInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> FunOutDim, typename DerivedFunction&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::string <a class="el" href="class_optimist_1_1_function.html">Optimist::Function</a>&lt; Real, FunInDim, FunOutDim, DerivedFunction &gt;::name </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Get the function name. </p><dl class="section return"><dt>Returns</dt><dd>The function name. </dd></dl>
-
-</div>
-</div>
-<a id="ae05bb3e3d6b2f45888518fc13fc9078c" name="ae05bb3e3d6b2f45888518fc13fc9078c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae05bb3e3d6b2f45888518fc13fc9078c">&#9670;&#160;</a></span>output_dimension()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> FunInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> FunOutDim, typename DerivedFunction&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> <a class="el" href="class_optimist_1_1_function.html">Optimist::Function</a>&lt; Real, FunInDim, FunOutDim, DerivedFunction &gt;::output_dimension </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel constexpr">constexpr</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Get the output dimension of the function. </p><dl class="section return"><dt>Returns</dt><dd>The output dimension of the function. </dd></dl>
-
-</div>
-</div>
-<a id="a73b17a46dfa6807ef77d78c1ecea2c51" name="a73b17a46dfa6807ef77d78c1ecea2c51"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a73b17a46dfa6807ef77d78c1ecea2c51">&#9670;&#160;</a></span>second_derivative()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> FunInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> FunOutDim, typename DerivedFunction&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void <a class="el" href="class_optimist_1_1_function.html">Optimist::Function</a>&lt; Real, FunInDim, FunOutDim, DerivedFunction &gt;::second_derivative </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="#a66f325789d616938fd64e877b1731f39">InputType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="#a2b69b5d8fb29ea71553b676889843861">SecondDerivativeType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>out</em></span>&#160;) const</td>
+          <td class="paramtype"><a class="el" href="#a132ed3e37a6e69632e9674c2a8a9da3c">Tensor</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>out</em></span>&#160;) const</td>
         </tr>
       </table>
   </td>
@@ -595,22 +370,26 @@ template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c80358
 
 </div>
 </div>
-<a id="a5508a1dd6eab6cad8d2755792268821e" name="a5508a1dd6eab6cad8d2755792268821e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5508a1dd6eab6cad8d2755792268821e">&#9670;&#160;</a></span>solution()</h2>
+<a id="acbe5755a666c3d70019825b2ab11b032" name="acbe5755a666c3d70019825b2ab11b032"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acbe5755a666c3d70019825b2ab11b032">&#9670;&#160;</a></span>jacobian()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> FunInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> FunOutDim, typename DerivedFunction&gt; </div>
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> N, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> M, typename DerivedFunction&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="#a66f325789d616938fd64e877b1731f39">InputType</a> &amp; <a class="el" href="class_optimist_1_1_function.html">Optimist::Function</a>&lt; Real, FunInDim, FunOutDim, DerivedFunction &gt;::solution </td>
+          <td class="memname">void <a class="el" href="class_optimist_1_1_function.html">Optimist::Function</a>&lt; Real, N, M, DerivedFunction &gt;::jacobian </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a></td>          <td class="paramname"><span class="paramname"><em>i</em></span></td><td>)</td>
-          <td> const</td>
+          <td class="paramtype">const <a class="el" href="#a5b9b6c13ab1b881a1ec1f9d01223fa55">InputVector</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#af1d08f7a3b5eccac200b9315a3bfd6a0">Matrix</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>out</em></span>&#160;) const</td>
         </tr>
       </table>
   </td>
@@ -619,29 +398,29 @@ template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c80358
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Retrieve the known solution at the index. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Compute the function first derivative at the input point. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">i</td><td>The index of the known solution. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td>Input point. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">out</td><td>The function first derivative. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The known solution. </dd></dl>
 
 </div>
 </div>
-<a id="a35d807b1fe839d08a08a5a54856ce82f" name="a35d807b1fe839d08a08a5a54856ce82f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a35d807b1fe839d08a08a5a54856ce82f">&#9670;&#160;</a></span>solutions()</h2>
+<a id="ac5e822180237deb02e7b973357828cc1" name="ac5e822180237deb02e7b973357828cc1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5e822180237deb02e7b973357828cc1">&#9670;&#160;</a></span>name()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> FunInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> FunOutDim, typename DerivedFunction&gt; </div>
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> N, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> M, typename DerivedFunction&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const std::vector&lt; <a class="el" href="#a66f325789d616938fd64e877b1731f39">InputType</a> &gt; &amp; <a class="el" href="class_optimist_1_1_function.html">Optimist::Function</a>&lt; Real, FunInDim, FunOutDim, DerivedFunction &gt;::solutions </td>
+          <td class="memname">std::string <a class="el" href="class_optimist_1_1_function.html">Optimist::Function</a>&lt; Real, N, M, DerivedFunction &gt;::name </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td> const</td>
@@ -653,54 +432,29 @@ template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c80358
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Get the vector of known solutions. </p><dl class="section return"><dt>Returns</dt><dd>The vector of known solutions. </dd></dl>
+<p>Get the function name. </p><dl class="section return"><dt>Returns</dt><dd>The function name. </dd></dl>
 
 </div>
 </div>
-<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
-<a id="a952e27f2e4a68463a588f68dcf32ce30" name="a952e27f2e4a68463a588f68dcf32ce30"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a952e27f2e4a68463a588f68dcf32ce30">&#9670;&#160;</a></span>m_guesses</h2>
+<a name="doc-related-members" id="doc-related-members"></a><h2 id="header-doc-related-members" class="groupheader">Friends And Related Symbol Documentation</h2>
+<a id="a4063a30a7f8169a426eb39b7fc022914" name="a4063a30a7f8169a426eb39b7fc022914"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4063a30a7f8169a426eb39b7fc022914">&#9670;&#160;</a></span>FunctionBase&lt; Real, N, M, Function&lt; Real, N, M, DerivedFunction &gt; &gt;</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> FunInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> FunOutDim, typename DerivedFunction&gt; </div>
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> N, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> M, typename DerivedFunction&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt;<a class="el" href="#a66f325789d616938fd64e877b1731f39">InputType</a>&gt; <a class="el" href="class_optimist_1_1_function.html">Optimist::Function</a>&lt; Real, FunInDim, FunOutDim, DerivedFunction &gt;::m_guesses</td>
+          <td class="memname">friend class <a class="el" href="class_optimist_1_1_function_base.html">FunctionBase</a>&lt; Real, N, M, <a class="el" href="class_optimist_1_1_function.html">Function</a>&lt; Real, N, M, DerivedFunction &gt; &gt;</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Known solutions used for test purposes. </p>
-
-</div>
-</div>
-<a id="a573598ec818a49d8bb806f7f81852789" name="a573598ec818a49d8bb806f7f81852789"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a573598ec818a49d8bb806f7f81852789">&#9670;&#160;</a></span>m_solutions</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> FunInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> FunOutDim, typename DerivedFunction&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::vector&lt;<a class="el" href="#a66f325789d616938fd64e877b1731f39">InputType</a>&gt; <a class="el" href="class_optimist_1_1_function.html">Optimist::Function</a>&lt; Real, FunInDim, FunOutDim, DerivedFunction &gt;::m_solutions</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+<span class="mlabels"><span class="mlabel friend">friend</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">

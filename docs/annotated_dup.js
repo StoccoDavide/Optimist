@@ -19,7 +19,7 @@ var annotated_dup =
         [ "Greenstadt", "class_optimist_1_1_root_finder_1_1_greenstadt.html", "class_optimist_1_1_root_finder_1_1_greenstadt" ],
         [ "Halley", "class_optimist_1_1_root_finder_1_1_halley.html", "class_optimist_1_1_root_finder_1_1_halley" ],
         [ "Newton", "class_optimist_1_1_root_finder_1_1_newton.html", "class_optimist_1_1_root_finder_1_1_newton" ],
-        [ "Newton< Real, 1 >", "class_optimist_1_1_root_finder_1_1_newton_3_01_real_00_011_01_4.html", "class_optimist_1_1_root_finder_1_1_newton_3_01_real_00_011_01_4" ],
+        [ "NewtonRaphson", "class_optimist_1_1_root_finder_1_1_newton_raphson.html", "class_optimist_1_1_root_finder_1_1_newton_raphson" ],
         [ "QuasiNewton", "class_optimist_1_1_root_finder_1_1_quasi_newton.html", "class_optimist_1_1_root_finder_1_1_quasi_newton" ],
         [ "RootFinder", "class_optimist_1_1_root_finder_1_1_root_finder.html", "class_optimist_1_1_root_finder_1_1_root_finder" ],
         [ "RootFinder< Real, 1, DerivedSolver >", "class_optimist_1_1_root_finder_1_1_root_finder_3_01_real_00_011_00_01_derived_solver_01_4.html", "class_optimist_1_1_root_finder_1_1_root_finder_3_01_real_00_011_00_01_derived_solver_01_4" ],
@@ -38,10 +38,10 @@ var annotated_dup =
         [ "Sin", "class_optimist_1_1_test_set_1_1_sin.html", "class_optimist_1_1_test_set_1_1_sin" ],
         [ "Sinh", "class_optimist_1_1_test_set_1_1_sinh.html", "class_optimist_1_1_test_set_1_1_sinh" ]
       ] ],
-      [ "CostFunction", "class_optimist_1_1_cost_function.html", "class_optimist_1_1_cost_function" ],
       [ "Function", "class_optimist_1_1_function.html", "class_optimist_1_1_function" ],
-      [ "ScalarFunction", "class_optimist_1_1_scalar_function.html", "class_optimist_1_1_scalar_function" ],
-      [ "Solver", "class_optimist_1_1_solver.html", "class_optimist_1_1_solver" ],
-      [ "VectorFunction", "class_optimist_1_1_vector_function.html", "class_optimist_1_1_vector_function" ]
+      [ "Function< Real, 1, 1, DerivedFunction >", "class_optimist_1_1_function_3_01_real_00_011_00_011_00_01_derived_function_01_4.html", "class_optimist_1_1_function_3_01_real_00_011_00_011_00_01_derived_function_01_4" ],
+      [ "Function< Real, N, 1, DerivedFunction >", "class_optimist_1_1_function_3_01_real_00_01_n_00_011_00_01_derived_function_01_4.html", "class_optimist_1_1_function_3_01_real_00_01_n_00_011_00_01_derived_function_01_4" ],
+      [ "FunctionBase", "class_optimist_1_1_function_base.html", "class_optimist_1_1_function_base" ],
+      [ "SolverBase", "class_optimist_1_1_solver_base.html", "class_optimist_1_1_solver_base" ]
     ] ]
 ];

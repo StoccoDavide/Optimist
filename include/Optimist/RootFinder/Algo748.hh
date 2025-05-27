@@ -336,4 +336,4 @@ namespace Optimist
 
 } // namespace Optimist
 
-#endif // OPTIMIST_ROOT_FINDER_ALGO748_HH
+#endif // OPTIMIST_ROOTFINDER_ALGO748_HH

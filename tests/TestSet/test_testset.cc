@@ -9,15 +9,15 @@
 \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 // Optimist library
-#include "Optimist/TestSet/ScalarFunction/Cos.hh"
-#include "Optimist/RootFinder/Newton.hh"
+#include "Optimist/TestSet/Cos.hh"
+#include "Optimist/RootFinder/NewtonRaphson.hh"
 #include "Optimist/RootFinder/Greenstadt.hh"
 
 // Run all the tests.
 int main() {
 
   Optimist::TestSet::Cos<double> cos;
-  Optimist::RootFinder::Newton<double> sol;
+  Optimist::RootFinder::NewtonRaphson<double> sol;
   double x_out;
   sol.rootfind(cos, 0.0, x_out);
   Optimist::RootFinder::Greenstadt<double, 4> greenstadt;

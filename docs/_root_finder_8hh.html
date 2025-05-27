@@ -134,7 +134,7 @@ $(function(){initNavTree('_root_finder_8hh.html','',''); });
   <div class="headertitle"><div class="title">RootFinder.hh File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="_solver_8hh_source.html">Optimist/Solver.hh</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="_solver_base_8hh_source.html">Optimist/SolverBase.hh</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for RootFinder.hh:</div>
 <div class="dyncontent">
@@ -143,14 +143,14 @@ Include dependency graph for RootFinder.hh:</div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="_root_finder_8hh__dep__incl.svg" width="1339" height="214"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="_root_finder_8hh__dep__incl.svg" width="1547" height="214"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="_root_finder_8hh_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:Optimist_3A_3ARootFinder_3A_3ARootFinder_3C_20Real_2C_20N_2C_20DerivedSolver_20_3E" id="r_Optimist_3A_3ARootFinder_3A_3ARootFinder_3C_20Real_2C_20N_2C_20DerivedSolver_20_3E"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_root_finder_1_1_root_finder.html">Optimist::RootFinder::RootFinder&lt; Real, N, DerivedSolver &gt;</a></td></tr>
+<tr class="memitem:Optimist_3A_3ARootFinder_3A_3ARootFinder_3C_20Real_2C_20N_2C_20DerivedSolver_2C_20ForceEigen_20_3E" id="r_Optimist_3A_3ARootFinder_3A_3ARootFinder_3C_20Real_2C_20N_2C_20DerivedSolver_2C_20ForceEigen_20_3E"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_root_finder_1_1_root_finder.html">Optimist::RootFinder::RootFinder&lt; Real, N, DerivedSolver, ForceEigen &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class container for the multi-dimensional root finder.  <a href="class_optimist_1_1_root_finder_1_1_root_finder.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Optimist_3A_3ARootFinder_3A_3ARootFinder_3C_20Real_2C_201_2C_20DerivedSolver_20_3E" id="r_Optimist_3A_3ARootFinder_3A_3ARootFinder_3C_20Real_2C_201_2C_20DerivedSolver_20_3E"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_root_finder_1_1_root_finder_3_01_real_00_011_00_01_derived_solver_01_4.html">Optimist::RootFinder::RootFinder&lt; Real, 1, DerivedSolver &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class container for the scalar scalar root-finder.  <a href="class_optimist_1_1_root_finder_1_1_root_finder_3_01_real_00_011_00_01_derived_solver_01_4.html#details">More...</a><br /></td></tr>
@@ -164,7 +164,7 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-define-members" class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a2bb551f51cdf237f50ab5b8820df94f3" id="r_a2bb551f51cdf237f50ab5b8820df94f3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2bb551f51cdf237f50ab5b8820df94f3">OPTIMIST_ROOT_FINDER_HH</a></td></tr>
+<tr class="memitem:a23a974db55424db0dbe14f182dabbbbe" id="r_a23a974db55424db0dbe14f182dabbbbe"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a23a974db55424db0dbe14f182dabbbbe">OPTIMIST_ROOTFINDER_HH</a></td></tr>
 <tr class="memitem:a0a5ceb9ceb914e08d345410b561cb37a" id="r_a0a5ceb9ceb914e08d345410b561cb37a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0a5ceb9ceb914e08d345410b561cb37a">CMD</a>&#160;&#160;&#160;&quot;Optimist::RootFinder::solve(...): &quot;</td></tr>
 <tr class="memitem:a0a5ceb9ceb914e08d345410b561cb37a" id="r_a0a5ceb9ceb914e08d345410b561cb37a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0a5ceb9ceb914e08d345410b561cb37a">CMD</a>&#160;&#160;&#160;&quot;Optimist::RootFinder::solve(...): &quot;</td></tr>
 <tr class="memitem:a0a5ceb9ceb914e08d345410b561cb37a" id="r_a0a5ceb9ceb914e08d345410b561cb37a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0a5ceb9ceb914e08d345410b561cb37a">CMD</a>&#160;&#160;&#160;&quot;Optimist::RootFinder::solve(...): &quot;</td></tr>
@@ -212,14 +212,14 @@ Macros</h2></td></tr>
 
 </div>
 </div>
-<a id="a2bb551f51cdf237f50ab5b8820df94f3" name="a2bb551f51cdf237f50ab5b8820df94f3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2bb551f51cdf237f50ab5b8820df94f3">&#9670;&#160;</a></span>OPTIMIST_ROOT_FINDER_HH</h2>
+<a id="a23a974db55424db0dbe14f182dabbbbe" name="a23a974db55424db0dbe14f182dabbbbe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a23a974db55424db0dbe14f182dabbbbe">&#9670;&#160;</a></span>OPTIMIST_ROOTFINDER_HH</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define OPTIMIST_ROOT_FINDER_HH</td>
+          <td class="memname">#define OPTIMIST_ROOTFINDER_HH</td>
         </tr>
       </table>
 </div><div class="memdoc">

@@ -8,7 +8,7 @@ var namespace_optimist_1_1_root_finder =
     [ "Greenstadt", "class_optimist_1_1_root_finder_1_1_greenstadt.html", "class_optimist_1_1_root_finder_1_1_greenstadt" ],
     [ "Halley", "class_optimist_1_1_root_finder_1_1_halley.html", "class_optimist_1_1_root_finder_1_1_halley" ],
     [ "Newton", "class_optimist_1_1_root_finder_1_1_newton.html", "class_optimist_1_1_root_finder_1_1_newton" ],
-    [ "Newton< Real, 1 >", "class_optimist_1_1_root_finder_1_1_newton_3_01_real_00_011_01_4.html", "class_optimist_1_1_root_finder_1_1_newton_3_01_real_00_011_01_4" ],
+    [ "NewtonRaphson", "class_optimist_1_1_root_finder_1_1_newton_raphson.html", "class_optimist_1_1_root_finder_1_1_newton_raphson" ],
     [ "QuasiNewton", "class_optimist_1_1_root_finder_1_1_quasi_newton.html", "class_optimist_1_1_root_finder_1_1_quasi_newton" ],
     [ "RootFinder", "class_optimist_1_1_root_finder_1_1_root_finder.html", "class_optimist_1_1_root_finder_1_1_root_finder" ],
     [ "RootFinder< Real, 1, DerivedSolver >", "class_optimist_1_1_root_finder_1_1_root_finder_3_01_real_00_011_00_01_derived_solver_01_4.html", "class_optimist_1_1_root_finder_1_1_root_finder_3_01_real_00_011_00_01_derived_solver_01_4" ],

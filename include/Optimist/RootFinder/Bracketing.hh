@@ -131,4 +131,4 @@ namespace Optimist
 
 } // namespace Optimist
 
-#endif // OPTIMIST_ROOT_FINDER_BRACKTING_HH
+#endif // OPTIMIST_ROOTFINDER_BRACKTING_HH

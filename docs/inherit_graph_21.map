@@ -1,9 +1,7 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$class_optimist_1_1_solver.html" title=" " alt="" coords="5,13,207,54"/>
-<area shape="rect" id="Node000001" href="$class_optimist_1_1_root_finder_1_1_root_finder.html" title=" " alt="" coords="255,5,420,61"/>
-<area shape="poly" id="edge53_Node000000_Node000001" title=" " alt="" coords="222,30,254,30,254,36,222,36"/>
-<area shape="rect" id="Node000002" href="$class_optimist_1_1_root_finder_1_1_bracketing.html" title=" " alt="" coords="468,5,683,61"/>
-<area shape="poly" id="edge54_Node000001_Node000002" title=" " alt="" coords="436,30,467,30,467,36,436,36"/>
-<area shape="rect" id="Node000003" href="$class_optimist_1_1_root_finder_1_1_chandrupatla.html" title="Class container for the Chandrupatla algorithm." alt="" coords="731,13,889,54"/>
-<area shape="poly" id="edge55_Node000002_Node000003" title=" " alt="" coords="699,30,731,30,731,36,699,36"/>
+<area shape="rect" id="Node000000" href="$class_optimist_1_1_solver_base.html" title=" " alt="" coords="5,5,195,61"/>
+<area shape="rect" id="Node000001" href="$class_optimist_1_1_root_finder_1_1_root_finder.html" title=" " alt="" coords="243,5,397,61"/>
+<area shape="poly" id="edge55_Node000000_Node000001" title=" " alt="" coords="210,30,242,30,242,36,210,36"/>
+<area shape="rect" id="Node000002" href="$class_optimist_1_1_root_finder_1_1_quasi_newton.html" title="Class container for the QuasiNewton&#39;s method." alt="" coords="445,5,596,61"/>
+<area shape="poly" id="edge56_Node000001_Node000002" title=" " alt="" coords="412,30,444,30,444,36,412,36"/>
 </map>

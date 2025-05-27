@@ -13,7 +13,7 @@
 #ifndef OPTIMIST_OPTIMIZER_HH
 #define OPTIMIST_OPTIMIZER_HH
 
-#include "Optimist/Solver.hh"
+#include "Optimist/SolverBase.hh"
 
 namespace Optimist
 {
@@ -40,18 +40,17 @@ namespace Optimist
     *
     * \tparam N Dimension of the optimization problem.
     * \tparam DerivedSolver Derived solver class.
+    * \tparam ForceEigen Force the use of Eigen types for input and output.
     */
-    template <typename Real, Integer N, typename DerivedSolver>
-    class Optimizer : public Solver<Real, N, 1, DerivedSolver>
+    template <typename Real, Integer N, typename DerivedSolver, bool ForceEigen = false>
+    class Optimizer : public SolverBase<Real, N, 1, DerivedSolver, ForceEigen>
     {
     public:
       // Fancy static assertions (just for fun, don't take it too seriously)
       static_assert(N != static_cast<Integer>(0),
         "Have you ever heard of a zero-dimensional optimization problem?");
-      static_assert(N != static_cast<Integer>(1),
-        "Good try, but you should use a scalar solver for a one-dimensional optimization problem.");
 
-      friend class Solver<Real, N, 1, Optimizer<Real, N, DerivedSolver>>;
+      friend class SolverBase<Real, N, 1, Optimizer<Real, N, DerivedSolver, ForceEigen>>;
 
       static constexpr bool is_rootfinder{false};
       static constexpr bool is_optimizer{true};
@@ -63,16 +62,16 @@ namespace Optimist
       OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
 
       // I/O types
-      using Vector = typename Solver<Real, N, 1, DerivedSolver>::InputType; /**< Vector type. */
+      using Vector = typename SolverBase<Real, N, 1, DerivedSolver, ForceEigen>::InputType; /**< Vector type. */
 
       // Derivative types
-      using RowVector = typename Solver<Real, N, 1, DerivedSolver>::FirstDerivativeType;  /**< Gradient (row) vector type. */
-      using Matrix    = typename Solver<Real, N, 1, DerivedSolver>::SecondDerivativeType; /**< Hessian matrix type. */
+      using RowVector = typename SolverBase<Real, N, 1, DerivedSolver, ForceEigen>::FirstDerivativeType;  /**< Gradient (row) vector type. */
+      using Matrix    = typename SolverBase<Real, N, 1, DerivedSolver, ForceEigen>::SecondDerivativeType; /**< Hessian matrix type. */
 
       // Function types
-      using FunctionWrapper = typename Solver<Real, N, 1, DerivedSolver>::FunctionWrapper;
-      using GradientWrapper = typename Solver<Real, N, 1, DerivedSolver>::FirstDerivativeWrapper;
-      using HessianWrapper  = typename Solver<Real, N, 1, DerivedSolver>::SecondDerivativeWrapper;
+      using FunctionWrapper = typename SolverBase<Real, N, 1, DerivedSolver, ForceEigen>::FunctionWrapper;
+      using GradientWrapper = typename SolverBase<Real, N, 1, DerivedSolver, ForceEigen>::FirstDerivativeWrapper;
+      using HessianWrapper  = typename SolverBase<Real, N, 1, DerivedSolver, ForceEigen>::SecondDerivativeWrapper;
 
       /**
       * Class constructor for the multi-dimensional optimizer.
@@ -225,10 +224,10 @@ namespace Optimist
     * \tparam DerivedSolver Derived solver class.
     */
     template <typename Real, typename DerivedSolver>
-    class Optimizer<Real, 1, DerivedSolver> : public Solver<Real, 1, 1, DerivedSolver>
+    class Optimizer<Real, 1, DerivedSolver> : public SolverBase<Real, 1, 1, DerivedSolver>
     {
     public:
-      friend class Solver<Real, 1, 1, Optimizer<Real, 1, DerivedSolver>>;
+      friend class SolverBase<Real, 1, 1, Optimizer<Real, 1, DerivedSolver>>;
 
       static constexpr bool is_rootfinder{false};
       static constexpr bool is_optimizer{true};
@@ -239,9 +238,9 @@ namespace Optimist
 
       OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
 
-      using FunctionWrapper         = typename Solver<Real, 1, 1, DerivedSolver>::FunctionWrapper;
-      using FirstDerivativeWrapper  = typename Solver<Real, 1, 1, DerivedSolver>::FirstDerivativeWrapper;
-      using SecondDerivativeWrapper = typename Solver<Real, 1, 1, DerivedSolver>::SecondDerivativeWrapper;
+      using FunctionWrapper         = typename SolverBase<Real, 1, 1, DerivedSolver>::FunctionWrapper;
+      using FirstDerivativeWrapper  = typename SolverBase<Real, 1, 1, DerivedSolver>::FirstDerivativeWrapper;
+      using SecondDerivativeWrapper = typename SolverBase<Real, 1, 1, DerivedSolver>::SecondDerivativeWrapper;
 
       /**
       * Class constructor for the scalar optimizer.

@@ -10,8 +10,8 @@
 
 #pragma once
 
-#include "Optimist/TestSet/VectorFunction/Booth.hh"
-#include "Optimist/TestSet/VectorFunction/Rosenbrock.hh"
+#include "Optimist/TestSet/Booth.hh"
+#include "Optimist/TestSet/Rosenbrock.hh"
 
 #ifndef TEST_VECTOR_FUNCTIONS
 #define TEST_VECTOR_FUNCTIONS             \

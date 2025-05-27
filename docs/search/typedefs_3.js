@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['inputtype_0',['InputType',['../class_optimist_1_1_function.html#a66f325789d616938fd64e877b1731f39',1,'Optimist::Function::InputType'],['../class_optimist_1_1_solver.html#a4b70292bb67d2b4262e8304572991aa1',1,'Optimist::Solver::InputType']]],
-  ['inputvector_1',['InputVector',['../class_optimist_1_1_vector_function.html#a8d9319d625fbce0c690904db6ac05325',1,'Optimist::VectorFunction::InputVector'],['../class_optimist_1_1_test_set_1_1_brown.html#aa46d2c9df0a7a508cf3377f3eb3f0370',1,'Optimist::TestSet::Brown::InputVector']]],
+  ['inputtype_0',['InputType',['../class_optimist_1_1_function_base.html#a20168112d4a39b47f7b40c06baba0ed4',1,'Optimist::FunctionBase::InputType'],['../class_optimist_1_1_solver_base.html#a66e3d2887ff78ffd52ed23a54fa554ac',1,'Optimist::SolverBase::InputType']]],
+  ['inputvector_1',['InputVector',['../class_optimist_1_1_function.html#a5b9b6c13ab1b881a1ec1f9d01223fa55',1,'Optimist::Function::InputVector'],['../class_optimist_1_1_test_set_1_1_brown.html#ab7d2b0ca63625d99b8e7dd2d7a32c99c',1,'Optimist::TestSet::Brown::InputVector'],['../class_optimist_1_1_function.html#a5b9b6c13ab1b881a1ec1f9d01223fa55',1,'Optimist::Function&lt; Real, 1, 1, DerivedFunction &gt;::InputVector'],['../class_optimist_1_1_function.html#a5b9b6c13ab1b881a1ec1f9d01223fa55',1,'Optimist::Function&lt; Real, N, 1, DerivedFunction &gt;::InputVector']]],
   ['integer_2',['Integer',['../namespace_optimist.html#a71c803585df543aec4079c8282e83baa',1,'Optimist']]]
 ];

@@ -1,9 +1,9 @@
 var class_optimist_1_1_test_set_1_1_brown =
 [
-    [ "InputVector", "class_optimist_1_1_test_set_1_1_brown.html#aa46d2c9df0a7a508cf3377f3eb3f0370", null ],
-    [ "Matrix", "class_optimist_1_1_test_set_1_1_brown.html#a110e1d2ecab1951e394e44e9d8c62565", null ],
-    [ "OutputVector", "class_optimist_1_1_test_set_1_1_brown.html#a8279bc69573539391719cbf8173c6175", null ],
-    [ "Tensor", "class_optimist_1_1_test_set_1_1_brown.html#a1749a7a45c6a9687d1687b31ae2e6050", null ],
+    [ "InputVector", "class_optimist_1_1_test_set_1_1_brown.html#ab7d2b0ca63625d99b8e7dd2d7a32c99c", null ],
+    [ "Matrix", "class_optimist_1_1_test_set_1_1_brown.html#a9ad375b1c2c534b28885520c7cbe0d73", null ],
+    [ "OutputVector", "class_optimist_1_1_test_set_1_1_brown.html#a110c517c24ca0785448abf3eb420dd6b", null ],
+    [ "Tensor", "class_optimist_1_1_test_set_1_1_brown.html#ad7178e0beab56cd76df432ad6b2fe196", null ],
     [ "Brown", "class_optimist_1_1_test_set_1_1_brown.html#aa300f21640b63afc0de762cd6fd2311a", null ],
     [ "evaluate_impl", "class_optimist_1_1_test_set_1_1_brown.html#a7a49fdfe867ee59ba7f20d02496eff4c", null ],
     [ "first_derivative_impl", "class_optimist_1_1_test_set_1_1_brown.html#a3bd4e0747b86a1c4a3375379f74d9ff0", null ],

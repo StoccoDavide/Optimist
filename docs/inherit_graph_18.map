@@ -1,7 +1,9 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$class_optimist_1_1_solver.html" title=" " alt="" coords="5,13,164,68"/>
-<area shape="rect" id="Node000001" href="$class_optimist_1_1_optimizer_1_1_optimizer.html" title=" " alt="" coords="212,5,363,76"/>
-<area shape="poly" id="edge45_Node000000_Node000001" title=" " alt="" coords="179,38,211,38,211,43,179,43"/>
-<area shape="rect" id="Node000002" href="$class_optimist_1_1_optimizer_1_1_pattern_search.html" title="Class container for the Hooke and Jeeves Pattern Search algorithm." alt="" coords="411,20,574,61"/>
-<area shape="poly" id="edge46_Node000001_Node000002" title=" " alt="" coords="379,38,411,38,411,43,379,43"/>
+<area shape="rect" id="Node000000" href="$class_optimist_1_1_solver_base.html" title=" " alt="" coords="5,5,182,61"/>
+<area shape="rect" id="Node000001" href="$class_optimist_1_1_root_finder_1_1_root_finder.html" title=" " alt="" coords="230,5,414,61"/>
+<area shape="poly" id="edge47_Node000000_Node000001" title=" " alt="" coords="197,30,229,30,229,36,197,36"/>
+<area shape="rect" id="Node000002" href="$class_optimist_1_1_root_finder_1_1_quasi_newton.html" title=" " alt="" coords="462,5,634,61"/>
+<area shape="poly" id="edge48_Node000001_Node000002" title=" " alt="" coords="429,30,461,30,461,36,429,36"/>
+<area shape="rect" id="Node000003" href="$class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the Broyden&#39;s method." alt="" coords="682,13,829,54"/>
+<area shape="poly" id="edge49_Node000002_Node000003" title=" " alt="" coords="650,30,682,30,682,36,650,36"/>
 </map>

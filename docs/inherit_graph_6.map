@@ -1,7 +1,7 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$class_optimist_1_1_function.html" title=" " alt="" coords="5,5,186,46"/>
-<area shape="rect" id="Node000001" href="$class_optimist_1_1_scalar_function.html" title=" " alt="" coords="234,5,399,46"/>
-<area shape="poly" id="edge10_Node000000_Node000001" title=" " alt="" coords="201,23,233,23,233,28,201,28"/>
-<area shape="rect" id="Node000002" href="$class_optimist_1_1_test_set_1_1_sin.html" title="Class container for the sine function." alt="" coords="447,5,578,46"/>
-<area shape="poly" id="edge11_Node000001_Node000002" title=" " alt="" coords="414,23,447,23,447,28,414,28"/>
+<area shape="rect" id="Node000000" href="$class_optimist_1_1_function_base.html" title=" " alt="" coords="5,13,205,54"/>
+<area shape="rect" id="Node000001" href="$class_optimist_1_1_function.html" title=" " alt="" coords="253,5,390,61"/>
+<area shape="poly" id="edge12_Node000000_Node000001" title=" " alt="" coords="220,30,252,30,252,36,220,36"/>
+<area shape="rect" id="Node000002" href="$class_optimist_1_1_test_set_1_1_cosh.html" title="Class container for the hyperbolic cosine function." alt="" coords="438,13,569,54"/>
+<area shape="poly" id="edge13_Node000001_Node000002" title=" " alt="" coords="406,30,438,30,438,36,406,36"/>
 </map>

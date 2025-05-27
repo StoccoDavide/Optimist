@@ -1,0 +1,3068 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>Optimist: Optimist::SolverBase&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt; Class Template Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.png"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/StoccoDavide/Optimist" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Optimist
+   &#160;<span id="projectnumber">0.0.0</span>
+   </div>
+   <div id="projectbrief">A C++ library for optimization</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('class_optimist_1_1_solver_base.html','','class_optimist_1_1_solver_base-members'); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Optimist::SolverBase&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt; Class Template Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Class container for the generic root-finding/optimization problem solver.  
+ <a href="#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_solver_base_8hh_source.html">SolverBase.hh</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:abf6bfdef45348563ac03d6bed9b1aaa7" id="r_abf6bfdef45348563ac03d6bed9b1aaa7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abf6bfdef45348563ac03d6bed9b1aaa7">SolverBase</a> ()</td></tr>
+<tr class="memitem:a40c3089cb8829951b3715adab26ddbba" id="r_a40c3089cb8829951b3715adab26ddbba"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a40c3089cb8829951b3715adab26ddbba">SolverBase</a> (<a class="el" href="#a8535ce21d576f9074573ac167cba01d7">FunctionWrapper</a> function, const <a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;x_ini, <a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;x_sol)</td></tr>
+<tr class="memitem:a529f568089c41795b03ffea24edc72c8" id="r_a529f568089c41795b03ffea24edc72c8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a529f568089c41795b03ffea24edc72c8">SolverBase</a> (<a class="el" href="#a8535ce21d576f9074573ac167cba01d7">FunctionWrapper</a> function, <a class="el" href="#af8d905cbf8e71095d85d68bcc53bf87d">FirstDerivativeWrapper</a> first_derivative, const <a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;x_ini, <a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;x_sol)</td></tr>
+<tr class="memitem:a3805274f538e6c80549e0983ebf7454d" id="r_a3805274f538e6c80549e0983ebf7454d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3805274f538e6c80549e0983ebf7454d">SolverBase</a> (<a class="el" href="#a8535ce21d576f9074573ac167cba01d7">FunctionWrapper</a> function, <a class="el" href="#af8d905cbf8e71095d85d68bcc53bf87d">FirstDerivativeWrapper</a> first_derivative, <a class="el" href="#a513777acedcb54231282e5465e61af20">SecondDerivativeWrapper</a> second_derivative, const <a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;x_ini, <a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;x_sol)</td></tr>
+<tr class="memitem:aa95d6a175f0477e1f3d255335c0d27a9" id="r_aa95d6a175f0477e1f3d255335c0d27a9"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa95d6a175f0477e1f3d255335c0d27a9">lower_bound</a> () const</td></tr>
+<tr class="memitem:a1eae61b5d7d04259d459633ed9af449d" id="r_a1eae61b5d7d04259d459633ed9af449d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1eae61b5d7d04259d459633ed9af449d">lower_bound</a> (const <a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;t_lower_bound)</td></tr>
+<tr class="memitem:a1b4cb03eb9a78201d72a5fabce8ee516" id="r_a1b4cb03eb9a78201d72a5fabce8ee516"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1b4cb03eb9a78201d72a5fabce8ee516">upper_bound</a> () const</td></tr>
+<tr class="memitem:a42f895346658f8198e12751389d2d2c4" id="r_a42f895346658f8198e12751389d2d2c4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a42f895346658f8198e12751389d2d2c4">upper_bound</a> (const <a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;t_upper_bound)</td></tr>
+<tr class="memitem:a25753bc555d9e48ec9cf4c306c92ae8e" id="r_a25753bc555d9e48ec9cf4c306c92ae8e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a25753bc555d9e48ec9cf4c306c92ae8e">bounds</a> (const <a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;t_lower_bound, const <a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;t_upper_bound)</td></tr>
+<tr class="memitem:a9d8717d02798a10b5718785b8c1f641f" id="r_a9d8717d02798a10b5718785b8c1f641f"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9d8717d02798a10b5718785b8c1f641f">input_dimension</a> () const</td></tr>
+<tr class="memitem:a203d7c0c0f6ae1d7d18867d6483eda5b" id="r_a203d7c0c0f6ae1d7d18867d6483eda5b"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a203d7c0c0f6ae1d7d18867d6483eda5b">output_dimension</a> () const</td></tr>
+<tr class="memitem:a61e391af9215552d6a11ad4ea7524c64" id="r_a61e391af9215552d6a11ad4ea7524c64"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a61e391af9215552d6a11ad4ea7524c64">function_evaluations</a> () const</td></tr>
+<tr class="memitem:af35ad19ec358eb0d8c069cf98f3957d7" id="r_af35ad19ec358eb0d8c069cf98f3957d7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af35ad19ec358eb0d8c069cf98f3957d7">max_function_evaluations</a> (<a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> t_max_function_evaluations)</td></tr>
+<tr class="memitem:a9e5f5c1334c4fa516d9137766c2da004" id="r_a9e5f5c1334c4fa516d9137766c2da004"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9e5f5c1334c4fa516d9137766c2da004">max_function_evaluations</a> () const</td></tr>
+<tr class="memitem:a6372e085c2b9fadc7b28d75889eedd01" id="r_a6372e085c2b9fadc7b28d75889eedd01"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6372e085c2b9fadc7b28d75889eedd01">iterations</a> () const</td></tr>
+<tr class="memitem:a021db3168e657b4e001f0b50417a7225" id="r_a021db3168e657b4e001f0b50417a7225"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a021db3168e657b4e001f0b50417a7225">max_iterations</a> () const</td></tr>
+<tr class="memitem:a1cda4baab16722f3d10887abf6da0984" id="r_a1cda4baab16722f3d10887abf6da0984"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1cda4baab16722f3d10887abf6da0984">max_iterations</a> (<a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> t_max_iterations)</td></tr>
+<tr class="memitem:a28b90151a54eb2cb71a90892e9fc20bf" id="r_a28b90151a54eb2cb71a90892e9fc20bf"><td class="memItemLeft" align="right" valign="top">Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a28b90151a54eb2cb71a90892e9fc20bf">alpha</a> () const</td></tr>
+<tr class="memitem:a1c298b87a1c0545e7886e3d40a19914e" id="r_a1c298b87a1c0545e7886e3d40a19914e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1c298b87a1c0545e7886e3d40a19914e">alpha</a> (Real t_alpha)</td></tr>
+<tr class="memitem:a4747b541f31910b9deef78f4d2b7e9ae" id="r_a4747b541f31910b9deef78f4d2b7e9ae"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4747b541f31910b9deef78f4d2b7e9ae">relaxations</a> () const</td></tr>
+<tr class="memitem:a27384a83ebe6828c926da4950660c81f" id="r_a27384a83ebe6828c926da4950660c81f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a27384a83ebe6828c926da4950660c81f">max_relaxations</a> () const</td></tr>
+<tr class="memitem:a715925f377d28f7e914c15765db767f2" id="r_a715925f377d28f7e914c15765db767f2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a715925f377d28f7e914c15765db767f2">max_relaxations</a> (<a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> t_max_relaxations)</td></tr>
+<tr class="memitem:a62b2a7120446a27f1ec7f78042c62ec4" id="r_a62b2a7120446a27f1ec7f78042c62ec4"><td class="memItemLeft" align="right" valign="top">Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a62b2a7120446a27f1ec7f78042c62ec4">tolerance</a> () const</td></tr>
+<tr class="memitem:ae8eac0e3cf1b37ef8d7cf86be969624b" id="r_ae8eac0e3cf1b37ef8d7cf86be969624b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae8eac0e3cf1b37ef8d7cf86be969624b">tolerance</a> (Real t_tolerance)</td></tr>
+<tr class="memitem:a518d1e52faa4358df42693d879bd89a0" id="r_a518d1e52faa4358df42693d879bd89a0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a518d1e52faa4358df42693d879bd89a0">verbose_mode</a> (bool t_verbose)</td></tr>
+<tr class="memitem:aa4e6b5935022a192b4f8acecc1df448d" id="r_aa4e6b5935022a192b4f8acecc1df448d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa4e6b5935022a192b4f8acecc1df448d">verbose_mode</a> () const</td></tr>
+<tr class="memitem:a9414a68c9d095108d2fc8d6b14f240af" id="r_a9414a68c9d095108d2fc8d6b14f240af"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9414a68c9d095108d2fc8d6b14f240af">enable_verbose_mode</a> ()</td></tr>
+<tr class="memitem:ae23e8aaebc385e9b5fb2ee787c4a7ab1" id="r_ae23e8aaebc385e9b5fb2ee787c4a7ab1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae23e8aaebc385e9b5fb2ee787c4a7ab1">disable_verbose_mode</a> ()</td></tr>
+<tr class="memitem:a76d5d501e6f8fc2fd49df3bf843a2816" id="r_a76d5d501e6f8fc2fd49df3bf843a2816"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a76d5d501e6f8fc2fd49df3bf843a2816">damped_mode</a> (bool t_damped)</td></tr>
+<tr class="memitem:adae7b344c00e0e90496564d69f7703b6" id="r_adae7b344c00e0e90496564d69f7703b6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adae7b344c00e0e90496564d69f7703b6">damped_mode</a> () const</td></tr>
+<tr class="memitem:a423ecc34ea284ee63751aef55b880349" id="r_a423ecc34ea284ee63751aef55b880349"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a423ecc34ea284ee63751aef55b880349">enable_damped_mode</a> ()</td></tr>
+<tr class="memitem:a9506639004ed55f2dcbbab267359be1a" id="r_a9506639004ed55f2dcbbab267359be1a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9506639004ed55f2dcbbab267359be1a">disable_damped_mode</a> ()</td></tr>
+<tr class="memitem:a40c2e74d5024a14a6eb03d5fb391568c" id="r_a40c2e74d5024a14a6eb03d5fb391568c"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a40c2e74d5024a14a6eb03d5fb391568c">task</a> () const</td></tr>
+<tr class="memitem:af6719461b1519fd150ca7859e3cfe20b" id="r_af6719461b1519fd150ca7859e3cfe20b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af6719461b1519fd150ca7859e3cfe20b">task</a> (std::string t_task)</td></tr>
+<tr class="memitem:a10899c8a8e799c9006c494dd9fa5dec1" id="r_a10899c8a8e799c9006c494dd9fa5dec1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a10899c8a8e799c9006c494dd9fa5dec1">converged</a> () const</td></tr>
+<tr class="memitem:a21b5c8604fa1e34cb34683d092ad8a3c" id="r_a21b5c8604fa1e34cb34683d092ad8a3c"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="#a079fe1a1e9ae915d654d4dd0b15c64bc">TraceType</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a21b5c8604fa1e34cb34683d092ad8a3c">trace</a> () const</td></tr>
+<tr class="memitem:a71e031938c3ede0e7f03f16d73b4e598" id="r_a71e031938c3ede0e7f03f16d73b4e598"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a71e031938c3ede0e7f03f16d73b4e598">ostream</a> () const</td></tr>
+<tr class="memitem:a1022aff2b46d4cfc23fd663e75cf8ae8" id="r_a1022aff2b46d4cfc23fd663e75cf8ae8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1022aff2b46d4cfc23fd663e75cf8ae8">ostream</a> (std::ostream &amp;t_ostream)</td></tr>
+<tr class="memitem:a56e483f7cbc87f3de1336eda6282f564" id="r_a56e483f7cbc87f3de1336eda6282f564"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a56e483f7cbc87f3de1336eda6282f564">solve</a> (<a class="el" href="#a8535ce21d576f9074573ac167cba01d7">FunctionWrapper</a> function, const <a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;x_ini, <a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;x_sol)</td></tr>
+<tr class="memitem:ad4f71e70825fd9dbfdfa91f83844a4f0" id="r_ad4f71e70825fd9dbfdfa91f83844a4f0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad4f71e70825fd9dbfdfa91f83844a4f0">solve</a> (<a class="el" href="#a8535ce21d576f9074573ac167cba01d7">FunctionWrapper</a> function, <a class="el" href="#af8d905cbf8e71095d85d68bcc53bf87d">FirstDerivativeWrapper</a> first_derivative, const <a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;x_ini, <a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;x_sol)</td></tr>
+<tr class="memitem:a36798199dd9f8bda6481b221f0f431af" id="r_a36798199dd9f8bda6481b221f0f431af"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a36798199dd9f8bda6481b221f0f431af">solve</a> (<a class="el" href="#a8535ce21d576f9074573ac167cba01d7">FunctionWrapper</a> function, <a class="el" href="#af8d905cbf8e71095d85d68bcc53bf87d">FirstDerivativeWrapper</a> first_derivative, <a class="el" href="#a513777acedcb54231282e5465e61af20">SecondDerivativeWrapper</a> second_derivative, const <a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;x_ini, <a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;x_sol)</td></tr>
+<tr class="memitem:a42c339ba94e1ed8df29b6c5094ac8fc8" id="r_a42c339ba94e1ed8df29b6c5094ac8fc8"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> FunInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> FunOutDim, typename DerivedFunction&gt; </td></tr>
+<tr class="memitem:a42c339ba94e1ed8df29b6c5094ac8fc8 template"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a42c339ba94e1ed8df29b6c5094ac8fc8">rootfind</a> (<a class="el" href="class_optimist_1_1_function_base.html">FunctionBase</a>&lt; Real, FunInDim, FunOutDim, DerivedFunction &gt; const &amp;function, const <a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;x_ini, <a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;x_sol)</td></tr>
+<tr class="memitem:a87ad628d81cdba3455e8b81febe2722e" id="r_a87ad628d81cdba3455e8b81febe2722e"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> FunInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> FunOutDim, typename DerivedFunction&gt; </td></tr>
+<tr class="memitem:a87ad628d81cdba3455e8b81febe2722e template"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a87ad628d81cdba3455e8b81febe2722e">optimize</a> (<a class="el" href="class_optimist_1_1_function_base.html">FunctionBase</a>&lt; Real, FunInDim, FunOutDim, DerivedFunction &gt; const &amp;function, const <a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;x_ini, <a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;x_sol)</td></tr>
+<tr class="memitem:a55a87b5f75f971167295945a57f678d0" id="r_a55a87b5f75f971167295945a57f678d0"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a55a87b5f75f971167295945a57f678d0">name</a> () const</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-types" class="groupheader"><a id="pro-types" name="pro-types"></a>
+Protected Types</h2></td></tr>
+<tr class="memitem:a66e3d2887ff78ffd52ed23a54fa554ac" id="r_a66e3d2887ff78ffd52ed23a54fa554ac"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> = typename std::conditional_t&lt;ForceEigen || (SolInDim &gt; 1), Eigen::Vector&lt;Real, SolInDim&gt;, Real&gt;</td></tr>
+<tr class="memitem:a9e8be8b22f660ae758c43916f361b9e3" id="r_a9e8be8b22f660ae758c43916f361b9e3"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9e8be8b22f660ae758c43916f361b9e3">OutputType</a> = typename std::conditional_t&lt;ForceEigen || (SolOutDim &gt; 1), Eigen::Vector&lt;Real, SolOutDim&gt;, Real&gt;</td></tr>
+<tr class="memitem:a079fe1a1e9ae915d654d4dd0b15c64bc" id="r_a079fe1a1e9ae915d654d4dd0b15c64bc"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a079fe1a1e9ae915d654d4dd0b15c64bc">TraceType</a> = typename std::vector&lt;<a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a>&gt;</td></tr>
+<tr class="memitem:a0138f38f62ee20ea3ef8918e1181d808" id="r_a0138f38f62ee20ea3ef8918e1181d808"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0138f38f62ee20ea3ef8918e1181d808">FirstDerivativeType</a> = std::conditional_t&lt;ForceEigen || (SolInDim &gt; 1) || (SolOutDim &gt; 1), Eigen::Matrix&lt;Real, SolOutDim, SolInDim&gt;, Real&gt;</td></tr>
+<tr class="memitem:ac8866cb44be7228fd739dac28e8d12ce" id="r_ac8866cb44be7228fd739dac28e8d12ce"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac8866cb44be7228fd739dac28e8d12ce">SecondDerivativeType</a></td></tr>
+<tr class="memitem:a8535ce21d576f9074573ac167cba01d7" id="r_a8535ce21d576f9074573ac167cba01d7"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8535ce21d576f9074573ac167cba01d7">FunctionWrapper</a> = typename std::function&lt;void(const <a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;, <a class="el" href="#a9e8be8b22f660ae758c43916f361b9e3">OutputType</a> &amp;)&gt;</td></tr>
+<tr class="memitem:af8d905cbf8e71095d85d68bcc53bf87d" id="r_af8d905cbf8e71095d85d68bcc53bf87d"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af8d905cbf8e71095d85d68bcc53bf87d">FirstDerivativeWrapper</a> = typename std::function&lt;void(const <a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;, <a class="el" href="#a0138f38f62ee20ea3ef8918e1181d808">FirstDerivativeType</a> &amp;)&gt;</td></tr>
+<tr class="memitem:a513777acedcb54231282e5465e61af20" id="r_a513777acedcb54231282e5465e61af20"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a513777acedcb54231282e5465e61af20">SecondDerivativeWrapper</a> = typename std::function&lt;void(const <a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;, <a class="el" href="#ac8866cb44be7228fd739dac28e8d12ce">SecondDerivativeType</a> &amp;)&gt;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-methods" class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:adf51d907096fb74ba45f818741ef0bc0" id="r_adf51d907096fb74ba45f818741ef0bc0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adf51d907096fb74ba45f818741ef0bc0">first_derivative_evaluations</a> () const</td></tr>
+<tr class="memitem:a1c53d929f75cb4c0c8d5d6da7b2190db" id="r_a1c53d929f75cb4c0c8d5d6da7b2190db"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1c53d929f75cb4c0c8d5d6da7b2190db">max_first_derivative_evaluations</a> () const</td></tr>
+<tr class="memitem:ad2d5e8a907fd8c022f7a1db571b9d05e" id="r_ad2d5e8a907fd8c022f7a1db571b9d05e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad2d5e8a907fd8c022f7a1db571b9d05e">max_first_derivative_evaluations</a> (<a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> <a class="el" href="#adf51d907096fb74ba45f818741ef0bc0">first_derivative_evaluations</a>)</td></tr>
+<tr class="memitem:ab2925596817bb8e61da89cf4813d0f71" id="r_ab2925596817bb8e61da89cf4813d0f71"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab2925596817bb8e61da89cf4813d0f71">second_derivative_evaluations</a> () const</td></tr>
+<tr class="memitem:a56d48f6468b0249d95abf697cbf15a31" id="r_a56d48f6468b0249d95abf697cbf15a31"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a56d48f6468b0249d95abf697cbf15a31">max_second_derivative_evaluations</a> () const</td></tr>
+<tr class="memitem:a0e96fef0c8b12916ba461c36c70ef645" id="r_a0e96fef0c8b12916ba461c36c70ef645"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0e96fef0c8b12916ba461c36c70ef645">max_second_derivative_evaluations</a> (<a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> <a class="el" href="#ab2925596817bb8e61da89cf4813d0f71">second_derivative_evaluations</a>)</td></tr>
+<tr class="memitem:a8d0e59aabb2e972f16f96d0c12f90588" id="r_a8d0e59aabb2e972f16f96d0c12f90588"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> FunInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> FunOutDim, typename DerivedFunction&gt; </td></tr>
+<tr class="memitem:a8d0e59aabb2e972f16f96d0c12f90588 template"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8d0e59aabb2e972f16f96d0c12f90588">solve</a> (<a class="el" href="class_optimist_1_1_function_base.html">FunctionBase</a>&lt; Real, FunInDim, FunOutDim, DerivedFunction &gt; const &amp;function, const <a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;x_ini, <a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;x_sol, bool is_optimization)</td></tr>
+<tr class="memitem:a681a3df775b41fa38ccf747606a44ccf" id="r_a681a3df775b41fa38ccf747606a44ccf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a681a3df775b41fa38ccf747606a44ccf">reset</a> ()</td></tr>
+<tr class="memitem:ae7eeef1f10d027fb102f75066d650294" id="r_ae7eeef1f10d027fb102f75066d650294"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae7eeef1f10d027fb102f75066d650294">evaluate_function</a> (<a class="el" href="#a8535ce21d576f9074573ac167cba01d7">FunctionWrapper</a> function, const <a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;x, <a class="el" href="#a9e8be8b22f660ae758c43916f361b9e3">OutputType</a> &amp;out)</td></tr>
+<tr class="memitem:a87db3b4619f6cc881da577387870536e" id="r_a87db3b4619f6cc881da577387870536e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a87db3b4619f6cc881da577387870536e">evaluate_first_derivative</a> (<a class="el" href="#af8d905cbf8e71095d85d68bcc53bf87d">FirstDerivativeWrapper</a> function, const <a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;x, <a class="el" href="#a0138f38f62ee20ea3ef8918e1181d808">FirstDerivativeType</a> &amp;out)</td></tr>
+<tr class="memitem:a7e27891af72821a3cf7ae8fd913fa44a" id="r_a7e27891af72821a3cf7ae8fd913fa44a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7e27891af72821a3cf7ae8fd913fa44a">evaluate_second_derivative</a> (<a class="el" href="#a513777acedcb54231282e5465e61af20">SecondDerivativeWrapper</a> function, const <a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;x, <a class="el" href="#ac8866cb44be7228fd739dac28e8d12ce">SecondDerivativeType</a> &amp;out)</td></tr>
+<tr class="memitem:ab73b6f4591e5334b069910e7c98bd9ba" id="r_ab73b6f4591e5334b069910e7c98bd9ba"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab73b6f4591e5334b069910e7c98bd9ba">store_trace</a> (const <a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;x)</td></tr>
+<tr class="memitem:ab059e4b386a8510d507735932cc38c8d" id="r_ab059e4b386a8510d507735932cc38c8d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab059e4b386a8510d507735932cc38c8d">damp</a> (<a class="el" href="#a8535ce21d576f9074573ac167cba01d7">FunctionWrapper</a> function, <a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> const &amp;x_old, <a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> const &amp;function_old, <a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> const &amp;step_old, <a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;x_new, <a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;function_new, <a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;step_new)</td></tr>
+<tr class="memitem:a56240f07887f265e2b66f0a89d5c0332" id="r_a56240f07887f265e2b66f0a89d5c0332"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a56240f07887f265e2b66f0a89d5c0332">header</a> ()</td></tr>
+<tr class="memitem:abd39a257ece37f964923c5dadf7efead" id="r_abd39a257ece37f964923c5dadf7efead"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abd39a257ece37f964923c5dadf7efead">bottom</a> ()</td></tr>
+<tr class="memitem:a1e91443ae03a4dbe11e08ab84692bba7" id="r_a1e91443ae03a4dbe11e08ab84692bba7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1e91443ae03a4dbe11e08ab84692bba7">info</a> (Real residuals, std::string const &amp;notes=&quot;-&quot;)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:afc2db3922e1bdc16ad4621e7cc8d95b0" id="r_afc2db3922e1bdc16ad4621e7cc8d95b0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afc2db3922e1bdc16ad4621e7cc8d95b0">m_lower_bound</a></td></tr>
+<tr class="memitem:a8df353db86641501e5783e4ca1ba82eb" id="r_a8df353db86641501e5783e4ca1ba82eb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8df353db86641501e5783e4ca1ba82eb">m_upper_bound</a></td></tr>
+<tr class="memitem:ac8208cc623d314aff4e162957f90d64c" id="r_ac8208cc623d314aff4e162957f90d64c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac8208cc623d314aff4e162957f90d64c">m_function_evaluations</a> {0}</td></tr>
+<tr class="memitem:ad12453a7fb2598ac67cd723cda26cee2" id="r_ad12453a7fb2598ac67cd723cda26cee2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad12453a7fb2598ac67cd723cda26cee2">m_first_derivative_evaluations</a> {0}</td></tr>
+<tr class="memitem:adb391443813bb9a9bf4b2f19ec91183a" id="r_adb391443813bb9a9bf4b2f19ec91183a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adb391443813bb9a9bf4b2f19ec91183a">m_second_derivative_evaluations</a> {0}</td></tr>
+<tr class="memitem:ae96096f6152bd2e2f63c36260948c094" id="r_ae96096f6152bd2e2f63c36260948c094"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae96096f6152bd2e2f63c36260948c094">m_max_function_evaluations</a> {1000}</td></tr>
+<tr class="memitem:a7c5e2a3bce9f6aa8bcb7b5cebd1c314e" id="r_a7c5e2a3bce9f6aa8bcb7b5cebd1c314e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7c5e2a3bce9f6aa8bcb7b5cebd1c314e">m_max_first_derivative_evaluations</a> {1000}</td></tr>
+<tr class="memitem:a85a3ecf8daf27e694c585688bc38be09" id="r_a85a3ecf8daf27e694c585688bc38be09"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a85a3ecf8daf27e694c585688bc38be09">m_max_second_derivative_evaluations</a> {1000}</td></tr>
+<tr class="memitem:a2300f3c2925615958655507b9392c93f" id="r_a2300f3c2925615958655507b9392c93f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2300f3c2925615958655507b9392c93f">m_iterations</a> {0}</td></tr>
+<tr class="memitem:a3ff1aefd149ea4f9ff8271e7f09959c9" id="r_a3ff1aefd149ea4f9ff8271e7f09959c9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3ff1aefd149ea4f9ff8271e7f09959c9">m_max_iterations</a> {100}</td></tr>
+<tr class="memitem:a8b4671e8ecb125c03e7d28744c7d5435" id="r_a8b4671e8ecb125c03e7d28744c7d5435"><td class="memItemLeft" align="right" valign="top">Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8b4671e8ecb125c03e7d28744c7d5435">m_alpha</a> {0.8}</td></tr>
+<tr class="memitem:ad14c76b9b9b11cb45233edf6bc30a4d2" id="r_ad14c76b9b9b11cb45233edf6bc30a4d2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad14c76b9b9b11cb45233edf6bc30a4d2">m_relaxations</a> {0}</td></tr>
+<tr class="memitem:addae0a1529c738fa7d1be87b843fa4c1" id="r_addae0a1529c738fa7d1be87b843fa4c1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#addae0a1529c738fa7d1be87b843fa4c1">m_max_relaxations</a> {10}</td></tr>
+<tr class="memitem:ad33c2628412175ee2e49aa93482b861c" id="r_ad33c2628412175ee2e49aa93482b861c"><td class="memItemLeft" align="right" valign="top">Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad33c2628412175ee2e49aa93482b861c">m_tolerance</a> {EPSILON_LOW}</td></tr>
+<tr class="memitem:a813d935bdf1d7a2a1347296ad03872a3" id="r_a813d935bdf1d7a2a1347296ad03872a3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a813d935bdf1d7a2a1347296ad03872a3">m_verbose</a> {false}</td></tr>
+<tr class="memitem:a0956792712f740132002d0ee7c9f99a0" id="r_a0956792712f740132002d0ee7c9f99a0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0956792712f740132002d0ee7c9f99a0">m_damped</a> {true}</td></tr>
+<tr class="memitem:ac5be7dc0932ec8b6fb4140cc0e68b892" id="r_ac5be7dc0932ec8b6fb4140cc0e68b892"><td class="memItemLeft" align="right" valign="top">std::ostream *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac5be7dc0932ec8b6fb4140cc0e68b892">m_ostream</a> {&amp;std::cout}</td></tr>
+<tr class="memitem:ad5442b4db91142201d2403ad1a400deb" id="r_ad5442b4db91142201d2403ad1a400deb"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad5442b4db91142201d2403ad1a400deb">m_task</a> {&quot;Undefined&quot;}</td></tr>
+<tr class="memitem:a87ea48e1a85f2cd5ed0375d60bfa5520" id="r_a87ea48e1a85f2cd5ed0375d60bfa5520"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a87ea48e1a85f2cd5ed0375d60bfa5520">m_converged</a> {false}</td></tr>
+<tr class="memitem:a9fcda2b84bb81fc777e4e27933d0773f" id="r_a9fcda2b84bb81fc777e4e27933d0773f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a079fe1a1e9ae915d654d4dd0b15c64bc">TraceType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9fcda2b84bb81fc777e4e27933d0773f">m_trace</a></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt;<br />
+class Optimist::SolverBase&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;</div><h1 class="doxsection"><a class="anchor" id="autotoc_md12"></a>
+Solver</h1>
+<p>The solvers implemented in <span class="tt"><a class="el" href="namespace_optimist.html" title="Namespace for the Optimist library.">Optimist</a></span> are derived from the <span class="tt">Solver</span> class, which provides a common interface for solving nonlinear systems of equations. The <span class="tt">Solver</span> class is an abstract base class that defines the methods and attributes required by the derived classes. The derived classes implement the specific algorithms for solving the nonlinear systems of equations.</p>
+<p>This class provides a base class for developing solvers that handle a generic function \(\mathbf{f}(\mathbf{x}): \mathbb{R}^{n} \rightarrow \mathbb{R}^{m}\). In general, the derived classes are designed to solve root-finding problems of the form   </p><p class="formulaDsp">
+\[    \mathbf{f}(\mathbf{x}) = \mathbf{0} \text{,} \quad \text{with} \quad \mathbf{f}: \mathbb{R}^{n} \rightarrow \mathbb{R}^{n} \text{,}
+\]
+</p>
+<p> as well as optimization problems of the form   </p><p class="formulaDsp">
+\[    \min_{\mathbf{x}} f(\mathbf{x}) \text{,} \quad f: \mathbb{R}^{n} \rightarrow \mathbb{R} \text{.}
+\]
+</p>
+<p> If \(n &gt; 1\) the solver is a multi-dimensional solver, otherwise, it is a scalar solver. The linear algebra operations are performed using the <span class="tt">Eigen</span> library, which provides a high-level interface for matrix operations. Otherwise, for \(n = 1\), the base type changes to <span class="tt">Real</span>, a scalar type defined in the <span class="tt"><a class="el" href="namespace_optimist.html" title="Namespace for the Optimist library.">Optimist</a></span> library.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Real</td><td>Scalar number type. </td></tr>
+    <tr><td class="paramname">SolInDim</td><td>The root-finding/optimization problem input dimension. </td></tr>
+    <tr><td class="paramname">SolOutDim</td><td>The root-finding/optimization problem output dimension. </td></tr>
+    <tr><td class="paramname">DerivedSolver</td><td>Derived solver class. </td></tr>
+    <tr><td class="paramname">ForceEigen</td><td>Force the use of Eigen types for input and output. </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
+<a id="a0138f38f62ee20ea3ef8918e1181d808" name="a0138f38f62ee20ea3ef8918e1181d808"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0138f38f62ee20ea3ef8918e1181d808">&#9670;&#160;</a></span>FirstDerivativeType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::FirstDerivativeType = std::conditional_t&lt;ForceEigen || (SolInDim &gt; 1) || (SolOutDim &gt; 1), Eigen::Matrix&lt;Real, SolOutDim, SolInDim&gt;, Real&gt;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>First derivative type. </p>
+
+</div>
+</div>
+<a id="af8d905cbf8e71095d85d68bcc53bf87d" name="af8d905cbf8e71095d85d68bcc53bf87d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8d905cbf8e71095d85d68bcc53bf87d">&#9670;&#160;</a></span>FirstDerivativeWrapper</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::FirstDerivativeWrapper = typename std::function&lt;void(const <a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;, <a class="el" href="#a0138f38f62ee20ea3ef8918e1181d808">FirstDerivativeType</a> &amp;)&gt;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>First derivative type. </p>
+
+</div>
+</div>
+<a id="a8535ce21d576f9074573ac167cba01d7" name="a8535ce21d576f9074573ac167cba01d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8535ce21d576f9074573ac167cba01d7">&#9670;&#160;</a></span>FunctionWrapper</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::FunctionWrapper = typename std::function&lt;void(const <a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;, <a class="el" href="#a9e8be8b22f660ae758c43916f361b9e3">OutputType</a> &amp;)&gt;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="class_optimist_1_1_function.html" title="Class container for the vector-valued function.">Function</a> type. </p>
+
+</div>
+</div>
+<a id="a66e3d2887ff78ffd52ed23a54fa554ac" name="a66e3d2887ff78ffd52ed23a54fa554ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66e3d2887ff78ffd52ed23a54fa554ac">&#9670;&#160;</a></span>InputType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::InputType = typename std::conditional_t&lt;ForceEigen || (SolInDim &gt; 1), Eigen::Vector&lt;Real, SolInDim&gt;, Real&gt;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Basic constants. Input type. </p>
+
+</div>
+</div>
+<a id="a9e8be8b22f660ae758c43916f361b9e3" name="a9e8be8b22f660ae758c43916f361b9e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e8be8b22f660ae758c43916f361b9e3">&#9670;&#160;</a></span>OutputType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::OutputType = typename std::conditional_t&lt;ForceEigen || (SolOutDim &gt; 1), Eigen::Vector&lt;Real, SolOutDim&gt;, Real&gt;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Output type. </p>
+
+</div>
+</div>
+<a id="ac8866cb44be7228fd739dac28e8d12ce" name="ac8866cb44be7228fd739dac28e8d12ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8866cb44be7228fd739dac28e8d12ce">&#9670;&#160;</a></span>SecondDerivativeType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::SecondDerivativeType</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line"> std::conditional_t&lt;ForceEigen || (SolInDim &gt; 1) || (SolOutDim &gt; 1),</div>
+<div class="line">      std::conditional_t&lt;SolInDim == 1 || SolOutDim == 1, Eigen::Matrix&lt;Real, SolInDim, SolInDim&gt;,</div>
+<div class="line">      std::vector&lt;Eigen::Matrix&lt;Real, SolInDim, SolInDim&gt;&gt;&gt;, Real&gt;</div>
+</div><!-- fragment --><p>Second derivative type. </p>
+
+</div>
+</div>
+<a id="a513777acedcb54231282e5465e61af20" name="a513777acedcb54231282e5465e61af20"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a513777acedcb54231282e5465e61af20">&#9670;&#160;</a></span>SecondDerivativeWrapper</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::SecondDerivativeWrapper = typename std::function&lt;void(const <a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;, <a class="el" href="#ac8866cb44be7228fd739dac28e8d12ce">SecondDerivativeType</a> &amp;)&gt;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Second derivative type. </p>
+
+</div>
+</div>
+<a id="a079fe1a1e9ae915d654d4dd0b15c64bc" name="a079fe1a1e9ae915d654d4dd0b15c64bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a079fe1a1e9ae915d654d4dd0b15c64bc">&#9670;&#160;</a></span>TraceType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::TraceType = typename std::vector&lt;<a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a>&gt;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Input trace type. </p>
+
+</div>
+</div>
+<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="abf6bfdef45348563ac03d6bed9b1aaa7" name="abf6bfdef45348563ac03d6bed9b1aaa7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf6bfdef45348563ac03d6bed9b1aaa7">&#9670;&#160;</a></span>SolverBase() <span class="overload">[1/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::SolverBase </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Class constructor for the nonlinear solver. </p>
+
+</div>
+</div>
+<a id="a40c3089cb8829951b3715adab26ddbba" name="a40c3089cb8829951b3715adab26ddbba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40c3089cb8829951b3715adab26ddbba">&#9670;&#160;</a></span>SolverBase() <span class="overload">[2/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::SolverBase </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#a8535ce21d576f9074573ac167cba01d7">FunctionWrapper</a></td>          <td class="paramname"><span class="paramname"><em>function</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>x_ini</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>x_sol</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Class constructor for the nonlinear solver. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">function</td><td><a class="el" href="class_optimist_1_1_function.html" title="Class container for the vector-valued function.">Function</a> wrapper. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">x_ini</td><td>Initialization point. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">x_sol</td><td>Solution point. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a529f568089c41795b03ffea24edc72c8" name="a529f568089c41795b03ffea24edc72c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a529f568089c41795b03ffea24edc72c8">&#9670;&#160;</a></span>SolverBase() <span class="overload">[3/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::SolverBase </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#a8535ce21d576f9074573ac167cba01d7">FunctionWrapper</a></td>          <td class="paramname"><span class="paramname"><em>function</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#af8d905cbf8e71095d85d68bcc53bf87d">FirstDerivativeWrapper</a></td>          <td class="paramname"><span class="paramname"><em>first_derivative</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>x_ini</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>x_sol</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Class constructor for the nonlinear solver. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">function</td><td><a class="el" href="class_optimist_1_1_function.html" title="Class container for the vector-valued function.">Function</a> wrapper. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">first_derivative</td><td>First derivative wrapper. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">x_ini</td><td>Initialization point. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">x_sol</td><td>Solution point. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a3805274f538e6c80549e0983ebf7454d" name="a3805274f538e6c80549e0983ebf7454d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3805274f538e6c80549e0983ebf7454d">&#9670;&#160;</a></span>SolverBase() <span class="overload">[4/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::SolverBase </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#a8535ce21d576f9074573ac167cba01d7">FunctionWrapper</a></td>          <td class="paramname"><span class="paramname"><em>function</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#af8d905cbf8e71095d85d68bcc53bf87d">FirstDerivativeWrapper</a></td>          <td class="paramname"><span class="paramname"><em>first_derivative</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#a513777acedcb54231282e5465e61af20">SecondDerivativeWrapper</a></td>          <td class="paramname"><span class="paramname"><em>second_derivative</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>x_ini</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>x_sol</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Class constructor for the nonlinear solver. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">function</td><td><a class="el" href="class_optimist_1_1_function.html" title="Class container for the vector-valued function.">Function</a> wrapper. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">first_derivative</td><td>First derivative wrapper. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">second_derivative</td><td>The second derivative wrapper. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">x_ini</td><td>Initialization point. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">x_sol</td><td>Solution point. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a28b90151a54eb2cb71a90892e9fc20bf" name="a28b90151a54eb2cb71a90892e9fc20bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a28b90151a54eb2cb71a90892e9fc20bf">&#9670;&#160;</a></span>alpha() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Real <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::alpha </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Get relaxation factor \( \alpha \). </p><dl class="section return"><dt>Returns</dt><dd>The relaxation factor \( \alpha \). </dd></dl>
+
+</div>
+</div>
+<a id="a1c298b87a1c0545e7886e3d40a19914e" name="a1c298b87a1c0545e7886e3d40a19914e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c298b87a1c0545e7886e3d40a19914e">&#9670;&#160;</a></span>alpha() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::alpha </td>
+          <td>(</td>
+          <td class="paramtype">Real</td>          <td class="paramname"><span class="paramname"><em>t_alpha</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Set relaxation factor \( \alpha \). </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">t_alpha</td><td>The relaxation factor \( \alpha \). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="abd39a257ece37f964923c5dadf7efead" name="abd39a257ece37f964923c5dadf7efead"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd39a257ece37f964923c5dadf7efead">&#9670;&#160;</a></span>bottom()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::bottom </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Print the table bottom solver information. </p><dl class="section note"><dt>Note</dt><dd>This has to be properly placed in the derived classes. </dd></dl>
+
+</div>
+</div>
+<a id="a25753bc555d9e48ec9cf4c306c92ae8e" name="a25753bc555d9e48ec9cf4c306c92ae8e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a25753bc555d9e48ec9cf4c306c92ae8e">&#9670;&#160;</a></span>bounds()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::bounds </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>t_lower_bound</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>t_upper_bound</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Set the bounds. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">t_lower_bound</td><td>The lower bound. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">t_upper_bound</td><td>The upper bound. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a10899c8a8e799c9006c494dd9fa5dec1" name="a10899c8a8e799c9006c494dd9fa5dec1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a10899c8a8e799c9006c494dd9fa5dec1">&#9670;&#160;</a></span>converged()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::converged </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Get the convergence boolean flag. </p><dl class="section return"><dt>Returns</dt><dd>The convergence boolean flag. </dd></dl>
+
+</div>
+</div>
+<a id="ab059e4b386a8510d507735932cc38c8d" name="ab059e4b386a8510d507735932cc38c8d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab059e4b386a8510d507735932cc38c8d">&#9670;&#160;</a></span>damp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::damp </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#a8535ce21d576f9074573ac167cba01d7">FunctionWrapper</a></td>          <td class="paramname"><span class="paramname"><em>function</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> const &amp;</td>          <td class="paramname"><span class="paramname"><em>x_old</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> const &amp;</td>          <td class="paramname"><span class="paramname"><em>function_old</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> const &amp;</td>          <td class="paramname"><span class="paramname"><em>step_old</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>x_new</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>function_new</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>step_new</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Damp the step using the affine invariant criterion. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">function</td><td><a class="el" href="class_optimist_1_1_function.html" title="Class container for the vector-valued function.">Function</a> wrapper. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">x_old</td><td>Old point. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">function_old</td><td>Old function value. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">step_old</td><td>Old step. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">x_new</td><td>New point. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">function_new</td><td>New function value. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">step_new</td><td>New step. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The damping boolean flag, true if the damping is successful, false otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="adae7b344c00e0e90496564d69f7703b6" name="adae7b344c00e0e90496564d69f7703b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adae7b344c00e0e90496564d69f7703b6">&#9670;&#160;</a></span>damped_mode() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::damped_mode </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Get the damped mode boolean flag. </p><dl class="section return"><dt>Returns</dt><dd>The damped mode boolean flag. </dd></dl>
+
+</div>
+</div>
+<a id="a76d5d501e6f8fc2fd49df3bf843a2816" name="a76d5d501e6f8fc2fd49df3bf843a2816"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76d5d501e6f8fc2fd49df3bf843a2816">&#9670;&#160;</a></span>damped_mode() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::damped_mode </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>t_damped</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Set the damped mode boolean flag. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">t_damped</td><td>The damped mode boolean flag. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a9506639004ed55f2dcbbab267359be1a" name="a9506639004ed55f2dcbbab267359be1a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9506639004ed55f2dcbbab267359be1a">&#9670;&#160;</a></span>disable_damped_mode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::disable_damped_mode </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Disable solver's damped mode. </p>
+
+</div>
+</div>
+<a id="ae23e8aaebc385e9b5fb2ee787c4a7ab1" name="ae23e8aaebc385e9b5fb2ee787c4a7ab1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae23e8aaebc385e9b5fb2ee787c4a7ab1">&#9670;&#160;</a></span>disable_verbose_mode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::disable_verbose_mode </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Disable solver's verbose mode. </p>
+
+</div>
+</div>
+<a id="a423ecc34ea284ee63751aef55b880349" name="a423ecc34ea284ee63751aef55b880349"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a423ecc34ea284ee63751aef55b880349">&#9670;&#160;</a></span>enable_damped_mode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::enable_damped_mode </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Enable solver's damped mode. </p>
+
+</div>
+</div>
+<a id="a9414a68c9d095108d2fc8d6b14f240af" name="a9414a68c9d095108d2fc8d6b14f240af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9414a68c9d095108d2fc8d6b14f240af">&#9670;&#160;</a></span>enable_verbose_mode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::enable_verbose_mode </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Enable solver's verbose mode. </p>
+
+</div>
+</div>
+<a id="a87db3b4619f6cc881da577387870536e" name="a87db3b4619f6cc881da577387870536e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87db3b4619f6cc881da577387870536e">&#9670;&#160;</a></span>evaluate_first_derivative()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::evaluate_first_derivative </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#af8d905cbf8e71095d85d68bcc53bf87d">FirstDerivativeWrapper</a></td>          <td class="paramname"><span class="paramname"><em>function</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#a0138f38f62ee20ea3ef8918e1181d808">FirstDerivativeType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>out</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Evaluate the first derivative. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">function</td><td>First derivative wrapper. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td>Input point. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">out</td><td>First derivative value. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ae7eeef1f10d027fb102f75066d650294" name="ae7eeef1f10d027fb102f75066d650294"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7eeef1f10d027fb102f75066d650294">&#9670;&#160;</a></span>evaluate_function()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::evaluate_function </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#a8535ce21d576f9074573ac167cba01d7">FunctionWrapper</a></td>          <td class="paramname"><span class="paramname"><em>function</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#a9e8be8b22f660ae758c43916f361b9e3">OutputType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>out</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Evaluate the function. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">function</td><td><a class="el" href="class_optimist_1_1_function.html" title="Class container for the vector-valued function.">Function</a> wrapper. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td>Input point. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">out</td><td><a class="el" href="class_optimist_1_1_function.html" title="Class container for the vector-valued function.">Function</a> value. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7e27891af72821a3cf7ae8fd913fa44a" name="a7e27891af72821a3cf7ae8fd913fa44a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e27891af72821a3cf7ae8fd913fa44a">&#9670;&#160;</a></span>evaluate_second_derivative()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::evaluate_second_derivative </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#a513777acedcb54231282e5465e61af20">SecondDerivativeWrapper</a></td>          <td class="paramname"><span class="paramname"><em>function</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#ac8866cb44be7228fd739dac28e8d12ce">SecondDerivativeType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>out</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Evaluate the second derivative. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">function</td><td>Second derivative wrapper. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td>Input point. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">out</td><td>Second derivative value. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="adf51d907096fb74ba45f818741ef0bc0" name="adf51d907096fb74ba45f818741ef0bc0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf51d907096fb74ba45f818741ef0bc0">&#9670;&#160;</a></span>first_derivative_evaluations()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::first_derivative_evaluations </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Get the number of function derivative evaluations. </p><dl class="section return"><dt>Returns</dt><dd>The number of function derivative evaluations. </dd></dl>
+
+</div>
+</div>
+<a id="a61e391af9215552d6a11ad4ea7524c64" name="a61e391af9215552d6a11ad4ea7524c64"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a61e391af9215552d6a11ad4ea7524c64">&#9670;&#160;</a></span>function_evaluations()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::function_evaluations </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Get the number of function evaluations. </p><dl class="section return"><dt>Returns</dt><dd>The number of function evaluations. </dd></dl>
+
+</div>
+</div>
+<a id="a56240f07887f265e2b66f0a89d5c0332" name="a56240f07887f265e2b66f0a89d5c0332"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56240f07887f265e2b66f0a89d5c0332">&#9670;&#160;</a></span>header()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::header </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Print the table header solver information. </p><dl class="section note"><dt>Note</dt><dd>This has to be properly placed in the derived classes. </dd></dl>
+
+</div>
+</div>
+<a id="a1e91443ae03a4dbe11e08ab84692bba7" name="a1e91443ae03a4dbe11e08ab84692bba7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e91443ae03a4dbe11e08ab84692bba7">&#9670;&#160;</a></span>info()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::info </td>
+          <td>(</td>
+          <td class="paramtype">Real</td>          <td class="paramname"><span class="paramname"><em>residuals</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string const &amp;</td>          <td class="paramname"><span class="paramname"><em>notes</em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;-&quot;</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Print the solver information during the algorithm iterations. </p><dl class="section note"><dt>Note</dt><dd>This has to be properly placed in the derived classes. </dd></dl>
+
+</div>
+</div>
+<a id="a9d8717d02798a10b5718785b8c1f641f" name="a9d8717d02798a10b5718785b8c1f641f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d8717d02798a10b5718785b8c1f641f">&#9670;&#160;</a></span>input_dimension()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::input_dimension </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Get the input dimension of the function. </p><dl class="section return"><dt>Returns</dt><dd>The input dimension of the function. </dd></dl>
+
+</div>
+</div>
+<a id="a6372e085c2b9fadc7b28d75889eedd01" name="a6372e085c2b9fadc7b28d75889eedd01"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6372e085c2b9fadc7b28d75889eedd01">&#9670;&#160;</a></span>iterations()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::iterations </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Get the number of algorithm iterations. </p>
+
+</div>
+</div>
+<a id="aa95d6a175f0477e1f3d255335c0d27a9" name="aa95d6a175f0477e1f3d255335c0d27a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa95d6a175f0477e1f3d255335c0d27a9">&#9670;&#160;</a></span>lower_bound() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp; <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::lower_bound </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Get the lower bound. </p><dl class="section return"><dt>Returns</dt><dd>The lower bound. </dd></dl>
+
+</div>
+</div>
+<a id="a1eae61b5d7d04259d459633ed9af449d" name="a1eae61b5d7d04259d459633ed9af449d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1eae61b5d7d04259d459633ed9af449d">&#9670;&#160;</a></span>lower_bound() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::lower_bound </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>t_lower_bound</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Set the lower bound. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">t_lower_bound</td><td>The lower bound. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1c53d929f75cb4c0c8d5d6da7b2190db" name="a1c53d929f75cb4c0c8d5d6da7b2190db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c53d929f75cb4c0c8d5d6da7b2190db">&#9670;&#160;</a></span>max_first_derivative_evaluations() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::max_first_derivative_evaluations </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Get the number of maximum allowed first derivative evaluations. </p><dl class="section return"><dt>Returns</dt><dd>The number of maximum allowed first derivative evaluations. </dd></dl>
+
+</div>
+</div>
+<a id="ad2d5e8a907fd8c022f7a1db571b9d05e" name="ad2d5e8a907fd8c022f7a1db571b9d05e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2d5e8a907fd8c022f7a1db571b9d05e">&#9670;&#160;</a></span>max_first_derivative_evaluations() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::max_first_derivative_evaluations </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a></td>          <td class="paramname"><span class="paramname"><em>first_derivative_evaluations</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Set the number of maximum allowed first derivative evaluations. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">first_derivative_evaluations</td><td>The number of maximum allowed first derivative evaluations. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a9e5f5c1334c4fa516d9137766c2da004" name="a9e5f5c1334c4fa516d9137766c2da004"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e5f5c1334c4fa516d9137766c2da004">&#9670;&#160;</a></span>max_function_evaluations() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::max_function_evaluations </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Get the number of maximum allowed function evaluations. </p><dl class="section return"><dt>Returns</dt><dd>The number of maximum allowed function evaluations. </dd></dl>
+
+</div>
+</div>
+<a id="af35ad19ec358eb0d8c069cf98f3957d7" name="af35ad19ec358eb0d8c069cf98f3957d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af35ad19ec358eb0d8c069cf98f3957d7">&#9670;&#160;</a></span>max_function_evaluations() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::max_function_evaluations </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a></td>          <td class="paramname"><span class="paramname"><em>t_max_function_evaluations</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Set the number of maximum allowed function evaluations. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">t_max_function_evaluations</td><td>The number of maximum allowed function evaluations. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a021db3168e657b4e001f0b50417a7225" name="a021db3168e657b4e001f0b50417a7225"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a021db3168e657b4e001f0b50417a7225">&#9670;&#160;</a></span>max_iterations() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::max_iterations </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Get the number of maximum allowed iterations. </p><dl class="section return"><dt>Returns</dt><dd>The number of maximum allowed iterations. </dd></dl>
+
+</div>
+</div>
+<a id="a1cda4baab16722f3d10887abf6da0984" name="a1cda4baab16722f3d10887abf6da0984"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1cda4baab16722f3d10887abf6da0984">&#9670;&#160;</a></span>max_iterations() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::max_iterations </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a></td>          <td class="paramname"><span class="paramname"><em>t_max_iterations</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Set the number of maximum allowed iterations. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">t_max_iterations</td><td>The number of maximum allowed iterations. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a27384a83ebe6828c926da4950660c81f" name="a27384a83ebe6828c926da4950660c81f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27384a83ebe6828c926da4950660c81f">&#9670;&#160;</a></span>max_relaxations() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::max_relaxations </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Get the number of maximum allowed relaxations. </p><dl class="section return"><dt>Returns</dt><dd>The number of maximum allowed relaxations. </dd></dl>
+
+</div>
+</div>
+<a id="a715925f377d28f7e914c15765db767f2" name="a715925f377d28f7e914c15765db767f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a715925f377d28f7e914c15765db767f2">&#9670;&#160;</a></span>max_relaxations() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::max_relaxations </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a></td>          <td class="paramname"><span class="paramname"><em>t_max_relaxations</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Set the number of maximum allowed relaxations. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">t_max_relaxations</td><td>The number of maximum allowed relaxations. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a56d48f6468b0249d95abf697cbf15a31" name="a56d48f6468b0249d95abf697cbf15a31"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56d48f6468b0249d95abf697cbf15a31">&#9670;&#160;</a></span>max_second_derivative_evaluations() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::max_second_derivative_evaluations </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Get the number of maximum allowed second derivative evaluations. </p><dl class="section return"><dt>Returns</dt><dd>The number of maximum allowed second derivative evaluations. </dd></dl>
+
+</div>
+</div>
+<a id="a0e96fef0c8b12916ba461c36c70ef645" name="a0e96fef0c8b12916ba461c36c70ef645"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e96fef0c8b12916ba461c36c70ef645">&#9670;&#160;</a></span>max_second_derivative_evaluations() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::max_second_derivative_evaluations </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a></td>          <td class="paramname"><span class="paramname"><em>second_derivative_evaluations</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Set the number of maximum allowed second derivative evaluations. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">second_derivative_evaluations</td><td>The number of maximum allowed second derivative evaluations. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a55a87b5f75f971167295945a57f678d0" name="a55a87b5f75f971167295945a57f678d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a55a87b5f75f971167295945a57f678d0">&#9670;&#160;</a></span>name()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::name </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Get the solver name. </p><dl class="section return"><dt>Returns</dt><dd>The solver name. </dd></dl>
+
+</div>
+</div>
+<a id="a87ad628d81cdba3455e8b81febe2722e" name="a87ad628d81cdba3455e8b81febe2722e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87ad628d81cdba3455e8b81febe2722e">&#9670;&#160;</a></span>optimize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<div class="memtemplate">
+template&lt;<a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> FunInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> FunOutDim, typename DerivedFunction&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::optimize </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_optimist_1_1_function_base.html">FunctionBase</a>&lt; Real, FunInDim, FunOutDim, DerivedFunction &gt; const &amp;</td>          <td class="paramname"><span class="paramname"><em>function</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>x_ini</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>x_sol</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Solve the optimization problem given a function class. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">function</td><td><a class="el" href="class_optimist_1_1_function.html" title="Class container for the vector-valued function.">Function</a> class. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">x_ini</td><td>Initialization point. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">x_sol</td><td>Solution point. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">FunInDim</td><td>The function output dimension. </td></tr>
+    <tr><td class="paramname">FunOutDim</td><td>The function output dimension. </td></tr>
+    <tr><td class="paramname">DerivedFunction</td><td>Derived function class. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a71e031938c3ede0e7f03f16d73b4e598" name="a71e031938c3ede0e7f03f16d73b4e598"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71e031938c3ede0e7f03f16d73b4e598">&#9670;&#160;</a></span>ostream() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::ostream &amp; <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::ostream </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Get the output stream for verbose mode. </p><dl class="section return"><dt>Returns</dt><dd>The output stream for verbose mode. </dd></dl>
+
+</div>
+</div>
+<a id="a1022aff2b46d4cfc23fd663e75cf8ae8" name="a1022aff2b46d4cfc23fd663e75cf8ae8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1022aff2b46d4cfc23fd663e75cf8ae8">&#9670;&#160;</a></span>ostream() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::ostream </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;</td>          <td class="paramname"><span class="paramname"><em>t_ostream</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Set the output stream for verbose mode. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">t_ostream</td><td>The output stream for verbose mode. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a203d7c0c0f6ae1d7d18867d6483eda5b" name="a203d7c0c0f6ae1d7d18867d6483eda5b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a203d7c0c0f6ae1d7d18867d6483eda5b">&#9670;&#160;</a></span>output_dimension()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::output_dimension </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Get the output dimension of the function. </p><dl class="section return"><dt>Returns</dt><dd>The output dimension of the function. </dd></dl>
+
+</div>
+</div>
+<a id="a4747b541f31910b9deef78f4d2b7e9ae" name="a4747b541f31910b9deef78f4d2b7e9ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4747b541f31910b9deef78f4d2b7e9ae">&#9670;&#160;</a></span>relaxations()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::relaxations </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Get the number of algorithm relaxations. </p><dl class="section return"><dt>Returns</dt><dd>The number of algorithm relaxations. </dd></dl>
+
+</div>
+</div>
+<a id="a681a3df775b41fa38ccf747606a44ccf" name="a681a3df775b41fa38ccf747606a44ccf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a681a3df775b41fa38ccf747606a44ccf">&#9670;&#160;</a></span>reset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::reset </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Reset solver internal counters and variables. </p>
+
+</div>
+</div>
+<a id="a42c339ba94e1ed8df29b6c5094ac8fc8" name="a42c339ba94e1ed8df29b6c5094ac8fc8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42c339ba94e1ed8df29b6c5094ac8fc8">&#9670;&#160;</a></span>rootfind()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<div class="memtemplate">
+template&lt;<a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> FunInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> FunOutDim, typename DerivedFunction&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::rootfind </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_optimist_1_1_function_base.html">FunctionBase</a>&lt; Real, FunInDim, FunOutDim, DerivedFunction &gt; const &amp;</td>          <td class="paramname"><span class="paramname"><em>function</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>x_ini</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>x_sol</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Solve the root-finding problem given a function class. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">function</td><td><a class="el" href="class_optimist_1_1_function.html" title="Class container for the vector-valued function.">Function</a> class. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">x_ini</td><td>Initialization point. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">x_sol</td><td>Solution point. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">FunInDim</td><td>The function output dimension. </td></tr>
+    <tr><td class="paramname">FunOutDim</td><td>The function output dimension. </td></tr>
+    <tr><td class="paramname">DerivedFunction</td><td>Derived function class. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab2925596817bb8e61da89cf4813d0f71" name="ab2925596817bb8e61da89cf4813d0f71"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2925596817bb8e61da89cf4813d0f71">&#9670;&#160;</a></span>second_derivative_evaluations()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::second_derivative_evaluations </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Get the number of second derivative evaluations. </p><dl class="section return"><dt>Returns</dt><dd>The number of second derivative evaluations. </dd></dl>
+
+</div>
+</div>
+<a id="a8d0e59aabb2e972f16f96d0c12f90588" name="a8d0e59aabb2e972f16f96d0c12f90588"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d0e59aabb2e972f16f96d0c12f90588">&#9670;&#160;</a></span>solve() <span class="overload">[1/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<div class="memtemplate">
+template&lt;<a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> FunInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> FunOutDim, typename DerivedFunction&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::solve </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_optimist_1_1_function_base.html">FunctionBase</a>&lt; Real, FunInDim, FunOutDim, DerivedFunction &gt; const &amp;</td>          <td class="paramname"><span class="paramname"><em>function</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>x_ini</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>x_sol</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>is_optimization</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Solve the root-finding/optimization problem given a function class. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">function</td><td><a class="el" href="class_optimist_1_1_function.html" title="Class container for the vector-valued function.">Function</a> class. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">x_ini</td><td>Initialization point. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">x_sol</td><td>Solution point. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">is_optimization</td><td>Boolean flag for optimization. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">FunInDim</td><td>The function output dimension. </td></tr>
+    <tr><td class="paramname">FunOutDim</td><td>The function output dimension. </td></tr>
+    <tr><td class="paramname">DerivedFunction</td><td>Derived function class. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a56e483f7cbc87f3de1336eda6282f564" name="a56e483f7cbc87f3de1336eda6282f564"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56e483f7cbc87f3de1336eda6282f564">&#9670;&#160;</a></span>solve() <span class="overload">[2/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::solve </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#a8535ce21d576f9074573ac167cba01d7">FunctionWrapper</a></td>          <td class="paramname"><span class="paramname"><em>function</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>x_ini</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>x_sol</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Solve the root-finding/optimization problem given the function, and without derivatives. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">function</td><td><a class="el" href="class_optimist_1_1_function.html" title="Class container for the vector-valued function.">Function</a> wrapper. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">x_ini</td><td>Initialization point. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">x_sol</td><td>Solution point. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ad4f71e70825fd9dbfdfa91f83844a4f0" name="ad4f71e70825fd9dbfdfa91f83844a4f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4f71e70825fd9dbfdfa91f83844a4f0">&#9670;&#160;</a></span>solve() <span class="overload">[3/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::solve </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#a8535ce21d576f9074573ac167cba01d7">FunctionWrapper</a></td>          <td class="paramname"><span class="paramname"><em>function</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#af8d905cbf8e71095d85d68bcc53bf87d">FirstDerivativeWrapper</a></td>          <td class="paramname"><span class="paramname"><em>first_derivative</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>x_ini</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>x_sol</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Solve the root-finding/optimization problem given the function, and its first derivative. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">function</td><td><a class="el" href="class_optimist_1_1_function.html" title="Class container for the vector-valued function.">Function</a> wrapper. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">first_derivative</td><td>First derivative wrapper </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">x_ini</td><td>Initialization point. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">x_sol</td><td>Solution point. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a36798199dd9f8bda6481b221f0f431af" name="a36798199dd9f8bda6481b221f0f431af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36798199dd9f8bda6481b221f0f431af">&#9670;&#160;</a></span>solve() <span class="overload">[4/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::solve </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#a8535ce21d576f9074573ac167cba01d7">FunctionWrapper</a></td>          <td class="paramname"><span class="paramname"><em>function</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#af8d905cbf8e71095d85d68bcc53bf87d">FirstDerivativeWrapper</a></td>          <td class="paramname"><span class="paramname"><em>first_derivative</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#a513777acedcb54231282e5465e61af20">SecondDerivativeWrapper</a></td>          <td class="paramname"><span class="paramname"><em>second_derivative</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>x_ini</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>x_sol</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Solve the root-finding/optimization problem given the function, and its first and second derivatives. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">function</td><td><a class="el" href="class_optimist_1_1_function.html" title="Class container for the vector-valued function.">Function</a> wrapper. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">first_derivative</td><td>First derivative wrapper. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">second_derivative</td><td>The second derivative wrapper. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">x_ini</td><td>Initialization point. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">x_sol</td><td>Solution point. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab73b6f4591e5334b069910e7c98bd9ba" name="ab73b6f4591e5334b069910e7c98bd9ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab73b6f4591e5334b069910e7c98bd9ba">&#9670;&#160;</a></span>store_trace()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::store_trace </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>x</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Update the history of the solver with the current point and function value. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td>The point \( \mathbf{x} \). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a40c2e74d5024a14a6eb03d5fb391568c" name="a40c2e74d5024a14a6eb03d5fb391568c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40c2e74d5024a14a6eb03d5fb391568c">&#9670;&#160;</a></span>task() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::task </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Get the task name. </p><dl class="section return"><dt>Returns</dt><dd>The task name. </dd></dl>
+
+</div>
+</div>
+<a id="af6719461b1519fd150ca7859e3cfe20b" name="af6719461b1519fd150ca7859e3cfe20b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6719461b1519fd150ca7859e3cfe20b">&#9670;&#160;</a></span>task() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::task </td>
+          <td>(</td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>t_task</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Set the task name. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">t_task</td><td>The task name. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a62b2a7120446a27f1ec7f78042c62ec4" name="a62b2a7120446a27f1ec7f78042c62ec4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62b2a7120446a27f1ec7f78042c62ec4">&#9670;&#160;</a></span>tolerance() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Real <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::tolerance </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Get the tolerance \( \epsilon \). </p><dl class="section return"><dt>Returns</dt><dd>The tolerance \( \epsilon \). </dd></dl>
+
+</div>
+</div>
+<a id="ae8eac0e3cf1b37ef8d7cf86be969624b" name="ae8eac0e3cf1b37ef8d7cf86be969624b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8eac0e3cf1b37ef8d7cf86be969624b">&#9670;&#160;</a></span>tolerance() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::tolerance </td>
+          <td>(</td>
+          <td class="paramtype">Real</td>          <td class="paramname"><span class="paramname"><em>t_tolerance</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Set the tolerance \( \epsilon \) for which the nonlinear solver stops, i.e.,  \( \left\|
+\mathbf{F}(\mathbf{x}) \right\|_{2} &lt; \epsilon \). </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">t_tolerance</td><td>The tolerance \( \epsilon \). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a21b5c8604fa1e34cb34683d092ad8a3c" name="a21b5c8604fa1e34cb34683d092ad8a3c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21b5c8604fa1e34cb34683d092ad8a3c">&#9670;&#160;</a></span>trace()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="#a079fe1a1e9ae915d654d4dd0b15c64bc">TraceType</a> &amp; <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::trace </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Get the trace of input values during the algorithm iterations. </p><dl class="section return"><dt>Returns</dt><dd>The trace of input values. </dd></dl>
+
+</div>
+</div>
+<a id="a1b4cb03eb9a78201d72a5fabce8ee516" name="a1b4cb03eb9a78201d72a5fabce8ee516"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b4cb03eb9a78201d72a5fabce8ee516">&#9670;&#160;</a></span>upper_bound() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp; <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::upper_bound </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Get the upper bound. </p><dl class="section return"><dt>Returns</dt><dd>The upper bound. </dd></dl>
+
+</div>
+</div>
+<a id="a42f895346658f8198e12751389d2d2c4" name="a42f895346658f8198e12751389d2d2c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42f895346658f8198e12751389d2d2c4">&#9670;&#160;</a></span>upper_bound() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::upper_bound </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>t_upper_bound</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Set the upper bound. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">t_upper_bound</td><td>The upper bound. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aa4e6b5935022a192b4f8acecc1df448d" name="aa4e6b5935022a192b4f8acecc1df448d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4e6b5935022a192b4f8acecc1df448d">&#9670;&#160;</a></span>verbose_mode() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::verbose_mode </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Get the verbose mode boolean flag. </p><dl class="section return"><dt>Returns</dt><dd>The verbose mode boolean flag. </dd></dl>
+
+</div>
+</div>
+<a id="a518d1e52faa4358df42693d879bd89a0" name="a518d1e52faa4358df42693d879bd89a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a518d1e52faa4358df42693d879bd89a0">&#9670;&#160;</a></span>verbose_mode() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::verbose_mode </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>t_verbose</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Set the verbose mode boolean flag. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">t_verbose</td><td>The verbose mode boolean flag. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a8b4671e8ecb125c03e7d28744c7d5435" name="a8b4671e8ecb125c03e7d28744c7d5435"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b4671e8ecb125c03e7d28744c7d5435">&#9670;&#160;</a></span>m_alpha</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Real <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::m_alpha {0.8}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Relaxation factor \( \alpha \). </p>
+
+</div>
+</div>
+<a id="a87ea48e1a85f2cd5ed0375d60bfa5520" name="a87ea48e1a85f2cd5ed0375d60bfa5520"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87ea48e1a85f2cd5ed0375d60bfa5520">&#9670;&#160;</a></span>m_converged</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::m_converged {false}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Convergence boolean flag. </p>
+
+</div>
+</div>
+<a id="a0956792712f740132002d0ee7c9f99a0" name="a0956792712f740132002d0ee7c9f99a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0956792712f740132002d0ee7c9f99a0">&#9670;&#160;</a></span>m_damped</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::m_damped {true}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Damped mode boolean flag. </p>
+
+</div>
+</div>
+<a id="ad12453a7fb2598ac67cd723cda26cee2" name="ad12453a7fb2598ac67cd723cda26cee2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad12453a7fb2598ac67cd723cda26cee2">&#9670;&#160;</a></span>m_first_derivative_evaluations</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::m_first_derivative_evaluations {0}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>First derivative evaluations. </p>
+
+</div>
+</div>
+<a id="ac8208cc623d314aff4e162957f90d64c" name="ac8208cc623d314aff4e162957f90d64c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8208cc623d314aff4e162957f90d64c">&#9670;&#160;</a></span>m_function_evaluations</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::m_function_evaluations {0}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="class_optimist_1_1_function.html" title="Class container for the vector-valued function.">Function</a> evaluations. </p>
+
+</div>
+</div>
+<a id="a2300f3c2925615958655507b9392c93f" name="a2300f3c2925615958655507b9392c93f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2300f3c2925615958655507b9392c93f">&#9670;&#160;</a></span>m_iterations</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::m_iterations {0}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Algorithm iterations. </p>
+
+</div>
+</div>
+<a id="afc2db3922e1bdc16ad4621e7cc8d95b0" name="afc2db3922e1bdc16ad4621e7cc8d95b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc2db3922e1bdc16ad4621e7cc8d95b0">&#9670;&#160;</a></span>m_lower_bound</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::m_lower_bound</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Lower bound. </p>
+
+</div>
+</div>
+<a id="a7c5e2a3bce9f6aa8bcb7b5cebd1c314e" name="a7c5e2a3bce9f6aa8bcb7b5cebd1c314e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c5e2a3bce9f6aa8bcb7b5cebd1c314e">&#9670;&#160;</a></span>m_max_first_derivative_evaluations</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::m_max_first_derivative_evaluations {1000}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Maximum allowed first derivative evaluations. </p>
+
+</div>
+</div>
+<a id="ae96096f6152bd2e2f63c36260948c094" name="ae96096f6152bd2e2f63c36260948c094"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae96096f6152bd2e2f63c36260948c094">&#9670;&#160;</a></span>m_max_function_evaluations</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::m_max_function_evaluations {1000}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Maximum allowed function evaluations. </p>
+
+</div>
+</div>
+<a id="a3ff1aefd149ea4f9ff8271e7f09959c9" name="a3ff1aefd149ea4f9ff8271e7f09959c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ff1aefd149ea4f9ff8271e7f09959c9">&#9670;&#160;</a></span>m_max_iterations</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::m_max_iterations {100}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Maximum allowed algorithm iterations. </p>
+
+</div>
+</div>
+<a id="addae0a1529c738fa7d1be87b843fa4c1" name="addae0a1529c738fa7d1be87b843fa4c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#addae0a1529c738fa7d1be87b843fa4c1">&#9670;&#160;</a></span>m_max_relaxations</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::m_max_relaxations {10}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Maximum allowed algorithm relaxations. </p>
+
+</div>
+</div>
+<a id="a85a3ecf8daf27e694c585688bc38be09" name="a85a3ecf8daf27e694c585688bc38be09"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85a3ecf8daf27e694c585688bc38be09">&#9670;&#160;</a></span>m_max_second_derivative_evaluations</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::m_max_second_derivative_evaluations {1000}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Maximum allowed second derivative evaluations. </p>
+
+</div>
+</div>
+<a id="ac5be7dc0932ec8b6fb4140cc0e68b892" name="ac5be7dc0932ec8b6fb4140cc0e68b892"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5be7dc0932ec8b6fb4140cc0e68b892">&#9670;&#160;</a></span>m_ostream</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::ostream* <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::m_ostream {&amp;std::cout}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Output stream for verbose mode. </p>
+
+</div>
+</div>
+<a id="ad14c76b9b9b11cb45233edf6bc30a4d2" name="ad14c76b9b9b11cb45233edf6bc30a4d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad14c76b9b9b11cb45233edf6bc30a4d2">&#9670;&#160;</a></span>m_relaxations</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::m_relaxations {0}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Algorithm relaxations. </p>
+
+</div>
+</div>
+<a id="adb391443813bb9a9bf4b2f19ec91183a" name="adb391443813bb9a9bf4b2f19ec91183a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb391443813bb9a9bf4b2f19ec91183a">&#9670;&#160;</a></span>m_second_derivative_evaluations</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::m_second_derivative_evaluations {0}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Second derivative evaluations. </p>
+
+</div>
+</div>
+<a id="ad5442b4db91142201d2403ad1a400deb" name="ad5442b4db91142201d2403ad1a400deb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5442b4db91142201d2403ad1a400deb">&#9670;&#160;</a></span>m_task</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::m_task {&quot;Undefined&quot;}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Task name. </p>
+
+</div>
+</div>
+<a id="ad33c2628412175ee2e49aa93482b861c" name="ad33c2628412175ee2e49aa93482b861c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad33c2628412175ee2e49aa93482b861c">&#9670;&#160;</a></span>m_tolerance</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Real <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::m_tolerance {EPSILON_LOW}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Solver tolerance \( \epsilon \) for convergence. </p>
+
+</div>
+</div>
+<a id="a9fcda2b84bb81fc777e4e27933d0773f" name="a9fcda2b84bb81fc777e4e27933d0773f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9fcda2b84bb81fc777e4e27933d0773f">&#9670;&#160;</a></span>m_trace</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a079fe1a1e9ae915d654d4dd0b15c64bc">TraceType</a> <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::m_trace</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Trace for points \( \mathbf{x} \) values. </p>
+
+</div>
+</div>
+<a id="a8df353db86641501e5783e4ca1ba82eb" name="a8df353db86641501e5783e4ca1ba82eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8df353db86641501e5783e4ca1ba82eb">&#9670;&#160;</a></span>m_upper_bound</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a66e3d2887ff78ffd52ed23a54fa554ac">InputType</a> <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::m_upper_bound</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Upper bound. </p>
+
+</div>
+</div>
+<a id="a813d935bdf1d7a2a1347296ad03872a3" name="a813d935bdf1d7a2a1347296ad03872a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a813d935bdf1d7a2a1347296ad03872a3">&#9670;&#160;</a></span>m_verbose</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolInDim, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> SolOutDim, typename DerivedSolver, bool ForceEigen = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase</a>&lt; Real, SolInDim, SolOutDim, DerivedSolver, ForceEigen &gt;::m_verbose {false}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Verbose mode boolean flag. </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>include/Optimist/<a class="el" href="_solver_base_8hh_source.html">SolverBase.hh</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="namespace_optimist.html">Optimist</a></li><li class="navelem"><a href="class_optimist_1_1_solver_base.html">SolverBase</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
+  </ul>
+</div>
+</body>
+</html>

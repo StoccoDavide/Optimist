@@ -10,9 +10,9 @@
 
 #pragma once
 
-#include "Optimist/TestSet/CostFunction/EllipticParaboloid.hh"
-#include "Optimist/TestSet/CostFunction/Schaffer2.hh"
-#include "Optimist/TestSet/VectorFunction/Brown.hh"
+#include "Optimist/TestSet/EllipticParaboloid.hh"
+#include "Optimist/TestSet/Schaffer2.hh"
+#include "Optimist/TestSet/Brown.hh"
 
 #ifndef TEST_COST_FUNCTIONS
 #define TEST_COST_FUNCTIONS                      \

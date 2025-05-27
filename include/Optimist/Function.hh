@@ -18,10 +18,19 @@
 namespace Optimist
 {
 
+  /*\
+   |   _____                 _   _             ____
+   |  |  ___|   _ _ __   ___| |_(_) ___  _ __ | __ )  __ _ ___  ___
+   |  | |_ | | | | '_ \ / __| __| |/ _ \| '_ \|  _ \ / _` / __|/ _ \
+   |  |  _|| |_| | | | | (__| |_| | (_) | | | | |_) | (_| \__ \  __/
+   |  |_|   \__,_|_| |_|\___|\__|_|\___/|_| |_|____/ \__,_|___/\___|
+   |
+  \*/
+
   /**
   * \brief Class container for the generic function.
   *
-  * \includedoc docs/markdown/Function.md
+  * \includedoc docs/markdown/FunctionBase.md
   *
   * \tparam Real Scalar number type.
   * \tparam FunInDim The function problem input dimension.
@@ -29,7 +38,7 @@ namespace Optimist
   * \tparam DerivedFunction Derived function class.
   */
   template <typename Real, Integer FunInDim, Integer FunOutDim, typename DerivedFunction>
-  class Function
+  class FunctionBase
   {
   public:
     // Fancy static assertios (just for fun, don't take it too seriously)
@@ -56,7 +65,7 @@ namespace Optimist
     /**
     * Class constructor for the function.
     */
-    Function() {}
+    FunctionBase() {}
 
     /**
     * Get the function name.
@@ -146,11 +155,213 @@ namespace Optimist
         } else if constexpr (FunInDim > 1) {
           if((x - s).norm() < tol) {return true;}
         } else {
-          OPTIMIST_ERROR("Optimist::Function::is_solution(...): invalid input dimension.");
+          OPTIMIST_ERROR("Optimist::FunctionBase::is_solution(...): invalid input dimension.");
           return false;
         }
       }
       return false;
+    }
+
+  }; // class FunctionBase
+
+  /*\
+   |   _____                 _   _
+   |  |  ___|   _ _ __   ___| |_(_) ___  _ __
+   |  | |_ | | | | '_ \ / __| __| |/ _ \| '_ \
+   |  |  _|| |_| | | | | (__| |_| | (_) | | | |
+   |  |_|   \__,_|_| |_|\___|\__|_|\___/|_| |_|
+   |
+  \*/
+
+  /**
+  * \brief Class container for the vector-valued function.
+  *
+  * \tparam N The input dimension of the vector-valued function.
+  * \tparam M The output dimension of the vector-valued function.
+  * \tparam DerivedFunction Derived vector-valued function class.
+  */
+  template <typename Real, Integer N, Integer M, typename DerivedFunction>
+  class Function : public FunctionBase<Real, N, M, DerivedFunction>
+  {
+  public:
+    friend class FunctionBase<Real, N, M, Function<Real, N, M, DerivedFunction>>;
+
+    // Fancy static assertions (just for fun, don't take it too seriously)
+    static_assert(N != static_cast<Integer>(0) && M != static_cast<Integer>(0),
+      "Are you sure you want to a zero-dimensional system of equations?");
+
+    // I/O types
+    using InputVector = typename FunctionBase<Real, N, M, DerivedFunction>::InputType; /**< Input vector type. */
+    using OutputVector = typename FunctionBase<Real, N, M, DerivedFunction>::OutputType; /**< Output vector type. */
+
+    // Derivative types
+    using Matrix = typename FunctionBase<Real, N, M, DerivedFunction>::FirstDerivativeType;  /**< Jacobian matrix type. */
+    using Tensor = typename FunctionBase<Real, N, M, DerivedFunction>::SecondDerivativeType; /**< Hessian tensor type. */
+
+    /**
+    * Class constructor for the vector-valued function.
+    */
+    Function() {}
+
+    /**
+    * Get the function name.
+    * \return The function name.
+    */
+    std::string name() const {return static_cast<const DerivedFunction *>(this)->name_impl();}
+
+    /**
+    * Compute the function value at the input point.
+    * \param[in] x Input point.
+    * \param[out] out The function value.
+    */
+    void evaluate(const InputVector & x, OutputVector & out) const
+    {
+      static_cast<const DerivedFunction *>(this)->evaluate_impl(x, out);
+    }
+
+    /**
+    * Compute the function first derivative at the input point.
+    * \param[in] x Input point.
+    * \param[out] out The function first derivative.
+    */
+    void jacobian(const InputVector & x, Matrix & out) const
+    {
+      static_cast<const DerivedFunction *>(this)->first_derivative_impl(x, out);
+    }
+
+    /**
+    * Compute the function second derivative at the input point.
+    * \param[in] x Input point.
+    * \param[out] out The function second derivative.
+    */
+    void hessian(const InputVector & x, Tensor & out) const
+    {
+      static_cast<const DerivedFunction *>(this)->second_derivative_impl(x, out);
+    }
+
+  }; // class Function
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+  /**
+  * \brief Class container for the cost function.
+  *
+  * \tparam N The dimension of the cost function input.
+  * \tparam DerivedFunction Derived cost function class.
+  */
+  template <typename Real, Integer N, typename DerivedFunction>
+  class Function<Real, N, 1, DerivedFunction> : public FunctionBase<Real, N, 1, DerivedFunction>
+  {
+  public:
+    friend class FunctionBase<Real, N, 1, Function<Real, N, 1, DerivedFunction>>;
+
+    // Fancy static assertions (just for fun, don't take it too seriously)
+    static_assert(N != static_cast<Integer>(0),
+      "Are you sure you want to a zero-dimensional system of equations?");
+
+    // I/O types
+    using Vector = typename FunctionBase<Real, N, 1, DerivedFunction>::InputType; /**< Vector type. */
+
+    // Derivative types
+    using RowVector = typename FunctionBase<Real, N, 1, DerivedFunction>::FirstDerivativeType;  /**< Gradient (row) vector type. */
+    using Matrix    = typename FunctionBase<Real, N, 1, DerivedFunction>::SecondDerivativeType; /**< Hessian matrix type. */
+
+    /**
+    * Class constructor for the function.
+    */
+    Function<Real, N, 1, DerivedFunction>() {}
+
+    /**
+    * Get the function name.
+    * \return The function name.
+    */
+    std::string name() const {return static_cast<const DerivedFunction *>(this)->name_impl();}
+
+    /**
+    * Compute the function value at the input point.
+    * \param[in] x Input point.
+    * \param[out] out The function value.
+    */
+    void evaluate(const Vector & x, Vector & out) const
+    {
+      static_cast<const DerivedFunction *>(this)->evaluate_impl(x, out);
+    }
+
+    /**
+    * Compute the function first derivative at the input point.
+    * \param[in] x Input point.
+    * \param[out] out The function first derivative.
+    */
+    void gradient(const Vector & x, RowVector & out) const
+    {
+      static_cast<const DerivedFunction *>(this)->first_derivative_impl(x, out);
+    }
+
+    /**
+    * Compute the function second derivative at the input point.
+    * \param[in] x Input point.
+    * \param[out] out The function second derivative.
+    */
+    void hessian(const Vector & x, Matrix & out) const
+    {
+      static_cast<const DerivedFunction *>(this)->second_derivative_impl(x, out);
+    }
+
+  }; // class Function
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+  /**
+  * \brief Class container for the scalar function.
+  *
+  * \tparam Real Scalar number type.
+  * \tparam DerivedFunction Derived scalar function class.
+  */
+  template <typename Real, typename DerivedFunction>
+  class Function<Real, 1, 1, DerivedFunction> : public FunctionBase<Real, 1, 1, DerivedFunction>
+  {
+  public:
+    friend class FunctionBase<Real, 1, 1, Function<Real, 1, 1, DerivedFunction>>;
+
+    /**
+    * Class constructor for the function.
+    */
+    Function<Real, 1, 1, DerivedFunction>() {}
+
+    /**
+    * Get the function name.
+    * \return The function name.
+    */
+    std::string name() const {return static_cast<const DerivedFunction *>(this)->name_impl();}
+
+    /**
+    * Compute the function value at the input point.
+    * \param[in] x Input point.
+    * \param[out] out The function value.
+    */
+    void evaluate(Real x, Real & out) const
+    {
+      static_cast<const DerivedFunction *>(this)->evaluate_impl(x, out);
+    }
+
+    /**
+    * Compute the function first derivative at the input point.
+    * \param[in] x Input point.
+    * \param[out] out The function first derivative.
+    */
+    void first_derivative(Real x, Real & out) const
+    {
+      static_cast<const DerivedFunction *>(this)->first_derivative_impl(x, out);
+    }
+
+    /**
+    * Compute the function second derivative at the input point.
+    * \param[in] x Input point.
+    * \param[out] out The function second derivative.
+    */
+    void second_derivative(Real x, Real & out) const
+    {
+      static_cast<const DerivedFunction *>(this)->second_derivative_impl(x, out);
     }
 
   }; // class Function

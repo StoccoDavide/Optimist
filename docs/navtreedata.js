@@ -25,12 +25,12 @@
 var NAVTREE =
 [
   [ "Optimist", "index.html", [
-    [ "Installation", "index.html#autotoc_md17", [
-      [ "Quick and dirty", "index.html#autotoc_md18", null ],
-      [ "CMake", "index.html#autotoc_md19", null ]
+    [ "Installation", "index.html#autotoc_md14", [
+      [ "Quick and dirty", "index.html#autotoc_md15", null ],
+      [ "CMake", "index.html#autotoc_md16", null ]
     ] ],
-    [ "Authors", "index.html#autotoc_md20", null ],
-    [ "License", "index.html#autotoc_md21", null ],
+    [ "Authors", "index.html#autotoc_md17", null ],
+    [ "License", "index.html#autotoc_md18", null ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
@@ -65,11 +65,11 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_algo748_8hh.html",
-"class_optimist_1_1_optimizer_1_1_optimizer.html",
-"class_optimist_1_1_root_finder_1_1_broyden.html#ae66ee07e1e9a9d1e4cf08b62b020d85b",
-"class_optimist_1_1_root_finder_1_1_root_finder.html#af647acbde833d527109bdf65aceae3e9",
-"class_optimist_1_1_solver.html#aead4714c1e5511096975c08bcf503f3a",
-"functions_func_d.html"
+"class_optimist_1_1_function_base.html#aea224549de817790cf275a6e84496e78",
+"class_optimist_1_1_root_finder_1_1_bracketing.html#ac0b752739001f1ea51e64d348bbaa1a6",
+"class_optimist_1_1_root_finder_1_1_root_finder.html#a611fae64379ec85ba9266d0c01540bec",
+"class_optimist_1_1_solver_base.html#aa4e6b5935022a192b4f8acecc1df448d",
+"functions_f.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

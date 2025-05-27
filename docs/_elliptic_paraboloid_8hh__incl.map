@@ -1,11 +1,11 @@
-<map id="include/Optimist/TestSet/CostFunction/EllipticParaboloid.hh" name="include/Optimist/TestSet/CostFunction/EllipticParaboloid.hh">
-<area shape="rect" id="Node000001" title=" " alt="" coords="328,5,554,46"/>
-<area shape="rect" id="Node000002" href="$_test_set_8hh.html" title=" " alt="" coords="291,168,428,193"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="429,48,398,95,372,154,367,152,393,93,424,45"/>
-<area shape="rect" id="Node000015" href="$_cost_function_8hh.html" title=" " alt="" coords="408,94,632,120"/>
-<area shape="poly" id="edge14_Node000001_Node000015" title=" " alt="" coords="462,45,499,81,495,85,459,48"/>
+<map id="include/Optimist/TestSet/EllipticParaboloid.hh" name="include/Optimist/TestSet/EllipticParaboloid.hh">
+<area shape="rect" id="Node000001" title=" " alt="" coords="359,5,523,46"/>
+<area shape="rect" id="Node000002" href="$_test_set_8hh.html" title=" " alt="" coords="372,94,510,120"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="444,46,444,78,438,78,438,46"/>
 <area shape="rect" id="Node000003" href="$_optimist_8hh.html" title=" " alt="" coords="397,241,485,267"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="375,192,418,229,414,233,372,196"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="436,121,425,143,416,168,414,183,417,199,428,227,423,229,412,200,409,184,410,167,420,140,431,119"/>
+<area shape="rect" id="Node000015" href="$_function_8hh.html" title=" " alt="" coords="424,168,567,193"/>
+<area shape="poly" id="edge14_Node000002_Node000015" title=" " alt="" coords="452,118,479,154,475,157,448,122"/>
 <area shape="rect" id="Node000004" title=" " alt="" coords="5,315,77,341"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="397,265,265,286,93,317,92,312,264,280,396,259"/>
 <area shape="rect" id="Node000005" title=" " alt="" coords="100,315,139,341"/>
@@ -28,7 +28,5 @@
 <area shape="poly" id="edge12_Node000003_Node000013" title=" " alt="" coords="486,261,733,312,732,317,485,267"/>
 <area shape="rect" id="Node000014" title=" " alt="" coords="846,315,942,341"/>
 <area shape="poly" id="edge13_Node000003_Node000014" title=" " alt="" coords="486,259,831,312,831,317,485,264"/>
-<area shape="rect" id="Node000016" href="$_function_8hh.html" title=" " alt="" coords="452,168,595,193"/>
-<area shape="poly" id="edge15_Node000015_Node000016" title=" " alt="" coords="523,120,525,152,519,152,518,120"/>
-<area shape="poly" id="edge16_Node000016_Node000003" title=" " alt="" coords="511,196,468,233,465,229,508,192"/>
+<area shape="poly" id="edge15_Node000015_Node000003" title=" " alt="" coords="489,195,461,231,457,227,485,192"/>
 </map>

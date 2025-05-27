@@ -14,6 +14,7 @@
 #define INCLUDE_OPTIMIST_TESTSET_HH
 
 #include "Optimist.hh"
+#include "Optimist/Function.hh"
 
 namespace Optimist
 {

@@ -1,6 +1,14 @@
 var dir_92559c1e7f5e87d41bb656ee0b0671a6 =
 [
-    [ "CostFunction", "dir_ddb51c60d58d2d3bef2a9f93d544f49f.html", "dir_ddb51c60d58d2d3bef2a9f93d544f49f" ],
-    [ "ScalarFunction", "dir_8eac78241bedf79ad9cbece2282f781b.html", "dir_8eac78241bedf79ad9cbece2282f781b" ],
-    [ "VectorFunction", "dir_7bf84da16c12f0054d3538e7f4f38e87.html", "dir_7bf84da16c12f0054d3538e7f4f38e87" ]
+    [ "Booth.hh", "_booth_8hh.html", "_booth_8hh" ],
+    [ "Brown.hh", "_brown_8hh.html", "_brown_8hh" ],
+    [ "Cos.hh", "_cos_8hh.html", "_cos_8hh" ],
+    [ "Cosh.hh", "_cosh_8hh.html", "_cosh_8hh" ],
+    [ "EllipticParaboloid.hh", "_elliptic_paraboloid_8hh.html", "_elliptic_paraboloid_8hh" ],
+    [ "Linear.hh", "_linear_8hh.html", "_linear_8hh" ],
+    [ "Quadratic.hh", "_quadratic_8hh.html", "_quadratic_8hh" ],
+    [ "Rosenbrock.hh", "_rosenbrock_8hh.html", "_rosenbrock_8hh" ],
+    [ "Schaffer2.hh", "_schaffer2_8hh.html", "_schaffer2_8hh" ],
+    [ "Sin.hh", "_sin_8hh.html", "_sin_8hh" ],
+    [ "Sinh.hh", "_sinh_8hh.html", "_sinh_8hh" ]
 ];

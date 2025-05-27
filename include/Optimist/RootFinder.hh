@@ -10,10 +10,10 @@
 
 #pragma once
 
-#ifndef OPTIMIST_ROOT_FINDER_HH
-#define OPTIMIST_ROOT_FINDER_HH
+#ifndef OPTIMIST_ROOTFINDER_HH
+#define OPTIMIST_ROOTFINDER_HH
 
-#include "Optimist/Solver.hh"
+#include "Optimist/SolverBase.hh"
 
 namespace Optimist
 {
@@ -41,18 +41,17 @@ namespace Optimist
     * \tparam Real Scalar number type.
     * \tparam N The dimension of the root-finding problem.
     * \tparam DerivedSolver Derived solver class.
+    * \tparam ForceEigen Force the use of Eigen types for input and output.
     */
-    template <typename Real, Integer N, typename DerivedSolver>
-    class RootFinder : public Solver<Real, N, N, DerivedSolver>
+    template <typename Real, Integer N, typename DerivedSolver, bool ForceEigen = false>
+    class RootFinder : public SolverBase<Real, N, N, DerivedSolver, ForceEigen>
     {
     public:
       // Fancy static assertions (just for fun, don't take it too seriously)
       static_assert(N != static_cast<Integer>(0),
         "Are you sure you want to solve a zero-dimensional system of equations?");
-      static_assert(N != static_cast<Integer>(1),
-        "C'mon, let's not kid ourselves. Use a scalar solver...");
 
-      friend class Solver<Real, N, N, RootFinder<Real, N, DerivedSolver>>;
+      friend class SolverBase<Real, N, N, RootFinder<Real, N, DerivedSolver, ForceEigen>>;
 
       static constexpr bool is_rootfinder{true};
       static constexpr bool is_optimizer{false};
@@ -63,19 +62,19 @@ namespace Optimist
 
       OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
 
-      using Solver<Real, N, N, DerivedSolver>::solve;
+      using SolverBase<Real, N, N, DerivedSolver, ForceEigen>::solve;
 
       // I/O types
-      using Vector = typename Solver<Real, N, N, DerivedSolver>::InputType; /**< Vector type. */
+      using Vector = typename SolverBase<Real, N, N, DerivedSolver, ForceEigen>::InputType; /**< Vector type. */
 
       // Derivative types
-      using Matrix = typename Solver<Real, N, N, DerivedSolver>::FirstDerivativeType;  /**< Jacobian matrix type. */
-      using Tensor = typename Solver<Real, N, N, DerivedSolver>::SecondDerivativeType; /**< Hessian tensor type. */
+      using Matrix = typename SolverBase<Real, N, N, DerivedSolver, ForceEigen>::FirstDerivativeType;  /**< Jacobian matrix type. */
+      using Tensor = typename SolverBase<Real, N, N, DerivedSolver, ForceEigen>::SecondDerivativeType; /**< Hessian tensor type. */
 
       // Function types
-      using FunctionWrapper = typename Solver<Real, N, N, DerivedSolver>::FunctionWrapper;
-      using JacobianWrapper = typename Solver<Real, N, N, DerivedSolver>::FirstDerivativeWrapper;
-      using HessianWrapper  = typename Solver<Real, N, N, DerivedSolver>::SecondDerivativeWrapper;
+      using FunctionWrapper = typename SolverBase<Real, N, N, DerivedSolver, ForceEigen>::FunctionWrapper;
+      using JacobianWrapper = typename SolverBase<Real, N, N, DerivedSolver, ForceEigen>::FirstDerivativeWrapper;
+      using HessianWrapper  = typename SolverBase<Real, N, N, DerivedSolver, ForceEigen>::SecondDerivativeWrapper;
 
       /**
       * Class constructor for the multi-dimensional root finder.
@@ -220,6 +219,8 @@ namespace Optimist
 
     }; // class RootFinder
 
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     /**
     * \brief Class container for the scalar scalar root-finder.
     *
@@ -229,10 +230,10 @@ namespace Optimist
     * \tparam DerivedSolver Derived solver class.
     */
     template <typename Real, typename DerivedSolver>
-    class RootFinder<Real, 1, DerivedSolver> : public Solver<Real, 1, 1, DerivedSolver>
+    class RootFinder<Real, 1, DerivedSolver> : public SolverBase<Real, 1, 1, DerivedSolver>
     {
     public:
-      friend class Solver<Real, 1, 1, RootFinder<Real, 1, DerivedSolver>>;
+      friend class SolverBase<Real, 1, 1, RootFinder<Real, 1, DerivedSolver>>;
 
       static constexpr bool is_rootfinder{true};
       static constexpr bool is_optimizer{false};
@@ -243,9 +244,9 @@ namespace Optimist
 
       OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
 
-      using FunctionWrapper         = typename Solver<Real, 1, 1, DerivedSolver>::FunctionWrapper;
-      using FirstDerivativeWrapper  = typename Solver<Real, 1, 1, DerivedSolver>::FirstDerivativeWrapper;
-      using SecondDerivativeWrapper = typename Solver<Real, 1, 1, DerivedSolver>::SecondDerivativeWrapper;
+      using FunctionWrapper         = typename SolverBase<Real, 1, 1, DerivedSolver>::FunctionWrapper;
+      using FirstDerivativeWrapper  = typename SolverBase<Real, 1, 1, DerivedSolver>::FirstDerivativeWrapper;
+      using SecondDerivativeWrapper = typename SolverBase<Real, 1, 1, DerivedSolver>::SecondDerivativeWrapper;
 
       /**
       * Class constructor for the scalar root-finder.
@@ -306,4 +307,4 @@ namespace Optimist
 
 } // namespace Optimist
 
-#endif // OPTIMIST_ROOT_FINDER_HH
+#endif // OPTIMIST_ROOTFINDER_HH
