@@ -3,8 +3,6 @@ var namespace_optimist =
     [ "FiniteDifference", "namespace_optimist_1_1_finite_difference.html", "namespace_optimist_1_1_finite_difference" ],
     [ "Optimizer", "namespace_optimist_1_1_optimizer.html", "namespace_optimist_1_1_optimizer" ],
     [ "RootFinder", "namespace_optimist_1_1_root_finder.html", "namespace_optimist_1_1_root_finder" ],
-    [ "ScalarOptimizer", "namespace_optimist_1_1_scalar_optimizer.html", "namespace_optimist_1_1_scalar_optimizer" ],
-    [ "ScalarRootFinder", "namespace_optimist_1_1_scalar_root_finder.html", "namespace_optimist_1_1_scalar_root_finder" ],
     [ "TestSet", "namespace_optimist_1_1_test_set.html", "namespace_optimist_1_1_test_set" ],
     [ "CostFunction", "class_optimist_1_1_cost_function.html", "class_optimist_1_1_cost_function" ],
     [ "Function", "class_optimist_1_1_function.html", "class_optimist_1_1_function" ],

@@ -19,10 +19,10 @@ var class_optimist_1_1_root_finder_1_1_root_finder =
     [ "solve", "class_optimist_1_1_root_finder_1_1_root_finder.html#af059893aa7938d155e10e564cec19fb6", null ],
     [ "solve", "class_optimist_1_1_root_finder_1_1_root_finder.html#accdfb448247c92ba63c8856108c121bc", null ],
     [ "solve", "class_optimist_1_1_root_finder_1_1_root_finder.html#acb2185d09271a9065806ccb7d6817a31", null ],
+    [ "Solver< Real, N, N, RootFinder< Real, N, DerivedSolver > >", "class_optimist_1_1_root_finder_1_1_root_finder.html#a6b2824efdfb799b2fc92dc0c0803ff07", null ],
     [ "is_optimizer", "class_optimist_1_1_root_finder_1_1_root_finder.html#a04d48d812273f5be8c265164f393a258", null ],
     [ "is_rootfinder", "class_optimist_1_1_root_finder_1_1_root_finder.html#a8002a494084d3c7052b072c771257b52", null ],
     [ "requires_first_derivative", "class_optimist_1_1_root_finder_1_1_root_finder.html#a98d3cf2d11ce404984c7ae068a3aee98", null ],
     [ "requires_function", "class_optimist_1_1_root_finder_1_1_root_finder.html#a0b0e3daf5ea0b325957b1fbdb9524e2b", null ],
-    [ "requires_second_derivative", "class_optimist_1_1_root_finder_1_1_root_finder.html#a95528f6ef2ed06cc140af6daaaa92838", null ],
-    [ "Solver< Real, N, N, RootFinder< Real, N, DerivedSolver > >", "class_optimist_1_1_root_finder_1_1_root_finder.html#a0a49720fdb4453bd6aec363d72224c90", null ]
+    [ "requires_second_derivative", "class_optimist_1_1_root_finder_1_1_root_finder.html#a95528f6ef2ed06cc140af6daaaa92838", null ]
 ];

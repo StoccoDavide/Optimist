@@ -13,7 +13,7 @@
 #ifndef OPTIMIST_ROOT_FINDER_HH
 #define OPTIMIST_ROOT_FINDER_HH
 
-#include "Solver.hh"
+#include "Optimist/Solver.hh"
 
 namespace Optimist
 {
@@ -52,7 +52,7 @@ namespace Optimist
       static_assert(N != static_cast<Integer>(1),
         "C'mon, let's not kid ourselves. Use a scalar solver...");
 
-      friend Solver<Real, N, N, RootFinder<Real, N, DerivedSolver>>;
+      friend class Solver<Real, N, N, RootFinder<Real, N, DerivedSolver>>;
 
       static constexpr bool is_rootfinder{true};
       static constexpr bool is_optimizer{false};
@@ -216,6 +216,88 @@ namespace Optimist
         return static_cast<DerivedSolver *>(this)->solve_impl(function, jacobian, hessian, x_ini, x_sol);
 
         #undef CMD
+      }
+
+    }; // class RootFinder
+
+    /**
+    * \brief Class container for the scalar scalar root-finder.
+    *
+    * \includedoc docs/markdown/RootFinder.md
+    *
+    * \tparam Real Scalar number type.
+    * \tparam DerivedSolver Derived solver class.
+    */
+    template <typename Real, typename DerivedSolver>
+    class RootFinder<Real, 1, DerivedSolver> : public Solver<Real, 1, 1, DerivedSolver>
+    {
+    public:
+      friend class Solver<Real, 1, 1, RootFinder<Real, 1, DerivedSolver>>;
+
+      static constexpr bool is_rootfinder{true};
+      static constexpr bool is_optimizer{false};
+
+      static constexpr bool requires_function{DerivedSolver::requires_function};
+      static constexpr bool requires_first_derivative{DerivedSolver::requires_first_derivative};
+      static constexpr bool requires_second_derivative{DerivedSolver::requires_second_derivative};
+
+      OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
+
+      using FunctionWrapper         = typename Solver<Real, 1, 1, DerivedSolver>::FunctionWrapper;
+      using FirstDerivativeWrapper  = typename Solver<Real, 1, 1, DerivedSolver>::FirstDerivativeWrapper;
+      using SecondDerivativeWrapper = typename Solver<Real, 1, 1, DerivedSolver>::SecondDerivativeWrapper;
+
+      /**
+      * Class constructor for the scalar root-finder.
+      */
+      RootFinder<Real, 1, DerivedSolver>() {}
+
+      /**
+      * Get the solver name.
+      * \return The solver name.
+      */
+      std::string name() const {return static_cast<const DerivedSolver *>(this)->name_impl();}
+
+      /**
+      * Solve the root-finding problem given the function, and without derivatives.
+      * \param[in] function Function wrapper.
+      * \param[in] x_ini Initialization point.
+      * \param[out] x_sol Solution point.
+      * \return The convergence boolean flag.
+      */
+      bool solve(FunctionWrapper function, Real x_ini, Real & x_sol)
+      {
+        return static_cast<DerivedSolver *>(this)->solve_impl(function, x_ini, x_sol);
+      }
+
+      /**
+      * Solve the root-finding problem given the function, and its first derivative.
+      * \param[in] function Function wrapper.
+      * \param[in] first_derivative First derivative wrapper.
+      * \param[in] x_ini Initialization point.
+      * \param[out] x_sol Solution point.
+      * \return The convergence boolean flag.
+      */
+      bool solve(FunctionWrapper function, FirstDerivativeWrapper first_derivative, Real x_ini,
+        Real & x_sol)
+      {
+        return static_cast<DerivedSolver *>(this)->solve_impl(function, first_derivative, x_ini, x_sol);
+      }
+
+      /**
+      * Solve the root-finding problem given the function, and its first and second derivatives.
+      * \param[in] function Function wrapper.
+      * \param[in] first_derivative First derivative wrapper.
+      * \param[in] second_derivate Second derivative wrapper.
+      * \param[in] x_ini Initialization point.
+      * \param[out] x_sol Solution point.
+      * \return The convergence boolean flag.
+      */
+      bool solve(FunctionWrapper function, FirstDerivativeWrapper first_derivative, SecondDerivativeWrapper
+        second_derivate, Real x_ini, Real & x_sol)
+      {
+        return static_cast<DerivedSolver *>(this)->solve_impl(function, first_derivative,
+          second_derivate, x_ini, x_sol);
       }
 
     }; // class RootFinder

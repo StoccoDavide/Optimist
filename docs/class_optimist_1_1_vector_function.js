@@ -9,5 +9,5 @@ var class_optimist_1_1_vector_function =
     [ "hessian", "class_optimist_1_1_vector_function.html#ae46b4d4eceb940ac5ec5a9e1f37950cf", null ],
     [ "jacobian", "class_optimist_1_1_vector_function.html#a51a40323dc5f4c8ade31e898539bdbe2", null ],
     [ "name", "class_optimist_1_1_vector_function.html#acfe8125e578e8259934dcc09429378d5", null ],
-    [ "Function< Real, N, M, VectorFunction< Real, N, M, DerivedFunction > >", "class_optimist_1_1_vector_function.html#ac0d3b0bd6be1adb74b0d680fb6d714ce", null ]
+    [ "Function< Real, N, M, VectorFunction< Real, N, M, DerivedFunction > >", "class_optimist_1_1_vector_function.html#a33a33cff7fa4e0b8f87541a25520d1f0", null ]
 ];

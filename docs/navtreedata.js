@@ -48,7 +48,8 @@ var NAVTREE =
         [ "All", "functions.html", "functions_dup" ],
         [ "Functions", "functions_func.html", "functions_func" ],
         [ "Variables", "functions_vars.html", null ],
-        [ "Typedefs", "functions_type.html", null ]
+        [ "Typedefs", "functions_type.html", null ],
+        [ "Related Symbols", "functions_rela.html", null ]
       ] ]
     ] ],
     [ "Files", "files.html", [
@@ -64,12 +65,13 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_algo748_8hh.html",
-"class_optimist_1_1_optimizer_1_1_nelder_mead.html#ac9bcda37bfdf5583ebe6dca1da4b95c3",
-"class_optimist_1_1_root_finder_1_1_root_finder.html#a8002a494084d3c7052b072c771257b52",
-"class_optimist_1_1_scalar_root_finder_1_1_varona.html",
-"class_optimist_1_1_test_set_1_1_brown.html#a1cf811d7f77a8e958d91481b667527b3",
-"namespace_optimist.html#a1de27a5a0027370ef3348301bd4360c0"
+"class_optimist_1_1_optimizer_1_1_optimizer.html",
+"class_optimist_1_1_root_finder_1_1_broyden.html#ae66ee07e1e9a9d1e4cf08b62b020d85b",
+"class_optimist_1_1_root_finder_1_1_root_finder.html#af647acbde833d527109bdf65aceae3e9",
+"class_optimist_1_1_solver.html#aead4714c1e5511096975c08bcf503f3a",
+"functions_func_d.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';
 var SYNCOFFMSG = 'click to enable panel synchronization';
+var LISTOFALLMEMBERS = 'List of all members';

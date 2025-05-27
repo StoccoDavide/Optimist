@@ -30,7 +30,7 @@ namespace Optimist
   class ScalarFunction : public Function<Real, 1, 1, DerivedFunction>
   {
   public:
-    friend Function<Real, 1, 1, ScalarFunction<Real, DerivedFunction>>;
+    friend class Function<Real, 1, 1, ScalarFunction<Real, DerivedFunction>>;
 
     /**
     * Class constructor for the function.

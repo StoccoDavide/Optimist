@@ -1,8 +1,8 @@
-<map id="include/Optimist/ScalarRootFinder/Bracketing.hh" name="include/Optimist/ScalarRootFinder/Bracketing.hh">
+<map id="include/Optimist/RootFinder/Bracketing.hh" name="include/Optimist/RootFinder/Bracketing.hh">
 <area shape="rect" id="Node000001" title=" " alt="" coords="349,5,533,46"/>
-<area shape="rect" id="Node000002" href="$_scalar_root_finder_8hh.html" title=" " alt="" coords="345,94,537,120"/>
+<area shape="rect" id="Node000002" href="$_root_finder_8hh.html" title=" " alt="" coords="363,94,519,120"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="444,46,444,78,438,78,438,46"/>
-<area shape="rect" id="Node000003" href="$_solver_8hh.html" title=" " alt="" coords="403,168,479,193"/>
+<area shape="rect" id="Node000003" href="$_solver_8hh.html" title=" " alt="" coords="377,168,505,193"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="444,120,444,152,438,152,438,120"/>
 <area shape="rect" id="Node000004" href="$_optimist_8hh.html" title=" " alt="" coords="397,315,485,341"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="439,195,430,227,428,267,435,299,430,301,422,267,425,226,434,193"/>

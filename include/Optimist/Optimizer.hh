@@ -13,7 +13,7 @@
 #ifndef OPTIMIST_OPTIMIZER_HH
 #define OPTIMIST_OPTIMIZER_HH
 
-#include "Solver.hh"
+#include "Optimist/Solver.hh"
 
 namespace Optimist
 {
@@ -51,7 +51,7 @@ namespace Optimist
       static_assert(N != static_cast<Integer>(1),
         "Good try, but you should use a scalar solver for a one-dimensional optimization problem.");
 
-      friend Solver<Real, N, 1, Optimizer<Real, N, DerivedSolver>>;
+      friend class Solver<Real, N, 1, Optimizer<Real, N, DerivedSolver>>;
 
       static constexpr bool is_rootfinder{false};
       static constexpr bool is_optimizer{true};
@@ -213,6 +213,46 @@ namespace Optimist
 
         #undef CMD
       }
+
+    }; // class Optimizer
+
+    /**
+    * \brief Class container for the scalar optimizer.
+    *
+    * \includedoc docs/markdown/ScalarOptimizer.md
+    *
+    * \tparam Real Scalar number type.
+    * \tparam DerivedSolver Derived solver class.
+    */
+    template <typename Real, typename DerivedSolver>
+    class Optimizer<Real, 1, DerivedSolver> : public Solver<Real, 1, 1, DerivedSolver>
+    {
+    public:
+      friend class Solver<Real, 1, 1, Optimizer<Real, 1, DerivedSolver>>;
+
+      static constexpr bool is_rootfinder{false};
+      static constexpr bool is_optimizer{true};
+
+      static constexpr bool requires_function{DerivedSolver::requires_function};
+      static constexpr bool requires_first_derivative{DerivedSolver::requires_first_derivative};
+      static constexpr bool requires_second_derivative{DerivedSolver::requires_second_derivative};
+
+      OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
+
+      using FunctionWrapper         = typename Solver<Real, 1, 1, DerivedSolver>::FunctionWrapper;
+      using FirstDerivativeWrapper  = typename Solver<Real, 1, 1, DerivedSolver>::FirstDerivativeWrapper;
+      using SecondDerivativeWrapper = typename Solver<Real, 1, 1, DerivedSolver>::SecondDerivativeWrapper;
+
+      /**
+      * Class constructor for the scalar optimizer.
+      */
+      Optimizer<Real, 1, DerivedSolver>() {}
+
+      /**
+      * Get the solver name.
+      * \return The solver name.
+      */
+      std::string name() const {return static_cast<const DerivedSolver *>(this)->name_impl();}
 
     }; // class Optimizer
 

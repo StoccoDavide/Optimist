@@ -19,10 +19,10 @@ var class_optimist_1_1_optimizer_1_1_optimizer =
     [ "solve", "class_optimist_1_1_optimizer_1_1_optimizer.html#aa15f8acf4d08c0f30780ca55661054c0", null ],
     [ "solve", "class_optimist_1_1_optimizer_1_1_optimizer.html#ae2433e180c2991c7090814d5acc3a22d", null ],
     [ "solve", "class_optimist_1_1_optimizer_1_1_optimizer.html#a4f1e25bd6ec40c41e73cb78aa9e66ac9", null ],
+    [ "Solver< Real, N, 1, Optimizer< Real, N, DerivedSolver > >", "class_optimist_1_1_optimizer_1_1_optimizer.html#ad41c02c94a3a6ff6545874c36affb9f9", null ],
     [ "is_optimizer", "class_optimist_1_1_optimizer_1_1_optimizer.html#afce195873d874cad72f6c064a1a1ed5e", null ],
     [ "is_rootfinder", "class_optimist_1_1_optimizer_1_1_optimizer.html#a65ce2eef308c2b3c8075166e531be31d", null ],
     [ "requires_first_derivative", "class_optimist_1_1_optimizer_1_1_optimizer.html#ada9814b0488c8e611bc2967624f17b59", null ],
     [ "requires_function", "class_optimist_1_1_optimizer_1_1_optimizer.html#a34abb37f9196a5f0bdb2ab1506e714c7", null ],
-    [ "requires_second_derivative", "class_optimist_1_1_optimizer_1_1_optimizer.html#a76c96b3ac348728a6736e373381e376f", null ],
-    [ "Solver< Real, N, 1, Optimizer< Real, N, DerivedSolver > >", "class_optimist_1_1_optimizer_1_1_optimizer.html#a3c5aaa676634c9b284da154bb4796366", null ]
+    [ "requires_second_derivative", "class_optimist_1_1_optimizer_1_1_optimizer.html#a76c96b3ac348728a6736e373381e376f", null ]
 ];

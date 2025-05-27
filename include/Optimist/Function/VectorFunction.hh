@@ -31,7 +31,7 @@ namespace Optimist
   class VectorFunction : public Function<Real, N, M, DerivedFunction>
   {
   public:
-    friend Function<Real, N, M, VectorFunction<Real, N, M, DerivedFunction>>;
+    friend class Function<Real, N, M, VectorFunction<Real, N, M, DerivedFunction>>;
 
     // Fancy static assertions (just for fun, don't take it too seriously)
     static_assert(N != static_cast<Integer>(0) && M != static_cast<Integer>(0),

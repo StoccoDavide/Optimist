@@ -72,47 +72,14 @@ var hierarchy =
       ] ]
     ] ],
     [ "Optimist::Solver< Real, SolInDim, SolOutDim, DerivedSolver >", "class_optimist_1_1_solver.html", null ],
-    [ "Optimist::Solver< Real, 1, 1, Algo748< Real > >", "class_optimist_1_1_solver.html", [
-      [ "Optimist::ScalarRootFinder::ScalarRootFinder< Real, Algo748< Real > >", "class_optimist_1_1_scalar_root_finder_1_1_scalar_root_finder.html", [
-        [ "Optimist::ScalarRootFinder::Bracketing< Real, Algo748< Real > >", "class_optimist_1_1_scalar_root_finder_1_1_bracketing.html", [
-          [ "Optimist::ScalarRootFinder::Algo748< Real >", "class_optimist_1_1_scalar_root_finder_1_1_algo748.html", null ]
-        ] ]
-      ] ]
-    ] ],
-    [ "Optimist::Solver< Real, 1, 1, Chandrupatla< Real > >", "class_optimist_1_1_solver.html", [
-      [ "Optimist::ScalarRootFinder::ScalarRootFinder< Real, Chandrupatla< Real > >", "class_optimist_1_1_scalar_root_finder_1_1_scalar_root_finder.html", [
-        [ "Optimist::ScalarRootFinder::Bracketing< Real, Chandrupatla< Real > >", "class_optimist_1_1_scalar_root_finder_1_1_bracketing.html", [
-          [ "Optimist::ScalarRootFinder::Chandrupatla< Real >", "class_optimist_1_1_scalar_root_finder_1_1_chandrupatla.html", null ]
-        ] ]
-      ] ]
-    ] ],
-    [ "Optimist::Solver< Real, 1, 1, Chebyshev< Real > >", "class_optimist_1_1_solver.html", [
-      [ "Optimist::ScalarRootFinder::ScalarRootFinder< Real, Chebyshev< Real > >", "class_optimist_1_1_scalar_root_finder_1_1_scalar_root_finder.html", [
-        [ "Optimist::ScalarRootFinder::Chebyshev< Real >", "class_optimist_1_1_scalar_root_finder_1_1_chebyshev.html", null ]
-      ] ]
-    ] ],
     [ "Optimist::Solver< Real, 1, 1, DerivedSolver >", "class_optimist_1_1_solver.html", [
-      [ "Optimist::ScalarOptimizer::ScalarOptimizer< Real, DerivedSolver >", "class_optimist_1_1_scalar_optimizer_1_1_scalar_optimizer.html", null ],
-      [ "Optimist::ScalarRootFinder::ScalarRootFinder< Real, DerivedSolver >", "class_optimist_1_1_scalar_root_finder_1_1_scalar_root_finder.html", [
-        [ "Optimist::ScalarRootFinder::Bracketing< Real, DerivedSolver >", "class_optimist_1_1_scalar_root_finder_1_1_bracketing.html", null ]
-      ] ]
-    ] ],
-    [ "Optimist::Solver< Real, 1, 1, Halley< Real > >", "class_optimist_1_1_solver.html", [
-      [ "Optimist::ScalarRootFinder::ScalarRootFinder< Real, Halley< Real > >", "class_optimist_1_1_scalar_root_finder_1_1_scalar_root_finder.html", [
-        [ "Optimist::ScalarRootFinder::Halley< Real >", "class_optimist_1_1_scalar_root_finder_1_1_halley.html", null ]
-      ] ]
-    ] ],
-    [ "Optimist::Solver< Real, 1, 1, Newton< Real > >", "class_optimist_1_1_solver.html", [
-      [ "Optimist::ScalarRootFinder::ScalarRootFinder< Real, Newton< Real > >", "class_optimist_1_1_scalar_root_finder_1_1_scalar_root_finder.html", [
-        [ "Optimist::ScalarRootFinder::Newton< Real >", "class_optimist_1_1_scalar_root_finder_1_1_newton.html", null ]
-      ] ]
-    ] ],
-    [ "Optimist::Solver< Real, 1, 1, Varona< Real > >", "class_optimist_1_1_solver.html", [
-      [ "Optimist::ScalarRootFinder::ScalarRootFinder< Real, Varona< Real > >", "class_optimist_1_1_scalar_root_finder_1_1_scalar_root_finder.html", [
-        [ "Optimist::ScalarRootFinder::Varona< Real >", "class_optimist_1_1_scalar_root_finder_1_1_varona.html", null ]
+      [ "Optimist::Optimizer::Optimizer< Real, 1, DerivedSolver >", "class_optimist_1_1_optimizer_1_1_optimizer_3_01_real_00_011_00_01_derived_solver_01_4.html", null ],
+      [ "Optimist::RootFinder::RootFinder< Real, 1, DerivedSolver >", "class_optimist_1_1_root_finder_1_1_root_finder_3_01_real_00_011_00_01_derived_solver_01_4.html", [
+        [ "Optimist::RootFinder::Bracketing< Real, DerivedSolver >", "class_optimist_1_1_root_finder_1_1_bracketing.html", null ]
       ] ]
     ] ],
     [ "Optimist::Solver< Real, N, 1, DerivedSolver >", "class_optimist_1_1_solver.html", [
+      [ "Optimist::Optimizer::Optimizer< Real, 1, DerivedSolver >", "class_optimist_1_1_optimizer_1_1_optimizer_3_01_real_00_011_00_01_derived_solver_01_4.html", null ],
       [ "Optimist::Optimizer::Optimizer< Real, N, DerivedSolver >", "class_optimist_1_1_optimizer_1_1_optimizer.html", null ]
     ] ],
     [ "Optimist::Solver< Real, N, 1, NelderMead< Real, N > >", "class_optimist_1_1_solver.html", [
@@ -125,6 +92,13 @@ var hierarchy =
         [ "Optimist::Optimizer::PatternSearch< Real >", "class_optimist_1_1_optimizer_1_1_pattern_search.html", null ]
       ] ]
     ] ],
+    [ "Optimist::Solver< Real, N, N, Algo748< Real > >", "class_optimist_1_1_solver.html", [
+      [ "Optimist::RootFinder::RootFinder< Real, 1, Algo748< Real > >", "class_optimist_1_1_root_finder_1_1_root_finder.html", [
+        [ "Optimist::RootFinder::Bracketing< Real, Algo748< Real > >", "class_optimist_1_1_root_finder_1_1_bracketing.html", [
+          [ "Optimist::RootFinder::Algo748< Real >", "class_optimist_1_1_root_finder_1_1_algo748.html", null ]
+        ] ]
+      ] ]
+    ] ],
     [ "Optimist::Solver< Real, N, N, Broyden< Real, N > >", "class_optimist_1_1_solver.html", [
       [ "Optimist::RootFinder::RootFinder< Real, N, Broyden< Real, N > >", "class_optimist_1_1_root_finder_1_1_root_finder.html", [
         [ "Optimist::RootFinder::QuasiNewton< Real, N, Broyden< Real, N > >", "class_optimist_1_1_root_finder_1_1_quasi_newton.html", [
@@ -132,8 +106,22 @@ var hierarchy =
         ] ]
       ] ]
     ] ],
+    [ "Optimist::Solver< Real, N, N, Chandrupatla< Real > >", "class_optimist_1_1_solver.html", [
+      [ "Optimist::RootFinder::RootFinder< Real, 1, Chandrupatla< Real > >", "class_optimist_1_1_root_finder_1_1_root_finder.html", [
+        [ "Optimist::RootFinder::Bracketing< Real, Chandrupatla< Real > >", "class_optimist_1_1_root_finder_1_1_bracketing.html", [
+          [ "Optimist::RootFinder::Chandrupatla< Real >", "class_optimist_1_1_root_finder_1_1_chandrupatla.html", null ]
+        ] ]
+      ] ]
+    ] ],
+    [ "Optimist::Solver< Real, N, N, Chebyshev< Real > >", "class_optimist_1_1_solver.html", [
+      [ "Optimist::RootFinder::RootFinder< Real, 1, Chebyshev< Real > >", "class_optimist_1_1_root_finder_1_1_root_finder.html", [
+        [ "Optimist::RootFinder::Chebyshev< Real >", "class_optimist_1_1_root_finder_1_1_chebyshev.html", null ]
+      ] ]
+    ] ],
     [ "Optimist::Solver< Real, N, N, DerivedSolver >", "class_optimist_1_1_solver.html", [
+      [ "Optimist::RootFinder::RootFinder< Real, 1, DerivedSolver >", "class_optimist_1_1_root_finder_1_1_root_finder_3_01_real_00_011_00_01_derived_solver_01_4.html", null ],
       [ "Optimist::RootFinder::RootFinder< Real, N, DerivedSolver >", "class_optimist_1_1_root_finder_1_1_root_finder.html", [
+        [ "Optimist::RootFinder::Newton< Real, 1 >", "class_optimist_1_1_root_finder_1_1_newton_3_01_real_00_011_01_4.html", null ],
         [ "Optimist::RootFinder::QuasiNewton< Real, N, DerivedSolver >", "class_optimist_1_1_root_finder_1_1_quasi_newton.html", null ]
       ] ]
     ] ],
@@ -144,9 +132,20 @@ var hierarchy =
         ] ]
       ] ]
     ] ],
-    [ "Optimist::Solver< Real, N, N, Newton< Real, N > >", "class_optimist_1_1_solver.html", [
-      [ "Optimist::RootFinder::RootFinder< Real, N, Newton< Real, N > >", "class_optimist_1_1_root_finder_1_1_root_finder.html", [
-        [ "Optimist::RootFinder::Newton< Real, N >", "class_optimist_1_1_root_finder_1_1_newton.html", null ]
+    [ "Optimist::Solver< Real, N, N, Halley< Real > >", "class_optimist_1_1_solver.html", [
+      [ "Optimist::RootFinder::RootFinder< Real, 1, Halley< Real > >", "class_optimist_1_1_root_finder_1_1_root_finder.html", [
+        [ "Optimist::RootFinder::Halley< Real >", "class_optimist_1_1_root_finder_1_1_halley.html", null ]
+      ] ]
+    ] ],
+    [ "Optimist::Solver< Real, N, N, Newton< Real, 1 > >", "class_optimist_1_1_solver.html", [
+      [ "Optimist::RootFinder::RootFinder< Real, 1, Newton< Real, 1 > >", "class_optimist_1_1_root_finder_1_1_root_finder.html", [
+        [ "Optimist::RootFinder::Newton< Real, N >", "class_optimist_1_1_root_finder_1_1_newton.html", null ],
+        [ "Optimist::RootFinder::Newton< Real, 1 >", "class_optimist_1_1_root_finder_1_1_newton_3_01_real_00_011_01_4.html", null ]
+      ] ]
+    ] ],
+    [ "Optimist::Solver< Real, N, N, Varona< Real > >", "class_optimist_1_1_solver.html", [
+      [ "Optimist::RootFinder::RootFinder< Real, 1, Varona< Real > >", "class_optimist_1_1_root_finder_1_1_root_finder.html", [
+        [ "Optimist::RootFinder::Varona< Real >", "class_optimist_1_1_root_finder_1_1_varona.html", null ]
       ] ]
     ] ]
 ];

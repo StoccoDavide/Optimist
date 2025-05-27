@@ -30,7 +30,7 @@ namespace Optimist
   class CostFunction : public Function<Real, N, 1, DerivedFunction>
   {
   public:
-    friend Function<Real, N, 1, CostFunction<Real, N, DerivedFunction>>;
+    friend class Function<Real, N, 1, CostFunction<Real, N, DerivedFunction>>;
 
     // Fancy static assertions (just for fun, don't take it too seriously)
     static_assert(N != static_cast<Integer>(0),

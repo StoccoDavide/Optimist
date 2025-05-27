@@ -7,27 +7,23 @@ var annotated_dup =
       [ "Optimizer", "namespace_optimist_1_1_optimizer.html", [
         [ "NelderMead", "class_optimist_1_1_optimizer_1_1_nelder_mead.html", "class_optimist_1_1_optimizer_1_1_nelder_mead" ],
         [ "Optimizer", "class_optimist_1_1_optimizer_1_1_optimizer.html", "class_optimist_1_1_optimizer_1_1_optimizer" ],
+        [ "Optimizer< Real, 1, DerivedSolver >", "class_optimist_1_1_optimizer_1_1_optimizer_3_01_real_00_011_00_01_derived_solver_01_4.html", "class_optimist_1_1_optimizer_1_1_optimizer_3_01_real_00_011_00_01_derived_solver_01_4" ],
         [ "PatternSearch", "class_optimist_1_1_optimizer_1_1_pattern_search.html", "class_optimist_1_1_optimizer_1_1_pattern_search" ]
       ] ],
       [ "RootFinder", "namespace_optimist_1_1_root_finder.html", [
+        [ "Algo748", "class_optimist_1_1_root_finder_1_1_algo748.html", "class_optimist_1_1_root_finder_1_1_algo748" ],
+        [ "Bracketing", "class_optimist_1_1_root_finder_1_1_bracketing.html", "class_optimist_1_1_root_finder_1_1_bracketing" ],
         [ "Broyden", "class_optimist_1_1_root_finder_1_1_broyden.html", "class_optimist_1_1_root_finder_1_1_broyden" ],
+        [ "Chandrupatla", "class_optimist_1_1_root_finder_1_1_chandrupatla.html", "class_optimist_1_1_root_finder_1_1_chandrupatla" ],
+        [ "Chebyshev", "class_optimist_1_1_root_finder_1_1_chebyshev.html", "class_optimist_1_1_root_finder_1_1_chebyshev" ],
         [ "Greenstadt", "class_optimist_1_1_root_finder_1_1_greenstadt.html", "class_optimist_1_1_root_finder_1_1_greenstadt" ],
+        [ "Halley", "class_optimist_1_1_root_finder_1_1_halley.html", "class_optimist_1_1_root_finder_1_1_halley" ],
         [ "Newton", "class_optimist_1_1_root_finder_1_1_newton.html", "class_optimist_1_1_root_finder_1_1_newton" ],
+        [ "Newton< Real, 1 >", "class_optimist_1_1_root_finder_1_1_newton_3_01_real_00_011_01_4.html", "class_optimist_1_1_root_finder_1_1_newton_3_01_real_00_011_01_4" ],
         [ "QuasiNewton", "class_optimist_1_1_root_finder_1_1_quasi_newton.html", "class_optimist_1_1_root_finder_1_1_quasi_newton" ],
-        [ "RootFinder", "class_optimist_1_1_root_finder_1_1_root_finder.html", "class_optimist_1_1_root_finder_1_1_root_finder" ]
-      ] ],
-      [ "ScalarOptimizer", "namespace_optimist_1_1_scalar_optimizer.html", [
-        [ "ScalarOptimizer", "class_optimist_1_1_scalar_optimizer_1_1_scalar_optimizer.html", "class_optimist_1_1_scalar_optimizer_1_1_scalar_optimizer" ]
-      ] ],
-      [ "ScalarRootFinder", "namespace_optimist_1_1_scalar_root_finder.html", [
-        [ "Algo748", "class_optimist_1_1_scalar_root_finder_1_1_algo748.html", "class_optimist_1_1_scalar_root_finder_1_1_algo748" ],
-        [ "Bracketing", "class_optimist_1_1_scalar_root_finder_1_1_bracketing.html", "class_optimist_1_1_scalar_root_finder_1_1_bracketing" ],
-        [ "Chandrupatla", "class_optimist_1_1_scalar_root_finder_1_1_chandrupatla.html", "class_optimist_1_1_scalar_root_finder_1_1_chandrupatla" ],
-        [ "Chebyshev", "class_optimist_1_1_scalar_root_finder_1_1_chebyshev.html", "class_optimist_1_1_scalar_root_finder_1_1_chebyshev" ],
-        [ "Halley", "class_optimist_1_1_scalar_root_finder_1_1_halley.html", "class_optimist_1_1_scalar_root_finder_1_1_halley" ],
-        [ "Newton", "class_optimist_1_1_scalar_root_finder_1_1_newton.html", "class_optimist_1_1_scalar_root_finder_1_1_newton" ],
-        [ "ScalarRootFinder", "class_optimist_1_1_scalar_root_finder_1_1_scalar_root_finder.html", "class_optimist_1_1_scalar_root_finder_1_1_scalar_root_finder" ],
-        [ "Varona", "class_optimist_1_1_scalar_root_finder_1_1_varona.html", "class_optimist_1_1_scalar_root_finder_1_1_varona" ]
+        [ "RootFinder", "class_optimist_1_1_root_finder_1_1_root_finder.html", "class_optimist_1_1_root_finder_1_1_root_finder" ],
+        [ "RootFinder< Real, 1, DerivedSolver >", "class_optimist_1_1_root_finder_1_1_root_finder_3_01_real_00_011_00_01_derived_solver_01_4.html", "class_optimist_1_1_root_finder_1_1_root_finder_3_01_real_00_011_00_01_derived_solver_01_4" ],
+        [ "Varona", "class_optimist_1_1_root_finder_1_1_varona.html", "class_optimist_1_1_root_finder_1_1_varona" ]
       ] ],
       [ "TestSet", "namespace_optimist_1_1_test_set.html", [
         [ "Booth", "class_optimist_1_1_test_set_1_1_booth.html", "class_optimist_1_1_test_set_1_1_booth" ],

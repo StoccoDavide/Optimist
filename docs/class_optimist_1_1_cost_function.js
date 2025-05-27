@@ -8,5 +8,5 @@ var class_optimist_1_1_cost_function =
     [ "gradient", "class_optimist_1_1_cost_function.html#a387f96f46db0ccb05688ef382a2c9ec8", null ],
     [ "hessian", "class_optimist_1_1_cost_function.html#a3b91237a611df1b1ed193b1f172e1bb2", null ],
     [ "name", "class_optimist_1_1_cost_function.html#a31e1c87b641c66a4a4f6cf86f889d510", null ],
-    [ "Function< Real, N, 1, CostFunction< Real, N, DerivedFunction > >", "class_optimist_1_1_cost_function.html#aaa6bc1f7c24165dc0a888df9dfb4a569", null ]
+    [ "Function< Real, N, 1, CostFunction< Real, N, DerivedFunction > >", "class_optimist_1_1_cost_function.html#a15905feff9f344528594040fbd667b25", null ]
 ];

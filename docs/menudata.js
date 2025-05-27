@@ -83,11 +83,9 @@ var menudata={children:[
 {text:"v",url:"functions_func_v.html#index_v"},
 {text:"w",url:"functions_func_w.html#index_w"}]},
 {text:"Variables",url:"functions_vars.html",children:[
-{text:"f",url:"functions_vars.html#index_f"},
 {text:"i",url:"functions_vars.html#index_i"},
 {text:"m",url:"functions_vars.html#index_m"},
-{text:"r",url:"functions_vars.html#index_r"},
-{text:"s",url:"functions_vars.html#index_s"}]},
+{text:"r",url:"functions_vars.html#index_r"}]},
 {text:"Typedefs",url:"functions_type.html",children:[
 {text:"f",url:"functions_type.html#index_f"},
 {text:"g",url:"functions_type.html#index_g"},
@@ -99,7 +97,8 @@ var menudata={children:[
 {text:"r",url:"functions_type.html#index_r"},
 {text:"s",url:"functions_type.html#index_s"},
 {text:"t",url:"functions_type.html#index_t"},
-{text:"v",url:"functions_type.html#index_v"}]}]}]},
+{text:"v",url:"functions_type.html#index_v"}]},
+{text:"Related Symbols",url:"functions_rela.html"}]}]},
 {text:"Files",url:"files.html",children:[
 {text:"File List",url:"files.html"},
 {text:"File Members",url:"globals.html",children:[
