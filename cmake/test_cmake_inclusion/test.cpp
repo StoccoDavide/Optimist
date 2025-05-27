@@ -1,5 +1,5 @@
 #include "Optimist/RootFinder/Newton.hh"
-#include "Optimist/TestSet/ScalarFunction/Quadratic.hh"
+#include "Optimist/TestSet/Quadratic.hh"
 
 int main()
 {
