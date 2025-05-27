@@ -7,7 +7,7 @@ var NAVTREEINDEX0 =
 "_booth_8hh.html#a5ffac4dac8ac6da2565617977ab303fb":[5,0,1,0,3,2,0,1],
 "_booth_8hh_source.html":[5,0,1,0,3,2,0],
 "_bracketing_8hh.html":[5,0,1,0,2,1],
-"_bracketing_8hh.html#a5c532842306ec1dbe56eb93e8026c8e0":[5,0,1,0,2,1,1],
+"_bracketing_8hh.html#a5e8e8df02b0ff0f9307d5e34c236339c":[5,0,1,0,2,1,1],
 "_bracketing_8hh_source.html":[5,0,1,0,2,1],
 "_brown_8hh.html":[5,0,1,0,3,2,1],
 "_brown_8hh.html#a188fc64d30b247ef1f315b0679474240":[5,0,1,0,3,2,1,1],
