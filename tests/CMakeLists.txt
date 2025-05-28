@@ -9,7 +9,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 include(OptimistCatch2)
-include(OptimistMatplot)
+include(OptimistRoot)
 
 # TestSet
 
