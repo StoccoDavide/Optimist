@@ -122,7 +122,7 @@ install(EXPORT OptimistTargets
 )
 
 configure_package_config_file(
-  ${CMAKE_CURRENT_SOURCE_DIR}/cmake/Config.cmake.in
+  ${CMAKE_CURRENT_SOURCE_DIR}/cmake/OptimistConfig.cmake.in
   ${CMAKE_CURRENT_BINARY_DIR}/OptimistConfig.cmake
   INSTALL_DESTINATION lib/cmake/Optimist
 )
