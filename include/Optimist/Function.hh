@@ -36,8 +36,9 @@ namespace Optimist
   * \tparam FunInDim The function problem input dimension.
   * \tparam FunOutDim The function problem output dimension.
   * \tparam DerivedFunction Derived function class.
+  * \tparam ForceEigen Force the use of Eigen types for input and output.
   */
-  template <typename Real, Integer FunInDim, Integer FunOutDim, typename DerivedFunction>
+  template <typename Real, Integer FunInDim, Integer FunOutDim, typename DerivedFunction, bool ForceEigen = false>
   class FunctionBase
   {
   public:
@@ -48,14 +49,14 @@ namespace Optimist
     OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
 
     // I/O types
-    using InputType  = typename std::conditional_t<FunInDim == 1,  Real, Eigen::Vector<Real, FunInDim>>;  /**< Input type. */
-    using OutputType = typename std::conditional_t<FunOutDim == 1, Real, Eigen::Vector<Real, FunOutDim>>; /**< Output type. */
+    using InputType  = typename std::conditional_t<ForceEigen || (FunInDim > 1),  Eigen::Vector<Real, FunInDim>, Real>;  /**< Input type. */
+    using OutputType = typename std::conditional_t<ForceEigen || (FunOutDim > 1), Eigen::Vector<Real, FunOutDim>, Real>; /**< Output type. */
 
     // Derivative types
-    using FirstDerivativeType  = std::conditional_t<FunInDim == 1 && FunOutDim == 1, Real, Eigen::Matrix<Real, FunOutDim, FunInDim>>; /**< First derivative type. */
-    using SecondDerivativeType = std::conditional_t<FunInDim == 1 && FunOutDim == 1, Real,
+    using FirstDerivativeType  = std::conditional_t<ForceEigen || (FunInDim > 1) || (FunOutDim > 1), Eigen::Matrix<Real, FunOutDim, FunInDim>, Real>; /**< First derivative type. */
+    using SecondDerivativeType = std::conditional_t<ForceEigen || (FunInDim > 1) || (FunOutDim > 1),
       std::conditional_t<FunInDim == 1 || FunOutDim == 1, Eigen::Matrix<Real, FunInDim, FunInDim>,
-      std::vector<Eigen::Matrix<Real, FunInDim, FunInDim>>>>;  /**< Second derivative type. */
+      std::vector<Eigen::Matrix<Real, FunInDim, FunInDim>>>, Real>;  /**< Second derivative type. */
 
   protected:
     std::vector<InputType> m_solutions; /** Known solutions used for test purposes. */
@@ -150,13 +151,10 @@ namespace Optimist
     bool is_solution(const InputType & x, const Real tol = EPSILON_LOW) const
     {
       for (const auto & s : this->m_solutions) {
-        if constexpr (FunInDim == 1) {
-          if (std::abs(x - s) < tol) {return true;}
-        } else if constexpr (FunInDim > 1) {
+        if constexpr (ForceEigen || FunInDim > 1) {
           if((x - s).norm() < tol) {return true;}
         } else {
-          OPTIMIST_ERROR("Optimist::FunctionBase::is_solution(...): invalid input dimension.");
-          return false;
+          if (std::abs(x - s) < tol) {return true;}
         }
       }
       return false;
@@ -179,24 +177,25 @@ namespace Optimist
   * \tparam N The input dimension of the vector-valued function.
   * \tparam M The output dimension of the vector-valued function.
   * \tparam DerivedFunction Derived vector-valued function class.
+  * \tparam ForceEigen Force the use of Eigen types for input and output.
   */
-  template <typename Real, Integer N, Integer M, typename DerivedFunction>
-  class Function : public FunctionBase<Real, N, M, DerivedFunction>
+  template <typename Real, Integer N, Integer M, typename DerivedFunction, bool ForceEigen = false>
+  class Function : public FunctionBase<Real, N, M, DerivedFunction, ForceEigen>
   {
   public:
-    friend class FunctionBase<Real, N, M, Function<Real, N, M, DerivedFunction>>;
+    friend class FunctionBase<Real, N, M, Function<Real, N, M, DerivedFunction, ForceEigen>>;
 
     // Fancy static assertions (just for fun, don't take it too seriously)
     static_assert(N != static_cast<Integer>(0) && M != static_cast<Integer>(0),
       "Are you sure you want to a zero-dimensional system of equations?");
 
     // I/O types
-    using InputVector = typename FunctionBase<Real, N, M, DerivedFunction>::InputType; /**< Input vector type. */
-    using OutputVector = typename FunctionBase<Real, N, M, DerivedFunction>::OutputType; /**< Output vector type. */
+    using InputVector = typename FunctionBase<Real, N, M, DerivedFunction, ForceEigen>::InputType; /**< Input vector type. */
+    using OutputVector = typename FunctionBase<Real, N, M, DerivedFunction, ForceEigen>::OutputType; /**< Output vector type. */
 
     // Derivative types
-    using Matrix = typename FunctionBase<Real, N, M, DerivedFunction>::FirstDerivativeType;  /**< Jacobian matrix type. */
-    using Tensor = typename FunctionBase<Real, N, M, DerivedFunction>::SecondDerivativeType; /**< Hessian tensor type. */
+    using Matrix = typename FunctionBase<Real, N, M, DerivedFunction, ForceEigen>::FirstDerivativeType;  /**< Jacobian matrix type. */
+    using Tensor = typename FunctionBase<Real, N, M, DerivedFunction, ForceEigen>::SecondDerivativeType; /**< Hessian tensor type. */
 
     /**
     * Class constructor for the vector-valued function.
@@ -248,6 +247,7 @@ namespace Optimist
   *
   * \tparam N The dimension of the cost function input.
   * \tparam DerivedFunction Derived cost function class.
+  * \tparam ForceEigen Force the use of Eigen types for input and output.
   */
   template <typename Real, Integer N, typename DerivedFunction>
   class Function<Real, N, 1, DerivedFunction> : public FunctionBase<Real, N, 1, DerivedFunction>

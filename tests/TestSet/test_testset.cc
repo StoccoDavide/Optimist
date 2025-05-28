@@ -9,17 +9,17 @@
 \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 // Optimist library
-#include "Optimist/TestSet/Cos.hh"
+#include "Optimist/TestSet/Sin.hh"
 #include "Optimist/RootFinder/NewtonRaphson.hh"
 #include "Optimist/RootFinder/Greenstadt.hh"
 
 // Run all the tests.
 int main() {
 
-  Optimist::TestSet::Cos<double> cos;
+  Optimist::TestSet::Sin<double> fun;
   Optimist::RootFinder::NewtonRaphson<double> sol;
   double x_out;
-  sol.rootfind(cos, 0.0, x_out);
+  sol.rootfind(fun, 0.0, x_out);
   Optimist::RootFinder::Greenstadt<double, 4> greenstadt;
 
   return 1;

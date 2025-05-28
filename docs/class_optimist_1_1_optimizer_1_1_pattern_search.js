@@ -1,9 +1,9 @@
 var class_optimist_1_1_optimizer_1_1_pattern_search =
 [
-    [ "FunctionWrapper", "class_optimist_1_1_optimizer_1_1_pattern_search.html#ad534cbc32663e482e41dad311cd4924d", null ],
-    [ "Matrix", "class_optimist_1_1_optimizer_1_1_pattern_search.html#a666f9dcf17f73ac4449868d1f6788c9f", null ],
+    [ "FunctionWrapper", "class_optimist_1_1_optimizer_1_1_pattern_search.html#a662926f8de82ee07e762fa8fd596628f", null ],
+    [ "Matrix", "class_optimist_1_1_optimizer_1_1_pattern_search.html#aff7ff84dce589bead452eed5d85d18e0", null ],
     [ "Simplex", "class_optimist_1_1_optimizer_1_1_pattern_search.html#a659062559898467c7092aa520f76a2cc", null ],
-    [ "Vector", "class_optimist_1_1_optimizer_1_1_pattern_search.html#a7388c8aacac7075365bf514897f46e10", null ],
+    [ "Vector", "class_optimist_1_1_optimizer_1_1_pattern_search.html#a0be19b43de9e4c34d83f768c03b6c2b4", null ],
     [ "PatternSearch", "class_optimist_1_1_optimizer_1_1_pattern_search.html#ac187ec555818f3beba56f7e29814b4c6", null ],
     [ "best_nearby", "class_optimist_1_1_optimizer_1_1_pattern_search.html#ac0d9b7f0e7cedc995583f1e507a22f35", null ],
     [ "name_impl", "class_optimist_1_1_optimizer_1_1_pattern_search.html#afedaa64d9ec901e32c33cbfcd1294dcb", null ],

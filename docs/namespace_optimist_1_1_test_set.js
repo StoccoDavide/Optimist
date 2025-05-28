@@ -11,6 +11,7 @@ var namespace_optimist_1_1_test_set =
     [ "Schaffer2", "class_optimist_1_1_test_set_1_1_schaffer2.html", "class_optimist_1_1_test_set_1_1_schaffer2" ],
     [ "Sin", "class_optimist_1_1_test_set_1_1_sin.html", "class_optimist_1_1_test_set_1_1_sin" ],
     [ "Sinh", "class_optimist_1_1_test_set_1_1_sinh.html", "class_optimist_1_1_test_set_1_1_sinh" ],
+    [ "Test11", "class_optimist_1_1_test_set_1_1_test11.html", "class_optimist_1_1_test_set_1_1_test11" ],
     [ "Rosenbrock10", "namespace_optimist_1_1_test_set.html#ace38454d206af9beda66b48ed5a6db6e", null ],
     [ "Rosenbrock2", "namespace_optimist_1_1_test_set.html#a09e7e6ac3b76dd6a9cb83a62608ae41f", null ],
     [ "Rosenbrock4", "namespace_optimist_1_1_test_set.html#a1679f6b3e8784a01b90039c6e316f3c4", null ],

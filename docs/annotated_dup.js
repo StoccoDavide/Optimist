@@ -36,7 +36,8 @@ var annotated_dup =
         [ "Rosenbrock", "class_optimist_1_1_test_set_1_1_rosenbrock.html", "class_optimist_1_1_test_set_1_1_rosenbrock" ],
         [ "Schaffer2", "class_optimist_1_1_test_set_1_1_schaffer2.html", "class_optimist_1_1_test_set_1_1_schaffer2" ],
         [ "Sin", "class_optimist_1_1_test_set_1_1_sin.html", "class_optimist_1_1_test_set_1_1_sin" ],
-        [ "Sinh", "class_optimist_1_1_test_set_1_1_sinh.html", "class_optimist_1_1_test_set_1_1_sinh" ]
+        [ "Sinh", "class_optimist_1_1_test_set_1_1_sinh.html", "class_optimist_1_1_test_set_1_1_sinh" ],
+        [ "Test11", "class_optimist_1_1_test_set_1_1_test11.html", "class_optimist_1_1_test_set_1_1_test11" ]
       ] ],
       [ "Function", "class_optimist_1_1_function.html", "class_optimist_1_1_function" ],
       [ "Function< Real, 1, 1, DerivedFunction >", "class_optimist_1_1_function_3_01_real_00_011_00_011_00_01_derived_function_01_4.html", "class_optimist_1_1_function_3_01_real_00_011_00_011_00_01_derived_function_01_4" ],

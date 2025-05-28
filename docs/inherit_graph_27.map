@@ -1,3 +1,7 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$class_optimist_1_1_solver_base.html" title="Class container for the generic root&#45;finding/optimization problem solver." alt="" coords="5,5,204,61"/>
+<area shape="rect" id="Node000000" href="$class_optimist_1_1_solver_base.html" title=" " alt="" coords="5,5,151,61"/>
+<area shape="rect" id="Node000001" href="$class_optimist_1_1_root_finder_1_1_root_finder.html" title=" " alt="" coords="199,5,350,61"/>
+<area shape="poly" id="edge68_Node000000_Node000001" title=" " alt="" coords="166,30,198,30,198,36,166,36"/>
+<area shape="rect" id="Node000002" href="$class_optimist_1_1_root_finder_1_1_varona.html" title="Class container for the Varona&#39;s methods." alt="" coords="398,13,540,54"/>
+<area shape="poly" id="edge69_Node000001_Node000002" title=" " alt="" coords="366,30,398,30,398,36,366,36"/>
 </map>

@@ -1,7 +1,17 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$class_optimist_1_1_solver_base.html" title=" " alt="" coords="5,5,177,61"/>
-<area shape="rect" id="Node000001" href="$class_optimist_1_1_optimizer_1_1_optimizer.html" title=" " alt="" coords="225,5,401,61"/>
-<area shape="poly" id="edge40_Node000000_Node000001" title=" " alt="" coords="192,30,224,30,224,36,192,36"/>
-<area shape="rect" id="Node000002" href="$class_optimist_1_1_optimizer_1_1_nelder_mead.html" title="Class container for the Nelder&#45;Mead&#39;s method." alt="" coords="449,13,617,54"/>
-<area shape="poly" id="edge41_Node000001_Node000002" title=" " alt="" coords="416,30,448,30,448,36,416,36"/>
+<area shape="rect" id="Node000000" href="$class_optimist_1_1_solver_base.html" title=" " alt="" coords="5,149,198,190"/>
+<area shape="rect" id="Node000001" href="$class_optimist_1_1_optimizer_1_1_optimizer_3_01_real_00_011_00_01_derived_solver_01_4.html" title="Class container for the scalar optimizer." alt="" coords="270,85,414,141"/>
+<area shape="poly" id="edge35_Node000000_Node000001" title=" " alt="" coords="206,142,269,127,270,132,207,147"/>
+<area shape="rect" id="Node000004" href="$class_optimist_1_1_root_finder_1_1_root_finder_3_01_real_00_011_00_01_derived_solver_01_4.html" title="Class container for the scalar scalar root&#45;finder." alt="" coords="266,165,418,221"/>
+<area shape="poly" id="edge36_Node000000_Node000004" title=" " alt="" coords="213,178,266,183,265,188,213,183"/>
+<area shape="rect" id="Node000005" href="$class_optimist_1_1_root_finder_1_1_bracketing.html" title="Class container for the Bracketing algorithms." alt="" coords="486,165,669,221"/>
+<area shape="poly" id="edge37_Node000004_Node000005" title=" " alt="" coords="433,190,485,190,485,196,433,196"/>
+<area shape="rect" id="Node000002" href="$class_optimist_1_1_solver_base.html" title=" " alt="" coords="8,45,195,101"/>
+<area shape="poly" id="edge38_Node000002_Node000001" title=" " alt="" coords="210,89,270,99,269,104,209,94"/>
+<area shape="rect" id="Node000003" href="$class_optimist_1_1_optimizer_1_1_optimizer.html" title="Class container for the multi&#45;dimensional optimizer." alt="" coords="246,5,438,61"/>
+<area shape="poly" id="edge39_Node000002_Node000003" title=" " alt="" coords="209,53,245,47,246,52,210,58"/>
+<area shape="rect" id="Node000006" href="$class_optimist_1_1_solver_base.html" title=" " alt="" coords="7,217,196,273"/>
+<area shape="poly" id="edge40_Node000006_Node000004" title=" " alt="" coords="211,219,265,207,266,212,212,224"/>
+<area shape="rect" id="Node000007" href="$class_optimist_1_1_root_finder_1_1_root_finder.html" title="Class container for the multi&#45;dimensional root finder." alt="" coords="246,245,438,301"/>
+<area shape="poly" id="edge41_Node000006_Node000007" title=" " alt="" coords="212,255,246,259,245,265,212,261"/>
 </map>

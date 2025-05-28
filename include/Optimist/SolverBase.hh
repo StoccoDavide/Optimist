@@ -105,12 +105,12 @@ namespace Optimist
     * Class constructor for the nonlinear solver.
     */
     SolverBase() {
-      if constexpr (SolInDim == 1) {
-        this->m_lower_bound = -INFTY;
-        this->m_upper_bound = INFTY;
-      } else if constexpr (SolInDim > 1) {
+      if constexpr (ForceEigen || SolInDim > 1) {
         this->m_lower_bound.setConstant(-INFTY);
         this->m_upper_bound.setConstant(INFTY);
+      } else {
+        this->m_lower_bound = -INFTY;
+        this->m_upper_bound = INFTY;
       }
       this->m_trace.reserve(this->m_max_iterations * this->m_max_relaxations);
     }
@@ -165,11 +165,11 @@ namespace Optimist
     void lower_bound(const InputType & t_lower_bound) {
       #define CMD "Optimist::Solver::bounds(...): "
 
-      if constexpr (SolInDim == 1) {
-        OPTIMIST_ASSERT(this->m_upper_bound > t_lower_bound,
-          CMD "invalid or degenarate bounds detected.");
-      } else if constexpr (SolInDim > 1) {
+      if constexpr (ForceEigen || SolInDim > 1) {
         OPTIMIST_ASSERT((this->m_upper_bound - t_lower_bound).minCoeff() <= 0.0,
+          CMD "invalid or degenarate bounds detected.");
+      } else {
+        OPTIMIST_ASSERT(this->m_upper_bound > t_lower_bound,
           CMD "invalid or degenarate bounds detected.");
       }
       this->m_lower_bound = t_lower_bound;
@@ -190,11 +190,11 @@ namespace Optimist
     void upper_bound(const InputType & t_upper_bound) {
       #define CMD "Optimist::Solver::bounds(...): "
 
-      if constexpr (SolInDim == 1) {
-        OPTIMIST_ASSERT(t_upper_bound > this->m_lower_bound,
-          CMD "invalid or degenarate bounds detected.");
-      } else if constexpr (SolInDim > 1) {
+      if constexpr (ForceEigen || SolInDim > 1) {
         OPTIMIST_ASSERT((t_upper_bound - this->m_lower_bound).minCoeff() <= 0.0,
+          CMD "invalid or degenarate bounds detected.");
+      } else {
+        OPTIMIST_ASSERT(t_upper_bound > this->m_lower_bound,
           CMD "invalid or degenarate bounds detected.");
       }
       this->m_upper_bound = t_upper_bound;
@@ -211,11 +211,11 @@ namespace Optimist
     {
       #define CMD "Optimist::Solver::bounds(...): "
 
-      if constexpr (SolInDim == 1) {
-        OPTIMIST_ASSERT(t_upper_bound > t_lower_bound,
-          CMD "invalid or degenarate bounds detected.");
-      } else if constexpr (SolInDim > 1) {
+      if constexpr (ForceEigen || SolInDim > 1) {
         OPTIMIST_ASSERT((t_upper_bound - t_lower_bound).minCoeff() <= 0.0,
+          CMD "invalid or degenarate bounds detected.");
+      } else {
+        OPTIMIST_ASSERT(t_upper_bound > t_lower_bound,
           CMD "invalid or degenarate bounds detected.");
       }
       this->m_lower_bound = t_lower_bound;
@@ -474,6 +474,7 @@ namespace Optimist
     * \param[in] function Function wrapper.
     * \param[in] x_ini Initialization point.
     * \param[out] x_sol Solution point.
+    * \return True if the problem is solved, false otherwise.
     */
     bool solve(FunctionWrapper function, const InputType & x_ini, InputType & x_sol)
     {
@@ -492,6 +493,7 @@ namespace Optimist
     * \param[in] first_derivative First derivative wrapper
     * \param[in] x_ini Initialization point.
     * \param[out] x_sol Solution point.
+    * \return True if the problem is solved, false otherwise.
     */
     bool solve(FunctionWrapper function, FirstDerivativeWrapper first_derivative, const InputType & x_ini,
       InputType & x_sol)
@@ -514,6 +516,7 @@ namespace Optimist
     * \param[in] second_derivative The second derivative wrapper.
     * \param[in] x_ini Initialization point.
     * \param[out] x_sol Solution point.
+    * \return True if the problem is solved, false otherwise.
     */
     bool solve(FunctionWrapper function, FirstDerivativeWrapper first_derivative, SecondDerivativeWrapper
       second_derivative, const InputType & x_ini, InputType & x_sol)
@@ -540,10 +543,11 @@ namespace Optimist
     * \tparam FunInDim The function output dimension.
     * \tparam FunOutDim The function output dimension.
     * \tparam DerivedFunction Derived function class.
+    * \return True if the problem is solved, false otherwise.
     */
     template <Integer FunInDim, Integer FunOutDim, typename DerivedFunction>
-    bool rootfind(FunctionBase<Real, FunInDim, FunOutDim, DerivedFunction> const & function, const InputType
-      & x_ini, InputType & x_sol)
+    bool rootfind(FunctionBase<Real, FunInDim, FunOutDim, DerivedFunction, ForceEigen && FunOutDim == 1> const & function,
+      const InputType & x_ini, InputType & x_sol)
     {
       #define CMD "Optimist::Solver::rootfind(...): "
 
@@ -566,10 +570,11 @@ namespace Optimist
     * \tparam FunInDim The function output dimension.
     * \tparam FunOutDim The function output dimension.
     * \tparam DerivedFunction Derived function class.
+    * \return True if the problem is solved, false otherwise.
     */
     template <Integer FunInDim, Integer FunOutDim, typename DerivedFunction>
-    bool optimize(FunctionBase<Real, FunInDim, FunOutDim, DerivedFunction> const & function, const InputType
-      & x_ini, InputType & x_sol)
+    bool optimize(FunctionBase<Real, FunInDim, FunOutDim, DerivedFunction, ForceEigen && FunOutDim == 1> const & function,
+      const InputType & x_ini, InputType & x_sol)
     {
       #define CMD "Optimist::Solver::optimize(...): "
 
@@ -600,14 +605,15 @@ namespace Optimist
     * \tparam FunInDim The function output dimension.
     * \tparam FunOutDim The function output dimension.
     * \tparam DerivedFunction Derived function class.
+    * \return True if the problem is solved, false otherwise.
     */
     template <Integer FunInDim, Integer FunOutDim, typename DerivedFunction>
-    bool solve(FunctionBase<Real, FunInDim, FunOutDim, DerivedFunction> const & function, const InputType & x_ini,
-      InputType & x_sol, bool is_optimization)
+    bool solve(FunctionBase<Real, FunInDim, FunOutDim, DerivedFunction, ForceEigen && FunOutDim == 1> const & function,
+      const InputType & x_ini, InputType & x_sol, bool is_optimization)
     {
       #define CMD "Optimist::Solver::solve(...): "
 
-      using FunctionType = FunctionBase<Real, FunInDim, FunOutDim, DerivedFunction>;
+      using FunctionType = FunctionBase<Real, FunInDim, FunOutDim, DerivedFunction, ForceEigen && FunOutDim == 1>;
 
       static_assert(SolInDim == FunInDim,
         CMD "solver input dimension must be equal to the function input dimension.");
@@ -773,16 +779,16 @@ namespace Optimist
         this->evaluate_function(function, x_new, function_new);
 
         // Check relaxation
-        if constexpr (SolInDim == 1 && SolOutDim == 1) {
-          residuals_old = std::abs(function_old);
-          residuals_new = std::abs(function_new);
-          step_norm_old = std::abs(step_old);
-          step_norm_new = std::abs(step_new);
-        } else {
+        if constexpr (ForceEigen || (SolInDim > 1 && SolOutDim > 1)) {
           residuals_old = function_old.norm();
           residuals_new = function_new.norm();
           step_norm_old = step_old.norm();
           step_norm_new = step_new.norm();
+        } else {
+          residuals_old = std::abs(function_old);
+          residuals_new = std::abs(function_new);
+          step_norm_old = std::abs(step_old);
+          step_norm_new = std::abs(step_new);
         }
         if (residuals_new < residuals_old || step_norm_new < (Real(1.0)-tau/Real(2.0))*step_norm_old) {
           return true;

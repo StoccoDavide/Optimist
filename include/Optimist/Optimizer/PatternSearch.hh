@@ -40,17 +40,17 @@ namespace Optimist
     */
     template <typename Real>
     template <Integer N>
-    class PatternSearch : public Optimizer<Real, N, PatternSearch<Real, N>>
+    class PatternSearch : public Optimizer<Real, N, PatternSearch<Real, N>, true>
     {
     public:
       static constexpr bool requires_function{true};
       static constexpr bool requires_first_derivative{false};
       static constexpr bool requires_second_derivative{false};
 
-      using Vector = typename Optimizer<Real, N, PatternSearch<Real, N>>::Vector;
-      using Matrix = typename Optimizer<Real, N, PatternSearch<Real, N>>::Matrix;
-      using FunctionWrapper = typename Optimizer<Real, N, PatternSearch<Real, N>>::FunctionWrapper;
-      using Optimizer<Real, N, PatternSearch<Real, N>>::solve;
+      using Vector = typename Optimizer<Real, N, PatternSearch<Real, N>, true>::Vector;
+      using Matrix = typename Optimizer<Real, N, PatternSearch<Real, N>, true>::Matrix;
+      using FunctionWrapper = typename Optimizer<Real, N, PatternSearch<Real, N>, true>::FunctionWrapper;
+      using Optimizer<Real, N, PatternSearch<Real, N>, true>::solve;
 
       using Simplex = std::vector<Vector>; /**< Simplex type. */
 

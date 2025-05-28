@@ -7,7 +7,7 @@ var searchData=
   ['solverbase_3c_20real_2c_201_2c_201_2c_20derivedsolver_20_3e_4',['SolverBase&lt; Real, 1, 1, DerivedSolver &gt;',['../class_optimist_1_1_solver_base.html',1,'Optimist']]],
   ['solverbase_3c_20real_2c_20n_2c_201_2c_20derivedsolver_2c_20false_20_3e_5',['SolverBase&lt; Real, N, 1, DerivedSolver, false &gt;',['../class_optimist_1_1_solver_base.html',1,'Optimist']]],
   ['solverbase_3c_20real_2c_20n_2c_201_2c_20neldermead_3c_20real_2c_20n_20_3e_2c_20false_20_3e_6',['SolverBase&lt; Real, N, 1, NelderMead&lt; Real, N &gt;, false &gt;',['../class_optimist_1_1_solver_base.html',1,'Optimist']]],
-  ['solverbase_3c_20real_2c_20n_2c_201_2c_20patternsearch_3c_20real_2c_20n_20_3e_2c_20false_20_3e_7',['SolverBase&lt; Real, N, 1, PatternSearch&lt; Real, N &gt;, false &gt;',['../class_optimist_1_1_solver_base.html',1,'Optimist']]],
+  ['solverbase_3c_20real_2c_20n_2c_201_2c_20patternsearch_3c_20real_2c_20n_20_3e_2c_20forceeigen_20_3e_7',['SolverBase&lt; Real, N, 1, PatternSearch&lt; Real, N &gt;, ForceEigen &gt;',['../class_optimist_1_1_solver_base.html',1,'Optimist']]],
   ['solverbase_3c_20real_2c_20n_2c_20n_2c_20algo748_3c_20real_20_3e_2c_20false_20_3e_8',['SolverBase&lt; Real, N, N, Algo748&lt; Real &gt;, false &gt;',['../class_optimist_1_1_solver_base.html',1,'Optimist']]],
   ['solverbase_3c_20real_2c_20n_2c_20n_2c_20broyden_3c_20real_2c_20n_20_3e_2c_20forceeigen_20_3e_9',['SolverBase&lt; Real, N, N, Broyden&lt; Real, N &gt;, ForceEigen &gt;',['../class_optimist_1_1_solver_base.html',1,'Optimist']]],
   ['solverbase_3c_20real_2c_20n_2c_20n_2c_20chandrupatla_3c_20real_20_3e_2c_20false_20_3e_10',['SolverBase&lt; Real, N, N, Chandrupatla&lt; Real &gt;, false &gt;',['../class_optimist_1_1_solver_base.html',1,'Optimist']]],

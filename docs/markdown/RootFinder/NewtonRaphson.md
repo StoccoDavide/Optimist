@@ -1,6 +1,6 @@
-# Newton's method
+# Newton-Raphson method
 
-Newton's method, including its damped variant with an affine-invariant step, is based on the linearization of the function \f$f(x)\f$ around the current iterate \f$x_k\f$, which leads to the linear system
+Newton-Raphson method, including its damped variant with an affine-invariant step, is based on the linearization of the function \f$f(x)\f$ around the current iterate \f$x_k\f$, which leads to the linear system
 \f[
   f^{\prime}_{x}(x_k) h_k = -f(x_k) \text{.}
 \f]

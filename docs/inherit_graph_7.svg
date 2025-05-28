@@ -15,7 +15,7 @@
 <polygon fill="white" stroke="#666666" points="154,-41.75 0,-41.75 0,0 154,0 154,-41.75"/>
 <text text-anchor="start" x="8" y="-28.25" font-family="Helvetica,sans-Serif" font-size="10.00">Optimist::FunctionBase</text>
 <text text-anchor="start" x="8" y="-17" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; Real, N, M, EllipticParaboloid</text>
-<text text-anchor="middle" x="77" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; Real &gt; &gt;</text>
+<text text-anchor="middle" x="77" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; Real &gt;, false &gt;</text>
 </a>
 </g>
 </g>

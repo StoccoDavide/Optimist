@@ -10,5 +10,6 @@ var dir_92559c1e7f5e87d41bb656ee0b0671a6 =
     [ "Rosenbrock.hh", "_rosenbrock_8hh.html", "_rosenbrock_8hh" ],
     [ "Schaffer2.hh", "_schaffer2_8hh.html", "_schaffer2_8hh" ],
     [ "Sin.hh", "_sin_8hh.html", "_sin_8hh" ],
-    [ "Sinh.hh", "_sinh_8hh.html", "_sinh_8hh" ]
+    [ "Sinh.hh", "_sinh_8hh.html", "_sinh_8hh" ],
+    [ "Test11.hh", "_test11_8hh.html", "_test11_8hh" ]
 ];

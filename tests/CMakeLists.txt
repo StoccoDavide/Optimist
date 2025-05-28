@@ -66,11 +66,10 @@ catch_discover_tests(test_rootfinder_greenstadt)
 
 # Optimizer
 
-file(GLOB_RECURSE TEST_OPTIMIZER_NEWTON "${CMAKE_CURRENT_SOURCE_DIR}/Optimizer/test_newton.cc")
-add_executable(test_optimizer_newton ${TEST_OPTIMIZER_NEWTON})
-target_link_libraries(test_optimizer_newton PRIVATE Optimist Catch2::Catch2WithMain)
-catch_discover_tests(test_optimizer_newton)
-
+file(GLOB_RECURSE TEST_OPTIMIZER_NEWTONRAPHSON "${CMAKE_CURRENT_SOURCE_DIR}/Optimizer/test_newtonraphson.cc")
+add_executable(test_optimizer_newtonraphson ${TEST_OPTIMIZER_NEWTONRAPHSON})
+target_link_libraries(test_optimizer_newtonraphson PRIVATE Optimist Catch2::Catch2WithMain)
+catch_discover_tests(test_optimizer_newtonraphson)
 
 file(GLOB_RECURSE TEST_OPTIMIZER_NELDERMEAD "${CMAKE_CURRENT_SOURCE_DIR}/Optimizer/test_neldermead.cc")
 add_executable(test_optimizer_neldermead ${TEST_OPTIMIZER_NELDERMEAD})

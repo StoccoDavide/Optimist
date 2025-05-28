@@ -9,7 +9,7 @@
 \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 // Optimist library
-#include "Optimist/RootFinder/Newton.hh"
+#include "Optimist/RootFinder/NewtonRaphson.hh"
 
 // Catch2 library
 #include <catch2/catch_test_macros.hpp>
@@ -21,10 +21,10 @@
 using namespace Optimist;
 using namespace Optimist::TestSet;
 
-TEMPLATE_TEST_CASE("Newton", "[template]", TEST_SCALAR_FUNCTIONS) {
+TEMPLATE_TEST_CASE("NewtonRaphson", "[template]", TEST_SCALAR_FUNCTIONS) {
   TestType fun;
   SECTION(fun.name()) {
-    RootFinder::Newton<double> sol;
+    RootFinder::NewtonRaphson<double> sol;
     SECTION(sol.name()) {
       sol.task(fun.name());
       typename TestType::InputType x_ini, x_out;
