@@ -65,9 +65,9 @@ if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
     )
   endif()
 
-  option(BUILD_TESTS "Build tests" OFF)
-  option(BUILD_BENCHMARKS "Build benchmarks" OFF)
-  option(BUILD_EXAMPLES "Build examples" OFF)
+  option(OPTIMIST_BUILD_TESTS "Build tests" OFF)
+  option(OPTIMIST_BUILD_BENCHMARKS "Build benchmarks" OFF)
+  option(OPTIMIST_BUILD_EXAMPLES "Build examples" OFF)
 
   file(GLOB_RECURSE HEADER_FILES_HH "${CMAKE_CURRENT_SOURCE_DIR}/include/*.hh")
   foreach(HEADER_FILE IN LISTS HEADER_FILES_HH)
@@ -80,15 +80,15 @@ if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
   endforeach()
   target_sources(Optimist INTERFACE $<BUILD_INTERFACE:${RELATIVE_HEADER_FILES}>)
 
-  if(BUILD_TESTS)
+  if(OPTIMIST_BUILD_TESTS)
     add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/tests)
   endif()
 
-  if(BUILD_BENCHMARKS)
+  if(OPTIMIST_BUILD_BENCHMARKS)
     add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/benchmarks)
   endif()
 
-  if(BUILD_EXAMPLES)
+  if(OPTIMIST_BUILD_EXAMPLES)
     add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/examples)
   endif()
 

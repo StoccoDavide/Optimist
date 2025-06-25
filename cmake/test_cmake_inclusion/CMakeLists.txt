@@ -18,7 +18,7 @@ if(ADD_SUBDIRECTORY_METHOD)
 endif()
 
 if(FIND_PACKAGE_METHOD)
-  list(APPEND CMAKE_PREFIX_PATH "${CMAKE_CURRENT_SOURCE_DIR}/third_party")
+  list(APPEND CMAKE_PREFIX_PATH "${CMAKE_CURRENT_SOURCE_DIR}/third_party/install")
   find_package(
     Optimist
     0.0.0
