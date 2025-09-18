@@ -98,61 +98,61 @@ namespace Optimist
   * \brief Retrieve the Unicode character for the top-left corner of a table.
   * \return Unicode character for the top-left corner of a table.
   */
-  static inline std::string table_top_left_corner() {return "┌";}
+  static inline std::string table_top_left_corner() {return std::string("┌");}
 
   /**
   * \brief Retrieve the Unicode character for the top-right corner of a table.
   * \return Unicode character for the top-right corner of a table.
   */
-  static inline std::string table_top_right_corner() {return "┐";}
+  static inline std::string table_top_right_corner() {return std::string("┐");}
 
   /**
   * \brief Retrieve the Unicode character for the bottom-left corner of a table.
   * \return Unicode character for the bottom-left corner of a table.
   */
-  static inline std::string table_bottom_left_corner() {return "└";}
+  static inline std::string table_bottom_left_corner() {return std::string("└");}
 
   /**
   * \brief Retrieve the Unicode character for the bottom-right corner of a table.
   * \return Unicode character for the bottom-right corner of a table.
   */
-  static inline std::string table_bottom_right_corner() {return "┘";}
+  static inline std::string table_bottom_right_corner() {return std::string("┘");}
 
   /**
   * \brief Retrieve the Unicode character for the left junction of a table.
   * \return Unicode character for the left junction of a table.
   */
-  static inline std::string table_left_junction() {return "├";}
+  static inline std::string table_left_junction() {return std::string("├");}
 
   /**
   * \brief Retrieve the Unicode character for the right junction of a table.
   * \return Unicode character for the right junction of a table.
   */
-  static inline std::string table_right_junction() {return "┤";}
+  static inline std::string table_right_junction() {return std::string("┤");}
 
   /**
   * \brief Retrieve the Unicode character for the top junction of a table.
   * \return Unicode character for the top junction of a table.
   */
-  static inline std::string table_top_junction() {return "┬";}
+  static inline std::string table_top_junction() {return std::string("┬");}
 
   /**
   * \brief Retrieve the Unicode character for the bottom junction of a table.
   * \return Unicode character for the bottom junction of a table.
   */
-  static inline std::string table_bottom_junction() {return "┴";}
+  static inline std::string table_bottom_junction() {return std::string("┴");}
 
   /**
   * \brief Retrieve the Unicode character for the center cross of a table.
   * \return Unicode character for the center cross of a table.
   */
-  static inline std::string table_center_cross() {return "┼";}
+  static inline std::string table_center_cross() {return std::string("┼");}
 
   /**
   * \brief Retrieve the Unicode character for the horizontal line of a table.
   * \return Unicode character for the horizontal line of a table.
   */
-  static inline std::string table_horizontal_line() {return "─";}
+  static inline std::string table_horizontal_line() {return std::string("─");}
 
   /**
   * \brief Retrieve the Unicode character for a number of horizontal lines of a table.
@@ -170,7 +170,7 @@ namespace Optimist
   * \brief Retrieve the Unicode character for the vertical line of a table.
   * \return Unicode character for the vertical line of a table.
   */
-  static inline std::string table_vertical_line() {return "│";}
+  static inline std::string table_vertical_line() {return std::string("│");}
 
 } // namespace Optimist
 
