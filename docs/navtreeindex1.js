@@ -1,7 +1,5 @@
 var NAVTREEINDEX1 =
 {
-"class_optimist_1_1_function_base.html#ab2f17a2d2602dbf1ae46e158936a484b":[4,0,0,7,6],
-"class_optimist_1_1_function_base.html#ac01888a740b85d0dfbc6db99d341f82e":[3,0,0,7,12],
 "class_optimist_1_1_function_base.html#ac01888a740b85d0dfbc6db99d341f82e":[4,0,0,7,12],
 "class_optimist_1_1_function_base.html#afea0a94d25c1a48f32e6e4a604db38e9":[3,0,0,7,5],
 "class_optimist_1_1_function_base.html#afea0a94d25c1a48f32e6e4a604db38e9":[4,0,0,7,5],
@@ -249,5 +247,7 @@ var NAVTREEINDEX1 =
 "class_optimist_1_1_root_finder_1_1_bracketing.html#aa570ce13c65b004a115b52b339d00a30":[4,0,0,2,1,17],
 "class_optimist_1_1_root_finder_1_1_bracketing.html#abedc90c8caa0ac9d35e7a1024ac2b850":[3,0,0,2,1,7],
 "class_optimist_1_1_root_finder_1_1_bracketing.html#abedc90c8caa0ac9d35e7a1024ac2b850":[4,0,0,2,1,7],
-"class_optimist_1_1_root_finder_1_1_bracketing.html#abf9830016879bfbd0f347db083af94f0":[3,0,0,2,1,6]
+"class_optimist_1_1_root_finder_1_1_bracketing.html#abf9830016879bfbd0f347db083af94f0":[3,0,0,2,1,6],
+"class_optimist_1_1_root_finder_1_1_bracketing.html#abf9830016879bfbd0f347db083af94f0":[4,0,0,2,1,6],
+"class_optimist_1_1_root_finder_1_1_bracketing.html#ac0b752739001f1ea51e64d348bbaa1a6":[3,0,0,2,1,18]
 };

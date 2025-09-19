@@ -139,422 +139,698 @@ $(function(){initNavTree('namespace_optimist_1_1_finite_difference.html','','');
 Classes</h2></td></tr>
 <tr class="memitem:Epsilon" id="r_Epsilon"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_optimist_1_1_finite_difference_1_1_epsilon.html">Epsilon</a></td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:a4226f5a14a6531287618c7602b61d0c5" id="r_a4226f5a14a6531287618c7602b61d0c5"><td class="memTemplParams" colspan="2">template&lt;typename Real&gt; </td></tr>
+<tr class="memitem:a4226f5a14a6531287618c7602b61d0c5 template"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4226f5a14a6531287618c7602b61d0c5">VectorXd</a> = Eigen::Vector&lt;Real, Eigen::Dynamic&gt;</td></tr>
+<tr class="memitem:a675046c154c9ba4e991c05b3e87a21f6" id="r_a675046c154c9ba4e991c05b3e87a21f6"><td class="memTemplParams" colspan="2">template&lt;typename Real&gt; </td></tr>
+<tr class="memitem:a675046c154c9ba4e991c05b3e87a21f6 template"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a675046c154c9ba4e991c05b3e87a21f6">MatrixXd</a> = Eigen::Matrix&lt;Real, Eigen::Dynamic, Eigen::Dynamic&gt;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:aa3c9dba19a6bdb981475b23d8d4d3612" id="r_aa3c9dba19a6bdb981475b23d8d4d3612"><td class="memItemLeft" align="right" valign="top">static Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa3c9dba19a6bdb981475b23d8d4d3612">finite_difference_side</a> (Real f0, Real f1, Real f2, Real h1, Real h2)</td></tr>
-<tr class="memitem:a6fd8dcd1c018990b34adb435402401d5" id="r_a6fd8dcd1c018990b34adb435402401d5"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> N&gt; </td></tr>
-<tr class="memitem:a6fd8dcd1c018990b34adb435402401d5 template"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6fd8dcd1c018990b34adb435402401d5">finite_difference_side</a> (const Vector&lt; N &gt; &amp;f0, const Vector&lt; N &gt; &amp;f1, const Vector&lt; N &gt; &amp;f2, const Real h1, const Real h2, Vector&lt; N &gt; &amp;diff)</td></tr>
-<tr class="memitem:acbca602ad8cc040cc119e9c6f7cde105" id="r_acbca602ad8cc040cc119e9c6f7cde105"><td class="memItemLeft" align="right" valign="top">static Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acbca602ad8cc040cc119e9c6f7cde105">finite_difference_centered</a> (const Real fun_l, const Real fun_c, const Real fun_r, const Real h)</td></tr>
-<tr class="memitem:a7f8cc70a31cf7cffb7ac108df18e5e29" id="r_a7f8cc70a31cf7cffb7ac108df18e5e29"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7f8cc70a31cf7cffb7ac108df18e5e29">finite_difference_centered</a> (const Real fun_l, const bool is_finite_l, const Real fun_c, const bool is_finite_c, const Real fun_r, const bool is_finite_r, const Real h, Real &amp;diff)</td></tr>
-<tr class="memitem:a0e062d8e48e89dfce97ae5c842fd45bb" id="r_a0e062d8e48e89dfce97ae5c842fd45bb"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> N&gt; </td></tr>
-<tr class="memitem:a0e062d8e48e89dfce97ae5c842fd45bb template"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0e062d8e48e89dfce97ae5c842fd45bb">finite_difference_centered</a> (const Vector&lt; N &gt; &amp;fun_l, bool is_finite_l, const Vector&lt; N &gt; &amp;fun_c, bool is_finite_c, const Vector&lt; N &gt; &amp;fun_r, bool is_finite_r, Real h, Real diff)</td></tr>
-<tr class="memitem:acc3034a2bc5fc35643d36c3b3d64150d" id="r_acc3034a2bc5fc35643d36c3b3d64150d"><td class="memTemplParams" colspan="2">template&lt;typename FUNCTION, typename Real&gt; </td></tr>
-<tr class="memitem:acc3034a2bc5fc35643d36c3b3d64150d template"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acc3034a2bc5fc35643d36c3b3d64150d">finite_difference_gradient</a> (Real const x[], <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> dim_x, FUNCTION fun, Real grad[])</td></tr>
-<tr class="memitem:acce3611e3f8a5a350733c45321bdc06a" id="r_acce3611e3f8a5a350733c45321bdc06a"><td class="memTemplParams" colspan="2">template&lt;typename FUNCTION, typename Real&gt; </td></tr>
-<tr class="memitem:acce3611e3f8a5a350733c45321bdc06a template"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acce3611e3f8a5a350733c45321bdc06a">finite_difference_jacobian</a> (Real const x[], <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> dim_x, FUNCTION fun, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> dim_f, Real Jac[], <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> ldJ, Real *work, <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> lwork)</td></tr>
-<tr class="memitem:a763be3e2edefbfc5426750d158df9d09" id="r_a763be3e2edefbfc5426750d158df9d09"><td class="memTemplParams" colspan="2">template&lt;typename FUNCTION, typename Real&gt; </td></tr>
-<tr class="memitem:a763be3e2edefbfc5426750d158df9d09 template"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a763be3e2edefbfc5426750d158df9d09">finite_difference_hessian</a> (Real const x[], <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> dim_x, FUNCTION fun, Real Hess[], <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> ldH)</td></tr>
+<tr class="memitem:abdeb3cd10e0d886863521f85cb9a01e9" id="r_abdeb3cd10e0d886863521f85cb9a01e9"><td class="memTemplParams" colspan="2">template&lt;typename Real&gt; </td></tr>
+<tr class="memitem:abdeb3cd10e0d886863521f85cb9a01e9 template"><td class="memItemLeft" align="right" valign="top">Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abdeb3cd10e0d886863521f85cb9a01e9">SideFiniteDifference</a> (Real const fun_0, Real const fun_1, Real const fun_2, Real h_1, Real h_2)</td></tr>
+<tr class="memitem:aa1f456c9a1b7526eaf45a08f60139791" id="r_aa1f456c9a1b7526eaf45a08f60139791"><td class="memTemplParams" colspan="2">template&lt;typename Real&gt; </td></tr>
+<tr class="memitem:aa1f456c9a1b7526eaf45a08f60139791 template"><td class="memItemLeft" align="right" valign="top">Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa1f456c9a1b7526eaf45a08f60139791">CenteredFiniteDifference</a> (Real const fun_l, Real const fun_c, Real const fun_r, Real h)</td></tr>
+<tr class="memitem:a68ea1d45a624aa01fa52438c5f277d4e" id="r_a68ea1d45a624aa01fa52438c5f277d4e"><td class="memTemplParams" colspan="2">template&lt;typename Real&gt; </td></tr>
+<tr class="memitem:a68ea1d45a624aa01fa52438c5f277d4e template"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a4226f5a14a6531287618c7602b61d0c5">VectorXd</a>&lt; Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a68ea1d45a624aa01fa52438c5f277d4e">SideFiniteDifference</a> (<a class="el" href="#a4226f5a14a6531287618c7602b61d0c5">VectorXd</a>&lt; Real &gt; const &amp;fun_0, <a class="el" href="#a4226f5a14a6531287618c7602b61d0c5">VectorXd</a>&lt; Real &gt; const &amp;fun_1, <a class="el" href="#a4226f5a14a6531287618c7602b61d0c5">VectorXd</a>&lt; Real &gt; const &amp;fun_2, Real h_1, Real h_2)</td></tr>
+<tr class="memitem:aa9b2e58b30ef19d54f7f727363cecf41" id="r_aa9b2e58b30ef19d54f7f727363cecf41"><td class="memTemplParams" colspan="2">template&lt;typename Real&gt; </td></tr>
+<tr class="memitem:aa9b2e58b30ef19d54f7f727363cecf41 template"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a4226f5a14a6531287618c7602b61d0c5">VectorXd</a>&lt; Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa9b2e58b30ef19d54f7f727363cecf41">CenteredFiniteDifference</a> (<a class="el" href="#a4226f5a14a6531287618c7602b61d0c5">VectorXd</a>&lt; Real &gt; const &amp;fun_l, <a class="el" href="#a4226f5a14a6531287618c7602b61d0c5">VectorXd</a>&lt; Real &gt; const &amp;fun_c, <a class="el" href="#a4226f5a14a6531287618c7602b61d0c5">VectorXd</a>&lt; Real &gt; const &amp;fun_r, Real h)</td></tr>
+<tr class="memitem:a8b80f5fd2ee2804ae6d109eda4b8ad49" id="r_a8b80f5fd2ee2804ae6d109eda4b8ad49"><td class="memTemplParams" colspan="2">template&lt;typename <a class="el" href="class_optimist_1_1_function.html">Function</a>, typename Real&gt; </td></tr>
+<tr class="memitem:a8b80f5fd2ee2804ae6d109eda4b8ad49 template"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8b80f5fd2ee2804ae6d109eda4b8ad49">Gradient</a> (<a class="el" href="#a4226f5a14a6531287618c7602b61d0c5">VectorXd</a>&lt; Real &gt; const &amp;x, <a class="el" href="class_optimist_1_1_function.html">Function</a> fun, <a class="el" href="#a4226f5a14a6531287618c7602b61d0c5">VectorXd</a>&lt; Real &gt; &amp;grad)</td></tr>
+<tr class="memitem:ae2811d0ab239131057bddc438d8546c5" id="r_ae2811d0ab239131057bddc438d8546c5"><td class="memTemplParams" colspan="2">template&lt;typename <a class="el" href="class_optimist_1_1_function.html">Function</a>, typename Real&gt; </td></tr>
+<tr class="memitem:ae2811d0ab239131057bddc438d8546c5 template"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae2811d0ab239131057bddc438d8546c5">Jacobian</a> (<a class="el" href="#a4226f5a14a6531287618c7602b61d0c5">VectorXd</a>&lt; Real &gt; const &amp;x, <a class="el" href="class_optimist_1_1_function.html">Function</a> fun, <a class="el" href="#a675046c154c9ba4e991c05b3e87a21f6">MatrixXd</a>&lt; Real &gt; &amp;jac)</td></tr>
+<tr class="memitem:a2fbbfb9cade1be982cebe82e47697830" id="r_a2fbbfb9cade1be982cebe82e47697830"><td class="memTemplParams" colspan="2">template&lt;typename <a class="el" href="class_optimist_1_1_function.html">Function</a>, typename Real&gt; </td></tr>
+<tr class="memitem:a2fbbfb9cade1be982cebe82e47697830 template"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2fbbfb9cade1be982cebe82e47697830">Hessian</a> (<a class="el" href="#a4226f5a14a6531287618c7602b61d0c5">VectorXd</a>&lt; Real &gt; const &amp;x, <a class="el" href="class_optimist_1_1_function.html">Function</a> fun, <a class="el" href="#a675046c154c9ba4e991c05b3e87a21f6">MatrixXd</a>&lt; Real &gt; &amp;hes)</td></tr>
+<tr class="memitem:a8b6a7924d2826d440057d6efb2ebebbb" id="r_a8b6a7924d2826d440057d6efb2ebebbb"><td class="memTemplParams" colspan="2">template&lt;typename Vector&gt; </td></tr>
+<tr class="memitem:a8b6a7924d2826d440057d6efb2ebebbb template"><td class="memItemLeft" align="right" valign="top">Vector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8b6a7924d2826d440057d6efb2ebebbb">SideFiniteDifference</a> (Vector const &amp;fun_0, Vector const &amp;fun_1, Vector const &amp;fun_2, typename Vector::Scalar h_1, typename Vector::Scalar h_2)</td></tr>
+<tr class="memitem:ac1519473d67c95c544db76dc73d31f60" id="r_ac1519473d67c95c544db76dc73d31f60"><td class="memTemplParams" colspan="2">template&lt;typename Vector&gt; </td></tr>
+<tr class="memitem:ac1519473d67c95c544db76dc73d31f60 template"><td class="memItemLeft" align="right" valign="top">Vector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac1519473d67c95c544db76dc73d31f60">CenteredFiniteDifference</a> (Vector const &amp;fun_l, Vector const &amp;fun_c, Vector const &amp;fun_r, typename Vector::Scalar h)</td></tr>
+<tr class="memitem:a7c1aa8d82e6c7eb68adf5a91fa339a28" id="r_a7c1aa8d82e6c7eb68adf5a91fa339a28"><td class="memTemplParams" colspan="2">template&lt;typename <a class="el" href="class_optimist_1_1_function.html">Function</a>, typename Vector&gt; </td></tr>
+<tr class="memitem:a7c1aa8d82e6c7eb68adf5a91fa339a28 template"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7c1aa8d82e6c7eb68adf5a91fa339a28">Gradient</a> (Vector const &amp;x, <a class="el" href="class_optimist_1_1_function.html">Function</a> fun, Vector &amp;grad)</td></tr>
+<tr class="memitem:a5887994246c4b7915bddddbff43b0219" id="r_a5887994246c4b7915bddddbff43b0219"><td class="memTemplParams" colspan="2">template&lt;typename <a class="el" href="class_optimist_1_1_function.html">Function</a>, typename Vector, typename Matrix&gt; </td></tr>
+<tr class="memitem:a5887994246c4b7915bddddbff43b0219 template"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5887994246c4b7915bddddbff43b0219">Jacobian</a> (Vector const &amp;x, <a class="el" href="class_optimist_1_1_function.html">Function</a> fun, Matrix &amp;jac)</td></tr>
+<tr class="memitem:a0053577d18a8b9a5f8472e515c6efc1c" id="r_a0053577d18a8b9a5f8472e515c6efc1c"><td class="memTemplParams" colspan="2">template&lt;typename <a class="el" href="class_optimist_1_1_function.html">Function</a>, typename Vector, typename Matrix&gt; </td></tr>
+<tr class="memitem:a0053577d18a8b9a5f8472e515c6efc1c template"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0053577d18a8b9a5f8472e515c6efc1c">Hessian</a> (Vector const &amp;x, <a class="el" href="class_optimist_1_1_function.html">Function</a> fun, Matrix &amp;hes)</td></tr>
 </table>
+<a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Typedef Documentation</h2>
+<a id="a675046c154c9ba4e991c05b3e87a21f6" name="a675046c154c9ba4e991c05b3e87a21f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a675046c154c9ba4e991c05b3e87a21f6">&#9670;&#160;</a></span>MatrixXd</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a675046c154c9ba4e991c05b3e87a21f6">Optimist::FiniteDifference::MatrixXd</a> = Eigen::Matrix&lt;Real, Eigen::Dynamic, Eigen::Dynamic&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4226f5a14a6531287618c7602b61d0c5" name="a4226f5a14a6531287618c7602b61d0c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4226f5a14a6531287618c7602b61d0c5">&#9670;&#160;</a></span>VectorXd</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a4226f5a14a6531287618c7602b61d0c5">Optimist::FiniteDifference::VectorXd</a> = Eigen::Vector&lt;Real, Eigen::Dynamic&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>&lt; Template alias for <span class="tt"><a class="el" href="#a4226f5a14a6531287618c7602b61d0c5">VectorXd&lt;Real&gt;</a></span>. Template alias for <span class="tt"><a class="el" href="#a675046c154c9ba4e991c05b3e87a21f6">MatrixXd&lt;Real&gt;</a></span>. </p>
+
+</div>
+</div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
-<a id="a7f8cc70a31cf7cffb7ac108df18e5e29" name="a7f8cc70a31cf7cffb7ac108df18e5e29"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7f8cc70a31cf7cffb7ac108df18e5e29">&#9670;&#160;</a></span>finite_difference_centered() <span class="overload">[1/3]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> Optimist::FiniteDifference::finite_difference_centered </td>
-          <td>(</td>
-          <td class="paramtype">const Real</td>          <td class="paramname"><span class="paramname"><em>fun_l</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const bool</td>          <td class="paramname"><span class="paramname"><em>is_finite_l</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const Real</td>          <td class="paramname"><span class="paramname"><em>fun_c</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const bool</td>          <td class="paramname"><span class="paramname"><em>is_finite_c</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const Real</td>          <td class="paramname"><span class="paramname"><em>fun_r</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const bool</td>          <td class="paramname"><span class="paramname"><em>is_finite_r</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const Real</td>          <td class="paramname"><span class="paramname"><em>h</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Real &amp;</td>          <td class="paramname"><span class="paramname"><em>diff</em></span>&#160;)</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="acbca602ad8cc040cc119e9c6f7cde105" name="acbca602ad8cc040cc119e9c6f7cde105"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acbca602ad8cc040cc119e9c6f7cde105">&#9670;&#160;</a></span>finite_difference_centered() <span class="overload">[2/3]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">Real Optimist::FiniteDifference::finite_difference_centered </td>
-          <td>(</td>
-          <td class="paramtype">const Real</td>          <td class="paramname"><span class="paramname"><em>fun_l</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const Real</td>          <td class="paramname"><span class="paramname"><em>fun_c</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const Real</td>          <td class="paramname"><span class="paramname"><em>fun_r</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const Real</td>          <td class="paramname"><span class="paramname"><em>h</em></span>&#160;)</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a0e062d8e48e89dfce97ae5c842fd45bb" name="a0e062d8e48e89dfce97ae5c842fd45bb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0e062d8e48e89dfce97ae5c842fd45bb">&#9670;&#160;</a></span>finite_difference_centered() <span class="overload">[3/3]</span></h2>
+<a id="aa1f456c9a1b7526eaf45a08f60139791" name="aa1f456c9a1b7526eaf45a08f60139791"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1f456c9a1b7526eaf45a08f60139791">&#9670;&#160;</a></span>CenteredFiniteDifference() <span class="overload">[1/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> N&gt; </div>
+template&lt;typename Real&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> Optimist::FiniteDifference::finite_difference_centered </td>
+          <td class="memname">Real Optimist::FiniteDifference::CenteredFiniteDifference </td>
           <td>(</td>
-          <td class="paramtype">const Vector&lt; N &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>fun_l</em></span>, </td>
+          <td class="paramtype">Real const</td>          <td class="paramname"><span class="paramname"><em>fun_l</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>is_finite_l</em></span>, </td>
+          <td class="paramtype">Real const</td>          <td class="paramname"><span class="paramname"><em>fun_c</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const Vector&lt; N &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>fun_c</em></span>, </td>
+          <td class="paramtype">Real const</td>          <td class="paramname"><span class="paramname"><em>fun_r</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>is_finite_c</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const Vector&lt; N &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>fun_r</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>is_finite_r</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Real</td>          <td class="paramname"><span class="paramname"><em>h</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Real</td>          <td class="paramname"><span class="paramname"><em>diff</em></span>&#160;)</td>
+          <td class="paramtype">Real</td>          <td class="paramname"><span class="paramname"><em>h</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Compute centered finite difference (for scalars). </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">fun_l</td><td><a class="el" href="class_optimist_1_1_function.html" title="Class container for the vector-valued function.">Function</a> value at \( x-h \). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">fun_c</td><td><a class="el" href="class_optimist_1_1_function.html" title="Class container for the vector-valued function.">Function</a> value at \( x \). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">fun_r</td><td><a class="el" href="class_optimist_1_1_function.html" title="Class container for the vector-valued function.">Function</a> value at \( x+h \). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">h</td><td>Step size. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Real</td><td>Scalar number type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Approximated derivative. </dd></dl>
 
 </div>
 </div>
-<a id="acc3034a2bc5fc35643d36c3b3d64150d" name="acc3034a2bc5fc35643d36c3b3d64150d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acc3034a2bc5fc35643d36c3b3d64150d">&#9670;&#160;</a></span>finite_difference_gradient()</h2>
+<a id="ac1519473d67c95c544db76dc73d31f60" name="ac1519473d67c95c544db76dc73d31f60"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1519473d67c95c544db76dc73d31f60">&#9670;&#160;</a></span>CenteredFiniteDifference() <span class="overload">[2/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename FUNCTION, typename Real&gt; </div>
+template&lt;typename Vector&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool Optimist::FiniteDifference::finite_difference_gradient </td>
+          <td class="memname">Vector Optimist::FiniteDifference::CenteredFiniteDifference </td>
           <td>(</td>
-          <td class="paramtype">Real const</td>          <td class="paramname"><span class="paramname"><em>x</em></span>[], </td>
+          <td class="paramtype">Vector const &amp;</td>          <td class="paramname"><span class="paramname"><em>fun_l</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a></td>          <td class="paramname"><span class="paramname"><em>dim_x</em></span>, </td>
+          <td class="paramtype">Vector const &amp;</td>          <td class="paramname"><span class="paramname"><em>fun_c</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">FUNCTION</td>          <td class="paramname"><span class="paramname"><em>fun</em></span>, </td>
+          <td class="paramtype">Vector const &amp;</td>          <td class="paramname"><span class="paramname"><em>fun_r</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">Real</td>          <td class="paramname"><span class="paramname"><em>grad</em></span>[]&#160;)</td>
+          <td class="paramtype">typename Vector::Scalar</td>          <td class="paramname"><span class="paramname"><em>h</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Compute centered finite difference (for fixed-size Eigen vectors). </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">fun_l</td><td>Vector at \( x-h \). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">fun_c</td><td>Vector at \( x \). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">fun_r</td><td>Vector at \( x+h \). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">h</td><td>Step size. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Vector</td><td>Fixed-size Eigen vector type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Approximated derivative vector. </dd></dl>
 
 </div>
 </div>
-<a id="a763be3e2edefbfc5426750d158df9d09" name="a763be3e2edefbfc5426750d158df9d09"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a763be3e2edefbfc5426750d158df9d09">&#9670;&#160;</a></span>finite_difference_hessian()</h2>
+<a id="aa9b2e58b30ef19d54f7f727363cecf41" name="aa9b2e58b30ef19d54f7f727363cecf41"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa9b2e58b30ef19d54f7f727363cecf41">&#9670;&#160;</a></span>CenteredFiniteDifference() <span class="overload">[3/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename FUNCTION, typename Real&gt; </div>
+template&lt;typename Real&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool Optimist::FiniteDifference::finite_difference_hessian </td>
+          <td class="memname"><a class="el" href="#a4226f5a14a6531287618c7602b61d0c5">VectorXd</a>&lt; Real &gt; Optimist::FiniteDifference::CenteredFiniteDifference </td>
           <td>(</td>
-          <td class="paramtype">Real const</td>          <td class="paramname"><span class="paramname"><em>x</em></span>[], </td>
+          <td class="paramtype"><a class="el" href="#a4226f5a14a6531287618c7602b61d0c5">VectorXd</a>&lt; Real &gt; const &amp;</td>          <td class="paramname"><span class="paramname"><em>fun_l</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a></td>          <td class="paramname"><span class="paramname"><em>dim_x</em></span>, </td>
+          <td class="paramtype"><a class="el" href="#a4226f5a14a6531287618c7602b61d0c5">VectorXd</a>&lt; Real &gt; const &amp;</td>          <td class="paramname"><span class="paramname"><em>fun_c</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">FUNCTION</td>          <td class="paramname"><span class="paramname"><em>fun</em></span>, </td>
+          <td class="paramtype"><a class="el" href="#a4226f5a14a6531287618c7602b61d0c5">VectorXd</a>&lt; Real &gt; const &amp;</td>          <td class="paramname"><span class="paramname"><em>fun_r</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">Real</td>          <td class="paramname"><span class="paramname"><em>Hess</em></span>[], </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a></td>          <td class="paramname"><span class="paramname"><em>ldH</em></span>&#160;)</td>
+          <td class="paramtype">Real</td>          <td class="paramname"><span class="paramname"><em>h</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Compute centered finite difference (for dynamic-size Eigen vectors). </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">fun_l</td><td>Vector at \( x-h \). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">fun_c</td><td>Vector at \( x \). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">fun_r</td><td>Vector at \( x+h \). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">h</td><td>Step size. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Real</td><td>Scalar number type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Approximated derivative vector. </dd></dl>
 
 </div>
 </div>
-<a id="acce3611e3f8a5a350733c45321bdc06a" name="acce3611e3f8a5a350733c45321bdc06a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acce3611e3f8a5a350733c45321bdc06a">&#9670;&#160;</a></span>finite_difference_jacobian()</h2>
+<a id="a7c1aa8d82e6c7eb68adf5a91fa339a28" name="a7c1aa8d82e6c7eb68adf5a91fa339a28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c1aa8d82e6c7eb68adf5a91fa339a28">&#9670;&#160;</a></span>Gradient() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename FUNCTION, typename Real&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
+template&lt;typename <a class="el" href="class_optimist_1_1_function.html">Function</a>, typename Vector&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">bool Optimist::FiniteDifference::finite_difference_jacobian </td>
+          <td class="memname">bool Optimist::FiniteDifference::Gradient </td>
           <td>(</td>
-          <td class="paramtype">Real const</td>          <td class="paramname"><span class="paramname"><em>x</em></span>[], </td>
+          <td class="paramtype">Vector const &amp;</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a></td>          <td class="paramname"><span class="paramname"><em>dim_x</em></span>, </td>
+          <td class="paramtype"><a class="el" href="class_optimist_1_1_function.html">Function</a></td>          <td class="paramname"><span class="paramname"><em>fun</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">FUNCTION</td>          <td class="paramname"><span class="paramname"><em>fun</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a></td>          <td class="paramname"><span class="paramname"><em>dim_f</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Real</td>          <td class="paramname"><span class="paramname"><em>Jac</em></span>[], </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a></td>          <td class="paramname"><span class="paramname"><em>ldJ</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Real *</td>          <td class="paramname"><span class="paramname"><em>work</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a></td>          <td class="paramname"><span class="paramname"><em>lwork</em></span>&#160;)</td>
+          <td class="paramtype">Vector &amp;</td>          <td class="paramname"><span class="paramname"><em>grad</em></span>&#160;)</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
+<p>Compute finite difference gradient for a scalar function (for fixed-size Eigen vectors). </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td>Point at which to compute gradient. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">fun</td><td><a class="el" href="class_optimist_1_1_function.html" title="Class container for the vector-valued function.">Function</a> to differentiate. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">grad</td><td>Gradient vector. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname"><a class="el" href="class_optimist_1_1_function.html" title="Class container for the vector-valued function.">Function</a></td><td>Callable type <span class="tt">bool(Vector const &amp;, Real &amp;)</span>. </td></tr>
+    <tr><td class="paramname">Vector</td><td>Fixed-size Eigen vector type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if successful, false otherwise. </dd></dl>
 
 </div>
 </div>
-<a id="a6fd8dcd1c018990b34adb435402401d5" name="a6fd8dcd1c018990b34adb435402401d5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6fd8dcd1c018990b34adb435402401d5">&#9670;&#160;</a></span>finite_difference_side() <span class="overload">[1/2]</span></h2>
+<a id="a8b80f5fd2ee2804ae6d109eda4b8ad49" name="a8b80f5fd2ee2804ae6d109eda4b8ad49"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b80f5fd2ee2804ae6d109eda4b8ad49">&#9670;&#160;</a></span>Gradient() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> N&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
+template&lt;typename <a class="el" href="class_optimist_1_1_function.html">Function</a>, typename Real&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">bool Optimist::FiniteDifference::finite_difference_side </td>
+          <td class="memname">bool Optimist::FiniteDifference::Gradient </td>
           <td>(</td>
-          <td class="paramtype">const Vector&lt; N &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>f0</em></span>, </td>
+          <td class="paramtype"><a class="el" href="#a4226f5a14a6531287618c7602b61d0c5">VectorXd</a>&lt; Real &gt; const &amp;</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const Vector&lt; N &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>f1</em></span>, </td>
+          <td class="paramtype"><a class="el" href="class_optimist_1_1_function.html">Function</a></td>          <td class="paramname"><span class="paramname"><em>fun</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const Vector&lt; N &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>f2</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const Real</td>          <td class="paramname"><span class="paramname"><em>h1</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const Real</td>          <td class="paramname"><span class="paramname"><em>h2</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Vector&lt; N &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>diff</em></span>&#160;)</td>
+          <td class="paramtype"><a class="el" href="#a4226f5a14a6531287618c7602b61d0c5">VectorXd</a>&lt; Real &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>grad</em></span>&#160;)</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
+<p>Compute finite difference gradient of a scalar function (for dynamic-size Eigen vectors). </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td>Point at which to compute gradient. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">fun</td><td><a class="el" href="class_optimist_1_1_function.html" title="Class container for the vector-valued function.">Function</a> to differentiate. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">grad</td><td>Gradient vector. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname"><a class="el" href="class_optimist_1_1_function.html" title="Class container for the vector-valued function.">Function</a></td><td>Callable type <span class="tt">bool(VectorXd const &amp;, Real &amp;)</span>. </td></tr>
+    <tr><td class="paramname">Real</td><td>Scalar number type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if successful, false otherwise. </dd></dl>
 
 </div>
 </div>
-<a id="aa3c9dba19a6bdb981475b23d8d4d3612" name="aa3c9dba19a6bdb981475b23d8d4d3612"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa3c9dba19a6bdb981475b23d8d4d3612">&#9670;&#160;</a></span>finite_difference_side() <span class="overload">[2/2]</span></h2>
+<a id="a0053577d18a8b9a5f8472e515c6efc1c" name="a0053577d18a8b9a5f8472e515c6efc1c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0053577d18a8b9a5f8472e515c6efc1c">&#9670;&#160;</a></span>Hessian() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename <a class="el" href="class_optimist_1_1_function.html">Function</a>, typename Vector, typename Matrix&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Optimist::FiniteDifference::Hessian </td>
+          <td>(</td>
+          <td class="paramtype">Vector const &amp;</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_optimist_1_1_function.html">Function</a></td>          <td class="paramname"><span class="paramname"><em>fun</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Matrix &amp;</td>          <td class="paramname"><span class="paramname"><em>hes</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Compute finite difference Hessian for a scalar function (for fixed-size Eigen vectors). </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td>Point at which to compute Hessian. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">fun</td><td><a class="el" href="class_optimist_1_1_function.html" title="Class container for the vector-valued function.">Function</a> to differentiate. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">hes</td><td>Hessian matrix. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname"><a class="el" href="class_optimist_1_1_function.html" title="Class container for the vector-valued function.">Function</a></td><td>Callable type <span class="tt">bool(Vector const &amp;, Real &amp;)</span>. </td></tr>
+    <tr><td class="paramname">Vector</td><td>Fixed-size Eigen vector type. </td></tr>
+    <tr><td class="paramname">Matrix</td><td>Fixed-size Eigen matrix type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if successful, false otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a2fbbfb9cade1be982cebe82e47697830" name="a2fbbfb9cade1be982cebe82e47697830"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2fbbfb9cade1be982cebe82e47697830">&#9670;&#160;</a></span>Hessian() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename <a class="el" href="class_optimist_1_1_function.html">Function</a>, typename Real&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Optimist::FiniteDifference::Hessian </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#a4226f5a14a6531287618c7602b61d0c5">VectorXd</a>&lt; Real &gt; const &amp;</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_optimist_1_1_function.html">Function</a></td>          <td class="paramname"><span class="paramname"><em>fun</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#a675046c154c9ba4e991c05b3e87a21f6">MatrixXd</a>&lt; Real &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>hes</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Compute finite difference Hessian of a scalar function (for dynamic-size Eigen vectors). </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td>Point at which to compute Hessian. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">fun</td><td><a class="el" href="class_optimist_1_1_function.html" title="Class container for the vector-valued function.">Function</a> to differentiate. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">hes</td><td>Hessian matrix. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname"><a class="el" href="class_optimist_1_1_function.html" title="Class container for the vector-valued function.">Function</a></td><td>Callable type <span class="tt">bool(VectorXd&lt;Real&gt; const &amp;, Real&amp;)</span>. </td></tr>
+    <tr><td class="paramname">Real</td><td>Scalar number type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if successful, false otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a5887994246c4b7915bddddbff43b0219" name="a5887994246c4b7915bddddbff43b0219"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5887994246c4b7915bddddbff43b0219">&#9670;&#160;</a></span>Jacobian() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename <a class="el" href="class_optimist_1_1_function.html">Function</a>, typename Vector, typename Matrix&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Optimist::FiniteDifference::Jacobian </td>
+          <td>(</td>
+          <td class="paramtype">Vector const &amp;</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_optimist_1_1_function.html">Function</a></td>          <td class="paramname"><span class="paramname"><em>fun</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Matrix &amp;</td>          <td class="paramname"><span class="paramname"><em>jac</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Compute finite difference Jacobian for a vector function (for fixed-size Eigen vectors). </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td>Point at which to compute Jacobian. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">fun</td><td><a class="el" href="class_optimist_1_1_function.html" title="Class container for the vector-valued function.">Function</a> to differentiate. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">jac</td><td>Jacobian matrix. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname"><a class="el" href="class_optimist_1_1_function.html" title="Class container for the vector-valued function.">Function</a></td><td>Callable type <span class="tt">bool(Vector const &amp;, Vector &amp;)</span>. </td></tr>
+    <tr><td class="paramname">Vector</td><td>Fixed-size Eigen vector type. </td></tr>
+    <tr><td class="paramname">Matrix</td><td>Fixed-size Eigen matrix type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if successful, false otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="ae2811d0ab239131057bddc438d8546c5" name="ae2811d0ab239131057bddc438d8546c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2811d0ab239131057bddc438d8546c5">&#9670;&#160;</a></span>Jacobian() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename <a class="el" href="class_optimist_1_1_function.html">Function</a>, typename Real&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Optimist::FiniteDifference::Jacobian </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#a4226f5a14a6531287618c7602b61d0c5">VectorXd</a>&lt; Real &gt; const &amp;</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_optimist_1_1_function.html">Function</a></td>          <td class="paramname"><span class="paramname"><em>fun</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#a675046c154c9ba4e991c05b3e87a21f6">MatrixXd</a>&lt; Real &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>jac</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Compute finite difference Jacobian of a vector function (for dynamic-size Eigen vectors). </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td>Point at which to compute Jacobian. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">fun</td><td><a class="el" href="class_optimist_1_1_function.html" title="Class container for the vector-valued function.">Function</a> to differentiate. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">jac</td><td>Output Jacobian matrix. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname"><a class="el" href="class_optimist_1_1_function.html" title="Class container for the vector-valued function.">Function</a></td><td>Callable type <span class="tt">bool(VectorXd&lt;Real&gt; const &amp;, VectorXd&lt;Real&gt; &amp;)</span>. </td></tr>
+    <tr><td class="paramname">Real</td><td>Scalar number type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if successful, false otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="abdeb3cd10e0d886863521f85cb9a01e9" name="abdeb3cd10e0d886863521f85cb9a01e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abdeb3cd10e0d886863521f85cb9a01e9">&#9670;&#160;</a></span>SideFiniteDifference() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">Real Optimist::FiniteDifference::finite_difference_side </td>
+          <td class="memname">Real Optimist::FiniteDifference::SideFiniteDifference </td>
           <td>(</td>
-          <td class="paramtype">Real</td>          <td class="paramname"><span class="paramname"><em>f0</em></span>, </td>
+          <td class="paramtype">Real const</td>          <td class="paramname"><span class="paramname"><em>fun_0</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">Real</td>          <td class="paramname"><span class="paramname"><em>f1</em></span>, </td>
+          <td class="paramtype">Real const</td>          <td class="paramname"><span class="paramname"><em>fun_1</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">Real</td>          <td class="paramname"><span class="paramname"><em>f2</em></span>, </td>
+          <td class="paramtype">Real const</td>          <td class="paramname"><span class="paramname"><em>fun_2</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">Real</td>          <td class="paramname"><span class="paramname"><em>h1</em></span>, </td>
+          <td class="paramtype">Real</td>          <td class="paramname"><span class="paramname"><em>h_1</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">Real</td>          <td class="paramname"><span class="paramname"><em>h2</em></span>&#160;)</td>
+          <td class="paramtype">Real</td>          <td class="paramname"><span class="paramname"><em>h_2</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Compute one-sided finite difference (for scalars). </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">fun_0</td><td><a class="el" href="class_optimist_1_1_function.html" title="Class container for the vector-valued function.">Function</a> value at \( x \). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">fun_1</td><td><a class="el" href="class_optimist_1_1_function.html" title="Class container for the vector-valued function.">Function</a> value at \( x+h_1 \). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">fun_2</td><td><a class="el" href="class_optimist_1_1_function.html" title="Class container for the vector-valued function.">Function</a> value at \( x+h_2 \). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">h_1</td><td>Step size 1. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">h_2</td><td>Step size 2. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Real</td><td>Scalar number type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Approximated derivative. </dd></dl>
+
+</div>
+</div>
+<a id="a8b6a7924d2826d440057d6efb2ebebbb" name="a8b6a7924d2826d440057d6efb2ebebbb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b6a7924d2826d440057d6efb2ebebbb">&#9670;&#160;</a></span>SideFiniteDifference() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Vector&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Vector Optimist::FiniteDifference::SideFiniteDifference </td>
+          <td>(</td>
+          <td class="paramtype">Vector const &amp;</td>          <td class="paramname"><span class="paramname"><em>fun_0</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Vector const &amp;</td>          <td class="paramname"><span class="paramname"><em>fun_1</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Vector const &amp;</td>          <td class="paramname"><span class="paramname"><em>fun_2</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">typename Vector::Scalar</td>          <td class="paramname"><span class="paramname"><em>h_1</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">typename Vector::Scalar</td>          <td class="paramname"><span class="paramname"><em>h_2</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Compute one-sided finite difference (for fixed-size Eigen vectors). </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">fun_0</td><td>Vector at \( x \). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">fun_1</td><td>Vector at \( x+h_1 \). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">fun_2</td><td>Vector at \( x+h_2 \). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">h_1</td><td>Step size 1. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">h_2</td><td>Step size 2. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Vector</td><td>Fixed-size Eigen vector type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Approximated derivative vector. </dd></dl>
+
+</div>
+</div>
+<a id="a68ea1d45a624aa01fa52438c5f277d4e" name="a68ea1d45a624aa01fa52438c5f277d4e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a68ea1d45a624aa01fa52438c5f277d4e">&#9670;&#160;</a></span>SideFiniteDifference() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Real&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a4226f5a14a6531287618c7602b61d0c5">VectorXd</a>&lt; Real &gt; Optimist::FiniteDifference::SideFiniteDifference </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#a4226f5a14a6531287618c7602b61d0c5">VectorXd</a>&lt; Real &gt; const &amp;</td>          <td class="paramname"><span class="paramname"><em>fun_0</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#a4226f5a14a6531287618c7602b61d0c5">VectorXd</a>&lt; Real &gt; const &amp;</td>          <td class="paramname"><span class="paramname"><em>fun_1</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#a4226f5a14a6531287618c7602b61d0c5">VectorXd</a>&lt; Real &gt; const &amp;</td>          <td class="paramname"><span class="paramname"><em>fun_2</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Real</td>          <td class="paramname"><span class="paramname"><em>h_1</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Real</td>          <td class="paramname"><span class="paramname"><em>h_2</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Compute one-sided finite difference (for dynamic-size Eigen vectors). </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">fun_0</td><td>Vector at \( x \). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">fun_1</td><td>Vector at \( x+h_1 \). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">fun_2</td><td>Vector at \( x+h_2 \). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">h_1</td><td>Step size 1. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">h_2</td><td>Step size 2. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Real</td><td>Scalar number type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Approximated derivative vector. </dd></dl>
 
 </div>
 </div>

@@ -1,6 +1,6 @@
 var hierarchy =
 [
-    [ "Optimist::FiniteDifference::Epsilon", "class_optimist_1_1_finite_difference_1_1_epsilon.html", null ],
+    [ "Optimist::FiniteDifference::Epsilon< Real >", "class_optimist_1_1_finite_difference_1_1_epsilon.html", null ],
     [ "Optimist::FunctionBase< Real, FunInDim, FunOutDim, DerivedFunction, ForceEigen >", "class_optimist_1_1_function_base.html", null ],
     [ "Optimist::FunctionBase< Real, 1, 1, DerivedFunction >", "class_optimist_1_1_function_base.html", [
       [ "Optimist::Function< Real, 1, 1, DerivedFunction >", "class_optimist_1_1_function_3_01_real_00_011_00_011_00_01_derived_function_01_4.html", null ]

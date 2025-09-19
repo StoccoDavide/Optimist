@@ -1,7 +1,5 @@
 var NAVTREEINDEX3 =
 {
-"class_optimist_1_1_root_finder_1_1_root_finder.html#a611fae64379ec85ba9266d0c01540bec":[3,0,0,2,11,20],
-"class_optimist_1_1_root_finder_1_1_root_finder.html#a611fae64379ec85ba9266d0c01540bec":[4,0,0,2,10,19],
 "class_optimist_1_1_root_finder_1_1_root_finder.html#a611fae64379ec85ba9266d0c01540bec":[4,0,0,2,11,20],
 "class_optimist_1_1_root_finder_1_1_root_finder.html#a657a8a37def04e1088eaed8ba5c7756a":[3,0,0,2,10,0],
 "class_optimist_1_1_root_finder_1_1_root_finder.html#a657a8a37def04e1088eaed8ba5c7756a":[4,0,0,2,10,0],
@@ -249,5 +247,7 @@ var NAVTREEINDEX3 =
 "class_optimist_1_1_solver_base.html#a9e8be8b22f660ae758c43916f361b9e3":[4,0,0,8,4],
 "class_optimist_1_1_solver_base.html#a9fcda2b84bb81fc777e4e27933d0773f":[3,0,0,8,85],
 "class_optimist_1_1_solver_base.html#a9fcda2b84bb81fc777e4e27933d0773f":[4,0,0,8,85],
-"class_optimist_1_1_solver_base.html#aa4e6b5935022a192b4f8acecc1df448d":[3,0,0,8,66]
+"class_optimist_1_1_solver_base.html#aa4e6b5935022a192b4f8acecc1df448d":[3,0,0,8,66],
+"class_optimist_1_1_solver_base.html#aa4e6b5935022a192b4f8acecc1df448d":[4,0,0,8,66],
+"class_optimist_1_1_solver_base.html#aa95d6a175f0477e1f3d255335c0d27a9":[3,0,0,8,33]
 };
