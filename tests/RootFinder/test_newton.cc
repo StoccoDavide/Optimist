@@ -10,7 +10,6 @@
 
 // Optimist library
 #include "Optimist/RootFinder/Newton.hh"
-#include "Optimist/FiniteDifference.hh"
 
 // Catch2 library
 #include <catch2/catch_test_macros.hpp>

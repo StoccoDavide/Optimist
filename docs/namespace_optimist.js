@@ -1,6 +1,6 @@
 var namespace_optimist =
 [
-    [ "FiniteDifference", "namespace_optimist_1_1_finite_difference.html", "namespace_optimist_1_1_finite_difference" ],
+    [ "FiniteDifferences", "namespace_optimist_1_1_finite_differences.html", "namespace_optimist_1_1_finite_differences" ],
     [ "Optimizer", "namespace_optimist_1_1_optimizer.html", "namespace_optimist_1_1_optimizer" ],
     [ "RootFinder", "namespace_optimist_1_1_root_finder.html", "namespace_optimist_1_1_root_finder" ],
     [ "TestSet", "namespace_optimist_1_1_test_set.html", "namespace_optimist_1_1_test_set" ],

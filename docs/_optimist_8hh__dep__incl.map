@@ -1,7 +1,7 @@
 <map id="include/Optimist.hh" name="include/Optimist.hh">
 <area shape="rect" id="Node000001" title=" " alt="" coords="1284,5,1417,31"/>
-<area shape="rect" id="Node000002" href="$_finite_difference_8hh.html" title=" " alt="" coords="1018,79,1248,105"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1300,39,1171,81,1169,76,1298,34"/>
+<area shape="rect" id="Node000002" href="$_finite_differences_8hh.html" title=" " alt="" coords="1011,79,1247,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1299,39,1168,81,1166,76,1298,34"/>
 <area shape="rect" id="Node000003" href="$_function_8hh.html" title=" " alt="" coords="1322,79,1509,105"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="1373,40,1407,77,1403,80,1369,44"/>
 <area shape="rect" id="Node000004" href="$_solver_base_8hh.html" title=" " alt="" coords="1096,153,1300,178"/>

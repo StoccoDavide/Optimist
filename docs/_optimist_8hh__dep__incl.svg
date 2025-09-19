@@ -20,9 +20,9 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="_finite_difference_8hh.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="#666666" points="931.75,-274 759.75,-274 759.75,-254.75 931.75,-254.75 931.75,-274"/>
-<text xml:space="preserve" text-anchor="middle" x="845.75" y="-260.5" font-family="Helvetica,sans-Serif" font-size="10.00">include/Optimist/FiniteDifference.hh</text>
+<g id="a_Node000002"><a xlink:href="_finite_differences_8hh.html" target="_top" xlink:title=" ">
+<polygon fill="white" stroke="#666666" points="931.38,-274 754.12,-274 754.12,-254.75 931.38,-254.75 931.38,-274"/>
+<text xml:space="preserve" text-anchor="middle" x="842.75" y="-260.5" font-family="Helvetica,sans-Serif" font-size="10.00">include/Optimist/FiniteDifferences.hh</text>
 </a>
 </g>
 </g>
@@ -30,8 +30,8 @@
 <g id="edge1_Node000001_Node000002" class="edge">
 <title>Node1&#45;&gt;Node2</title>
 <g id="a_edge1_Node000001_Node000002"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M970.29,-306.06C940.57,-296.35 900.16,-283.15 873.54,-274.45"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="969.07,-309.34 979.66,-309.12 971.24,-302.69 969.07,-309.34"/>
+<path fill="none" stroke="#63b8ff" d="M969.98,-306.19C939.68,-296.47 898.28,-283.19 871.05,-274.45"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="968.56,-309.41 979.15,-309.13 970.7,-302.74 968.56,-309.41"/>
 </a>
 </g>
 </g>

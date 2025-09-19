@@ -2,7 +2,7 @@ var searchData=
 [
   ['optimist_0',['Optimist',['../namespace_optimist.html',1,'Optimist'],['../index.html',1,'Optimist']]],
   ['optimist_2ehh_1',['Optimist.hh',['../_optimist_8hh.html',1,'']]],
-  ['optimist_3a_3afinitedifference_2',['FiniteDifference',['../namespace_optimist_1_1_finite_difference.html',1,'Optimist']]],
+  ['optimist_3a_3afinitedifferences_2',['FiniteDifferences',['../namespace_optimist_1_1_finite_differences.html',1,'Optimist']]],
   ['optimist_3a_3aoptimizer_3',['Optimizer',['../namespace_optimist_1_1_optimizer.html',1,'Optimist']]],
   ['optimist_3a_3arootfinder_4',['RootFinder',['../namespace_optimist_1_1_root_finder.html',1,'Optimist']]],
   ['optimist_3a_3atestset_5',['TestSet',['../namespace_optimist_1_1_test_set.html',1,'Optimist']]],
@@ -11,7 +11,7 @@ var searchData=
   ['optimist_5fbasic_5fconstants_8',['OPTIMIST_BASIC_CONSTANTS',['../_optimist_8hh.html#ae253c9ddafd61510dd54fa18b038c8a7',1,'Optimist.hh']]],
   ['optimist_5fdefault_5finteger_5ftype_9',['OPTIMIST_DEFAULT_INTEGER_TYPE',['../_optimist_8hh.html#ac822be0518d3c01aa89881edbd73c505',1,'Optimist.hh']]],
   ['optimist_5ferror_10',['OPTIMIST_ERROR',['../_optimist_8hh.html#a229041107754c6651e88d66e24ea8188',1,'Optimist.hh']]],
-  ['optimist_5ffinite_5fdifference_5fhh_11',['OPTIMIST_FINITE_DIFFERENCE_HH',['../_finite_difference_8hh.html#ab06e514a53bb3288f718ca501e1572dd',1,'FiniteDifference.hh']]],
+  ['optimist_5ffinite_5fdifference_5fhh_11',['OPTIMIST_FINITE_DIFFERENCE_HH',['../_finite_differences_8hh.html#ab06e514a53bb3288f718ca501e1572dd',1,'FiniteDifferences.hh']]],
   ['optimist_5ffunction_5fhh_12',['OPTIMIST_FUNCTION_HH',['../_function_8hh.html#a5c95b9d7c782981169e2aff01c77cd10',1,'Function.hh']]],
   ['optimist_5foptimizer_5fhh_13',['OPTIMIST_OPTIMIZER_HH',['../_optimizer_8hh.html#a74e1d67b65057c02901540b79a080c94',1,'Optimizer.hh']]],
   ['optimist_5foptimizer_5fhj_5fpattern_5fsearch_5fhh_14',['OPTIMIST_OPTIMIZER_HJ_PATTERN_SEARCH_HH',['../_pattern_search_8hh.html#a3d6a6cb1d5db95d81a95212941af38ae',1,'PatternSearch.hh']]],

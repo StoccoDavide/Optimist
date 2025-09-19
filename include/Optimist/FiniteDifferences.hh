@@ -17,10 +17,10 @@
 
 namespace Optimist {
 
-  namespace FiniteDifference {
+  namespace FiniteDifferences {
 
     /**
-    * Helper class for computing finite difference epsilons.
+    * Helper class for computing finite differences epsilons.
     * \tparam Real Scalar number type
     */
     template<typename Real>
@@ -43,7 +43,7 @@ namespace Optimist {
 
 
     /**
-    * Compute one-sided finite difference (for scalars).
+    * Compute one-sided finite differences (for scalars).
     * \param[in] fun_0 Function value at \f$ x \f$.
     * \param[in] fun_1 Function value at \f$ x+h_1 \f$.
     * \param[in] fun_2 Function value at \f$ x+h_2 \f$.
@@ -53,7 +53,7 @@ namespace Optimist {
     * \return Approximated derivative.
     */
     template<typename Real>
-    inline Real SideFiniteDifference(Real const fun_0, Real const fun_1, Real const fun_2, Real h_1,
+    inline Real SideFiniteDifferences(Real const fun_0, Real const fun_1, Real const fun_2, Real h_1,
       Real h_2)
     {
       Real d_fun_1{fun_1 - fun_0};
@@ -63,7 +63,7 @@ namespace Optimist {
     }
 
     /**
-    * Compute centered finite difference (for scalars).
+    * Compute centered finite differences (for scalars).
     * \param[in] fun_l Function value at \f$ x-h \f$.
     * \param[in] fun_c Function value at \f$ x \f$.
     * \param[in] fun_r Function value at \f$ x+h \f$.
@@ -72,7 +72,7 @@ namespace Optimist {
     * \return Approximated derivative.
     */
     template<typename Real>
-    inline Real CenteredFiniteDifference(Real const fun_l, Real const fun_c, Real const fun_r, Real h)
+    inline Real CenteredFiniteDifferences(Real const fun_l, Real const fun_c, Real const fun_r, Real h)
     {
       constexpr Real EPSILON{std::numeric_limits<Real>::epsilon()};
       Real diff_r{(fun_r-fun_c)/h};
@@ -103,7 +103,7 @@ namespace Optimist {
     using MatrixXd = Eigen::Matrix<Real, Eigen::Dynamic, Eigen::Dynamic>;
 
     /**
-    * Compute one-sided finite difference (for dynamic-size Eigen vectors).
+    * Compute one-sided finite differences (for dynamic-size Eigen vectors).
     * \param[in] fun_0 Vector at \f$ x \f$.
     * \param[in] fun_1 Vector at \f$ x+h_1 \f$.
     * \param[in] fun_2 Vector at \f$ x+h_2 \f$.
@@ -113,7 +113,7 @@ namespace Optimist {
     * \return Approximated derivative vector.
     */
     template<typename Real>
-    inline VectorXd<Real> SideFiniteDifference(VectorXd<Real> const & fun_0, VectorXd<Real> const & fun_1,
+    inline VectorXd<Real> SideFiniteDifferences(VectorXd<Real> const & fun_0, VectorXd<Real> const & fun_1,
       VectorXd<Real> const & fun_2, Real h_1, Real h_2)
     {
       Real d_h{h_1 - h_2};
@@ -123,7 +123,7 @@ namespace Optimist {
     }
 
     /**
-    * Compute centered finite difference (for dynamic-size Eigen vectors).
+    * Compute centered finite differences (for dynamic-size Eigen vectors).
     * \param[in] fun_l Vector at \f$ x-h \f$.
     * \param[in] fun_c Vector at \f$ x \f$.
     * \param[in] fun_r Vector at \f$ x+h \f$.
@@ -132,7 +132,7 @@ namespace Optimist {
     * \return Approximated derivative vector.
     */
     template<typename Real>
-    inline VectorXd<Real> CenteredFiniteDifference(VectorXd<Real> const & fun_l, VectorXd<Real> const & fun_c,
+    inline VectorXd<Real> CenteredFiniteDifferences(VectorXd<Real> const & fun_l, VectorXd<Real> const & fun_c,
       VectorXd<Real> const & fun_r, Real h)
     {
       constexpr Real EPSILON{std::numeric_limits<Real>::epsilon()};
@@ -147,7 +147,7 @@ namespace Optimist {
     }
 
     /**
-    * Compute finite difference gradient of a scalar function (for dynamic-size Eigen vectors).
+    * Compute finite differences gradient of a scalar function (for dynamic-size Eigen vectors).
     * \param[in] x Point at which to compute gradient.
     * \param[in] fun Function to differentiate.
     * \param[out] grad Gradient vector.
@@ -172,16 +172,16 @@ namespace Optimist {
         Integer ic{(is_finite_r && is_finite_l) ? 0 : (is_finite_r ? 1 : (is_finite_l ? -1 : -2))};
         switch (ic) {
           case 0:
-            grad[i] = CenteredFiniteDifference<Real>(v_l, v_c, v_r, h_1);
+            grad[i] = CenteredFiniteDifferences<Real>(v_l, v_c, v_r, h_1);
             break;
           case 1: {
             v_x[i] = tmp + h_2; Real v_rr{0.0}; bool is_finite_rr{fun(v_x, v_rr) && std::isfinite(v_rr)};
-            grad[i] = is_finite_rr ? SideFiniteDifference<Real>(v_c, v_r, v_rr, h_1, h_2) : (v_r-v_c)/h_1;
+            grad[i] = is_finite_rr ? SideFiniteDifferences<Real>(v_c, v_r, v_rr, h_1, h_2) : (v_r-v_c)/h_1;
             break;
           }
           case -1: {
             v_x[i] = tmp - h_2; Real v_ll{0.0}; bool is_finite_ll{fun(v_x, v_ll) && std::isfinite(v_ll)};
-            grad[i] = is_finite_ll ? SideFiniteDifference<Real>(v_c, v_l, v_ll, -h_1, -h_2) : (v_c-v_l)/h_1;
+            grad[i] = is_finite_ll ? SideFiniteDifferences<Real>(v_c, v_l, v_ll, -h_1, -h_2) : (v_c-v_l)/h_1;
             break;
           }
           case -2: {
@@ -194,7 +194,7 @@ namespace Optimist {
     }
 
     /**
-    * Compute finite difference Jacobian of a vector function (for dynamic-size Eigen vectors).
+    * Compute finite differences Jacobian of a vector function (for dynamic-size Eigen vectors).
     * \param[in] x Point at which to compute Jacobian.
     * \param[in] fun Function to differentiate.
     * \param[out] jac Output Jacobian matrix.
@@ -221,16 +221,16 @@ namespace Optimist {
         Integer ic{(is_finite_r && is_finite_l) ? 0 : (is_finite_r ? 1 : (is_finite_l ? -1 : -2))};
         switch (ic) {
           case 0:
-            jac.col(j) = CenteredFiniteDifference<Real>(v_l, v_c, v_r, h_1);
+            jac.col(j) = CenteredFiniteDifferences<Real>(v_l, v_c, v_r, h_1);
             break;
           case 1: {
             v_x[j] = tmp + h_2; VectorXd<Real> v_rr; bool is_finite_rr{fun(v_x, v_rr) && v_rr.allFinite()};
-            jac.col(j) = is_finite_rr ? SideFiniteDifference<Real>(v_c, v_r, v_rr, h_1, h_2) : (v_r-v_c)/h_1;
+            jac.col(j) = is_finite_rr ? SideFiniteDifferences<Real>(v_c, v_r, v_rr, h_1, h_2) : (v_r-v_c)/h_1;
             break;
           }
           case -1: {
             v_x[j] = tmp - h_2; VectorXd<Real> v_ll; bool is_finite_ll{fun(v_x, v_ll) && v_ll.allFinite()};
-            jac.col(j) = is_finite_ll ? SideFiniteDifference<Real>(v_c, v_l, v_ll, -h_1, -h_2) : (v_c-v_l)/h_1;
+            jac.col(j) = is_finite_ll ? SideFiniteDifferences<Real>(v_c, v_l, v_ll, -h_1, -h_2) : (v_c-v_l)/h_1;
             break;
           }
           case -2: {
@@ -243,7 +243,7 @@ namespace Optimist {
     }
 
     /**
-    * Compute finite difference Hessian of a scalar function (for dynamic-size Eigen vectors).
+    * Compute finite differences Hessian of a scalar function (for dynamic-size Eigen vectors).
     * \param[in] x Point at which to compute Hessian.
     * \param[in] fun Function to differentiate.
     * \param[out] hes Hessian matrix.
@@ -293,7 +293,7 @@ namespace Optimist {
     \*/
 
     /**
-    * Compute one-sided finite difference (for fixed-size Eigen vectors).
+    * Compute one-sided finite differences (for fixed-size Eigen vectors).
     * \param[in] fun_0 Vector at \f$ x \f$.
     * \param[in] fun_1 Vector at \f$ x+h_1 \f$.
     * \param[in] fun_2 Vector at \f$ x+h_2 \f$.
@@ -303,7 +303,7 @@ namespace Optimist {
     * \return Approximated derivative vector.
     */
     template<typename Vector>
-    inline Vector SideFiniteDifference(Vector const & fun_0, Vector const & fun_1,
+    inline Vector SideFiniteDifferences(Vector const & fun_0, Vector const & fun_1,
       Vector const & fun_2, typename Vector::Scalar h_1, typename Vector::Scalar h_2)
     {
       using Real = typename Vector::Scalar;
@@ -314,7 +314,7 @@ namespace Optimist {
     }
 
     /**
-    * Compute centered finite difference (for fixed-size Eigen vectors).
+    * Compute centered finite differences (for fixed-size Eigen vectors).
     * \param[in] fun_l Vector at \f$ x-h \f$.
     * \param[in] fun_c Vector at \f$ x \f$.
     * \param[in] fun_r Vector at \f$ x+h \f$.
@@ -323,7 +323,7 @@ namespace Optimist {
     * \return Approximated derivative vector.
     */
     template<typename Vector>
-    inline Vector CenteredFiniteDifference(Vector const & fun_l, Vector const & fun_c, Vector const & fun_r,
+    inline Vector CenteredFiniteDifferences(Vector const & fun_l, Vector const & fun_c, Vector const & fun_r,
       typename Vector::Scalar h)
     {
       using Real = typename Vector::Scalar;
@@ -339,7 +339,7 @@ namespace Optimist {
     }
 
     /**
-    * Compute finite difference gradient for a scalar function (for fixed-size Eigen vectors).
+    * Compute finite differences gradient for a scalar function (for fixed-size Eigen vectors).
     * \param[in] x Point at which to compute gradient.
     * \param[in] fun Function to differentiate.
     * \param[out] grad Gradient vector.
@@ -366,16 +366,16 @@ namespace Optimist {
         Integer ic{(is_finite_r && is_finite_l) ? 0 : (is_finite_r ? 1 : (is_finite_l ? -1 : -2))};
         switch (ic) {
           case 0:
-            grad(i) = CenteredFiniteDifference<Real>(v_l, v_c, v_r, h_1);
+            grad(i) = CenteredFiniteDifferences<Real>(v_l, v_c, v_r, h_1);
             break;
           case 1: {
             v_x(i) = tmp + h_2; Real v_rr{0.0}; bool is_finite_rr = fun(v_x, v_rr) && std::isfinite(v_rr);
-            grad(i) = is_finite_rr ? SideFiniteDifference<Real>(v_c, v_r, v_rr, h_1, h_2) : (v_r-v_c)/h_1;
+            grad(i) = is_finite_rr ? SideFiniteDifferences<Real>(v_c, v_r, v_rr, h_1, h_2) : (v_r-v_c)/h_1;
             break;
           }
           case -1: {
             v_x(i) = tmp - h_2; Real v_ll{0.0}; bool is_finite_ll = fun(v_x, v_ll) && std::isfinite(v_ll);
-            grad(i) = is_finite_ll ? SideFiniteDifference<Real>(v_c, v_l, v_ll, -h_1, -h_2) : (v_c-v_l)/h_1;
+            grad(i) = is_finite_ll ? SideFiniteDifferences<Real>(v_c, v_l, v_ll, -h_1, -h_2) : (v_c-v_l)/h_1;
             break;
           }
           case -2: {
@@ -388,7 +388,7 @@ namespace Optimist {
     }
 
     /**
-    * Compute finite difference Jacobian for a vector function (for fixed-size Eigen vectors).
+    * Compute finite differences Jacobian for a vector function (for fixed-size Eigen vectors).
     * \param[in] x Point at which to compute Jacobian.
     * \param[in] fun Function to differentiate.
     * \param[out] jac Jacobian matrix.
@@ -416,16 +416,16 @@ namespace Optimist {
         Integer ic{(is_finite_r && is_finite_l) ? 0 : (is_finite_r ? 1 : (is_finite_l ? -1 : -2))};
         switch (ic) {
           case 0:
-            jac.col(j) = CenteredFiniteDifference<Real>(v_l, v_c, v_r, h_1);
+            jac.col(j) = CenteredFiniteDifferences<Real>(v_l, v_c, v_r, h_1);
             break;
           case 1: {
             v_x(j) = tmp + h_2; Vector v_rr; bool is_finite_rr = fun(v_x, v_rr) && v_rr.allFinite();
-            jac.col(j) = is_finite_rr ? SideFiniteDifference<Real>(v_c, v_r, v_rr, h_1, h_2) : (v_r-v_c)/h_1;
+            jac.col(j) = is_finite_rr ? SideFiniteDifferences<Real>(v_c, v_r, v_rr, h_1, h_2) : (v_r-v_c)/h_1;
             break;
           }
           case -1: {
             v_x(j) = tmp - h_2; Vector v_ll; bool is_finite_ll = fun(v_x, v_ll) && v_ll.allFinite();
-            jac.col(j) = is_finite_ll ? SideFiniteDifference<Real>(v_c, v_l, v_ll, -h_1, -h_2) : (v_c-v_l)/h_1;
+            jac.col(j) = is_finite_ll ? SideFiniteDifferences<Real>(v_c, v_l, v_ll, -h_1, -h_2) : (v_c-v_l)/h_1;
             break;
           }
           case -2: {
@@ -438,7 +438,7 @@ namespace Optimist {
     }
 
     /**
-    * Compute finite difference Hessian for a scalar function (for fixed-size Eigen vectors).
+    * Compute finite differences Hessian for a scalar function (for fixed-size Eigen vectors).
     * \param[in] x Point at which to compute Hessian.
     * \param[in] fun Function to differentiate.
     * \param[out] hes Hessian matrix.
@@ -480,7 +480,7 @@ namespace Optimist {
       return hes.allFinite();
     }
 
-  } // namespace FiniteDifference
+  } // namespace FiniteDifferences
 
 } // namespace Optimist
 

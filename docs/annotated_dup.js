@@ -1,8 +1,8 @@
 var annotated_dup =
 [
     [ "Optimist", "namespace_optimist.html", [
-      [ "FiniteDifference", "namespace_optimist_1_1_finite_difference.html", [
-        [ "Epsilon", "class_optimist_1_1_finite_difference_1_1_epsilon.html", "class_optimist_1_1_finite_difference_1_1_epsilon" ]
+      [ "FiniteDifferences", "namespace_optimist_1_1_finite_differences.html", [
+        [ "Epsilon", "class_optimist_1_1_finite_differences_1_1_epsilon.html", "class_optimist_1_1_finite_differences_1_1_epsilon" ]
       ] ],
       [ "Optimizer", "namespace_optimist_1_1_optimizer.html", [
         [ "NelderMead", "class_optimist_1_1_optimizer_1_1_nelder_mead.html", "class_optimist_1_1_optimizer_1_1_nelder_mead" ],
