@@ -10,8 +10,8 @@
 
 #pragma once
 
-#ifndef OPTIMIST_FINITE_DIFFERENCE_HH
-#define OPTIMIST_FINITE_DIFFERENCE_HH
+#ifndef OPTIMIST_FINITE_DIFFERENCES_HH
+#define OPTIMIST_FINITE_DIFFERENCES_HH
 
 #include "Optimist.hh"
 
@@ -484,4 +484,4 @@ namespace Optimist {
 
 } // namespace Optimist
 
-#endif // OPTIMIST_FINITE_DIFFERENCE_HH
+#endif // OPTIMIST_FINITE_DIFFERENCES_HH

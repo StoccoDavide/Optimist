@@ -5,7 +5,7 @@ var searchData=
   ['optimist_5fbasic_5fconstants_2',['OPTIMIST_BASIC_CONSTANTS',['../_optimist_8hh.html#ae253c9ddafd61510dd54fa18b038c8a7',1,'Optimist.hh']]],
   ['optimist_5fdefault_5finteger_5ftype_3',['OPTIMIST_DEFAULT_INTEGER_TYPE',['../_optimist_8hh.html#ac822be0518d3c01aa89881edbd73c505',1,'Optimist.hh']]],
   ['optimist_5ferror_4',['OPTIMIST_ERROR',['../_optimist_8hh.html#a229041107754c6651e88d66e24ea8188',1,'Optimist.hh']]],
-  ['optimist_5ffinite_5fdifference_5fhh_5',['OPTIMIST_FINITE_DIFFERENCE_HH',['../_finite_differences_8hh.html#ab06e514a53bb3288f718ca501e1572dd',1,'FiniteDifferences.hh']]],
+  ['optimist_5ffinite_5fdifferences_5fhh_5',['OPTIMIST_FINITE_DIFFERENCES_HH',['../_finite_differences_8hh.html#a908f9678523c323dbf4e5455dbcf6c95',1,'FiniteDifferences.hh']]],
   ['optimist_5ffunction_5fhh_6',['OPTIMIST_FUNCTION_HH',['../_function_8hh.html#a5c95b9d7c782981169e2aff01c77cd10',1,'Function.hh']]],
   ['optimist_5foptimizer_5fhh_7',['OPTIMIST_OPTIMIZER_HH',['../_optimizer_8hh.html#a74e1d67b65057c02901540b79a080c94',1,'Optimizer.hh']]],
   ['optimist_5foptimizer_5fhj_5fpattern_5fsearch_5fhh_8',['OPTIMIST_OPTIMIZER_HJ_PATTERN_SEARCH_HH',['../_pattern_search_8hh.html#a3d6a6cb1d5db95d81a95212941af38ae',1,'PatternSearch.hh']]],

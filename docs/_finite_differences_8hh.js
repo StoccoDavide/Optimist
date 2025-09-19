@@ -1,7 +1,7 @@
 var _finite_differences_8hh =
 [
     [ "Optimist::FiniteDifferences::Epsilon< Real >", "class_optimist_1_1_finite_differences_1_1_epsilon.html", "class_optimist_1_1_finite_differences_1_1_epsilon" ],
-    [ "OPTIMIST_FINITE_DIFFERENCE_HH", "_finite_differences_8hh.html#ab06e514a53bb3288f718ca501e1572dd", null ],
+    [ "OPTIMIST_FINITE_DIFFERENCES_HH", "_finite_differences_8hh.html#a908f9678523c323dbf4e5455dbcf6c95", null ],
     [ "Optimist::FiniteDifferences::MatrixXd", "namespace_optimist_1_1_finite_differences.html#ab33b12e463fb0cab163e046981ddf5ca", null ],
     [ "Optimist::FiniteDifferences::VectorXd", "namespace_optimist_1_1_finite_differences.html#a6045fdd17dbebf4385d70066771d5c35", null ],
     [ "Optimist::FiniteDifferences::CenteredFiniteDifferences", "namespace_optimist_1_1_finite_differences.html#afa22fad04acac8ad73d47524c4e89057", null ],
