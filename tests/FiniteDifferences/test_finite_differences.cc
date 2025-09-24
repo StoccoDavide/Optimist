@@ -117,7 +117,7 @@ TestFunction test_functions[] = {quadratic, complicated};
 TEST_CASE("FiniteDifferences: Gradient, Jacobian, Hessian", "[finite_differences]") {
 
   // Tolerance for floating-point comparisons
-  Real CBRT_EPSILON{std::pow(std::numeric_limits<Real>::epsilon(), 1.0/3.0)};
+  Real CBRT_EPSILON{std::cbrt(std::numeric_limits<Real>::epsilon())};
 
   Vector x(Vector::LinSpaced(N, 1.0, N * 1.0));
   for (const auto & tf : test_functions) {
