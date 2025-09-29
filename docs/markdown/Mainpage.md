@@ -37,7 +37,7 @@ fetchcontent_makeavailable(Optimist)
 target_link_libraries(your_target PRIVATE Optimist::Optimist)
 ```
 
-If you already have `Optimist` somewhere on your system, you can use `find_pacakge` directly.
+If you already have `Optimist` somewhere on your system, you can use `find_package` directly.
 
 ```cmake
 # Optionally specify a custom path to find content from
