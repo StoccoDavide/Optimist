@@ -66,7 +66,7 @@ namespace Optimist
       * Class constructor for the NelderMead solver.
       */
       NelderMead() {
-        this->m_s.resize(N);
+        this->m_s.reserve(N+1);
       }
 
       /**
@@ -99,7 +99,7 @@ namespace Optimist
       */
       Vector centroid() const
       {
-        return 1.0/Real(N) * std::accumulate(this->m_s.begin(), this->m_s.end(), this->m_c);
+        return std::accumulate(this->m_s.begin(), this->m_s.end(), this->m_c) / N;
       }
 
       /**

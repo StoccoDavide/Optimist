@@ -40,10 +40,6 @@ namespace Optimist
     class Bracketing : public RootFinder<Real, 1, DerivedSolver>
     {
     public:
-      static constexpr bool requires_function{DerivedSolver::requires_function};
-      static constexpr bool requires_first_derivative{DerivedSolver::requires_first_derivative};
-      static constexpr bool requires_second_derivative{DerivedSolver::requires_second_derivative};
-
       OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
 
       // Function types

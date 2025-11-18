@@ -31,6 +31,5 @@
 *.out
 *.app
 
-# Sandbox folder
-sandbox/
+# Fetched content
 third_party/

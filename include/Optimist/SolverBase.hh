@@ -248,7 +248,7 @@ namespace Optimist
     */
     void max_function_evaluations(Integer t_max_function_evaluations)
     {
-      OPTIMIST_ASSERT(!std::isnan(t_max_function_evaluations) && std::isfinite(t_max_function_evaluations),
+      OPTIMIST_ASSERT(t_max_function_evaluations > 0,
         "Optimist::Solver::max_function_evaluations(...): invalid input detected.");
       this->m_max_function_evaluations = t_max_function_evaluations;
     }
@@ -278,8 +278,7 @@ namespace Optimist
     */
     void max_first_derivative_evaluations(Integer first_derivative_evaluations)
     {
-      OPTIMIST_ASSERT(
-        !std::isnan(first_derivative_evaluations) && std::isfinite(first_derivative_evaluations),
+      OPTIMIST_ASSERT(first_derivative_evaluations > 0,
         "Optimist::Solver::max_first_derivative_evaluations(...): invalid input detected.");
       this->m_max_first_derivative_evaluations = first_derivative_evaluations;
     }
@@ -302,8 +301,7 @@ namespace Optimist
     */
     void max_second_derivative_evaluations(Integer second_derivative_evaluations)
     {
-      OPTIMIST_ASSERT(
-        !std::isnan(second_derivative_evaluations) && std::isfinite(second_derivative_evaluations),
+      OPTIMIST_ASSERT(second_derivative_evaluations > 0,
         "Optimist::Solver::max_second_derivative_evaluations(...): invalid input detected.");
       this->m_max_second_derivative_evaluations = second_derivative_evaluations;
     }
@@ -325,7 +323,7 @@ namespace Optimist
     * \param[in] t_max_iterations The number of maximum allowed iterations.
     */
     void max_iterations(Integer t_max_iterations) {
-      OPTIMIST_ASSERT(!std::isnan(t_max_iterations) && std::isfinite(t_max_iterations),
+      OPTIMIST_ASSERT(t_max_iterations > 0,
         "Optimist::Solver::max_iterations(...): invalid input detected.");
       this->m_max_iterations = t_max_iterations;
     }
@@ -366,7 +364,7 @@ namespace Optimist
     */
     void max_relaxations(Integer t_max_relaxations)
     {
-      OPTIMIST_ASSERT(!std::isnan(t_max_relaxations) && std::isfinite(t_max_relaxations),
+      OPTIMIST_ASSERT(t_max_relaxations > 0,
         "Optimist::Solver::max_relaxations(...): invalid input detected.");
       this->m_max_relaxations = t_max_relaxations;
     }
@@ -383,8 +381,7 @@ namespace Optimist
     * \param[in] t_tolerance The tolerance \f$ \epsilon \f$.
     */
     void tolerance(Real t_tolerance) {
-      OPTIMIST_ASSERT(
-        !std::isnan(t_tolerance) && std::isfinite(t_tolerance) && t_tolerance > 0.0,
+      OPTIMIST_ASSERT(!std::isnan(t_tolerance) && std::isfinite(t_tolerance) && t_tolerance > 0.0,
         "Optimist::Solver::tolerance(...): invalid input detected.");
       this->m_tolerance = t_tolerance;
     }
