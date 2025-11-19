@@ -22,20 +22,20 @@ namespace Optimist
   {
 
     /**
-    * \brief Class container for the linear function.
-    *
-    * Class container for the linear function, which is defined as:
-    * \f[
-    * f(x) = mx + q \text{.}
-    * \f]
-    * The function has roots at
-    * \f[
-    * x = -\displaystyle\frac{q}{m} \text{.}
-    * \f]
-    * The default coefficients are \f$m = 1\f$ and \f$q = 1\f$, and the function initial guess is
-    * \f$x = 0\f$.
-    * \tparam Real Scalar number type.
-    */
+     * \brief Class container for the linear function.
+     *
+     * Class container for the linear function, which is defined as:
+     * \f[
+     * f(x) = mx + q \text{.}
+     * \f]
+     * The function has roots at
+     * \f[
+     * x = -\displaystyle\frac{q}{m} \text{.}
+     * \f]
+     * The default coefficients are \f$m = 1\f$ and \f$q = 1\f$, and the function initial guess is
+     * \f$x = 0\f$.
+     * \tparam Real Scalar number type.
+     */
     template <typename Real>
     class Linear : public Function<Real, 1, 1, Linear<Real>>
     {
@@ -46,8 +46,8 @@ namespace Optimist
       OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
 
       /**
-      * Class constructor for the linear function.
-      */
+       * Class constructor for the linear function.
+       */
       Linear()
       {
         this->m_solutions.emplace_back(-this->m_q/this->m_m);
@@ -55,31 +55,46 @@ namespace Optimist
       }
 
       /**
-      * Get the function name.
-      * \return The function name.
-      */
+       * Get the function name.
+       * \return The function name.
+       */
       std::string name_impl() const {return "Linear";}
 
       /**
-      * Compute the function value at the input point.
-      * \param[in] x Input point.
-      * \param[out] out The function value.
-      */
-      void evaluate_impl(Real x, Real & out) const {out = this->m_m*x + this->m_q;}
+       * Compute the function value at the input point.
+       * \param[in] x Input point.
+       * \param[out] out The function value.
+       * \return The boolean flag for successful evaluation.
+       */
+      bool evaluate_impl(Real x, Real & out) const
+      {
+        out = this->m_m*x + this->m_q;
+        return std::isfinite(out);
+      }
 
       /**
-      * Compute the first derivative value at the input point.
-      * \param[in] x Input point.
-      * \param[out] out The first derivative value.
-      */
-      void first_derivative_impl(Real /*x*/, Real & out) const {out = this->m_m;}
+       * Compute the first derivative value at the input point.
+       * \param[in] x Input point.
+       * \param[out] out The first derivative value.
+       * \return The boolean flag for successful evaluation.
+       */
+      bool first_derivative_impl(Real /*x*/, Real & out) const
+      {
+        out = this->m_m;
+        return std::isfinite(out);
+      }
 
       /**
-      * Compute the second derivative value at the input point.
-      * \param[in] x Input point.
-      * \param[out] out The second derivative value.
-      */
-      void second_derivative_impl(Real /*x*/, Real & out) const {out = 0.0;}
+       * Compute the second derivative value at the input point.
+       * \param[in] x Input point.
+       * \param[out] out The second derivative value.
+       * \return The boolean flag for successful evaluation.
+       */
+      bool second_derivative_impl(Real /*x*/, Real & out) const
+      {
+        out = 0.0;
+        return std::isfinite(out);
+      }
 
     }; // class Linear
 

@@ -27,7 +27,7 @@ TEMPLATE_TEST_CASE("Chebyshev", "[template]", TEST_SCALAR_FUNCTIONS) {
     RootFinder::Chebyshev<double> sol;
     sol.task(fun.name());
     typename TestType::InputType x_ini, x_out;
-    for (Integer i{0}; i < static_cast<Integer>(fun.guesses().size()); ++i) {
+    for (size_t i{0}; i < fun.guesses().size(); ++i) {
       x_ini = fun.guess(i);
       // Solve without damping
       sol.disable_damped_mode();

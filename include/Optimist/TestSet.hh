@@ -34,15 +34,15 @@ namespace Optimist
   {
 
     /**
-    * List of cost functions.
-    */
+     * List of cost functions.
+     */
     static const std::vector<std::string> COST_FUNCTIONS = {
       "Schaffer2"
     };
 
     /**
-    * List of scalar-valued functions.
-    */
+     * List of scalar-valued functions.
+     */
     static const std::vector<std::string> SCALAR_FUNCTIONS = {
       "Sin",
       "Cos",
@@ -50,8 +50,8 @@ namespace Optimist
     };
 
     /**
-    * List of vector-valued functions.
-    */
+     * List of vector-valued functions.
+     */
     static const std::vector<std::string> VECTOR_FUNCTIONS = {
       "Booth",
       "Brown",

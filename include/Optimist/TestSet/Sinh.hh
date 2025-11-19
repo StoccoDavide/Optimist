@@ -22,16 +22,16 @@ namespace Optimist
   {
 
     /**
-    * \brief Class container for the hyperbolic sine function.
-    *
-    * Class container for the hyperbolic sine function, which is defined as:
-    * \f[
-    * f(x) = \sinh(x) = \displaystyle\frac{e^x - e^{-x}}{2} \text{.}
-    * \f]
-    * The function has a zero at \f$x = 0\f$, with \f$f(x) = 0\f$. The initial guesses are generated
-    * on the range \f$x \in \left[-10, 10\right]\f$.
-    * \tparam Real Scalar number type.
-    */
+     * \brief Class container for the hyperbolic sine function.
+     *
+     * Class container for the hyperbolic sine function, which is defined as:
+     * \f[
+     * f(x) = \sinh(x) = \displaystyle\frac{e^x - e^{-x}}{2} \text{.}
+     * \f]
+     * The function has a zero at \f$x = 0\f$, with \f$f(x) = 0\f$. The initial guesses are generated
+     * on the range \f$x \in \left[-10, 10\right]\f$.
+     * \tparam Real Scalar number type.
+     */
     template <typename Real>
     class Sinh : public Function<Real, 1, 1, Sinh<Real>>
     {
@@ -39,8 +39,8 @@ namespace Optimist
       OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
 
       /**
-      * Class constructor for the hyperbolic sine function.
-      */
+       * Class constructor for the hyperbolic sine function.
+       */
       Sinh()
       {
         this->m_solutions.emplace_back(0.0); // Zero
@@ -49,31 +49,46 @@ namespace Optimist
       }
 
       /**
-      * Get the function name.
-      * \return The function name.
-      */
+       * Get the function name.
+       * \return The function name.
+       */
       std::string name_impl() const {return "Sinh";}
 
       /**
-      * Compute the function value at the input point.
-      * \param[in] x Input point.
-      * \param[out] out The function value.
-      */
-      void evaluate_impl(Real x, Real & out) const {out = std::sinh(x);}
+       * Compute the function value at the input point.
+       * \param[in] x Input point.
+       * \param[out] out The function value.
+       * \return The boolean flag for successful evaluation.
+       */
+      bool evaluate_impl(Real x, Real & out) const
+      {
+        out = std::sinh(x);
+        return std::isfinite(out);
+      }
 
       /**
-      * Compute the first derivative value at the input point.
-      * \param[in] x Input point.
-      * \param[out] out The first derivative value.
-      */
-      void first_derivative_impl(Real x, Real & out) const {out = std::cosh(x);}
+       * Compute the first derivative value at the input point.
+       * \param[in] x Input point.
+       * \param[out] out The first derivative value.
+       * \return The boolean flag for successful evaluation.
+       */
+      bool first_derivative_impl(Real x, Real & out) const
+      {
+        out = std::cosh(x);
+        return std::isfinite(out);
+      }
 
       /**
-      * Compute the second derivative value at the input point.
-      * \param[in] x Input point.
-      * \param[out] out The second derivative value.
-      */
-      void second_derivative_impl(Real x, Real & out) const {out = std::sinh(x);}
+       * Compute the second derivative value at the input point.
+       * \param[in] x Input point.
+       * \param[out] out The second derivative value.
+       * \return The boolean flag for successful evaluation.
+       */
+      bool second_derivative_impl(Real x, Real & out) const
+      {
+        out = std::sinh(x);
+        return std::isfinite(out);
+      }
 
     }; // class Sinh
 

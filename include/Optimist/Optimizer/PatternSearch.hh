@@ -31,15 +31,14 @@ namespace Optimist
     \*/
 
     /**
-    * \brief Class container for the Hooke and Jeeves Pattern Search algorithm.
-    *
-    * \includedoc docs/markdown/Optimizer/PatternSearch.md
-    *
-    * \tparam Real Scalar number type.
-    * \tparam N Dimension of the root-finding problem.
-    */
-    template <typename Real>
-    template <Integer N>
+     * \brief Class container for the Hooke and Jeeves Pattern Search algorithm.
+     *
+     * \includedoc docs/markdown/Optimizer/PatternSearch.md
+     *
+     * \tparam Real Scalar number type.
+     * \tparam N Dimension of the root-finding problem.
+     */
+    template <typename Real, Integer N>
     class PatternSearch : public Optimizer<Real, N, PatternSearch<Real, N>, true>
     {
     public:
@@ -47,9 +46,9 @@ namespace Optimist
       static constexpr bool requires_first_derivative{false};
       static constexpr bool requires_second_derivative{false};
 
-      using Vector = typename Optimizer<Real, N, PatternSearch<Real, N>, true>::Vector;
-      using Matrix = typename Optimizer<Real, N, PatternSearch<Real, N>, true>::Matrix;
-      using FunctionWrapper = typename Optimizer<Real, N, PatternSearch<Real, N>, true>::FunctionWrapper;
+      using typename Optimizer<Real, N, PatternSearch<Real, N>, true>::Vector;
+      using typename Optimizer<Real, N, PatternSearch<Real, N>, true>::Matrix;
+      using typename Optimizer<Real, N, PatternSearch<Real, N>, true>::FunctionWrapper;
       using Optimizer<Real, N, PatternSearch<Real, N>, true>::solve;
 
       using Simplex = std::vector<Vector>; /**< Simplex type. */
@@ -62,14 +61,14 @@ namespace Optimist
 
     public:
       /**
-      * Class constructor for the PatternSearch solver.
-      */
+       * Class constructor for the PatternSearch solver.
+       */
       PatternSearch() {}
 
       /**
-      * Get the Nelder-Mead's solver name.
-      * \return The Nelder-Mead's solver name.
-      */
+       * Get the Nelder-Mead's solver name.
+       * \return The Nelder-Mead's solver name.
+       */
       std::string name_impl() const {return "PatternSearch";}
 
       void set_max_num_stagnation( integer nstg ) {
@@ -159,13 +158,13 @@ namespace Optimist
       }
 
       /**
-      * Solve the nonlinear system of equations \f$ \mathbf{f}(\mathbf{x}) = 0 \f$, with \f$
-      * \mathbf{f}: \mathbb{R}^n \rightarrow \mathbb{R}^n \f$.
-      * \param[in] function Function wrapper.
-      * \param[in] x_ini Initialization point.
-      * \param[out] x_sol Solution point.
-      * \return The convergence boolean flag.
-      */
+       * Solve the nonlinear system of equations \f$ \mathbf{f}(\mathbf{x}) = 0 \f$, with \f$
+       * \mathbf{f}: \mathbb{R}^n \rightarrow \mathbb{R}^n \f$.
+       * \param[in] function Function wrapper.
+       * \param[in] x_ini Initialization point.
+       * \param[out] x_sol Solution point.
+       * \return The convergence boolean flag.
+       */
       bool solve_impl(FunctionWrapper function, Vector const & x_ini, Vector & x_sol)
       {
         // Setup internal variables
@@ -178,13 +177,18 @@ namespace Optimist
         // Set initial iteration
         Vector x_best(x_ini);
         Real f_best;
-        this->evaluate_function(function, x_best, f_best);
+        bool success{this->evaluate_function(function, x_best, f_best)};
+        UTILS_ASSERT(
+          success,
+          "Optimist::Optimizer::PatternSearch::solve(...): "
+          "function evaluation failed at the initial point."
+        );
         search_sign.setOnes(); // First direction will be positive for each direction
         this->m_h = h;
 
         // Algorithm iterations
         integer stagnations{0};
-        for (this->m_iterations = static_cast<Integer>(0); this->m_iterations < this->m_max_iterations; ++this->m_iterations)
+        for (this->m_iterations = 0; this->m_iterations < this->m_max_iterations; ++this->m_iterations)
         {
 
           x_old = x_best;

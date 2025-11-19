@@ -32,6 +32,8 @@ message(STATUS "Optimist: version ${OPTIMIST_FULL_VERSION}")
 
 set(OPTIMIST_THIRD_PARTY_DIR "${CMAKE_CURRENT_SOURCE_DIR}/third_party")
 set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
 
 if(NOT CMAKE_INSTALL_PREFIX)
@@ -45,6 +47,10 @@ include(OptimistEigen3)
 # Library definition
 add_library(Optimist INTERFACE)
 add_library(Optimist::Optimist ALIAS Optimist)
+if(MSVC)
+  # Avoid compilation errors when compiling Eigen3
+  target_compile_options(Optimist INTERFACE /wd4127 /wd4714)
+endif()
 
 target_link_libraries(Optimist INTERFACE Eigen3::Eigen)
 
@@ -135,6 +141,6 @@ write_basic_package_version_file(
 
 install(FILES
   ${CMAKE_CURRENT_BINARY_DIR}/OptimistConfig.cmake
-  ${CMAKE_CURRENT_BINARY_DIR}/OptimistConfigVersion.cmake
+  ${CMAKE_CURRENT_BINARY_DIR}/OptimistVersion.cmake
   DESTINATION lib/cmake/Optimist
 )

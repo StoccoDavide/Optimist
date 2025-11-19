@@ -10,8 +10,6 @@ Are you looking for the online documentation? Visit [this link](https://stoccoda
 
 `Optimist` is a header-only library that depends only on [`Eigen`](https://eigen.tuxfamily.org/index.php?title=Main_Page) (version >= 3.4.0), so the quick and dirty way of installing it is by simply copying the `include` directory to your project and make sure to have [`Eigen`](https://eigen.tuxfamily.org/index.php?title=Main_Page) available however you see fit. Alternatively, you can do things properly and use `CMake` (version >= 3.14).
 
-Optionally, you can also install CERN's [`ROOT`](https://root.cern.ch) (version >= 6.34.08) to plot the results of your simulations.
-
 ### CMake
 
 If you are using CMake, you can add the library as a subdirectory in your project.

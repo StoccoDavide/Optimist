@@ -30,14 +30,14 @@ namespace Optimist
     \*/
 
     /**
-    * \brief Class container for the Algorithm 748.
-    *
-    * The algorithm 748 allows to find the roots of a scalar function \f$f(x)\f$ in a given interval
-    * \f$[a, b]\f$. The algorithm is based on the work of G. Alefeld, F. Potra, and Y. Shi, *Algorithm
-    * 748: Enclosing Zeros of Continuous Functions*, ACM Transactions on Mathematical Software, 21
-    * (1995), pp. 327-344, 10.1145/210089.210111.
-    * \tparam Real Scalar number type.
-    */
+     * \brief Class container for the Algorithm 748.
+     *
+     * The algorithm 748 allows to find the roots of a scalar function \f$f(x)\f$ in a given interval
+     * \f$[a, b]\f$. The algorithm is based on the work of G. Alefeld, F. Potra, and Y. Shi, *Algorithm
+     * 748: Enclosing Zeros of Continuous Functions*, ACM Transactions on Mathematical Software, 21
+     * (1995), pp. 327-344, 10.1145/210089.210111.
+     * \tparam Real Scalar number type.
+     */
     template <typename Real>
     class Algo748 : public Bracketing<Real, Algo748<Real>>
     {
@@ -49,45 +49,47 @@ namespace Optimist
       OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
 
       // Function types
-      using FunctionWrapper         = typename Bracketing<Real, Algo748<Real>>::FunctionWrapper;
-      using FirstDerivativeWrapper  = typename Bracketing<Real, Algo748<Real>>::FirstDerivativeWrapper;
-      using SecondDerivativeWrapper = typename Bracketing<Real, Algo748<Real>>::SecondDerivativeWrapper;
+      using typename Bracketing<Real, Algo748<Real>>::FunctionWrapper;
+      using typename Bracketing<Real, Algo748<Real>>::FirstDerivativeWrapper;
+      using typename Bracketing<Real, Algo748<Real>>::SecondDerivativeWrapper;
 
       /**
-      * Class constructor for the Algorithm 748.
-      */
+       * Class constructor for the Algorithm 748.
+       */
       Algo748() {}
 
       /**
-      * Get the Algorithm 748 solver name.
-      * \return The Algorithm 748 solver name.
-      */
+       * Get the Algorithm 748 solver name.
+       * \return The Algorithm 748 solver name.
+       */
       std::string name_impl() const {return "Algo748";}
 
     private:
       /**
-      * Check if the input values are all different.
-      * \param[in] a The first value.
-      * \param[in] b The second value.
-      * \param[in] c The third value.
-      * \param[in] d The fourth value.
-      * \return The boolean flag, true if all the values are different, false otherwise.
-      */
+       * Check if the input values are all different.
+       * \param[in] a The first value.
+       * \param[in] b The second value.
+       * \param[in] c The third value.
+       * \param[in] d The fourth value.
+       * \return The boolean flag, true if all the values are different, false otherwise.
+       */
       bool all_different(Real a, Real b, Real c, Real d) const {
         return a != b && a != c && a != d && b != c && b != d && c != d;
       }
 
       /**
-      * Given current enclosing interval \f$[a, b]\f$ and \f$a\f$ number \f$c\f$ in \f$(a, b)\f$:
-      *   1. if \f$f(c) = 0\f$ then sets the output \f$a = c\f$.
-      *   2. Otherwise determines the new enclosing interval \f$[a, b] = [a, c]\f$ or \f$[a, b] = [c, b]\f$.
-      *      also updates the termination criterion corresponding
-      *      to the new enclosing interval.
-      * Adjust \f$c\f$ if \f$(b-a)\f$ is very small or if \f$c\f$ is very close to \f$a\f$ or \f$b\f$.
-      * \param[in] function Function wrapper.
-      * \return The boolean flag, true if the root is found, false otherwise.
-      */
-      bool bracketing(FunctionWrapper function) {
+       * Given current enclosing interval \f$[a, b]\f$ and \f$a\f$ number \f$c\f$ in \f$(a, b)\f$:
+       *   1. if \f$f(c) = 0\f$ then sets the output \f$a = c\f$.
+       *   2. Otherwise determines the new enclosing interval \f$[a, b] = [a, c]\f$ or \f$[a, b] = [c, b]\f$.
+       *      also updates the termination criterion corresponding
+       *      to the new enclosing interval.
+       * Adjust \f$c\f$ if \f$(b-a)\f$ is very small or if \f$c\f$ is very close to \f$a\f$ or \f$b\f$.
+       * \param[in] function Function wrapper.
+       * \return The boolean flag, true if the root is found, false otherwise.
+       */
+      bool bracketing(FunctionWrapper function)
+      {
+        #define CMD "Optimist::ScalarRootfinder::Algo748::bracketing(...): "
 
         {
           Real tolerance{0.7*this->m_tolerance_bracketing};
@@ -98,7 +100,9 @@ namespace Optimist
         }
 
         // If f(c) = 0 set a = c and return true
-        this->evaluate_function(function, this->m_c, this->m_fc);
+        bool success{this->evaluate_function(function, this->m_c, this->m_fc)};
+        OPTIMIST_ASSERT_WARNING(success,
+          CMD "function evaluation failed during bracketing.");
         if (this->m_fc == 0) {
           this->m_a = this->m_c; this->m_fa = 0.0;
           this->m_d = 0.0;       this->m_fd = 0.0;
@@ -116,13 +120,15 @@ namespace Optimist
           }
           return false;
         }
+
+        #undef CMD
       }
 
       /**
-      * Perform the cubic inverse interpolation of \f$f(x)\f$ at \f$a\f$, \f$b\f$, \f$d\f$, and
-      * \f$e\f$ to get an approximate root \f$r\f$ (\f$f(r) = 0\f$).
-      * \return The approximate root \f$r\f$.
-      */
+       * Perform the cubic inverse interpolation of \f$f(x)\f$ at \f$a\f$, \f$b\f$, \f$d\f$, and
+       * \f$e\f$ to get an approximate root \f$r\f$ (\f$f(r) = 0\f$).
+       * \return The approximate root \f$r\f$.
+       */
       Real cubic_interpolation() {
 
         // Compute the coefficients for the inverse cubic interpolation
@@ -149,14 +155,14 @@ namespace Optimist
       }
 
       /**
-      * Perform \f$n\f$ Newton steps to approximate the zero in \f$(a, b)\f$ of the quadratic
-      * polynomial interpolating \f$f(x)\f$ at \f$a\f$, \f$b\f$, and \f$d\f$. Safeguard is used to
-      * avoid overflow.
-      * \param[in] n The number of steps.
-      * \return The approximate root.
-      */
-      Real newton_quadratic(Integer n) {
-
+       * Perform \f$n\f$ Newton steps to approximate the zero in \f$(a, b)\f$ of the quadratic
+       * polynomial interpolating \f$f(x)\f$ at \f$a\f$, \f$b\f$, and \f$d\f$. Safeguard is used to
+       * avoid overflow.
+       * \param[in] n The number of steps.
+       * \return The approximate root.
+       */
+      Real newton_quadratic(Integer n)
+      {
         // Compute the coefficients for the quadratic interpolation
         Real a_0{this->m_fa};
         Real a_1{(this->m_fb - this->m_fa)/(this->m_b - this->m_a)};
@@ -184,19 +190,22 @@ namespace Optimist
 
     public:
       /**
-      * Finds either an exact solution or an approximate solution of the equation \f$f(x) = 0\f$ in
-      * the interval \f$[a,b]\f$. At the beginning of each iteration, the current enclosing interval
-      * is recorded as \f$[a_0, b_0]\f$. The first iteration is simply a secant step. Starting with
-      * the second iteration, three steps are taken in each iteration.
-      *   1. The first two steps are either quadratic interpolation or cubic inverse interpolation.
-      *   2. The third step is a double-size secant step.
-      * If the diameter of the enclosing interval obtained after these three steps is larger than
-      * \f$\mu*(b_0-a_0)\f$, an additional bisection step will be used to shrink the enclosing interval.
-      * \param[in] function Function wrapper.
-      * \return The approximate root.
-      */
-      Real find_root_impl(FunctionWrapper function) {
+       * Finds either an exact solution or an approximate solution of the equation \f$f(x) = 0\f$ in
+       * the interval \f$[a,b]\f$. At the beginning of each iteration, the current enclosing interval
+       * is recorded as \f$[a_0, b_0]\f$. The first iteration is simply a secant step. Starting with
+       * the second iteration, three steps are taken in each iteration.
+       *   1. The first two steps are either quadratic interpolation or cubic inverse interpolation.
+       *   2. The third step is a double-size secant step.
+       * If the diameter of the enclosing interval obtained after these three steps is larger than
+       * \f$\mu*(b_0-a_0)\f$, an additional bisection step will be used to shrink the enclosing interval.
+       * \param[in] function Function wrapper.
+       * \return The approximate root.
+       */
+      Real find_root_impl(FunctionWrapper function)
+      {
+        #define CMD "Optimist::ScalarRootfinder::Algo748::find_root_impl(...): "
 
+        bool success;
         Real tolerance_step{this->m_tolerance_bracketing};
         Real tolerance_function{this->m_tolerance_bracketing};
 
@@ -212,7 +221,9 @@ namespace Optimist
         while (!(std::isfinite(this->m_fa) && std::isfinite(this->m_fb))) {
           ++this->m_iterations;
           this->m_c  = (this->m_a + this->m_b)/2.0;
-          this->evaluate_function(function, this->m_c, this->m_fc);
+          success = this->evaluate_function(function, this->m_c, this->m_fc);
+          OPTIMIST_ASSERT_WARNING(success,
+            CMD "function evaluation failed at iteration " << this->m_iterations << ".");
           this->m_converged = this->m_fc == 0;
           if (this->m_converged) {return this->m_c;}
           if (this->m_fa*this->m_fc < 0.0) {
@@ -328,6 +339,8 @@ namespace Optimist
         }
         // Return the approximate root
         return std::abs(this->m_fa) < std::abs(this->m_fb) ? this->m_a : this->m_b;
+
+        #undef CMD
       }
 
     }; // class Algo748

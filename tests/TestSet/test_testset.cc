@@ -19,7 +19,7 @@ int main() {
   Optimist::TestSet::Sin<double> fun;
   Optimist::RootFinder::NewtonRaphson<double> sol;
   double x_out;
-  sol.rootfind(fun, 0.0, x_out);
+  sol. rootfind(fun, 0.0, x_out);
   Optimist::RootFinder::Greenstadt<double, 4> greenstadt;
 
   return 1;

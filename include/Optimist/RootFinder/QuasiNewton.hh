@@ -30,13 +30,13 @@ namespace Optimist
     \*/
 
     /**
-    * \brief Class container for the QuasiNewton's method.
-    *
-    * \includedoc docs/markdown/RootFinder/QuasiNewton.md
-    *
-    * \tparam Real Scalar number type.
-    * \tparam N Dimension of the root-finding problem.
-    */
+     * \brief Class container for the QuasiNewton's method.
+     *
+     * \includedoc docs/markdown/RootFinder/QuasiNewton.md
+     *
+     * \tparam Real Scalar number type.
+     * \tparam N Dimension of the root-finding problem.
+     */
     template <typename Real, Integer N, typename DerivedSolver>
     class QuasiNewton : public RootFinder<Real, N, DerivedSolver, true>
     {
@@ -48,10 +48,10 @@ namespace Optimist
       OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
 
       using Method = enum class Method : Integer {GOOD = 0, BAD = 1, COMBINED = 2}; /**< QuasiNewton solver type. */
-      using Vector = typename RootFinder<Real, N, DerivedSolver, true>::Vector;
-      using Matrix = typename RootFinder<Real, N, DerivedSolver, true>::Matrix;
-      using FunctionWrapper = typename RootFinder<Real, N, DerivedSolver, true>::FunctionWrapper;
-      using JacobianWrapper = typename RootFinder<Real, N, DerivedSolver, true>::JacobianWrapper;
+      using typename RootFinder<Real, N, DerivedSolver, true>::Vector;
+      using typename RootFinder<Real, N, DerivedSolver, true>::Matrix;
+      using typename RootFinder<Real, N, DerivedSolver, true>::FunctionWrapper;
+      using typename RootFinder<Real, N, DerivedSolver, true>::JacobianWrapper;
       using RootFinder<Real, N, DerivedSolver, true>::solve;
 
     private:
@@ -59,31 +59,33 @@ namespace Optimist
 
     public:
       /**
-      * Class constructor for the QuasiNewton solver.
-      */
+       * Class constructor for the QuasiNewton solver.
+       */
       QuasiNewton() {}
 
       /**
-      * Get the QuasiNewton solver name.
-      * \return The QuasiNewton solver name.
-      */
+       * Get the QuasiNewton solver name.
+       * \return The QuasiNewton solver name.
+       */
       std::string name_impl() const
       {
         return static_cast<const DerivedSolver *>(this)->name_impl();
       }
 
       /**
-      * Solve the nonlinear system of equations \f$ \mathbf{f}(\mathbf{x}) = 0 \f$, with \f$
-      * \mathbf{f}: \mathbb{R}^n \rightarrow \mathbb{R}^n \f$.
-      * \param[in] function Function wrapper.
-      * \param[in] jacobian Jacobian wrapper.
-      * \param[in] x_ini Initialization point.
-      * \param[out] x_sol Solution point.
-      * \return The convergence boolean flag.
-      */
+       * Solve the nonlinear system of equations \f$ \mathbf{f}(\mathbf{x}) = 0 \f$, with \f$
+       * \mathbf{f}: \mathbb{R}^n \rightarrow \mathbb{R}^n \f$.
+       * \param[in] function Function wrapper.
+       * \param[in] jacobian Jacobian wrapper.
+       * \param[in] x_ini Initialization point.
+       * \param[out] x_sol Solution point.
+       * \return The convergence boolean flag.
+       */
       bool solve_impl(FunctionWrapper function, JacobianWrapper jacobian, Vector const & x_ini,
         Vector & x_sol)
       {
+        #define CMD "Optimist::RootFinder::QuasiNewton::solve(...): "
+
         // Setup internal variables
         this->reset();
 
@@ -91,7 +93,7 @@ namespace Optimist
         if (this->m_verbose) {this->header();}
 
         // Initialize variables
-        bool damped;
+        bool damped, success;
         Real residuals, step_norm;
         Vector x_old, x_new, function_old, function_new, step_old, step_new, delta_x_old, delta_x_new,
           delta_function_old, delta_function_new;
@@ -99,13 +101,17 @@ namespace Optimist
 
         // Set initial iteration
         x_old = x_ini;
-        this->evaluate_function(function, x_old, function_old);
-        this->evaluate_jacobian(jacobian, x_old, jacobian_old);
+        success = this->evaluate_function(function, x_old, function_old);
+        OPTIMIST_ASSERT_WARNING(success,
+          CMD "function evaluation failed at the initial point.");
+        success = this->evaluate_jacobian(jacobian, x_old, jacobian_old);
+        OPTIMIST_ASSERT_WARNING(success,
+          CMD "jacobian evaluation failed at the initial point.");
 
         // Algorithm iterations
         Real tolerance_residuals{this->m_tolerance};
         Real tolerance_step_norm{this->m_tolerance * this->m_tolerance};
-        for (this->m_iterations = static_cast<Integer>(1); this->m_iterations < this->m_max_iterations; ++this->m_iterations)
+        for (this->m_iterations = 1; this->m_iterations < this->m_max_iterations; ++this->m_iterations)
         {
           // Store trace
           this->store_trace(x_old);
@@ -131,7 +137,9 @@ namespace Optimist
           } else {
             // Update point
             x_new = x_old + step_old;
-            this->evaluate_function(function, x_new, function_new);
+            success = this->evaluate_function(function, x_new, function_new);
+            OPTIMIST_ASSERT_WARNING(success,
+              CMD "function evaluation failed at iteration " << this->m_iterations << ".");
           }
 
           // Update jacobian approximation
@@ -157,18 +165,20 @@ namespace Optimist
         // Convergence data
         x_sol = x_old;
         return this->m_converged;
+
+        #undef CMD
       }
 
       /**
-      * Jacobian approximation update rule for the QuasiNewton's method.
-      * \param[in] delta_x_old Old difference between points.
-      * \param[in] delta_function_old Old difference between function values.
-      * \param[in] jacobian_old Old jacobian approximation.
-      * \param[in] delta_x_new New difference between points.
-      * \param[in] delta_function_new New difference between function values.
-      * \param[in] function_new New function value.
-      * \param[out] jacobian_new New jacobian approximation.
-      */
+       * Jacobian approximation update rule for the QuasiNewton's method.
+       * \param[in] delta_x_old Old difference between points.
+       * \param[in] delta_function_old Old difference between function values.
+       * \param[in] jacobian_old Old jacobian approximation.
+       * \param[in] delta_x_new New difference between points.
+       * \param[in] delta_function_new New difference between function values.
+       * \param[in] function_new New function value.
+       * \param[out] jacobian_new New jacobian approximation.
+       */
       void update(
         Vector const & delta_x_old, Vector const & delta_function_old, Matrix const & jacobian_old,
         Vector const & delta_x_new, Vector const & delta_function_new, Vector const & function_new,

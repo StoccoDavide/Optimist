@@ -22,29 +22,29 @@ namespace Optimist
   {
 
     /**
-    * \brief Class container for the Schaffer2 function.
-    *
-    * Class container for the Schaffer2 function, which is defined as:
-    * \f[
-    * f(\mathbf{x}) = 0.5 + \displaystyle\frac{\sin^{2}(x_1^2 - x_2^2) - 0.5}{(1 + 0.001(x_1^2 + x_2^2))^2} \text{.}
-    * \f]
-    * The function has global minima at \f$\mathbf{x} = (0, 0)\f$, with \f$f(\mathbf{x}) = 0\f$.
-    * The initial guesses are generated on the square \f$x_i \in \left[-100, 100\right]\f$.
-    * \tparam Real Scalar number type.
-    */
+     * \brief Class container for the Schaffer2 function.
+     *
+     * Class container for the Schaffer2 function, which is defined as:
+     * \f[
+     * f(\mathbf{x}) = 0.5 + \displaystyle\frac{\sin^{2}(x_1^2 - x_2^2) - 0.5}{(1 + 0.001(x_1^2 + x_2^2))^2} \text{.}
+     * \f]
+     * The function has global minima at \f$\mathbf{x} = (0, 0)\f$, with \f$f(\mathbf{x}) = 0\f$.
+     * The initial guesses are generated on the square \f$x_i \in \left[-100, 100\right]\f$.
+     * \tparam Real Scalar number type.
+     */
     template <typename Real>
     class Schaffer2 : public Function<Real, 2, 1, Schaffer2<Real>>
     {
     public:
-      using Vector    = typename Function<Real, 2, 1, Schaffer2<Real>>::Vector;
-      using RowVector = typename Function<Real, 2, 1, Schaffer2<Real>>::RowVector;
-      using Matrix    = typename Function<Real, 2, 1, Schaffer2<Real>>::Matrix;
+      using typename Function<Real, 2, 1, Schaffer2<Real>>::Vector;
+      using typename Function<Real, 2, 1, Schaffer2<Real>>::RowVector;
+      using typename Function<Real, 2, 1, Schaffer2<Real>>::Matrix;
 
       OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
 
       /**
-      * Class constructor for the Schaffer2 function.
-      */
+       * Class constructor for the Schaffer2 function.
+       */
       Schaffer2()
       {
         this->m_solutions.emplace_back(0.0, 0.0);
@@ -56,17 +56,18 @@ namespace Optimist
       }
 
       /**
-      * Get the function name.
-      * \return The function name.
-      */
+       * Get the function name.
+       * \return The function name.
+       */
       std::string name_impl() const {return "Schaffer2";}
 
       /**
-      * Compute the function value at the input point.
-      * \param[in] x Input point.
-      * \param[out] out The function value.
-      */
-      void evaluate_impl(const Vector & x, Real & out) const
+       * Compute the function value at the input point.
+       * \param[in] x Input point.
+       * \param[out] out The function value.
+       * \return The boolean flag for successful evaluation.
+       */
+      bool evaluate_impl(Vector const & x, Real & out) const
       {
         Real xx_0{x(0)*x(0)};
         Real xx_1{x(1)*x(1)};
@@ -74,14 +75,16 @@ namespace Optimist
         Real xx_0_p_xx_1{xx_0 + xx_1};
         out = 0.5 + (std::sin(xx_0_m_xx_1)*std::sin(xx_0_m_xx_1) - 0.5) /
           ((1.0 + 0.001*(xx_0_p_xx_1))*(1.0 + 0.001*(xx_0_p_xx_1)));
+        return std::isfinite(out);
       }
 
       /**
-      * Compute the first derivative value at the input point.
-      * \param[in] x Input point.
-      * \param[out] out The first derivative value.
-      */
-      void first_derivative_impl(const Vector & x, RowVector & out) const
+       * Compute the first derivative value at the input point.
+       * \param[in] x Input point.
+       * \param[out] out The first derivative value.
+       * \return The boolean flag for successful evaluation.
+       */
+      bool first_derivative_impl(Vector const & x, RowVector & out) const
       {
         Real xx_0{x(0)*x(0)};
         Real xx_1{x(1)*x(1)};
@@ -93,14 +96,16 @@ namespace Optimist
           2.0*0.001*x(0)*std::cos(xx_0_m_xx_1) / tmp3;
         out(1) = -2.0*x(1)*std::sin(xx_0_m_xx_1) / tmp2 +
           2.0*0.001*x(1)*std::cos(xx_0_m_xx_1) / tmp3;
+        return out.allFinite();
       }
 
       /**
-      * Compute the second derivative value at the input point.
-      * \param[in] x Input point.
-      * \param[out] out The second derivative value.
-      */
-      void second_derivative_impl(const Vector & x, Matrix & out) const
+       * Compute the second derivative value at the input point.
+       * \param[in] x Input point.
+       * \param[out] out The second derivative value.
+       * \return The boolean flag for successful evaluation.
+       */
+      bool second_derivative_impl(Vector const & x, Matrix & out) const
       {
         Real xx_0{x(0)*x(0)};
         Real xx_1{x(1)*x(1)};
@@ -117,6 +122,7 @@ namespace Optimist
         out(1, 1) = 2.0*std::sin(xx_0_m_xx_1) / tmp2 -
           4.0*x(1)*x(1)*std::sin(xx_0_m_xx_1) / tmp3 +
           6.0*0.001*x(1)*x(1)*std::cos(xx_0_m_xx_1) / tmp4;
+        return out.allFinite();
       }
 
     }; // class Schaffer2

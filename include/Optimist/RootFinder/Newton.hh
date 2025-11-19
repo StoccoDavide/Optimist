@@ -30,13 +30,13 @@ namespace Optimist
     \*/
 
     /**
-    * \brief Class container for the Newton's method.
-    *
-    * \includedoc docs/markdown/RootFinder/Newton.md
-    *
-    * \tparam Real Scalar number type.
-    * \tparam N Dimension of the root-finding problem.
-    */
+     * \brief Class container for the Newton's method.
+     *
+     * \includedoc docs/markdown/RootFinder/Newton.md
+     *
+     * \tparam Real Scalar number type.
+     * \tparam N Dimension of the root-finding problem.
+     */
     template <typename Real, Integer N>
     class Newton : public RootFinder<Real, N, Newton<Real, N>, true>
     {
@@ -47,10 +47,10 @@ namespace Optimist
 
       OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
 
-      using Vector = typename RootFinder<Real, N, Newton<Real, N>, true>::Vector;
-      using Matrix = typename RootFinder<Real, N, Newton<Real, N>, true>::Matrix;
-      using FunctionWrapper = typename RootFinder<Real, N, Newton<Real, N>, true>::FunctionWrapper;
-      using JacobianWrapper = typename RootFinder<Real, N, Newton<Real, N>, true>::JacobianWrapper;
+      using typename RootFinder<Real, N, Newton<Real, N>, true>::Vector;
+      using typename RootFinder<Real, N, Newton<Real, N>, true>::Matrix;
+      using typename RootFinder<Real, N, Newton<Real, N>, true>::FunctionWrapper;
+      using typename RootFinder<Real, N, Newton<Real, N>, true>::JacobianWrapper;
       using RootFinder<Real, N, Newton<Real, N>, true>::solve;
 
     private:
@@ -58,27 +58,29 @@ namespace Optimist
 
     public:
       /**
-      * Class constructor for the Newton solver.
-      */
+       * Class constructor for the Newton solver.
+       */
       Newton() {}
 
       /**
-      * Get the Newton solver name.
-      * \return The Newton solver name.
-      */
+       * Get the Newton solver name.
+       * \return The Newton solver name.
+       */
       std::string name_impl() const {return "Newton";}
 
       /**
-      * Solve the nonlinear system of equations \f$ \mathbf{f}(\mathbf{x}) = 0 \f$, with \f$
-      * \mathbf{f}: \mathbb{R}^n \rightarrow \mathbb{R}^n \f$.
-      * \param[in] function Function wrapper.
-      * \param[in] jacobian Jacobian wrapper.
-      * \param[in] x_ini Initialization point.
-      * \param[out] x_sol Solution point.
-      * \return The convergence boolean flag.
-      */
+       * Solve the nonlinear system of equations \f$ \mathbf{f}(\mathbf{x}) = 0 \f$, with \f$
+       * \mathbf{f}: \mathbb{R}^n \rightarrow \mathbb{R}^n \f$.
+       * \param[in] function Function wrapper.
+       * \param[in] jacobian Jacobian wrapper.
+       * \param[in] x_ini Initialization point.
+       * \param[out] x_sol Solution point.
+       * \return The convergence boolean flag.
+       */
       bool solve_impl(FunctionWrapper function, JacobianWrapper jacobian, Vector const & x_ini, Vector & x_sol)
       {
+        #define CMD "Optimist::RootFinder::Newton::solve(...): "
+
         // Setup internal variables
         this->reset();
 
@@ -86,25 +88,29 @@ namespace Optimist
         if (this->m_verbose) {this->header();}
 
         // Initialize variables
-        bool damped;
+        bool damped, success;
         Real residuals, step_norm;
         Vector x_old, x_new, function_old, function_new, step_old, step_new;
         Matrix jacobian_old;
 
         // Set initial iteration
         x_old = x_ini;
-        this->evaluate_function(function, x_old, function_old);
+        success = this->evaluate_function(function, x_old, function_old);
+        OPTIMIST_ASSERT_WARNING(success,
+          CMD "function evaluation failed at the initial point.");
 
         // Algorithm iterations
         Real tolerance_residuals{this->m_tolerance};
         Real tolerance_step_norm{this->m_tolerance * this->m_tolerance};
-        for (this->m_iterations = static_cast<Integer>(1); this->m_iterations < this->m_max_iterations; ++this->m_iterations)
+        for (this->m_iterations = 1; this->m_iterations < this->m_max_iterations; ++this->m_iterations)
         {
           // Store trace
           this->store_trace(x_old);
 
           // Calculate step
-          this->evaluate_jacobian(jacobian, x_old, jacobian_old);
+          success = this->evaluate_jacobian(jacobian, x_old, jacobian_old);
+          OPTIMIST_ASSERT_WARNING(success,
+            CMD "jacobian evaluation failed at iteration " << this->m_iterations << ".");
           this->m_lu.compute(jacobian_old);
           OPTIMIST_ASSERT(this->m_lu.rank() == N,
             "Optimist::RootFinder::Newton::solve(...): singular Jacobian detected.");
@@ -128,7 +134,9 @@ namespace Optimist
           } else {
             // Update point
             x_new = x_old + step_old;
-            this->evaluate_function(function, x_new, function_new);
+            success = this->evaluate_function(function, x_new, function_new);
+            OPTIMIST_ASSERT_WARNING(success,
+              CMD "function evaluation failed at iteration " << this->m_iterations << ".");
           }
 
           // Update internal variables
@@ -143,6 +151,8 @@ namespace Optimist
         // Convergence data
         x_sol = x_old;
         return this->m_converged;
+
+        #undef CMD
       }
 
     }; // class Newton

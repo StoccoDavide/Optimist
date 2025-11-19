@@ -22,17 +22,17 @@ namespace Optimist
   {
 
     /**
-    * \brief Class container for the sine function.
-    *
-    * Class container for the sine function, which is defined as:
-    * \f[
-    * f(x) = \sin(x) \text{.}
-    * \f]
-    * The function has roots at \f$x = \pi/2 + i\pi\f$, with \f$f(x) = 0\f$, and minima at \f$x = 3\pi/2 +
-    * 2i\pi\f$, with \f$f(x) = -1\f$ and \f$i = 0, 1, \ldots, n\f$. The initial guesses are generated
-    * on the range \f$x \in \left[-\pi, \pi\right]\f$.
-    * \tparam Real Scalar number type.
-    */
+     * \brief Class container for the sine function.
+     *
+     * Class container for the sine function, which is defined as:
+     * \f[
+     * f(x) = \sin(x) \text{.}
+     * \f]
+     * The function has roots at \f$x = \pi/2 + i\pi\f$, with \f$f(x) = 0\f$, and minima at \f$x = 3\pi/2 +
+     * 2i\pi\f$, with \f$f(x) = -1\f$ and \f$i = 0, 1, \ldots, n\f$. The initial guesses are generated
+     * on the range \f$x \in \left[-\pi, \pi\right]\f$.
+     * \tparam Real Scalar number type.
+     */
     template <typename Real>
     class Sin : public Function<Real, 1, 1, Sin<Real>>
     {
@@ -40,8 +40,8 @@ namespace Optimist
       OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
 
       /**
-      * Class constructor for the sine function.
-      */
+       * Class constructor for the sine function.
+       */
       Sin()
       {
         this->m_solutions.emplace_back(-M_PI); // Zero
@@ -53,31 +53,46 @@ namespace Optimist
       }
 
       /**
-      * Get the function name.
-      * \return The function name.
-      */
+       * Get the function name.
+       * \return The function name.
+       */
       std::string name_impl() const {return "Sin";}
 
       /**
-      * Compute the function value at the input point.
-      * \param[in] x Input point.
-      * \param[out] out The function value.
-      */
-      void evaluate_impl(Real x, Real & out) const {out = std::sin(x);}
+       * Compute the function value at the input point.
+       * \param[in] x Input point.
+       * \param[out] out The function value.
+       * \return The boolean flag for successful evaluation.
+       */
+      bool evaluate_impl(Real x, Real & out) const
+      {
+        out = std::sin(x);
+        return std::isfinite(out);
+      }
 
       /**
-      * Compute the first derivative value at the input point.
-      * \param[in] x Input point.
-      * \param[out] out The first derivative value.
-      */
-      void first_derivative_impl(Real x, Real & out) const {out = std::cos(x);}
+       * Compute the first derivative value at the input point.
+       * \param[in] x Input point.
+       * \param[out] out The first derivative value.
+       * \return The boolean flag for successful evaluation.
+       */
+      bool first_derivative_impl(Real x, Real & out) const
+      {
+        out = std::cos(x);
+        return std::isfinite(out);
+      }
 
       /**
-      * Compute the second derivative value at the input point.
-      * \param[in] x Input point.
-      * \param[out] out The second derivative value.
-      */
-      void second_derivative_impl(Real x, Real & out) const {out = -std::sin(x);}
+       * Compute the second derivative value at the input point.
+       * \param[in] x Input point.
+       * \param[out] out The second derivative value.
+       * \return The boolean flag for successful evaluation.
+       */
+      bool second_derivative_impl(Real x, Real & out) const
+      {
+        out = -std::sin(x);
+        return std::isfinite(out);
+      }
 
     }; // class Sin
 

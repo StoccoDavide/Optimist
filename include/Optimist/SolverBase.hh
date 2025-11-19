@@ -44,7 +44,7 @@ namespace Optimist
   {
     public:
     // Fancy static assertions (just for fun, don't take it too seriously)
-    static_assert(SolInDim > static_cast<Integer>(0) && SolOutDim > static_cast<Integer>(0),
+    static_assert(SolInDim > 0 && SolOutDim > 0,
       "Negative-dimensional optimization problem? Are you serious?");
 
     OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
@@ -64,9 +64,9 @@ namespace Optimist
       std::vector<Eigen::Matrix<Real, SolInDim, SolInDim>>>, Real>;  /**< Second derivative type. */
 
     // Function types
-    using FunctionWrapper         = typename std::function<void(const InputType &, OutputType &)>;           /**< Function type. */
-    using FirstDerivativeWrapper  = typename std::function<void(const InputType &, FirstDerivativeType &)>;  /**< First derivative type. */
-    using SecondDerivativeWrapper = typename std::function<void(const InputType &, SecondDerivativeType &)>; /**< Second derivative type. */
+    using FunctionWrapper         = typename std::function<bool(InputType const &, OutputType &)>;           /**< Function type. */
+    using FirstDerivativeWrapper  = typename std::function<bool(InputType const &, FirstDerivativeType &)>;  /**< First derivative type. */
+    using SecondDerivativeWrapper = typename std::function<bool(InputType const &, SecondDerivativeType &)>; /**< Second derivative type. */
 
     // Bounds (may not be used)
     InputType m_lower_bound; /**< Lower bound. */
@@ -102,8 +102,8 @@ namespace Optimist
 
   public:
     /**
-    * Class constructor for the nonlinear solver.
-    */
+     * Class constructor for the nonlinear solver.
+     */
     SolverBase() {
       if constexpr (ForceEigen || SolInDim > 1) {
         this->m_lower_bound.setConstant(-INFTY);
@@ -116,53 +116,53 @@ namespace Optimist
     }
 
     /**
-    * Class constructor for the nonlinear solver.
-    * \param[in] function Function wrapper.
-    * \param[in] x_ini Initialization point.
-    * \param[out] x_sol Solution point.
-    */
-    SolverBase(FunctionWrapper function, const InputType & x_ini, InputType & x_sol) : SolverBase() {
+     * Class constructor for the nonlinear solver.
+     * \param[in] function Function wrapper.
+     * \param[in] x_ini Initialization point.
+     * \param[out] x_sol Solution point.
+     */
+    SolverBase(FunctionWrapper function, InputType const & x_ini, InputType & x_sol) : SolverBase() {
       static_cast<const DerivedSolver *>(this)->solve_impl(function, x_ini, x_sol);
     }
 
     /**
-    * Class constructor for the nonlinear solver.
-    * \param[in] function Function wrapper.
-    * \param[in] first_derivative First derivative wrapper.
-    * \param[in] x_ini Initialization point.
-    * \param[out] x_sol Solution point.
-    */
-    SolverBase(FunctionWrapper function, FirstDerivativeWrapper first_derivative, const InputType & x_ini,
+     * Class constructor for the nonlinear solver.
+     * \param[in] function Function wrapper.
+     * \param[in] first_derivative First derivative wrapper.
+     * \param[in] x_ini Initialization point.
+     * \param[out] x_sol Solution point.
+     */
+    SolverBase(FunctionWrapper function, FirstDerivativeWrapper first_derivative, InputType const & x_ini,
       InputType & x_sol) : SolverBase()
     {
       static_cast<const DerivedSolver *>(this)->solve_impl(function, first_derivative, x_ini, x_sol);
     }
 
     /**
-    * Class constructor for the nonlinear solver.
-    * \param[in] function Function wrapper.
-    * \param[in] first_derivative First derivative wrapper.
-    * \param[in] second_derivative The second derivative wrapper.
-    * \param[in] x_ini Initialization point.
-    * \param[out] x_sol Solution point.
-    */
+     * Class constructor for the nonlinear solver.
+     * \param[in] function Function wrapper.
+     * \param[in] first_derivative First derivative wrapper.
+     * \param[in] second_derivative The second derivative wrapper.
+     * \param[in] x_ini Initialization point.
+     * \param[out] x_sol Solution point.
+     */
     SolverBase(FunctionWrapper function, FirstDerivativeWrapper first_derivative, SecondDerivativeWrapper
-      second_derivative, const InputType & x_ini, InputType & x_sol) : SolverBase()
+      second_derivative, InputType const & x_ini, InputType & x_sol) : SolverBase()
     {
       static_cast<const DerivedSolver *>(this)->solve_impl(function, first_derivative, second_derivative, x_ini, x_sol);
     }
 
     /**
-    * Get the lower bound.
-    * \return The lower bound.
-    */
-    const InputType & lower_bound() const {return this->m_lower_bound;}
+     * Get the lower bound.
+     * \return The lower bound.
+     */
+    InputType const & lower_bound() const {return this->m_lower_bound;}
 
     /**
-    * Set the lower bound.
-    * \param[in] t_lower_bound The lower bound.
-    */
-    void lower_bound(const InputType & t_lower_bound) {
+     * Set the lower bound.
+     * \param[in] t_lower_bound The lower bound.
+     */
+    void lower_bound(InputType const & t_lower_bound) {
       #define CMD "Optimist::Solver::bounds(...): "
 
       if constexpr (ForceEigen || SolInDim > 1) {
@@ -178,16 +178,16 @@ namespace Optimist
     }
 
     /**
-    * Get the upper bound.
-    * \return The upper bound.
-    */
-    const InputType & upper_bound() const {return this->m_upper_bound;}
+     * Get the upper bound.
+     * \return The upper bound.
+     */
+    InputType const & upper_bound() const {return this->m_upper_bound;}
 
     /**
-    * Set the upper bound.
-    * \param[in] t_upper_bound The upper bound.
-    */
-    void upper_bound(const InputType & t_upper_bound) {
+     * Set the upper bound.
+     * \param[in] t_upper_bound The upper bound.
+     */
+    void upper_bound(InputType const & t_upper_bound) {
       #define CMD "Optimist::Solver::bounds(...): "
 
       if constexpr (ForceEigen || SolInDim > 1) {
@@ -203,11 +203,11 @@ namespace Optimist
     }
 
     /**
-    * Set the bounds.
-    * \param[in] t_lower_bound The lower bound.
-    * \param[in] t_upper_bound The upper bound.
-    */
-    void bounds(const InputType & t_lower_bound, const InputType & t_upper_bound)
+     * Set the bounds.
+     * \param[in] t_lower_bound The lower bound.
+     * \param[in] t_upper_bound The upper bound.
+     */
+    void bounds(InputType const & t_lower_bound, InputType const & t_upper_bound)
     {
       #define CMD "Optimist::Solver::bounds(...): "
 
@@ -225,27 +225,27 @@ namespace Optimist
     }
 
     /**
-    * Get the input dimension of the function.
-    * \return The input dimension of the function.
-    */
+     * Get the input dimension of the function.
+     * \return The input dimension of the function.
+     */
     constexpr Integer input_dimension() const {return SolInDim;}
 
     /**
-    * Get the output dimension of the function.
-    * \return The output dimension of the function.
-    */
+     * Get the output dimension of the function.
+     * \return The output dimension of the function.
+     */
     constexpr Integer output_dimension() const {return SolOutDim;}
 
     /**
-    * Get the number of function evaluations.
-    * \return The number of function evaluations.
-    */
+     * Get the number of function evaluations.
+     * \return The number of function evaluations.
+     */
     Integer function_evaluations() const {return this->m_function_evaluations;}
 
     /**
-    * Set the number of maximum allowed function evaluations.
-    * \param[in] t_max_function_evaluations The number of maximum allowed function evaluations.
-    */
+     * Set the number of maximum allowed function evaluations.
+     * \param[in] t_max_function_evaluations The number of maximum allowed function evaluations.
+     */
     void max_function_evaluations(Integer t_max_function_evaluations)
     {
       OPTIMIST_ASSERT(t_max_function_evaluations > 0,
@@ -254,28 +254,28 @@ namespace Optimist
     }
 
     /**
-    * Get the number of maximum allowed function evaluations.
-    * \return The number of maximum allowed function evaluations.
-    */
+     * Get the number of maximum allowed function evaluations.
+     * \return The number of maximum allowed function evaluations.
+     */
     Integer max_function_evaluations() const {return this->m_max_function_evaluations;}
 
   protected:
     /**
-    * Get the number of function derivative evaluations.
-    * \return The number of function derivative evaluations.
-    */
+     * Get the number of function derivative evaluations.
+     * \return The number of function derivative evaluations.
+     */
     Integer first_derivative_evaluations() const {return this->m_first_derivative_evaluations;}
 
     /**
-    * Get the number of maximum allowed first derivative evaluations.
-    * \return The number of maximum allowed first derivative evaluations.
-    */
+     * Get the number of maximum allowed first derivative evaluations.
+     * \return The number of maximum allowed first derivative evaluations.
+     */
     Integer max_first_derivative_evaluations() const {return this->m_max_first_derivative_evaluations;}
 
     /**
-    * Set the number of maximum allowed first derivative evaluations.
-    * \param[in] first_derivative_evaluations The number of maximum allowed first derivative evaluations.
-    */
+     * Set the number of maximum allowed first derivative evaluations.
+     * \param[in] first_derivative_evaluations The number of maximum allowed first derivative evaluations.
+     */
     void max_first_derivative_evaluations(Integer first_derivative_evaluations)
     {
       OPTIMIST_ASSERT(first_derivative_evaluations > 0,
@@ -284,21 +284,21 @@ namespace Optimist
     }
 
     /**
-    * Get the number of second derivative evaluations.
-    * \return The number of second derivative evaluations.
-    */
+     * Get the number of second derivative evaluations.
+     * \return The number of second derivative evaluations.
+     */
     Integer second_derivative_evaluations() const {return this->m_second_derivative_evaluations;}
 
     /**
-    * Get the number of maximum allowed second derivative evaluations.
-    * \return The number of maximum allowed second derivative evaluations.
-    */
+     * Get the number of maximum allowed second derivative evaluations.
+     * \return The number of maximum allowed second derivative evaluations.
+     */
     Integer max_second_derivative_evaluations() const {return this->m_max_second_derivative_evaluations;}
 
     /**
-    * Set the number of maximum allowed second derivative evaluations.
-    * \param[in] second_derivative_evaluations The number of maximum allowed second derivative evaluations.
-    */
+     * Set the number of maximum allowed second derivative evaluations.
+     * \param[in] second_derivative_evaluations The number of maximum allowed second derivative evaluations.
+     */
     void max_second_derivative_evaluations(Integer second_derivative_evaluations)
     {
       OPTIMIST_ASSERT(second_derivative_evaluations > 0,
@@ -308,20 +308,20 @@ namespace Optimist
 
   public:
     /**
-    * Get the number of algorithm iterations.
-    */
+     * Get the number of algorithm iterations.
+     */
     Integer iterations() const {return this->m_iterations;}
 
     /**
-    * Get the number of maximum allowed iterations.
-    * \return The number of maximum allowed iterations.
-    */
+     * Get the number of maximum allowed iterations.
+     * \return The number of maximum allowed iterations.
+     */
     Integer max_iterations() const {return this->max_iterations;}
 
     /**
-    * Set the number of maximum allowed iterations.
-    * \param[in] t_max_iterations The number of maximum allowed iterations.
-    */
+     * Set the number of maximum allowed iterations.
+     * \param[in] t_max_iterations The number of maximum allowed iterations.
+     */
     void max_iterations(Integer t_max_iterations) {
       OPTIMIST_ASSERT(t_max_iterations > 0,
         "Optimist::Solver::max_iterations(...): invalid input detected.");
@@ -329,15 +329,15 @@ namespace Optimist
     }
 
     /**
-    * Get relaxation factor \f$ \alpha \f$.
-    * \return The relaxation factor \f$ \alpha \f$.
-    */
+     * Get relaxation factor \f$ \alpha \f$.
+     * \return The relaxation factor \f$ \alpha \f$.
+     */
     Real alpha() const {return this->m_alpha;}
 
     /**
-    * Set relaxation factor \f$ \alpha \f$.
-    * \param[in] t_alpha The relaxation factor \f$ \alpha \f$.
-    */
+     * Set relaxation factor \f$ \alpha \f$.
+     * \param[in] t_alpha The relaxation factor \f$ \alpha \f$.
+     */
     void alpha(Real t_alpha)
     {
       OPTIMIST_ASSERT(
@@ -347,21 +347,21 @@ namespace Optimist
     }
 
     /**
-    * Get the number of algorithm relaxations.
-    * \return The number of algorithm relaxations.
-    */
+     * Get the number of algorithm relaxations.
+     * \return The number of algorithm relaxations.
+     */
     Integer relaxations() const {return this->m_relaxations;}
 
     /**
-    * Get the number of maximum allowed relaxations.
-    * \return The number of maximum allowed relaxations.
-    */
+     * Get the number of maximum allowed relaxations.
+     * \return The number of maximum allowed relaxations.
+     */
     Integer max_relaxations() const {return this->max_relaxations;}
 
     /**
-    * Set the number of maximum allowed relaxations.
-    * \param[in] t_max_relaxations The number of maximum allowed relaxations.
-    */
+     * Set the number of maximum allowed relaxations.
+     * \param[in] t_max_relaxations The number of maximum allowed relaxations.
+     */
     void max_relaxations(Integer t_max_relaxations)
     {
       OPTIMIST_ASSERT(t_max_relaxations > 0,
@@ -370,16 +370,16 @@ namespace Optimist
     }
 
     /**
-    * Get the tolerance \f$ \epsilon \f$.
-    * \return The tolerance \f$ \epsilon \f$.
-    */
+     * Get the tolerance \f$ \epsilon \f$.
+     * \return The tolerance \f$ \epsilon \f$.
+     */
     Real tolerance() const {return this->m_tolerance;}
 
     /**
-    * Set the tolerance \f$ \epsilon \f$ for which the nonlinear solver stops, i.e., \f$ \left\|
-    * \mathbf{F}(\mathbf{x}) \right\|_{2} < \epsilon \f$.
-    * \param[in] t_tolerance The tolerance \f$ \epsilon \f$.
-    */
+     * Set the tolerance \f$ \epsilon \f$ for which the nonlinear solver stops, i.e., \f$ \left\|
+     * \mathbf{F}(\mathbf{x}) \right\|_{2} < \epsilon \f$.
+     * \param[in] t_tolerance The tolerance \f$ \epsilon \f$.
+     */
     void tolerance(Real t_tolerance) {
       OPTIMIST_ASSERT(!std::isnan(t_tolerance) && std::isfinite(t_tolerance) && t_tolerance > 0.0,
         "Optimist::Solver::tolerance(...): invalid input detected.");
@@ -387,93 +387,93 @@ namespace Optimist
     }
 
     /**
-    * Set the verbose mode boolean flag.
-    * \param[in] t_verbose The verbose mode boolean flag.
-    */
+     * Set the verbose mode boolean flag.
+     * \param[in] t_verbose The verbose mode boolean flag.
+     */
     void verbose_mode(bool t_verbose) {this->m_verbose = t_verbose;}
 
     /**
-    * Get the verbose mode boolean flag.
-    * \return The verbose mode boolean flag.
-    */
+     * Get the verbose mode boolean flag.
+     * \return The verbose mode boolean flag.
+     */
     bool verbose_mode() const {return this->m_verbose;}
 
     /**
-    * Enable solver's verbose mode.
-    */
+     * Enable solver's verbose mode.
+     */
     void enable_verbose_mode() {this->m_verbose = true;}
 
     /**
-    * Disable solver's verbose mode.
-    */
+     * Disable solver's verbose mode.
+     */
     void disable_verbose_mode() {this->m_verbose = false;}
 
     /**
-    * Set the damped mode boolean flag.
-    * \param[in] t_damped The damped mode boolean flag.
-    */
+     * Set the damped mode boolean flag.
+     * \param[in] t_damped The damped mode boolean flag.
+     */
     void damped_mode(bool t_damped) {this->m_damped = t_damped;}
 
     /**
-    * Get the damped mode boolean flag.
-    * \return The damped mode boolean flag.
-    */
+     * Get the damped mode boolean flag.
+     * \return The damped mode boolean flag.
+     */
     bool damped_mode() const {return this->m_damped;}
 
     /**
-    * Enable solver's damped mode.
-    */
+     * Enable solver's damped mode.
+     */
     void enable_damped_mode() {this->m_damped = true;}
 
     /**
-    * Disable solver's damped mode.
-    */
+     * Disable solver's damped mode.
+     */
     void disable_damped_mode() {this->m_damped = false;}
 
     /**
-    * Get the task name.
-    * \return The task name.
-    */
+     * Get the task name.
+     * \return The task name.
+     */
     std::string task() const {return this->m_task;}
 
     /**
-    * Set the task name.
-    * \param[in] t_task The task name.
-    */
+     * Set the task name.
+     * \param[in] t_task The task name.
+     */
     void task(std::string t_task) {this->m_task = t_task;}
 
     /**
-    * Get the convergence boolean flag.
-    * \return The convergence boolean flag.
-    */
+     * Get the convergence boolean flag.
+     * \return The convergence boolean flag.
+     */
     bool converged() const {return this->m_converged;}
 
     /**
-    * Get the trace of input values during the algorithm iterations.
-    * \return The trace of input values.
-    */
+     * Get the trace of input values during the algorithm iterations.
+     * \return The trace of input values.
+     */
     const TraceType & trace() const {return this->m_trace;}
 
     /**
-    * Get the output stream for verbose mode.
-    * \return The output stream for verbose mode.
-    */
+     * Get the output stream for verbose mode.
+     * \return The output stream for verbose mode.
+     */
     std::ostream & ostream() const {return *this->m_ostream;}
 
     /**
-    * Set the output stream for verbose mode.
-    * \param[in] t_ostream The output stream for verbose mode.
-    */
+     * Set the output stream for verbose mode.
+     * \param[in] t_ostream The output stream for verbose mode.
+     */
     void ostream(std::ostream & t_ostream) {this->m_ostream = &t_ostream;}
 
     /**
-    * Solve the root-finding/optimization problem given the function, and without derivatives.
-    * \param[in] function Function wrapper.
-    * \param[in] x_ini Initialization point.
-    * \param[out] x_sol Solution point.
-    * \return True if the problem is solved, false otherwise.
-    */
-    bool solve(FunctionWrapper function, const InputType & x_ini, InputType & x_sol)
+     * Solve the root-finding/optimization problem given the function, and without derivatives.
+     * \param[in] function Function wrapper.
+     * \param[in] x_ini Initialization point.
+     * \param[out] x_sol Solution point.
+     * \return True if the problem is solved, false otherwise.
+     */
+    bool solve(FunctionWrapper function, InputType const & x_ini, InputType & x_sol)
     {
       #define CMD "Optimist::Solver::solve(...): "
 
@@ -485,14 +485,14 @@ namespace Optimist
     }
 
     /**
-    * Solve the root-finding/optimization problem given the function, and its first derivative.
-    * \param[in] function Function wrapper.
-    * \param[in] first_derivative First derivative wrapper
-    * \param[in] x_ini Initialization point.
-    * \param[out] x_sol Solution point.
-    * \return True if the problem is solved, false otherwise.
-    */
-    bool solve(FunctionWrapper function, FirstDerivativeWrapper first_derivative, const InputType & x_ini,
+     * Solve the root-finding/optimization problem given the function, and its first derivative.
+     * \param[in] function Function wrapper.
+     * \param[in] first_derivative First derivative wrapper
+     * \param[in] x_ini Initialization point.
+     * \param[out] x_sol Solution point.
+     * \return True if the problem is solved, false otherwise.
+     */
+    bool solve(FunctionWrapper function, FirstDerivativeWrapper first_derivative, InputType const & x_ini,
       InputType & x_sol)
     {
       #define CMD "Optimist::Solver::solve(...): "
@@ -507,16 +507,16 @@ namespace Optimist
     }
 
     /**
-    * Solve the root-finding/optimization problem given the function, and its first and second derivatives.
-    * \param[in] function Function wrapper.
-    * \param[in] first_derivative First derivative wrapper.
-    * \param[in] second_derivative The second derivative wrapper.
-    * \param[in] x_ini Initialization point.
-    * \param[out] x_sol Solution point.
-    * \return True if the problem is solved, false otherwise.
-    */
+     * Solve the root-finding/optimization problem given the function, and its first and second derivatives.
+     * \param[in] function Function wrapper.
+     * \param[in] first_derivative First derivative wrapper.
+     * \param[in] second_derivative The second derivative wrapper.
+     * \param[in] x_ini Initialization point.
+     * \param[out] x_sol Solution point.
+     * \return True if the problem is solved, false otherwise.
+     */
     bool solve(FunctionWrapper function, FirstDerivativeWrapper first_derivative, SecondDerivativeWrapper
-      second_derivative, const InputType & x_ini, InputType & x_sol)
+      second_derivative, InputType const & x_ini, InputType & x_sol)
       {
       #define CMD "Optimist::Solver::solve(...): "
 
@@ -533,18 +533,18 @@ namespace Optimist
     }
 
     /**
-    * Solve the root-finding problem given a function class.
-    * \param[in] function Function class.
-    * \param[in] x_ini Initialization point.
-    * \param[out] x_sol Solution point.
-    * \tparam FunInDim The function output dimension.
-    * \tparam FunOutDim The function output dimension.
-    * \tparam DerivedFunction Derived function class.
-    * \return True if the problem is solved, false otherwise.
-    */
+     * Solve the root-finding problem given a function class.
+     * \param[in] function Function class.
+     * \param[in] x_ini Initialization point.
+     * \param[out] x_sol Solution point.
+     * \tparam FunInDim The function output dimension.
+     * \tparam FunOutDim The function output dimension.
+     * \tparam DerivedFunction Derived function class.
+     * \return True if the problem is solved, false otherwise.
+     */
     template <Integer FunInDim, Integer FunOutDim, typename DerivedFunction>
     bool rootfind(FunctionBase<Real, FunInDim, FunOutDim, DerivedFunction, ForceEigen && FunOutDim == 1> const & function,
-      const InputType & x_ini, InputType & x_sol)
+      InputType const & x_ini, InputType & x_sol)
     {
       #define CMD "Optimist::Solver::rootfind(...): "
 
@@ -560,18 +560,18 @@ namespace Optimist
     }
 
     /**
-    * Solve the optimization problem given a function class.
-    * \param[in] function Function class.
-    * \param[in] x_ini Initialization point.
-    * \param[out] x_sol Solution point.
-    * \tparam FunInDim The function output dimension.
-    * \tparam FunOutDim The function output dimension.
-    * \tparam DerivedFunction Derived function class.
-    * \return True if the problem is solved, false otherwise.
-    */
+     * Solve the optimization problem given a function class.
+     * \param[in] function Function class.
+     * \param[in] x_ini Initialization point.
+     * \param[out] x_sol Solution point.
+     * \tparam FunInDim The function output dimension.
+     * \tparam FunOutDim The function output dimension.
+     * \tparam DerivedFunction Derived function class.
+     * \return True if the problem is solved, false otherwise.
+     */
     template <Integer FunInDim, Integer FunOutDim, typename DerivedFunction>
     bool optimize(FunctionBase<Real, FunInDim, FunOutDim, DerivedFunction, ForceEigen && FunOutDim == 1> const & function,
-      const InputType & x_ini, InputType & x_sol)
+      InputType const & x_ini, InputType & x_sol)
     {
       #define CMD "Optimist::Solver::optimize(...): "
 
@@ -587,26 +587,26 @@ namespace Optimist
     }
 
     /**
-    * Get the solver name.
-    * \return The solver name.
-    */
+     * Get the solver name.
+     * \return The solver name.
+     */
     std::string name() const {return static_cast<const DerivedSolver *>(this)->name_impl();};
 
   protected:
     /**
-    * Solve the root-finding/optimization problem given a function class.
-    * \param[in] function Function class.
-    * \param[in] x_ini Initialization point.
-    * \param[out] x_sol Solution point.
-    * \param[in] is_optimization Boolean flag for optimization.
-    * \tparam FunInDim The function output dimension.
-    * \tparam FunOutDim The function output dimension.
-    * \tparam DerivedFunction Derived function class.
-    * \return True if the problem is solved, false otherwise.
-    */
+     * Solve the root-finding/optimization problem given a function class.
+     * \param[in] function Function class.
+     * \param[in] x_ini Initialization point.
+     * \param[out] x_sol Solution point.
+     * \param[in] is_optimization Boolean flag for optimization.
+     * \tparam FunInDim The function output dimension.
+     * \tparam FunOutDim The function output dimension.
+     * \tparam DerivedFunction Derived function class.
+     * \return True if the problem is solved, false otherwise.
+     */
     template <Integer FunInDim, Integer FunOutDim, typename DerivedFunction>
-    bool solve(FunctionBase<Real, FunInDim, FunOutDim, DerivedFunction, ForceEigen && FunOutDim == 1> const & function,
-      const InputType & x_ini, InputType & x_sol, bool is_optimization)
+    bool solve(FunctionBase<Real, FunInDim, FunOutDim, DerivedFunction, ForceEigen && FunOutDim == 1>
+      const & function, InputType const & x_ini, InputType & x_sol, bool is_optimization)
     {
       #define CMD "Optimist::Solver::solve(...): "
 
@@ -618,58 +618,76 @@ namespace Optimist
         CMD "solver output dimension must be equal to the function output dimension or 1.");
 
       // Lambda generators for function and derivatives
-      auto function_wrapper = [&function, is_optimization](const InputType & x, OutputType & out)
+      auto function_wrapper = [&function, is_optimization] (InputType const & x, OutputType & out) -> bool
       {
-        typename FunctionType::OutputType f;
-        function.evaluate(x, f);
+        bool success{false};
+        typename FunctionType::OutputType f; success = function.evaluate(x, f);
+        OPTIMIST_ASSERT(success,
+          CMD "function evaluation failed during function computation.");
+
         if (is_optimization) {
           if constexpr (FunOutDim == 1) {out = 0.5*f*f;}
           else if constexpr (SolOutDim != FunOutDim) {out = 0.5*f.squaredNorm();}
           else {OPTIMIST_ERROR(CMD "optimization problem with inconsistent output in function.");}
         } else {
-          if constexpr (SolOutDim == FunOutDim) {
-            out = f;
-          }
+          if constexpr (SolOutDim == FunOutDim) {out = f;}
           else {OPTIMIST_ERROR(CMD "root-finding problem with inconsistent output in function.");}
         }
+        return success;
       };
 
-      auto first_derivative_wrapper = [&function, is_optimization, this](const InputType & x, FirstDerivativeType & out)
+      auto first_derivative_wrapper = [&function, is_optimization, this] (InputType const & x,
+        FirstDerivativeType & out) -> bool
       {
-        typename FunctionType::FirstDerivativeType J; function.first_derivative(x, J);
+        bool success{false};
+        typename FunctionType::FirstDerivativeType J; success = function.first_derivative(x, J);
+        OPTIMIST_ASSERT(success,
+          CMD "first derivative evaluation failed during first derivative computation.");
 
         if (is_optimization) {
-          typename FunctionType::OutputType f; function.evaluate(x, f);
+          bool success{false};
+          typename FunctionType::OutputType f; success = function.evaluate(x, f);
+          OPTIMIST_ASSERT(success,
+            CMD "function evaluation failed during first derivative computation.");
           this->m_function_evaluations++;
           if constexpr (FunInDim == 1 && FunOutDim == 1) {out = J*f;}
           else if constexpr (SolOutDim != FunOutDim) {out = J.transpose()*f;}
           else {OPTIMIST_ERROR(CMD "optimization problem inconsistent output in first derivative.");}
         } else {
-          if constexpr (SolOutDim == FunOutDim) {
-            out = J;
-          }
+          if constexpr (SolOutDim == FunOutDim) {out = J;}
           else {OPTIMIST_ERROR(CMD "root-finding problem with inconsistent output in first derivative.");}
         }
+        return success;
       };
 
-      auto second_derivative_wrapper = [&function, is_optimization, this](const InputType & x, SecondDerivativeType & out)
+      auto second_derivative_wrapper = [&function, is_optimization, this] (InputType const & x,
+        SecondDerivativeType & out) -> bool
       {
-        typename FunctionType::SecondDerivativeType H; function.second_derivative(x, H);
+        bool success{false};
+        typename FunctionType::SecondDerivativeType H; success = function.second_derivative(x, H);
+        OPTIMIST_ASSERT(success,
+          CMD "function evaluation failed during second derivative computation.");
 
         if (is_optimization) {
-          typename FunctionType::OutputType f;          function.evaluate(x, f);
-          typename FunctionType::FirstDerivativeType J; function.first_derivative(x, J);
-          this->m_function_evaluations++;               this->m_first_derivative_evaluations++;
+          typename FunctionType::OutputType f; success = function.evaluate(x, f);
+          this->m_function_evaluations++;
+          OPTIMIST_ASSERT(success,
+            CMD "function evaluation failed during second derivative computation.");
+          typename FunctionType::FirstDerivativeType J; success = function.first_derivative(x, J);
+          this->m_first_derivative_evaluations++;
+          OPTIMIST_ASSERT(success,
+            CMD "first derivative evaluation failed during second derivative computation.");
           if constexpr (FunInDim == 1 && FunOutDim == 1) {out = J*J + f*H;}
           else if constexpr (SolOutDim != FunOutDim) {
             out = J.transpose()*J;
-            for (Integer i = 0; i < static_cast<Integer>(H.size()); ++i) {out += f(i)*H[i];}
+            for (Integer i{0}; i < static_cast<Integer>(H.size()); ++i) {out += f(i)*H[i];}
           }
           else {OPTIMIST_ERROR(CMD "optimization problem with inconsistent output in second derivative.");}
         } else {
           if constexpr (SolOutDim == FunOutDim) {out = H;}
           else {OPTIMIST_ERROR(CMD "root-finding problem with inconsistent output in second derivative.");}
         }
+        return success;
       };
 
       // Select solver method based on derivative requirements
@@ -692,88 +710,95 @@ namespace Optimist
     }
 
     /**
-    * Reset solver internal counters and variables.
-    */
+     * Reset solver internal counters and variables.
+     */
     void reset()
     {
-      this->m_function_evaluations          = static_cast<Integer>(0);
-      this->m_first_derivative_evaluations  = static_cast<Integer>(0);
-      this->m_second_derivative_evaluations = static_cast<Integer>(0);
-      this->m_iterations                    = static_cast<Integer>(0);
-      this->m_relaxations                   = static_cast<Integer>(0);
+      this->m_function_evaluations          = 0;
+      this->m_first_derivative_evaluations  = 0;
+      this->m_second_derivative_evaluations = 0;
+      this->m_iterations                    = 0;
+      this->m_relaxations                   = 0;
       this->m_converged                     = false;
       this->m_trace.clear();
     }
 
     /**
-    * Evaluate the function.
-    * \param[in] function Function wrapper.
-    * \param[in] x Input point.
-    * \param[out] out Function value.
-    */
-    void evaluate_function(FunctionWrapper function, const InputType & x, OutputType & out)
+     * Evaluate the function.
+     * \param[in] function Function wrapper.
+     * \param[in] x Input point.
+     * \param[out] out Function value.
+     * \return The boolean flag for successful evaluation.
+     */
+    bool evaluate_function(FunctionWrapper function, InputType const & x, OutputType & out)
     {
       OPTIMIST_ASSERT(this->m_function_evaluations < this->m_max_function_evaluations,
         "Optimist::" << this-> name() << "::evaluate_function(...): maximum allowed function evaluations reached.");
       ++this->m_function_evaluations;
-      function(x, out);
+      return function(x, out);
     }
 
     /**
-    * Evaluate the first derivative.
-    * \param[in] function First derivative wrapper.
-    * \param[in] x Input point.
-    * \param[out] out First derivative value.
-    */
-    void evaluate_first_derivative(FirstDerivativeWrapper function, const InputType & x, FirstDerivativeType & out)
+     * Evaluate the first derivative.
+     * \param[in] function First derivative wrapper.
+     * \param[in] x Input point.
+     * \param[out] out First derivative value.
+     * \return The boolean flag for successful evaluation.
+     */
+    bool evaluate_first_derivative(FirstDerivativeWrapper function, InputType const & x, FirstDerivativeType & out)
     {
       OPTIMIST_ASSERT(this->m_first_derivative_evaluations < this->m_max_first_derivative_evaluations,
         "Optimist::" << this-> name() << "::evaluate_first_derivative(...): maximum allowed first derivative evaluations reached.");
       ++this->m_first_derivative_evaluations;
-      function(x, out);
+      return function(x, out);
     }
 
     /**
-    * Evaluate the second derivative.
-    * \param[in] function Second derivative wrapper.
-    * \param[in] x Input point.
-    * \param[out] out Second derivative value.
-    */
-    void evaluate_second_derivative(SecondDerivativeWrapper function, const InputType & x, SecondDerivativeType & out)
+     * Evaluate the second derivative.
+     * \param[in] function Second derivative wrapper.
+     * \param[in] x Input point.
+     * \param[out] out Second derivative value.
+     * \return The boolean flag for successful evaluation.
+     */
+    bool evaluate_second_derivative(SecondDerivativeWrapper function, InputType const & x, SecondDerivativeType & out)
     {
       OPTIMIST_ASSERT(this->m_second_derivative_evaluations < this->m_max_second_derivative_evaluations,
         "Optimist::" << this-> name() << "::evaluate_second_derivative(...): maximum allowed second derivative evaluations reached.");
       ++this->m_second_derivative_evaluations;
-      function(x, out);
+      return function(x, out);
     }
 
     /**
-    * Update the history of the solver with the current point and function value.
-    * \param[in] x The point \f$ \mathbf{x} \f$.
-    */
-    void store_trace(const InputType & x) {this->m_trace.push_back(x);}
+     * Update the history of the solver with the current point and function value.
+     * \param[in] x The point \f$ \mathbf{x} \f$.
+     */
+    void store_trace(InputType const & x) {this->m_trace.push_back(x);}
 
     /**
-    * Damp the step using the affine invariant criterion.
-    * \param[in] function Function wrapper.
-    * \param[in] x_old Old point.
-    * \param[in] function_old Old function value.
-    * \param[in] step_old Old step.
-    * \param[in] x_new New point.
-    * \param[in] function_new New function value.
-    * \param[out] step_new New step.
-    * \return The damping boolean flag, true if the damping is successful, false otherwise.
-    */
+     * Damp the step using the affine invariant criterion.
+     * \param[in] function Function wrapper.
+     * \param[in] x_old Old point.
+     * \param[in] function_old Old function value.
+     * \param[in] step_old Old step.
+     * \param[in] x_new New point.
+     * \param[in] function_new New function value.
+     * \param[out] step_new New step.
+     * \return The damping boolean flag, true if the damping is successful, false otherwise.
+     */
     bool damp(FunctionWrapper function, InputType const & x_old, InputType const & function_old,
       InputType const & step_old, InputType & x_new, InputType & function_new, InputType & step_new)
     {
+      #define CMD "Optimist::Solver::damp(...): "
+
       Real step_norm_old, step_norm_new, residuals_old, residuals_new, tau{1.0};
-      for (this->m_relaxations = static_cast<Integer>(0); this->m_relaxations < this->m_max_relaxations; ++this->m_relaxations)
+      for (this->m_relaxations = 0; this->m_relaxations < this->m_max_relaxations; ++this->m_relaxations)
       {
         // Update point
         step_new = tau * step_old;
         x_new = x_old + step_new;
-        this->evaluate_function(function, x_new, function_new);
+        bool success{this->evaluate_function(function, x_new, function_new)};
+        OPTIMIST_ASSERT(success,
+          CMD "function evaluation failed during damping.");
 
         // Check relaxation
         if constexpr (ForceEigen || (SolInDim > 1 && SolOutDim > 1)) {
@@ -794,12 +819,14 @@ namespace Optimist
         }
       }
       return false;
+
+      #undef CMD
     }
 
     /**
-    * Print the table header solver information.
-    * \note This has to be properly placed in the derived classes.
-    */
+     * Print the table header solver information.
+     * \note This has to be properly placed in the derived classes.
+     */
     void header()
     {
       std::string c_tl{table_top_left_corner()};
@@ -827,9 +854,9 @@ namespace Optimist
     }
 
     /**
-    * Print the table bottom solver information.
-    * \note This has to be properly placed in the derived classes.
-    */
+     * Print the table bottom solver information.
+     * \note This has to be properly placed in the derived classes.
+     */
     void bottom()
     {
       std::string c_bl{table_bottom_left_corner()};
@@ -851,9 +878,9 @@ namespace Optimist
     }
 
     /**
-    * Print the solver information during the algorithm iterations.
-    * \note This has to be properly placed in the derived classes.
-    */
+     * Print the solver information during the algorithm iterations.
+     * \note This has to be properly placed in the derived classes.
+     */
     void info(Real residuals, std::string const & notes = "-")
     {
       std::string v_rr{" " + table_vertical_line()};

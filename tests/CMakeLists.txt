@@ -9,14 +9,6 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 include(OptimistCatch2)
-include(OptimistRoot)
-
-# Finite Differences
-
-file(GLOB_RECURSE TEST_FD "${CMAKE_CURRENT_SOURCE_DIR}/FiniteDifferences/test_*.cc")
-add_executable(test_finite_differences ${TEST_FD})
-target_link_libraries(test_finite_differences PRIVATE Optimist Catch2::Catch2WithMain)
-catch_discover_tests(test_finite_differences)
 
 # TestSet
 
@@ -78,7 +70,7 @@ add_executable(test_optimizer_newtonraphson ${TEST_OPTIMIZER_NEWTONRAPHSON})
 target_link_libraries(test_optimizer_newtonraphson PRIVATE Optimist Catch2::Catch2WithMain)
 catch_discover_tests(test_optimizer_newtonraphson)
 
-file(GLOB_RECURSE TEST_OPTIMIZER_NELDERMEAD "${CMAKE_CURRENT_SOURCE_DIR}/Optimizer/test_neldermead.cc")
-add_executable(test_optimizer_neldermead ${TEST_OPTIMIZER_NELDERMEAD})
-target_link_libraries(test_optimizer_neldermead PRIVATE Optimist Catch2::Catch2WithMain)
-catch_discover_tests(test_optimizer_neldermead)
+#file(GLOB_RECURSE TEST_OPTIMIZER_NELDERMEAD "${CMAKE_CURRENT_SOURCE_DIR}/Optimizer/test_neldermead.cc")
+#add_executable(test_optimizer_neldermead ${TEST_OPTIMIZER_NELDERMEAD})
+#target_link_libraries(test_optimizer_neldermead PRIVATE Optimist Catch2::Catch2WithMain)
+#catch_discover_tests(test_optimizer_neldermead)

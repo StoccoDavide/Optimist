@@ -30,12 +30,12 @@ namespace Optimist
     \*/
 
     /**
-    * \brief Class container for the Varona's methods.
-    *
-    * \includedoc docs/markdown/RootFinder/Varona.md
-    *
-    * \tparam Real Scalar number type.
-    */
+     * \brief Class container for the Varona's methods.
+     *
+     * \includedoc docs/markdown/RootFinder/Varona.md
+     *
+     * \tparam Real Scalar number type.
+     */
     template <typename Real>
     class Varona : public RootFinder<Real, 1, Varona<Real>>
     {
@@ -48,9 +48,9 @@ namespace Optimist
 
       // Function types
       using Method = enum class Method : Integer {ORDER_4 = 41, ORDER_8 = 8, ORDER_16 = 16, ORDER_32 = 32}; /**< Varona solver type. */
-      using FunctionWrapper         = typename RootFinder<Real, 1, Varona<Real>>::FunctionWrapper;
-      using FirstDerivativeWrapper  = typename RootFinder<Real, 1, Varona<Real>>::FirstDerivativeWrapper;
-      using SecondDerivativeWrapper = typename RootFinder<Real, 1, Varona<Real>>::SecondDerivativeWrapper;
+      using typename RootFinder<Real, 1, Varona<Real>>::FunctionWrapper;
+      using typename RootFinder<Real, 1, Varona<Real>>::FirstDerivativeWrapper;
+      using typename RootFinder<Real, 1, Varona<Real>>::SecondDerivativeWrapper;
 
     private:
       Method m_method{Method::ORDER_4}; /**< Varona solver type. */
@@ -58,14 +58,14 @@ namespace Optimist
     public:
 
       /**
-      * Class constructor for the Varona's solvers.
-      */
+       * Class constructor for the Varona's solvers.
+       */
       Varona() {}
 
       /**
-      * Get the Varona solver name.
-      * \return The Varona solver name.
-      */
+       * Get the Varona solver name.
+       * \return The Varona solver name.
+       */
       std::string name_impl() const
       {
         std::ostringstream os;
@@ -79,51 +79,51 @@ namespace Optimist
       }
 
       /**
-      * Get the enumeration type of the Varona solver method.
-      * \return The Varona solver enumeration type.
-      */
+       * Get the enumeration type of the Varona solver method.
+       * \return The Varona solver enumeration type.
+       */
       Method method() const {return this->m_method;}
 
       /**
-      * Set the enumeration type of the Varona solver method.
-      * \param[in] t_method The Varona solver enumeration type.
-      */
+       * Set the enumeration type of the Varona solver method.
+       * \param[in] t_method The Varona solver enumeration type.
+       */
       void method(Method t_method) {this->m_method = t_method;}
 
       /**
-      * Enable the Varona's 4-th order method.
-      */
+       * Enable the Varona's 4-th order method.
+       */
       void enable_4th_order_method() {this->m_method = Method::ORDER_4;}
 
       /**
-      * Enable the Varona's 8-th order method.
-      */
+       * Enable the Varona's 8-th order method.
+       */
       void enable_8th_order_method() {this->m_method = Method::ORDER_8;}
 
       /**
-      * Enable the Varona's 16-th order method.
-      */
+       * Enable the Varona's 16-th order method.
+       */
       void enable_16th_order_method() {this->m_method = Method::ORDER_16;}
 
       /**
-      * Enable the Varona's 32-th order method.
-      */
+       * Enable the Varona's 32-th order method.
+       */
       void enable_32th_order_method() {this->m_method = Method::ORDER_32;}
 
       /**
-      * Set the Varona solver type.
-      * \param[in] t_method The Varona solver type enumeration.
-      */
+       * Set the Varona solver type.
+       * \param[in] t_method The Varona solver type enumeration.
+       */
       void set_method(Method t_method) {this->m_method = t_method;}
 
       /**
-      * Solve the nonlinear equation \f$ f(x) = 0 \f$, with \f$ f: \mathbb{R} \rightarrow \mathbb{R} \f$.
-      * \param[in] function Function wrapper.
-      * \param[in] first_derivative First derivative wrapper.
-      * \param[in] x_ini Initialization point.
-      * \param[out] x_sol Solution point.
-      * \return The convergence boolean flag.
-      */
+       * Solve the nonlinear equation \f$ f(x) = 0 \f$, with \f$ f: \mathbb{R} \rightarrow \mathbb{R} \f$.
+       * \param[in] function Function wrapper.
+       * \param[in] first_derivative First derivative wrapper.
+       * \param[in] x_ini Initialization point.
+       * \param[out] x_sol Solution point.
+       * \return The convergence boolean flag.
+       */
       bool solve_impl(FunctionWrapper function, FirstDerivativeWrapper first_derivative, Real x_ini,
         Real & x_sol)
       {
@@ -136,25 +136,29 @@ namespace Optimist
         if (this->m_verbose) {this->header();}
 
         // Initialize variables
-        bool damped;
+        bool damped, success;
         Real residuals, step_norm;
         Real x_old, x_new, function_old, function_new, step_old, step_new;
         Real first_derivative_old;
 
         // Set initial iteration
         x_old = x_ini;
-        this->evaluate_function(function, x_old, function_old);
+        success = this->evaluate_function(function, x_old, function_old);
+        OPTIMIST_ASSERT_WARNING(success,
+          CMD "function evaluation failed at the initial point.");
 
         // Algorithm iterations
         Real tolerance_residuals{this->m_tolerance};
         Real tolerance_step_norm{this->m_tolerance * this->m_tolerance};
-        for (this->m_iterations = static_cast<Integer>(1); this->m_iterations < this->m_max_iterations; ++this->m_iterations)
+        for (this->m_iterations = 1; this->m_iterations < this->m_max_iterations; ++this->m_iterations)
         {
           // Store trace
           this->store_trace(x_old);
 
           // Evaluate first derivative
-          this->evaluate_first_derivative(first_derivative, x_old, first_derivative_old);
+          success = this->evaluate_first_derivative(first_derivative, x_old, first_derivative_old);
+          OPTIMIST_ASSERT_WARNING(success,
+            CMD "first derivative evaluation failed at iteration " << this->m_iterations << ".");
 
           // Calculate step
           if (std::abs(first_derivative_old) < EPSILON_LOW) {
@@ -180,7 +184,9 @@ namespace Optimist
           } else {
             // Update point
             x_new = x_old + step_old;
-            this->evaluate_function(function, x_new, function_new);
+            success = this->evaluate_function(function, x_new, function_new);
+            OPTIMIST_ASSERT_WARNING(success,
+              CMD "function evaluation failed at iteration " << this->m_iterations << ".");
           }
 
           // Update internal variables
@@ -202,19 +208,21 @@ namespace Optimist
     protected:
 
       /**
-      * Compute the step using the Varona's methods.
-      * \param[in] function Function wrapper.
-      * \param[in] x_old Old point.
-      * \param[in] function_old Old function value.
-      * \param[in] first_derivative_old Old first derivative value.
-      * \param[out] step_old Old step.
-      */
+       * Compute the step using the Varona's methods.
+       * \param[in] function Function wrapper.
+       * \param[in] x_old Old point.
+       * \param[in] function_old Old function value.
+       * \param[in] first_derivative_old Old first derivative value.
+       * \param[out] step_old Old step.
+       */
       void compute_step(FunctionWrapper function, Real x_old, Real function_old, Real first_derivative_old,
         Real & step_old)
       {
+        #define CMD "Optimist::RootFinder::Varona::compute_step(...): "
+
+        bool success;
         Real function_y, function_z, function_w, function_h, step_tmp, t, s, u, v;
         Real tolerance_residuals{this->m_tolerance};
-        //Real tolerance_step_norm{this->m_tolerance * this->m_tolerance};
 
         // Base step
         step_old = -function_old/first_derivative_old;
@@ -222,7 +230,9 @@ namespace Optimist
         // Order 4 step
         if (this->m_method == Method::ORDER_4 || this->m_method == Method::ORDER_8 ||
             this->m_method == Method::ORDER_16 || this->m_method == Method::ORDER_32) {
-          this->evaluate_function(function, x_old+step_old, function_y);
+          success = this->evaluate_function(function, x_old+step_old, function_y);
+          OPTIMIST_ASSERT_WARNING(success,
+            CMD "function evaluation failed during order 4 step.");
           if (std::abs(function_y) < tolerance_residuals) {return;}
           t = function_y/function_old;
           step_tmp = this->Q(t) * (function_y/first_derivative_old);
@@ -233,7 +243,9 @@ namespace Optimist
         // Order 8 step (continued order 4)
         if (this->m_method == Method::ORDER_8 || this->m_method == Method::ORDER_16 ||
             this->m_method == Method::ORDER_32) {
-          this->evaluate_function(function, x_old+step_old, function_z);
+          success = this->evaluate_function(function, x_old+step_old, function_z);
+          OPTIMIST_ASSERT_WARNING(success,
+            CMD "function evaluation failed during order 8 step.");
           if (std::abs(function_z) < tolerance_residuals) {return;}
           s = function_z/function_y;
           step_tmp = this->W(t, s) * (function_z/first_derivative_old);
@@ -243,7 +255,9 @@ namespace Optimist
 
         // Order 16 step (continued order 8)
         if (this->m_method == Method::ORDER_16 || this->m_method == Method::ORDER_32) {
-          this->evaluate_function(function, x_old+step_old, function_w);
+          success = this->evaluate_function(function, x_old+step_old, function_w);
+          OPTIMIST_ASSERT_WARNING(success,
+            CMD "function evaluation failed during order 16 step.");
           if (std::abs(function_w) < tolerance_residuals) {return;}
           u = function_w/function_z;
           step_tmp = this->H(t, s, u) * (function_w/first_derivative_old);
@@ -253,7 +267,9 @@ namespace Optimist
 
         // Order 32 step (continued order 16)
         if (this->m_method == Method::ORDER_32) {
-          this->evaluate_function(function, x_old+step_old, function_h);
+          success = this->evaluate_function(function, x_old+step_old, function_h);
+          OPTIMIST_ASSERT_WARNING(success,
+            CMD "function evaluation failed during order 32 step.");
           if (std::abs(function_h) < tolerance_residuals) {return;}
           v = (function_h/function_w);
           step_tmp = this->J(t, s, u, v) * (function_h/first_derivative_old);
@@ -262,30 +278,32 @@ namespace Optimist
         }
 
         OPTIMIST_ASSERT(std::isfinite(step_old),
-          "Optimist::RootFinder::Varona::compute_step(...): step is not finite.");
+          CMD "step is not finite.");
+
+        #undef CMD
       }
 
       /**
-      * Compute the \f$ Q \f$ function for the Varona's methods.
-      * \param[in] t Input value.
-      * \return The \f$ Q \f$ function value.
+       * Compute the \f$ Q \f$ function for the Varona's methods.
+       * \param[in] t Input value.
+       * \return The \f$ Q \f$ function value.
       **/
       static Real Q(Real t) {return 1.0 + 2.0*t;}
 
       /**
-      * Compute the \f$ W \f$ function for the Varona's methods.
-      * \param[in] t Input value.
-      * \param[in] s Input value.
-      * \return The \f$ W \f$ function value.
+       * Compute the \f$ W \f$ function for the Varona's methods.
+       * \param[in] t Input value.
+       * \param[in] s Input value.
+       * \return The \f$ W \f$ function value.
       **/
       static Real W(Real t, Real s) {return t*t*(1.0 - 4.0*t) + (4.0*s + 2.0)*t + s + 1.0;}
 
       /**
-      * Compute the \f$ H \f$ function for the Varona's methods.
-      * \param[in] t Input value.
-      * \param[in] s Input value.
-      * \param[in] u Input value.
-      * \return The \f$ H \f$ function value.
+       * Compute the \f$ H \f$ function for the Varona's methods.
+       * \param[in] t Input value.
+       * \param[in] s Input value.
+       * \param[in] u Input value.
+       * \return The \f$ H \f$ function value.
       **/
       static Real H(Real t, Real s, Real u) {
         Real t1{t*t};
@@ -303,12 +321,12 @@ namespace Optimist
       }
 
       /**
-      * Compute the \f$ J \f$ function for the Varona's methods.
-      * \param[in] t Input value.
-      * \param[in] s Input value.
-      * \param[in] u Input value.
-      * \param[in] v Input value.
-      * \return The \f$ J \f$ function value.
+       * Compute the \f$ J \f$ function for the Varona's methods.
+       * \param[in] t Input value.
+       * \param[in] s Input value.
+       * \param[in] u Input value.
+       * \param[in] v Input value.
+       * \return The \f$ J \f$ function value.
       **/
       static Real J(Real t, Real s, Real u, Real v) {
         Real t1{s*s};

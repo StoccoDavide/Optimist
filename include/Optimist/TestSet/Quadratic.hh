@@ -22,24 +22,24 @@ namespace Optimist
   {
 
     /**
-    * \brief Class container for the quadratic function.
-    *
-    * Class container for the quadratic function, which is defined as:
-    * \f[
-    * f(x) = ax^2 + bx + c \text{.}
-    * \f]
-    * The function has roots at
-    * \f[
-    * x = \sqrt{\displaystyle\frac{-b \pm \sqrt{b^2 - 4ac}}{2a}} \text{,}
-    * \f]
-    * and a minimum at
-    * \f[
-    * x = -\displaystyle\frac{b}{2a} \text{.}
-    * \f]
-    * The default coefficients are \f$a = 1\f$, \f$b = 1\f$, and \f$c = -1\f$, and the function
-    * initial guess is \f$x = 0\f$.
-    * \tparam Real Scalar number type.
-    */
+     * \brief Class container for the quadratic function.
+     *
+     * Class container for the quadratic function, which is defined as:
+     * \f[
+     * f(x) = ax^2 + bx + c \text{.}
+     * \f]
+     * The function has roots at
+     * \f[
+     * x = \sqrt{\displaystyle\frac{-b \pm \sqrt{b^2 - 4ac}}{2a}} \text{,}
+     * \f]
+     * and a minimum at
+     * \f[
+     * x = -\displaystyle\frac{b}{2a} \text{.}
+     * \f]
+     * The default coefficients are \f$a = 1\f$, \f$b = 1\f$, and \f$c = -1\f$, and the function
+     * initial guess is \f$x = 0\f$.
+     * \tparam Real Scalar number type.
+     */
     template <typename Real>
     class Quadratic : public Function<Real, 1, 1, Quadratic<Real>>
     {
@@ -51,8 +51,8 @@ namespace Optimist
       OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
 
       /**
-      * Class constructor for the quadratic function.
-      */
+       * Class constructor for the quadratic function.
+       */
       Quadratic()
       {
         Real delta{std::sqrt(this->m_b*this->m_b - 4.0*this->m_a*this->m_c)};
@@ -63,31 +63,46 @@ namespace Optimist
       }
 
       /**
-      * Get the function name.
-      * \return The function name.
-      */
+       * Get the function name.
+       * \return The function name.
+       */
       std::string name_impl() const {return "Quadratic";}
 
       /**
-      * Compute the function value at the input point.
-      * \param[in] x Input point.
-      * \param[out] out The function value.
-      */
-      void evaluate_impl(Real x, Real & out) const {out = this->m_a*x*x + this->m_b*x + this->m_c;}
+       * Compute the function value at the input point.
+       * \param[in] x Input point.
+       * \param[out] out The function value.
+       * \return The boolean flag for successful evaluation.
+       */
+      bool evaluate_impl(Real x, Real & out) const
+      {
+        out = this->m_a*x*x + this->m_b*x + this->m_c;
+        return std::isfinite(out);
+      }
 
       /**
-      * Compute the first derivative value at the input point.
-      * \param[in] x Input point.
-      * \param[out] out The first derivative value.
-      */
-      void first_derivative_impl(Real x, Real & out) const {out = 2.0*this->m_a*x + this->m_b;}
+       * Compute the first derivative value at the input point.
+       * \param[in] x Input point.
+       * \param[out] out The first derivative value.
+       * \return The boolean flag for successful evaluation.
+       */
+      bool first_derivative_impl(Real x, Real & out) const
+      {
+        out = 2.0*this->m_a*x + this->m_b;
+        return std::isfinite(out);
+      }
 
       /**
-      * Compute the second derivative value at the input point.
-      * \param[in] x Input point.
-      * \param[out] out The second derivative value.
-      */
-      void second_derivative_impl(Real /*x*/, Real & out) const {out = 2.0*this->m_a;}
+       * Compute the second derivative value at the input point.
+       * \param[in] x Input point.
+       * \param[out] out The second derivative value.
+       * \return The boolean flag for successful evaluation.
+       */
+      bool second_derivative_impl(Real /*x*/, Real & out) const
+      {
+        out = 2.0*this->m_a;
+        return std::isfinite(out);
+      }
 
     }; // class Quadratic
 

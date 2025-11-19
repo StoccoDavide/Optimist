@@ -22,16 +22,16 @@ namespace Optimist
   {
 
     /**
-    * \brief Class container for the paraboloid function.
-    *
-    * Class container for the paraboloid function, which is defined as:
-    * \f[
-    * f(\mathbf{x}) = ax^2 + by^2 \text{.}
-    * \f]
-    * The function has global minima at \f$\mathbf{x} = (0, 0)\f$, with \f$f(\mathbf{x}) = 0\f$.
-    * The initial guesses are generated on the square \f$x_i \in \left[-100, 100\right]\f$.
-    * \tparam Real Scalar number type.
-    */
+     * \brief Class container for the paraboloid function.
+     *
+     * Class container for the paraboloid function, which is defined as:
+     * \f[
+     * f(\mathbf{x}) = ax^2 + by^2 \text{.}
+     * \f]
+     * The function has global minima at \f$\mathbf{x} = (0, 0)\f$, with \f$f(\mathbf{x}) = 0\f$.
+     * The initial guesses are generated on the square \f$x_i \in \left[-100, 100\right]\f$.
+     * \tparam Real Scalar number type.
+     */
     template <typename Real>
     class EllipticParaboloid : public Function<Real, 2, 1, EllipticParaboloid<Real>>
     {
@@ -41,13 +41,13 @@ namespace Optimist
     public:
       OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
 
-      using Vector    = typename Function<Real, 2, 1, EllipticParaboloid<Real>>::Vector;
-      using RowVector = typename Function<Real, 2, 1, EllipticParaboloid<Real>>::RowVector;
-      using Matrix    = typename Function<Real, 2, 1, EllipticParaboloid<Real>>::Matrix;
+      using typename Function<Real, 2, 1, EllipticParaboloid<Real>>::Vector;
+      using typename Function<Real, 2, 1, EllipticParaboloid<Real>>::RowVector;
+      using typename Function<Real, 2, 1, EllipticParaboloid<Real>>::Matrix;
 
       /**
-      * Class constructor for the paraboloid function.
-      */
+       * Class constructor for the paraboloid function.
+       */
       EllipticParaboloid()
       {
         this->m_solutions.emplace_back(0.0, 0.0);
@@ -59,43 +59,43 @@ namespace Optimist
       }
 
       /**
-      * Get the function name.
-      * \return The function name.
-      */
+       * Get the function name.
+       * \return The function name.
+       */
       std::string name_impl() const {return "EllipticParaboloid";}
 
       /**
-      * Compute the function value at the input point.
-      * \param[in] x Input point.
-      * \param[out] out The function value.
-      */
-      void evaluate_impl(const Vector & x, Real & out) const
+       * Compute the function value at the input point.
+       * \param[in] x Input point.
+       * \param[out] out The function value.
+       */
+      bool evaluate_impl(Vector const & x, Real & out) const
       {
         out = this->m_a*x(0)*x(0) + this->m_b*x(1)*x(1);
+        return std::isfinite(out);
       }
 
       /**
-      * Compute the first derivative value at the input point.
-      * \param[in] x Input point.
-      * \param[out] out The first derivative value.
-      */
-      void first_derivative_impl(const Vector & x, RowVector & out) const
+       * Compute the first derivative value at the input point.
+       * \param[in] x Input point.
+       * \param[out] out The first derivative value.
+       */
+      bool first_derivative_impl(Vector const & x, RowVector & out) const
       {
-        out(0) = 2.0*this->m_a*x(0);
-        out(1) = 2.0*this->m_b*x(1);
+        out << 2.0*this->m_a*x(0), 2.0*this->m_b*x(1);
+        return out.allFinite();
       }
 
       /**
-      * Compute the second derivative value at the input point.
-      * \param[in] x Input point.
-      * \param[out] out The second derivative value.
-      */
-      void second_derivative_impl(const Vector & /*x*/, Matrix & out) const
+       * Compute the second derivative value at the input point.
+       * \param[in] x Input point.
+       * \param[out] out The second derivative value.
+       */
+      bool second_derivative_impl(Vector const & /*x*/, Matrix & out) const
       {
-        out(0, 0) = 2.0*this->m_a;
-        out(0, 1) = 0.0;
-        out(1, 0) = 0.0;
-        out(1, 1) = 2.0*this->m_b;
+        out << 2.0*this->m_a, 0.0,
+               0.0, 2.0*this->m_b;
+        return out.allFinite();
       }
 
     }; // class EllipticParaboloid

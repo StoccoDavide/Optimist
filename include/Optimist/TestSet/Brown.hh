@@ -22,16 +22,16 @@ namespace Optimist
   {
 
     /**
-    * \brief Class container for the Brown badly scaled function.
-    *
-    * Class container for the Brown badly scaled function, which is defined as:
-    * \f[
-    * \mathbf{f}(\mathbf{x}) = \begin{bmatrix} x_1 - a \\ x_2 - 2a \\ x_1x_2 - 2 \end{bmatrix} \text{,}
-    * \f]
-    * where \f$a = 10^{-6}\f$. The function has one solution at \f$\mathbf{x} = [a, 2a]^\top\f$,
-    * with \f$f(\mathbf{x}) = 0\f$. The initial guess is generated at \f$\mathbf{x} = [1, 1]^\top\f$.
-    * \tparam Real Scalar number type.
-    */
+     * \brief Class container for the Brown badly scaled function.
+     *
+     * Class container for the Brown badly scaled function, which is defined as:
+     * \f[
+     * \mathbf{f}(\mathbf{x}) = \begin{bmatrix} x_1 - a \\ x_2 - 2a \\ x_1x_2 - 2 \end{bmatrix} \text{,}
+     * \f]
+     * where \f$a = 10^{-6}\f$. The function has one solution at \f$\mathbf{x} = [a, 2a]^\top\f$,
+     * with \f$f(\mathbf{x}) = 0\f$. The initial guess is generated at \f$\mathbf{x} = [1, 1]^\top\f$.
+     * \tparam Real Scalar number type.
+     */
     template <typename Real>
     class Brown : public Function<Real, 2, 3, Brown<Real>>
     {
@@ -41,14 +41,14 @@ namespace Optimist
     public:
       OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
 
-      using InputVector  = typename Function<Real, 2, 3, Brown<Real>>::InputVector;
-      using OutputVector = typename Function<Real, 2, 3, Brown<Real>>::OutputVector;
-      using Matrix       = typename Function<Real, 2, 3, Brown<Real>>::Matrix;
-      using Tensor       = typename Function<Real, 2, 3, Brown<Real>>::Tensor;
+      using typename Function<Real, 2, 3, Brown<Real>>::InputVector;
+      using typename Function<Real, 2, 3, Brown<Real>>::OutputVector;
+      using typename Function<Real, 2, 3, Brown<Real>>::Matrix;
+      using typename Function<Real, 2, 3, Brown<Real>>::Tensor;
 
       /**
-      * Class constructor for the Brown function.
-      */
+       * Class constructor for the Brown function.
+       */
       Brown()
       {
         this->m_solutions.emplace_back(this->m_a, 2.0*this->m_a);
@@ -56,45 +56,52 @@ namespace Optimist
       }
 
       /**
-      * Get the function name.
-      * \return The function name.
-      */
+       * Get the function name.
+       * \return The function name.
+       */
       std::string name_impl() const {return "Brown";}
 
       /**
-      * Compute the function value at the input point.
-      * \param[in] x Input point.
-      * \param[out] out The function value.
-      */
-      void evaluate_impl(const InputVector & x, OutputVector & out) const
+       * Compute the function value at the input point.
+       * \param[in] x Input point.
+       * \param[out] out The function value.
+       * \return The boolean flag for successful evaluation.
+       */
+      bool evaluate_impl(const InputVector & x, OutputVector & out) const
       {
         out << x(0) - this->m_a,
                x(1) - 2.0*this->m_a,
                x(0)*x(1) - 2.0;
-      }
-      /**
-      * Compute the first derivative value at the input point.
-      * \param[in] x Input point.
-      * \param[out] out The first derivative value.
-      */
-      void first_derivative_impl(const InputVector & x, Matrix & out) const
-      {
-        out << 1.0, 0.0, x(1),
-               0.0, 1.0, x(0);
+        return out.allFinite();
       }
 
       /**
-      * Compute the second derivative value at the input point.
-      * \param[in] x Input point.
-      * \param[out] out The second derivative value.
-      */
-      void second_derivative_impl(const InputVector & /*x*/, Tensor & out) const
+       * Compute the first derivative value at the input point.
+       * \param[in] x Input point.
+       * \param[out] out The first derivative value.
+       * \return The boolean flag for successful evaluation.
+       */
+      bool first_derivative_impl(const InputVector & x, Matrix & out) const
+      {
+        out << 1.0, 0.0, x(1),
+               0.0, 1.0, x(0);
+        return out.allFinite();
+      }
+
+      /**
+       * Compute the second derivative value at the input point.
+       * \param[in] x Input point.
+       * \param[out] out The second derivative value.
+       * \return The boolean flag for successful evaluation.
+       */
+      bool second_derivative_impl(const InputVector & /*x*/, Tensor & out) const
       {
         out.resize(this->output_dimension());
         out[0].setZero();
         out[1].setZero();
         out[2] << 0.0, 1.0,
                   1.0, 0.0;
+        return out[0].allFinite() && out[1].allFinite() && out[2].allFinite();
       }
 
     }; // class Brown

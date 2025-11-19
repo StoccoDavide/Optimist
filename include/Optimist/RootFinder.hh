@@ -34,22 +34,21 @@ namespace Optimist
     \*/
 
     /**
-    * \brief Class container for the multi-dimensional root finder.
-    *
-    * \includedoc docs/markdown/RootFinder.md
-    *
-    * \tparam Real Scalar number type.
-    * \tparam N The dimension of the root-finding problem.
-    * \tparam DerivedSolver Derived solver class.
-    * \tparam ForceEigen Force the use of Eigen types for input and output.
-    */
+     * \brief Class container for the multi-dimensional root finder.
+     *
+     * \includedoc docs/markdown/RootFinder.md
+     *
+     * \tparam Real Scalar number type.
+     * \tparam N The dimension of the root-finding problem.
+     * \tparam DerivedSolver Derived solver class.
+     * \tparam ForceEigen Force the use of Eigen types for input and output.
+     */
     template <typename Real, Integer N, typename DerivedSolver, bool ForceEigen = false>
     class RootFinder : public SolverBase<Real, N, N, DerivedSolver, ForceEigen>
     {
     public:
       // Fancy static assertions (just for fun, don't take it too seriously)
-      static_assert(N != static_cast<Integer>(0),
-        "Are you sure you want to solve a zero-dimensional system of equations?");
+      static_assert(N != 0, "Are you sure you want to solve a zero-dimensional system of equations?");
 
       friend class SolverBase<Real, N, N, RootFinder<Real, N, DerivedSolver, ForceEigen>>;
 
@@ -68,58 +67,58 @@ namespace Optimist
       using Tensor = typename SolverBase<Real, N, N, DerivedSolver, ForceEigen>::SecondDerivativeType; /**< Hessian tensor type. */
 
       // Function types
-      using FunctionWrapper = typename SolverBase<Real, N, N, DerivedSolver, ForceEigen>::FunctionWrapper;
+      using typename SolverBase<Real, N, N, DerivedSolver, ForceEigen>::FunctionWrapper;
       using JacobianWrapper = typename SolverBase<Real, N, N, DerivedSolver, ForceEigen>::FirstDerivativeWrapper;
       using HessianWrapper  = typename SolverBase<Real, N, N, DerivedSolver, ForceEigen>::SecondDerivativeWrapper;
 
       /**
-      * Class constructor for the multi-dimensional root finder.
-      */
+       * Class constructor for the multi-dimensional root finder.
+       */
       RootFinder() {}
 
       /**
-      * Get the solver name.
-      * \return The solver name.
-      */
+       * Get the solver name.
+       * \return The solver name.
+       */
       std::string name() const {return static_cast<const DerivedSolver *>(this)->name_impl();}
 
       /**
-      * Get the number of Jacobian evaluations.
-      * \return The number of Jacobian evaluations.
-      */
+       * Get the number of Jacobian evaluations.
+       * \return The number of Jacobian evaluations.
+       */
       Integer jacobian_evaluations() const {return this->first_derivative_evaluations();}
 
       /**
-      * Get the number of maximum allowed Jacobian evaluations.
-      * \return The number of maximum allowed Jacobian evaluations.
-      */
+       * Get the number of maximum allowed Jacobian evaluations.
+       * \return The number of maximum allowed Jacobian evaluations.
+       */
       Integer max_jacobian_evaluations() const {return this->max_first_derivative_evaluations();}
 
       /**
-      * Set the number of maximum allowed Jacobian evaluations.
-      * \param[in] t_jacobian_evaluations The number of maximum allowed Jacobian evaluations.
-      */
+       * Set the number of maximum allowed Jacobian evaluations.
+       * \param[in] t_jacobian_evaluations The number of maximum allowed Jacobian evaluations.
+       */
       void max_jacobian_evaluations(Integer t_jacobian_evaluations)
       {
         this->max_first_derivative_evaluations(t_jacobian_evaluations);
       }
 
       /**
-      * Get the number of Hessian evaluations.
-      * \return The number of Hessian evaluations.
-      */
+       * Get the number of Hessian evaluations.
+       * \return The number of Hessian evaluations.
+       */
       Integer hessian_evaluations() const {return this->first_derivative_evaluations();}
 
       /**
-      * Get the number of maximum allowed Hessian evaluations.
-      * \return The number of maximum allowed Hessian evaluations.
-      */
+       * Get the number of maximum allowed Hessian evaluations.
+       * \return The number of maximum allowed Hessian evaluations.
+       */
       Integer max_hessian_evaluations() const {return this->max_first_derivative_evaluations();}
 
       /**
-      * Set the number of maximum allowed Hessian evaluations.
-      * \param[in] t_hessian_evaluations The number of maximum allowed Hessian evaluations.
-      */
+       * Set the number of maximum allowed Hessian evaluations.
+       * \param[in] t_hessian_evaluations The number of maximum allowed Hessian evaluations.
+       */
       void max_hessian_evaluations(Integer t_hessian_evaluations)
       {
         this->max_first_derivative_evaluations(t_hessian_evaluations);
@@ -127,35 +126,37 @@ namespace Optimist
 
     protected:
       /**
-      * Evaluate the Jacobian function.
-      * \param[in] jacobian Jacobian function wrapper.
-      * \param[in] x Input point.
-      * \param[out] out Jacobian value.
-      */
-      void evaluate_jacobian(JacobianWrapper jacobian, const Vector & x, Matrix & out)
+       * Evaluate the Jacobian function.
+       * \param[in] jacobian Jacobian function wrapper.
+       * \param[in] x Input point.
+       * \param[out] out Jacobian value.
+       * \return The boolean flag for successful evaluation.
+       */
+      bool evaluate_jacobian(JacobianWrapper jacobian, Vector const & x, Matrix & out)
       {
-        this->evaluate_first_derivative(jacobian, x, out);
+        return this->evaluate_first_derivative(jacobian, x, out);
       }
 
       /**
-      * Evaluate the Hessian function.
-      * \param[in] hessian Hessian function wrapper.
-      * \param[in] x Input point.
-      * \param[out] out Hessian value.
-      */
-      void evaluate_hessian(HessianWrapper hessian, const Vector & x, Matrix & out)
+       * Evaluate the Hessian function.
+       * \param[in] hessian Hessian function wrapper.
+       * \param[in] x Input point.
+       * \param[out] out Hessian value.
+       * \return The boolean flag for successful evaluation.
+       */
+      bool evaluate_hessian(HessianWrapper hessian, Vector const & x, Matrix & out)
       {
-        this->evaluate_second_derivative(hessian, x, out);
+        return this->evaluate_second_derivative(hessian, x, out);
       }
 
     public:
       /**
-      * Solve the root-finding problem given the function, and without derivatives.
-      * \param[in] function Function wrapper.
-      * \param[in] x_ini Initialization point.
-      * \param[out] x_sol Solution point.
-      * \return The convergence boolean flag.
-      */
+       * Solve the root-finding problem given the function, and without derivatives.
+       * \param[in] function Function wrapper.
+       * \param[in] x_ini Initialization point.
+       * \param[out] x_sol Solution point.
+       * \return The convergence boolean flag.
+       */
       bool solve(FunctionWrapper function, Vector const & x_ini, Vector & x_sol)
       {
         #define CMD "Optimist::RootFinder::solve(...): "
@@ -168,13 +169,13 @@ namespace Optimist
       }
 
       /**
-      * Solve the root-finding problem given the function, and its Jacobian.
-      * \param[in] function Function wrapper.
-      * \param[in] jacobian The Jacobian function wrapper.
-      * \param[in] x_ini Initialization point.
-      * \param[out] x_sol Solution point.
-      * \return The convergence boolean flag.
-      */
+       * Solve the root-finding problem given the function, and its Jacobian.
+       * \param[in] function Function wrapper.
+       * \param[in] jacobian The Jacobian function wrapper.
+       * \param[in] x_ini Initialization point.
+       * \param[out] x_sol Solution point.
+       * \return The convergence boolean flag.
+       */
       bool solve(FunctionWrapper function, JacobianWrapper jacobian, Vector const & x_ini, Vector & x_sol)
       {
         #define CMD "Optimist::RootFinder::solve(...): "
@@ -189,14 +190,14 @@ namespace Optimist
       }
 
       /**
-      * Solve the root-finding problem given the function, and its Jacobian and Hessian.
-      * \param[in] function Function wrapper.
-      * \param[in] jacobian The Jacobian function wrapper.
-      * \param[in] hessian The Hessian function wrapper.
-      * \param[in] x_ini Initialization point.
-      * \param[out] x_sol Solution point.
-      * \return The convergence boolean flag.
-      */
+       * Solve the root-finding problem given the function, and its Jacobian and Hessian.
+       * \param[in] function Function wrapper.
+       * \param[in] jacobian The Jacobian function wrapper.
+       * \param[in] hessian The Hessian function wrapper.
+       * \param[in] x_ini Initialization point.
+       * \param[out] x_sol Solution point.
+       * \return The convergence boolean flag.
+       */
       bool solve(FunctionWrapper function, JacobianWrapper jacobian, HessianWrapper hessian, Vector
         const & x_ini, Vector & x_sol)
       {
@@ -218,13 +219,13 @@ namespace Optimist
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     /**
-    * \brief Class container for the scalar scalar root-finder.
-    *
-    * \includedoc docs/markdown/RootFinder.md
-    *
-    * \tparam Real Scalar number type.
-    * \tparam DerivedSolver Derived solver class.
-    */
+     * \brief Class container for the scalar scalar root-finder.
+     *
+     * \includedoc docs/markdown/RootFinder.md
+     *
+     * \tparam Real Scalar number type.
+     * \tparam DerivedSolver Derived solver class.
+     */
     template <typename Real, typename DerivedSolver>
     class RootFinder<Real, 1, DerivedSolver> : public SolverBase<Real, 1, 1, DerivedSolver>
     {
@@ -236,41 +237,41 @@ namespace Optimist
 
       OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
 
-      using FunctionWrapper         = typename SolverBase<Real, 1, 1, DerivedSolver>::FunctionWrapper;
-      using FirstDerivativeWrapper  = typename SolverBase<Real, 1, 1, DerivedSolver>::FirstDerivativeWrapper;
-      using SecondDerivativeWrapper = typename SolverBase<Real, 1, 1, DerivedSolver>::SecondDerivativeWrapper;
+      using typename SolverBase<Real, 1, 1, DerivedSolver>::FunctionWrapper;
+      using typename SolverBase<Real, 1, 1, DerivedSolver>::FirstDerivativeWrapper;
+      using typename SolverBase<Real, 1, 1, DerivedSolver>::SecondDerivativeWrapper;
 
       /**
-      * Class constructor for the scalar root-finder.
-      */
+       * Class constructor for the scalar root-finder.
+       */
       RootFinder<Real, 1, DerivedSolver>() {}
 
       /**
-      * Get the solver name.
-      * \return The solver name.
-      */
+       * Get the solver name.
+       * \return The solver name.
+       */
       std::string name() const {return static_cast<const DerivedSolver *>(this)->name_impl();}
 
       /**
-      * Solve the root-finding problem given the function, and without derivatives.
-      * \param[in] function Function wrapper.
-      * \param[in] x_ini Initialization point.
-      * \param[out] x_sol Solution point.
-      * \return The convergence boolean flag.
-      */
+       * Solve the root-finding problem given the function, and without derivatives.
+       * \param[in] function Function wrapper.
+       * \param[in] x_ini Initialization point.
+       * \param[out] x_sol Solution point.
+       * \return The convergence boolean flag.
+       */
       bool solve(FunctionWrapper function, Real x_ini, Real & x_sol)
       {
         return static_cast<DerivedSolver *>(this)->solve_impl(function, x_ini, x_sol);
       }
 
       /**
-      * Solve the root-finding problem given the function, and its first derivative.
-      * \param[in] function Function wrapper.
-      * \param[in] first_derivative First derivative wrapper.
-      * \param[in] x_ini Initialization point.
-      * \param[out] x_sol Solution point.
-      * \return The convergence boolean flag.
-      */
+       * Solve the root-finding problem given the function, and its first derivative.
+       * \param[in] function Function wrapper.
+       * \param[in] first_derivative First derivative wrapper.
+       * \param[in] x_ini Initialization point.
+       * \param[out] x_sol Solution point.
+       * \return The convergence boolean flag.
+       */
       bool solve(FunctionWrapper function, FirstDerivativeWrapper first_derivative, Real x_ini,
         Real & x_sol)
       {
@@ -278,14 +279,14 @@ namespace Optimist
       }
 
       /**
-      * Solve the root-finding problem given the function, and its first and second derivatives.
-      * \param[in] function Function wrapper.
-      * \param[in] first_derivative First derivative wrapper.
-      * \param[in] second_derivate Second derivative wrapper.
-      * \param[in] x_ini Initialization point.
-      * \param[out] x_sol Solution point.
-      * \return The convergence boolean flag.
-      */
+       * Solve the root-finding problem given the function, and its first and second derivatives.
+       * \param[in] function Function wrapper.
+       * \param[in] first_derivative First derivative wrapper.
+       * \param[in] second_derivate Second derivative wrapper.
+       * \param[in] x_ini Initialization point.
+       * \param[out] x_sol Solution point.
+       * \return The convergence boolean flag.
+       */
       bool solve(FunctionWrapper function, FirstDerivativeWrapper first_derivative, SecondDerivativeWrapper
         second_derivate, Real x_ini, Real & x_sol)
       {

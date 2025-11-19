@@ -34,21 +34,20 @@ namespace Optimist
     \*/
 
     /**
-    * \brief Class container for the multi-dimensional optimizer.
-    *
-    * \includedoc docs/markdown/Optimizer.md
-    *
-    * \tparam N Dimension of the optimization problem.
-    * \tparam DerivedSolver Derived solver class.
-    * \tparam ForceEigen Force the use of Eigen types for input and output.
-    */
+     * \brief Class container for the multi-dimensional optimizer.
+     *
+     * \includedoc docs/markdown/Optimizer.md
+     *
+     * \tparam N Dimension of the optimization problem.
+     * \tparam DerivedSolver Derived solver class.
+     * \tparam ForceEigen Force the use of Eigen types for input and output.
+     */
     template <typename Real, Integer N, typename DerivedSolver, bool ForceEigen = false>
     class Optimizer : public SolverBase<Real, N, 1, DerivedSolver, ForceEigen>
     {
     public:
       // Fancy static assertions (just for fun, don't take it too seriously)
-      static_assert(N != static_cast<Integer>(0),
-        "Have you ever heard of a zero-dimensional optimization problem?");
+      static_assert(N != 0, "Have you ever heard of a zero-dimensional optimization problem?");
 
       friend class SolverBase<Real, N, 1, Optimizer<Real, N, DerivedSolver, ForceEigen>>;
 
@@ -65,58 +64,58 @@ namespace Optimist
       using Matrix    = typename SolverBase<Real, N, 1, DerivedSolver, ForceEigen>::SecondDerivativeType; /**< Hessian matrix type. */
 
       // Function types
-      using FunctionWrapper = typename SolverBase<Real, N, 1, DerivedSolver, ForceEigen>::FunctionWrapper;
+      using typename SolverBase<Real, N, 1, DerivedSolver, ForceEigen>::FunctionWrapper;
       using GradientWrapper = typename SolverBase<Real, N, 1, DerivedSolver, ForceEigen>::FirstDerivativeWrapper;
       using HessianWrapper  = typename SolverBase<Real, N, 1, DerivedSolver, ForceEigen>::SecondDerivativeWrapper;
 
       /**
-      * Class constructor for the multi-dimensional optimizer.
-      */
+       * Class constructor for the multi-dimensional optimizer.
+       */
       Optimizer() {}
 
       /**
-      * Get the solver name.
-      * \return The solver name.
-      */
+       * Get the solver name.
+       * \return The solver name.
+       */
       std::string name() const {return static_cast<const DerivedSolver *>(this)->name_impl();}
 
       /**
-      * Get the number of gradient evaluations.
-      * \return The number of gradient evaluations.
-      */
+       * Get the number of gradient evaluations.
+       * \return The number of gradient evaluations.
+       */
       Integer gradient_evaluations() const {return this->first_derivative_evaluations();}
 
       /**
-      * Get the number of maximum allowed gradient evaluations.
-      * \return The number of maximum allowed gradient evaluations.
-      */
+       * Get the number of maximum allowed gradient evaluations.
+       * \return The number of maximum allowed gradient evaluations.
+       */
       Integer max_gradient_evaluations() const {return this->max_first_derivative_evaluations();}
 
       /**
-      * Set the number of maximum allowed gradient evaluations.
-      * \param[in] t_gradient_evaluations The number of maximum allowed gradient evaluations.
-      */
+       * Set the number of maximum allowed gradient evaluations.
+       * \param[in] t_gradient_evaluations The number of maximum allowed gradient evaluations.
+       */
       void max_gradient_evaluations(Integer t_gradient_evaluations)
       {
         this->max_first_derivative_evaluations(t_gradient_evaluations);
       }
 
       /**
-      * Get the number of hessian evaluations.
-      * \return The number of hessian evaluations.
-      */
+       * Get the number of hessian evaluations.
+       * \return The number of hessian evaluations.
+       */
       Integer hessian_evaluations() const {return this->second_derivative_evaluations();}
 
       /**
-      * Get the number of maximum allowed hessian evaluations.
-      * \return The number of maximum allowed hessian evaluations.
-      */
+       * Get the number of maximum allowed hessian evaluations.
+       * \return The number of maximum allowed hessian evaluations.
+       */
       Integer max_hessian_evaluations() const {return this->max_second_derivative_evaluations();}
 
       /**
-      * Set the number of maximum allowed hessian evaluations.
-      * \param[in] t_hessian_evaluations The number of maximum allowed hessian evaluations.
-      */
+       * Set the number of maximum allowed hessian evaluations.
+       * \param[in] t_hessian_evaluations The number of maximum allowed hessian evaluations.
+       */
       void max_hessian_evaluations(Integer t_hessian_evaluations)
       {
         this->max_second_derivative_evaluations(t_hessian_evaluations);
@@ -124,34 +123,36 @@ namespace Optimist
 
     protected:
       /**
-      * Evaluate the gradient function.
-      * \param[in] gradient Gradient function wrapper.
-      * \param[in] x Input point.
-      * \param[out] out Gradient value.
-      */
-      void evaluate_gradient(GradientWrapper gradient, const Vector & x, Matrix & out)
+       * Evaluate the gradient function.
+       * \param[in] gradient Gradient function wrapper.
+       * \param[in] x Input point.
+       * \param[out] out Gradient value.
+       * \return The boolean flag for successful evaluation.
+       */
+      bool evaluate_gradient(GradientWrapper gradient, Vector const & x, Matrix & out)
       {
-        this->evaluate_first_derivative_impl(gradient, x, out);
+        return this->evaluate_first_derivative_impl(gradient, x, out);
       }
 
       /**
-      * Evaluate the hessian function.
-      * \param[in] hessian Hessian function wrapper.
-      * \param[in] x Input point.
-      * \param[out] out Hessian value.
-      */
-      void evaluate_hessian(HessianWrapper hessian, const Vector & x, Matrix & out)
+       * Evaluate the hessian function.
+       * \param[in] hessian Hessian function wrapper.
+       * \param[in] x Input point.
+       * \param[out] out Hessian value.
+       * \return The boolean flag for successful evaluation.
+       */
+      bool evaluate_hessian(HessianWrapper hessian, Vector const & x, Matrix & out)
       {
-        this->evaluate_second_derivative_impl(hessian, x, out);
+        return this->evaluate_second_derivative_impl(hessian, x, out);
       }
 
       /**
-      * Solve the root-finding problem given the function, and without derivatives.
-      * \param[in] function Function wrapper.
-      * \param[in] x_ini Initialization point.
-      * \param[out] x_sol Solution point.
-      * \return The convergence boolean flag.
-      */
+       * Solve the root-finding problem given the function, and without derivatives.
+       * \param[in] function Function wrapper.
+       * \param[in] x_ini Initialization point.
+       * \param[out] x_sol Solution point.
+       * \return The convergence boolean flag.
+       */
       bool solve(FunctionWrapper function, Vector const & x_ini, Vector & x_sol)
       {
         #define CMD "Optimist::Optimizer::solve(...): "
@@ -164,13 +165,13 @@ namespace Optimist
       }
 
       /**
-      * Solve the root-finding problem given the function, and its gradient.
-      * \param[in] function Function wrapper.
-      * \param[in] gradient Gradient function wrapper.
-      * \param[in] x_ini Initialization point.
-      * \param[out] x_sol Solution point.
-      * \return The convergence boolean flag.
-      */
+       * Solve the root-finding problem given the function, and its gradient.
+       * \param[in] function Function wrapper.
+       * \param[in] gradient Gradient function wrapper.
+       * \param[in] x_ini Initialization point.
+       * \param[out] x_sol Solution point.
+       * \return The convergence boolean flag.
+       */
       bool solve(FunctionWrapper function, GradientWrapper gradient, Vector const & x_ini, Vector & x_sol)
       {
         #define CMD "Optimist::Optimizer::solve(...): "
@@ -185,14 +186,14 @@ namespace Optimist
       }
 
       /**
-      * Solve the root-finding problem given the function, and its gradient and Hessian.
-      * \param[in] function Function wrapper.
-      * \param[in] gradient Gradient function wrapper.
-      * \param[in] hessian Hessian function wrapper.
-      * \param[in] x_ini Initialization point.
-      * \param[out] x_sol Solution point.
-      * \return The convergence boolean flag.
-      */
+       * Solve the root-finding problem given the function, and its gradient and Hessian.
+       * \param[in] function Function wrapper.
+       * \param[in] gradient Gradient function wrapper.
+       * \param[in] hessian Hessian function wrapper.
+       * \param[in] x_ini Initialization point.
+       * \param[out] x_sol Solution point.
+       * \return The convergence boolean flag.
+       */
       bool solve(FunctionWrapper function, GradientWrapper gradient, HessianWrapper hessian, Vector
         const & x_ini, Vector & x_sol)
       {
@@ -212,13 +213,13 @@ namespace Optimist
     }; // class Optimizer
 
     /**
-    * \brief Class container for the scalar optimizer.
-    *
-    * \includedoc docs/markdown/ScalarOptimizer.md
-    *
-    * \tparam Real Scalar number type.
-    * \tparam DerivedSolver Derived solver class.
-    */
+     * \brief Class container for the scalar optimizer.
+     *
+     * \includedoc docs/markdown/ScalarOptimizer.md
+     *
+     * \tparam Real Scalar number type.
+     * \tparam DerivedSolver Derived solver class.
+     */
     template <typename Real, typename DerivedSolver>
     class Optimizer<Real, 1, DerivedSolver> : public SolverBase<Real, 1, 1, DerivedSolver>
     {
@@ -230,19 +231,19 @@ namespace Optimist
 
       OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
 
-      using FunctionWrapper         = typename SolverBase<Real, 1, 1, DerivedSolver>::FunctionWrapper;
-      using FirstDerivativeWrapper  = typename SolverBase<Real, 1, 1, DerivedSolver>::FirstDerivativeWrapper;
-      using SecondDerivativeWrapper = typename SolverBase<Real, 1, 1, DerivedSolver>::SecondDerivativeWrapper;
+      using typename SolverBase<Real, 1, 1, DerivedSolver>::FunctionWrapper;
+      using typename SolverBase<Real, 1, 1, DerivedSolver>::FirstDerivativeWrapper;
+      using typename SolverBase<Real, 1, 1, DerivedSolver>::SecondDerivativeWrapper;
 
       /**
-      * Class constructor for the scalar optimizer.
-      */
+       * Class constructor for the scalar optimizer.
+       */
       Optimizer<Real, 1, DerivedSolver>() {}
 
       /**
-      * Get the solver name.
-      * \return The solver name.
-      */
+       * Get the solver name.
+       * \return The solver name.
+       */
       std::string name() const {return static_cast<const DerivedSolver *>(this)->name_impl();}
 
     }; // class Optimizer

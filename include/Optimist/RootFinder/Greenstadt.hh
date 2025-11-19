@@ -30,13 +30,13 @@ namespace Optimist
     \*/
 
     /**
-    * \brief Class container for the Greenstadt's method.
-    *
-    * \includedoc docs/markdown/RootFinder/Greenstadt.md
-    *
-    * \tparam Real Scalar number type.
-    * \tparam N Dimension of the root-finding problem.
-    */
+     * \brief Class container for the Greenstadt's method.
+     *
+     * \includedoc docs/markdown/RootFinder/Greenstadt.md
+     *
+     * \tparam Real Scalar number type.
+     * \tparam N Dimension of the root-finding problem.
+     */
     template <typename Real, Integer N>
     class Greenstadt : public QuasiNewton<Real, N, Greenstadt<Real, N>>
     {
@@ -48,10 +48,10 @@ namespace Optimist
       OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
 
       using Method = enum class Method : Integer {ONE = 1, TWO = 2}; /**< Greenstadt solver type. */
-      using Vector = typename QuasiNewton<Real, N, Greenstadt<Real, N>>::Vector;
-      using Matrix = typename QuasiNewton<Real, N, Greenstadt<Real, N>>::Matrix;
-      using FunctionWrapper = typename QuasiNewton<Real, N, Greenstadt<Real, N>>::FunctionWrapper;
-      using JacobianWrapper = typename QuasiNewton<Real, N, Greenstadt<Real, N>>::JacobianWrapper;
+      using typename QuasiNewton<Real, N, Greenstadt<Real, N>>::Vector;
+      using typename QuasiNewton<Real, N, Greenstadt<Real, N>>::Matrix;
+      using typename QuasiNewton<Real, N, Greenstadt<Real, N>>::FunctionWrapper;
+      using typename QuasiNewton<Real, N, Greenstadt<Real, N>>::JacobianWrapper;
       using QuasiNewton<Real, N, Greenstadt<Real, N>>::solve;
 
     private:
@@ -59,14 +59,14 @@ namespace Optimist
 
     public:
       /**
-      * Class constructor for the Greenstadt solver.
-      */
+       * Class constructor for the Greenstadt solver.
+       */
       Greenstadt() {}
 
       /**
-      * Get the Greenstadt solver name.
-      * \return The Greenstadt solver name.
-      */
+       * Get the Greenstadt solver name.
+       * \return The Greenstadt solver name.
+       */
       std::string name_impl() const
       {
         std::ostringstream os;
@@ -80,43 +80,43 @@ namespace Optimist
       }
 
       /**
-      * Get the enumeration type of the Greenstadt solver method.
-      * \return The Greenstadt solver enumeration type.
-      */
+       * Get the enumeration type of the Greenstadt solver method.
+       * \return The Greenstadt solver enumeration type.
+       */
       Method method() const {return this->m_method;}
 
       /**
-      * Set the enumeration type of the Greenstadt solver method.
-      * \param[in] t_method The Greenstadt solver method enumeration type.
-      */
+       * Set the enumeration type of the Greenstadt solver method.
+       * \param[in] t_method The Greenstadt solver method enumeration type.
+       */
       void method(Method t_method) {this->m_method = t_method;}
 
       /**
-      * Enable the \em Greenstadt1 solver method.
-      */
+       * Enable the \em Greenstadt1 solver method.
+       */
       void enable_one_method() {this->m_method = Method::ONE;}
 
       /**
-      * Enable the \em Greenstadt2 solver method.
-      */
+       * Enable the \em Greenstadt2 solver method.
+       */
       void enable_two_method() {this->m_method = Method::TWO;}
 
       /**
-      * Set the Greenstadt solver method.
-      * \param[in] t_method The Greenstadt solver method enumeration type.
-      */
+       * Set the Greenstadt solver method.
+       * \param[in] t_method The Greenstadt solver method enumeration type.
+       */
       void set_method(Method t_method) {this->m_method = t_method;}
 
       /**
-      * Jacobian approximation update rule for the Greenstadt's method.
-      * \param[in] delta_x_old Old difference between points.
-      * \param[in] delta_function_old Old difference between function values.
-      * \param[in] jacobian_old Old jacobian approximation.
-      * \param[in] delta_x_new New difference between points.
-      * \param[in] delta_function_new New difference between function values.
-      * \param[in] function_new New function value.
-      * \param[out] jacobian_new New jacobian approximation.
-      */
+       * Jacobian approximation update rule for the Greenstadt's method.
+       * \param[in] delta_x_old Old difference between points.
+       * \param[in] delta_function_old Old difference between function values.
+       * \param[in] jacobian_old Old jacobian approximation.
+       * \param[in] delta_x_new New difference between points.
+       * \param[in] delta_function_new New difference between function values.
+       * \param[in] function_new New function value.
+       * \param[out] jacobian_new New jacobian approximation.
+       */
       void update_impl(
         Vector const & /*delta_x_old*/, Vector const & /*delta_function_old*/, Matrix const & jacobian_old,
         Vector const & delta_x_new,     Vector const & delta_function_new,     Vector const & function_new,

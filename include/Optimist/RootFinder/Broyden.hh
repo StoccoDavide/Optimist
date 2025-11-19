@@ -30,13 +30,13 @@ namespace Optimist
     \*/
 
     /**
-    * \brief Class container for the Broyden's method.
-    *
-    * \includedoc docs/markdown/RootFinder/Broyden.md
-    *
-    * \tparam N Dimension of the root-finding problem.
-    * \tparam Real Scalar number type.
-    */
+     * \brief Class container for the Broyden's method.
+     *
+     * \includedoc docs/markdown/RootFinder/Broyden.md
+     *
+     * \tparam N Dimension of the root-finding problem.
+     * \tparam Real Scalar number type.
+     */
     template <typename Real, Integer N>
     class Broyden : public QuasiNewton<Real, N, Broyden<Real, N>>
     {
@@ -48,10 +48,10 @@ namespace Optimist
       OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
 
       using Method = enum class Method : Integer {GOOD = 0, BAD = 1, COMBINED = 2}; /**< Broyden solver type. */
-      using Vector = typename QuasiNewton<Real, N, Broyden<Real, N>>::Vector;
-      using Matrix = typename QuasiNewton<Real, N, Broyden<Real, N>>::Matrix;
-      using FunctionWrapper = typename QuasiNewton<Real, N, Broyden<Real, N>>::FunctionWrapper;
-      using JacobianWrapper = typename QuasiNewton<Real, N, Broyden<Real, N>>::JacobianWrapper;
+      using typename QuasiNewton<Real, N, Broyden<Real, N>>::Vector;
+      using typename QuasiNewton<Real, N, Broyden<Real, N>>::Matrix;
+      using typename QuasiNewton<Real, N, Broyden<Real, N>>::FunctionWrapper;
+      using typename QuasiNewton<Real, N, Broyden<Real, N>>::JacobianWrapper;
       using QuasiNewton<Real, N, Broyden<Real, N>>::solve;
 
     private:
@@ -59,14 +59,14 @@ namespace Optimist
 
     public:
       /**
-      * Class constructor for the Broyden solver.
-      */
+       * Class constructor for the Broyden solver.
+       */
       Broyden() {}
 
       /**
-      * Get the Broyden solver name.
-      * \return The Broyden solver name.
-      */
+       * Get the Broyden solver name.
+       * \return The Broyden solver name.
+       */
       std::string name_impl() const
       {
         std::ostringstream os;
@@ -82,48 +82,48 @@ namespace Optimist
       }
 
       /**
-      * Get the enumeration type of the Broyden solver method.
-      * \return The Broyden solver enumeration type.
-      */
+       * Get the enumeration type of the Broyden solver method.
+       * \return The Broyden solver enumeration type.
+       */
       Method method() const {return this->m_method;}
 
       /**
-      * Set the enumeration type of the Broyden solver method.
-      * \param[in] t_method The Broyden solver enumeration type.
-      */
+       * Set the enumeration type of the Broyden solver method.
+       * \param[in] t_method The Broyden solver enumeration type.
+       */
       void method(Method t_method) {this->m_method = t_method;}
 
       /**
-      * Enable the \em good Broyden solver method.
-      */
+       * Enable the \em good Broyden solver method.
+       */
       void enable_good_method() {this->m_method = Method::GOOD;}
 
       /**
-      * Enable the \em bad Broyden solver method.
-      */
+       * Enable the \em bad Broyden solver method.
+       */
       void enable_bad_method() {this->m_method = Method::BAD;}
 
       /**
-      * Enable the \em combined Broyden solver method.
-      */
+       * Enable the \em combined Broyden solver method.
+       */
       void enable_combined_method() {this->m_method = Method::COMBINED;}
 
       /**
-      * Set the Broyden solver type.
-      * \param[in] t_method The Broyden solver type enumeration.
-      */
+       * Set the Broyden solver type.
+       * \param[in] t_method The Broyden solver type enumeration.
+       */
       void set_method(Method t_method) {this->m_method = t_method;}
 
       /**
-      * Jacobian approximation update rule for the Broyden's method.
-      * \param[in] delta_x_old Old difference between points.
-      * \param[in] delta_function_old Old difference between function values.
-      * \param[in] jacobian_old Old jacobian approximation.
-      * \param[in] delta_x_new New difference between points.
-      * \param[in] delta_function_new New difference between function values.
-      * \param[in] function_new New function value.
-      * \param[out] jacobian_new New jacobian approximation.
-      */
+       * Jacobian approximation update rule for the Broyden's method.
+       * \param[in] delta_x_old Old difference between points.
+       * \param[in] delta_function_old Old difference between function values.
+       * \param[in] jacobian_old Old jacobian approximation.
+       * \param[in] delta_x_new New difference between points.
+       * \param[in] delta_function_new New difference between function values.
+       * \param[in] function_new New function value.
+       * \param[out] jacobian_new New jacobian approximation.
+       */
       void update_impl(
         Vector const & delta_x_old, Vector const & delta_function_old, Matrix const & jacobian_old,
         Vector const & delta_x_new, Vector const & delta_function_new, Vector const & /*function_new*/,

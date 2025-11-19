@@ -30,14 +30,14 @@ namespace Optimist
     \*/
 
     /**
-    * \brief Class container for the Chandrupatla algorithm.
-    *
-    * The Chandrupatla algorithm allows to find the roots of a scalar function \f$f(x)\f$ in a given
-    * interval \f$[a, b]\f$. The algorithm is based on the work of T. Chandrupatla, *A new hybrid
-    * quadratic/bisection algorithm for finding the zero of a nonlinear function without using
-    * derivatives*, Advances in Engineering Software, 28 (1997), pp. 145-149.
-    * \tparam Real Scalar number type.
-    */
+     * \brief Class container for the Chandrupatla algorithm.
+     *
+     * The Chandrupatla algorithm allows to find the roots of a scalar function \f$f(x)\f$ in a given
+     * interval \f$[a, b]\f$. The algorithm is based on the work of T. Chandrupatla, *A new hybrid
+     * quadratic/bisection algorithm for finding the zero of a nonlinear function without using
+     * derivatives*, Advances in Engineering Software, 28 (1997), pp. 145-149.
+     * \tparam Real Scalar number type.
+     */
     template <typename Real>
     class Chandrupatla : public Bracketing<Real, Chandrupatla<Real>>
     {
@@ -49,31 +49,32 @@ namespace Optimist
       OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
 
       // Function types
-      using FunctionWrapper         = typename RootFinder<Real, 1, Chandrupatla>::FunctionWrapper;
-      using FirstDerivativeWrapper  = typename RootFinder<Real, 1, Chandrupatla>::FirstDerivativeWrapper;
-      using SecondDerivativeWrapper = typename RootFinder<Real, 1, Chandrupatla>::SecondDerivativeWrapper;
+      using typename RootFinder<Real, 1, Chandrupatla>::FunctionWrapper;
+      using typename RootFinder<Real, 1, Chandrupatla>::FirstDerivativeWrapper;
+      using typename RootFinder<Real, 1, Chandrupatla>::SecondDerivativeWrapper;
 
       /**
-      * Class constructor for the Algorithm 748.
-      */
+       * Class constructor for the Algorithm 748.
+       */
       Chandrupatla() {}
 
       /**
-      * Get the Algorithm 748 solver name.
-      * \return The Algorithm 748 solver name.
-      */
+       * Get the Algorithm 748 solver name.
+       * \return The Algorithm 748 solver name.
+       */
       std::string name_impl() const {return "Chandrupatla";}
 
       /**
-      * Finds either an exact solution or an approximate solution of the equation \f$f(x) = 0\f$ in
-      * the interval \f$[a, b]\f$.
-      * \param[in] function Function wrapper.
-      * \return The approximate root.
-      */
+       * Finds either an exact solution or an approximate solution of the equation \f$f(x) = 0\f$ in
+       * the interval \f$[a, b]\f$.
+       * \param[in] function Function wrapper.
+       * \return The approximate root.
+       */
       Real find_root_impl(FunctionWrapper function) {
 
         #define CMD "Optimist::ScalarRootfinder::Chandrupatla::find_root_impl(...): "
 
+        bool success;
         Real tolerance_step{this->m_tolerance_bracketing};
         Real tolerance_function{this->m_tolerance_bracketing};
 
@@ -89,7 +90,9 @@ namespace Optimist
         while (!(std::isfinite(this->m_fa) && std::isfinite(this->m_fb))) {
           ++this->m_iterations;
           this->m_c  = (this->m_a + this->m_b)/2.0;
-          this->evaluate_function(function, this->m_c, this->m_fc);
+          success = this->evaluate_function(function, this->m_c, this->m_fc);
+          OPTIMIST_ASSERT_WARNING(success,
+            CMD "function evaluation failed at iteration " << this->m_iterations << ".");
           this->m_converged = this->m_fc == 0;
           if (this->m_converged) {return this->m_c;}
           if (this->m_fa*this->m_fc < 0.0) {
@@ -126,7 +129,10 @@ namespace Optimist
           else if (t > 1.0 - tolerance) {t = 1.0 - tolerance;}
 
           Real c{this->m_a + t * direction};
-          Real fc; this->evaluate_function(function, c, fc);
+          Real fc;
+          success = this->evaluate_function(function, c, fc);
+          OPTIMIST_ASSERT_WARNING(success,
+            CMD "function evaluation failed at iteration " << this->m_iterations << ".");
           if (this->m_verbose) {this->info(fc);}
 
           OPTIMIST_ASSERT(std::isfinite(fc), CMD "function is not finite.");

@@ -22,16 +22,16 @@ namespace Optimist
   {
 
     /**
-    * \brief Class container for the Booth function.
-    *
-    * Class container for the Booth function, which is defined as:
-    * \f[
-    * \mathbf{f}(\mathbf{x}) = \begin{bmatrix} x_1 + 2x_2 - 7 \\ 2x_1 + x_2 - 5 \end{bmatrix} \text{.}
-    * \f]
-    * The function has one solution at \f$\mathbf{x} = [1, 3]^\top\f$, with \f$f(\mathbf{x}) = 0\f$.
-    * The initial guesses are generated on the square \f$x_i \in [-10, 10]\f$, for all \f$x_i = 1, 2\f$.
-    * \tparam Real Scalar number type.
-    */
+     * \brief Class container for the Booth function.
+     *
+     * Class container for the Booth function, which is defined as:
+     * \f[
+     * \mathbf{f}(\mathbf{x}) = \begin{bmatrix} x_1 + 2x_2 - 7 \\ 2x_1 + x_2 - 5 \end{bmatrix} \text{.}
+     * \f]
+     * The function has one solution at \f$\mathbf{x} = [1, 3]^\top\f$, with \f$f(\mathbf{x}) = 0\f$.
+     * The initial guesses are generated on the square \f$x_i \in [-10, 10]\f$, for all \f$x_i = 1, 2\f$.
+     * \tparam Real Scalar number type.
+     */
     template <typename Real>
     class Booth : public Function<Real, 2, 2, Booth<Real>>
     {
@@ -39,12 +39,12 @@ namespace Optimist
       OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
 
       using Vector = typename Function<Real, 2, 2, Booth<Real>>::InputVector;
-      using Matrix = typename Function<Real, 2, 2, Booth<Real>>::Matrix;
-      using Tensor = typename Function<Real, 2, 2, Booth<Real>>::Tensor;
+      using typename Function<Real, 2, 2, Booth<Real>>::Matrix;
+      using typename Function<Real, 2, 2, Booth<Real>>::Tensor;
 
       /**
-      * Class constructor for the Booth function.
-      */
+       * Class constructor for the Booth function.
+       */
       Booth()
       {
         this->m_solutions.emplace_back(1.0, 3.0);
@@ -56,39 +56,46 @@ namespace Optimist
       }
 
       /**
-      * Get the function name.
-      * \return The function name.
-      */
+       * Get the function name.
+       * \return The function name.
+       */
       std::string name_impl() const {return "Booth";}
 
       /**
-      * Compute the function value at the input point.
-      * \param[in] x Input point.
-      * \param[out] out The function value.
-      */
-      void evaluate_impl(const Vector & x, Vector & out) const
+       * Compute the function value at the input point.
+       * \param[in] x Input point.
+       * \param[out] out The function value.
+       * \return The boolean flag for successful evaluation.
+       */
+      bool evaluate_impl(Vector const & x, Vector & out) const
       {
         out << x(0) + 2.0*x(1) - 7.0, 2.0*x(0) + x(1) - 5.0;
-      }
-      /**
-      * Compute the first derivative value at the input point.
-      * \param[in] x Input point.
-      * \param[out] out The first derivative value.
-      */
-      void first_derivative_impl(const Vector & /*x*/, Matrix & out) const
-      {
-        out << 1.0, 2.0, 2.0, 1.0;
+        return out.allFinite();
       }
 
       /**
-      * Compute the second derivative value at the input point.
-      * \param[in] x Input point.
-      * \param[out] out The second derivative value.
-      */
-      void second_derivative_impl(const Vector & /*x*/, Tensor & out) const
+       * Compute the first derivative value at the input point.
+       * \param[in] x Input point.
+       * \param[out] out The first derivative value.
+       * \return The boolean flag for successful evaluation.
+       */
+      bool first_derivative_impl(Vector const & /*x*/, Matrix & out) const
+      {
+        out << 1.0, 2.0, 2.0, 1.0;
+        return out.allFinite();
+      }
+
+      /**
+       * Compute the second derivative value at the input point.
+       * \param[in] x Input point.
+       * \param[out] out The second derivative value.
+       * \return The boolean flag for successful evaluation.
+       */
+      bool second_derivative_impl(Vector const & /*x*/, Tensor & out) const
       {
         out.resize(this->output_dimension());
         std::for_each(out.begin(), out.end(), [] (Matrix& m) {m.setZero();});
+        return true;
       }
 
     }; // class Booth

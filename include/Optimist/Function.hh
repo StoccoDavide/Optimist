@@ -28,22 +28,22 @@ namespace Optimist
   \*/
 
   /**
-  * \brief Class container for the generic function.
-  *
-  * \includedoc docs/markdown/FunctionBase.md
-  *
-  * \tparam Real Scalar number type.
-  * \tparam FunInDim The function problem input dimension.
-  * \tparam FunOutDim The function problem output dimension.
-  * \tparam DerivedFunction Derived function class.
-  * \tparam ForceEigen Force the use of Eigen types for input and output.
-  */
+   * \brief Class container for the generic function.
+   *
+   * \includedoc docs/markdown/FunctionBase.md
+   *
+   * \tparam Real Scalar number type.
+   * \tparam FunInDim The function problem input dimension.
+   * \tparam FunOutDim The function problem output dimension.
+   * \tparam DerivedFunction Derived function class.
+   * \tparam ForceEigen Force the use of Eigen types for input and output.
+   */
   template <typename Real, Integer FunInDim, Integer FunOutDim, typename DerivedFunction, bool ForceEigen = false>
   class FunctionBase
   {
   public:
     // Fancy static assertios (just for fun, don't take it too seriously)
-    static_assert(FunInDim > static_cast<Integer>(0) && FunOutDim > static_cast<Integer>(0),
+    static_assert(FunInDim > 0 && FunOutDim > 0,
       "Negative-dimensional function? Are you serious?");
 
     OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
@@ -64,91 +64,94 @@ namespace Optimist
 
   public:
     /**
-    * Class constructor for the function.
-    */
+     * Class constructor for the function.
+     */
     FunctionBase() {}
 
     /**
-    * Get the function name.
-    * \return The function name.
-    */
+     * Get the function name.
+     * \return The function name.
+     */
     std::string name() const {return static_cast<const DerivedFunction *>(this)->name();};
 
     /**
-    * Compute the function value at the input point.
-    * \param[in] x Input point.
-    * \param[out] out The function value.
-    */
-    void evaluate(const InputType & x, OutputType & out) const
+     * Compute the function value at the input point.
+     * \param[in] x Input point.
+     * \param[out] out The function value.
+     * \return The boolean flag for successful evaluation.
+     */
+    bool evaluate(const InputType & x, OutputType & out) const
     {
-      static_cast<const DerivedFunction *>(this)->evaluate_impl(x, out);
+      return static_cast<const DerivedFunction *>(this)->evaluate_impl(x, out);
     }
 
     /**
-    * Compute the function first derivative at the input point.
-    * \param[in] x Input point.
-    * \param[out] out The function first derivative.
-    */
-    void first_derivative(const InputType & x, FirstDerivativeType & out) const
+     * Compute the function first derivative at the input point.
+     * \param[in] x Input point.
+     * \param[out] out The function first derivative.
+     * \return The boolean flag for successful evaluation.
+     */
+    bool first_derivative(const InputType & x, FirstDerivativeType & out) const
     {
-      static_cast<const DerivedFunction *>(this)->first_derivative_impl(x, out);
+      return static_cast<const DerivedFunction *>(this)->first_derivative_impl(x, out);
     }
 
     /**
-    * Compute the function second derivative at the input point.
-    * \param[in] x Input point.
-    * \param[out] out The function second derivative.
-    */
-    void second_derivative(const InputType & x, SecondDerivativeType & out) const
+     * Compute the function second derivative at the input point.
+     * \param[in] x Input point.
+     * \param[out] out The function second derivative.
+     * \return The boolean flag for successful evaluation.
+     */
+    bool second_derivative(const InputType & x, SecondDerivativeType & out) const
     {
-      static_cast<const DerivedFunction *>(this)->second_derivative_impl(x, out);
+      return static_cast<const DerivedFunction *>(this)->second_derivative_impl(x, out);
     }
 
     /**
-    * Get the input dimension of the function.
-    * \return The input dimension of the function.
-    */
+     * Get the input dimension of the function.
+     * \return The input dimension of the function.
+     */
     constexpr Integer input_dimension() const {return FunInDim;}
 
     /**
-    * Get the output dimension of the function.
-    * \return The output dimension of the function.
-    */
+     * Get the output dimension of the function.
+     * \return The output dimension of the function.
+     */
     constexpr Integer output_dimension() const {return FunOutDim;}
 
     /**
-    * Get the vector of known solutions.
-    * \return The vector of known solutions.
-    */
+     * Get the vector of known solutions.
+     * \return The vector of known solutions.
+     */
     const std::vector<InputType> & solutions() const {return this->m_solutions;}
 
     /**
-    * Get the vector of initial guesses.
-    * \return The vector of initial guesses.
-    */
+     * Get the vector of initial guesses.
+     * \return The vector of initial guesses.
+     */
     const std::vector<InputType> & guesses() const {return this->m_guesses;}
 
     /**
-    * Retrieve the known solution at the index.
-    * \param[in] i The index of the known solution.
-    * \return The known solution.
-    */
-    const InputType & solution(const Integer i) const {return this->m_solutions.at(i);}
+     * Retrieve the known solution at the index.
+     * \param[in] i The index of the known solution.
+     * \return The known solution.
+     */
+    const InputType & solution(Integer const i) const {return this->m_solutions.at(i);}
 
     /**
-    * Retrieve the initial guess at the index.
-    * \param[in] i The index of the initial guess.
-    * \return The initial guess.
-    */
-    const InputType & guess(const Integer i) const {return this->m_guesses.at(i);}
+     * Retrieve the initial guess at the index.
+     * \param[in] i The index of the initial guess.
+     * \return The initial guess.
+     */
+    const InputType & guess(Integer const i) const {return this->m_guesses.at(i);}
 
     /**
-    * Check if the input point is a known solution.
-    * \param[in] x Input point.
-    * \param[in] tol Tolerance.
-    * \return True if the input point is a known solution, false otherwise.
-    */
-    bool is_solution(const InputType & x, const Real tol = EPSILON_LOW) const
+     * Check if the input point is a known solution.
+     * \param[in] x Input point.
+     * \param[in] tol Tolerance.
+     * \return True if the input point is a known solution, false otherwise.
+     */
+    bool is_solution(const InputType & x, Real const tol = EPSILON_LOW) const
     {
       for (const auto & s : this->m_solutions) {
         if constexpr (ForceEigen || FunInDim > 1) {
@@ -186,7 +189,7 @@ namespace Optimist
     friend class FunctionBase<Real, N, M, Function<Real, N, M, DerivedFunction, ForceEigen>>;
 
     // Fancy static assertions (just for fun, don't take it too seriously)
-    static_assert(N != static_cast<Integer>(0) && M != static_cast<Integer>(0),
+    static_assert(N != 0 && M != 0,
       "Are you sure you want to a zero-dimensional system of equations?");
 
     // I/O types
@@ -198,44 +201,47 @@ namespace Optimist
     using Tensor = typename FunctionBase<Real, N, M, DerivedFunction, ForceEigen>::SecondDerivativeType; /**< Hessian tensor type. */
 
     /**
-    * Class constructor for the vector-valued function.
-    */
+     * Class constructor for the vector-valued function.
+     */
     Function() {}
 
     /**
-    * Get the function name.
-    * \return The function name.
-    */
+     * Get the function name.
+     * \return The function name.
+     */
     std::string name() const {return static_cast<const DerivedFunction *>(this)->name_impl();}
 
     /**
-    * Compute the function value at the input point.
-    * \param[in] x Input point.
-    * \param[out] out The function value.
-    */
-    void evaluate(const InputVector & x, OutputVector & out) const
+     * Compute the function value at the input point.
+     * \param[in] x Input point.
+     * \param[out] out The function value.
+     * \return The boolean flag for successful evaluation.
+     */
+    bool evaluate(const InputVector & x, OutputVector & out) const
     {
-      static_cast<const DerivedFunction *>(this)->evaluate_impl(x, out);
+      return static_cast<const DerivedFunction *>(this)->evaluate_impl(x, out);
     }
 
     /**
-    * Compute the function first derivative at the input point.
-    * \param[in] x Input point.
-    * \param[out] out The function first derivative.
-    */
-    void jacobian(const InputVector & x, Matrix & out) const
+     * Compute the function first derivative at the input point.
+     * \param[in] x Input point.
+     * \param[out] out The function first derivative.
+     * \return The boolean flag for successful evaluation.
+     */
+    bool jacobian(const InputVector & x, Matrix & out) const
     {
-      static_cast<const DerivedFunction *>(this)->first_derivative_impl(x, out);
+      return static_cast<const DerivedFunction *>(this)->first_derivative_impl(x, out);
     }
 
     /**
-    * Compute the function second derivative at the input point.
-    * \param[in] x Input point.
-    * \param[out] out The function second derivative.
-    */
-    void hessian(const InputVector & x, Tensor & out) const
+     * Compute the function second derivative at the input point.
+     * \param[in] x Input point.
+     * \param[out] out The function second derivative.
+     * \return The boolean flag for successful evaluation.
+     */
+    bool hessian(const InputVector & x, Tensor & out) const
     {
-      static_cast<const DerivedFunction *>(this)->second_derivative_impl(x, out);
+      return static_cast<const DerivedFunction *>(this)->second_derivative_impl(x, out);
     }
 
   }; // class Function
@@ -243,12 +249,12 @@ namespace Optimist
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
   /**
-  * \brief Class container for the cost function.
-  *
-  * \tparam N The dimension of the cost function input.
-  * \tparam DerivedFunction Derived cost function class.
-  * \tparam ForceEigen Force the use of Eigen types for input and output.
-  */
+   * \brief Class container for the cost function.
+   *
+   * \tparam N The dimension of the cost function input.
+   * \tparam DerivedFunction Derived cost function class.
+   * \tparam ForceEigen Force the use of Eigen types for input and output.
+   */
   template <typename Real, Integer N, typename DerivedFunction>
   class Function<Real, N, 1, DerivedFunction> : public FunctionBase<Real, N, 1, DerivedFunction>
   {
@@ -256,7 +262,7 @@ namespace Optimist
     friend class FunctionBase<Real, N, 1, Function<Real, N, 1, DerivedFunction>>;
 
     // Fancy static assertions (just for fun, don't take it too seriously)
-    static_assert(N != static_cast<Integer>(0),
+    static_assert(N != 0,
       "Are you sure you want to a zero-dimensional system of equations?");
 
     // I/O types
@@ -267,44 +273,47 @@ namespace Optimist
     using Matrix    = typename FunctionBase<Real, N, 1, DerivedFunction>::SecondDerivativeType; /**< Hessian matrix type. */
 
     /**
-    * Class constructor for the function.
-    */
+     * Class constructor for the function.
+     */
     Function<Real, N, 1, DerivedFunction>() {}
 
     /**
-    * Get the function name.
-    * \return The function name.
-    */
+     * Get the function name.
+     * \return The function name.
+     */
     std::string name() const {return static_cast<const DerivedFunction *>(this)->name_impl();}
 
     /**
-    * Compute the function value at the input point.
-    * \param[in] x Input point.
-    * \param[out] out The function value.
-    */
-    void evaluate(const Vector & x, Vector & out) const
+     * Compute the function value at the input point.
+     * \param[in] x Input point.
+     * \param[out] out The function value.
+     * \return The boolean flag for successful evaluation.
+     */
+    bool evaluate(Vector const & x, Vector & out) const
     {
-      static_cast<const DerivedFunction *>(this)->evaluate_impl(x, out);
+      return static_cast<const DerivedFunction *>(this)->evaluate_impl(x, out);
     }
 
     /**
-    * Compute the function first derivative at the input point.
-    * \param[in] x Input point.
-    * \param[out] out The function first derivative.
-    */
-    void gradient(const Vector & x, RowVector & out) const
+     * Compute the function first derivative at the input point.
+     * \param[in] x Input point.
+     * \param[out] out The function first derivative.
+     * \return The boolean flag for successful evaluation.
+     */
+    bool gradient(Vector const & x, RowVector & out) const
     {
-      static_cast<const DerivedFunction *>(this)->first_derivative_impl(x, out);
+      return static_cast<const DerivedFunction *>(this)->first_derivative_impl(x, out);
     }
 
     /**
-    * Compute the function second derivative at the input point.
-    * \param[in] x Input point.
-    * \param[out] out The function second derivative.
-    */
-    void hessian(const Vector & x, Matrix & out) const
+     * Compute the function second derivative at the input point.
+     * \param[in] x Input point.
+     * \param[out] out The function second derivative.
+     * \return The boolean flag for successful evaluation.
+     */
+    bool hessian(Vector const & x, Matrix & out) const
     {
-      static_cast<const DerivedFunction *>(this)->second_derivative_impl(x, out);
+      return static_cast<const DerivedFunction *>(this)->second_derivative_impl(x, out);
     }
 
   }; // class Function
@@ -324,44 +333,47 @@ namespace Optimist
     friend class FunctionBase<Real, 1, 1, Function<Real, 1, 1, DerivedFunction>>;
 
     /**
-    * Class constructor for the function.
-    */
+     * Class constructor for the function.
+     */
     Function<Real, 1, 1, DerivedFunction>() {}
 
     /**
-    * Get the function name.
-    * \return The function name.
-    */
+     * Get the function name.
+     * \return The function name.
+     */
     std::string name() const {return static_cast<const DerivedFunction *>(this)->name_impl();}
 
     /**
-    * Compute the function value at the input point.
-    * \param[in] x Input point.
-    * \param[out] out The function value.
-    */
-    void evaluate(Real x, Real & out) const
+     * Compute the function value at the input point.
+     * \param[in] x Input point.
+     * \param[out] out The function value.
+     * \return The boolean flag for successful evaluation.
+     */
+    bool evaluate(Real x, Real & out) const
     {
-      static_cast<const DerivedFunction *>(this)->evaluate_impl(x, out);
+      return static_cast<const DerivedFunction *>(this)->evaluate_impl(x, out);
     }
 
     /**
-    * Compute the function first derivative at the input point.
-    * \param[in] x Input point.
-    * \param[out] out The function first derivative.
-    */
-    void first_derivative(Real x, Real & out) const
+     * Compute the function first derivative at the input point.
+     * \param[in] x Input point.
+     * \param[out] out The function first derivative.
+     * \return The boolean flag for successful evaluation.
+     */
+    bool first_derivative(Real x, Real & out) const
     {
-      static_cast<const DerivedFunction *>(this)->first_derivative_impl(x, out);
+      return static_cast<const DerivedFunction *>(this)->first_derivative_impl(x, out);
     }
 
     /**
-    * Compute the function second derivative at the input point.
-    * \param[in] x Input point.
-    * \param[out] out The function second derivative.
-    */
-    void second_derivative(Real x, Real & out) const
+     * Compute the function second derivative at the input point.
+     * \param[in] x Input point.
+     * \param[out] out The function second derivative.
+     * \return The boolean flag for successful evaluation.
+     */
+    bool second_derivative(Real x, Real & out) const
     {
-      static_cast<const DerivedFunction *>(this)->second_derivative_impl(x, out);
+      return static_cast<const DerivedFunction *>(this)->second_derivative_impl(x, out);
     }
 
   }; // class Function
