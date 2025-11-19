@@ -44,7 +44,7 @@ namespace Optimist
       static_assert(N > 0 && N % 2 == 0, "please use an even number of dimensions");
 
     public:
-      OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
+      OPTIMIST_BASIC_CONSTANTS(Real)
 
       using Vector = typename Function<Real, N, N, Rosenbrock<Real, N>>::InputVector;
       using typename Function<Real, N, N, Rosenbrock<Real, N>>::Matrix;

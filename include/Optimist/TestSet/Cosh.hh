@@ -36,7 +36,7 @@ namespace Optimist
     class Cosh : public Function<Real, 1, 1, Cosh<Real>>
     {
     public:
-      OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
+      OPTIMIST_BASIC_CONSTANTS(Real)
 
       /**
        * Class constructor for the hyperbolic cosine function.

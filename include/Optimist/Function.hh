@@ -46,21 +46,24 @@ namespace Optimist
     static_assert(FunInDim > 0 && FunOutDim > 0,
       "Negative-dimensional function? Are you serious?");
 
-    OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
+    OPTIMIST_BASIC_CONSTANTS(Real)
 
     // I/O types
-    using InputType  = typename std::conditional_t<ForceEigen || (FunInDim > 1),  Eigen::Vector<Real, FunInDim>, Real>;  /**< Input type. */
-    using OutputType = typename std::conditional_t<ForceEigen || (FunOutDim > 1), Eigen::Vector<Real, FunOutDim>, Real>; /**< Output type. */
+    using InputType  = typename std::conditional_t<ForceEigen || (FunInDim > 1),
+      Eigen::Vector<Real, FunInDim>, Real>;
+    using OutputType = typename std::conditional_t<ForceEigen || (FunOutDim > 1),
+      Eigen::Vector<Real, FunOutDim>, Real>;
 
     // Derivative types
-    using FirstDerivativeType  = std::conditional_t<ForceEigen || (FunInDim > 1) || (FunOutDim > 1), Eigen::Matrix<Real, FunOutDim, FunInDim>, Real>; /**< First derivative type. */
+    using FirstDerivativeType  = std::conditional_t<ForceEigen || (FunInDim > 1) || (FunOutDim > 1),
+      Eigen::Matrix<Real, FunOutDim, FunInDim>, Real>;
     using SecondDerivativeType = std::conditional_t<ForceEigen || (FunInDim > 1) || (FunOutDim > 1),
       std::conditional_t<FunInDim == 1 || FunOutDim == 1, Eigen::Matrix<Real, FunInDim, FunInDim>,
-      std::vector<Eigen::Matrix<Real, FunInDim, FunInDim>>>, Real>;  /**< Second derivative type. */
+      std::vector<Eigen::Matrix<Real, FunInDim, FunInDim>>>, Real>;
 
   protected:
-    std::vector<InputType> m_solutions; /** Known solutions used for test purposes. */
-    std::vector<InputType> m_guesses;   /** Suggested initial guess used for testing. */
+    std::vector<InputType> m_solutions; /**< Known solutions used for test purposes. */
+    std::vector<InputType> m_guesses;   /**< Suggested initial guess used for testing. */
 
   public:
     /**
@@ -193,12 +196,12 @@ namespace Optimist
       "Are you sure you want to a zero-dimensional system of equations?");
 
     // I/O types
-    using InputVector = typename FunctionBase<Real, N, M, DerivedFunction, ForceEigen>::InputType; /**< Input vector type. */
-    using OutputVector = typename FunctionBase<Real, N, M, DerivedFunction, ForceEigen>::OutputType; /**< Output vector type. */
+    using InputVector = typename FunctionBase<Real, N, M, DerivedFunction, ForceEigen>::InputType;
+    using OutputVector = typename FunctionBase<Real, N, M, DerivedFunction, ForceEigen>::OutputType;
 
     // Derivative types
-    using Matrix = typename FunctionBase<Real, N, M, DerivedFunction, ForceEigen>::FirstDerivativeType;  /**< Jacobian matrix type. */
-    using Tensor = typename FunctionBase<Real, N, M, DerivedFunction, ForceEigen>::SecondDerivativeType; /**< Hessian tensor type. */
+    using Matrix = typename FunctionBase<Real, N, M, DerivedFunction, ForceEigen>::FirstDerivativeType;
+    using Tensor = typename FunctionBase<Real, N, M, DerivedFunction, ForceEigen>::SecondDerivativeType;
 
     /**
      * Class constructor for the vector-valued function.
@@ -266,11 +269,11 @@ namespace Optimist
       "Are you sure you want to a zero-dimensional system of equations?");
 
     // I/O types
-    using Vector = typename FunctionBase<Real, N, 1, DerivedFunction>::InputType; /**< Vector type. */
+    using Vector = typename FunctionBase<Real, N, 1, DerivedFunction>::InputType;
 
     // Derivative types
-    using RowVector = typename FunctionBase<Real, N, 1, DerivedFunction>::FirstDerivativeType;  /**< Gradient (row) vector type. */
-    using Matrix    = typename FunctionBase<Real, N, 1, DerivedFunction>::SecondDerivativeType; /**< Hessian matrix type. */
+    using RowVector = typename FunctionBase<Real, N, 1, DerivedFunction>::FirstDerivativeType;
+    using Matrix    = typename FunctionBase<Real, N, 1, DerivedFunction>::SecondDerivativeType;
 
     /**
      * Class constructor for the function.

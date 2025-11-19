@@ -47,7 +47,7 @@ namespace Optimist
     static_assert(SolInDim > 0 && SolOutDim > 0,
       "Negative-dimensional optimization problem? Are you serious?");
 
-    OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
+    OPTIMIST_BASIC_CONSTANTS(Real)
 
   protected:
     // I/O types

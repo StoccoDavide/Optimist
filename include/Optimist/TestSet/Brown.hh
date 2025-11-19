@@ -39,7 +39,7 @@ namespace Optimist
       Real m_a{1.0e-6}; /**< Scaling value (keep it low to guarantee bad scaling). */
 
     public:
-      OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
+      OPTIMIST_BASIC_CONSTANTS(Real)
 
       using typename Function<Real, 2, 3, Brown<Real>>::InputVector;
       using typename Function<Real, 2, 3, Brown<Real>>::OutputVector;

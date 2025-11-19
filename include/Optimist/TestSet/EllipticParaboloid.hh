@@ -39,7 +39,7 @@ namespace Optimist
       Real m_b{1.0}; /**< Coefficient \f$ b \f$. */
 
     public:
-      OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
+      OPTIMIST_BASIC_CONSTANTS(Real)
 
       using typename Function<Real, 2, 1, EllipticParaboloid<Real>>::Vector;
       using typename Function<Real, 2, 1, EllipticParaboloid<Real>>::RowVector;

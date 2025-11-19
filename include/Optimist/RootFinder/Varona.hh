@@ -44,7 +44,7 @@ namespace Optimist
       static constexpr bool requires_first_derivative{true};
       static constexpr bool requires_second_derivative{false};
 
-      OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
+      OPTIMIST_BASIC_CONSTANTS(Real)
 
       // Function types
       using Method = enum class Method : Integer {ORDER_4 = 41, ORDER_8 = 8, ORDER_16 = 16, ORDER_32 = 32}; /**< Varona solver type. */

@@ -40,7 +40,7 @@ namespace Optimist
     class Bracketing : public RootFinder<Real, 1, DerivedSolver>
     {
     public:
-      OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
+      OPTIMIST_BASIC_CONSTANTS(Real)
 
       // Function types
       using typename RootFinder<Real, 1, DerivedSolver>::FunctionWrapper;

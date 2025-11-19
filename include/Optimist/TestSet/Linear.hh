@@ -43,7 +43,7 @@ namespace Optimist
       Real m_q{1.0}; /**< Coefficient \f$ q \f$. */
 
     public:
-      OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
+      OPTIMIST_BASIC_CONSTANTS(Real)
 
       /**
        * Class constructor for the linear function.

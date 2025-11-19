@@ -45,7 +45,7 @@ namespace Optimist
       static constexpr bool requires_first_derivative{true};
       static constexpr bool requires_second_derivative{false};
 
-      OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
+      OPTIMIST_BASIC_CONSTANTS(Real)
 
       using Method = enum class Method : Integer {ONE = 1, TWO = 2}; /**< Greenstadt solver type. */
       using typename QuasiNewton<Real, N, Greenstadt<Real, N>>::Vector;

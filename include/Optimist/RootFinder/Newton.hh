@@ -45,7 +45,7 @@ namespace Optimist
       static constexpr bool requires_first_derivative{true};
       static constexpr bool requires_second_derivative{false};
 
-      OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
+      OPTIMIST_BASIC_CONSTANTS(Real)
 
       using typename RootFinder<Real, N, Newton<Real, N>, true>::Vector;
       using typename RootFinder<Real, N, Newton<Real, N>, true>::Matrix;

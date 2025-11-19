@@ -37,7 +37,7 @@ namespace Optimist
     class Sin : public Function<Real, 1, 1, Sin<Real>>
     {
     public:
-      OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
+      OPTIMIST_BASIC_CONSTANTS(Real)
 
       /**
        * Class constructor for the sine function.

@@ -40,7 +40,7 @@ namespace Optimist
       using typename Function<Real, 2, 1, Schaffer2<Real>>::RowVector;
       using typename Function<Real, 2, 1, Schaffer2<Real>>::Matrix;
 
-      OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
+      OPTIMIST_BASIC_CONSTANTS(Real)
 
       /**
        * Class constructor for the Schaffer2 function.

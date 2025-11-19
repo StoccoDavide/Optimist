@@ -54,14 +54,14 @@ namespace Optimist
       static constexpr bool is_rootfinder{false};
       static constexpr bool is_optimizer{true};
 
-      OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
+      OPTIMIST_BASIC_CONSTANTS(Real)
 
       // I/O types
-      using Vector = typename SolverBase<Real, N, 1, DerivedSolver, ForceEigen>::InputType; /**< Vector type. */
+      using Vector = typename SolverBase<Real, N, 1, DerivedSolver, ForceEigen>::InputType;
 
       // Derivative types
-      using RowVector = typename SolverBase<Real, N, 1, DerivedSolver, ForceEigen>::FirstDerivativeType;  /**< Gradient (row) vector type. */
-      using Matrix    = typename SolverBase<Real, N, 1, DerivedSolver, ForceEigen>::SecondDerivativeType; /**< Hessian matrix type. */
+      using RowVector = typename SolverBase<Real, N, 1, DerivedSolver, ForceEigen>::FirstDerivativeType;
+      using Matrix    = typename SolverBase<Real, N, 1, DerivedSolver, ForceEigen>::SecondDerivativeType;
 
       // Function types
       using typename SolverBase<Real, N, 1, DerivedSolver, ForceEigen>::FunctionWrapper;
@@ -229,7 +229,7 @@ namespace Optimist
       static constexpr bool is_rootfinder{false};
       static constexpr bool is_optimizer{true};
 
-      OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
+      OPTIMIST_BASIC_CONSTANTS(Real)
 
       using typename SolverBase<Real, 1, 1, DerivedSolver>::FunctionWrapper;
       using typename SolverBase<Real, 1, 1, DerivedSolver>::FirstDerivativeWrapper;

@@ -48,7 +48,7 @@ namespace Optimist
       Real m_c{-1.0}; /**< Coefficient \f$c\f$. */
 
     public:
-      OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
+      OPTIMIST_BASIC_CONSTANTS(Real)
 
       /**
        * Class constructor for the quadratic function.

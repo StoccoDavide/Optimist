@@ -36,7 +36,7 @@ namespace Optimist
     class Sinh : public Function<Real, 1, 1, Sinh<Real>>
     {
     public:
-      OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
+      OPTIMIST_BASIC_CONSTANTS(Real)
 
       /**
        * Class constructor for the hyperbolic sine function.

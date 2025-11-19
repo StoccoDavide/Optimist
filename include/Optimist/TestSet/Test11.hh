@@ -34,7 +34,7 @@ namespace Optimist
     class Test11 : public Function<Real, 1, 1, Test11<Real>, true>
     {
     public:
-      OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
+      OPTIMIST_BASIC_CONSTANTS(Real)
 
       using Vector = typename Function<Real, 1, 1, Test11<Real>, true>::InputVector;
       using typename Function<Real, 1, 1, Test11<Real>, true>::Matrix;

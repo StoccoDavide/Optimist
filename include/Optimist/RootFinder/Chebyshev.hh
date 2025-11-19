@@ -44,7 +44,7 @@ namespace Optimist
       static constexpr bool requires_first_derivative{true};
       static constexpr bool requires_second_derivative{true};
 
-      OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
+      OPTIMIST_BASIC_CONSTANTS(Real)
 
       // Function types
       using typename RootFinder<Real, 1, Chebyshev<Real>>::FunctionWrapper;

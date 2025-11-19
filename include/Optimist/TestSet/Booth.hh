@@ -36,7 +36,7 @@ namespace Optimist
     class Booth : public Function<Real, 2, 2, Booth<Real>>
     {
     public:
-      OPTIMIST_BASIC_CONSTANTS(Real) /**< Basic constants. */
+      OPTIMIST_BASIC_CONSTANTS(Real)
 
       using Vector = typename Function<Real, 2, 2, Booth<Real>>::InputVector;
       using typename Function<Real, 2, 2, Booth<Real>>::Matrix;
