@@ -1,12 +1,9 @@
 var class_optimist_1_1_root_finder_1_1_bracketing =
 [
-    [ "FirstDerivativeWrapper", "class_optimist_1_1_root_finder_1_1_bracketing.html#a7f5af798e80b9641db2d6d656e9ada01", null ],
-    [ "FunctionWrapper", "class_optimist_1_1_root_finder_1_1_bracketing.html#a280e14273472f1b072ba93c83e38e16b", null ],
-    [ "SecondDerivativeWrapper", "class_optimist_1_1_root_finder_1_1_bracketing.html#ac94ecf3d3f46b3eaae4146b274896177", null ],
     [ "Bracketing", "class_optimist_1_1_root_finder_1_1_bracketing.html#aa1b309dc3f95f0b6425b077e936a3130", null ],
-    [ "find_root", "class_optimist_1_1_root_finder_1_1_bracketing.html#a5c7e74bdd6253d086a51fc296ba362e4", null ],
+    [ "find_root", "class_optimist_1_1_root_finder_1_1_bracketing.html#ad46fd2da3344bfd02f7443d80b073d78", null ],
     [ "name_impl", "class_optimist_1_1_root_finder_1_1_bracketing.html#a73ddde0424895b8563002a3cdd9be319", null ],
-    [ "solve_impl", "class_optimist_1_1_root_finder_1_1_bracketing.html#abf9830016879bfbd0f347db083af94f0", null ],
+    [ "solve_impl", "class_optimist_1_1_root_finder_1_1_bracketing.html#a686d9cc9f5337fbf94a9c38221585afe", null ],
     [ "tolerance_bracketing", "class_optimist_1_1_root_finder_1_1_bracketing.html#abedc90c8caa0ac9d35e7a1024ac2b850", null ],
     [ "m_a", "class_optimist_1_1_root_finder_1_1_bracketing.html#a98439d0d50758d1f9424e57fa9dc9376", null ],
     [ "m_b", "class_optimist_1_1_root_finder_1_1_bracketing.html#a1a5ab65f9e31f9b8cb2380685a8eccdc", null ],
@@ -20,8 +17,5 @@ var class_optimist_1_1_root_finder_1_1_bracketing =
     [ "m_fe", "class_optimist_1_1_root_finder_1_1_bracketing.html#aa570ce13c65b004a115b52b339d00a30", null ],
     [ "m_interval_shink", "class_optimist_1_1_root_finder_1_1_bracketing.html#ac0b752739001f1ea51e64d348bbaa1a6", null ],
     [ "m_mu", "class_optimist_1_1_root_finder_1_1_bracketing.html#aa513305163dcd978c121313ddfc1956e", null ],
-    [ "m_tolerance_bracketing", "class_optimist_1_1_root_finder_1_1_bracketing.html#ac5fe8d2f62e3cfd7a1b58cb80b610268", null ],
-    [ "requires_first_derivative", "class_optimist_1_1_root_finder_1_1_bracketing.html#ad1dc98bb6312242d394c6abd6c917421", null ],
-    [ "requires_function", "class_optimist_1_1_root_finder_1_1_bracketing.html#a9bd4f3e0e587f6525197458a33c8476c", null ],
-    [ "requires_second_derivative", "class_optimist_1_1_root_finder_1_1_bracketing.html#afa6ffeacaa950f143f1e973ae7957eb6", null ]
+    [ "m_tolerance_bracketing", "class_optimist_1_1_root_finder_1_1_bracketing.html#ac5fe8d2f62e3cfd7a1b58cb80b610268", null ]
 ];

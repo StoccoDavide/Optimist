@@ -46,11 +46,10 @@ namespace Optimist
 
       OPTIMIST_BASIC_CONSTANTS(Real)
 
-      // Function types
-      using Method = enum class Method : Integer {ORDER_4 = 41, ORDER_8 = 8, ORDER_16 = 16, ORDER_32 = 32}; /**< Varona solver type. */
-      using typename RootFinder<Real, 1, Varona<Real>>::FunctionWrapper;
-      using typename RootFinder<Real, 1, Varona<Real>>::FirstDerivativeWrapper;
-      using typename RootFinder<Real, 1, Varona<Real>>::SecondDerivativeWrapper;
+      /**
+       * Varona solver type enumeration.
+       */
+      using Method = enum class Method : Integer {ORDER_4 = 41, ORDER_8 = 8, ORDER_16 = 16, ORDER_32 = 32};
 
     private:
       Method m_method{Method::ORDER_4}; /**< Varona solver type. */
@@ -118,13 +117,16 @@ namespace Optimist
 
       /**
        * Solve the nonlinear equation \f$ f(x) = 0 \f$, with \f$ f: \mathbb{R} \rightarrow \mathbb{R} \f$.
-       * \param[in] function Function wrapper.
-       * \param[in] first_derivative First derivative wrapper.
+       * \tparam FunctionLambda Function lambda type.
+       * \tparam FirstDerivativeLambda First derivative lambda type.
+       * \param[in] function Function lambda.
+       * \param[in] first_derivative First derivative lambda.
        * \param[in] x_ini Initialization point.
        * \param[out] x_sol Solution point.
        * \return The convergence boolean flag.
        */
-      bool solve_impl(FunctionWrapper function, FirstDerivativeWrapper first_derivative, Real x_ini,
+      template <typename FunctionLambda, typename FirstDerivativeLambda>
+      bool solve_impl(FunctionLambda && function, FirstDerivativeLambda && first_derivative, Real x_ini,
         Real & x_sol)
       {
         #define CMD "Optimist::RootFinder::Varona::solve(...): "
@@ -143,7 +145,7 @@ namespace Optimist
 
         // Set initial iteration
         x_old = x_ini;
-        success = this->evaluate_function(function, x_old, function_old);
+        success = this->evaluate_function(std::forward<FunctionLambda>(function), x_old, function_old);
         OPTIMIST_ASSERT_WARNING(success,
           CMD "function evaluation failed at the initial point.");
 
@@ -156,7 +158,7 @@ namespace Optimist
           this->store_trace(x_old);
 
           // Evaluate first derivative
-          success = this->evaluate_first_derivative(first_derivative, x_old, first_derivative_old);
+          success = this->evaluate_first_derivative(std::forward<FirstDerivativeLambda>(first_derivative), x_old, first_derivative_old);
           OPTIMIST_ASSERT_WARNING(success,
             CMD "first derivative evaluation failed at iteration " << this->m_iterations << ".");
 
@@ -166,7 +168,7 @@ namespace Optimist
             first_derivative_old = (first_derivative_old > 0.0) ? EPSILON_LOW : -EPSILON_LOW;
           }
 
-          this->compute_step(function, x_old, function_old, first_derivative_old, step_old);
+          this->compute_step(std::forward<FunctionLambda>(function), x_old, function_old, first_derivative_old, step_old);
 
           // Check convergence
           residuals = std::abs(function_old);
@@ -179,12 +181,12 @@ namespace Optimist
 
           if (this->m_damped) {
             // Relax the iteration process
-            damped = this->damp(function, x_old, function_old, step_old, x_new, function_new, step_new);
+            damped = this->damp(std::forward<FunctionLambda>(function), x_old, function_old, step_old, x_new, function_new, step_new);
             OPTIMIST_ASSERT_WARNING(damped, CMD "damping failed.");
           } else {
             // Update point
             x_new = x_old + step_old;
-            success = this->evaluate_function(function, x_new, function_new);
+            success = this->evaluate_function(std::forward<FunctionLambda>(function), x_new, function_new);
             OPTIMIST_ASSERT_WARNING(success,
               CMD "function evaluation failed at iteration " << this->m_iterations << ".");
           }
@@ -209,13 +211,14 @@ namespace Optimist
 
       /**
        * Compute the step using the Varona's methods.
-       * \param[in] function Function wrapper.
+       * \param[in] function Function lambda.
        * \param[in] x_old Old point.
        * \param[in] function_old Old function value.
        * \param[in] first_derivative_old Old first derivative value.
        * \param[out] step_old Old step.
        */
-      void compute_step(FunctionWrapper function, Real x_old, Real function_old, Real first_derivative_old,
+      template <typename FunctionLambda>
+      void compute_step(FunctionLambda && function, Real x_old, Real function_old, Real first_derivative_old,
         Real & step_old)
       {
         #define CMD "Optimist::RootFinder::Varona::compute_step(...): "
@@ -230,7 +233,7 @@ namespace Optimist
         // Order 4 step
         if (this->m_method == Method::ORDER_4 || this->m_method == Method::ORDER_8 ||
             this->m_method == Method::ORDER_16 || this->m_method == Method::ORDER_32) {
-          success = this->evaluate_function(function, x_old+step_old, function_y);
+          success = this->evaluate_function(std::forward<FunctionLambda>(function), x_old+step_old, function_y);
           OPTIMIST_ASSERT_WARNING(success,
             CMD "function evaluation failed during order 4 step.");
           if (std::abs(function_y) < tolerance_residuals) {return;}
@@ -243,7 +246,7 @@ namespace Optimist
         // Order 8 step (continued order 4)
         if (this->m_method == Method::ORDER_8 || this->m_method == Method::ORDER_16 ||
             this->m_method == Method::ORDER_32) {
-          success = this->evaluate_function(function, x_old+step_old, function_z);
+          success = this->evaluate_function(std::forward<FunctionLambda>(function), x_old+step_old, function_z);
           OPTIMIST_ASSERT_WARNING(success,
             CMD "function evaluation failed during order 8 step.");
           if (std::abs(function_z) < tolerance_residuals) {return;}
@@ -255,7 +258,7 @@ namespace Optimist
 
         // Order 16 step (continued order 8)
         if (this->m_method == Method::ORDER_16 || this->m_method == Method::ORDER_32) {
-          success = this->evaluate_function(function, x_old+step_old, function_w);
+          success = this->evaluate_function(std::forward<FunctionLambda>(function), x_old+step_old, function_w);
           OPTIMIST_ASSERT_WARNING(success,
             CMD "function evaluation failed during order 16 step.");
           if (std::abs(function_w) < tolerance_residuals) {return;}
@@ -267,7 +270,7 @@ namespace Optimist
 
         // Order 32 step (continued order 16)
         if (this->m_method == Method::ORDER_32) {
-          success = this->evaluate_function(function, x_old+step_old, function_h);
+          success = this->evaluate_function(std::forward<FunctionLambda>(function), x_old+step_old, function_h);
           OPTIMIST_ASSERT_WARNING(success,
             CMD "function evaluation failed during order 32 step.");
           if (std::abs(function_h) < tolerance_residuals) {return;}

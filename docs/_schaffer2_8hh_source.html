@@ -162,11 +162,11 @@ $(function(){initNavTree('_schaffer2_8hh_source.html','',''); });
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="class_optimist_1_1_test_set_1_1_schaffer2.html">   36</a></span>    <span class="keyword">class </span><a class="code hl_function" href="class_optimist_1_1_test_set_1_1_schaffer2.html#ae126752bad12fe8352208b2ac441756e">Schaffer2</a> : <span class="keyword">public</span> <a class="code hl_function" href="class_optimist_1_1_function.html#ac0e97a5073c54328d9d321d4227efa1b">Function</a>&lt;Real, 2, 1, Schaffer2&lt;Real&gt;&gt;</div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    {</div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="class_optimist_1_1_test_set_1_1_schaffer2.html#ac2011b51f644f3c145c2fd56e90e4126">   39</a></span>      <span class="keyword">using </span><a class="code hl_typedef" href="class_optimist_1_1_test_set_1_1_schaffer2.html#ac2011b51f644f3c145c2fd56e90e4126">Vector</a>    = <span class="keyword">typename</span> <a class="code hl_function" href="class_optimist_1_1_function.html#ac0e97a5073c54328d9d321d4227efa1b">Function&lt;Real, 2, 1, Schaffer2&lt;Real&gt;</a>&gt;<a class="code hl_typedef" href="class_optimist_1_1_test_set_1_1_schaffer2.html#ac2011b51f644f3c145c2fd56e90e4126">::Vector</a>;</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="class_optimist_1_1_test_set_1_1_schaffer2.html#a5b8eeb65cb625239ae23f8446001ff27">   40</a></span>      <span class="keyword">using </span><a class="code hl_typedef" href="class_optimist_1_1_test_set_1_1_schaffer2.html#a5b8eeb65cb625239ae23f8446001ff27">RowVector</a> = <span class="keyword">typename</span> <a class="code hl_function" href="class_optimist_1_1_function.html#ac0e97a5073c54328d9d321d4227efa1b">Function&lt;Real, 2, 1, Schaffer2&lt;Real&gt;</a>&gt;<a class="code hl_typedef" href="class_optimist_1_1_test_set_1_1_schaffer2.html#a5b8eeb65cb625239ae23f8446001ff27">::RowVector</a>;</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="class_optimist_1_1_test_set_1_1_schaffer2.html#ad06be7cf31fd4bfa658917dfb3181fc4">   41</a></span>      <span class="keyword">using </span><a class="code hl_typedef" href="class_optimist_1_1_test_set_1_1_schaffer2.html#ad06be7cf31fd4bfa658917dfb3181fc4">Matrix</a>    = <span class="keyword">typename</span> <a class="code hl_function" href="class_optimist_1_1_function.html#ac0e97a5073c54328d9d321d4227efa1b">Function&lt;Real, 2, 1, Schaffer2&lt;Real&gt;</a>&gt;<a class="code hl_typedef" href="class_optimist_1_1_test_set_1_1_schaffer2.html#ad06be7cf31fd4bfa658917dfb3181fc4">::Matrix</a>;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>      <span class="keyword">using </span>typename <a class="code hl_function" href="class_optimist_1_1_function.html#ac0e97a5073c54328d9d321d4227efa1b">Function&lt;Real, 2, 1, Schaffer2&lt;Real&gt;</a>&gt;::Vector;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>      <span class="keyword">using </span>typename <a class="code hl_function" href="class_optimist_1_1_function.html#ac0e97a5073c54328d9d321d4227efa1b">Function&lt;Real, 2, 1, Schaffer2&lt;Real&gt;</a>&gt;::RowVector;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>      <span class="keyword">using </span>typename <a class="code hl_function" href="class_optimist_1_1_function.html#ac0e97a5073c54328d9d321d4227efa1b">Function&lt;Real, 2, 1, Schaffer2&lt;Real&gt;</a>&gt;<a class="code hl_typedef" href="class_optimist_1_1_function.html#ac8fa000b593c906fc1216401bf367f0a">::Matrix</a>;</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>      <a class="code hl_define" href="_optimist_8hh.html#ae253c9ddafd61510dd54fa18b038c8a7">OPTIMIST_BASIC_CONSTANTS</a>(Real) </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>      <a class="code hl_define" href="_optimist_8hh.html#ae253c9ddafd61510dd54fa18b038c8a7">OPTIMIST_BASIC_CONSTANTS</a>(Real)</div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>      </div>
 <div class="foldopen" id="foldopen00048" data-start="{" data-end="}">
@@ -183,75 +183,76 @@ $(function(){initNavTree('_schaffer2_8hh_source.html','',''); });
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span></div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="class_optimist_1_1_test_set_1_1_schaffer2.html#ab63ce65bcf9e1d20c697a00e232e08c4">   62</a></span>      std::string <a class="code hl_function" href="class_optimist_1_1_test_set_1_1_schaffer2.html#ab63ce65bcf9e1d20c697a00e232e08c4">name_impl</a>()<span class="keyword"> const </span>{<span class="keywordflow">return</span> <span class="stringliteral">&quot;Schaffer2&quot;</span>;}</div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span></div>
-<div class="foldopen" id="foldopen00069" data-start="{" data-end="}">
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="class_optimist_1_1_test_set_1_1_schaffer2.html#a8daae9c2df49bff2f0419dfd84f90123">   69</a></span>      <span class="keywordtype">void</span> <a class="code hl_function" href="class_optimist_1_1_test_set_1_1_schaffer2.html#a8daae9c2df49bff2f0419dfd84f90123">evaluate_impl</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="class_optimist_1_1_test_set_1_1_schaffer2.html#ac2011b51f644f3c145c2fd56e90e4126">Vector</a> &amp; x, Real &amp; out)<span class="keyword"> const</span></div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="keyword">      </span>{</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        Real xx_0{x(0)*x(0)};</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        Real xx_1{x(1)*x(1)};</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        Real xx_0_m_xx_1{xx_0 - xx_1};</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        Real xx_0_p_xx_1{xx_0 + xx_1};</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        out = 0.5 + (std::sin(xx_0_m_xx_1)*std::sin(xx_0_m_xx_1) - 0.5) /</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>          ((1.0 + 0.001*(xx_0_p_xx_1))*(1.0 + 0.001*(xx_0_p_xx_1)));</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>      }</div>
+<div class="foldopen" id="foldopen00070" data-start="{" data-end="}">
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="class_optimist_1_1_test_set_1_1_schaffer2.html#ad28486a3b5309ead37acfeb6cdfaf4a9">   70</a></span>      <span class="keywordtype">bool</span> <a class="code hl_function" href="class_optimist_1_1_test_set_1_1_schaffer2.html#ad28486a3b5309ead37acfeb6cdfaf4a9">evaluate_impl</a>(Vector <span class="keyword">const</span> &amp; x, Real &amp; out)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="keyword">      </span>{</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        Real xx_0{x(0)*x(0)};</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        Real xx_1{x(1)*x(1)};</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        Real xx_0_m_xx_1{xx_0 - xx_1};</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        Real xx_0_p_xx_1{xx_0 + xx_1};</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        out = 0.5 + (std::sin(xx_0_m_xx_1)*std::sin(xx_0_m_xx_1) - 0.5) /</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>          ((1.0 + 0.001*(xx_0_p_xx_1))*(1.0 + 0.001*(xx_0_p_xx_1)));</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        <span class="keywordflow">return</span> std::isfinite(out);</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>      }</div>
 </div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span></div>
-<div class="foldopen" id="foldopen00084" data-start="{" data-end="}">
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="class_optimist_1_1_test_set_1_1_schaffer2.html#a10b420a1b84c6dab93a2a25b4a5e3c7a">   84</a></span>      <span class="keywordtype">void</span> <a class="code hl_function" href="class_optimist_1_1_test_set_1_1_schaffer2.html#a10b420a1b84c6dab93a2a25b4a5e3c7a">first_derivative_impl</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="class_optimist_1_1_test_set_1_1_schaffer2.html#ac2011b51f644f3c145c2fd56e90e4126">Vector</a> &amp; x, <a class="code hl_typedef" href="class_optimist_1_1_test_set_1_1_schaffer2.html#a5b8eeb65cb625239ae23f8446001ff27">RowVector</a> &amp; out)<span class="keyword"> const</span></div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span><span class="keyword">      </span>{</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        Real xx_0{x(0)*x(0)};</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        Real xx_1{x(1)*x(1)};</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        Real xx_0_m_xx_1{xx_0 - xx_1};</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        Real xx_0_p_xx_1{xx_0 + xx_1};</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        Real tmp{1.0 + 0.001*(xx_0_p_xx_1)};</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        Real tmp2{tmp*tmp}, tmp3{tmp2*tmp};</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        out(0) = 2.0*x(0)*std::sin(xx_0_m_xx_1) / tmp2 -</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>          2.0*0.001*x(0)*std::cos(xx_0_m_xx_1) / tmp3;</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        out(1) = -2.0*x(1)*std::sin(xx_0_m_xx_1) / tmp2 +</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>          2.0*0.001*x(1)*std::cos(xx_0_m_xx_1) / tmp3;</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>      }</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span></div>
+<div class="foldopen" id="foldopen00087" data-start="{" data-end="}">
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="class_optimist_1_1_test_set_1_1_schaffer2.html#a23fc6d7c11526e35cb2909129185c16c">   87</a></span>      <span class="keywordtype">bool</span> <a class="code hl_function" href="class_optimist_1_1_test_set_1_1_schaffer2.html#a23fc6d7c11526e35cb2909129185c16c">first_derivative_impl</a>(Vector <span class="keyword">const</span> &amp; x, RowVector &amp; out)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="keyword">      </span>{</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        Real xx_0{x(0)*x(0)};</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        Real xx_1{x(1)*x(1)};</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        Real xx_0_m_xx_1{xx_0 - xx_1};</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        Real xx_0_p_xx_1{xx_0 + xx_1};</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        Real tmp{1.0 + 0.001*(xx_0_p_xx_1)};</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        Real tmp2{tmp*tmp}, tmp3{tmp2*tmp};</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        out(0) = 2.0*x(0)*std::sin(xx_0_m_xx_1) / tmp2 -</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>          2.0*0.001*x(0)*std::cos(xx_0_m_xx_1) / tmp3;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        out(1) = -2.0*x(1)*std::sin(xx_0_m_xx_1) / tmp2 +</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>          2.0*0.001*x(1)*std::cos(xx_0_m_xx_1) / tmp3;</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        <span class="keywordflow">return</span> out.allFinite();</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>      }</div>
 </div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span></div>
-<div class="foldopen" id="foldopen00103" data-start="{" data-end="}">
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="class_optimist_1_1_test_set_1_1_schaffer2.html#aa353fe19b753a2094516a9ee5dfc27b2">  103</a></span>      <span class="keywordtype">void</span> <a class="code hl_function" href="class_optimist_1_1_test_set_1_1_schaffer2.html#aa353fe19b753a2094516a9ee5dfc27b2">second_derivative_impl</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="class_optimist_1_1_test_set_1_1_schaffer2.html#ac2011b51f644f3c145c2fd56e90e4126">Vector</a> &amp; x, <a class="code hl_typedef" href="class_optimist_1_1_test_set_1_1_schaffer2.html#ad06be7cf31fd4bfa658917dfb3181fc4">Matrix</a> &amp; out)<span class="keyword"> const</span></div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span><span class="keyword">      </span>{</div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>        Real xx_0{x(0)*x(0)};</div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>        Real xx_1{x(1)*x(1)};</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>        Real xx_0_m_xx_1{xx_0 - xx_1};</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>        Real xx_0_p_xx_1{xx_0 + xx_1};</div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>        Real tmp{1.0 + 0.001*(xx_0_p_xx_1)};</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>        Real tmp2{tmp*tmp}, tmp3{tmp2*tmp}, tmp4{tmp2*tmp2};</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        out(0, 0) = 2.0*std::sin(xx_0_m_xx_1) / tmp2 -</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>          4.0*x(0)*x(0)*std::sin(xx_0_m_xx_1) / tmp3 +</div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>          6.0*0.001*x(0)*x(0)*std::cos(xx_0_m_xx_1) / tmp4;</div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>        out(0, 1) = -2.0*x(0)*x(1)*std::sin(xx_0_m_xx_1) / tmp3 +</div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>          6.0*0.001*x(0)*x(1)*std::cos(xx_0_m_xx_1) / tmp4;</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>        out(1, 0) = out(0, 1);</div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>        out(1, 1) = 2.0*std::sin(xx_0_m_xx_1) / tmp2 -</div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>          4.0*x(1)*x(1)*std::sin(xx_0_m_xx_1) / tmp3 +</div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>          6.0*0.001*x(1)*x(1)*std::cos(xx_0_m_xx_1) / tmp4;</div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>      }</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span></div>
+<div class="foldopen" id="foldopen00108" data-start="{" data-end="}">
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno"><a class="line" href="class_optimist_1_1_test_set_1_1_schaffer2.html#a58d6944752a6625db46d4cdc5c9e5c1f">  108</a></span>      <span class="keywordtype">bool</span> <a class="code hl_function" href="class_optimist_1_1_test_set_1_1_schaffer2.html#a58d6944752a6625db46d4cdc5c9e5c1f">second_derivative_impl</a>(Vector <span class="keyword">const</span> &amp; x, <a class="code hl_typedef" href="class_optimist_1_1_function.html#ac8fa000b593c906fc1216401bf367f0a">Matrix</a> &amp; out)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span><span class="keyword">      </span>{</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>        Real xx_0{x(0)*x(0)};</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        Real xx_1{x(1)*x(1)};</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>        Real xx_0_m_xx_1{xx_0 - xx_1};</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>        Real xx_0_p_xx_1{xx_0 + xx_1};</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>        Real tmp{1.0 + 0.001*(xx_0_p_xx_1)};</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>        Real tmp2{tmp*tmp}, tmp3{tmp2*tmp}, tmp4{tmp2*tmp2};</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>        out(0, 0) = 2.0*std::sin(xx_0_m_xx_1) / tmp2 -</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>          4.0*x(0)*x(0)*std::sin(xx_0_m_xx_1) / tmp3 +</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>          6.0*0.001*x(0)*x(0)*std::cos(xx_0_m_xx_1) / tmp4;</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>        out(0, 1) = -2.0*x(0)*x(1)*std::sin(xx_0_m_xx_1) / tmp3 +</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>          6.0*0.001*x(0)*x(1)*std::cos(xx_0_m_xx_1) / tmp4;</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>        out(1, 0) = out(0, 1);</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>        out(1, 1) = 2.0*std::sin(xx_0_m_xx_1) / tmp2 -</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>          4.0*x(1)*x(1)*std::sin(xx_0_m_xx_1) / tmp3 +</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>          6.0*0.001*x(1)*x(1)*std::cos(xx_0_m_xx_1) / tmp4;</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>        <span class="keywordflow">return</span> out.allFinite();</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>      }</div>
 </div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    }; <span class="comment">// class Schaffer2</span></div>
-</div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>  } <span class="comment">// namespace TestSet</span></div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> </div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>} <span class="comment">// namespace Optimist</span></div>
 <div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span><span class="preprocessor">#endif </span><span class="comment">// OPTIMIST_TESTSET_SCHAFFER2_HH</span></div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    }; <span class="comment">// class Schaffer2</span></div>
+</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>  } <span class="comment">// namespace TestSet</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span> </div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>} <span class="comment">// namespace Optimist</span></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span> </div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span><span class="preprocessor">#endif </span><span class="comment">// OPTIMIST_TESTSET_SCHAFFER2_HH</span></div>
 <div class="ttc" id="a_optimist_8hh_html_ae253c9ddafd61510dd54fa18b038c8a7"><div class="ttname"><a href="_optimist_8hh.html#ae253c9ddafd61510dd54fa18b038c8a7">OPTIMIST_BASIC_CONSTANTS</a></div><div class="ttdeci">#define OPTIMIST_BASIC_CONSTANTS(Real)</div><div class="ttdef"><b>Definition</b> Optimist.hh:71</div></div>
 <div class="ttc" id="a_test_set_8hh_html"><div class="ttname"><a href="_test_set_8hh.html">TestSet.hh</a></div></div>
-<div class="ttc" id="aclass_optimist_1_1_function_base_html_a4c14fb709fa956a3ffa40f27fd8d3fa0"><div class="ttname"><a href="class_optimist_1_1_function_base.html#a4c14fb709fa956a3ffa40f27fd8d3fa0">Optimist::FunctionBase&lt; Real, N, M, Schaffer2&lt; Real &gt;, false &gt;::m_guesses</a></div><div class="ttdeci">std::vector&lt; InputType &gt; m_guesses</div><div class="ttdef"><b>Definition</b> Function.hh:63</div></div>
-<div class="ttc" id="aclass_optimist_1_1_function_base_html_a5e11c4345423f681b8fcd9d6fdbb14f1"><div class="ttname"><a href="class_optimist_1_1_function_base.html#a5e11c4345423f681b8fcd9d6fdbb14f1">Optimist::FunctionBase&lt; Real, N, M, Schaffer2&lt; Real &gt;, false &gt;::m_solutions</a></div><div class="ttdeci">std::vector&lt; InputType &gt; m_solutions</div><div class="ttdef"><b>Definition</b> Function.hh:62</div></div>
-<div class="ttc" id="aclass_optimist_1_1_function_html_ac0e97a5073c54328d9d321d4227efa1b"><div class="ttname"><a href="class_optimist_1_1_function.html#ac0e97a5073c54328d9d321d4227efa1b">Optimist::Function&lt; Real, 2, 1, Schaffer2&lt; Real &gt; &gt;::Function</a></div><div class="ttdeci">Function()</div><div class="ttdef"><b>Definition</b> Function.hh:203</div></div>
-<div class="ttc" id="aclass_optimist_1_1_test_set_1_1_schaffer2_html_a10b420a1b84c6dab93a2a25b4a5e3c7a"><div class="ttname"><a href="class_optimist_1_1_test_set_1_1_schaffer2.html#a10b420a1b84c6dab93a2a25b4a5e3c7a">Optimist::TestSet::Schaffer2::first_derivative_impl</a></div><div class="ttdeci">void first_derivative_impl(const Vector &amp;x, RowVector &amp;out) const</div><div class="ttdef"><b>Definition</b> Schaffer2.hh:84</div></div>
-<div class="ttc" id="aclass_optimist_1_1_test_set_1_1_schaffer2_html_a5b8eeb65cb625239ae23f8446001ff27"><div class="ttname"><a href="class_optimist_1_1_test_set_1_1_schaffer2.html#a5b8eeb65cb625239ae23f8446001ff27">Optimist::TestSet::Schaffer2::RowVector</a></div><div class="ttdeci">typename Function&lt; Real, 2, 1, Schaffer2&lt; Real &gt; &gt;::RowVector RowVector</div><div class="ttdef"><b>Definition</b> Schaffer2.hh:40</div></div>
-<div class="ttc" id="aclass_optimist_1_1_test_set_1_1_schaffer2_html_a8daae9c2df49bff2f0419dfd84f90123"><div class="ttname"><a href="class_optimist_1_1_test_set_1_1_schaffer2.html#a8daae9c2df49bff2f0419dfd84f90123">Optimist::TestSet::Schaffer2::evaluate_impl</a></div><div class="ttdeci">void evaluate_impl(const Vector &amp;x, Real &amp;out) const</div><div class="ttdef"><b>Definition</b> Schaffer2.hh:69</div></div>
-<div class="ttc" id="aclass_optimist_1_1_test_set_1_1_schaffer2_html_aa353fe19b753a2094516a9ee5dfc27b2"><div class="ttname"><a href="class_optimist_1_1_test_set_1_1_schaffer2.html#aa353fe19b753a2094516a9ee5dfc27b2">Optimist::TestSet::Schaffer2::second_derivative_impl</a></div><div class="ttdeci">void second_derivative_impl(const Vector &amp;x, Matrix &amp;out) const</div><div class="ttdef"><b>Definition</b> Schaffer2.hh:103</div></div>
+<div class="ttc" id="aclass_optimist_1_1_function_base_html_a4c14fb709fa956a3ffa40f27fd8d3fa0"><div class="ttname"><a href="class_optimist_1_1_function_base.html#a4c14fb709fa956a3ffa40f27fd8d3fa0">Optimist::FunctionBase&lt; Real, N, M, Schaffer2&lt; Real &gt;, false &gt;::m_guesses</a></div><div class="ttdeci">std::vector&lt; InputType &gt; m_guesses</div><div class="ttdef"><b>Definition</b> Function.hh:66</div></div>
+<div class="ttc" id="aclass_optimist_1_1_function_base_html_a5e11c4345423f681b8fcd9d6fdbb14f1"><div class="ttname"><a href="class_optimist_1_1_function_base.html#a5e11c4345423f681b8fcd9d6fdbb14f1">Optimist::FunctionBase&lt; Real, N, M, Schaffer2&lt; Real &gt;, false &gt;::m_solutions</a></div><div class="ttdeci">std::vector&lt; InputType &gt; m_solutions</div><div class="ttdef"><b>Definition</b> Function.hh:65</div></div>
+<div class="ttc" id="aclass_optimist_1_1_function_html_ac0e97a5073c54328d9d321d4227efa1b"><div class="ttname"><a href="class_optimist_1_1_function.html#ac0e97a5073c54328d9d321d4227efa1b">Optimist::Function&lt; Real, 2, 1, Schaffer2&lt; Real &gt; &gt;::Function</a></div><div class="ttdeci">Function()</div><div class="ttdef"><b>Definition</b> Function.hh:209</div></div>
+<div class="ttc" id="aclass_optimist_1_1_function_html_ac8fa000b593c906fc1216401bf367f0a"><div class="ttname"><a href="class_optimist_1_1_function.html#ac8fa000b593c906fc1216401bf367f0a">Optimist::Function&lt; Real, 2, 1, Schaffer2&lt; Real &gt; &gt;::Matrix</a></div><div class="ttdeci">typename FunctionBase&lt; Real, N, M, Schaffer2&lt; Real &gt;, false &gt;::FirstDerivativeType Matrix</div><div class="ttdef"><b>Definition</b> Function.hh:203</div></div>
+<div class="ttc" id="aclass_optimist_1_1_test_set_1_1_schaffer2_html_a23fc6d7c11526e35cb2909129185c16c"><div class="ttname"><a href="class_optimist_1_1_test_set_1_1_schaffer2.html#a23fc6d7c11526e35cb2909129185c16c">Optimist::TestSet::Schaffer2::first_derivative_impl</a></div><div class="ttdeci">bool first_derivative_impl(Vector const &amp;x, RowVector &amp;out) const</div><div class="ttdef"><b>Definition</b> Schaffer2.hh:87</div></div>
+<div class="ttc" id="aclass_optimist_1_1_test_set_1_1_schaffer2_html_a58d6944752a6625db46d4cdc5c9e5c1f"><div class="ttname"><a href="class_optimist_1_1_test_set_1_1_schaffer2.html#a58d6944752a6625db46d4cdc5c9e5c1f">Optimist::TestSet::Schaffer2::second_derivative_impl</a></div><div class="ttdeci">bool second_derivative_impl(Vector const &amp;x, Matrix &amp;out) const</div><div class="ttdef"><b>Definition</b> Schaffer2.hh:108</div></div>
 <div class="ttc" id="aclass_optimist_1_1_test_set_1_1_schaffer2_html_ab63ce65bcf9e1d20c697a00e232e08c4"><div class="ttname"><a href="class_optimist_1_1_test_set_1_1_schaffer2.html#ab63ce65bcf9e1d20c697a00e232e08c4">Optimist::TestSet::Schaffer2::name_impl</a></div><div class="ttdeci">std::string name_impl() const</div><div class="ttdef"><b>Definition</b> Schaffer2.hh:62</div></div>
-<div class="ttc" id="aclass_optimist_1_1_test_set_1_1_schaffer2_html_ac2011b51f644f3c145c2fd56e90e4126"><div class="ttname"><a href="class_optimist_1_1_test_set_1_1_schaffer2.html#ac2011b51f644f3c145c2fd56e90e4126">Optimist::TestSet::Schaffer2::Vector</a></div><div class="ttdeci">typename Function&lt; Real, 2, 1, Schaffer2&lt; Real &gt; &gt;::Vector Vector</div><div class="ttdef"><b>Definition</b> Schaffer2.hh:39</div></div>
-<div class="ttc" id="aclass_optimist_1_1_test_set_1_1_schaffer2_html_ad06be7cf31fd4bfa658917dfb3181fc4"><div class="ttname"><a href="class_optimist_1_1_test_set_1_1_schaffer2.html#ad06be7cf31fd4bfa658917dfb3181fc4">Optimist::TestSet::Schaffer2::Matrix</a></div><div class="ttdeci">typename Function&lt; Real, 2, 1, Schaffer2&lt; Real &gt; &gt;::Matrix Matrix</div><div class="ttdef"><b>Definition</b> Schaffer2.hh:41</div></div>
+<div class="ttc" id="aclass_optimist_1_1_test_set_1_1_schaffer2_html_ad28486a3b5309ead37acfeb6cdfaf4a9"><div class="ttname"><a href="class_optimist_1_1_test_set_1_1_schaffer2.html#ad28486a3b5309ead37acfeb6cdfaf4a9">Optimist::TestSet::Schaffer2::evaluate_impl</a></div><div class="ttdeci">bool evaluate_impl(Vector const &amp;x, Real &amp;out) const</div><div class="ttdef"><b>Definition</b> Schaffer2.hh:70</div></div>
 <div class="ttc" id="aclass_optimist_1_1_test_set_1_1_schaffer2_html_ae126752bad12fe8352208b2ac441756e"><div class="ttname"><a href="class_optimist_1_1_test_set_1_1_schaffer2.html#ae126752bad12fe8352208b2ac441756e">Optimist::TestSet::Schaffer2::Schaffer2</a></div><div class="ttdeci">Schaffer2()</div><div class="ttdef"><b>Definition</b> Schaffer2.hh:48</div></div>
 <div class="ttc" id="anamespace_optimist_html"><div class="ttname"><a href="namespace_optimist.html">Optimist</a></div><div class="ttdoc">Namespace for the Optimist library.</div><div class="ttdef"><b>Definition</b> Optimist.hh:88</div></div>
 </div><!-- fragment --></div><!-- contents -->

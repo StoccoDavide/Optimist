@@ -49,9 +49,6 @@ namespace Optimist
 
       using typename RootFinder<Real, N, Newton<Real, N>, true>::Vector;
       using typename RootFinder<Real, N, Newton<Real, N>, true>::Matrix;
-      using typename RootFinder<Real, N, Newton<Real, N>, true>::FunctionWrapper;
-      using typename RootFinder<Real, N, Newton<Real, N>, true>::JacobianWrapper;
-      using RootFinder<Real, N, Newton<Real, N>, true>::solve;
 
     private:
       Eigen::FullPivLU<Matrix> m_lu; /**< LU decomposition. */
@@ -71,13 +68,17 @@ namespace Optimist
       /**
        * Solve the nonlinear system of equations \f$ \mathbf{f}(\mathbf{x}) = 0 \f$, with \f$
        * \mathbf{f}: \mathbb{R}^n \rightarrow \mathbb{R}^n \f$.
-       * \param[in] function Function wrapper.
-       * \param[in] jacobian Jacobian wrapper.
+       * \tparam FunctionLambda Function lambda type.
+       * \tparam JacobianLambda Jacobian lambda type.
+       * \param[in] function Function lambda.
+       * \param[in] jacobian Jacobian lambda.
        * \param[in] x_ini Initialization point.
        * \param[out] x_sol Solution point.
        * \return The convergence boolean flag.
        */
-      bool solve_impl(FunctionWrapper function, JacobianWrapper jacobian, Vector const & x_ini, Vector & x_sol)
+      template <typename FunctionLambda, typename JacobianLambda>
+      bool solve_impl(FunctionLambda && function, JacobianLambda && jacobian, Vector const & x_ini,
+        Vector & x_sol)
       {
         #define CMD "Optimist::RootFinder::Newton::solve(...): "
 
@@ -95,7 +96,7 @@ namespace Optimist
 
         // Set initial iteration
         x_old = x_ini;
-        success = this->evaluate_function(function, x_old, function_old);
+        success = this->evaluate_function(std::forward<FunctionLambda>(function), x_old, function_old);
         OPTIMIST_ASSERT_WARNING(success,
           CMD "function evaluation failed at the initial point.");
 
@@ -128,13 +129,13 @@ namespace Optimist
           if (this->m_damped)
           {
             // Relax the iteration process
-            damped = this->damp(function, x_old, function_old, step_old, x_new, function_new, step_new);
+            damped = this->damp(std::forward<FunctionLambda>(function), x_old, function_old, step_old, x_new, function_new, step_new);
             OPTIMIST_ASSERT_WARNING(damped,
               "Optimist::RootFinder::Newton::solve(...): damping failed.");
           } else {
             // Update point
             x_new = x_old + step_old;
-            success = this->evaluate_function(function, x_new, function_new);
+            success = this->evaluate_function(std::forward<FunctionLambda>(function), x_new, function_new);
             OPTIMIST_ASSERT_WARNING(success,
               CMD "function evaluation failed at iteration " << this->m_iterations << ".");
           }

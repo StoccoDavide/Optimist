@@ -96,7 +96,8 @@ var hierarchy =
     ] ],
     [ "Optimist::SolverBase< Real, N, 1, PatternSearch< Real, N >, ForceEigen >", "class_optimist_1_1_solver_base.html", [
       [ "Optimist::Optimizer::Optimizer< Real, N, PatternSearch< Real, N >, true >", "class_optimist_1_1_optimizer_1_1_optimizer.html", [
-        [ "Optimist::Optimizer::PatternSearch< Real >", "class_optimist_1_1_optimizer_1_1_pattern_search.html", null ]
+        [ "Optimist::Optimizer::PatternSearch< Real, N >", "class_optimist_1_1_optimizer_1_1_pattern_search.html", null ],
+        [ "Optimist::Optimizer::PatternSearch< Real, N >", "class_optimist_1_1_optimizer_1_1_pattern_search.html", null ]
       ] ]
     ] ],
     [ "Optimist::SolverBase< Real, N, N, Algo748< Real >, false >", "class_optimist_1_1_solver_base.html", [

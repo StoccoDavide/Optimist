@@ -41,18 +41,15 @@ namespace Optimist
     class QuasiNewton : public RootFinder<Real, N, DerivedSolver, true>
     {
     public:
-      static constexpr bool requires_function{true};
-      static constexpr bool requires_first_derivative{true};
-      static constexpr bool requires_second_derivative{false};
-
       OPTIMIST_BASIC_CONSTANTS(Real)
 
-      using Method = enum class Method : Integer {GOOD = 0, BAD = 1, COMBINED = 2}; /**< QuasiNewton solver type. */
       using typename RootFinder<Real, N, DerivedSolver, true>::Vector;
       using typename RootFinder<Real, N, DerivedSolver, true>::Matrix;
-      using typename RootFinder<Real, N, DerivedSolver, true>::FunctionWrapper;
-      using typename RootFinder<Real, N, DerivedSolver, true>::JacobianWrapper;
-      using RootFinder<Real, N, DerivedSolver, true>::solve;
+
+      /**
+       * QuasiNewton solver type enumeration.
+       */
+      using Method = enum class Method : Integer {GOOD = 0, BAD = 1, COMBINED = 2};
 
     private:
       Method m_method{Method::COMBINED}; /**< QuasiNewton solver type. */
@@ -75,13 +72,16 @@ namespace Optimist
       /**
        * Solve the nonlinear system of equations \f$ \mathbf{f}(\mathbf{x}) = 0 \f$, with \f$
        * \mathbf{f}: \mathbb{R}^n \rightarrow \mathbb{R}^n \f$.
-       * \param[in] function Function wrapper.
-       * \param[in] jacobian Jacobian wrapper.
+       * \tparam FunctionLambda Function lambda type.
+       * \tparam JacobianLambda Jacobian lambda type.
+       * \param[in] function Function lambda.
+       * \param[in] jacobian Jacobian lambda.
        * \param[in] x_ini Initialization point.
        * \param[out] x_sol Solution point.
        * \return The convergence boolean flag.
        */
-      bool solve_impl(FunctionWrapper function, JacobianWrapper jacobian, Vector const & x_ini,
+      template <typename FunctionLambda, typename JacobianLambda>
+      bool solve_impl(FunctionLambda && function, JacobianLambda && jacobian, Vector const & x_ini,
         Vector & x_sol)
       {
         #define CMD "Optimist::RootFinder::QuasiNewton::solve(...): "
@@ -101,7 +101,7 @@ namespace Optimist
 
         // Set initial iteration
         x_old = x_ini;
-        success = this->evaluate_function(function, x_old, function_old);
+        success = this->evaluate_function(std::forward<FunctionLambda>(function), x_old, function_old);
         OPTIMIST_ASSERT_WARNING(success,
           CMD "function evaluation failed at the initial point.");
         success = this->evaluate_jacobian(jacobian, x_old, jacobian_old);
@@ -131,13 +131,13 @@ namespace Optimist
           if (this->m_damped)
           {
             // Relax the iteration process
-            damped = this->damp(function, x_old, function_old, step_old, x_new, function_new, step_new);
+            damped = this->damp(std::forward<FunctionLambda>(function), x_old, function_old, step_old, x_new, function_new, step_new);
             OPTIMIST_ASSERT_WARNING(damped,
               "Optimist::RootFinder::QuasiNewton::solve(...): damping failed.");
           } else {
             // Update point
             x_new = x_old + step_old;
-            success = this->evaluate_function(function, x_new, function_new);
+            success = this->evaluate_function(std::forward<FunctionLambda>(function), x_new, function_new);
             OPTIMIST_ASSERT_WARNING(success,
               CMD "function evaluation failed at iteration " << this->m_iterations << ".");
           }

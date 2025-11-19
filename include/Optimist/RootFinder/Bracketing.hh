@@ -42,11 +42,6 @@ namespace Optimist
     public:
       OPTIMIST_BASIC_CONSTANTS(Real)
 
-      // Function types
-      using typename RootFinder<Real, 1, DerivedSolver>::FunctionWrapper;
-      using typename RootFinder<Real, 1, DerivedSolver>::FirstDerivativeWrapper;
-      using typename RootFinder<Real, 1, DerivedSolver>::SecondDerivativeWrapper;
-
     protected:
       Real m_tolerance_bracketing{100*EPSILON}; /**< Tolerance for the Algorithm 748 solver. */
       Real m_mu{0.5}; /**< Parameter \f$ \mu \f$. */
@@ -82,12 +77,14 @@ namespace Optimist
 
       /**
        * Solve the nonlinear equation \f$ f(x) = 0 \f$, with \f$ f: \mathbb{R} \rightarrow \mathbb{R} \f$.
-       * \param[in] function Function wrapper.
+       * \tparam FunctionLambda The lambda function type.
+       * \param[in] function Function lambda.
        * \param[in] x_ini Initialization point (not used).
        * \param[out] x_sol Solution point.
        * \return The convergence boolean flag.
        */
-      bool solve_impl(FunctionWrapper function, Real /*x_ini*/, Real & x_sol)
+      template <typename FunctionLambda>
+      bool solve_impl(FunctionLambda && function, Real /*x_ini*/, Real & x_sol)
       {
         #define CMD "Optimist::ScalarRootfinder::Bracketing::solve_impl(...): "
 
@@ -100,18 +97,18 @@ namespace Optimist
 
         // Initialize variables
         this->m_a = this->m_lower_bound;
-        success = this->evaluate_function(function, this->m_a, this->m_fa);
+        success = this->evaluate_function(std::forward<FunctionLambda>(function), this->m_a, this->m_fa);
         OPTIMIST_ASSERT_WARNING(success,
           CMD "function evaluation failed at the lower bound.");
 
         this->m_b = this->m_upper_bound;
-        success = this->evaluate_function(function, this->m_b, this->m_fb);
+        success = this->evaluate_function(std::forward<FunctionLambda>(function), this->m_b, this->m_fb);
         OPTIMIST_ASSERT_WARNING(success,
           CMD "function evaluation failed at the upper bound.");
 
         // Check if the solution exists
         if (this->m_fa*this->m_fb > 0.0) {return false;}
-        else {x_sol = this->find_root(function);}
+        else {x_sol = this->find_root(std::forward<FunctionLambda>(function));}
 
         // Print bottom
         if (this->m_verbose) {this->bottom();}
@@ -125,12 +122,14 @@ namespace Optimist
       /**
        * Finds either an exact solution or an approximate solution of the equation \f$f(x) = 0\f$ in
        * the interval \f$[a, b]\f$.
-       * \param[in] function Function wrapper.
+       * \tparam FunctionLambda The lambda function type.
+       * \param[in] function Function lambda.
        * \return The approximate root.
        */
-      Real find_root(FunctionWrapper function)
+      template <typename FunctionLambda>
+      Real find_root(FunctionLambda && function)
       {
-        return static_cast<DerivedSolver *>(this)->find_root_impl(function);
+        return static_cast<DerivedSolver *>(this)->find_root_impl(std::forward<FunctionLambda>(function));
       }
 
     }; // class Bracketing

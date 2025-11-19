@@ -48,11 +48,6 @@ namespace Optimist
 
       OPTIMIST_BASIC_CONSTANTS(Real)
 
-      // Function types
-      using typename RootFinder<Real, 1, Chandrupatla>::FunctionWrapper;
-      using typename RootFinder<Real, 1, Chandrupatla>::FirstDerivativeWrapper;
-      using typename RootFinder<Real, 1, Chandrupatla>::SecondDerivativeWrapper;
-
       /**
        * Class constructor for the Algorithm 748.
        */
@@ -67,11 +62,13 @@ namespace Optimist
       /**
        * Finds either an exact solution or an approximate solution of the equation \f$f(x) = 0\f$ in
        * the interval \f$[a, b]\f$.
-       * \param[in] function Function wrapper.
+       * \tparam FunctionLambda Function lambda type.
+       * \param[in] function Function lambda.
        * \return The approximate root.
        */
-      Real find_root_impl(FunctionWrapper function) {
-
+      template <typename FunctionLambda>
+      Real find_root_impl(FunctionLambda && function)
+      {
         #define CMD "Optimist::ScalarRootfinder::Chandrupatla::find_root_impl(...): "
 
         bool success;
@@ -90,7 +87,7 @@ namespace Optimist
         while (!(std::isfinite(this->m_fa) && std::isfinite(this->m_fb))) {
           ++this->m_iterations;
           this->m_c  = (this->m_a + this->m_b)/2.0;
-          success = this->evaluate_function(function, this->m_c, this->m_fc);
+          success = this->evaluate_function(std::forward<FunctionLambda>(function), this->m_c, this->m_fc);
           OPTIMIST_ASSERT_WARNING(success,
             CMD "function evaluation failed at iteration " << this->m_iterations << ".");
           this->m_converged = this->m_fc == 0;
@@ -130,7 +127,7 @@ namespace Optimist
 
           Real c{this->m_a + t * direction};
           Real fc;
-          success = this->evaluate_function(function, c, fc);
+          success = this->evaluate_function(std::forward<FunctionLambda>(function), c, fc);
           OPTIMIST_ASSERT_WARNING(success,
             CMD "function evaluation failed at iteration " << this->m_iterations << ".");
           if (this->m_verbose) {this->info(fc);}

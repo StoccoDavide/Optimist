@@ -63,11 +63,6 @@ namespace Optimist
       using RowVector = typename SolverBase<Real, N, 1, DerivedSolver, ForceEigen>::FirstDerivativeType;
       using Matrix    = typename SolverBase<Real, N, 1, DerivedSolver, ForceEigen>::SecondDerivativeType;
 
-      // Function types
-      using typename SolverBase<Real, N, 1, DerivedSolver, ForceEigen>::FunctionWrapper;
-      using GradientWrapper = typename SolverBase<Real, N, 1, DerivedSolver, ForceEigen>::FirstDerivativeWrapper;
-      using HessianWrapper  = typename SolverBase<Real, N, 1, DerivedSolver, ForceEigen>::SecondDerivativeWrapper;
-
       /**
        * Class constructor for the multi-dimensional optimizer.
        */
@@ -124,55 +119,65 @@ namespace Optimist
     protected:
       /**
        * Evaluate the gradient function.
-       * \param[in] gradient Gradient function wrapper.
+       * \tparam GradientLambda The gradient lambda function type.
+       * \param[in] gradient Gradient lambda function.
        * \param[in] x Input point.
        * \param[out] out Gradient value.
        * \return The boolean flag for successful evaluation.
        */
-      bool evaluate_gradient(GradientWrapper gradient, Vector const & x, Matrix & out)
+      template <typename GradientLambda>
+      bool evaluate_gradient(GradientLambda && gradient, Vector const & x, Matrix & out)
       {
-        return this->evaluate_first_derivative_impl(gradient, x, out);
+        return this->evaluate_first_derivative(std::forward<GradientLambda>(gradient), x, out);
       }
 
       /**
        * Evaluate the hessian function.
-       * \param[in] hessian Hessian function wrapper.
+       * \tparam HessianLambda The hessian lambda function type.
+       * \param[in] hessian Hessian lambda function.
        * \param[in] x Input point.
        * \param[out] out Hessian value.
        * \return The boolean flag for successful evaluation.
        */
-      bool evaluate_hessian(HessianWrapper hessian, Vector const & x, Matrix & out)
+      template <typename HessianLambda>
+      bool evaluate_hessian(HessianLambda && hessian, Vector const & x, Matrix & out)
       {
-        return this->evaluate_second_derivative_impl(hessian, x, out);
+        return this->evaluate_second_derivative(std::forward<HessianLambda>(hessian), x, out);
       }
 
       /**
        * Solve the root-finding problem given the function, and without derivatives.
-       * \param[in] function Function wrapper.
+       * \tparam FunctionLambda The lambda function type.
+       * \param[in] function Function lambda.
        * \param[in] x_ini Initialization point.
        * \param[out] x_sol Solution point.
        * \return The convergence boolean flag.
        */
-      bool solve(FunctionWrapper function, Vector const & x_ini, Vector & x_sol)
+      bool solve(FunctionLambda && function, Vector const & x_ini, Vector & x_sol)
       {
         #define CMD "Optimist::Optimizer::solve(...): "
 
         static_assert(DerivedSolver::requires_function,
           CMD "the solver requires the function.");
-        return static_cast<DerivedSolver *>(this)->solve_impl(function, x_ini, x_sol);
+        return static_cast<DerivedSolver *>(this)->solve_impl(
+          std::forward<FunctionLambda>(function),
+          x_ini, x_sol);
 
         #undef CMD
       }
 
       /**
        * Solve the root-finding problem given the function, and its gradient.
-       * \param[in] function Function wrapper.
-       * \param[in] gradient Gradient function wrapper.
+       * \tparam FunctionLambda The lambda function type.
+       * \tparam GradientLambda The gradient lambda function type.
+       * \param[in] function Function lambda.
+       * \param[in] gradient Gradient lambda function.
        * \param[in] x_ini Initialization point.
        * \param[out] x_sol Solution point.
        * \return The convergence boolean flag.
        */
-      bool solve(FunctionWrapper function, GradientWrapper gradient, Vector const & x_ini, Vector & x_sol)
+      template <typename FunctionLambda, typename GradientLambda>
+      bool solve(FunctionLambda && function, GradientLambda && gradient, Vector const & x_ini, Vector & x_sol)
       {
         #define CMD "Optimist::Optimizer::solve(...): "
 
@@ -180,22 +185,29 @@ namespace Optimist
           CMD "the solver requires the function.");
         static_assert(DerivedSolver::requires_first_derivative,
           CMD "the solver requires the first derivative.");
-        return static_cast<DerivedSolver *>(this)->solve_impl(function, gradient, x_ini, x_sol);
+        return static_cast<DerivedSolver *>(this)->solve_impl(
+          std::forward<FunctionLambda>(function),
+          std::forward<GradientLambda>(gradient),
+          x_ini, x_sol);
 
         #undef CMD
       }
 
       /**
        * Solve the root-finding problem given the function, and its gradient and Hessian.
-       * \param[in] function Function wrapper.
-       * \param[in] gradient Gradient function wrapper.
-       * \param[in] hessian Hessian function wrapper.
+       * \tparam FunctionLambda The lambda function type.
+       * \tparam GradientLambda The gradient lambda function type.
+       * \tparam HessianLambda The hessian lambda function type.
+       * \param[in] function Function lambda.
+       * \param[in] gradient Gradient lambda function.
+       * \param[in] hessian Hessian lambda function.
        * \param[in] x_ini Initialization point.
        * \param[out] x_sol Solution point.
        * \return The convergence boolean flag.
        */
-      bool solve(FunctionWrapper function, GradientWrapper gradient, HessianWrapper hessian, Vector
-        const & x_ini, Vector & x_sol)
+      template <typename FunctionLambda, typename GradientLambda, typename HessianLambda>
+      bool solve(FunctionLambda && function, GradientLambda && gradient, HessianLambda && hessian,
+         Vector const & x_ini, Vector & x_sol)
       {
         #define CMD "Optimist::Optimizer::solve(...): "
 
@@ -205,7 +217,11 @@ namespace Optimist
           CMD "the solver requires the first derivative.");
         static_assert(DerivedSolver::requires_second_derivative,
           CMD "the solver requires the second derivative.");
-        return static_cast<DerivedSolver *>(this)->solve_impl(function, gradient, hessian, x_ini, x_sol);
+        return static_cast<DerivedSolver *>(this)->solve_impl(
+          std::forward<FunctionLambda>(function),
+          std::forward<GradientLambda>(gradient),
+          std::forward<HessianLambda>(hessian),
+          x_ini, x_sol);
 
         #undef CMD
       }
@@ -230,10 +246,6 @@ namespace Optimist
       static constexpr bool is_optimizer{true};
 
       OPTIMIST_BASIC_CONSTANTS(Real)
-
-      using typename SolverBase<Real, 1, 1, DerivedSolver>::FunctionWrapper;
-      using typename SolverBase<Real, 1, 1, DerivedSolver>::FirstDerivativeWrapper;
-      using typename SolverBase<Real, 1, 1, DerivedSolver>::SecondDerivativeWrapper;
 
       /**
        * Class constructor for the scalar optimizer.

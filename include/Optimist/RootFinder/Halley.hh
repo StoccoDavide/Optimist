@@ -46,11 +46,6 @@ namespace Optimist
 
       OPTIMIST_BASIC_CONSTANTS(Real)
 
-      // Function types
-      using typename RootFinder<Real, 1, Halley<Real>>::FunctionWrapper;
-      using typename RootFinder<Real, 1, Halley<Real>>::FirstDerivativeWrapper;
-      using typename RootFinder<Real, 1, Halley<Real>>::SecondDerivativeWrapper;
-
       /**
        * Class constructor for the Halley solver.
        */
@@ -64,15 +59,19 @@ namespace Optimist
 
       /**
        * Solve the nonlinear equation \f$ f(x) = 0 \f$, with \f$ f: \mathbb{R} \rightarrow \mathbb{R} \f$.
-       * \param[in] function Function wrapper.
-       * \param[in] first_derivative First derivative wrapper.
-       * \param[in] second_derivative Second derivative wrapper.
+       * \tparam FunctionLambda Function lambda type.
+       * \tparam FirstDerivativeLambda First derivative lambda type.
+       * \tparam SecondDerivativeLambda Second derivative lambda type.
+       * \param[in] function Function lambda.
+       * \param[in] first_derivative First derivative lambda.
+       * \param[in] second_derivative Second derivative lambda.
        * \param[in] x_ini Initialization point.
        * \param[out] x_sol Solution point.
        * \return The convergence boolean flag.
        */
-      bool solve_impl(FunctionWrapper function, FirstDerivativeWrapper first_derivative,
-        SecondDerivativeWrapper second_derivative, Real x_ini, Real & x_sol)
+      template <typename FunctionLambda, typename FirstDerivativeLambda, typename SecondDerivativeLambda>
+      bool solve_impl(FunctionLambda && function, FirstDerivativeLambda && first_derivative,
+        SecondDerivativeLambda && second_derivative, Real x_ini, Real & x_sol)
       {
         #define CMD "Optimist::RootFinder::Halley::solve(...): "
 
@@ -90,7 +89,7 @@ namespace Optimist
 
         // Set initial iteration
         x_old = x_ini;
-        success = this->evaluate_function(function, x_old, function_old);
+        success = this->evaluate_function(std::forward<FunctionLambda>(function), x_old, function_old);
         OPTIMIST_ASSERT_WARNING(success,
           CMD "function evaluation failed at the initial point.");
 
@@ -103,10 +102,10 @@ namespace Optimist
           this->store_trace(x_old);
 
           // Evaluate derivatives
-          success = this->evaluate_first_derivative(first_derivative, x_old, first_derivative_old);
+          success = this->evaluate_first_derivative(std::forward<FirstDerivativeLambda>(first_derivative), x_old, first_derivative_old);
           OPTIMIST_ASSERT_WARNING(success,
             CMD "first derivative evaluation failed at iteration " << this->m_iterations << ".");
-          success = this->evaluate_second_derivative(second_derivative, x_old, second_derivative_old);
+          success = this->evaluate_second_derivative(std::forward<SecondDerivativeLambda>(second_derivative), x_old, second_derivative_old);
           OPTIMIST_ASSERT_WARNING(success,
             CMD "second derivative evaluation failed at iteration " << this->m_iterations << ".");
 
@@ -134,12 +133,12 @@ namespace Optimist
 
           if (this->m_damped) {
             // Relax the iteration process
-            damped = this->damp(function, x_old, function_old, step_old, x_new, function_new, step_new);
+            damped = this->damp(std::forward<FunctionLambda>(function), x_old, function_old, step_old, x_new, function_new, step_new);
             OPTIMIST_ASSERT_WARNING(damped, CMD "damping failed.");
           } else {
             // Update point
             x_new = x_old + step_old;
-            success = this->evaluate_function(function, x_new, function_new);
+            success = this->evaluate_function(std::forward<FunctionLambda>(function), x_new, function_new);
             OPTIMIST_ASSERT_WARNING(success,
               CMD "function evaluation failed at iteration " << this->m_iterations << ".");
           }

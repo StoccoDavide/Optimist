@@ -2,18 +2,11 @@ var _finite_differences_8hh =
 [
     [ "Optimist::FiniteDifferences::Epsilon< Real >", "class_optimist_1_1_finite_differences_1_1_epsilon.html", "class_optimist_1_1_finite_differences_1_1_epsilon" ],
     [ "OPTIMIST_FINITE_DIFFERENCES_HH", "_finite_differences_8hh.html#a908f9678523c323dbf4e5455dbcf6c95", null ],
-    [ "Optimist::FiniteDifferences::MatrixXd", "namespace_optimist_1_1_finite_differences.html#ab33b12e463fb0cab163e046981ddf5ca", null ],
-    [ "Optimist::FiniteDifferences::VectorXd", "namespace_optimist_1_1_finite_differences.html#a6045fdd17dbebf4385d70066771d5c35", null ],
-    [ "Optimist::FiniteDifferences::CenteredFiniteDifferences", "namespace_optimist_1_1_finite_differences.html#afa22fad04acac8ad73d47524c4e89057", null ],
-    [ "Optimist::FiniteDifferences::CenteredFiniteDifferences", "namespace_optimist_1_1_finite_differences.html#a914fccd2053cae0484f33d11f31f780c", null ],
-    [ "Optimist::FiniteDifferences::CenteredFiniteDifferences", "namespace_optimist_1_1_finite_differences.html#aec02d82a8efb7e757762276371518eb7", null ],
-    [ "Optimist::FiniteDifferences::Gradient", "namespace_optimist_1_1_finite_differences.html#afe17a43c66f3d46c53267b174fd91140", null ],
-    [ "Optimist::FiniteDifferences::Gradient", "namespace_optimist_1_1_finite_differences.html#a0fbdb7f46c421af8395506a5897da47f", null ],
-    [ "Optimist::FiniteDifferences::Hessian", "namespace_optimist_1_1_finite_differences.html#a7e65a044718fcaf6062bd0e40914b10e", null ],
-    [ "Optimist::FiniteDifferences::Hessian", "namespace_optimist_1_1_finite_differences.html#a6ee166c7f363fa0280e38b259a801b0a", null ],
-    [ "Optimist::FiniteDifferences::Jacobian", "namespace_optimist_1_1_finite_differences.html#aff0c1bcd319d489c584a931f4d708286", null ],
-    [ "Optimist::FiniteDifferences::Jacobian", "namespace_optimist_1_1_finite_differences.html#aed612718fef225fa1ab2b80dfe0d8bcc", null ],
-    [ "Optimist::FiniteDifferences::SideFiniteDifferences", "namespace_optimist_1_1_finite_differences.html#a877a542c1d6ce2f91513c1cde7048f03", null ],
-    [ "Optimist::FiniteDifferences::SideFiniteDifferences", "namespace_optimist_1_1_finite_differences.html#a93fab7e13d8bff9a5b21b1fbf320a058", null ],
-    [ "Optimist::FiniteDifferences::SideFiniteDifferences", "namespace_optimist_1_1_finite_differences.html#aba6c9167682ec921a110cfe26010c1d5", null ]
+    [ "Optimist::FiniteDifferences::CenteredFiniteDifferences", "namespace_optimist_1_1_finite_differences.html#a7ac77794e2f572040663b57705ee42dc", null ],
+    [ "Optimist::FiniteDifferences::CenteredFiniteDifferences", "namespace_optimist_1_1_finite_differences.html#a191cd15b163926deec2bbcc5f6f83dad", null ],
+    [ "Optimist::FiniteDifferences::Gradient", "namespace_optimist_1_1_finite_differences.html#a00f4a229fdff9eb5c40a92f7e93b4515", null ],
+    [ "Optimist::FiniteDifferences::Hessian", "namespace_optimist_1_1_finite_differences.html#a66d39e3d9618da521eca88d790147156", null ],
+    [ "Optimist::FiniteDifferences::Jacobian", "namespace_optimist_1_1_finite_differences.html#a4f1a1cde5e9633b4c84a1d287722182a", null ],
+    [ "Optimist::FiniteDifferences::SideFiniteDifferences", "namespace_optimist_1_1_finite_differences.html#a3ae3f38f1ec581f1e06a92c0a82ed252", null ],
+    [ "Optimist::FiniteDifferences::SideFiniteDifferences", "namespace_optimist_1_1_finite_differences.html#a1384eedb4ec6b9d60a2fb7310742a071", null ]
 ];

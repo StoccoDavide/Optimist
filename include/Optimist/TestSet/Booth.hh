@@ -38,7 +38,8 @@ namespace Optimist
     public:
       OPTIMIST_BASIC_CONSTANTS(Real)
 
-      using Vector = typename Function<Real, 2, 2, Booth<Real>>::InputVector;
+      using typename Function<Real, 2, 2, Booth<Real>>::InputVector;
+      using typename Function<Real, 2, 2, Booth<Real>>::OutputVector;
       using typename Function<Real, 2, 2, Booth<Real>>::Matrix;
       using typename Function<Real, 2, 2, Booth<Real>>::Tensor;
 
@@ -67,7 +68,7 @@ namespace Optimist
        * \param[out] out The function value.
        * \return The boolean flag for successful evaluation.
        */
-      bool evaluate_impl(Vector const & x, Vector & out) const
+      bool evaluate_impl(InputVector const & x, OutputVector & out) const
       {
         out << x(0) + 2.0*x(1) - 7.0, 2.0*x(0) + x(1) - 5.0;
         return out.allFinite();
@@ -79,7 +80,7 @@ namespace Optimist
        * \param[out] out The first derivative value.
        * \return The boolean flag for successful evaluation.
        */
-      bool first_derivative_impl(Vector const & /*x*/, Matrix & out) const
+      bool first_derivative_impl(InputVector const & /*x*/, Matrix & out) const
       {
         out << 1.0, 2.0, 2.0, 1.0;
         return out.allFinite();
@@ -91,7 +92,7 @@ namespace Optimist
        * \param[out] out The second derivative value.
        * \return The boolean flag for successful evaluation.
        */
-      bool second_derivative_impl(Vector const & /*x*/, Tensor & out) const
+      bool second_derivative_impl(InputVector const & /*x*/, Tensor & out) const
       {
         out.resize(this->output_dimension());
         std::for_each(out.begin(), out.end(), [] (Matrix& m) {m.setZero();});

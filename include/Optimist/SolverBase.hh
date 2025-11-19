@@ -42,32 +42,30 @@ namespace Optimist
   template <typename Real, Integer SolInDim, Integer SolOutDim, typename DerivedSolver, bool ForceEigen = false>
   class SolverBase
   {
-    public:
+  public:
     // Fancy static assertions (just for fun, don't take it too seriously)
     static_assert(SolInDim > 0 && SolOutDim > 0,
       "Negative-dimensional optimization problem? Are you serious?");
 
     OPTIMIST_BASIC_CONSTANTS(Real)
 
-  protected:
     // I/O types
-    using InputType  = typename std::conditional_t<ForceEigen || (SolInDim > 1),  Eigen::Vector<Real, SolInDim>, Real>;  /**< Input type. */
-    using OutputType = typename std::conditional_t<ForceEigen || (SolOutDim > 1), Eigen::Vector<Real, SolOutDim>, Real>; /**< Output type. */
+    using InputType  = typename std::conditional_t<ForceEigen || (SolInDim > 1),
+      Eigen::Vector<Real, SolInDim>, Real>;
+    using OutputType = typename std::conditional_t<ForceEigen || (SolOutDim > 1),
+      Eigen::Vector<Real, SolOutDim>, Real>;
 
     // Trace types
-    using TraceType = typename std::vector<InputType>; /**< Input trace type. */
+    using TraceType = typename std::vector<InputType>;
 
     // Derivative types
-    using FirstDerivativeType  = std::conditional_t<ForceEigen || (SolInDim > 1) || (SolOutDim > 1), Eigen::Matrix<Real, SolOutDim, SolInDim>, Real>; /**< First derivative type. */
+    using FirstDerivativeType = std::conditional_t<ForceEigen || (SolInDim > 1) || (SolOutDim > 1),
+      Eigen::Matrix<Real, SolOutDim, SolInDim>, Real>;
     using SecondDerivativeType = std::conditional_t<ForceEigen || (SolInDim > 1) || (SolOutDim > 1),
       std::conditional_t<SolInDim == 1 || SolOutDim == 1, Eigen::Matrix<Real, SolInDim, SolInDim>,
-      std::vector<Eigen::Matrix<Real, SolInDim, SolInDim>>>, Real>;  /**< Second derivative type. */
+      std::vector<Eigen::Matrix<Real, SolInDim, SolInDim>>>, Real>;
 
-    // Function types
-    using FunctionWrapper         = typename std::function<bool(InputType const &, OutputType &)>;           /**< Function type. */
-    using FirstDerivativeWrapper  = typename std::function<bool(InputType const &, FirstDerivativeType &)>;  /**< First derivative type. */
-    using SecondDerivativeWrapper = typename std::function<bool(InputType const &, SecondDerivativeType &)>; /**< Second derivative type. */
-
+  protected:
     // Bounds (may not be used)
     InputType m_lower_bound; /**< Lower bound. */
     InputType m_upper_bound; /**< Upper bound. */
@@ -117,39 +115,57 @@ namespace Optimist
 
     /**
      * Class constructor for the nonlinear solver.
-     * \param[in] function Function wrapper.
+     * \tparam FunctionLambda Function lambda type.
+     * \param[in] function Function lambda.
      * \param[in] x_ini Initialization point.
      * \param[out] x_sol Solution point.
      */
-    SolverBase(FunctionWrapper function, InputType const & x_ini, InputType & x_sol) : SolverBase() {
-      static_cast<const DerivedSolver *>(this)->solve_impl(function, x_ini, x_sol);
+    template <typename FunctionLambda>
+    SolverBase(FunctionLambda && function, InputType const & x_ini, InputType & x_sol) : SolverBase() {
+      static_cast<const DerivedSolver *>(this)->solve_impl(
+        std::forward<FunctionLambda>(function),
+        x_ini, x_sol);
     }
 
     /**
      * Class constructor for the nonlinear solver.
-     * \param[in] function Function wrapper.
-     * \param[in] first_derivative First derivative wrapper.
+     * \tparam FunctionLambda Function lambda type.
+     * \tparam FirstDerivativeLambda First derivative lambda type.
+     * \param[in] function Function lambda.
+     * \param[in] first_derivative First derivative lambda.
      * \param[in] x_ini Initialization point.
      * \param[out] x_sol Solution point.
      */
-    SolverBase(FunctionWrapper function, FirstDerivativeWrapper first_derivative, InputType const & x_ini,
+    template <typename FunctionLambda, typename FirstDerivativeLambda>
+    SolverBase(FunctionLambda && function, FirstDerivativeLambda && first_derivative, InputType const & x_ini,
       InputType & x_sol) : SolverBase()
     {
-      static_cast<const DerivedSolver *>(this)->solve_impl(function, first_derivative, x_ini, x_sol);
+      static_cast<const DerivedSolver *>(this)->solve_impl(
+        std::forward<FunctionLambda>(function),
+        std::forward<FirstDerivativeLambda>(first_derivative),
+        x_ini, x_sol);
     }
 
     /**
      * Class constructor for the nonlinear solver.
-     * \param[in] function Function wrapper.
-     * \param[in] first_derivative First derivative wrapper.
-     * \param[in] second_derivative The second derivative wrapper.
+     * \tparam FunctionLambda Function lambda type.
+     * \tparam FirstDerivativeLambda First derivative lambda type.
+     * \tparam SecondDerivativeLambda Second derivative lambda type.
+     * \param[in] function Function lambda.
+     * \param[in] first_derivative First derivative lambda.
+     * \param[in] second_derivative The second derivative lambda.
      * \param[in] x_ini Initialization point.
      * \param[out] x_sol Solution point.
      */
-    SolverBase(FunctionWrapper function, FirstDerivativeWrapper first_derivative, SecondDerivativeWrapper
-      second_derivative, InputType const & x_ini, InputType & x_sol) : SolverBase()
+    template <typename FunctionLambda, typename FirstDerivativeLambda, typename SecondDerivativeLambda>
+    SolverBase(FunctionLambda && function, FirstDerivativeLambda && first_derivative, SecondDerivativeLambda
+      && second_derivative, InputType const & x_ini, InputType & x_sol) : SolverBase()
     {
-      static_cast<const DerivedSolver *>(this)->solve_impl(function, first_derivative, second_derivative, x_ini, x_sol);
+      static_cast<const DerivedSolver *>(this)->solve_impl(
+        std::forward<FunctionLambda>(function),
+        std::forward<FirstDerivativeLambda>(first_derivative),
+        std::forward<SecondDerivativeLambda>(second_derivative),
+        x_ini, x_sol);
     }
 
     /**
@@ -468,31 +484,38 @@ namespace Optimist
 
     /**
      * Solve the root-finding/optimization problem given the function, and without derivatives.
-     * \param[in] function Function wrapper.
+     * \tparam FunctionLambda Function lambda type.
+     * \param[in] function Function lambda.
      * \param[in] x_ini Initialization point.
      * \param[out] x_sol Solution point.
      * \return True if the problem is solved, false otherwise.
      */
-    bool solve(FunctionWrapper function, InputType const & x_ini, InputType & x_sol)
+    template <typename FunctionLambda>
+    bool solve(FunctionLambda && function, InputType const & x_ini, InputType & x_sol)
     {
       #define CMD "Optimist::Solver::solve(...): "
 
       static_assert(DerivedSolver::requires_function,
         CMD "the solver requires a function.");
-      return static_cast<DerivedSolver *>(this)->solve(function, nullptr, nullptr, x_ini, x_sol);
+      return static_cast<DerivedSolver *>(this)->solve(
+        std::forward<FunctionLambda>(function),
+        nullptr, nullptr, x_ini, x_sol);
 
       #undef CMD
     }
 
     /**
      * Solve the root-finding/optimization problem given the function, and its first derivative.
-     * \param[in] function Function wrapper.
-     * \param[in] first_derivative First derivative wrapper
+     * \tparam FunctionLambda First derivative lambda type.
+     * \tparam FirstDerivativeLambda Function lambda type.
+     * \param[in] function Function lambda.
+     * \param[in] first_derivative First derivative lambda
      * \param[in] x_ini Initialization point.
      * \param[out] x_sol Solution point.
      * \return True if the problem is solved, false otherwise.
      */
-    bool solve(FunctionWrapper function, FirstDerivativeWrapper first_derivative, InputType const & x_ini,
+    template <typename FunctionLambda, typename FirstDerivativeLambda>
+    bool solve(FunctionLambda && function, FirstDerivativeLambda && first_derivative, InputType const & x_ini,
       InputType & x_sol)
     {
       #define CMD "Optimist::Solver::solve(...): "
@@ -501,22 +524,29 @@ namespace Optimist
         CMD "the solver requires a function.");
       static_assert(DerivedSolver::requires_first_derivative,
         CMD "the solver requires the first derivative.");
-      return static_cast<DerivedSolver *>(this)->solve(function, first_derivative, nullptr, x_ini, x_sol);
+      return static_cast<DerivedSolver *>(this)->solve(
+        std::forward<FunctionLambda>(function),
+        std::forward<FirstDerivativeLambda>(first_derivative),
+        nullptr, x_ini, x_sol);
 
       #undef CMD
     }
 
     /**
      * Solve the root-finding/optimization problem given the function, and its first and second derivatives.
-     * \param[in] function Function wrapper.
-     * \param[in] first_derivative First derivative wrapper.
-     * \param[in] second_derivative The second derivative wrapper.
+     * \tparam FunctionLambda Function lambda type.
+     * \tparam FirstDerivativeLambda First derivative lambda type.
+     * \tparam SecondDerivativeLambda Second derivative lambda type.
+     * \param[in] function Function lambda.
+     * \param[in] first_derivative First derivative lambda.
+     * \param[in] second_derivative The second derivative lambda.
      * \param[in] x_ini Initialization point.
      * \param[out] x_sol Solution point.
      * \return True if the problem is solved, false otherwise.
      */
-    bool solve(FunctionWrapper function, FirstDerivativeWrapper first_derivative, SecondDerivativeWrapper
-      second_derivative, InputType const & x_ini, InputType & x_sol)
+    template <typename FunctionLambda, typename FirstDerivativeLambda, typename SecondDerivativeLambda>
+    bool solve(FunctionLambda && function, FirstDerivativeLambda && first_derivative, SecondDerivativeLambda
+      && second_derivative, InputType const & x_ini, InputType & x_sol)
       {
       #define CMD "Optimist::Solver::solve(...): "
 
@@ -526,7 +556,10 @@ namespace Optimist
         CMD "the solver requires the first derivative.");
       static_assert(DerivedSolver::requires_second_derivative,
         CMD "the solver requires the second derivative.");
-      return static_cast<DerivedSolver *>(this)->solve(function, first_derivative, second_derivative,
+      return static_cast<DerivedSolver *>(this)->solve(
+        std::forward<FunctionLambda>(function),
+        std::forward<FirstDerivativeLambda>(first_derivative),
+        std::forward<SecondDerivativeLambda>(second_derivative),
         x_ini, x_sol);
 
       #undef CMD
@@ -618,7 +651,7 @@ namespace Optimist
         CMD "solver output dimension must be equal to the function output dimension or 1.");
 
       // Lambda generators for function and derivatives
-      auto function_wrapper = [&function, is_optimization] (InputType const & x, OutputType & out) -> bool
+      auto function_lambda = [&function, is_optimization] (InputType const & x, OutputType & out) -> bool
       {
         bool success{false};
         typename FunctionType::OutputType f; success = function.evaluate(x, f);
@@ -636,7 +669,7 @@ namespace Optimist
         return success;
       };
 
-      auto first_derivative_wrapper = [&function, is_optimization, this] (InputType const & x,
+      auto first_derivative_lambda = [&function, is_optimization, this] (InputType const & x,
         FirstDerivativeType & out) -> bool
       {
         bool success{false};
@@ -660,7 +693,7 @@ namespace Optimist
         return success;
       };
 
-      auto second_derivative_wrapper = [&function, is_optimization, this] (InputType const & x,
+      auto second_derivative_lambda = [&function, is_optimization, this] (InputType const & x,
         SecondDerivativeType & out) -> bool
       {
         bool success{false};
@@ -693,15 +726,15 @@ namespace Optimist
       // Select solver method based on derivative requirements
       if constexpr (DerivedSolver::requires_function && !DerivedSolver::requires_first_derivative &&
         !DerivedSolver::requires_second_derivative) {
-        return static_cast<DerivedSolver *>(this)->solve(function_wrapper, x_ini, x_sol);
+        return static_cast<DerivedSolver *>(this)->solve(function_lambda, x_ini, x_sol);
       } else if constexpr (DerivedSolver::requires_function && DerivedSolver::requires_first_derivative &&
         !DerivedSolver::requires_second_derivative) {
-        return static_cast<DerivedSolver *>(this)->solve(function_wrapper, first_derivative_wrapper,
+        return static_cast<DerivedSolver *>(this)->solve(function_lambda, first_derivative_lambda,
           x_ini, x_sol);
       } else if constexpr (DerivedSolver::requires_function && DerivedSolver::requires_first_derivative &&
         DerivedSolver::requires_second_derivative) {
-        return static_cast<DerivedSolver *>(this)->solve(function_wrapper, first_derivative_wrapper,
-          second_derivative_wrapper, x_ini, x_sol);
+        return static_cast<DerivedSolver *>(this)->solve(function_lambda, first_derivative_lambda,
+          second_derivative_lambda, x_ini, x_sol);
       } else {
         OPTIMIST_ERROR(CMD "no matching function signature found for the solver.");
       }
@@ -725,12 +758,14 @@ namespace Optimist
 
     /**
      * Evaluate the function.
-     * \param[in] function Function wrapper.
+     * \tparam FunctionLambda Function lambda type.
+     * \param[in] function Function lambda.
      * \param[in] x Input point.
      * \param[out] out Function value.
      * \return The boolean flag for successful evaluation.
      */
-    bool evaluate_function(FunctionWrapper function, InputType const & x, OutputType & out)
+    template <typename FunctionLambda>
+    bool evaluate_function(FunctionLambda && function, InputType const & x, OutputType & out)
     {
       OPTIMIST_ASSERT(this->m_function_evaluations < this->m_max_function_evaluations,
         "Optimist::" << this-> name() << "::evaluate_function(...): maximum allowed function evaluations reached.");
@@ -740,12 +775,14 @@ namespace Optimist
 
     /**
      * Evaluate the first derivative.
-     * \param[in] function First derivative wrapper.
+     * \tparam FirstDerivativeLambda First derivative lambda type.
+     * \param[in] function First derivative lambda.
      * \param[in] x Input point.
      * \param[out] out First derivative value.
      * \return The boolean flag for successful evaluation.
      */
-    bool evaluate_first_derivative(FirstDerivativeWrapper function, InputType const & x, FirstDerivativeType & out)
+    template <typename FirstDerivativeLambda>
+    bool evaluate_first_derivative(FirstDerivativeLambda && function, InputType const & x, FirstDerivativeType & out)
     {
       OPTIMIST_ASSERT(this->m_first_derivative_evaluations < this->m_max_first_derivative_evaluations,
         "Optimist::" << this-> name() << "::evaluate_first_derivative(...): maximum allowed first derivative evaluations reached.");
@@ -755,12 +792,13 @@ namespace Optimist
 
     /**
      * Evaluate the second derivative.
-     * \param[in] function Second derivative wrapper.
+     * \param[in] function Second derivative lambda.
      * \param[in] x Input point.
      * \param[out] out Second derivative value.
      * \return The boolean flag for successful evaluation.
      */
-    bool evaluate_second_derivative(SecondDerivativeWrapper function, InputType const & x, SecondDerivativeType & out)
+    template <typename SecondDerivativeLambda>
+    bool evaluate_second_derivative(SecondDerivativeLambda && function, InputType const & x, SecondDerivativeType & out)
     {
       OPTIMIST_ASSERT(this->m_second_derivative_evaluations < this->m_max_second_derivative_evaluations,
         "Optimist::" << this-> name() << "::evaluate_second_derivative(...): maximum allowed second derivative evaluations reached.");
@@ -776,7 +814,8 @@ namespace Optimist
 
     /**
      * Damp the step using the affine invariant criterion.
-     * \param[in] function Function wrapper.
+     * \tparam FunctionLambda Function lambda type.
+     * \param[in] function Function lambda.
      * \param[in] x_old Old point.
      * \param[in] function_old Old function value.
      * \param[in] step_old Old step.
@@ -785,7 +824,8 @@ namespace Optimist
      * \param[out] step_new New step.
      * \return The damping boolean flag, true if the damping is successful, false otherwise.
      */
-    bool damp(FunctionWrapper function, InputType const & x_old, InputType const & function_old,
+    template <typename FunctionLambda>
+    bool damp(FunctionLambda && function, InputType const & x_old, InputType const & function_old,
       InputType const & step_old, InputType & x_new, InputType & function_new, InputType & step_new)
     {
       #define CMD "Optimist::Solver::damp(...): "
@@ -796,7 +836,7 @@ namespace Optimist
         // Update point
         step_new = tau * step_old;
         x_new = x_old + step_new;
-        bool success{this->evaluate_function(function, x_new, function_new)};
+        bool success{this->evaluate_function(std::forward<FunctionLambda>(function), x_new, function_new)};
         OPTIMIST_ASSERT(success,
           CMD "function evaluation failed during damping.");
 

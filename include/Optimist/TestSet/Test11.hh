@@ -36,7 +36,8 @@ namespace Optimist
     public:
       OPTIMIST_BASIC_CONSTANTS(Real)
 
-      using Vector = typename Function<Real, 1, 1, Test11<Real>, true>::InputVector;
+      using typename Function<Real, 1, 1, Test11<Real>, true>::InputVector;
+      using typename Function<Real, 1, 1, Test11<Real>, true>::OutputVector;
       using typename Function<Real, 1, 1, Test11<Real>, true>::Matrix;
       using typename Function<Real, 1, 1, Test11<Real>, true>::Tensor;
 
@@ -64,7 +65,7 @@ namespace Optimist
        * \param[out] out The function value.
        * \return The boolean flag for successful evaluation.
        */
-      bool evaluate_impl(Vector const & x, Vector & out) const
+      bool evaluate_impl(InputVector const & x, OutputVector & out) const
       {
         out << x(0) * x(0);
         return out.allFinite();
@@ -76,7 +77,7 @@ namespace Optimist
        * \param[out] out The first derivative value.
        * \return The boolean flag for successful evaluation.
        */
-      bool first_derivative_impl(Vector const & x, Matrix & out) const
+      bool first_derivative_impl(InputVector const & x, Matrix & out) const
       {
         out << 2.0 * x(0);
         return out.allFinite();
@@ -88,7 +89,7 @@ namespace Optimist
        * \param[out] out The second derivative value.
        * \return The boolean flag for successful evaluation.
        */
-      bool second_derivative_impl(Vector const & /*x*/, Tensor & out) const
+      bool second_derivative_impl(InputVector const & /*x*/, Tensor & out) const
       {
         out << 2.0;
         return out.allFinite();

@@ -1,10 +1,6 @@
 var class_optimist_1_1_root_finder_1_1_broyden =
 [
-    [ "FunctionWrapper", "class_optimist_1_1_root_finder_1_1_broyden.html#ae66ee07e1e9a9d1e4cf08b62b020d85b", null ],
-    [ "JacobianWrapper", "class_optimist_1_1_root_finder_1_1_broyden.html#ac7b62f7836e9826ff57ef5e848dacf11", null ],
-    [ "Matrix", "class_optimist_1_1_root_finder_1_1_broyden.html#a27783ce56ddf414c73eb122e3676d4a6", null ],
     [ "Method", "class_optimist_1_1_root_finder_1_1_broyden.html#ac6b9374234dce5936aad225d0da8f9ff", null ],
-    [ "Vector", "class_optimist_1_1_root_finder_1_1_broyden.html#ae570d61a34fbd3941ff7907f4925510a", null ],
     [ "Broyden", "class_optimist_1_1_root_finder_1_1_broyden.html#a1f1893ac2670aa59d604ebba79396929", null ],
     [ "enable_bad_method", "class_optimist_1_1_root_finder_1_1_broyden.html#a28052a300f65c9f588699663327e21e5", null ],
     [ "enable_combined_method", "class_optimist_1_1_root_finder_1_1_broyden.html#aae1227cf035ffa4b6a7cfe5240c35cb6", null ],

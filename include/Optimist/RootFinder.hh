@@ -57,19 +57,12 @@ namespace Optimist
 
       OPTIMIST_BASIC_CONSTANTS(Real)
 
-      using SolverBase<Real, N, N, DerivedSolver, ForceEigen>::solve;
-
       // I/O types
       using Vector = typename SolverBase<Real, N, N, DerivedSolver, ForceEigen>::InputType;
 
       // Derivative types
       using Matrix = typename SolverBase<Real, N, N, DerivedSolver, ForceEigen>::FirstDerivativeType;
       using Tensor = typename SolverBase<Real, N, N, DerivedSolver, ForceEigen>::SecondDerivativeType;
-
-      // Function types
-      using typename SolverBase<Real, N, N, DerivedSolver, ForceEigen>::FunctionWrapper;
-      using JacobianWrapper = typename SolverBase<Real, N, N, DerivedSolver, ForceEigen>::FirstDerivativeWrapper;
-      using HessianWrapper  = typename SolverBase<Real, N, N, DerivedSolver, ForceEigen>::SecondDerivativeWrapper;
 
       /**
        * Class constructor for the multi-dimensional root finder.
@@ -127,56 +120,68 @@ namespace Optimist
     protected:
       /**
        * Evaluate the Jacobian function.
-       * \param[in] jacobian Jacobian function wrapper.
+       * \tparam JacobianLambda The Jacobian lambda function type.
+       * \param[in] jacobian Jacobian lambda function.
        * \param[in] x Input point.
        * \param[out] out Jacobian value.
        * \return The boolean flag for successful evaluation.
        */
-      bool evaluate_jacobian(JacobianWrapper jacobian, Vector const & x, Matrix & out)
+      template <typename JacobianLambda>
+      bool evaluate_jacobian(JacobianLambda && jacobian, Vector const & x, Matrix & out)
       {
-        return this->evaluate_first_derivative(jacobian, x, out);
+        return this->evaluate_first_derivative(std::forward<JacobianLambda>(jacobian), x, out);
       }
 
       /**
        * Evaluate the Hessian function.
-       * \param[in] hessian Hessian function wrapper.
+       * \tparam HessianLambda The Hessian lambda function type.
+       * \param[in] hessian Hessian lambda function.
        * \param[in] x Input point.
        * \param[out] out Hessian value.
        * \return The boolean flag for successful evaluation.
        */
-      bool evaluate_hessian(HessianWrapper hessian, Vector const & x, Matrix & out)
+      template <typename HessianLambda>
+      bool evaluate_hessian(HessianLambda && hessian, Vector const & x, Matrix & out)
       {
-        return this->evaluate_second_derivative(hessian, x, out);
+        return this->evaluate_second_derivative(std::forward<HessianLambda>(hessian), x, out);
       }
 
     public:
       /**
        * Solve the root-finding problem given the function, and without derivatives.
-       * \param[in] function Function wrapper.
+       * \tparam FunctionLambda The lambda function type.
+       * \param[in] function Function lambda.
        * \param[in] x_ini Initialization point.
        * \param[out] x_sol Solution point.
        * \return The convergence boolean flag.
        */
-      bool solve(FunctionWrapper function, Vector const & x_ini, Vector & x_sol)
+      template <typename FunctionLambda>
+      bool solve(FunctionLambda && function, Vector const & x_ini, Vector & x_sol)
       {
         #define CMD "Optimist::RootFinder::solve(...): "
 
         static_assert(DerivedSolver::requires_function,
           CMD "the solver requires a function.");
-        return static_cast<DerivedSolver *>(this)->solve_impl(function, x_ini, x_sol);
+        return static_cast<DerivedSolver *>(this)->solve_impl(
+          std::forward<FunctionLambda>(function),
+          x_ini, x_sol);
 
         #undef CMD
       }
 
       /**
        * Solve the root-finding problem given the function, and its Jacobian.
-       * \param[in] function Function wrapper.
-       * \param[in] jacobian The Jacobian function wrapper.
+       * \tparam FunctionLambda The lambda function type.
+       * \tparam JacobianLambda The Jacobian lambda function type.
+       * \param[in] function Function lambda.
+       * \param[in] jacobian The Jacobian lambda function.
        * \param[in] x_ini Initialization point.
        * \param[out] x_sol Solution point.
        * \return The convergence boolean flag.
        */
-      bool solve(FunctionWrapper function, JacobianWrapper jacobian, Vector const & x_ini, Vector & x_sol)
+      template <typename FunctionLambda, typename JacobianLambda>
+      bool solve(FunctionLambda && function, JacobianLambda && jacobian, Vector const & x_ini,
+        Vector & x_sol)
       {
         #define CMD "Optimist::RootFinder::solve(...): "
 
@@ -184,22 +189,29 @@ namespace Optimist
           CMD "the solver requires a function.");
         static_assert(DerivedSolver::requires_first_derivative,
           CMD "the solver requires the first derivative.");
-        return static_cast<DerivedSolver *>(this)->solve_impl(function, jacobian, x_ini, x_sol);
+        return static_cast<DerivedSolver *>(this)->solve_impl(
+          std::forward<FunctionLambda>(function),
+          std::forward<JacobianLambda>(jacobian),
+          x_ini, x_sol);
 
         #undef CMD
       }
 
       /**
        * Solve the root-finding problem given the function, and its Jacobian and Hessian.
-       * \param[in] function Function wrapper.
-       * \param[in] jacobian The Jacobian function wrapper.
-       * \param[in] hessian The Hessian function wrapper.
+       * \tparam FunctionLambda The lambda function type.
+       * \tparam JacobianLambda The Jacobian lambda function type.
+       * \tparam HessianLambda The Hessian lambda function type.
+       * \param[in] function Function lambda.
+       * \param[in] jacobian The Jacobian lambda function.
+       * \param[in] hessian The Hessian lambda function.
        * \param[in] x_ini Initialization point.
        * \param[out] x_sol Solution point.
        * \return The convergence boolean flag.
        */
-      bool solve(FunctionWrapper function, JacobianWrapper jacobian, HessianWrapper hessian, Vector
-        const & x_ini, Vector & x_sol)
+      template <typename FunctionLambda, typename JacobianLambda, typename HessianLambda>
+      bool solve(FunctionLambda && function, JacobianLambda && jacobian, HessianLambda && hessian,
+        Vector const & x_ini, Vector & x_sol)
       {
         #define CMD "Optimist::RootFinder::solve(...): "
 
@@ -209,7 +221,11 @@ namespace Optimist
           CMD "the solver requires the first derivative.");
         static_assert(DerivedSolver::requires_second_derivative,
           CMD "the solver requires the second derivative.");
-        return static_cast<DerivedSolver *>(this)->solve_impl(function, jacobian, hessian, x_ini, x_sol);
+        return static_cast<DerivedSolver *>(this)->solve_impl(
+          std::forward<FunctionLambda>(function),
+          std::forward<JacobianLambda>(jacobian),
+          std::forward<HessianLambda>(hessian),
+          x_ini, x_sol);
 
         #undef CMD
       }
@@ -237,10 +253,6 @@ namespace Optimist
 
       OPTIMIST_BASIC_CONSTANTS(Real)
 
-      using typename SolverBase<Real, 1, 1, DerivedSolver>::FunctionWrapper;
-      using typename SolverBase<Real, 1, 1, DerivedSolver>::FirstDerivativeWrapper;
-      using typename SolverBase<Real, 1, 1, DerivedSolver>::SecondDerivativeWrapper;
-
       /**
        * Class constructor for the scalar root-finder.
        */
@@ -254,44 +266,61 @@ namespace Optimist
 
       /**
        * Solve the root-finding problem given the function, and without derivatives.
-       * \param[in] function Function wrapper.
+       * \tparam FunctionLambda The lambda function type.
+       * \param[in] function Function lambda.
        * \param[in] x_ini Initialization point.
        * \param[out] x_sol Solution point.
        * \return The convergence boolean flag.
        */
-      bool solve(FunctionWrapper function, Real x_ini, Real & x_sol)
+      template <typename FunctionLambda>
+      bool solve(FunctionLambda && function, Real x_ini, Real & x_sol)
       {
-        return static_cast<DerivedSolver *>(this)->solve_impl(function, x_ini, x_sol);
+        return static_cast<DerivedSolver *>(this)->solve_impl(
+          std::forward<FunctionLambda>(function),
+          x_ini, x_sol);
       }
 
       /**
        * Solve the root-finding problem given the function, and its first derivative.
-       * \param[in] function Function wrapper.
-       * \param[in] first_derivative First derivative wrapper.
+       * \tparam FunctionLambda The lambda function type.
+       * \tparam FirstDerivativeLambda The first derivative lambda type.
+       * \param[in] function Function lambda.
+       * \param[in] first_derivative First derivative lambda.
        * \param[in] x_ini Initialization point.
        * \param[out] x_sol Solution point.
        * \return The convergence boolean flag.
        */
-      bool solve(FunctionWrapper function, FirstDerivativeWrapper first_derivative, Real x_ini,
+       template <typename FunctionLambda, typename FirstDerivativeLambda>
+      bool solve(FunctionLambda && function, FirstDerivativeLambda && first_derivative, Real x_ini,
         Real & x_sol)
       {
-        return static_cast<DerivedSolver *>(this)->solve_impl(function, first_derivative, x_ini, x_sol);
+        return static_cast<DerivedSolver *>(this)->solve_impl(
+          std::forward<FunctionLambda>(function),
+          std::forward<FirstDerivativeLambda>(first_derivative),
+          x_ini, x_sol);
       }
 
       /**
        * Solve the root-finding problem given the function, and its first and second derivatives.
-       * \param[in] function Function wrapper.
-       * \param[in] first_derivative First derivative wrapper.
-       * \param[in] second_derivate Second derivative wrapper.
+       * \tparam FunctionLambda The lambda function type.
+       * \tparam FirstDerivativeLambda The first derivative lambda type.
+       * \tparam SecondDerivativeLambda The second derivative lambda type.
+       * \param[in] function Function lambda.
+       * \param[in] first_derivative First derivative lambda.
+       * \param[in] second_derivate Second derivative lambda.
        * \param[in] x_ini Initialization point.
        * \param[out] x_sol Solution point.
        * \return The convergence boolean flag.
        */
-      bool solve(FunctionWrapper function, FirstDerivativeWrapper first_derivative, SecondDerivativeWrapper
-        second_derivate, Real x_ini, Real & x_sol)
+      template <typename FunctionLambda, typename FirstDerivativeLambda, typename SecondDerivativeLambda>
+      bool solve(FunctionLambda && function, FirstDerivativeLambda && first_derivative, SecondDerivativeLambda
+        && second_derivate, Real x_ini, Real & x_sol)
       {
-        return static_cast<DerivedSolver *>(this)->solve_impl(function, first_derivative,
-          second_derivate, x_ini, x_sol);
+        return static_cast<DerivedSolver *>(this)->solve_impl(
+          std::forward<FunctionLambda>(function),
+          std::forward<FirstDerivativeLambda>(first_derivative),
+          std::forward<SecondDerivativeLambda>(second_derivate),
+          x_ini, x_sol);
       }
 
     }; // class RootFinder

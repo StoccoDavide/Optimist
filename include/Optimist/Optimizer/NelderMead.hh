@@ -48,10 +48,8 @@ namespace Optimist
 
       using typename Optimizer<Real, N, NelderMead<Real, N>>::Vector;
       using typename Optimizer<Real, N, NelderMead<Real, N>>::Matrix;
-      using typename Optimizer<Real, N, NelderMead<Real, N>>::FunctionWrapper;
-      using Optimizer<Real, N, NelderMead<Real, N>>::solve;
 
-      using Simplex = std::vector<Vector>; /**< Simplex type. */
+      using Simplex = std::vector<Vector>;
 
     private:
       Simplex m_s;          /**< Simplex representing the vertices of the simplex. */
@@ -103,15 +101,18 @@ namespace Optimist
       }
 
       /**
-       * \brief Sort the points of the simplex based on the function values and updates the centroid.
+       * Sort the points of the simplex based on the function values and updates the centroid.
+       * \tparam FunctionLambda Function lambda type.
+       * \param[in] function Function lambda.
        */
-      void sort(FunctionWrapper function)
+      template <typename FunctionLambda>
+      void sort(FunctionLambda && function)
       {
         std::sort(this->m_s.begin(), this->m_s.end(),
           [function, this] (Vector const & a, Vector const & b) {
             Real function_a, function_b;
-            this->evaluate_function(function, a, function_a);
-            this->evaluate_function(function, b, function_b);
+            this->evaluate_function(std::forward<FunctionLambda>(function), a, function_a);
+            this->evaluate_function(std::forward<FunctionLambda>(function), b, function_b);
             return function_a < function_b;
           }
         );
@@ -169,12 +170,13 @@ namespace Optimist
       /**
        * Solve the nonlinear system of equations \f$ \mathbf{f}(\mathbf{x}) = 0 \f$, with \f$
        * \mathbf{f}: \mathbb{R}^n \rightarrow \mathbb{R}^n \f$.
-       * \param[in] function Function wrapper.
+       * \tparam FunctionLambda Function lambda type.
+       * \param[in] function Function lambda.
        * \param[in] x_ini Initialization point.
        * \param[out] x_sol Solution point.
        * \return The convergence boolean flag.
        */
-      bool solve_impl(FunctionWrapper function, Vector const & x_ini, Vector & x_sol)
+      bool solve_impl(FunctionLambda && function, Vector const & x_ini, Vector & x_sol)
       {
         // Setup internal variables
         this->reset();
@@ -200,9 +202,9 @@ namespace Optimist
 
           // Compute the reflection point
           x_r = this->reflection();
-          this->evaluate_function(function, x_r, function_x_r);
-          this->evaluate_function(function, this->m_s.at(1), function_x_1);
-          this->evaluate_function(function, this->m_s.back(), function_x_last);
+          this->evaluate_function(std::forward<FunctionLambda>(function), x_r, function_x_r);
+          this->evaluate_function(std::forward<FunctionLambda>(function), this->m_s.at(1), function_x_1);
+          this->evaluate_function(std::forward<FunctionLambda>(function), this->m_s.back(), function_x_last);
 
           if (function_x_1 <= function_x_r && function_x_r < function_x_last)
           {
@@ -213,7 +215,7 @@ namespace Optimist
           {
             // Expansion
             x_e = this->expansion(x_r);
-            this->evaluate_function(function, x_e, function_x_e);
+            this->evaluate_function(std::forward<FunctionLambda>(function), x_e, function_x_e);
             if (function_x_e < function_x_r) {
               this->m_s.back() = x_e;
             } else {
@@ -225,7 +227,7 @@ namespace Optimist
           {
             // Outward contraction
             x_c = this->outward_contraction(x_r);
-            this->evaluate_function(function, x_c, function_x_c);
+            this->evaluate_function(std::forward<FunctionLambda>(function), x_c, function_x_c);
             if (function_x_c < function_x_r) {
               this->m_s.back() = x_c;
             } else {
@@ -237,7 +239,7 @@ namespace Optimist
           {
             // Inward contraction
             x_c = this->inward_contraction();
-            this->evaluate_function(function, x_c, function_x_c);
+            this->evaluate_function(std::forward<FunctionLambda>(function), x_c, function_x_c);
             if (function_x_c < function_x_last) {
               this->m_s.back() = x_c;
             } else {

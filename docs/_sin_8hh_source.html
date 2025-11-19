@@ -162,7 +162,7 @@ $(function(){initNavTree('_sin_8hh_source.html','',''); });
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="class_optimist_1_1_test_set_1_1_sin.html">   37</a></span>    <span class="keyword">class </span><a class="code hl_function" href="class_optimist_1_1_test_set_1_1_sin.html#aed3e6985639b74f787381dbbc845b0c1">Sin</a> : <span class="keyword">public</span> <a class="code hl_function" href="class_optimist_1_1_function.html#ac0e97a5073c54328d9d321d4227efa1b">Function</a>&lt;Real, 1, 1, Sin&lt;Real&gt;&gt;</div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    {</div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>      <a class="code hl_define" href="_optimist_8hh.html#ae253c9ddafd61510dd54fa18b038c8a7">OPTIMIST_BASIC_CONSTANTS</a>(Real) </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>      <a class="code hl_define" href="_optimist_8hh.html#ae253c9ddafd61510dd54fa18b038c8a7">OPTIMIST_BASIC_CONSTANTS</a>(Real)</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>      </div>
 <div class="foldopen" id="foldopen00045" data-start="{" data-end="}">
@@ -179,29 +179,47 @@ $(function(){initNavTree('_sin_8hh_source.html','',''); });
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span></div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="class_optimist_1_1_test_set_1_1_sin.html#a0d5bd822a36bacaa812b5848d474410e">   59</a></span>      std::string <a class="code hl_function" href="class_optimist_1_1_test_set_1_1_sin.html#a0d5bd822a36bacaa812b5848d474410e">name_impl</a>()<span class="keyword"> const </span>{<span class="keywordflow">return</span> <span class="stringliteral">&quot;Sin&quot;</span>;}</div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span></div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="class_optimist_1_1_test_set_1_1_sin.html#ac33239a3b3ef439220930c6ad0074b4e">   66</a></span>      <span class="keywordtype">void</span> <a class="code hl_function" href="class_optimist_1_1_test_set_1_1_sin.html#ac33239a3b3ef439220930c6ad0074b4e">evaluate_impl</a>(Real x, Real &amp; out)<span class="keyword"> const </span>{out = std::sin(x);}</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span></div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="class_optimist_1_1_test_set_1_1_sin.html#aacca83eb4aa180a586f0ea2815ab2969">   73</a></span>      <span class="keywordtype">void</span> <a class="code hl_function" href="class_optimist_1_1_test_set_1_1_sin.html#aacca83eb4aa180a586f0ea2815ab2969">first_derivative_impl</a>(Real x, Real &amp; out)<span class="keyword"> const </span>{out = std::cos(x);}</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span></div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="class_optimist_1_1_test_set_1_1_sin.html#a24f0754e1c676ad8f457e89f8001df55">   80</a></span>      <span class="keywordtype">void</span> <a class="code hl_function" href="class_optimist_1_1_test_set_1_1_sin.html#a24f0754e1c676ad8f457e89f8001df55">second_derivative_impl</a>(Real x, Real &amp; out)<span class="keyword"> const </span>{out = -std::sin(x);}</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    }; <span class="comment">// class Sin</span></div>
+<div class="foldopen" id="foldopen00067" data-start="{" data-end="}">
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="class_optimist_1_1_test_set_1_1_sin.html#ad6f67d8860e06e5d208e6df9ecf97ad6">   67</a></span>      <span class="keywordtype">bool</span> <a class="code hl_function" href="class_optimist_1_1_test_set_1_1_sin.html#ad6f67d8860e06e5d208e6df9ecf97ad6">evaluate_impl</a>(Real x, Real &amp; out)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="keyword">      </span>{</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        out = std::sin(x);</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        <span class="keywordflow">return</span> std::isfinite(out);</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>      }</div>
 </div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>  } <span class="comment">// namespace TestSet</span></div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>} <span class="comment">// namespace Optimist</span></div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="preprocessor">#endif </span><span class="comment">// OPTIMIST_TESTSET_SIN_HH</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span></div>
+<div class="foldopen" id="foldopen00079" data-start="{" data-end="}">
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="class_optimist_1_1_test_set_1_1_sin.html#aecebc373789b3bfecc0ec37e43561dc7">   79</a></span>      <span class="keywordtype">bool</span> <a class="code hl_function" href="class_optimist_1_1_test_set_1_1_sin.html#aecebc373789b3bfecc0ec37e43561dc7">first_derivative_impl</a>(Real x, Real &amp; out)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="keyword">      </span>{</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        out = std::cos(x);</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        <span class="keywordflow">return</span> std::isfinite(out);</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>      }</div>
+</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span></div>
+<div class="foldopen" id="foldopen00091" data-start="{" data-end="}">
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno"><a class="line" href="class_optimist_1_1_test_set_1_1_sin.html#a58cdaf0a25a79a60fcde8ba6ed854a68">   91</a></span>      <span class="keywordtype">bool</span> <a class="code hl_function" href="class_optimist_1_1_test_set_1_1_sin.html#a58cdaf0a25a79a60fcde8ba6ed854a68">second_derivative_impl</a>(Real x, Real &amp; out)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="keyword">      </span>{</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        out = -std::sin(x);</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        <span class="keywordflow">return</span> std::isfinite(out);</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>      }</div>
+</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    }; <span class="comment">// class Sin</span></div>
+</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>  } <span class="comment">// namespace TestSet</span></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>} <span class="comment">// namespace Optimist</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span><span class="preprocessor">#endif </span><span class="comment">// OPTIMIST_TESTSET_SIN_HH</span></div>
 <div class="ttc" id="a_optimist_8hh_html_ae253c9ddafd61510dd54fa18b038c8a7"><div class="ttname"><a href="_optimist_8hh.html#ae253c9ddafd61510dd54fa18b038c8a7">OPTIMIST_BASIC_CONSTANTS</a></div><div class="ttdeci">#define OPTIMIST_BASIC_CONSTANTS(Real)</div><div class="ttdef"><b>Definition</b> Optimist.hh:71</div></div>
 <div class="ttc" id="a_test_set_8hh_html"><div class="ttname"><a href="_test_set_8hh.html">TestSet.hh</a></div></div>
-<div class="ttc" id="aclass_optimist_1_1_function_base_html_a4c14fb709fa956a3ffa40f27fd8d3fa0"><div class="ttname"><a href="class_optimist_1_1_function_base.html#a4c14fb709fa956a3ffa40f27fd8d3fa0">Optimist::FunctionBase&lt; Real, N, M, Sin&lt; Real &gt;, false &gt;::m_guesses</a></div><div class="ttdeci">std::vector&lt; InputType &gt; m_guesses</div><div class="ttdef"><b>Definition</b> Function.hh:63</div></div>
-<div class="ttc" id="aclass_optimist_1_1_function_base_html_a5e11c4345423f681b8fcd9d6fdbb14f1"><div class="ttname"><a href="class_optimist_1_1_function_base.html#a5e11c4345423f681b8fcd9d6fdbb14f1">Optimist::FunctionBase&lt; Real, N, M, Sin&lt; Real &gt;, false &gt;::m_solutions</a></div><div class="ttdeci">std::vector&lt; InputType &gt; m_solutions</div><div class="ttdef"><b>Definition</b> Function.hh:62</div></div>
-<div class="ttc" id="aclass_optimist_1_1_function_html_ac0e97a5073c54328d9d321d4227efa1b"><div class="ttname"><a href="class_optimist_1_1_function.html#ac0e97a5073c54328d9d321d4227efa1b">Optimist::Function&lt; Real, 1, 1, Sin&lt; Real &gt; &gt;::Function</a></div><div class="ttdeci">Function()</div><div class="ttdef"><b>Definition</b> Function.hh:203</div></div>
+<div class="ttc" id="aclass_optimist_1_1_function_base_html_a4c14fb709fa956a3ffa40f27fd8d3fa0"><div class="ttname"><a href="class_optimist_1_1_function_base.html#a4c14fb709fa956a3ffa40f27fd8d3fa0">Optimist::FunctionBase&lt; Real, N, M, Sin&lt; Real &gt;, false &gt;::m_guesses</a></div><div class="ttdeci">std::vector&lt; InputType &gt; m_guesses</div><div class="ttdef"><b>Definition</b> Function.hh:66</div></div>
+<div class="ttc" id="aclass_optimist_1_1_function_base_html_a5e11c4345423f681b8fcd9d6fdbb14f1"><div class="ttname"><a href="class_optimist_1_1_function_base.html#a5e11c4345423f681b8fcd9d6fdbb14f1">Optimist::FunctionBase&lt; Real, N, M, Sin&lt; Real &gt;, false &gt;::m_solutions</a></div><div class="ttdeci">std::vector&lt; InputType &gt; m_solutions</div><div class="ttdef"><b>Definition</b> Function.hh:65</div></div>
+<div class="ttc" id="aclass_optimist_1_1_function_html_ac0e97a5073c54328d9d321d4227efa1b"><div class="ttname"><a href="class_optimist_1_1_function.html#ac0e97a5073c54328d9d321d4227efa1b">Optimist::Function&lt; Real, 1, 1, Sin&lt; Real &gt; &gt;::Function</a></div><div class="ttdeci">Function()</div><div class="ttdef"><b>Definition</b> Function.hh:209</div></div>
 <div class="ttc" id="aclass_optimist_1_1_test_set_1_1_sin_html_a0d5bd822a36bacaa812b5848d474410e"><div class="ttname"><a href="class_optimist_1_1_test_set_1_1_sin.html#a0d5bd822a36bacaa812b5848d474410e">Optimist::TestSet::Sin::name_impl</a></div><div class="ttdeci">std::string name_impl() const</div><div class="ttdef"><b>Definition</b> Sin.hh:59</div></div>
-<div class="ttc" id="aclass_optimist_1_1_test_set_1_1_sin_html_a24f0754e1c676ad8f457e89f8001df55"><div class="ttname"><a href="class_optimist_1_1_test_set_1_1_sin.html#a24f0754e1c676ad8f457e89f8001df55">Optimist::TestSet::Sin::second_derivative_impl</a></div><div class="ttdeci">void second_derivative_impl(Real x, Real &amp;out) const</div><div class="ttdef"><b>Definition</b> Sin.hh:80</div></div>
-<div class="ttc" id="aclass_optimist_1_1_test_set_1_1_sin_html_aacca83eb4aa180a586f0ea2815ab2969"><div class="ttname"><a href="class_optimist_1_1_test_set_1_1_sin.html#aacca83eb4aa180a586f0ea2815ab2969">Optimist::TestSet::Sin::first_derivative_impl</a></div><div class="ttdeci">void first_derivative_impl(Real x, Real &amp;out) const</div><div class="ttdef"><b>Definition</b> Sin.hh:73</div></div>
-<div class="ttc" id="aclass_optimist_1_1_test_set_1_1_sin_html_ac33239a3b3ef439220930c6ad0074b4e"><div class="ttname"><a href="class_optimist_1_1_test_set_1_1_sin.html#ac33239a3b3ef439220930c6ad0074b4e">Optimist::TestSet::Sin::evaluate_impl</a></div><div class="ttdeci">void evaluate_impl(Real x, Real &amp;out) const</div><div class="ttdef"><b>Definition</b> Sin.hh:66</div></div>
+<div class="ttc" id="aclass_optimist_1_1_test_set_1_1_sin_html_a58cdaf0a25a79a60fcde8ba6ed854a68"><div class="ttname"><a href="class_optimist_1_1_test_set_1_1_sin.html#a58cdaf0a25a79a60fcde8ba6ed854a68">Optimist::TestSet::Sin::second_derivative_impl</a></div><div class="ttdeci">bool second_derivative_impl(Real x, Real &amp;out) const</div><div class="ttdef"><b>Definition</b> Sin.hh:91</div></div>
+<div class="ttc" id="aclass_optimist_1_1_test_set_1_1_sin_html_ad6f67d8860e06e5d208e6df9ecf97ad6"><div class="ttname"><a href="class_optimist_1_1_test_set_1_1_sin.html#ad6f67d8860e06e5d208e6df9ecf97ad6">Optimist::TestSet::Sin::evaluate_impl</a></div><div class="ttdeci">bool evaluate_impl(Real x, Real &amp;out) const</div><div class="ttdef"><b>Definition</b> Sin.hh:67</div></div>
+<div class="ttc" id="aclass_optimist_1_1_test_set_1_1_sin_html_aecebc373789b3bfecc0ec37e43561dc7"><div class="ttname"><a href="class_optimist_1_1_test_set_1_1_sin.html#aecebc373789b3bfecc0ec37e43561dc7">Optimist::TestSet::Sin::first_derivative_impl</a></div><div class="ttdeci">bool first_derivative_impl(Real x, Real &amp;out) const</div><div class="ttdef"><b>Definition</b> Sin.hh:79</div></div>
 <div class="ttc" id="aclass_optimist_1_1_test_set_1_1_sin_html_aed3e6985639b74f787381dbbc845b0c1"><div class="ttname"><a href="class_optimist_1_1_test_set_1_1_sin.html#aed3e6985639b74f787381dbbc845b0c1">Optimist::TestSet::Sin::Sin</a></div><div class="ttdeci">Sin()</div><div class="ttdef"><b>Definition</b> Sin.hh:45</div></div>
 <div class="ttc" id="anamespace_optimist_html"><div class="ttname"><a href="namespace_optimist.html">Optimist</a></div><div class="ttdoc">Namespace for the Optimist library.</div><div class="ttdef"><b>Definition</b> Optimist.hh:88</div></div>
 </div><!-- fragment --></div><!-- contents -->

@@ -46,7 +46,8 @@ namespace Optimist
     public:
       OPTIMIST_BASIC_CONSTANTS(Real)
 
-      using Vector = typename Function<Real, N, N, Rosenbrock<Real, N>>::InputVector;
+      using typename Function<Real, N, N, Rosenbrock<Real, N>>::InputVector;
+      using typename Function<Real, N, N, Rosenbrock<Real, N>>::OutputVector;
       using typename Function<Real, N, N, Rosenbrock<Real, N>>::Matrix;
       using typename Function<Real, N, N, Rosenbrock<Real, N>>::Tensor;
 
@@ -55,8 +56,8 @@ namespace Optimist
        */
       Rosenbrock()
       {
-        this->m_solutions.emplace_back(Vector::Ones());
-        this->m_guesses.emplace_back(Vector::Ones());
+        this->m_solutions.emplace_back(OutputVector::Ones());
+        this->m_guesses.emplace_back(InputVector::Ones());
         for (Integer i{0}; i < N; i += 2) {
           this->m_guesses[0](i) = -1.2;
           this->m_guesses[0](i+1) = 1.0;
@@ -75,7 +76,7 @@ namespace Optimist
        * \param[out] out The function value.
        * \return The boolean flag for successful evaluation.
        */
-      bool evaluate_impl(Vector const & x, Vector & out) const
+      bool evaluate_impl(InputVector const & x, OutputVector & out) const
       {
         for (Integer i{0}; i < N; i += 2) {
           out(i)   = 10.0*(x(i+1) - x(i)*x(i));
@@ -90,7 +91,7 @@ namespace Optimist
        * \param[out] out The first derivative value.
        * \return The boolean flag for successful evaluation.
        */
-      bool first_derivative_impl(Vector const & x, Matrix & out) const
+      bool first_derivative_impl(InputVector const & x, Matrix & out) const
       {
         out.setZero();
         for (Integer i{0}; i < N; i += 2) {
@@ -107,7 +108,7 @@ namespace Optimist
        * \param[out] out The second derivative value.
        * \return The boolean flag for successful evaluation.
        */
-      bool second_derivative_impl(Vector const & /*x*/, Tensor & out) const
+      bool second_derivative_impl(InputVector const & /*x*/, Tensor & out) const
       {
         out.resize(this->output_dimension());
         for (size_t i{0}; i < out.size(); ++i) {

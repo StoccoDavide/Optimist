@@ -16,6 +16,13 @@ file(GLOB_RECURSE TESTSET_TESTS "${CMAKE_CURRENT_SOURCE_DIR}/TestSet/test_*.cc")
 add_executable(test_testset ${TESTSET_TESTS})
 target_link_libraries(test_testset PRIVATE Optimist)
 
+# FiniteDifferences
+
+file(GLOB_RECURSE TEST_FINITEDIFFERENCES_TESTS "${CMAKE_CURRENT_SOURCE_DIR}/FiniteDifferences/test_*.cc")
+add_executable(test_finitediferences ${TEST_FINITEDIFFERENCES_TESTS})
+target_link_libraries(test_finitediferences PRIVATE Optimist Catch2::Catch2WithMain)
+catch_discover_tests(test_finitediferences)
+
 # RootFinder
 
 file(GLOB_RECURSE TEST_ROOTFINDER_ALGO748 "${CMAKE_CURRENT_SOURCE_DIR}/RootFinder/test_algo748.cc")

@@ -48,10 +48,8 @@ namespace Optimist
 
       using typename Optimizer<Real, N, PatternSearch<Real, N>, true>::Vector;
       using typename Optimizer<Real, N, PatternSearch<Real, N>, true>::Matrix;
-      using typename Optimizer<Real, N, PatternSearch<Real, N>, true>::FunctionWrapper;
-      using Optimizer<Real, N, PatternSearch<Real, N>, true>::solve;
 
-      using Simplex = std::vector<Vector>; /**< Simplex type. */
+      using Simplex = std::vector<Vector>;
 
     private:
       Real m_rho{0.9}; // stencil step decreasing factor (must be 0 < rho < 1)
@@ -160,12 +158,14 @@ namespace Optimist
       /**
        * Solve the nonlinear system of equations \f$ \mathbf{f}(\mathbf{x}) = 0 \f$, with \f$
        * \mathbf{f}: \mathbb{R}^n \rightarrow \mathbb{R}^n \f$.
-       * \param[in] function Function wrapper.
+       * \tparam FunctionLambda Function lambda type.
+       * \param[in] function Function lambda.
        * \param[in] x_ini Initialization point.
        * \param[out] x_sol Solution point.
        * \return The convergence boolean flag.
        */
-      bool solve_impl(FunctionWrapper function, Vector const & x_ini, Vector & x_sol)
+      template <typename FunctionLambda>
+      bool solve_impl(FunctionLambda && function, Vector const & x_ini, Vector & x_sol)
       {
         // Setup internal variables
         this->reset();
@@ -177,7 +177,7 @@ namespace Optimist
         // Set initial iteration
         Vector x_best(x_ini);
         Real f_best;
-        bool success{this->evaluate_function(function, x_best, f_best)};
+        bool success{this->evaluate_function(std::forward<FunctionLambda>(function), x_best, f_best)};
         UTILS_ASSERT(
           success,
           "Optimist::Optimizer::PatternSearch::solve(...): "

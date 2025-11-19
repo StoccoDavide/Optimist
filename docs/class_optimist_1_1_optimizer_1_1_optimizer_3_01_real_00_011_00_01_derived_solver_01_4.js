@@ -1,27 +1,19 @@
 var class_optimist_1_1_optimizer_1_1_optimizer_3_01_real_00_011_00_01_derived_solver_01_4 =
 [
-    [ "FirstDerivativeWrapper", "class_optimist_1_1_optimizer_1_1_optimizer_3_01_real_00_011_00_01_derived_solver_01_4.html#a9e6e73fd8ee0b07f11f473dee5956c8a", null ],
-    [ "FunctionWrapper", "class_optimist_1_1_optimizer_1_1_optimizer_3_01_real_00_011_00_01_derived_solver_01_4.html#ae47df0d2574187c299f0596178f1cb7b", null ],
-    [ "GradientWrapper", "class_optimist_1_1_optimizer_1_1_optimizer.html#a093ed24639dca25c56d679b6864b4ddf", null ],
-    [ "HessianWrapper", "class_optimist_1_1_optimizer_1_1_optimizer.html#a134f57ad7054c14077b0fd18f3311f01", null ],
     [ "Matrix", "class_optimist_1_1_optimizer_1_1_optimizer.html#ae1c1c89ef027b678dcbc6537b2bcf79c", null ],
     [ "RowVector", "class_optimist_1_1_optimizer_1_1_optimizer.html#a6e82e1d78df15d5f5687d3946cb4de8a", null ],
-    [ "SecondDerivativeWrapper", "class_optimist_1_1_optimizer_1_1_optimizer_3_01_real_00_011_00_01_derived_solver_01_4.html#aebbb533aafcd1b8bf77fa735c9c1e8d8", null ],
     [ "Vector", "class_optimist_1_1_optimizer_1_1_optimizer.html#a059ec9aa50dc982d617661bb10fba969", null ],
     [ "Optimizer", "class_optimist_1_1_optimizer_1_1_optimizer_3_01_real_00_011_00_01_derived_solver_01_4.html#af3af15039992bc7ff2a92a91ce6efdaf", null ],
-    [ "evaluate_gradient", "class_optimist_1_1_optimizer_1_1_optimizer.html#adf56b80a0fe18bff875a5277b887a35b", null ],
-    [ "evaluate_hessian", "class_optimist_1_1_optimizer_1_1_optimizer.html#a85850cd39b81fedef2e1b87d229c8c1a", null ],
+    [ "evaluate_gradient", "class_optimist_1_1_optimizer_1_1_optimizer.html#aaff2268e463c6e030265646c0bc8ac91", null ],
+    [ "evaluate_hessian", "class_optimist_1_1_optimizer_1_1_optimizer.html#a79fff1c9705cb9ac043120ef7abae903", null ],
     [ "gradient_evaluations", "class_optimist_1_1_optimizer_1_1_optimizer.html#aaeaeed489b26f91dd67057c01dae9942", null ],
     [ "hessian_evaluations", "class_optimist_1_1_optimizer_1_1_optimizer.html#a967738280752177e88ff12457284acf6", null ],
     [ "max_gradient_evaluations", "class_optimist_1_1_optimizer_1_1_optimizer.html#a20dbe67596d61af03932e0da38b190f5", null ],
     [ "max_hessian_evaluations", "class_optimist_1_1_optimizer_1_1_optimizer.html#a99c6834a30a7173e648c74873ed66a5e", null ],
     [ "name", "class_optimist_1_1_optimizer_1_1_optimizer_3_01_real_00_011_00_01_derived_solver_01_4.html#a5db4e956459a48860f942f0e53f5d8b8", null ],
-    [ "solve", "class_optimist_1_1_optimizer_1_1_optimizer.html#afb3ea5bb005549fbd4cd0042ec37fd30", null ],
+    [ "solve", "class_optimist_1_1_optimizer_1_1_optimizer.html#a4848ff499547df4e74980e94d99e480f", null ],
     [ "SolverBase< Real, 1, 1, Optimizer< Real, 1, DerivedSolver > >", "class_optimist_1_1_optimizer_1_1_optimizer_3_01_real_00_011_00_01_derived_solver_01_4.html#a069312b56e843ec78e7f66b52f245aeb", null ],
     [ "SolverBase< Real, N, 1, Optimizer< Real, N, DerivedSolver, ForceEigen > >", "class_optimist_1_1_optimizer_1_1_optimizer.html#a2d509c4daed0aa0ef2d6dea83a1eaa37", null ],
     [ "is_optimizer", "class_optimist_1_1_optimizer_1_1_optimizer_3_01_real_00_011_00_01_derived_solver_01_4.html#acefd092f08c6943b340df1dd8750e30e", null ],
-    [ "is_rootfinder", "class_optimist_1_1_optimizer_1_1_optimizer_3_01_real_00_011_00_01_derived_solver_01_4.html#a9439bdccd0e6c59fa31f40dd23937dc8", null ],
-    [ "requires_first_derivative", "class_optimist_1_1_optimizer_1_1_optimizer_3_01_real_00_011_00_01_derived_solver_01_4.html#a03a3d1f46c8779c4553bdb76b256b736", null ],
-    [ "requires_function", "class_optimist_1_1_optimizer_1_1_optimizer_3_01_real_00_011_00_01_derived_solver_01_4.html#a47e7105b266cd05351d28b5f8405a9e8", null ],
-    [ "requires_second_derivative", "class_optimist_1_1_optimizer_1_1_optimizer_3_01_real_00_011_00_01_derived_solver_01_4.html#a87263793ae30241119cb5dba8cb8c2d3", null ]
+    [ "is_rootfinder", "class_optimist_1_1_optimizer_1_1_optimizer_3_01_real_00_011_00_01_derived_solver_01_4.html#a9439bdccd0e6c59fa31f40dd23937dc8", null ]
 ];

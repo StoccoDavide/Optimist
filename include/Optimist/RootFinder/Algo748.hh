@@ -48,11 +48,6 @@ namespace Optimist
 
       OPTIMIST_BASIC_CONSTANTS(Real)
 
-      // Function types
-      using typename Bracketing<Real, Algo748<Real>>::FunctionWrapper;
-      using typename Bracketing<Real, Algo748<Real>>::FirstDerivativeWrapper;
-      using typename Bracketing<Real, Algo748<Real>>::SecondDerivativeWrapper;
-
       /**
        * Class constructor for the Algorithm 748.
        */
@@ -84,10 +79,12 @@ namespace Optimist
        *      also updates the termination criterion corresponding
        *      to the new enclosing interval.
        * Adjust \f$c\f$ if \f$(b-a)\f$ is very small or if \f$c\f$ is very close to \f$a\f$ or \f$b\f$.
-       * \param[in] function Function wrapper.
+       * \tparam FunctionLambda Function lambda type.
+       * \param[in] function Function lambda.
        * \return The boolean flag, true if the root is found, false otherwise.
        */
-      bool bracketing(FunctionWrapper function)
+      template <typename FunctionLambda>
+      bool bracketing(FunctionLambda && function)
       {
         #define CMD "Optimist::ScalarRootfinder::Algo748::bracketing(...): "
 
@@ -100,7 +97,7 @@ namespace Optimist
         }
 
         // If f(c) = 0 set a = c and return true
-        bool success{this->evaluate_function(function, this->m_c, this->m_fc)};
+        bool success{this->evaluate_function(std::forward<FunctionLambda>(function), this->m_c, this->m_fc)};
         OPTIMIST_ASSERT_WARNING(success,
           CMD "function evaluation failed during bracketing.");
         if (this->m_fc == 0) {
@@ -129,8 +126,8 @@ namespace Optimist
        * \f$e\f$ to get an approximate root \f$r\f$ (\f$f(r) = 0\f$).
        * \return The approximate root \f$r\f$.
        */
-      Real cubic_interpolation() {
-
+      Real cubic_interpolation()
+      {
         // Compute the coefficients for the inverse cubic interpolation
         Real d_1{this->m_b - this->m_a};
         Real d_2{this->m_d - this->m_a};
@@ -198,10 +195,12 @@ namespace Optimist
        *   2. The third step is a double-size secant step.
        * If the diameter of the enclosing interval obtained after these three steps is larger than
        * \f$\mu*(b_0-a_0)\f$, an additional bisection step will be used to shrink the enclosing interval.
-       * \param[in] function Function wrapper.
+       * \tparam FunctionLambda The lambda function type.
+       * \param[in] function Function lambda.
        * \return The approximate root.
        */
-      Real find_root_impl(FunctionWrapper function)
+      template <typename FunctionLambda>
+      Real find_root_impl(FunctionLambda && function)
       {
         #define CMD "Optimist::ScalarRootfinder::Algo748::find_root_impl(...): "
 
@@ -221,7 +220,7 @@ namespace Optimist
         while (!(std::isfinite(this->m_fa) && std::isfinite(this->m_fb))) {
           ++this->m_iterations;
           this->m_c  = (this->m_a + this->m_b)/2.0;
-          success = this->evaluate_function(function, this->m_c, this->m_fc);
+          success = this->evaluate_function(std::forward<FunctionLambda>(function), this->m_c, this->m_fc);
           OPTIMIST_ASSERT_WARNING(success,
             CMD "function evaluation failed at iteration " << this->m_iterations << ".");
           this->m_converged = this->m_fc == 0;
@@ -254,7 +253,7 @@ namespace Optimist
         }
 
         // Call "bracketing" to get a shrinked enclosing interval and to update the termination criterion
-        this->m_converged = this->bracketing(function);
+        this->m_converged = this->bracketing(std::forward<FunctionLambda>(function));
         if (this->m_converged ) {return this->m_a;}
         this->m_converged = false;
 
@@ -287,7 +286,7 @@ namespace Optimist
           this->m_fe = this->m_fd;
 
           // Call "bracketing" to get a shrinked enclosing interval and to update the termination criterion
-          this->m_converged = this->bracketing(function) || (this->m_b-this->m_a) <= this->m_tolerance;
+          this->m_converged = this->bracketing(std::forward<FunctionLambda>(function)) || (this->m_b-this->m_a) <= this->m_tolerance;
           if (this->m_converged) {
             return std::abs(this->m_fa) < std::abs(this->m_fb) ? this->m_a : this->m_b;
           }
@@ -301,7 +300,7 @@ namespace Optimist
 
           // Call "bracketing" to get a shrinked enclosing interval and to update the termination criterion
           {
-            this->m_converged = this->bracketing(function) || (this->m_b-this->m_a) <= this->m_tolerance;
+            this->m_converged = this->bracketing(std::forward<FunctionLambda>(function)) || (this->m_b-this->m_a) <= this->m_tolerance;
             Real abs_fa{std::abs(this->m_fa)};
             Real abs_fb{std::abs(this->m_fb)};
             if (this->m_converged) {return abs_fa < abs_fb ? this->m_a : this->m_b;}
@@ -319,7 +318,7 @@ namespace Optimist
           }
 
           // Call "bracketing" to get a shrinked enclosing interval and to update the termination criterion
-          this->m_converged = this->bracketing(function) || (this->m_b-this->m_a) <= this->m_tolerance_bracketing;
+          this->m_converged = this->bracketing(std::forward<FunctionLambda>(function)) || (this->m_b-this->m_a) <= this->m_tolerance_bracketing;
           if (this->m_converged) {
             return std::abs(this->m_fa) < std::abs(this->m_fb) ? this->m_a : this->m_b;
           }
@@ -334,7 +333,7 @@ namespace Optimist
           {
             Real b_a{this->m_b-this->m_a};
             this->m_c = this->m_a + b_a/2.0;
-            this->m_converged = this->bracketing(function) || b_a <= this->m_tolerance_bracketing;
+            this->m_converged = this->bracketing(std::forward<FunctionLambda>(function)) || b_a <= this->m_tolerance_bracketing;
           }
         }
         // Return the approximate root

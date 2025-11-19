@@ -47,14 +47,15 @@ namespace Optimist
 
       OPTIMIST_BASIC_CONSTANTS(Real)
 
-      using Method = enum class Method : Integer {GOOD = 0, BAD = 1, COMBINED = 2}; /**< Broyden solver type. */
       using typename QuasiNewton<Real, N, Broyden<Real, N>>::Vector;
       using typename QuasiNewton<Real, N, Broyden<Real, N>>::Matrix;
-      using typename QuasiNewton<Real, N, Broyden<Real, N>>::FunctionWrapper;
-      using typename QuasiNewton<Real, N, Broyden<Real, N>>::JacobianWrapper;
-      using QuasiNewton<Real, N, Broyden<Real, N>>::solve;
 
-    private:
+      /**
+       * Broyden solver type enumeration.
+       */
+      using Method = enum class Method : Integer {GOOD = 0, BAD = 1, COMBINED = 2};
+
+      private:
       Method m_method{Method::COMBINED}; /**< Broyden solver type. */
 
     public:

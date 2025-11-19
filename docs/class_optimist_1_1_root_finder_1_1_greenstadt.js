@@ -1,10 +1,6 @@
 var class_optimist_1_1_root_finder_1_1_greenstadt =
 [
-    [ "FunctionWrapper", "class_optimist_1_1_root_finder_1_1_greenstadt.html#a380fff74529dc3c3e8af8daa2f62a2cd", null ],
-    [ "JacobianWrapper", "class_optimist_1_1_root_finder_1_1_greenstadt.html#a36c06e8ab45b93103fbbee973d31db6a", null ],
-    [ "Matrix", "class_optimist_1_1_root_finder_1_1_greenstadt.html#a00f71ffc73eccfc4ac1dc20da3a75283", null ],
     [ "Method", "class_optimist_1_1_root_finder_1_1_greenstadt.html#a324d014daf19c48c19189702fbaf03c8", null ],
-    [ "Vector", "class_optimist_1_1_root_finder_1_1_greenstadt.html#a15a335e6a18923a1f9457de21ef5dfa3", null ],
     [ "Greenstadt", "class_optimist_1_1_root_finder_1_1_greenstadt.html#ac4e18414e97e6b863f3a788a1fe6b5d6", null ],
     [ "enable_one_method", "class_optimist_1_1_root_finder_1_1_greenstadt.html#a93ee6bccbc69ea379103c401930288f9", null ],
     [ "enable_two_method", "class_optimist_1_1_root_finder_1_1_greenstadt.html#a14bf8ce265a2230a08be2f48935d4d50", null ],

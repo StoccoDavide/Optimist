@@ -47,12 +47,13 @@ namespace Optimist
 
       OPTIMIST_BASIC_CONSTANTS(Real)
 
-      using Method = enum class Method : Integer {ONE = 1, TWO = 2}; /**< Greenstadt solver type. */
       using typename QuasiNewton<Real, N, Greenstadt<Real, N>>::Vector;
       using typename QuasiNewton<Real, N, Greenstadt<Real, N>>::Matrix;
-      using typename QuasiNewton<Real, N, Greenstadt<Real, N>>::FunctionWrapper;
-      using typename QuasiNewton<Real, N, Greenstadt<Real, N>>::JacobianWrapper;
-      using QuasiNewton<Real, N, Greenstadt<Real, N>>::solve;
+
+      /**
+       * Greenstadt solver type enumeration.
+       */
+      using Method = enum class Method : Integer {ONE = 1, TWO = 2};
 
     private:
       Method m_method{Method::ONE}; /**< Greenstadt solver type. */

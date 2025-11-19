@@ -1,14 +1,11 @@
 var class_optimist_1_1_root_finder_1_1_root_finder =
 [
-    [ "FunctionWrapper", "class_optimist_1_1_root_finder_1_1_root_finder.html#a657a8a37def04e1088eaed8ba5c7756a", null ],
-    [ "HessianWrapper", "class_optimist_1_1_root_finder_1_1_root_finder.html#a5ea2c9bc4e1b4c592dad53315278cc85", null ],
-    [ "JacobianWrapper", "class_optimist_1_1_root_finder_1_1_root_finder.html#abeab993ab11da216729ff1151c0816c0", null ],
     [ "Matrix", "class_optimist_1_1_root_finder_1_1_root_finder.html#a9d85dcf2d44603a08463837c980824b5", null ],
     [ "Tensor", "class_optimist_1_1_root_finder_1_1_root_finder.html#a74b76bd357aa517be944ef3a200dc7e1", null ],
     [ "Vector", "class_optimist_1_1_root_finder_1_1_root_finder.html#a5a4c8064380113590f1534bd0c20d979", null ],
     [ "RootFinder", "class_optimist_1_1_root_finder_1_1_root_finder.html#a7d0894526be5ff17fef5a6f3700513cb", null ],
-    [ "evaluate_hessian", "class_optimist_1_1_root_finder_1_1_root_finder.html#aaa78ea277a656b86e8d135be5f1d4d6d", null ],
-    [ "evaluate_jacobian", "class_optimist_1_1_root_finder_1_1_root_finder.html#a9733abba95cb2b84daa29fb6e3bf3020", null ],
+    [ "evaluate_hessian", "class_optimist_1_1_root_finder_1_1_root_finder.html#a66c35e77cc86a41b57fe78a30af5e6e2", null ],
+    [ "evaluate_jacobian", "class_optimist_1_1_root_finder_1_1_root_finder.html#a8cb48b4ea448294432f7295735c6ed6e", null ],
     [ "hessian_evaluations", "class_optimist_1_1_root_finder_1_1_root_finder.html#a9e372d24d57663606b795553b6b8dd08", null ],
     [ "jacobian_evaluations", "class_optimist_1_1_root_finder_1_1_root_finder.html#aa88ba3113e4f3f6b80f10fb578c06cb3", null ],
     [ "max_hessian_evaluations", "class_optimist_1_1_root_finder_1_1_root_finder.html#afc14f6e849e6eef40433d5e2f00f55e5", null ],
@@ -16,13 +13,10 @@ var class_optimist_1_1_root_finder_1_1_root_finder =
     [ "max_jacobian_evaluations", "class_optimist_1_1_root_finder_1_1_root_finder.html#aed73a307fce476952a346873182e9e92", null ],
     [ "max_jacobian_evaluations", "class_optimist_1_1_root_finder_1_1_root_finder.html#a1424926551d950e287e330c302aef491", null ],
     [ "name", "class_optimist_1_1_root_finder_1_1_root_finder.html#a2d91d3bc8815eadb030a055408590d75", null ],
-    [ "solve", "class_optimist_1_1_root_finder_1_1_root_finder.html#a1f7dbd80402a3d24ad91367273d79904", null ],
-    [ "solve", "class_optimist_1_1_root_finder_1_1_root_finder.html#a68316c8abfcfe13988862e6408d6f147", null ],
-    [ "solve", "class_optimist_1_1_root_finder_1_1_root_finder.html#a422d25bba2389e9cb1e697f000d715c8", null ],
+    [ "solve", "class_optimist_1_1_root_finder_1_1_root_finder.html#a0c61c2a6e9a43dfabdc378095838c7b1", null ],
+    [ "solve", "class_optimist_1_1_root_finder_1_1_root_finder.html#abc0eb5de35ce2cb2c745d818fd00ae39", null ],
+    [ "solve", "class_optimist_1_1_root_finder_1_1_root_finder.html#a067638b61c3e835717de7c1706e960b2", null ],
     [ "SolverBase< Real, N, N, RootFinder< Real, N, DerivedSolver, ForceEigen > >", "class_optimist_1_1_root_finder_1_1_root_finder.html#a611fae64379ec85ba9266d0c01540bec", null ],
     [ "is_optimizer", "class_optimist_1_1_root_finder_1_1_root_finder.html#a0fd533311fe835cd90a18c91da2f8ea5", null ],
-    [ "is_rootfinder", "class_optimist_1_1_root_finder_1_1_root_finder.html#abba03acde796b80cd78e71eb455d2360", null ],
-    [ "requires_first_derivative", "class_optimist_1_1_root_finder_1_1_root_finder.html#a14f90e663b4723df955d48ec2d69f108", null ],
-    [ "requires_function", "class_optimist_1_1_root_finder_1_1_root_finder.html#aca5c4ea0dfd88a00e9a49234d4fad931", null ],
-    [ "requires_second_derivative", "class_optimist_1_1_root_finder_1_1_root_finder.html#abf5100223dbf1fa2c67ada709b65089a", null ]
+    [ "is_rootfinder", "class_optimist_1_1_root_finder_1_1_root_finder.html#abba03acde796b80cd78e71eb455d2360", null ]
 ];
