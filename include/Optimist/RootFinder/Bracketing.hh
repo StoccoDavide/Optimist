@@ -43,9 +43,9 @@ namespace Optimist
       OPTIMIST_BASIC_CONSTANTS(Real)
 
     protected:
-      Real m_tolerance_bracketing{100*EPSILON}; /**< Tolerance for the Algorithm 748 solver. */
-      Real m_mu{0.5}; /**< Parameter \f$ \mu \f$. */
-      Real m_interval_shink{0.025}; /**< Interval shrinking factor. */
+      Real m_tolerance_bracketing{100*EPSILON}; /**< Tolerance for the Bracketing solver. */
+      Real m_mu{0.5};                           /**< Parameter \f$ \mu \f$. */
+      Real m_interval_shink{0.025};             /**< Interval shrinking factor. */
 
       Real m_a{0.0}, m_fa{0.0};
       Real m_b{0.0}, m_fb{0.0};
@@ -55,13 +55,13 @@ namespace Optimist
 
     public:
       /**
-       * Class constructor for the Algorithm 748.
+       * Class constructor for the Bracketing.
        */
       Bracketing() {}
 
       /**
-       * Get the Algorithm 748 solver name.
-       * \return The Algorithm 748 solver name.
+       * Get the Bracketing solver name.
+       * \return The Bracketing solver name.
        */
       std::string name_impl() const
       {
@@ -69,7 +69,7 @@ namespace Optimist
       }
 
       /**
-       * Set the tolerance for the Algorithm 748 solver.
+       * Set the tolerance for the Bracketing solver.
        * \param[in] t_tolerance The input value at which the tolerance is computed.
        * \note To accurately find polynomial roots, the tolerance should be set to \f$ 100\epsilon(0) \f$.
        */
@@ -86,7 +86,7 @@ namespace Optimist
       template <typename FunctionLambda>
       bool solve_impl(FunctionLambda && function, Real /*x_ini*/, Real & x_sol)
       {
-        #define CMD "Optimist::ScalarRootfinder::Bracketing::solve_impl(...): "
+        #define CMD "Optimist::Rootfinder::Bracketing::solve_impl(...): "
 
         // Setup internal variables
         bool success;
@@ -98,16 +98,16 @@ namespace Optimist
         // Initialize variables
         this->m_a = this->m_lower_bound;
         success = this->evaluate_function(std::forward<FunctionLambda>(function), this->m_a, this->m_fa);
-        OPTIMIST_ASSERT_WARNING(success,
+        OPTIMIST_ASSERT(success,
           CMD "function evaluation failed at the lower bound.");
 
         this->m_b = this->m_upper_bound;
         success = this->evaluate_function(std::forward<FunctionLambda>(function), this->m_b, this->m_fb);
-        OPTIMIST_ASSERT_WARNING(success,
+        OPTIMIST_ASSERT(success,
           CMD "function evaluation failed at the upper bound.");
 
         // Check if the solution exists
-        if (this->m_fa*this->m_fb > 0.0) {return false;}
+        if (this->m_fa*this->m_fb > 0) {return false;}
         else {x_sol = this->find_root(std::forward<FunctionLambda>(function));}
 
         // Print bottom

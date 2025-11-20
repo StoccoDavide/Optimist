@@ -153,6 +153,7 @@ namespace Optimist
        * \param[out] x_sol Solution point.
        * \return The convergence boolean flag.
        */
+      template <typename FunctionLambda>
       bool solve(FunctionLambda && function, Vector const & x_ini, Vector & x_sol)
       {
         #define CMD "Optimist::Optimizer::solve(...): "

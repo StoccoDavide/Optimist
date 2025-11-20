@@ -97,7 +97,7 @@ namespace Optimist
         // Set initial iteration
         x_old = x_ini;
         success = this->evaluate_function(std::forward<FunctionLambda>(function), x_old, function_old);
-        OPTIMIST_ASSERT_WARNING(success,
+        OPTIMIST_ASSERT(success,
           CMD "function evaluation failed at the initial point.");
 
         // Algorithm iterations
@@ -105,12 +105,9 @@ namespace Optimist
         Real tolerance_step_norm{this->m_tolerance * this->m_tolerance};
         for (this->m_iterations = 1; this->m_iterations < this->m_max_iterations; ++this->m_iterations)
         {
-          // Store trace
-          this->store_trace(x_old);
-
           // Calculate step
           success = this->evaluate_jacobian(jacobian, x_old, jacobian_old);
-          OPTIMIST_ASSERT_WARNING(success,
+          OPTIMIST_ASSERT(success,
             CMD "jacobian evaluation failed at iteration " << this->m_iterations << ".");
           this->m_lu.compute(jacobian_old);
           OPTIMIST_ASSERT(this->m_lu.rank() == N,
@@ -136,7 +133,7 @@ namespace Optimist
             // Update point
             x_new = x_old + step_old;
             success = this->evaluate_function(std::forward<FunctionLambda>(function), x_new, function_new);
-            OPTIMIST_ASSERT_WARNING(success,
+            OPTIMIST_ASSERT(success,
               CMD "function evaluation failed at iteration " << this->m_iterations << ".");
           }
 

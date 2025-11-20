@@ -96,7 +96,6 @@ namespace Optimist
     // Convergence output flag and trace
     std::string m_task{"Undefined"}; /**< Task name. */
     bool        m_converged{false};  /**< Convergence boolean flag. */
-    TraceType   m_trace;             /**< Trace for points \f$ \mathbf{x} \f$ values. */
 
   public:
     /**
@@ -110,7 +109,6 @@ namespace Optimist
         this->m_lower_bound = -INFTY;
         this->m_upper_bound = INFTY;
       }
-      this->m_trace.reserve(this->m_max_iterations * this->m_max_relaxations);
     }
 
     /**
@@ -397,7 +395,7 @@ namespace Optimist
      * \param[in] t_tolerance The tolerance \f$ \epsilon \f$.
      */
     void tolerance(Real t_tolerance) {
-      OPTIMIST_ASSERT(!std::isnan(t_tolerance) && std::isfinite(t_tolerance) && t_tolerance > 0.0,
+      OPTIMIST_ASSERT(!std::isnan(t_tolerance) && std::isfinite(t_tolerance) && t_tolerance > 0,
         "Optimist::Solver::tolerance(...): invalid input detected.");
       this->m_tolerance = t_tolerance;
     }
@@ -465,12 +463,6 @@ namespace Optimist
     bool converged() const {return this->m_converged;}
 
     /**
-     * Get the trace of input values during the algorithm iterations.
-     * \return The trace of input values.
-     */
-    const TraceType & trace() const {return this->m_trace;}
-
-    /**
      * Get the output stream for verbose mode.
      * \return The output stream for verbose mode.
      */
@@ -497,7 +489,7 @@ namespace Optimist
 
       static_assert(DerivedSolver::requires_function,
         CMD "the solver requires a function.");
-      return static_cast<DerivedSolver *>(this)->solve(
+      return static_cast<DerivedSolver *>(this)->solve_impl(
         std::forward<FunctionLambda>(function),
         nullptr, nullptr, x_ini, x_sol);
 
@@ -524,7 +516,7 @@ namespace Optimist
         CMD "the solver requires a function.");
       static_assert(DerivedSolver::requires_first_derivative,
         CMD "the solver requires the first derivative.");
-      return static_cast<DerivedSolver *>(this)->solve(
+      return static_cast<DerivedSolver *>(this)->solve_impl(
         std::forward<FunctionLambda>(function),
         std::forward<FirstDerivativeLambda>(first_derivative),
         nullptr, x_ini, x_sol);
@@ -556,7 +548,7 @@ namespace Optimist
         CMD "the solver requires the first derivative.");
       static_assert(DerivedSolver::requires_second_derivative,
         CMD "the solver requires the second derivative.");
-      return static_cast<DerivedSolver *>(this)->solve(
+      return static_cast<DerivedSolver *>(this)->solve_impl(
         std::forward<FunctionLambda>(function),
         std::forward<FirstDerivativeLambda>(first_derivative),
         std::forward<SecondDerivativeLambda>(second_derivative),
@@ -726,14 +718,14 @@ namespace Optimist
       // Select solver method based on derivative requirements
       if constexpr (DerivedSolver::requires_function && !DerivedSolver::requires_first_derivative &&
         !DerivedSolver::requires_second_derivative) {
-        return static_cast<DerivedSolver *>(this)->solve(function_lambda, x_ini, x_sol);
+        return static_cast<DerivedSolver *>(this)->solve_impl(function_lambda, x_ini, x_sol);
       } else if constexpr (DerivedSolver::requires_function && DerivedSolver::requires_first_derivative &&
         !DerivedSolver::requires_second_derivative) {
-        return static_cast<DerivedSolver *>(this)->solve(function_lambda, first_derivative_lambda,
+        return static_cast<DerivedSolver *>(this)->solve_impl(function_lambda, first_derivative_lambda,
           x_ini, x_sol);
       } else if constexpr (DerivedSolver::requires_function && DerivedSolver::requires_first_derivative &&
         DerivedSolver::requires_second_derivative) {
-        return static_cast<DerivedSolver *>(this)->solve(function_lambda, first_derivative_lambda,
+        return static_cast<DerivedSolver *>(this)->solve_impl(function_lambda, first_derivative_lambda,
           second_derivative_lambda, x_ini, x_sol);
       } else {
         OPTIMIST_ERROR(CMD "no matching function signature found for the solver.");
@@ -753,7 +745,6 @@ namespace Optimist
       this->m_iterations                    = 0;
       this->m_relaxations                   = 0;
       this->m_converged                     = false;
-      this->m_trace.clear();
     }
 
     /**
@@ -805,12 +796,6 @@ namespace Optimist
       ++this->m_second_derivative_evaluations;
       return function(x, out);
     }
-
-    /**
-     * Update the history of the solver with the current point and function value.
-     * \param[in] x The point \f$ \mathbf{x} \f$.
-     */
-    void store_trace(InputType const & x) {this->m_trace.push_back(x);}
 
     /**
      * Damp the step using the affine invariant criterion.

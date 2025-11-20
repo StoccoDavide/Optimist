@@ -56,7 +56,7 @@ namespace Optimist
       using Method = enum class Method : Integer {GOOD = 0, BAD = 1, COMBINED = 2};
 
       private:
-      Method m_method{Method::COMBINED}; /**< Broyden solver type. */
+      Method m_method{Method::COMBINED}; /**< Broyden solver method. */
 
     public:
       /**

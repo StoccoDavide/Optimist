@@ -49,13 +49,13 @@ namespace Optimist
       OPTIMIST_BASIC_CONSTANTS(Real)
 
       /**
-       * Class constructor for the Algorithm 748.
+       * Class constructor for the Chandrupatla solver.
        */
       Chandrupatla() {}
 
       /**
-       * Get the Algorithm 748 solver name.
-       * \return The Algorithm 748 solver name.
+       * Get the Chandrupatla solver name.
+       * \return The Chandrupatla solver name.
        */
       std::string name_impl() const {return "Chandrupatla";}
 
@@ -69,7 +69,7 @@ namespace Optimist
       template <typename FunctionLambda>
       Real find_root_impl(FunctionLambda && function)
       {
-        #define CMD "Optimist::ScalarRootfinder::Chandrupatla::find_root_impl(...): "
+        #define CMD "Optimist::Rootfinder::Chandrupatla::find_root_impl(...): "
 
         bool success;
         Real tolerance_step{this->m_tolerance_bracketing};
@@ -88,11 +88,11 @@ namespace Optimist
           ++this->m_iterations;
           this->m_c  = (this->m_a + this->m_b)/2.0;
           success = this->evaluate_function(std::forward<FunctionLambda>(function), this->m_c, this->m_fc);
-          OPTIMIST_ASSERT_WARNING(success,
+          OPTIMIST_ASSERT(success,
             CMD "function evaluation failed at iteration " << this->m_iterations << ".");
           this->m_converged = this->m_fc == 0;
           if (this->m_converged) {return this->m_c;}
-          if (this->m_fa*this->m_fc < 0.0) {
+          if (this->m_fa*this->m_fc < 0) {
             // -> [a, c]
             this->m_b = this->m_c; this->m_fb = this->m_fc;
           } else {
@@ -128,7 +128,7 @@ namespace Optimist
           Real c{this->m_a + t * direction};
           Real fc;
           success = this->evaluate_function(std::forward<FunctionLambda>(function), c, fc);
-          OPTIMIST_ASSERT_WARNING(success,
+          OPTIMIST_ASSERT(success,
             CMD "function evaluation failed at iteration " << this->m_iterations << ".");
           if (this->m_verbose) {this->info(fc);}
 

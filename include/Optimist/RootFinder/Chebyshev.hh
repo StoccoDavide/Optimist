@@ -90,7 +90,7 @@ namespace Optimist
         // Set initial iteration
         x_old = x_ini;
         success = this->evaluate_function(std::forward<FunctionLambda>(function), x_old, function_old);
-        OPTIMIST_ASSERT_WARNING(success,
+        OPTIMIST_ASSERT(success,
           CMD "function evaluation failed at iteration " << this->m_iterations << ".");
 
         // Algorithm iterations
@@ -98,25 +98,22 @@ namespace Optimist
         Real tolerance_step_norm{this->m_tolerance * this->m_tolerance};
         for (this->m_iterations = 1; this->m_iterations < this->m_max_iterations; ++this->m_iterations)
         {
-          // Store trace
-          this->store_trace(x_old);
-
           // Evaluate derivatives
           success = this->evaluate_first_derivative(std::forward<FirstDerivativeLambda>(first_derivative), x_old, first_derivative_old);
-          OPTIMIST_ASSERT_WARNING(success,
+          OPTIMIST_ASSERT(success,
             CMD "first derivative evaluation failed at iteration " << this->m_iterations << ".");
           success = this->evaluate_second_derivative(std::forward<SecondDerivativeLambda>(second_derivative), x_old, second_derivative_old);
-          OPTIMIST_ASSERT_WARNING(success,
+          OPTIMIST_ASSERT(success,
             CMD "second derivative evaluation failed at iteration " << this->m_iterations << ".");
 
           // Calculate step
           if (std::abs(first_derivative_old) < EPSILON_LOW) {
             OPTIMIST_WARNING( CMD "singular first derivative detected.");
-            first_derivative_old = (first_derivative_old > 0.0) ? EPSILON_LOW : -EPSILON_LOW;
+            first_derivative_old = (first_derivative_old > 0) ? EPSILON_LOW : -EPSILON_LOW;
           }
           if (std::abs(second_derivative_old) < EPSILON_LOW) {
             OPTIMIST_WARNING( CMD "singular second derivative detected.");
-            second_derivative_old = (second_derivative_old > 0.0) ? EPSILON_LOW : -EPSILON_LOW;
+            second_derivative_old = (second_derivative_old > 0) ? EPSILON_LOW : -EPSILON_LOW;
           }
           step_old = -(function_old / first_derivative_old) * (1.0 + (function_old * second_derivative_old) /
             (first_derivative_old * first_derivative_old));
@@ -139,7 +136,7 @@ namespace Optimist
             // Update point
             x_new = x_old + step_old;
             success = this->evaluate_function(std::forward<FunctionLambda>(function), x_new, function_new);
-            OPTIMIST_ASSERT_WARNING(success,
+            OPTIMIST_ASSERT(success,
               CMD "function evaluation failed at iteration " << this->m_iterations << ".");
           }
 

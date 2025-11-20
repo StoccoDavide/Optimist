@@ -146,7 +146,7 @@ namespace Optimist
         // Set initial iteration
         x_old = x_ini;
         success = this->evaluate_function(std::forward<FunctionLambda>(function), x_old, function_old);
-        OPTIMIST_ASSERT_WARNING(success,
+        OPTIMIST_ASSERT(success,
           CMD "function evaluation failed at the initial point.");
 
         // Algorithm iterations
@@ -154,18 +154,15 @@ namespace Optimist
         Real tolerance_step_norm{this->m_tolerance * this->m_tolerance};
         for (this->m_iterations = 1; this->m_iterations < this->m_max_iterations; ++this->m_iterations)
         {
-          // Store trace
-          this->store_trace(x_old);
-
           // Evaluate first derivative
           success = this->evaluate_first_derivative(std::forward<FirstDerivativeLambda>(first_derivative), x_old, first_derivative_old);
-          OPTIMIST_ASSERT_WARNING(success,
+          OPTIMIST_ASSERT(success,
             CMD "first derivative evaluation failed at iteration " << this->m_iterations << ".");
 
           // Calculate step
           if (std::abs(first_derivative_old) < EPSILON_LOW) {
             OPTIMIST_WARNING( CMD "singular first derivative detected.");
-            first_derivative_old = (first_derivative_old > 0.0) ? EPSILON_LOW : -EPSILON_LOW;
+            first_derivative_old = (first_derivative_old > 0) ? EPSILON_LOW : -EPSILON_LOW;
           }
 
           this->compute_step(std::forward<FunctionLambda>(function), x_old, function_old, first_derivative_old, step_old);
@@ -187,7 +184,7 @@ namespace Optimist
             // Update point
             x_new = x_old + step_old;
             success = this->evaluate_function(std::forward<FunctionLambda>(function), x_new, function_new);
-            OPTIMIST_ASSERT_WARNING(success,
+            OPTIMIST_ASSERT(success,
               CMD "function evaluation failed at iteration " << this->m_iterations << ".");
           }
 
@@ -234,7 +231,7 @@ namespace Optimist
         if (this->m_method == Method::ORDER_4 || this->m_method == Method::ORDER_8 ||
             this->m_method == Method::ORDER_16 || this->m_method == Method::ORDER_32) {
           success = this->evaluate_function(std::forward<FunctionLambda>(function), x_old+step_old, function_y);
-          OPTIMIST_ASSERT_WARNING(success,
+          OPTIMIST_ASSERT(success,
             CMD "function evaluation failed during order 4 step.");
           if (std::abs(function_y) < tolerance_residuals) {return;}
           t = function_y/function_old;
@@ -247,7 +244,7 @@ namespace Optimist
         if (this->m_method == Method::ORDER_8 || this->m_method == Method::ORDER_16 ||
             this->m_method == Method::ORDER_32) {
           success = this->evaluate_function(std::forward<FunctionLambda>(function), x_old+step_old, function_z);
-          OPTIMIST_ASSERT_WARNING(success,
+          OPTIMIST_ASSERT(success,
             CMD "function evaluation failed during order 8 step.");
           if (std::abs(function_z) < tolerance_residuals) {return;}
           s = function_z/function_y;
@@ -259,7 +256,7 @@ namespace Optimist
         // Order 16 step (continued order 8)
         if (this->m_method == Method::ORDER_16 || this->m_method == Method::ORDER_32) {
           success = this->evaluate_function(std::forward<FunctionLambda>(function), x_old+step_old, function_w);
-          OPTIMIST_ASSERT_WARNING(success,
+          OPTIMIST_ASSERT(success,
             CMD "function evaluation failed during order 16 step.");
           if (std::abs(function_w) < tolerance_residuals) {return;}
           u = function_w/function_z;
@@ -271,7 +268,7 @@ namespace Optimist
         // Order 32 step (continued order 16)
         if (this->m_method == Method::ORDER_32) {
           success = this->evaluate_function(std::forward<FunctionLambda>(function), x_old+step_old, function_h);
-          OPTIMIST_ASSERT_WARNING(success,
+          OPTIMIST_ASSERT(success,
             CMD "function evaluation failed during order 32 step.");
           if (std::abs(function_h) < tolerance_residuals) {return;}
           v = (function_h/function_w);

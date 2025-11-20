@@ -86,7 +86,7 @@ namespace Optimist
       template <typename FunctionLambda>
       bool bracketing(FunctionLambda && function)
       {
-        #define CMD "Optimist::ScalarRootfinder::Algo748::bracketing(...): "
+        #define CMD "Optimist::Rootfinder::Algo748::bracketing(...): "
 
         {
           Real tolerance{0.7*this->m_tolerance_bracketing};
@@ -98,7 +98,7 @@ namespace Optimist
 
         // If f(c) = 0 set a = c and return true
         bool success{this->evaluate_function(std::forward<FunctionLambda>(function), this->m_c, this->m_fc)};
-        OPTIMIST_ASSERT_WARNING(success,
+        OPTIMIST_ASSERT(success,
           CMD "function evaluation failed during bracketing.");
         if (this->m_fc == 0) {
           this->m_a = this->m_c; this->m_fa = 0.0;
@@ -169,7 +169,7 @@ namespace Optimist
         if (a_2 == 0) {return this->m_a - a_0/a_1;}
 
         // Determine the starting point of newton steps
-        Real c{a_2*this->m_fa > 0.0 ? this->m_a : this->m_b};
+        Real c{a_2*this->m_fa > 0 ? this->m_a : this->m_b};
 
         // Start the safeguarded newton steps
         bool is_nonzero{true};
@@ -202,7 +202,7 @@ namespace Optimist
       template <typename FunctionLambda>
       Real find_root_impl(FunctionLambda && function)
       {
-        #define CMD "Optimist::ScalarRootfinder::Algo748::find_root_impl(...): "
+        #define CMD "Optimist::Rootfinder::Algo748::find_root_impl(...): "
 
         bool success;
         Real tolerance_step{this->m_tolerance_bracketing};
@@ -221,11 +221,11 @@ namespace Optimist
           ++this->m_iterations;
           this->m_c  = (this->m_a + this->m_b)/2.0;
           success = this->evaluate_function(std::forward<FunctionLambda>(function), this->m_c, this->m_fc);
-          OPTIMIST_ASSERT_WARNING(success,
+          OPTIMIST_ASSERT(success,
             CMD "function evaluation failed at iteration " << this->m_iterations << ".");
           this->m_converged = this->m_fc == 0;
           if (this->m_converged) {return this->m_c;}
-          if (this->m_fa*this->m_fc < 0.0) {
+          if (this->m_fa*this->m_fc < 0) {
             // -> [a, c]
             this->m_b = this->m_c; this->m_fb = this->m_fc;
           } else {
