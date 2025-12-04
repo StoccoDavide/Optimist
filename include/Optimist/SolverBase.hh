@@ -33,42 +33,52 @@ namespace Optimist
   *
   * \includedoc docs/markdown/SolverBase.md
   *
-  * \tparam Real Scalar number type.
-  * \tparam SolInDim The root-finding/optimization problem input dimension.
-  * \tparam SolOutDim The root-finding/optimization problem output dimension.
+  * \tparam Input Solver input type.
+  * \tparam Output Solver output type.
   * \tparam DerivedSolver Derived solver class.
-  * \tparam ForceEigen Force the use of Eigen types for input and output.
   */
-  template <typename Real, Integer SolInDim, Integer SolOutDim, typename DerivedSolver, bool ForceEigen = false>
+  template <typename Input, typename Output, typename DerivedSolver>
   class SolverBase
   {
   public:
-    // Fancy static assertions (just for fun, don't take it too seriously)
-    static_assert(SolInDim > 0 && SolOutDim > 0,
-      "Negative-dimensional optimization problem? Are you serious?");
+    // Input and output types
+    using InputTrait  = TypeTraits<Input>;
+    using OutputTrait = TypeTraits<Output>;
+    using Scalar = typename InputTrait::Scalar;
 
-    OPTIMIST_BASIC_CONSTANTS(Real)
+    // Input and output must have the same scalar type
+    static_assert(std::is_same<typename Input::Scalar, typename Output::Scalar>::value,
+      "Input and output scalar types must be the same.");
 
-    // I/O types
-    using InputType  = typename std::conditional_t<ForceEigen || (SolInDim > 1),
-      Eigen::Vector<Real, SolInDim>, Real>;
-    using OutputType = typename std::conditional_t<ForceEigen || (SolOutDim > 1),
-      Eigen::Vector<Real, SolOutDim>, Real>;
-
-    // Trace types
-    using TraceType = typename std::vector<InputType>;
+    // If both input and output are eigen types they be both fixed-size, dynamic-size, or sparse
+    static_assert(!(InputTrait::IsEigen && OutputTrait::IsEigen) ||
+      (InputTrait::IsFixedSize && OutputTrait::IsFixedSize) ||
+      (!InputTrait::IsDynamicSize && !OutputTrait::IsDynamicSize) ||
+      (InputTrait::IsSparse && OutputTrait::IsSparse),
+      "Input and output Eigen types must be both fixed-size, dynamic-size, or sparse.");
 
     // Derivative types
-    using FirstDerivativeType = std::conditional_t<ForceEigen || (SolInDim > 1) || (SolOutDim > 1),
-      Eigen::Matrix<Real, SolOutDim, SolInDim>, Real>;
-    using SecondDerivativeType = std::conditional_t<ForceEigen || (SolInDim > 1) || (SolOutDim > 1),
-      std::conditional_t<SolInDim == 1 || SolOutDim == 1, Eigen::Matrix<Real, SolInDim, SolInDim>,
-      std::vector<Eigen::Matrix<Real, SolInDim, SolInDim>>>, Real>;
+    using FirstDerivative = std::conditional_t<InputTrait::IsEigen || OutputTrait::IsEigen,
+      std::conditional_t<InputTrait::IsSparse || OutputTrait::IsSparse,
+        Eigen::SparseMatrix<Scalar>,
+        Eigen::Matrix<Scalar, OutputTrait::Dimension, InputTrait::Dimension>>,
+      Scalar>;
+    using SecondDerivative = std::conditional_t<InputTrait::IsEigen || OutputTrait::IsEigen,
+      std::conditional_t<(InputTrait::Dimension == 1) || (OutputTrait::Dimension == 1),
+        std::conditional_t<InputTrait::IsSparse || OutputTrait::IsSparse,
+          Eigen::SparseMatrix<Scalar>,
+          Eigen::Matrix<Scalar, OutputTrait::Dimension, InputTrait::Dimension>>,
+        std::conditional_t<InputTrait::IsSparse || OutputTrait::IsSparse,
+          std::vector<Eigen::SparseMatrix<Scalar>>,
+          std::vector<Eigen::Matrix<Scalar, OutputTrait::Dimension, InputTrait::Dimension>>>>,
+      Scalar>;
+
+    OPTIMIST_BASIC_CONSTANTS(Scalar)
 
   protected:
     // Bounds (may not be used)
-    InputType m_lower_bound; /**< Lower bound. */
-    InputType m_upper_bound; /**< Upper bound. */
+    Input m_lower_bound; /**< Lower bound. */
+    Input m_upper_bound; /**< Upper bound. */
 
     // Evaluations
     Integer m_function_evaluations{0};          /**< Function evaluations. */
@@ -83,15 +93,15 @@ namespace Optimist
     // Iterations and relaxations
     Integer m_iterations{0};       /**< Algorithm iterations. */
     Integer m_max_iterations{100}; /**< Maximum allowed algorithm iterations. */
-    Real    m_alpha{0.8};          /**< Relaxation factor \f$ \alpha \f$. */
+    Scalar  m_alpha{0.8};          /**< Relaxation factor \f$ \alpha \f$. */
     Integer m_relaxations{0};      /**< Algorithm relaxations. */
     Integer m_max_relaxations{10}; /**< Maximum allowed algorithm relaxations. */
 
     // Settings
-    Real m_tolerance{EPSILON_LOW};        /**< Solver tolerance \f$ \epsilon \f$ for convergence. */
-    bool m_verbose{false};                /**< Verbose mode boolean flag. */
-    bool m_damped{true};                  /**< Damped mode boolean flag. */
-    std::ostream * m_ostream{&std::cout}; /**< Output stream for verbose mode. */
+    Scalar         m_tolerance{EPSILON_LOW}; /**< Solver tolerance \f$ \epsilon \f$ for convergence. */
+    bool           m_verbose{false};         /**< Verbose mode boolean flag. */
+    bool           m_damped{true};           /**< Damped mode boolean flag. */
+    std::ostream * m_ostream{&std::cout};    /**< Output stream for verbose mode. */
 
     // Convergence output flag and trace
     std::string m_task{"Undefined"}; /**< Task name. */
@@ -102,7 +112,12 @@ namespace Optimist
      * Class constructor for the nonlinear solver.
      */
     SolverBase() {
-      if constexpr (ForceEigen || SolInDim > 1) {
+      if constexpr (InputTrait::IsEigen) {
+        // Resize bounds if dynamic or sparse
+        if constexpr (InputTrait::IsDynamic || InputTrait::IsSparse) {
+          this->m_lower_bound.resize(InputTrait::Dimension);
+          this->m_upper_bound.resize(InputTrait::Dimension);
+        }
         this->m_lower_bound.setConstant(-INFTY);
         this->m_upper_bound.setConstant(INFTY);
       } else {
@@ -119,7 +134,7 @@ namespace Optimist
      * \param[out] x_sol Solution point.
      */
     template <typename FunctionLambda>
-    SolverBase(FunctionLambda && function, InputType const & x_ini, InputType & x_sol) : SolverBase() {
+    SolverBase(FunctionLambda && function, Input const & x_ini, Input & x_sol) : SolverBase() {
       static_cast<const DerivedSolver *>(this)->solve_impl(
         std::forward<FunctionLambda>(function),
         x_ini, x_sol);
@@ -135,8 +150,8 @@ namespace Optimist
      * \param[out] x_sol Solution point.
      */
     template <typename FunctionLambda, typename FirstDerivativeLambda>
-    SolverBase(FunctionLambda && function, FirstDerivativeLambda && first_derivative, InputType const & x_ini,
-      InputType & x_sol) : SolverBase()
+    SolverBase(FunctionLambda && function, FirstDerivativeLambda && first_derivative, Input const & x_ini,
+      Input & x_sol) : SolverBase()
     {
       static_cast<const DerivedSolver *>(this)->solve_impl(
         std::forward<FunctionLambda>(function),
@@ -157,7 +172,7 @@ namespace Optimist
      */
     template <typename FunctionLambda, typename FirstDerivativeLambda, typename SecondDerivativeLambda>
     SolverBase(FunctionLambda && function, FirstDerivativeLambda && first_derivative, SecondDerivativeLambda
-      && second_derivative, InputType const & x_ini, InputType & x_sol) : SolverBase()
+      && second_derivative, Input const & x_ini, Input & x_sol) : SolverBase()
     {
       static_cast<const DerivedSolver *>(this)->solve_impl(
         std::forward<FunctionLambda>(function),
@@ -170,16 +185,16 @@ namespace Optimist
      * Get the lower bound.
      * \return The lower bound.
      */
-    InputType const & lower_bound() const {return this->m_lower_bound;}
+    Input const & lower_bound() const {return this->m_lower_bound;}
 
     /**
      * Set the lower bound.
      * \param[in] t_lower_bound The lower bound.
      */
-    void lower_bound(InputType const & t_lower_bound) {
+    void lower_bound(Input const & t_lower_bound) {
       #define CMD "Optimist::Solver::bounds(...): "
 
-      if constexpr (ForceEigen || SolInDim > 1) {
+      if constexpr (InputTrait::IsEigen) {
         OPTIMIST_ASSERT((this->m_upper_bound - t_lower_bound).minCoeff() <= 0.0,
           CMD "invalid or degenarate bounds detected.");
       } else {
@@ -195,16 +210,16 @@ namespace Optimist
      * Get the upper bound.
      * \return The upper bound.
      */
-    InputType const & upper_bound() const {return this->m_upper_bound;}
+    Input const & upper_bound() const {return this->m_upper_bound;}
 
     /**
      * Set the upper bound.
      * \param[in] t_upper_bound The upper bound.
      */
-    void upper_bound(InputType const & t_upper_bound) {
+    void upper_bound(Input const & t_upper_bound) {
       #define CMD "Optimist::Solver::bounds(...): "
 
-      if constexpr (ForceEigen || SolInDim > 1) {
+      if constexpr (InputTrait::IsEigen) {
         OPTIMIST_ASSERT((t_upper_bound - this->m_lower_bound).minCoeff() <= 0.0,
           CMD "invalid or degenarate bounds detected.");
       } else {
@@ -221,11 +236,11 @@ namespace Optimist
      * \param[in] t_lower_bound The lower bound.
      * \param[in] t_upper_bound The upper bound.
      */
-    void bounds(InputType const & t_lower_bound, InputType const & t_upper_bound)
+    void bounds(Input const & t_lower_bound, Input const & t_upper_bound)
     {
       #define CMD "Optimist::Solver::bounds(...): "
 
-      if constexpr (ForceEigen || SolInDim > 1) {
+      if constexpr (InputTrait::IsEigen) {
         OPTIMIST_ASSERT((t_upper_bound - t_lower_bound).minCoeff() <= 0.0,
           CMD "invalid or degenarate bounds detected.");
       } else {
@@ -242,13 +257,13 @@ namespace Optimist
      * Get the input dimension of the function.
      * \return The input dimension of the function.
      */
-    constexpr Integer input_dimension() const {return SolInDim;}
+    constexpr Integer input_dimension() const {return InputTrait::Dimension;}
 
     /**
      * Get the output dimension of the function.
      * \return The output dimension of the function.
      */
-    constexpr Integer output_dimension() const {return SolOutDim;}
+    constexpr Integer output_dimension() const {return OutputTrait::Dimension;}
 
     /**
      * Get the number of function evaluations.
@@ -346,13 +361,13 @@ namespace Optimist
      * Get relaxation factor \f$ \alpha \f$.
      * \return The relaxation factor \f$ \alpha \f$.
      */
-    Real alpha() const {return this->m_alpha;}
+    Scalar alpha() const {return this->m_alpha;}
 
     /**
      * Set relaxation factor \f$ \alpha \f$.
      * \param[in] t_alpha The relaxation factor \f$ \alpha \f$.
      */
-    void alpha(Real t_alpha)
+    void alpha(Scalar t_alpha)
     {
       OPTIMIST_ASSERT(
         !std::isnan(t_alpha) && std::isfinite(t_alpha) && 0.0 <= t_alpha && t_alpha <= 1.0,
@@ -387,14 +402,14 @@ namespace Optimist
      * Get the tolerance \f$ \epsilon \f$.
      * \return The tolerance \f$ \epsilon \f$.
      */
-    Real tolerance() const {return this->m_tolerance;}
+    Scalar tolerance() const {return this->m_tolerance;}
 
     /**
      * Set the tolerance \f$ \epsilon \f$ for which the nonlinear solver stops, i.e., \f$ \left\|
      * \mathbf{F}(\mathbf{x}) \right\|_{2} < \epsilon \f$.
      * \param[in] t_tolerance The tolerance \f$ \epsilon \f$.
      */
-    void tolerance(Real t_tolerance) {
+    void tolerance(Scalar t_tolerance) {
       OPTIMIST_ASSERT(!std::isnan(t_tolerance) && std::isfinite(t_tolerance) && t_tolerance > 0,
         "Optimist::Solver::tolerance(...): invalid input detected.");
       this->m_tolerance = t_tolerance;
@@ -483,7 +498,7 @@ namespace Optimist
      * \return True if the problem is solved, false otherwise.
      */
     template <typename FunctionLambda>
-    bool solve(FunctionLambda && function, InputType const & x_ini, InputType & x_sol)
+    bool solve(FunctionLambda && function, Input const & x_ini, Input & x_sol)
     {
       #define CMD "Optimist::Solver::solve(...): "
 
@@ -491,7 +506,8 @@ namespace Optimist
         CMD "the solver requires a function.");
       return static_cast<DerivedSolver *>(this)->solve_impl(
         std::forward<FunctionLambda>(function),
-        nullptr, nullptr, x_ini, x_sol);
+        nullptr, nullptr, x_ini, x_sol
+      );
 
       #undef CMD
     }
@@ -507,8 +523,8 @@ namespace Optimist
      * \return True if the problem is solved, false otherwise.
      */
     template <typename FunctionLambda, typename FirstDerivativeLambda>
-    bool solve(FunctionLambda && function, FirstDerivativeLambda && first_derivative, InputType const & x_ini,
-      InputType & x_sol)
+    bool solve(FunctionLambda && function, FirstDerivativeLambda && first_derivative, Input const & x_ini,
+      Input & x_sol)
     {
       #define CMD "Optimist::Solver::solve(...): "
 
@@ -519,7 +535,8 @@ namespace Optimist
       return static_cast<DerivedSolver *>(this)->solve_impl(
         std::forward<FunctionLambda>(function),
         std::forward<FirstDerivativeLambda>(first_derivative),
-        nullptr, x_ini, x_sol);
+        nullptr, x_ini, x_sol
+      );
 
       #undef CMD
     }
@@ -538,7 +555,7 @@ namespace Optimist
      */
     template <typename FunctionLambda, typename FirstDerivativeLambda, typename SecondDerivativeLambda>
     bool solve(FunctionLambda && function, FirstDerivativeLambda && first_derivative, SecondDerivativeLambda
-      && second_derivative, InputType const & x_ini, InputType & x_sol)
+      && second_derivative, Input const & x_ini, Input & x_sol)
       {
       #define CMD "Optimist::Solver::solve(...): "
 
@@ -552,59 +569,57 @@ namespace Optimist
         std::forward<FunctionLambda>(function),
         std::forward<FirstDerivativeLambda>(first_derivative),
         std::forward<SecondDerivativeLambda>(second_derivative),
-        x_ini, x_sol);
+        x_ini, x_sol
+      );
 
       #undef CMD
     }
 
     /**
      * Solve the root-finding problem given a function class.
+     * \tparam FunctionInput The function input dimension.
+     * \tparam FunctionOutput The function output dimension.
+     * \tparam DerivedFunction Derived function class.
      * \param[in] function Function class.
      * \param[in] x_ini Initialization point.
      * \param[out] x_sol Solution point.
-     * \tparam FunInDim The function output dimension.
-     * \tparam FunOutDim The function output dimension.
-     * \tparam DerivedFunction Derived function class.
-     * \return True if the problem is solved, false otherwise.
      */
-    template <Integer FunInDim, Integer FunOutDim, typename DerivedFunction>
-    bool rootfind(FunctionBase<Real, FunInDim, FunOutDim, DerivedFunction, ForceEigen && FunOutDim == 1> const & function,
-      InputType const & x_ini, InputType & x_sol)
+    template <typename FunctionInput, typename FunctionOutput, typename DerivedFunction>
+    bool rootfind(FunctionBase<FunctionInput, FunctionOutput, DerivedFunction> const & function,
+      Input const & x_ini, Input & x_sol)
     {
       #define CMD "Optimist::Solver::rootfind(...): "
 
-      static_assert(SolInDim == FunInDim,
+      static_assert(InputTrait::Dimension == FunctionInput::Dimension,
         CMD "solver input dimension must be equal to the function input dimension.");
-      static_assert(SolOutDim == FunOutDim || SolOutDim == 1,
+      static_assert(OutputTrait::Dimension == FunctionOutput::Dimension || OutputTrait::Dimension == 1,
         CMD "solver output dimension must be equal to the function output dimension or 1.");
-      static_assert(!(SolInDim == 1 && DerivedSolver::is_optimizer),
+      static_assert(!(InputTrait::Dimension == 1 && DerivedSolver::is_optimizer),
         CMD "one-dimensional optimizers do not support root-finding problems.");
-      return this->solve(function, x_ini, x_sol, SolOutDim != FunOutDim || (SolInDim > 1 && SolOutDim == 1));
-
+      return this->solve(function, x_ini, x_sol, (OutputTrait::Dimension != FunctionOutput::Dimension) || InputTrait::IsEigen);
       #undef CMD
     }
 
     /**
      * Solve the optimization problem given a function class.
+     * \tparam FunctionInput The function input dimension.
+     * \tparam FunctionOutput The function output dimension.
+     * \tparam DerivedFunction Derived function class.
      * \param[in] function Function class.
      * \param[in] x_ini Initialization point.
      * \param[out] x_sol Solution point.
-     * \tparam FunInDim The function output dimension.
-     * \tparam FunOutDim The function output dimension.
-     * \tparam DerivedFunction Derived function class.
-     * \return True if the problem is solved, false otherwise.
      */
-    template <Integer FunInDim, Integer FunOutDim, typename DerivedFunction>
-    bool optimize(FunctionBase<Real, FunInDim, FunOutDim, DerivedFunction, ForceEigen && FunOutDim == 1> const & function,
-      InputType const & x_ini, InputType & x_sol)
+    template <typename FunctionInput, typename FunctionOutput, typename DerivedFunction>
+    bool optimize(FunctionBase<FunctionInput, FunctionOutput, DerivedFunction> const & function,
+      Input const & x_ini, Input & x_sol)
     {
       #define CMD "Optimist::Solver::optimize(...): "
 
-      static_assert(SolInDim == FunInDim,
+      static_assert(InputTrait::Dimension == FunctionInput::Dimension,
         CMD "solver input dimension must be equal to the function input dimension.");
-      static_assert(SolOutDim == 1,
+      static_assert(OutputTrait::Dimension == 1,
         CMD "solver output dimension must be equal to the function output dimension or 1.");
-      static_assert(!(SolInDim == 1 && DerivedSolver::is_rootfinder),
+      static_assert(!(InputTrait::Dimension == 1 && DerivedSolver::IsRootFinder),
         CMD "one-dimensional root-finders do not support optimization problems.");
       return this->solve(function, x_ini, x_sol, true);
 
@@ -620,96 +635,97 @@ namespace Optimist
   protected:
     /**
      * Solve the root-finding/optimization problem given a function class.
+     * \tparam Input Solver input type.
+     * \tparam Output Solver output type.
+     * \tparam DerivedFunction Derived function class.
      * \param[in] function Function class.
      * \param[in] x_ini Initialization point.
      * \param[out] x_sol Solution point.
      * \param[in] is_optimization Boolean flag for optimization.
-     * \tparam FunInDim The function output dimension.
-     * \tparam FunOutDim The function output dimension.
-     * \tparam DerivedFunction Derived function class.
-     * \return True if the problem is solved, false otherwise.
      */
-    template <Integer FunInDim, Integer FunOutDim, typename DerivedFunction>
-    bool solve(FunctionBase<Real, FunInDim, FunOutDim, DerivedFunction, ForceEigen && FunOutDim == 1>
-      const & function, InputType const & x_ini, InputType & x_sol, bool is_optimization)
+    template <typename FunctionInput, typename FunctionOutput, typename DerivedFunction>
+    bool solve(FunctionBase<FunctionInput, FunctionOutput, DerivedFunction>
+      const & function, Input const & x_ini, Input & x_sol, bool is_optimization)
     {
       #define CMD "Optimist::Solver::solve(...): "
 
-      using FunctionType = FunctionBase<Real, FunInDim, FunOutDim, DerivedFunction, ForceEigen && FunOutDim == 1>;
+      using FunctionType = FunctionBase<FunctionInput, FunctionOutput, DerivedFunction>;
+      using FunctionInputTrait  = TypeTraits<FunctionInput>;
+      using FunctionOutputTrait = TypeTraits<FunctionOutput>;
 
-      static_assert(SolInDim == FunInDim,
+      static_assert(InputTrait::Dimension == FunctionInputTrait::Dimension,
         CMD "solver input dimension must be equal to the function input dimension.");
-      static_assert(SolOutDim == FunOutDim || SolOutDim == 1,
+      static_assert(OutputTrait::Dimension == FunctionOutputTrait::Dimension || OutputTrait::Dimension == 1,
         CMD "solver output dimension must be equal to the function output dimension or 1.");
 
       // Lambda generators for function and derivatives
-      auto function_lambda = [&function, is_optimization] (InputType const & x, OutputType & out) -> bool
+      auto function_lambda = [&function, is_optimization] (Input const & x, Output & out) -> bool
       {
         bool success{false};
-        typename FunctionType::OutputType f; success = function.evaluate(x, f);
+        typename FunctionType::Output f; success = function.evaluate(x, f);
         OPTIMIST_ASSERT(success,
           CMD "function evaluation failed during function computation.");
 
         if (is_optimization) {
-          if constexpr (FunOutDim == 1) {out = 0.5*f*f;}
-          else if constexpr (SolOutDim != FunOutDim) {out = 0.5*f.squaredNorm();}
+          if constexpr (FunctionOutputTrait::Dimension == 1) {out = 0.5*f*f;}
+          else if constexpr (OutputTrait::Dimension != FunctionOutputTrait::Dimension) {out = 0.5*f.squaredNorm();}
           else {OPTIMIST_ERROR(CMD "optimization problem with inconsistent output in function.");}
         } else {
-          if constexpr (SolOutDim == FunOutDim) {out = f;}
+          if constexpr (OutputTrait::Dimension == FunctionOutputTrait::Dimension) {out = f;}
           else {OPTIMIST_ERROR(CMD "root-finding problem with inconsistent output in function.");}
         }
         return success;
       };
 
-      auto first_derivative_lambda = [&function, is_optimization, this] (InputType const & x,
-        FirstDerivativeType & out) -> bool
+      auto first_derivative_lambda = [&function, is_optimization, this] (Input const & x,
+        FirstDerivative & out) -> bool
       {
         bool success{false};
-        typename FunctionType::FirstDerivativeType J; success = function.first_derivative(x, J);
+        typename FunctionType::FirstDerivative J; success = function.first_derivative(x, J);
         OPTIMIST_ASSERT(success,
           CMD "first derivative evaluation failed during first derivative computation.");
 
         if (is_optimization) {
           bool success{false};
-          typename FunctionType::OutputType f; success = function.evaluate(x, f);
+          typename FunctionType::Output f; success = function.evaluate(x, f);
           OPTIMIST_ASSERT(success,
             CMD "function evaluation failed during first derivative computation.");
           this->m_function_evaluations++;
-          if constexpr (FunInDim == 1 && FunOutDim == 1) {out = J*f;}
-          else if constexpr (SolOutDim != FunOutDim) {out = J.transpose()*f;}
+          if constexpr (FunctionInputTrait::Dimension == 1 && FunctionOutputTrait::Dimension == 1) {out = J*f;}
+          else if constexpr (OutputTrait::Dimension != FunctionOutputTrait::Dimension) {out = J.transpose()*f;}
           else {OPTIMIST_ERROR(CMD "optimization problem inconsistent output in first derivative.");}
         } else {
-          if constexpr (SolOutDim == FunOutDim) {out = J;}
+          if constexpr (OutputTrait::Dimension == FunctionOutputTrait::Dimension) {out = J;}
           else {OPTIMIST_ERROR(CMD "root-finding problem with inconsistent output in first derivative.");}
         }
         return success;
       };
 
-      auto second_derivative_lambda = [&function, is_optimization, this] (InputType const & x,
-        SecondDerivativeType & out) -> bool
+      auto second_derivative_lambda = [&function, is_optimization, this] (Input const & x,
+        SecondDerivative & out) -> bool
       {
         bool success{false};
-        typename FunctionType::SecondDerivativeType H; success = function.second_derivative(x, H);
+        typename FunctionType::SecondDerivative H; success = function.second_derivative(x, H);
         OPTIMIST_ASSERT(success,
           CMD "function evaluation failed during second derivative computation.");
 
         if (is_optimization) {
-          typename FunctionType::OutputType f; success = function.evaluate(x, f);
+          typename FunctionType::Output f; success = function.evaluate(x, f);
           this->m_function_evaluations++;
           OPTIMIST_ASSERT(success,
             CMD "function evaluation failed during second derivative computation.");
-          typename FunctionType::FirstDerivativeType J; success = function.first_derivative(x, J);
+          typename FunctionType::FirstDerivative J; success = function.first_derivative(x, J);
           this->m_first_derivative_evaluations++;
           OPTIMIST_ASSERT(success,
             CMD "first derivative evaluation failed during second derivative computation.");
-          if constexpr (FunInDim == 1 && FunOutDim == 1) {out = J*J + f*H;}
-          else if constexpr (SolOutDim != FunOutDim) {
+          if constexpr (FunctionInputTrait::Dimension == 1 && FunctionOutputTrait::Dimension == 1) {out = J*J + f*H;}
+          else if constexpr (OutputTrait::Dimension != FunctionOutputTrait::Dimension) {
             out = J.transpose()*J;
             for (Integer i{0}; i < static_cast<Integer>(H.size()); ++i) {out += f(i)*H[i];}
           }
           else {OPTIMIST_ERROR(CMD "optimization problem with inconsistent output in second derivative.");}
         } else {
-          if constexpr (SolOutDim == FunOutDim) {out = H;}
+          if constexpr (OutputTrait::Dimension == FunctionOutputTrait::Dimension) {out = H;}
           else {OPTIMIST_ERROR(CMD "root-finding problem with inconsistent output in second derivative.");}
         }
         return success;
@@ -756,7 +772,7 @@ namespace Optimist
      * \return The boolean flag for successful evaluation.
      */
     template <typename FunctionLambda>
-    bool evaluate_function(FunctionLambda && function, InputType const & x, OutputType & out)
+    bool evaluate_function(FunctionLambda && function, Input const & x, Output & out)
     {
       OPTIMIST_ASSERT(this->m_function_evaluations < this->m_max_function_evaluations,
         "Optimist::" << this-> name() << "::evaluate_function(...): maximum allowed function evaluations reached.");
@@ -773,7 +789,7 @@ namespace Optimist
      * \return The boolean flag for successful evaluation.
      */
     template <typename FirstDerivativeLambda>
-    bool evaluate_first_derivative(FirstDerivativeLambda && function, InputType const & x, FirstDerivativeType & out)
+    bool evaluate_first_derivative(FirstDerivativeLambda && function, Input const & x, FirstDerivative & out)
     {
       OPTIMIST_ASSERT(this->m_first_derivative_evaluations < this->m_max_first_derivative_evaluations,
         "Optimist::" << this-> name() << "::evaluate_first_derivative(...): maximum allowed first derivative evaluations reached.");
@@ -789,7 +805,7 @@ namespace Optimist
      * \return The boolean flag for successful evaluation.
      */
     template <typename SecondDerivativeLambda>
-    bool evaluate_second_derivative(SecondDerivativeLambda && function, InputType const & x, SecondDerivativeType & out)
+    bool evaluate_second_derivative(SecondDerivativeLambda && function, Input const & x, SecondDerivative & out)
     {
       OPTIMIST_ASSERT(this->m_second_derivative_evaluations < this->m_max_second_derivative_evaluations,
         "Optimist::" << this-> name() << "::evaluate_second_derivative(...): maximum allowed second derivative evaluations reached.");
@@ -810,12 +826,12 @@ namespace Optimist
      * \return The damping boolean flag, true if the damping is successful, false otherwise.
      */
     template <typename FunctionLambda>
-    bool damp(FunctionLambda && function, InputType const & x_old, InputType const & function_old,
-      InputType const & step_old, InputType & x_new, InputType & function_new, InputType & step_new)
+    bool damp(FunctionLambda && function, Input const & x_old, Input const & function_old,
+      Input const & step_old, Input & x_new, Input & function_new, Input & step_new)
     {
       #define CMD "Optimist::Solver::damp(...): "
 
-      Real step_norm_old, step_norm_new, residuals_old, residuals_new, tau{1.0};
+      Scalar step_norm_old, step_norm_new, residuals_old, residuals_new, tau{1.0};
       for (this->m_relaxations = 0; this->m_relaxations < this->m_max_relaxations; ++this->m_relaxations)
       {
         // Update point
@@ -825,19 +841,26 @@ namespace Optimist
         OPTIMIST_ASSERT(success,
           CMD "function evaluation failed during damping.");
 
-        // Check relaxation
-        if constexpr (ForceEigen || (SolInDim > 1 && SolOutDim > 1)) {
-          residuals_old = function_old.norm();
-          residuals_new = function_new.norm();
+        // Compute step norms
+        if constexpr (InputTrait::IsEigen) {
           step_norm_old = step_old.norm();
           step_norm_new = step_new.norm();
         } else {
-          residuals_old = std::abs(function_old);
-          residuals_new = std::abs(function_new);
           step_norm_old = std::abs(step_old);
           step_norm_new = std::abs(step_new);
         }
-        if (residuals_new < residuals_old || step_norm_new < (Real(1.0)-tau/Real(2.0))*step_norm_old) {
+
+        // Compute residual norms
+        if constexpr (OutputTrait::IsEigen) {
+          residuals_old = function_old.norm();
+          residuals_new = function_new.norm();
+        } else {
+          residuals_old = std::abs(function_old);
+          residuals_new = std::abs(function_new);
+        }
+
+        // Check relaxation
+        if (residuals_new < residuals_old || step_norm_new < (Scalar(1.0)-tau/Scalar(2.0))*step_norm_old) {
           return true;
         } else {
           tau *= this->m_alpha;
@@ -906,7 +929,7 @@ namespace Optimist
      * Print the solver information during the algorithm iterations.
      * \note This has to be properly placed in the derived classes.
      */
-    void info(Real residuals, std::string const & notes = "-")
+    void info(Scalar residuals, std::string const & notes = "-")
     {
       std::string v_rr{" " + table_vertical_line()};
       std::string v_ll{table_vertical_line() + " "};

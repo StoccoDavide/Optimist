@@ -30,40 +30,52 @@ namespace Optimist
   /**
    * \brief Class container for the generic function.
    *
-   * \includedoc docs/markdown/FunctionBase.md
-   *
-   * \tparam Real Scalar number type.
-   * \tparam FunInDim The function problem input dimension.
-   * \tparam FunOutDim The function problem output dimension.
+   * \tparam Input Function input type.
+   * \tparam Output Function output type.
    * \tparam DerivedFunction Derived function class.
-   * \tparam ForceEigen Force the use of Eigen types for input and output.
    */
-  template <typename Real, Integer FunInDim, Integer FunOutDim, typename DerivedFunction, bool ForceEigen = false>
+  template <typename Input, typename Output, typename DerivedFunction>
   class FunctionBase
   {
   public:
-    // Fancy static assertios (just for fun, don't take it too seriously)
-    static_assert(FunInDim > 0 && FunOutDim > 0,
-      "Negative-dimensional function? Are you serious?");
 
-    OPTIMIST_BASIC_CONSTANTS(Real)
+  // Input and output types
+  using InputTrait  = TypeTraits<Input>;
+  using OutputTrait = TypeTraits<Output>;
+  using Scalar      = typename InputTrait::Scalar;
 
-    // I/O types
-    using InputType  = typename std::conditional_t<ForceEigen || (FunInDim > 1),
-      Eigen::Vector<Real, FunInDim>, Real>;
-    using OutputType = typename std::conditional_t<ForceEigen || (FunOutDim > 1),
-      Eigen::Vector<Real, FunOutDim>, Real>;
+  OPTIMIST_BASIC_CONSTANTS(Scalar)
+
+    // Input and output must have the same scalar type
+    static_assert(std::is_same<Scalar, typename OutputTrait::Scalar>::value,
+      "Input and output scalar types must be the same.");
+
+    // If both input and output are eigen types they be both fixed-size, dynamic-size, or sparse
+    static_assert(!(InputTrait::IsEigen && OutputTrait::IsEigen) ||
+      (InputTrait::IsFixedSize && OutputTrait::IsFixedSize) ||
+      (!InputTrait::IsDynamicSize && !OutputTrait::IsDynamicSize) ||
+      (InputTrait::IsSparse && OutputTrait::IsSparse),
+      "Input and output Eigen types must be both fixed-size, dynamic-size, or sparse.");
 
     // Derivative types
-    using FirstDerivativeType  = std::conditional_t<ForceEigen || (FunInDim > 1) || (FunOutDim > 1),
-      Eigen::Matrix<Real, FunOutDim, FunInDim>, Real>;
-    using SecondDerivativeType = std::conditional_t<ForceEigen || (FunInDim > 1) || (FunOutDim > 1),
-      std::conditional_t<FunInDim == 1 || FunOutDim == 1, Eigen::Matrix<Real, FunInDim, FunInDim>,
-      std::vector<Eigen::Matrix<Real, FunInDim, FunInDim>>>, Real>;
+    using FirstDerivative = std::conditional_t<InputTrait::IsEigen || OutputTrait::IsEigen,
+      std::conditional_t<InputTrait::IsSparse || OutputTrait::IsSparse,
+        Eigen::SparseMatrix<Scalar>,
+        Eigen::Matrix<Scalar, OutputTrait::Dimension, InputTrait::Dimension>>,
+      Scalar>;
+    using SecondDerivative = std::conditional_t<InputTrait::IsEigen || OutputTrait::IsEigen,
+      std::conditional_t<(InputTrait::Dimension == 1) || (OutputTrait::Dimension == 1),
+        std::conditional_t<InputTrait::IsSparse || OutputTrait::IsSparse,
+          Eigen::SparseMatrix<Scalar>,
+          Eigen::Matrix<Scalar, OutputTrait::Dimension, InputTrait::Dimension>>,
+        std::conditional_t<InputTrait::IsSparse || OutputTrait::IsSparse,
+          std::vector<Eigen::SparseMatrix<Scalar>>,
+          std::vector<Eigen::Matrix<Scalar, OutputTrait::Dimension, InputTrait::Dimension>>>>,
+      Scalar>;
 
   protected:
-    std::vector<InputType> m_solutions; /**< Known solutions used for test purposes. */
-    std::vector<InputType> m_guesses;   /**< Suggested initial guess used for testing. */
+    std::vector<Input> m_solutions; /**< Known solutions used for test purposes. */
+    std::vector<Input> m_guesses;   /**< Suggested initial guess used for testing. */
 
   public:
     /**
@@ -83,7 +95,7 @@ namespace Optimist
      * \param[out] out The function value.
      * \return The boolean flag for successful evaluation.
      */
-    bool evaluate(const InputType & x, OutputType & out) const
+    bool evaluate(const Input & x, Output & out) const
     {
       return static_cast<const DerivedFunction *>(this)->evaluate_impl(x, out);
     }
@@ -94,7 +106,7 @@ namespace Optimist
      * \param[out] out The function first derivative.
      * \return The boolean flag for successful evaluation.
      */
-    bool first_derivative(const InputType & x, FirstDerivativeType & out) const
+    bool first_derivative(const Input & x, FirstDerivative & out) const
     {
       return static_cast<const DerivedFunction *>(this)->first_derivative_impl(x, out);
     }
@@ -105,7 +117,7 @@ namespace Optimist
      * \param[out] out The function second derivative.
      * \return The boolean flag for successful evaluation.
      */
-    bool second_derivative(const InputType & x, SecondDerivativeType & out) const
+    bool second_derivative(const Input & x, SecondDerivative & out) const
     {
       return static_cast<const DerivedFunction *>(this)->second_derivative_impl(x, out);
     }
@@ -114,39 +126,39 @@ namespace Optimist
      * Get the input dimension of the function.
      * \return The input dimension of the function.
      */
-    constexpr Integer input_dimension() const {return FunInDim;}
+    constexpr Integer input_dimension() const {return InputTrait::Dimension;}
 
     /**
      * Get the output dimension of the function.
      * \return The output dimension of the function.
      */
-    constexpr Integer output_dimension() const {return FunOutDim;}
+    constexpr Integer output_dimension() const {return OutputTrait::Dimension;}
 
     /**
      * Get the vector of known solutions.
      * \return The vector of known solutions.
      */
-    const std::vector<InputType> & solutions() const {return this->m_solutions;}
+    const std::vector<Input> & solutions() const {return this->m_solutions;}
 
     /**
      * Get the vector of initial guesses.
      * \return The vector of initial guesses.
      */
-    const std::vector<InputType> & guesses() const {return this->m_guesses;}
+    const std::vector<Input> & guesses() const {return this->m_guesses;}
 
     /**
      * Retrieve the known solution at the index.
      * \param[in] i The index of the known solution.
      * \return The known solution.
      */
-    const InputType & solution(Integer const i) const {return this->m_solutions.at(i);}
+    const Input & solution(Integer const i) const {return this->m_solutions.at(i);}
 
     /**
      * Retrieve the initial guess at the index.
      * \param[in] i The index of the initial guess.
      * \return The initial guess.
      */
-    const InputType & guess(Integer const i) const {return this->m_guesses.at(i);}
+    const Input & guess(Integer const i) const {return this->m_guesses.at(i);}
 
     /**
      * Check if the input point is a known solution.
@@ -154,10 +166,10 @@ namespace Optimist
      * \param[in] tol Tolerance.
      * \return True if the input point is a known solution, false otherwise.
      */
-    bool is_solution(const InputType & x, Real const tol = EPSILON_LOW) const
+    bool is_solution(const Input & x, Scalar const tol = EPSILON_LOW) const
     {
       for (const auto & s : this->m_solutions) {
-        if constexpr (ForceEigen || FunInDim > 1) {
+        if constexpr (InputTrait::IsEigen) {
           if((x - s).norm() < tol) {return true;}
         } else {
           if (std::abs(x - s) < tol) {return true;}
@@ -178,30 +190,21 @@ namespace Optimist
   \*/
 
   /**
-  * \brief Class container for the vector-valued function.
-  *
-  * \tparam N The input dimension of the vector-valued function.
-  * \tparam M The output dimension of the vector-valued function.
-  * \tparam DerivedFunction Derived vector-valued function class.
-  * \tparam ForceEigen Force the use of Eigen types for input and output.
-  */
-  template <typename Real, Integer N, Integer M, typename DerivedFunction, bool ForceEigen = false>
-  class Function : public FunctionBase<Real, N, M, DerivedFunction, ForceEigen>
+   * \brief Class container for the vector-valued function (both input and output are vectors).
+   *
+   * \tparam Input Function input type.
+   * \tparam Output Function output type.
+   * \tparam DerivedFunction Derived function class.
+   */
+  template <typename Input, typename Output, typename DerivedFunction>
+  class Function : public FunctionBase<Input, Output, DerivedFunction>
   {
   public:
-    friend class FunctionBase<Real, N, M, Function<Real, N, M, DerivedFunction, ForceEigen>>;
-
-    // Fancy static assertions (just for fun, don't take it too seriously)
-    static_assert(N != 0 && M != 0,
-      "Are you sure you want to a zero-dimensional system of equations?");
-
-    // I/O types
-    using InputVector = typename FunctionBase<Real, N, M, DerivedFunction, ForceEigen>::InputType;
-    using OutputVector = typename FunctionBase<Real, N, M, DerivedFunction, ForceEigen>::OutputType;
+    friend class FunctionBase<Input, Output, DerivedFunction>;
 
     // Derivative types
-    using Matrix = typename FunctionBase<Real, N, M, DerivedFunction, ForceEigen>::FirstDerivativeType;
-    using Tensor = typename FunctionBase<Real, N, M, DerivedFunction, ForceEigen>::SecondDerivativeType;
+    using Matrix = typename FunctionBase<Input, Output, DerivedFunction>::FirstDerivative;
+    using Tensor = typename FunctionBase<Input, Output, DerivedFunction>::SecondDerivative;
 
     /**
      * Class constructor for the vector-valued function.
@@ -220,7 +223,7 @@ namespace Optimist
      * \param[out] out The function value.
      * \return The boolean flag for successful evaluation.
      */
-    bool evaluate(const InputVector & x, OutputVector & out) const
+    bool evaluate(const Input & x, Output & out) const
     {
       return static_cast<const DerivedFunction *>(this)->evaluate_impl(x, out);
     }
@@ -231,7 +234,7 @@ namespace Optimist
      * \param[out] out The function first derivative.
      * \return The boolean flag for successful evaluation.
      */
-    bool jacobian(const InputVector & x, Matrix & out) const
+    bool jacobian(const Input & x, Matrix & out) const
     {
       return static_cast<const DerivedFunction *>(this)->first_derivative_impl(x, out);
     }
@@ -242,7 +245,7 @@ namespace Optimist
      * \param[out] out The function second derivative.
      * \return The boolean flag for successful evaluation.
      */
-    bool hessian(const InputVector & x, Tensor & out) const
+    bool hessian(const Input & x, Tensor & out) const
     {
       return static_cast<const DerivedFunction *>(this)->second_derivative_impl(x, out);
     }
@@ -254,32 +257,26 @@ namespace Optimist
   /**
    * \brief Class container for the cost function.
    *
-   * \tparam N The dimension of the cost function input.
+   * \tparam Input Function input type.
    * \tparam DerivedFunction Derived cost function class.
-   * \tparam ForceEigen Force the use of Eigen types for input and output.
    */
-  template <typename Real, Integer N, typename DerivedFunction>
-  class Function<Real, N, 1, DerivedFunction> : public FunctionBase<Real, N, 1, DerivedFunction>
+  template <typename Input, typename DerivedFunction>
+  requires TypeTraits<Input>::IsEigen
+  class Function<Input, typename Input::Scalar, DerivedFunction> : public FunctionBase<Input, typename Input::Scalar, DerivedFunction>
   {
   public:
-    friend class FunctionBase<Real, N, 1, Function<Real, N, 1, DerivedFunction>>;
+    friend class FunctionBase<Input, typename Input::Scalar, DerivedFunction>;
 
-    // Fancy static assertions (just for fun, don't take it too seriously)
-    static_assert(N != 0,
-      "Are you sure you want to a zero-dimensional system of equations?");
-
-    // I/O types
-    using Vector = typename FunctionBase<Real, N, 1, DerivedFunction>::InputType;
+    // Input and output types
+    using Vector = typename FunctionBase<Input, typename Input::Scalar, DerivedFunction>::Input;
 
     // Derivative types
-    using RowVector = typename FunctionBase<Real, N, 1, DerivedFunction>::FirstDerivativeType;
-    using Matrix    = typename FunctionBase<Real, N, 1, DerivedFunction>::SecondDerivativeType;
-
+    using RowVector = typename FunctionBase<Input, typename Input::Scalar, DerivedFunction>::FirstDerivative;
+    using Matrix    = typename FunctionBase<Input, typename Input::Scalar, DerivedFunction>::SecondDerivative;
     /**
      * Class constructor for the function.
      */
-    Function<Real, N, 1, DerivedFunction>() {}
-
+    Function<Input, typename Input::Scalar, DerivedFunction>() {}
     /**
      * Get the function name.
      * \return The function name.
@@ -326,19 +323,20 @@ namespace Optimist
   /**
   * \brief Class container for the scalar function.
   *
-  * \tparam Real Scalar number type.
+  * \tparam Scalar Real number type.
   * \tparam DerivedFunction Derived scalar function class.
   */
-  template <typename Real, typename DerivedFunction>
-  class Function<Real, 1, 1, DerivedFunction> : public FunctionBase<Real, 1, 1, DerivedFunction>
+  template <typename Scalar, typename DerivedFunction>
+  requires std::is_floating_point_v<Scalar>
+  class Function<Scalar, Scalar, DerivedFunction> : public FunctionBase<Scalar, Scalar, DerivedFunction>
   {
   public:
-    friend class FunctionBase<Real, 1, 1, Function<Real, 1, 1, DerivedFunction>>;
+    friend class FunctionBase<Scalar, Scalar, DerivedFunction>;
 
     /**
      * Class constructor for the function.
      */
-    Function<Real, 1, 1, DerivedFunction>() {}
+    Function<Scalar, Scalar, DerivedFunction>() {}
 
     /**
      * Get the function name.
@@ -352,7 +350,7 @@ namespace Optimist
      * \param[out] out The function value.
      * \return The boolean flag for successful evaluation.
      */
-    bool evaluate(Real x, Real & out) const
+    bool evaluate(Scalar x, Scalar & out) const
     {
       return static_cast<const DerivedFunction *>(this)->evaluate_impl(x, out);
     }
@@ -363,7 +361,7 @@ namespace Optimist
      * \param[out] out The function first derivative.
      * \return The boolean flag for successful evaluation.
      */
-    bool first_derivative(Real x, Real & out) const
+    bool first_derivative(Scalar x, Scalar & out) const
     {
       return static_cast<const DerivedFunction *>(this)->first_derivative_impl(x, out);
     }
@@ -374,7 +372,7 @@ namespace Optimist
      * \param[out] out The function second derivative.
      * \return The boolean flag for successful evaluation.
      */
-    bool second_derivative(Real x, Real & out) const
+    bool second_derivative(Scalar x, Scalar & out) const
     {
       return static_cast<const DerivedFunction *>(this)->second_derivative_impl(x, out);
     }

@@ -31,13 +31,13 @@ namespace Optimist
      * The function has roots at \f$x = \pi/2 + i\pi\f$, with \f$f(x) = 0\f$, and minima at \f$x = 3\pi/2 +
      * 2i\pi\f$, with \f$f(x) = -1\f$ and \f$i = 0, 1, \ldots, n\f$. The initial guesses are generated
      * on the range \f$x \in \left[-\pi, \pi\right]\f$.
-     * \tparam Real Scalar number type.
+     * \tparam Scalar Scalar number type.
      */
-    template <typename Real>
-    class Sin : public Function<Real, 1, 1, Sin<Real>>
+    template <typename Scalar>
+    class Sin : public Function<Scalar, Scalar, Sin<Scalar>>
     {
     public:
-      OPTIMIST_BASIC_CONSTANTS(Real)
+      OPTIMIST_BASIC_CONSTANTS(Scalar)
 
       /**
        * Class constructor for the sine function.
@@ -64,7 +64,7 @@ namespace Optimist
        * \param[out] out The function value.
        * \return The boolean flag for successful evaluation.
        */
-      bool evaluate_impl(Real x, Real & out) const
+      bool evaluate_impl(Scalar x, Scalar & out) const
       {
         out = std::sin(x);
         return std::isfinite(out);
@@ -76,7 +76,7 @@ namespace Optimist
        * \param[out] out The first derivative value.
        * \return The boolean flag for successful evaluation.
        */
-      bool first_derivative_impl(Real x, Real & out) const
+      bool first_derivative_impl(Scalar x, Scalar & out) const
       {
         out = std::cos(x);
         return std::isfinite(out);
@@ -88,7 +88,7 @@ namespace Optimist
        * \param[out] out The second derivative value.
        * \return The boolean flag for successful evaluation.
        */
-      bool second_derivative_impl(Real x, Real & out) const
+      bool second_derivative_impl(Scalar x, Scalar & out) const
       {
         out = -std::sin(x);
         return std::isfinite(out);

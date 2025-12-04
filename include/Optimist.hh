@@ -25,9 +25,11 @@
 #include <memory>
 #include <numeric>
 #include <algorithm>
+#include <type_traits>
 
 // Eigen library
 #include <Eigen/Dense>
+#include <Eigen/Sparse>
 
 // Print Optimist errors
 #ifndef OPTIMIST_ERROR
@@ -68,13 +70,13 @@
 
 // Define the basic constants for Optimist
 #ifndef OPTIMIST_BASIC_CONSTANTS
-#define OPTIMIST_BASIC_CONSTANTS(Real) \
-  static constexpr Real EPSILON{std::numeric_limits<Real>::epsilon()};     /**< Machine epsilon epsilon static constant value. */ \
-  static constexpr Real EPSILON_HIGH{1.0e-12};                             /**< High precision epsilon static constant value. */ \
-  static constexpr Real EPSILON_MEDIUM{1.0e-10};                           /**< Medium precision epsilon static constant value. */ \
-  static constexpr Real EPSILON_LOW{1.0e-08};                              /**< Low precision epsilon static constant value. */ \
-  static constexpr Real INFTY{std::numeric_limits<Real>::infinity()};      /**< Infinity static constant value. */ \
-  static constexpr Real QUIET_NAN{std::numeric_limits<Real>::quiet_NaN()}; /**< Not-a-number static constant value. */
+#define OPTIMIST_BASIC_CONSTANTS(Scalar) \
+  static constexpr Scalar EPSILON{std::numeric_limits<Scalar>::epsilon()};     /**< Machine epsilon epsilon static constant value. */ \
+  static constexpr Scalar EPSILON_HIGH{1.0e-12};                             /**< High precision epsilon static constant value. */ \
+  static constexpr Scalar EPSILON_MEDIUM{1.0e-10};                           /**< Medium precision epsilon static constant value. */ \
+  static constexpr Scalar EPSILON_LOW{1.0e-08};                              /**< Low precision epsilon static constant value. */ \
+  static constexpr Scalar INFTY{std::numeric_limits<Scalar>::infinity()};      /**< Infinity static constant value. */ \
+  static constexpr Scalar QUIET_NAN{std::numeric_limits<Scalar>::quiet_NaN()}; /**< Not-a-number static constant value. */
 #endif
 
 #ifndef OPTIMIST_DEFAULT_INTEGER_TYPE
@@ -94,6 +96,118 @@ namespace Optimist
   * value is \c int.
   */
   using Integer = OPTIMIST_DEFAULT_INTEGER_TYPE;
+
+  /*\
+   |   _____                _____          _ _
+   |  |_   _|   _ _ __   __|_   _| __ __ _(_) |_ ___
+   |    | || | | | '_ \ / _ \| || '__/ _` | | __/ __|
+   |    | || |_| | |_) |  __/| || | | (_| | | |_\__ \
+   |    |_| \__, | .__/ \___||_||_|  \__,_|_|\__|___/
+   |        |___/|_|
+  \*/
+
+  /**
+   * Traits class for vectors and matrices (fallback for unsupported types).
+   * \tparam T The type to be specialized.
+   */
+  template <typename T, typename Enable = void>
+  struct TypeTraits;
+
+  /**
+   * Traits class for scalar types.
+   * \tparam Scalar The scalar type.
+   */
+  template <typename ScalarType>
+  struct TypeTraits<ScalarType, std::enable_if_t<std::is_floating_point<ScalarType>::value>>
+  {
+    using Scalar = ScalarType;
+    static constexpr Integer Dimension{1};
+    static constexpr bool IsScalar{true};
+    static constexpr bool IsEigen{false};
+    static constexpr bool IsDense{false};
+    static constexpr bool IsSparse{false};
+    static constexpr bool IsFixedSize{false};
+    static constexpr bool IsDynamicSize{false};
+  };
+
+  /**
+   * Traits class for fixed-size dense Eigen column vectors.
+   * \tparam Scalar The scalar type.
+   * \tparam N The vector dimension.
+   */
+  template <typename ScalarType, int N>
+  struct TypeTraits<Eigen::Matrix<ScalarType, N, 1>, std::enable_if_t<(N > 0)>>
+  {
+    using Scalar = ScalarType;
+    static constexpr Integer Dimension{N};
+    static constexpr bool IsScalar{false};
+    static constexpr bool IsEigen{true};
+    static constexpr bool IsDynamic{false};
+    static constexpr bool IsDense{true};
+    static constexpr bool IsSparse{false};
+    static constexpr bool IsFixedSize{true};
+    static constexpr bool IsDynamicSize{false};
+  };
+
+  /**
+   * Traits class for dynamic-size dense Eigen column vectors.
+   * \tparam Scalar The scalar type.
+   */
+  template <typename ScalarType>
+  struct TypeTraits<Eigen::Matrix<ScalarType, Eigen::Dynamic, 1>, void>
+  {
+    using Scalar = ScalarType;
+    static constexpr Integer Dimension{Eigen::Dynamic};
+    static constexpr bool IsScalar{false};
+    static constexpr bool IsEigen{true};
+    static constexpr bool IsDense{true};
+    static constexpr bool IsSparse{false};
+    static constexpr bool IsFixedSize{false};
+    static constexpr bool IsDynamicSize{true};
+  };
+
+  /**
+   * Traits class for sparse Eigen column vectors.
+   * \tparam Scalar The scalar type.
+   */
+  template <typename ScalarType>
+  struct TypeTraits<Eigen::SparseVector<ScalarType>>
+  {
+    using Scalar = ScalarType;
+    static constexpr Integer Dimension{Eigen::Dynamic};
+    static constexpr bool IsScalar{false};
+    static constexpr bool IsEigen{true};
+    static constexpr bool IsDense{false};
+    static constexpr bool IsSparse{true};
+    static constexpr bool IsFixedSize{false};
+    static constexpr bool IsDynamicSize{true};
+  };
+
+  /**
+   * Traits class for sparse Eigen matrices.
+   * \tparam T The sparse Eigen matrix type.
+   */
+  template <typename ScalarType, Integer Options, typename StorageIndex>
+  struct TypeTraits<Eigen::SparseMatrix<ScalarType, Options, StorageIndex>>
+  {
+    using Scalar = ScalarType;
+    static constexpr Integer Dimension{Eigen::Dynamic};
+    static constexpr bool IsScalar{false};
+    static constexpr bool IsEigen{true};
+    static constexpr bool IsDense{false};
+    static constexpr bool IsSparse{true};
+    static constexpr bool IsFixedSize{false};
+    static constexpr bool IsDynamicSize{true};
+  };
+
+  /*\
+   |   ____  _          __  __
+   |  / ___|| |_ _   _ / _|/ _|
+   |  \___ \| __| | | | |_| |_
+   |   ___) | |_| |_| |  _|  _|
+   |  |____/ \__|\__,_|_| |_|
+   |
+  \*/
 
   /**
   * \brief Retrieve the Unicode character for the top-left corner of a table.
