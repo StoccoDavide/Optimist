@@ -611,24 +611,15 @@ namespace Optimist
      * \param[out] x_sol Solution point.
      */
     template <typename FunctionInput, typename FunctionOutput, typename DerivedFunction>
-    // TODO: make requires clauses to avoid invalid combinations
+    requires (InputTrait::Dimension == TypeTrait<FunctionInput>::Dimension) &&
+      (OutputTrait::Dimension == TypeTrait<FunctionOutput>::Dimension || OutputTrait::Dimension == 1) &&
+      (!(InputTrait::Dimension == 1 && DerivedSolver::IsOptimizer))
     bool rootfind(FunctionBase<FunctionInput, FunctionOutput, DerivedFunction> const & function,
       Input const & x_ini, Input & x_sol)
     {
-      #define CMD "Optimist::Solver::rootfind(...): "
-
-      using FunctionInputTrait  = TypeTrait<FunctionInput>;
       using FunctionOutputTrait = TypeTrait<FunctionOutput>;
-
-      static_assert(InputTrait::Dimension == FunctionInputTrait::Dimension,
-        CMD "solver input dimension must be equal to the function input dimension.");
-      static_assert(OutputTrait::Dimension == FunctionOutputTrait::Dimension || OutputTrait::Dimension == 1,
-        CMD "solver output dimension must be equal to the function output dimension or 1.");
-      static_assert(!(InputTrait::Dimension == 1 && DerivedSolver::IsOptimizer),
-        CMD "one-dimensional optimizers do not support root-finding problems.");
       return this->solve(function, x_ini, x_sol,
         (OutputTrait::Dimension != FunctionOutputTrait::Dimension) || InputTrait::IsEigen);
-      #undef CMD
     }
 
     /**
@@ -677,7 +668,8 @@ namespace Optimist
      * \param[in] is_optimization Boolean flag for optimization.
      */
     template <typename FunctionInput, typename FunctionOutput, typename DerivedFunction>
-    // TODO: make requires clauses to avoid invalid combinations
+    requires (InputTrait::Dimension == TypeTrait<FunctionInput>::Dimension) &&
+      (OutputTrait::Dimension == TypeTrait<FunctionOutput>::Dimension || OutputTrait::Dimension == 1)
     bool solve(FunctionBase<FunctionInput, FunctionOutput, DerivedFunction>
       const & function, Input const & x_ini, Input & x_sol, bool is_optimization)
     {
@@ -686,11 +678,6 @@ namespace Optimist
       using FunctionType = FunctionBase<FunctionInput, FunctionOutput, DerivedFunction>;
       using FunctionInputTrait  = TypeTrait<FunctionInput>;
       using FunctionOutputTrait = TypeTrait<FunctionOutput>;
-
-      static_assert(InputTrait::Dimension == FunctionInputTrait::Dimension,
-        CMD "solver input dimension must be equal to the function input dimension.");
-      static_assert(OutputTrait::Dimension == FunctionOutputTrait::Dimension || OutputTrait::Dimension == 1,
-        CMD "solver output dimension must be equal to the function output dimension or a scalar.");
 
       // Lambda generators for function and derivatives
       auto function_lambda = [&function, is_optimization] (Input const & x, Output & out) -> bool
