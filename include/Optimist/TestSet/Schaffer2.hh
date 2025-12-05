@@ -1,11 +1,11 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
- * Copyright (c) 2025, Davide Stocco, Mattia Piazza and Enrico Bertolazzi.                       *
+ * Copyright (c) 2025, Davide Stocco.                                                            *
  *                                                                                               *
  * The Optimist project is distributed under the BSD 2-Clause License.                           *
  *                                                                                               *
- * Davide Stocco                          Mattia Piazza                        Enrico Bertolazzi *
- * University of Trento               University of Trento                  University of Trento *
- * davide.stocco@unitn.it            mattia.piazza@unitn.it           enrico.bertolazzi@unitn.it *
+ * Davide Stocco                                                                                 *
+ * University of Trento                                                                          *
+ * davide.stocco@unitn.it                                                                        *
 \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #pragma once
@@ -13,7 +13,7 @@
 #ifndef OPTIMIST_TESTSET_SCHAFFER2_HH
 #define OPTIMIST_TESTSET_SCHAFFER2_HH
 
-#include "Optimist/TestSet.hh"
+#include "Optimist/Function.hh"
 
 namespace Optimist
 {
@@ -30,17 +30,21 @@ namespace Optimist
      * \f]
      * The function has global minima at \f$\mathbf{x} = (0, 0)\f$, with \f$f(\mathbf{x}) = 0\f$.
      * The initial guesses are generated on the square \f$x_i \in \left[-100, 100\right]\f$.
-     * \tparam Real Scalar number type.
+     * \tparam Vector Eigen vector type.
      */
-    template <typename Real>
-    class Schaffer2 : public Function<Real, 2, 1, Schaffer2<Real>>
+    template <typename Vector>
+    requires TypeTrait<Vector>::IsEigen && (TypeTrait<Vector>::IsDynamicSize ||
+      (TypeTrait<Vector>::IsFixedSize && Vector::RowsAtCompileTime == 2))
+    class Schaffer2 : public Function<Vector, typename Vector::Scalar, Schaffer2<Vector>>
     {
     public:
-      using typename Function<Real, 2, 1, Schaffer2<Real>>::Vector;
-      using typename Function<Real, 2, 1, Schaffer2<Real>>::RowVector;
-      using typename Function<Real, 2, 1, Schaffer2<Real>>::Matrix;
+      using VectorTrait = TypeTrait<Vector>;
+      using Scalar = typename Vector::Scalar;
+      using typename Function<Vector, typename Vector::Scalar, Schaffer2<Vector>>::Vector;
+      using typename Function<Vector, typename Vector::Scalar, Schaffer2<Vector>>::RowVector;
+      using typename Function<Vector, typename Vector::Scalar, Schaffer2<Vector>>::Matrix;
 
-      OPTIMIST_BASIC_CONSTANTS(Real)
+      OPTIMIST_BASIC_CONSTANTS(Scalar)
 
       /**
        * Class constructor for the Schaffer2 function.
@@ -48,8 +52,8 @@ namespace Optimist
       Schaffer2()
       {
         this->m_solutions.emplace_back(0.0, 0.0);
-        for (Real x{-100}; x < 100 + EPSILON; x += 100/25.0) {
-          for (Real y{-100}; y < 100 + EPSILON; y += 100/25.0) {
+        for (Scalar x{-100}; x < 100 + EPSILON; x += 100/25.0) {
+          for (Scalar y{-100}; y < 100 + EPSILON; y += 100/25.0) {
             this->m_guesses.emplace_back(x, y);
           }
         }
@@ -59,7 +63,7 @@ namespace Optimist
        * Get the function name.
        * \return The function name.
        */
-      std::string name_impl() const {return "Schaffer2";}
+      constexpr std::string name_impl() const {return "Schaffer2";}
 
       /**
        * Compute the function value at the input point.
@@ -67,12 +71,12 @@ namespace Optimist
        * \param[out] out The function value.
        * \return The boolean flag for successful evaluation.
        */
-      bool evaluate_impl(Vector const & x, Real & out) const
+      bool evaluate_impl(Vector const & x, Scalar & out) const
       {
-        Real xx_0{x(0)*x(0)};
-        Real xx_1{x(1)*x(1)};
-        Real xx_0_m_xx_1{xx_0 - xx_1};
-        Real xx_0_p_xx_1{xx_0 + xx_1};
+        Scalar xx_0{x(0)*x(0)};
+        Scalar xx_1{x(1)*x(1)};
+        Scalar xx_0_m_xx_1{xx_0 - xx_1};
+        Scalar xx_0_p_xx_1{xx_0 + xx_1};
         out = 0.5 + (std::sin(xx_0_m_xx_1)*std::sin(xx_0_m_xx_1) - 0.5) /
           ((1.0 + 0.001*(xx_0_p_xx_1))*(1.0 + 0.001*(xx_0_p_xx_1)));
         return std::isfinite(out);
@@ -86,12 +90,12 @@ namespace Optimist
        */
       bool first_derivative_impl(Vector const & x, RowVector & out) const
       {
-        Real xx_0{x(0)*x(0)};
-        Real xx_1{x(1)*x(1)};
-        Real xx_0_m_xx_1{xx_0 - xx_1};
-        Real xx_0_p_xx_1{xx_0 + xx_1};
-        Real tmp{1.0 + 0.001*(xx_0_p_xx_1)};
-        Real tmp2{tmp*tmp}, tmp3{tmp2*tmp};
+        Scalar xx_0{x(0)*x(0)};
+        Scalar xx_1{x(1)*x(1)};
+        Scalar xx_0_m_xx_1{xx_0 - xx_1};
+        Scalar xx_0_p_xx_1{xx_0 + xx_1};
+        Scalar tmp{1.0 + 0.001*(xx_0_p_xx_1)};
+        Scalar tmp2{tmp*tmp}, tmp3{tmp2*tmp};
         out(0) = 2.0*x(0)*std::sin(xx_0_m_xx_1) / tmp2 -
           2.0*0.001*x(0)*std::cos(xx_0_m_xx_1) / tmp3;
         out(1) = -2.0*x(1)*std::sin(xx_0_m_xx_1) / tmp2 +
@@ -107,12 +111,12 @@ namespace Optimist
        */
       bool second_derivative_impl(Vector const & x, Matrix & out) const
       {
-        Real xx_0{x(0)*x(0)};
-        Real xx_1{x(1)*x(1)};
-        Real xx_0_m_xx_1{xx_0 - xx_1};
-        Real xx_0_p_xx_1{xx_0 + xx_1};
-        Real tmp{1.0 + 0.001*(xx_0_p_xx_1)};
-        Real tmp2{tmp*tmp}, tmp3{tmp2*tmp}, tmp4{tmp2*tmp2};
+        Scalar xx_0{x(0)*x(0)};
+        Scalar xx_1{x(1)*x(1)};
+        Scalar xx_0_m_xx_1{xx_0 - xx_1};
+        Scalar xx_0_p_xx_1{xx_0 + xx_1};
+        Scalar tmp{1.0 + 0.001*(xx_0_p_xx_1)};
+        Scalar tmp2{tmp*tmp}, tmp3{tmp2*tmp}, tmp4{tmp2*tmp2};
         out(0, 0) = 2.0*std::sin(xx_0_m_xx_1) / tmp2 -
           4.0*x(0)*x(0)*std::sin(xx_0_m_xx_1) / tmp3 +
           6.0*0.001*x(0)*x(0)*std::cos(xx_0_m_xx_1) / tmp4;

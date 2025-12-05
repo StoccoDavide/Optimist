@@ -1,11 +1,11 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
- * Copyright (c) 2025, Davide Stocco, Mattia Piazza and Enrico Bertolazzi.                       *
+ * Copyright (c) 2025, Davide Stocco.                                                            *
  *                                                                                               *
  * The Optimist project is distributed under the BSD 2-Clause License.                           *
  *                                                                                               *
- * Davide Stocco                          Mattia Piazza                        Enrico Bertolazzi *
- * University of Trento               University of Trento                  University of Trento *
- * davide.stocco@unitn.it            mattia.piazza@unitn.it           enrico.bertolazzi@unitn.it *
+ * Davide Stocco                                                                                 *
+ * University of Trento                                                                          *
+ * davide.stocco@unitn.it                                                                        *
 \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #pragma once
@@ -30,6 +30,7 @@
 // Eigen library
 #include <Eigen/Dense>
 #include <Eigen/Sparse>
+#include <Eigen/SparseLU>
 
 // Print Optimist errors
 #ifndef OPTIMIST_ERROR
@@ -111,14 +112,14 @@ namespace Optimist
    * \tparam T The type to be specialized.
    */
   template <typename T, typename Enable = void>
-  struct TypeTraits;
+  struct TypeTrait;
 
   /**
    * Traits class for scalar types.
    * \tparam Scalar The scalar type.
    */
   template <typename ScalarType>
-  struct TypeTraits<ScalarType, std::enable_if_t<std::is_floating_point<ScalarType>::value>>
+  struct TypeTrait<ScalarType, std::enable_if_t<std::is_floating_point<ScalarType>::value>>
   {
     using Scalar = ScalarType;
     static constexpr Integer Dimension{1};
@@ -136,7 +137,7 @@ namespace Optimist
    * \tparam N The vector dimension.
    */
   template <typename ScalarType, int N>
-  struct TypeTraits<Eigen::Matrix<ScalarType, N, 1>, std::enable_if_t<(N > 0)>>
+  struct TypeTrait<Eigen::Matrix<ScalarType, N, 1>, std::enable_if_t<(N > 0)>>
   {
     using Scalar = ScalarType;
     static constexpr Integer Dimension{N};
@@ -154,7 +155,7 @@ namespace Optimist
    * \tparam Scalar The scalar type.
    */
   template <typename ScalarType>
-  struct TypeTraits<Eigen::Matrix<ScalarType, Eigen::Dynamic, 1>, void>
+  struct TypeTrait<Eigen::Matrix<ScalarType, Eigen::Dynamic, 1>, void>
   {
     using Scalar = ScalarType;
     static constexpr Integer Dimension{Eigen::Dynamic};
@@ -171,7 +172,7 @@ namespace Optimist
    * \tparam Scalar The scalar type.
    */
   template <typename ScalarType>
-  struct TypeTraits<Eigen::SparseVector<ScalarType>>
+  struct TypeTrait<Eigen::SparseVector<ScalarType>>
   {
     using Scalar = ScalarType;
     static constexpr Integer Dimension{Eigen::Dynamic};
@@ -188,7 +189,7 @@ namespace Optimist
    * \tparam T The sparse Eigen matrix type.
    */
   template <typename ScalarType, Integer Options, typename StorageIndex>
-  struct TypeTraits<Eigen::SparseMatrix<ScalarType, Options, StorageIndex>>
+  struct TypeTrait<Eigen::SparseMatrix<ScalarType, Options, StorageIndex>>
   {
     using Scalar = ScalarType;
     static constexpr Integer Dimension{Eigen::Dynamic};
@@ -198,6 +199,29 @@ namespace Optimist
     static constexpr bool IsSparse{true};
     static constexpr bool IsFixedSize{false};
     static constexpr bool IsDynamicSize{true};
+  };
+
+  /**
+   * Retrieve the type of a the trait of a given type (fallback for unsupported types).
+   * \tparam T The type to be specialized.
+   * \tparam N The index of the type to retrieve.
+   */
+  template<typename T, int N = 0>
+  struct RetriveType;
+
+
+  /**
+   * Retrieve the type of a the trait of a given type.
+   * \tparam BaseType The base template type.
+   * \tparam FirstType The first template type.
+   * \tparam OtherTypes Other template types.
+   */
+  template<template<typename...> typename BaseType, typename FirstType, typename... OtherTypes>
+  struct RetriveType<BaseType<FirstType, OtherTypes...>>
+  {
+    using Full  = BaseType<FirstType, OtherTypes...>;
+    using First = FirstType;
+
   };
 
   /*\
@@ -213,61 +237,61 @@ namespace Optimist
   * \brief Retrieve the Unicode character for the top-left corner of a table.
   * \return Unicode character for the top-left corner of a table.
   */
-  static inline std::string table_top_left_corner() {return std::string("┌");}
+  static constexpr std::string table_top_left_corner() {return std::string("┌");}
 
   /**
   * \brief Retrieve the Unicode character for the top-right corner of a table.
   * \return Unicode character for the top-right corner of a table.
   */
-  static inline std::string table_top_right_corner() {return std::string("┐");}
+  static constexpr std::string table_top_right_corner() {return std::string("┐");}
 
   /**
   * \brief Retrieve the Unicode character for the bottom-left corner of a table.
   * \return Unicode character for the bottom-left corner of a table.
   */
-  static inline std::string table_bottom_left_corner() {return std::string("└");}
+  static constexpr std::string table_bottom_left_corner() {return std::string("└");}
 
   /**
   * \brief Retrieve the Unicode character for the bottom-right corner of a table.
   * \return Unicode character for the bottom-right corner of a table.
   */
-  static inline std::string table_bottom_right_corner() {return std::string("┘");}
+  static constexpr std::string table_bottom_right_corner() {return std::string("┘");}
 
   /**
   * \brief Retrieve the Unicode character for the left junction of a table.
   * \return Unicode character for the left junction of a table.
   */
-  static inline std::string table_left_junction() {return std::string("├");}
+  static constexpr std::string table_left_junction() {return std::string("├");}
 
   /**
   * \brief Retrieve the Unicode character for the right junction of a table.
   * \return Unicode character for the right junction of a table.
   */
-  static inline std::string table_right_junction() {return std::string("┤");}
+  static constexpr std::string table_right_junction() {return std::string("┤");}
 
   /**
   * \brief Retrieve the Unicode character for the top junction of a table.
   * \return Unicode character for the top junction of a table.
   */
-  static inline std::string table_top_junction() {return std::string("┬");}
+  static constexpr std::string table_top_junction() {return std::string("┬");}
 
   /**
   * \brief Retrieve the Unicode character for the bottom junction of a table.
   * \return Unicode character for the bottom junction of a table.
   */
-  static inline std::string table_bottom_junction() {return std::string("┴");}
+  static constexpr std::string table_bottom_junction() {return std::string("┴");}
 
   /**
   * \brief Retrieve the Unicode character for the center cross of a table.
   * \return Unicode character for the center cross of a table.
   */
-  static inline std::string table_center_cross() {return std::string("┼");}
+  static constexpr std::string table_center_cross() {return std::string("┼");}
 
   /**
   * \brief Retrieve the Unicode character for the horizontal line of a table.
   * \return Unicode character for the horizontal line of a table.
   */
-  static inline std::string table_horizontal_line() {return std::string("─");}
+  static constexpr std::string table_horizontal_line() {return std::string("─");}
 
   /**
   * \brief Retrieve the Unicode character for a number of horizontal lines of a table.
@@ -275,7 +299,7 @@ namespace Optimist
   * \tparam N Number of horizontal lines.
   */
   template <Integer N>
-  static inline std::string table_horizontal_line() {
+  static constexpr std::string table_horizontal_line() {
     std::string line;
     for (Integer i{0}; i < N; ++i) {line += table_horizontal_line();}
     return line;
@@ -285,7 +309,7 @@ namespace Optimist
   * \brief Retrieve the Unicode character for the vertical line of a table.
   * \return Unicode character for the vertical line of a table.
   */
-  static inline std::string table_vertical_line() {return std::string("│");}
+  static constexpr std::string table_vertical_line() {return std::string("│");}
 
 } // namespace Optimist
 

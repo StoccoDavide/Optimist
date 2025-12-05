@@ -1,11 +1,11 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
- * Copyright (c) 2025, Davide Stocco, Mattia Piazza and Enrico Bertolazzi.                       *
+ * Copyright (c) 2025, Davide Stocco.                                                            *
  *                                                                                               *
  * The Optimist project is distributed under the BSD 2-Clause License.                           *
  *                                                                                               *
- * Davide Stocco                          Mattia Piazza                        Enrico Bertolazzi *
- * University of Trento               University of Trento                  University of Trento *
- * davide.stocco@unitn.it            mattia.piazza@unitn.it           enrico.bertolazzi@unitn.it *
+ * Davide Stocco                                                                                 *
+ * University of Trento                                                                          *
+ * davide.stocco@unitn.it                                                                        *
 \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #pragma once
@@ -34,24 +34,28 @@ namespace Optimist
      *
      * \includedoc docs/markdown/RootFinder/Newton.md
      *
-     * \tparam Real Scalar number type.
-     * \tparam N Dimension of the root-finding problem.
+     * \tparam Vector Eigen vector type.
      */
-    template <typename Real, Integer N>
-    class Newton : public RootFinder<Real, N, Newton<Real, N>, true>
+    template <typename Vector>
+    requires TypeTrait<Vector>::IsEigen
+    class Newton : public RootFinder<Vector, Vector, Newton<Vector>>
     {
     public:
-      static constexpr bool requires_function{true};
-      static constexpr bool requires_first_derivative{true};
-      static constexpr bool requires_second_derivative{false};
+      static constexpr bool RequiresFunction{true};
+      static constexpr bool RequiresFirstDerivative{true};
+      static constexpr bool RequiresSecondDerivative{false};
 
-      OPTIMIST_BASIC_CONSTANTS(Real)
+      using VectorTrait = TypeTrait<Vector>;
+      using Scalar = typename Vector::Scalar;
+      using typename RootFinder<Vector, Vector, Newton<Vector>>::Vector;
+      using typename RootFinder<Vector, Vector, Newton<Vector>>::Matrix;
+      using Factorization = std::conditional_t<VectorTrait::IsSparse, Eigen::SparseLU<Matrix>,
+        Eigen::FullPivLU<Matrix>>;
 
-      using typename RootFinder<Real, N, Newton<Real, N>, true>::Vector;
-      using typename RootFinder<Real, N, Newton<Real, N>, true>::Matrix;
+      OPTIMIST_BASIC_CONSTANTS(Scalar)
 
     private:
-      Eigen::FullPivLU<Matrix> m_lu; /**< LU decomposition. */
+      Factorization m_lu; /**< LU decomposition. */
 
     public:
       /**
@@ -63,7 +67,7 @@ namespace Optimist
        * Get the Newton solver name.
        * \return The Newton solver name.
        */
-      std::string name_impl() const {return "Newton";}
+      constexpr std::string name_impl() const {return "Newton";}
 
       /**
        * Solve the nonlinear system of equations \f$ \mathbf{f}(\mathbf{x}) = 0 \f$, with \f$
@@ -90,7 +94,7 @@ namespace Optimist
 
         // Initialize variables
         bool damped, success;
-        Real residuals, step_norm;
+        Scalar residuals, step_norm;
         Vector x_old, x_new, function_old, function_new, step_old, step_new;
         Matrix jacobian_old;
 
@@ -101,8 +105,8 @@ namespace Optimist
           CMD "function evaluation failed at the initial point.");
 
         // Algorithm iterations
-        Real tolerance_residuals{this->m_tolerance};
-        Real tolerance_step_norm{this->m_tolerance * this->m_tolerance};
+        Scalar tolerance_residuals{this->m_tolerance};
+        Scalar tolerance_step_norm{this->m_tolerance * this->m_tolerance};
         for (this->m_iterations = 1; this->m_iterations < this->m_max_iterations; ++this->m_iterations)
         {
           // Calculate step
@@ -110,7 +114,7 @@ namespace Optimist
           OPTIMIST_ASSERT(success,
             CMD "jacobian evaluation failed at iteration " << this->m_iterations << ".");
           this->m_lu.compute(jacobian_old);
-          OPTIMIST_ASSERT(this->m_lu.rank() == N,
+          OPTIMIST_ASSERT(this->m_lu.rank() == x_ini.size(),
             "Optimist::RootFinder::Newton::solve(...): singular Jacobian detected.");
           step_old = -this->m_lu.solve(function_old);
 

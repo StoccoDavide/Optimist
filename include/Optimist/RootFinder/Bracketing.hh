@@ -1,11 +1,11 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
- * Copyright (c) 2025, Davide Stocco, Mattia Piazza and Enrico Bertolazzi.                       *
+ * Copyright (c) 2025, Davide Stocco.                                                            *
  *                                                                                               *
  * The Optimist project is distributed under the BSD 2-Clause License.                           *
  *                                                                                               *
- * Davide Stocco                          Mattia Piazza                        Enrico Bertolazzi *
- * University of Trento               University of Trento                  University of Trento *
- * davide.stocco@unitn.it            mattia.piazza@unitn.it           enrico.bertolazzi@unitn.it *
+ * Davide Stocco                                                                                 *
+ * University of Trento                                                                          *
+ * davide.stocco@unitn.it                                                                        *
 \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #pragma once
@@ -34,24 +34,24 @@ namespace Optimist
      *
      * The Bracketing algorithms allow to find the roots of a scalar function \f$f(x)\f$ in a given
      * interval \f$[a, b]\f$.
-     * \tparam Real Scalar number type.
+     * \tparam Scalar Floating-point number type.
      */
-    template <typename Real, typename DerivedSolver>
-    class Bracketing : public RootFinder<Real, 1, DerivedSolver>
+    template <typename Scalar, typename DerivedSolver>
+    class Bracketing : public RootFinder<Scalar, Scalar, DerivedSolver>
     {
     public:
-      OPTIMIST_BASIC_CONSTANTS(Real)
+      OPTIMIST_BASIC_CONSTANTS(Scalar)
 
     protected:
-      Real m_tolerance_bracketing{100*EPSILON}; /**< Tolerance for the Bracketing solver. */
-      Real m_mu{0.5};                           /**< Parameter \f$ \mu \f$. */
-      Real m_interval_shink{0.025};             /**< Interval shrinking factor. */
+      Scalar m_tolerance_bracketing{100*EPSILON}; /**< Tolerance for the Bracketing solver. */
+      Scalar m_mu{0.5};                           /**< Parameter \f$ \mu \f$. */
+      Scalar m_interval_shink{0.025};             /**< Interval shrinking factor. */
 
-      Real m_a{0.0}, m_fa{0.0};
-      Real m_b{0.0}, m_fb{0.0};
-      Real m_c{0.0}, m_fc{0.0};
-      Real m_d{0.0}, m_fd{0.0};
-      Real m_e{0.0}, m_fe{0.0};
+      Scalar m_a{0.0}, m_fa{0.0};
+      Scalar m_b{0.0}, m_fb{0.0};
+      Scalar m_c{0.0}, m_fc{0.0};
+      Scalar m_d{0.0}, m_fd{0.0};
+      Scalar m_e{0.0}, m_fe{0.0};
 
     public:
       /**
@@ -63,7 +63,7 @@ namespace Optimist
        * Get the Bracketing solver name.
        * \return The Bracketing solver name.
        */
-      std::string name_impl() const
+      constexpr std::string name_impl() const
       {
         return static_cast<const DerivedSolver *>(this)->name_impl();
       }
@@ -73,7 +73,7 @@ namespace Optimist
        * \param[in] t_tolerance The input value at which the tolerance is computed.
        * \note To accurately find polynomial roots, the tolerance should be set to \f$ 100\epsilon(0) \f$.
        */
-      void tolerance_bracketing(Real t_tolerance) {this->m_tolerance_bracketing = t_tolerance;}
+      void tolerance_bracketing(Scalar t_tolerance) {this->m_tolerance_bracketing = t_tolerance;}
 
       /**
        * Solve the nonlinear equation \f$ f(x) = 0 \f$, with \f$ f: \mathbb{R} \rightarrow \mathbb{R} \f$.
@@ -84,9 +84,9 @@ namespace Optimist
        * \return The convergence boolean flag.
        */
       template <typename FunctionLambda>
-      bool solve_impl(FunctionLambda && function, Real /*x_ini*/, Real & x_sol)
+      bool solve_impl(FunctionLambda && function, Scalar /*x_ini*/, Scalar & x_sol)
       {
-        #define CMD "Optimist::Rootfinder::Bracketing::solve_impl(...): "
+        #define CMD "Optimist::RootFinder::Bracketing::solve_impl(...): "
 
         // Setup internal variables
         bool success;
@@ -127,7 +127,7 @@ namespace Optimist
        * \return The approximate root.
        */
       template <typename FunctionLambda>
-      Real find_root(FunctionLambda && function)
+      Scalar find_root(FunctionLambda && function)
       {
         return static_cast<DerivedSolver *>(this)->find_root_impl(std::forward<FunctionLambda>(function));
       }

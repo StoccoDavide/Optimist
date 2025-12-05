@@ -1,11 +1,11 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
- * Copyright (c) 2025, Davide Stocco, Mattia Piazza and Enrico Bertolazzi.                       *
+ * Copyright (c) 2025, Davide Stocco.                                                            *
  *                                                                                               *
  * The Optimist project is distributed under the BSD 2-Clause License.                           *
  *                                                                                               *
- * Davide Stocco                          Mattia Piazza                        Enrico Bertolazzi *
- * University of Trento               University of Trento                  University of Trento *
- * davide.stocco@unitn.it            mattia.piazza@unitn.it           enrico.bertolazzi@unitn.it *
+ * Davide Stocco                                                                                 *
+ * University of Trento                                                                          *
+ * davide.stocco@unitn.it                                                                        *
 \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #pragma once
@@ -38,31 +38,33 @@ namespace Optimist
      *
      * \includedoc docs/markdown/RootFinder.md
      *
-     * \tparam Real Scalar number type.
-     * \tparam N The dimension of the root-finding problem.
+     * \tparam Input Solver input type.
+     * \tparam Output Solver output type.
      * \tparam DerivedSolver Derived solver class.
-     * \tparam ForceEigen Force the use of Eigen types for input and output.
      */
-    template <typename Real, Integer N, typename DerivedSolver, bool ForceEigen = false>
-    class RootFinder : public SolverBase<Real, N, N, DerivedSolver, ForceEigen>
+    template <typename Input, typename Output, typename DerivedSolver>
+    requires (TypeTrait<Input>::IsScalar && TypeTrait<Output>::IsScalar) ||
+      ((TypeTrait<Input>::IsEigen && TypeTrait<Output>::IsEigen) &&
+      ((TypeTrait<Input>::IsFixedSize && TypeTrait<Output>::IsFixedSize) ||
+      (TypeTrait<Input>::IsDense && TypeTrait<Output>::IsDense) ||
+      (TypeTrait<Input>::IsSparse && TypeTrait<Output>::IsSparse)))
+    class RootFinder : public SolverBase<Input, Output, DerivedSolver>
     {
     public:
-      // Fancy static assertions (just for fun, don't take it too seriously)
-      static_assert(N != 0, "Are you sure you want to solve a zero-dimensional system of equations?");
+      friend class SolverBase<Input, Output, DerivedSolver>;
 
-      friend class SolverBase<Real, N, N, RootFinder<Real, N, DerivedSolver, ForceEigen>>;
-
-      static constexpr bool is_rootfinder{true};
-      static constexpr bool is_optimizer{false};
-
-      OPTIMIST_BASIC_CONSTANTS(Real)
+      static constexpr bool IsRootFinder{true};
+      static constexpr bool IsOptimizer{false};
 
       // I/O types
-      using Vector = typename SolverBase<Real, N, N, DerivedSolver, ForceEigen>::InputType;
+      using Scalar = typename TypeTrait<Input>::Scalar;
+      using Vector = Input;
 
       // Derivative types
-      using Matrix = typename SolverBase<Real, N, N, DerivedSolver, ForceEigen>::FirstDerivativeType;
-      using Tensor = typename SolverBase<Real, N, N, DerivedSolver, ForceEigen>::SecondDerivativeType;
+      using Matrix = typename SolverBase<Input, Output, DerivedSolver>::FirstDerivative;
+      using Tensor = typename SolverBase<Input, Output, DerivedSolver>::SecondDerivative;
+
+      OPTIMIST_BASIC_CONSTANTS(Scalar)
 
       /**
        * Class constructor for the multi-dimensional root finder.
@@ -73,7 +75,7 @@ namespace Optimist
        * Get the solver name.
        * \return The solver name.
        */
-      std::string name() const {return static_cast<const DerivedSolver *>(this)->name_impl();}
+      constexpr std::string name() const {return static_cast<const DerivedSolver *>(this)->name_impl();}
 
       /**
        * Get the number of Jacobian evaluations.
@@ -160,7 +162,7 @@ namespace Optimist
       {
         #define CMD "Optimist::RootFinder::solve(...): "
 
-        static_assert(DerivedSolver::requires_function,
+        static_assert(DerivedSolver::RequiresFunction,
           CMD "the solver requires a function.");
         return static_cast<DerivedSolver *>(this)->solve_impl(
           std::forward<FunctionLambda>(function),
@@ -185,9 +187,9 @@ namespace Optimist
       {
         #define CMD "Optimist::RootFinder::solve(...): "
 
-        static_assert(DerivedSolver::requires_function,
+        static_assert(DerivedSolver::RequiresFunction,
           CMD "the solver requires a function.");
-        static_assert(DerivedSolver::requires_first_derivative,
+        static_assert(DerivedSolver::RequiresFirstDerivative,
           CMD "the solver requires the first derivative.");
         return static_cast<DerivedSolver *>(this)->solve_impl(
           std::forward<FunctionLambda>(function),
@@ -215,11 +217,11 @@ namespace Optimist
       {
         #define CMD "Optimist::RootFinder::solve(...): "
 
-        static_assert(DerivedSolver::requires_function,
+        static_assert(DerivedSolver::RequiresFunction,
           CMD "the solver requires the function.");
-        static_assert(DerivedSolver::requires_first_derivative,
+        static_assert(DerivedSolver::RequiresFirstDerivative,
           CMD "the solver requires the first derivative.");
-        static_assert(DerivedSolver::requires_second_derivative,
+        static_assert(DerivedSolver::RequiresSecondDerivative,
           CMD "the solver requires the second derivative.");
         return static_cast<DerivedSolver *>(this)->solve_impl(
           std::forward<FunctionLambda>(function),
@@ -239,30 +241,31 @@ namespace Optimist
      *
      * \includedoc docs/markdown/RootFinder.md
      *
-     * \tparam Real Scalar number type.
+     * \tparam Scalar Scalar number type.
      * \tparam DerivedSolver Derived solver class.
      */
-    template <typename Real, typename DerivedSolver>
-    class RootFinder<Real, 1, DerivedSolver> : public SolverBase<Real, 1, 1, DerivedSolver>
+    template <typename Scalar, typename DerivedSolver>
+    requires TypeTrait<Scalar>::IsScalar
+    class RootFinder<Scalar, Scalar, DerivedSolver> : public SolverBase<Scalar, Scalar, DerivedSolver>
     {
     public:
-      friend class SolverBase<Real, 1, 1, RootFinder<Real, 1, DerivedSolver>>;
+      friend class SolverBase<Scalar, Scalar, DerivedSolver>;
 
-      static constexpr bool is_rootfinder{true};
-      static constexpr bool is_optimizer{false};
+      static constexpr bool IsRootFinder{true};
+      static constexpr bool IsOptimizer{false};
 
-      OPTIMIST_BASIC_CONSTANTS(Real)
+      OPTIMIST_BASIC_CONSTANTS(Scalar)
 
       /**
        * Class constructor for the scalar root-finder.
        */
-      RootFinder<Real, 1, DerivedSolver>() {}
+      RootFinder<Scalar, 1, DerivedSolver>() {}
 
       /**
        * Get the solver name.
        * \return The solver name.
        */
-      std::string name() const {return static_cast<const DerivedSolver *>(this)->name_impl();}
+      constexpr std::string name() const {return static_cast<const DerivedSolver *>(this)->name_impl();}
 
       /**
        * Solve the root-finding problem given the function, and without derivatives.
@@ -273,7 +276,7 @@ namespace Optimist
        * \return The convergence boolean flag.
        */
       template <typename FunctionLambda>
-      bool solve(FunctionLambda && function, Real x_ini, Real & x_sol)
+      bool solve(FunctionLambda && function, Scalar x_ini, Scalar & x_sol)
       {
         return static_cast<DerivedSolver *>(this)->solve_impl(
           std::forward<FunctionLambda>(function),
@@ -291,8 +294,8 @@ namespace Optimist
        * \return The convergence boolean flag.
        */
        template <typename FunctionLambda, typename FirstDerivativeLambda>
-      bool solve(FunctionLambda && function, FirstDerivativeLambda && first_derivative, Real x_ini,
-        Real & x_sol)
+      bool solve(FunctionLambda && function, FirstDerivativeLambda && first_derivative, Scalar x_ini,
+        Scalar & x_sol)
       {
         return static_cast<DerivedSolver *>(this)->solve_impl(
           std::forward<FunctionLambda>(function),
@@ -314,7 +317,7 @@ namespace Optimist
        */
       template <typename FunctionLambda, typename FirstDerivativeLambda, typename SecondDerivativeLambda>
       bool solve(FunctionLambda && function, FirstDerivativeLambda && first_derivative, SecondDerivativeLambda
-        && second_derivate, Real x_ini, Real & x_sol)
+        && second_derivate, Scalar x_ini, Scalar & x_sol)
       {
         return static_cast<DerivedSolver *>(this)->solve_impl(
           std::forward<FunctionLambda>(function),

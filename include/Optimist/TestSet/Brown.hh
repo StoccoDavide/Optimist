@@ -1,11 +1,11 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
- * Copyright (c) 2025, Davide Stocco, Mattia Piazza and Enrico Bertolazzi.                       *
+ * Copyright (c) 2025, Davide Stocco.                                                            *
  *                                                                                               *
  * The Optimist project is distributed under the BSD 2-Clause License.                           *
  *                                                                                               *
- * Davide Stocco                          Mattia Piazza                        Enrico Bertolazzi *
- * University of Trento               University of Trento                  University of Trento *
- * davide.stocco@unitn.it            mattia.piazza@unitn.it           enrico.bertolazzi@unitn.it *
+ * Davide Stocco                                                                                 *
+ * University of Trento                                                                          *
+ * davide.stocco@unitn.it                                                                        *
 \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #pragma once
@@ -13,7 +13,7 @@
 #ifndef OPTIMIST_TESTSET_BROWN_HH
 #define OPTIMIST_TESTSET_BROWN_HH
 
-#include "Optimist/TestSet.hh"
+#include "Optimist/Function.hh"
 
 namespace Optimist
 {
@@ -30,21 +30,29 @@ namespace Optimist
      * \f]
      * where \f$a = 10^{-6}\f$. The function has one solution at \f$\mathbf{x} = [a, 2a]^\top\f$,
      * with \f$f(\mathbf{x}) = 0\f$. The initial guess is generated at \f$\mathbf{x} = [1, 1]^\top\f$.
-     * \tparam Real Scalar number type.
+     * \tparam Input Input vector type.
+     * \tparam Output Output vector type.
      */
-    template <typename Real>
-    class Brown : public Function<Real, 2, 3, Brown<Real>>
+    template <typename Input, typename Output>
+    requires TypeTrait<Input>::IsEigen && TypeTrait<Output>::IsEigen &&
+      (TypeTrait<Input>::IsDynamicSize || (TypeTrait<Input>::IsFixedSize && Input::RowsAtCompileTime == 2)) &&
+      (TypeTrait<Output>::IsDynamicSize || (TypeTrait<Output>::IsFixedSize && Output::RowsAtCompileTime == 3))
+    class Brown : public Function<Input, Output, Brown<Input, Output>>
     {
     private:
-      Real m_a{1.0e-6}; /**< Scaling value (keep it low to guarantee bad scaling). */
+
+      using VectorTraitInput = TypeTrait<Input>;
+      using VectorTraitOutput = TypeTrait<Output>;
+      using Scalar = typename Input::Scalar;
+      using typename Function<Input, Output, Brown<Input, Output>>::Input;
+      using typename Function<Input, Output, Brown<Input, Output>>::Output;
+      using typename Function<Input, Output, Brown<Input, Output>>::Matrix;
+      using typename Function<Input, Output, Brown<Input, Output>>::Tensor;
+
+      Scalar m_a{1.0e-6}; /**< Scaling value (keep it low to guarantee bad scaling). */
 
     public:
-      OPTIMIST_BASIC_CONSTANTS(Real)
-
-      using typename Function<Real, 2, 3, Brown<Real>>::InputVector;
-      using typename Function<Real, 2, 3, Brown<Real>>::OutputVector;
-      using typename Function<Real, 2, 3, Brown<Real>>::Matrix;
-      using typename Function<Real, 2, 3, Brown<Real>>::Tensor;
+      OPTIMIST_BASIC_CONSTANTS(Scalar)
 
       /**
        * Class constructor for the Brown function.
@@ -59,7 +67,7 @@ namespace Optimist
        * Get the function name.
        * \return The function name.
        */
-      std::string name_impl() const {return "Brown";}
+      constexpr std::string name_impl() const {return "Brown";}
 
       /**
        * Compute the function value at the input point.
@@ -67,7 +75,7 @@ namespace Optimist
        * \param[out] out The function value.
        * \return The boolean flag for successful evaluation.
        */
-      bool evaluate_impl(const InputVector & x, OutputVector & out) const
+      bool evaluate_impl(const Input & x, Output & out) const
       {
         out << x(0) - this->m_a,
                x(1) - 2.0*this->m_a,
@@ -81,7 +89,7 @@ namespace Optimist
        * \param[out] out The first derivative value.
        * \return The boolean flag for successful evaluation.
        */
-      bool first_derivative_impl(const InputVector & x, Matrix & out) const
+      bool first_derivative_impl(const Input & x, Matrix & out) const
       {
         out << 1.0, 0.0, x(1),
                0.0, 1.0, x(0);
@@ -94,7 +102,7 @@ namespace Optimist
        * \param[out] out The second derivative value.
        * \return The boolean flag for successful evaluation.
        */
-      bool second_derivative_impl(const InputVector & /*x*/, Tensor & out) const
+      bool second_derivative_impl(const Input & /*x*/, Tensor & out) const
       {
         out.resize(this->output_dimension());
         out[0].setZero();

@@ -1,11 +1,11 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
- * Copyright (c) 2025, Davide Stocco, Mattia Piazza and Enrico Bertolazzi.                       *
+ * Copyright (c) 2025, Davide Stocco.                                                            *
  *                                                                                               *
  * The Optimist project is distributed under the BSD 2-Clause License.                           *
  *                                                                                               *
- * Davide Stocco                          Mattia Piazza                        Enrico Bertolazzi *
- * University of Trento               University of Trento                  University of Trento *
- * davide.stocco@unitn.it            mattia.piazza@unitn.it           enrico.bertolazzi@unitn.it *
+ * Davide Stocco                                                                                 *
+ * University of Trento                                                                          *
+ * davide.stocco@unitn.it                                                                        *
 \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #pragma once
@@ -39,12 +39,10 @@ namespace Optimist
   {
   public:
 
-  // Input and output types
-  using InputTrait  = TypeTraits<Input>;
-  using OutputTrait = TypeTraits<Output>;
-  using Scalar      = typename InputTrait::Scalar;
-
-  OPTIMIST_BASIC_CONSTANTS(Scalar)
+    // Input and output types
+    using InputTrait  = TypeTrait<Input>;
+    using OutputTrait = TypeTrait<Output>;
+    using Scalar      = typename InputTrait::Scalar;
 
     // Input and output must have the same scalar type
     static_assert(std::is_same<Scalar, typename OutputTrait::Scalar>::value,
@@ -53,7 +51,7 @@ namespace Optimist
     // If both input and output are eigen types they be both fixed-size, dynamic-size, or sparse
     static_assert(!(InputTrait::IsEigen && OutputTrait::IsEigen) ||
       (InputTrait::IsFixedSize && OutputTrait::IsFixedSize) ||
-      (!InputTrait::IsDynamicSize && !OutputTrait::IsDynamicSize) ||
+      (InputTrait::IsDynamicSize && OutputTrait::IsDynamicSize) ||
       (InputTrait::IsSparse && OutputTrait::IsSparse),
       "Input and output Eigen types must be both fixed-size, dynamic-size, or sparse.");
 
@@ -73,6 +71,8 @@ namespace Optimist
           std::vector<Eigen::Matrix<Scalar, OutputTrait::Dimension, InputTrait::Dimension>>>>,
       Scalar>;
 
+    OPTIMIST_BASIC_CONSTANTS(Scalar)
+
   protected:
     std::vector<Input> m_solutions; /**< Known solutions used for test purposes. */
     std::vector<Input> m_guesses;   /**< Suggested initial guess used for testing. */
@@ -87,7 +87,7 @@ namespace Optimist
      * Get the function name.
      * \return The function name.
      */
-    std::string name() const {return static_cast<const DerivedFunction *>(this)->name();};
+    constexpr std::string name() const {return static_cast<const DerivedFunction *>(this)->name();};
 
     /**
      * Compute the function value at the input point.
@@ -215,7 +215,7 @@ namespace Optimist
      * Get the function name.
      * \return The function name.
      */
-    std::string name() const {return static_cast<const DerivedFunction *>(this)->name_impl();}
+    constexpr std::string name() const {return static_cast<const DerivedFunction *>(this)->name_impl();}
 
     /**
      * Compute the function value at the input point.
@@ -261,7 +261,7 @@ namespace Optimist
    * \tparam DerivedFunction Derived cost function class.
    */
   template <typename Input, typename DerivedFunction>
-  requires TypeTraits<Input>::IsEigen
+  requires TypeTrait<Input>::IsEigen
   class Function<Input, typename Input::Scalar, DerivedFunction> : public FunctionBase<Input, typename Input::Scalar, DerivedFunction>
   {
   public:
@@ -281,7 +281,7 @@ namespace Optimist
      * Get the function name.
      * \return The function name.
      */
-    std::string name() const {return static_cast<const DerivedFunction *>(this)->name_impl();}
+    constexpr std::string name() const {return static_cast<const DerivedFunction *>(this)->name_impl();}
 
     /**
      * Compute the function value at the input point.
@@ -323,7 +323,7 @@ namespace Optimist
   /**
   * \brief Class container for the scalar function.
   *
-  * \tparam Scalar Real number type.
+  * \tparam Scalar Floating-point number type.
   * \tparam DerivedFunction Derived scalar function class.
   */
   template <typename Scalar, typename DerivedFunction>
@@ -342,7 +342,7 @@ namespace Optimist
      * Get the function name.
      * \return The function name.
      */
-    std::string name() const {return static_cast<const DerivedFunction *>(this)->name_impl();}
+    constexpr std::string name() const {return static_cast<const DerivedFunction *>(this)->name_impl();}
 
     /**
      * Compute the function value at the input point.

@@ -1,11 +1,11 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
- * Copyright (c) 2025, Davide Stocco, Mattia Piazza and Enrico Bertolazzi.                       *
+ * Copyright (c) 2025, Davide Stocco.                                                            *
  *                                                                                               *
  * The Optimist project is distributed under the BSD 2-Clause License.                           *
  *                                                                                               *
- * Davide Stocco                          Mattia Piazza                        Enrico Bertolazzi *
- * University of Trento               University of Trento                  University of Trento *
- * davide.stocco@unitn.it            mattia.piazza@unitn.it           enrico.bertolazzi@unitn.it *
+ * Davide Stocco                                                                                 *
+ * University of Trento                                                                          *
+ * davide.stocco@unitn.it                                                                        *
 \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #pragma once
@@ -13,7 +13,7 @@
 #ifndef OPTIMIST_TESTSET_SIN_HH
 #define OPTIMIST_TESTSET_SIN_HH
 
-#include "Optimist/TestSet.hh"
+#include "Optimist/Function.hh"
 
 namespace Optimist
 {
@@ -31,9 +31,10 @@ namespace Optimist
      * The function has roots at \f$x = \pi/2 + i\pi\f$, with \f$f(x) = 0\f$, and minima at \f$x = 3\pi/2 +
      * 2i\pi\f$, with \f$f(x) = -1\f$ and \f$i = 0, 1, \ldots, n\f$. The initial guesses are generated
      * on the range \f$x \in \left[-\pi, \pi\right]\f$.
-     * \tparam Scalar Scalar number type.
+     * \tparam Scalar Floating point number type.
      */
     template <typename Scalar>
+    requires TypeTrait<Scalar>::IsScalar
     class Sin : public Function<Scalar, Scalar, Sin<Scalar>>
     {
     public:
@@ -56,7 +57,7 @@ namespace Optimist
        * Get the function name.
        * \return The function name.
        */
-      std::string name_impl() const {return "Sin";}
+      constexpr std::string name_impl() const {return "Sin";}
 
       /**
        * Compute the function value at the input point.

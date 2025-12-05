@@ -1,11 +1,11 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
- * Copyright (c) 2025, Davide Stocco, Mattia Piazza and Enrico Bertolazzi.                       *
+ * Copyright (c) 2025, Davide Stocco.                                                            *
  *                                                                                               *
  * The Optimist project is distributed under the BSD 2-Clause License.                           *
  *                                                                                               *
- * Davide Stocco                          Mattia Piazza                        Enrico Bertolazzi *
- * University of Trento               University of Trento                  University of Trento *
- * davide.stocco@unitn.it            mattia.piazza@unitn.it           enrico.bertolazzi@unitn.it *
+ * Davide Stocco                                                                                 *
+ * University of Trento                                                                          *
+ * davide.stocco@unitn.it                                                                        *
 \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #pragma once
@@ -36,17 +36,17 @@ namespace Optimist
      * interval \f$[a, b]\f$. The algorithm is based on the work of T. Chandrupatla, *A new hybrid
      * quadratic/bisection algorithm for finding the zero of a nonlinear function without using
      * derivatives*, Advances in Engineering Software, 28 (1997), pp. 145-149.
-     * \tparam Real Scalar number type.
+     * \tparam Scalar Floating-point number type.
      */
-    template <typename Real>
-    class Chandrupatla : public Bracketing<Real, Chandrupatla<Real>>
+    template <typename Scalar>
+    class Chandrupatla : public Bracketing<Scalar, Chandrupatla<Scalar>>
     {
     public:
-      static constexpr bool requires_function{true};
-      static constexpr bool requires_first_derivative{false};
-      static constexpr bool requires_second_derivative{false};
+      static constexpr bool RequiresFunction{true};
+      static constexpr bool RequiresFirstDerivative{false};
+      static constexpr bool RequiresSecondDerivative{false};
 
-      OPTIMIST_BASIC_CONSTANTS(Real)
+      OPTIMIST_BASIC_CONSTANTS(Scalar)
 
       /**
        * Class constructor for the Chandrupatla solver.
@@ -57,7 +57,7 @@ namespace Optimist
        * Get the Chandrupatla solver name.
        * \return The Chandrupatla solver name.
        */
-      std::string name_impl() const {return "Chandrupatla";}
+      constexpr std::string name_impl() const {return "Chandrupatla";}
 
       /**
        * Finds either an exact solution or an approximate solution of the equation \f$f(x) = 0\f$ in
@@ -67,13 +67,13 @@ namespace Optimist
        * \return The approximate root.
        */
       template <typename FunctionLambda>
-      Real find_root_impl(FunctionLambda && function)
+      Scalar find_root_impl(FunctionLambda && function)
       {
-        #define CMD "Optimist::Rootfinder::Chandrupatla::find_root_impl(...): "
+        #define CMD "Optimist::RootFinder::Chandrupatla::find_root_impl(...): "
 
         bool success;
-        Real tolerance_step{this->m_tolerance_bracketing};
-        Real tolerance_function{this->m_tolerance_bracketing};
+        Scalar tolerance_step{this->m_tolerance_bracketing};
+        Scalar tolerance_function{this->m_tolerance_bracketing};
 
         // Check for trivial solution
         this->m_converged = this->m_fa == 0; if (this->m_converged) {return this->m_a;}
@@ -101,32 +101,32 @@ namespace Optimist
           }
 
           // Check for convergence
-          Real abs_fa{std::abs(this->m_fa)};
-          Real abs_fb{std::abs(this->m_fb)};
+          Scalar abs_fa{std::abs(this->m_fa)};
+          Scalar abs_fb{std::abs(this->m_fb)};
           this->m_converged = (this->m_b - this->m_a) < tolerance_step ||
                                abs_fa < tolerance_function ||abs_fb < tolerance_function;
           if (this->m_converged) {return abs_fb < abs_fa ? this->m_b : this->m_a;}
         }
 
-        Real t{0.5};
+        Scalar t{0.5};
 
         while (++this->m_iterations < this->m_max_iterations) {
 
-          Real direction{this->m_b - this->m_a};
-          Real tolerance{tolerance_step/(2.0*std::abs(direction))};
+          Scalar direction{this->m_b - this->m_a};
+          Scalar tolerance{tolerance_step/(2.0*std::abs(direction))};
           this->m_converged = tolerance >= 0.5;
           if (this->m_converged) {break;}
 
-          Real abs_fa{std::abs(this->m_fa)};
-          Real abs_fb{std::abs(this->m_fb)};
+          Scalar abs_fa{std::abs(this->m_fa)};
+          Scalar abs_fb{std::abs(this->m_fb)};
           this->m_converged = abs_fa < tolerance_function || abs_fb < tolerance_function;
           if (this->m_converged) {break;}
 
           if (t < tolerance) {t = tolerance;}
           else if (t > 1.0 - tolerance) {t = 1.0 - tolerance;}
 
-          Real c{this->m_a + t * direction};
-          Real fc;
+          Scalar c{this->m_a + t * direction};
+          Scalar fc;
           success = this->evaluate_function(std::forward<FunctionLambda>(function), c, fc);
           OPTIMIST_ASSERT(success,
             CMD "function evaluation failed at iteration " << this->m_iterations << ".");
@@ -141,7 +141,7 @@ namespace Optimist
           }
 
           // Arrange 2-1-3: 2-1 interval, 1 middle, 3 discarded point
-          Real d, fd;
+          Scalar d, fd;
           if ((0.0 < fc) == (0.0 < this->m_fa)) {
             // a -> d  --> [d,a,b] = [a,c,b]
             d = this->m_a; fd = this->m_fa;
@@ -154,19 +154,19 @@ namespace Optimist
           this->m_a = c; this->m_fa = fc;
 
           // If inverse quadratic interpolation holds use it
-          Real ba{this->m_b - this->m_a};
-          Real fba{this->m_fb - this->m_fa};
-          Real bd{this->m_b - d};
-          Real fbd{this->m_fb - fd};
+          Scalar ba{this->m_b - this->m_a};
+          Scalar fba{this->m_fb - this->m_fa};
+          Scalar bd{this->m_b - d};
+          Scalar fbd{this->m_fb - fd};
 
-          Real xi{ba/bd};
-          Real ph{fba/fbd};
-          Real fl{1.0 - std::sqrt(1.0 - xi)};
-          Real fh{std::sqrt(xi)};
+          Scalar xi{ba/bd};
+          Scalar ph{fba/fbd};
+          Scalar fl{1.0 - std::sqrt(1.0 - xi)};
+          Scalar fh{std::sqrt(xi)};
 
           if (fl < ph && ph < fh) {
-            Real da{d - this->m_a};
-            Real fda{fd - this->m_fa};
+            Scalar da{d - this->m_a};
+            Scalar fda{fd - this->m_fa};
             t = (this->m_fa/fba) * (fd/fbd) - (this->m_fa/fda) * (this->m_fb/fbd) * (da/ba);
           } else {
             t = 0.5;

@@ -1,11 +1,11 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
- * Copyright (c) 2025, Davide Stocco, Mattia Piazza and Enrico Bertolazzi.                       *
+ * Copyright (c) 2025, Davide Stocco.                                                            *
  *                                                                                               *
  * The Optimist project is distributed under the BSD 2-Clause License.                           *
  *                                                                                               *
- * Davide Stocco                          Mattia Piazza                        Enrico Bertolazzi *
- * University of Trento               University of Trento                  University of Trento *
- * davide.stocco@unitn.it            mattia.piazza@unitn.it           enrico.bertolazzi@unitn.it *
+ * Davide Stocco                                                                                 *
+ * University of Trento                                                                          *
+ * davide.stocco@unitn.it                                                                        *
 \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #pragma once
@@ -13,7 +13,7 @@
 #ifndef OPTIMIST_TESTSET_LINEAR_HH
 #define OPTIMIST_TESTSET_LINEAR_HH
 
-#include "Optimist/TestSet.hh"
+#include "Optimist/Function.hh"
 
 namespace Optimist
 {
@@ -34,16 +34,17 @@ namespace Optimist
      * \f]
      * The default coefficients are \f$m = 1\f$ and \f$q = 1\f$, and the function initial guess is
      * \f$x = 0\f$.
-     * \tparam Real Scalar number type.
+     * \tparam Scalar Floating-point number type.
      */
-    template <typename Real>
-    class Linear : public Function<Real, 1, 1, Linear<Real>>
+    template <typename Scalar>
+    requires TypeTrait<Scalar>::IsFloatingPoint
+    class Linear : public Function<Scalar, Scalar, Linear<Scalar>>
     {
-      Real m_m{1.0}; /**< Coefficient \f$ m \f$. */
-      Real m_q{1.0}; /**< Coefficient \f$ q \f$. */
+      Scalar m_m{1.0}; /**< Coefficient \f$ m \f$. */
+      Scalar m_q{1.0}; /**< Coefficient \f$ q \f$. */
 
     public:
-      OPTIMIST_BASIC_CONSTANTS(Real)
+      OPTIMIST_BASIC_CONSTANTS(Scalar)
 
       /**
        * Class constructor for the linear function.
@@ -58,7 +59,7 @@ namespace Optimist
        * Get the function name.
        * \return The function name.
        */
-      std::string name_impl() const {return "Linear";}
+      constexpr std::string name_impl() const {return "Linear";}
 
       /**
        * Compute the function value at the input point.
@@ -66,7 +67,7 @@ namespace Optimist
        * \param[out] out The function value.
        * \return The boolean flag for successful evaluation.
        */
-      bool evaluate_impl(Real x, Real & out) const
+      bool evaluate_impl(Scalar x, Scalar & out) const
       {
         out = this->m_m*x + this->m_q;
         return std::isfinite(out);
@@ -78,7 +79,7 @@ namespace Optimist
        * \param[out] out The first derivative value.
        * \return The boolean flag for successful evaluation.
        */
-      bool first_derivative_impl(Real /*x*/, Real & out) const
+      bool first_derivative_impl(Scalar /*x*/, Scalar & out) const
       {
         out = this->m_m;
         return std::isfinite(out);
@@ -90,7 +91,7 @@ namespace Optimist
        * \param[out] out The second derivative value.
        * \return The boolean flag for successful evaluation.
        */
-      bool second_derivative_impl(Real /*x*/, Real & out) const
+      bool second_derivative_impl(Scalar /*x*/, Scalar & out) const
       {
         out = 0.0;
         return std::isfinite(out);

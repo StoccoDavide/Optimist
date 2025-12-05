@@ -1,11 +1,11 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
- * Copyright (c) 2025, Davide Stocco, Mattia Piazza and Enrico Bertolazzi.                       *
+ * Copyright (c) 2025, Davide Stocco.                                                            *
  *                                                                                               *
  * The Optimist project is distributed under the BSD 2-Clause License.                           *
  *                                                                                               *
- * Davide Stocco                          Mattia Piazza                        Enrico Bertolazzi *
- * University of Trento               University of Trento                  University of Trento *
- * davide.stocco@unitn.it            mattia.piazza@unitn.it           enrico.bertolazzi@unitn.it *
+ * Davide Stocco                                                                                 *
+ * University of Trento                                                                          *
+ * davide.stocco@unitn.it                                                                        *
 \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #pragma once
@@ -13,7 +13,7 @@
 #ifndef OPTIMIST_TESTSET_QUADRATIC_HH
 #define OPTIMIST_TESTSET_QUADRATIC_HH
 
-#include "Optimist/TestSet.hh"
+#include "Optimist/Function.hh"
 
 namespace Optimist
 {
@@ -38,24 +38,24 @@ namespace Optimist
      * \f]
      * The default coefficients are \f$a = 1\f$, \f$b = 1\f$, and \f$c = -1\f$, and the function
      * initial guess is \f$x = 0\f$.
-     * \tparam Real Scalar number type.
+     * \tparam Scalar Floating-point number type.
      */
-    template <typename Real>
-    class Quadratic : public Function<Real, 1, 1, Quadratic<Real>>
+    template <typename Scalar>
+    class Quadratic : public Function<Scalar, Scalar, Quadratic<Scalar>>
     {
-      Real m_a{1.0}; /**< Coefficient \f$a\f$. */
-      Real m_b{1.0}; /**< Coefficient \f$b\f$. */
-      Real m_c{-1.0}; /**< Coefficient \f$c\f$. */
+      Scalar m_a{1.0}; /**< Coefficient \f$a\f$. */
+      Scalar m_b{1.0}; /**< Coefficient \f$b\f$. */
+      Scalar m_c{-1.0}; /**< Coefficient \f$c\f$. */
 
     public:
-      OPTIMIST_BASIC_CONSTANTS(Real)
+      OPTIMIST_BASIC_CONSTANTS(Scalar)
 
       /**
        * Class constructor for the quadratic function.
        */
       Quadratic()
       {
-        Real delta{std::sqrt(this->m_b*this->m_b - 4.0*this->m_a*this->m_c)};
+        Scalar delta{static_cast<Scalar>(std::sqrt(this->m_b*this->m_b - 4.0*this->m_a*this->m_c))};
         this->m_solutions.emplace_back((-this->m_b + delta)/(2.0*this->m_a));
         this->m_solutions.emplace_back((-this->m_b - delta)/(2.0*this->m_a));
         this->m_solutions.emplace_back(this->m_b/(2.0*this->m_a));
@@ -66,7 +66,7 @@ namespace Optimist
        * Get the function name.
        * \return The function name.
        */
-      std::string name_impl() const {return "Quadratic";}
+      constexpr std::string name_impl() const {return "Quadratic";}
 
       /**
        * Compute the function value at the input point.
@@ -74,7 +74,7 @@ namespace Optimist
        * \param[out] out The function value.
        * \return The boolean flag for successful evaluation.
        */
-      bool evaluate_impl(Real x, Real & out) const
+      bool evaluate_impl(Scalar x, Scalar & out) const
       {
         out = this->m_a*x*x + this->m_b*x + this->m_c;
         return std::isfinite(out);
@@ -86,7 +86,7 @@ namespace Optimist
        * \param[out] out The first derivative value.
        * \return The boolean flag for successful evaluation.
        */
-      bool first_derivative_impl(Real x, Real & out) const
+      bool first_derivative_impl(Scalar x, Scalar & out) const
       {
         out = 2.0*this->m_a*x + this->m_b;
         return std::isfinite(out);
@@ -98,7 +98,7 @@ namespace Optimist
        * \param[out] out The second derivative value.
        * \return The boolean flag for successful evaluation.
        */
-      bool second_derivative_impl(Real /*x*/, Real & out) const
+      bool second_derivative_impl(Scalar /*x*/, Scalar & out) const
       {
         out = 2.0*this->m_a;
         return std::isfinite(out);

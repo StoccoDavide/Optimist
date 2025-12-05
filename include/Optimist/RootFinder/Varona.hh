@@ -1,11 +1,11 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
- * Copyright (c) 2025, Davide Stocco, Mattia Piazza and Enrico Bertolazzi.                       *
+ * Copyright (c) 2025, Davide Stocco.                                                            *
  *                                                                                               *
  * The Optimist project is distributed under the BSD 2-Clause License.                           *
  *                                                                                               *
- * Davide Stocco                          Mattia Piazza                        Enrico Bertolazzi *
- * University of Trento               University of Trento                  University of Trento *
- * davide.stocco@unitn.it            mattia.piazza@unitn.it           enrico.bertolazzi@unitn.it *
+ * Davide Stocco                                                                                 *
+ * University of Trento                                                                          *
+ * davide.stocco@unitn.it                                                                        *
 \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #pragma once
@@ -32,19 +32,17 @@ namespace Optimist
     /**
      * \brief Class container for the Varona's methods.
      *
-     * \includedoc docs/markdown/RootFinder/Varona.md
-     *
-     * \tparam Real Scalar number type.
+     * \tparam Scalar Floating-point number type.
      */
-    template <typename Real>
-    class Varona : public RootFinder<Real, 1, Varona<Real>>
+    template <typename Scalar>
+    class Varona : public RootFinder<Scalar, Scalar, Varona<Scalar>>
     {
     public:
-      static constexpr bool requires_function{true};
-      static constexpr bool requires_first_derivative{true};
-      static constexpr bool requires_second_derivative{false};
+      static constexpr bool RequiresFunction{true};
+      static constexpr bool RequiresFirstDerivative{true};
+      static constexpr bool RequiresSecondDerivative{false};
 
-      OPTIMIST_BASIC_CONSTANTS(Real)
+      OPTIMIST_BASIC_CONSTANTS(Scalar)
 
       /**
        * Varona solver type enumeration.
@@ -65,7 +63,7 @@ namespace Optimist
        * Get the Varona solver name.
        * \return The Varona solver name.
        */
-      std::string name_impl() const
+      constexpr std::string name_impl() const
       {
         std::ostringstream os;
         os << "Varona";
@@ -126,8 +124,8 @@ namespace Optimist
        * \return The convergence boolean flag.
        */
       template <typename FunctionLambda, typename FirstDerivativeLambda>
-      bool solve_impl(FunctionLambda && function, FirstDerivativeLambda && first_derivative, Real x_ini,
-        Real & x_sol)
+      bool solve_impl(FunctionLambda && function, FirstDerivativeLambda && first_derivative, Scalar x_ini,
+        Scalar & x_sol)
       {
         #define CMD "Optimist::RootFinder::Varona::solve(...): "
 
@@ -139,9 +137,9 @@ namespace Optimist
 
         // Initialize variables
         bool damped, success;
-        Real residuals, step_norm;
-        Real x_old, x_new, function_old, function_new, step_old, step_new;
-        Real first_derivative_old;
+        Scalar residuals, step_norm;
+        Scalar x_old, x_new, function_old, function_new, step_old, step_new;
+        Scalar first_derivative_old;
 
         // Set initial iteration
         x_old = x_ini;
@@ -150,8 +148,8 @@ namespace Optimist
           CMD "function evaluation failed at the initial point.");
 
         // Algorithm iterations
-        Real tolerance_residuals{this->m_tolerance};
-        Real tolerance_step_norm{this->m_tolerance * this->m_tolerance};
+        Scalar tolerance_residuals{this->m_tolerance};
+        Scalar tolerance_step_norm{this->m_tolerance * this->m_tolerance};
         for (this->m_iterations = 1; this->m_iterations < this->m_max_iterations; ++this->m_iterations)
         {
           // Evaluate first derivative
@@ -215,14 +213,14 @@ namespace Optimist
        * \param[out] step_old Old step.
        */
       template <typename FunctionLambda>
-      void compute_step(FunctionLambda && function, Real x_old, Real function_old, Real first_derivative_old,
-        Real & step_old)
+      void compute_step(FunctionLambda && function, Scalar x_old, Scalar function_old, Scalar first_derivative_old,
+        Scalar & step_old)
       {
         #define CMD "Optimist::RootFinder::Varona::compute_step(...): "
 
         bool success;
-        Real function_y, function_z, function_w, function_h, step_tmp, t, s, u, v;
-        Real tolerance_residuals{this->m_tolerance};
+        Scalar function_y, function_z, function_w, function_h, step_tmp, t, s, u, v;
+        Scalar tolerance_residuals{this->m_tolerance};
 
         // Base step
         step_old = -function_old/first_derivative_old;
@@ -288,7 +286,7 @@ namespace Optimist
        * \param[in] t Input value.
        * \return The \f$ Q \f$ function value.
       **/
-      static Real Q(Real t) {return 1.0 + 2.0*t;}
+      static Scalar Q(Scalar t) {return 1.0 + 2.0*t;}
 
       /**
        * Compute the \f$ W \f$ function for the Varona's methods.
@@ -296,7 +294,7 @@ namespace Optimist
        * \param[in] s Input value.
        * \return The \f$ W \f$ function value.
       **/
-      static Real W(Real t, Real s) {return t*t*(1.0 - 4.0*t) + (4.0*s + 2.0)*t + s + 1.0;}
+      static Scalar W(Scalar t, Scalar s) {return t*t*(1.0 - 4.0*t) + (4.0*s + 2.0)*t + s + 1.0;}
 
       /**
        * Compute the \f$ H \f$ function for the Varona's methods.
@@ -305,12 +303,12 @@ namespace Optimist
        * \param[in] u Input value.
        * \return The \f$ H \f$ function value.
       **/
-      static Real H(Real t, Real s, Real u) {
-        Real t1{t*t};
-        Real t2{t1*t1};
-        Real t8{s*s};
-        Real t17{s*t8};
-        Real t23{2.0*u};
+      static Scalar H(Scalar t, Scalar s, Scalar u) {
+        Scalar t1{t*t};
+        Scalar t2{t1*t1};
+        Scalar t8{s*s};
+        Scalar t17{s*t8};
+        Scalar t23{2.0*u};
         return
           ((8.0*u + 6.0*t2 + 4.0)*s -
           (6.0*t8 + 4.0*(s + u + 1.0))*t1 +
@@ -328,17 +326,17 @@ namespace Optimist
        * \param[in] v Input value.
        * \return The \f$ J \f$ function value.
       **/
-      static Real J(Real t, Real s, Real u, Real v) {
-        Real t1{s*s};
-        Real t2{t1*t1};
-        Real t17{t*t};
-        Real t22{u*u};
-        Real t32{t17*t17};
-        Real t34{t*t32};
-        Real t37{t*t17};
-        Real t46{1.0 + v};
-        Real t65{u + 1.0 + v};
-        Real t76{(-2.0*t22 + u + 4.0*v + 2.0)*u};
+      static Scalar J(Scalar t, Scalar s, Scalar u, Scalar v) {
+        Scalar t1{s*s};
+        Scalar t2{t1*t1};
+        Scalar t17{t*t};
+        Scalar t22{u*u};
+        Scalar t32{t17*t17};
+        Scalar t34{t*t32};
+        Scalar t37{t*t17};
+        Scalar t46{1.0 + v};
+        Scalar t65{u + 1.0 + v};
+        Scalar t76{(-2.0*t22 + u + 4.0*v + 2.0)*u};
         return
           (-1.0 + 2.0*t)*(2.0 + 5.0*t)*u*t*t2 +
           (4.0*t + 1.0)*u*s*t2 +

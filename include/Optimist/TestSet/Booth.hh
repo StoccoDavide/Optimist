@@ -1,11 +1,11 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
- * Copyright (c) 2025, Davide Stocco, Mattia Piazza and Enrico Bertolazzi.                       *
+ * Copyright (c) 2025, Davide Stocco.                                                            *
  *                                                                                               *
  * The Optimist project is distributed under the BSD 2-Clause License.                           *
  *                                                                                               *
- * Davide Stocco                          Mattia Piazza                        Enrico Bertolazzi *
- * University of Trento               University of Trento                  University of Trento *
- * davide.stocco@unitn.it            mattia.piazza@unitn.it           enrico.bertolazzi@unitn.it *
+ * Davide Stocco                                                                                 *
+ * University of Trento                                                                          *
+ * davide.stocco@unitn.it                                                                        *
 \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #pragma once
@@ -13,7 +13,7 @@
 #ifndef OPTIMIST_TESTSET_BOOTH_HH
 #define OPTIMIST_TESTSET_BOOTH_HH
 
-#include "Optimist/TestSet.hh"
+#include "Optimist/Function.hh"
 
 namespace Optimist
 {
@@ -30,18 +30,20 @@ namespace Optimist
      * \f]
      * The function has one solution at \f$\mathbf{x} = [1, 3]^\top\f$, with \f$f(\mathbf{x}) = 0\f$.
      * The initial guesses are generated on the square \f$x_i \in [-10, 10]\f$, for all \f$x_i = 1, 2\f$.
-     * \tparam Real Scalar number type.
+     * \tparam Scalar Floating-point number type.
      */
-    template <typename Real>
-    class Booth : public Function<Real, 2, 2, Booth<Real>>
+    template <typename Vector>
+    requires TypeTrait<Vector>::IsEigen && (TypeTrait<Vector>::IsDynamicSize ||
+      (TypeTrait<Vector>::IsFixedSize && Vector::RowsAtCompileTime == 2))
+    class Booth : public Function<Vector, Vector, Booth<Vector>>
     {
     public:
-      OPTIMIST_BASIC_CONSTANTS(Real)
+      using VectorTrait = TypeTrait<Vector>;
+      using Scalar = typename Vector::Scalar;
+      using typename Function<Vector, Vector, Booth<Vector>>::Matrix;
+      using typename Function<Vector, Vector, Booth<Vector>>::Tensor;
 
-      using typename Function<Real, 2, 2, Booth<Real>>::InputVector;
-      using typename Function<Real, 2, 2, Booth<Real>>::OutputVector;
-      using typename Function<Real, 2, 2, Booth<Real>>::Matrix;
-      using typename Function<Real, 2, 2, Booth<Real>>::Tensor;
+      OPTIMIST_BASIC_CONSTANTS(Scalar)
 
       /**
        * Class constructor for the Booth function.
@@ -49,8 +51,8 @@ namespace Optimist
       Booth()
       {
         this->m_solutions.emplace_back(1.0, 3.0);
-        for (Real x{-10.0}; x < 10.0 + EPSILON; x += 5.0) {
-          for (Real y{-10.0}; y < 10.0 + EPSILON; y += 5.0) {
+        for (Scalar x{-10.0}; x < 10.0 + EPSILON; x += 5.0) {
+          for (Scalar y{-10.0}; y < 10.0 + EPSILON; y += 5.0) {
             this->m_guesses.emplace_back(x, y);
           }
         }
@@ -60,7 +62,7 @@ namespace Optimist
        * Get the function name.
        * \return The function name.
        */
-      std::string name_impl() const {return "Booth";}
+      constexpr std::string name_impl() const {return "Booth";}
 
       /**
        * Compute the function value at the input point.
@@ -68,10 +70,27 @@ namespace Optimist
        * \param[out] out The function value.
        * \return The boolean flag for successful evaluation.
        */
-      bool evaluate_impl(InputVector const & x, OutputVector & out) const
+      bool evaluate_impl(Vector const & x, Vector & out) const
       {
-        out << x(0) + 2.0*x(1) - 7.0, 2.0*x(0) + x(1) - 5.0;
+        #define CMD "Optimist::TestSet::Booth::evaluate_impl(...): "
+
+        if constexpr (VectorTrait::IsFixedSize) {
+          out << x(0) + 2.0*x(1) - 7.0, 2.0*x(0) + x(1) - 5.0;
+        } else if constexpr (VectorTrait::IsDynamicSize) {
+          out.resize(2);
+          out << x(0) + 2.0*x(1) - 7.0, 2.0*x(0) + x(1) - 5.0;
+        } else if constexpr (VectorTrait::IsSparse) {
+          out.resize(2); out.reserve(2);
+          std::vector<Eigen::Triplet<Scalar>> triplets; triplets.reserve(2);
+          triplets.emplace_back(0, 0, x.coeff(0) + 2.0*x.coeff(1) - 7.0);
+          triplets.emplace_back(1, 0, 2.0*x.coeff(0) + x.coeff(1) - 5.0);
+          out.setFromTriplets(triplets.begin(), triplets.end());
+        } else {
+          static_assert(VectorTrait::IsEigen, CMD "input type not supported.");
+        }
         return out.allFinite();
+
+        #undef CMD
       }
 
       /**
@@ -80,10 +99,29 @@ namespace Optimist
        * \param[out] out The first derivative value.
        * \return The boolean flag for successful evaluation.
        */
-      bool first_derivative_impl(InputVector const & /*x*/, Matrix & out) const
+      bool first_derivative_impl(Vector const & /*x*/, Matrix & out) const
       {
-        out << 1.0, 2.0, 2.0, 1.0;
+        #define CMD "Optimist::TestSet::Booth::first_derivative_impl(...): "
+
+        if constexpr (VectorTrait::IsFixedSize) {
+          out << 1.0, 2.0, 2.0, 1.0;
+        } else if constexpr (VectorTrait::IsDynamicSize) {
+          out.resize(2, 2);
+          out << 1.0, 2.0, 2.0, 1.0;
+        } else if constexpr (VectorTrait::IsSparse) {
+          out.resize(2, 2); out.reserve(4);
+          std::vector<Eigen::Triplet<Scalar>> triplets; triplets.reserve(4);
+          triplets.emplace_back(0, 0, 1.0);
+          triplets.emplace_back(0, 1, 2.0);
+          triplets.emplace_back(1, 0, 2.0);
+          triplets.emplace_back(1, 1, 1.0);
+          out.setFromTriplets(triplets.begin(), triplets.end());
+        } else {
+          static_assert(VectorTrait::IsEigen, CMD "input type not supported.");
+        }
         return out.allFinite();
+
+        #undef CMD
       }
 
       /**
@@ -92,10 +130,13 @@ namespace Optimist
        * \param[out] out The second derivative value.
        * \return The boolean flag for successful evaluation.
        */
-      bool second_derivative_impl(InputVector const & /*x*/, Tensor & out) const
+      bool second_derivative_impl(Vector const & /*x*/, Tensor & out) const
       {
-        out.resize(this->output_dimension());
-        std::for_each(out.begin(), out.end(), [] (Matrix& m) {m.setZero();});
+        out.resize(2);
+        std::for_each(out.begin(), out.end(), [] (Matrix & m) {
+          if constexpr (VectorTrait::IsDynamicSize) {m.resize(2, 2);}
+          m.setZero();
+        });
         return true;
       }
 

@@ -1,11 +1,11 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
- * Copyright (c) 2025, Davide Stocco, Mattia Piazza and Enrico Bertolazzi.                       *
+ * Copyright (c) 2025, Davide Stocco.                                                            *
  *                                                                                               *
  * The Optimist project is distributed under the BSD 2-Clause License.                           *
  *                                                                                               *
- * Davide Stocco                          Mattia Piazza                        Enrico Bertolazzi *
- * University of Trento               University of Trento                  University of Trento *
- * davide.stocco@unitn.it            mattia.piazza@unitn.it           enrico.bertolazzi@unitn.it *
+ * Davide Stocco                                                                                 *
+ * University of Trento                                                                          *
+ * davide.stocco@unitn.it                                                                        *
 \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #pragma once
@@ -13,7 +13,7 @@
 #ifndef OPTIMIST_TESTSET_COS_HH
 #define OPTIMIST_TESTSET_COS_HH
 
-#include "Optimist/TestSet.hh"
+#include "Optimist/Function.hh"
 
 namespace Optimist
 {
@@ -31,13 +31,14 @@ namespace Optimist
      * The function has roots at \f$x = i\pi\f$, with \f$f(x) = 0\f$, and minima at \f$x = -\pi + 2i\pi\f$,
      * with \f$f(x) = -1\f$ and \f$i = 0, 1, \ldots, n\f$. The initial guesses are generated on the
      * range \f$x \in \left[-\pi, \pi\right]\f$.
-     * \tparam Real Scalar number type.
+     * \tparam Scalar Floating-point number type.
      */
-    template <typename Real>
-    class Cos : public Function<Real, 1, 1, Cos<Real>>
+    template <typename Scalar>
+    requires TypeTrait<Scalar>::IsScalar
+    class Cos : public Function<Scalar, Scalar, Cos<Scalar>>
     {
     public:
-      OPTIMIST_BASIC_CONSTANTS(Real)
+      OPTIMIST_BASIC_CONSTANTS(Scalar)
 
       /**
        * Class constructor for the cosine function.
@@ -45,6 +46,7 @@ namespace Optimist
       Cos()
       {
         this->m_solutions.emplace_back(-M_PI/2.0); // Zero
+        this->m_solutions.emplace_back(0.0); // Zero
         this->m_solutions.emplace_back(M_PI/2.0); // Zero
         this->m_solutions.emplace_back(-M_PI); // Minimum
         this->m_solutions.emplace_back(M_PI); // Minimum
@@ -56,7 +58,7 @@ namespace Optimist
        * Get the function name.
        * \return The function name.
        */
-      std::string name_impl() const {return "Cos";}
+      constexpr std::string name_impl() const {return "Cos";}
 
       /**
        * Compute the function value at the input point.
@@ -64,7 +66,7 @@ namespace Optimist
        * \param[out] out The function value.
        * \return The boolean flag for successful evaluation.
        */
-      bool evaluate_impl(Real x, Real & out) const
+      bool evaluate_impl(Scalar x, Scalar & out) const
       {
         out = std::cos(x);
         return std::isfinite(out);
@@ -76,7 +78,7 @@ namespace Optimist
        * \param[out] out The first derivative value.
        * \return The boolean flag for successful evaluation.
        */
-      bool first_derivative_impl(Real x, Real & out) const
+      bool first_derivative_impl(Scalar x, Scalar & out) const
       {
         out = -std::sin(x);
         return std::isfinite(out);
@@ -88,7 +90,7 @@ namespace Optimist
        * \param[out] out The second derivative value.
        * \return The boolean flag for successful evaluation.
        */
-      bool second_derivative_impl(Real x, Real & out) const
+      bool second_derivative_impl(Scalar x, Scalar & out) const
       {
         out = -std::cos(x);
         return std::isfinite(out);

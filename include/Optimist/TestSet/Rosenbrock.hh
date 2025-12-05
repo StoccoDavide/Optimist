@@ -1,11 +1,11 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
- * Copyright (c) 2025, Davide Stocco, Mattia Piazza and Enrico Bertolazzi.                       *
+ * Copyright (c) 2025, Davide Stocco.                                                            *
  *                                                                                               *
  * The Optimist project is distributed under the BSD 2-Clause License.                           *
  *                                                                                               *
- * Davide Stocco                          Mattia Piazza                        Enrico Bertolazzi *
- * University of Trento               University of Trento                  University of Trento *
- * davide.stocco@unitn.it            mattia.piazza@unitn.it           enrico.bertolazzi@unitn.it *
+ * Davide Stocco                                                                                 *
+ * University of Trento                                                                          *
+ * davide.stocco@unitn.it                                                                        *
 \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #pragma once
@@ -13,7 +13,7 @@
 #ifndef OPTIMIST_TESTSET_ROSENBROCK_HH
 #define OPTIMIST_TESTSET_ROSENBROCK_HH
 
-#include "Optimist/TestSet.hh"
+#include "Optimist/Function.hh"
 
 namespace Optimist
 {
@@ -35,29 +35,32 @@ namespace Optimist
      * \f]
      * The function has one solution at \f$\mathbf{x} = [1, \dots 1]^\top\f$, with \f$f(\mathbf{x}) = 0\f$.
      * The initial guess is \f$x_i = [-1.2, 1, -1.2, 1, \dots, -1.2, 1]^\top\f$.
-     * \tparam Real Scalar number type.
-     * \tparam N Dimension of the function.
+     * \tparam Vector Eigen vector type.
+     * \tparam N Input dimension (must be even).
      */
-    template <typename Real, Integer N>
-    class Rosenbrock : public Function<Real, N, N, Rosenbrock<Real, N>>
+    template <typename Vector, Integer N>
+    requires TypeTrait<Vector>::IsEigen && (TypeTrait<Vector>::IsDynamicSize ||
+      (TypeTrait<Vector>::IsFixedSize && Vector::Dimension == N)) && (N % 2 == 0)
+    class Rosenbrock : public Function<Vector, Vector, Rosenbrock<Vector, N>>
     {
-      static_assert(N > 0 && N % 2 == 0, "please use an even number of dimensions");
-
     public:
-      OPTIMIST_BASIC_CONSTANTS(Real)
+      using VectorTrait = TypeTrait<Vector>;
+      using Scalar = typename Vector::Scalar;
+      using typename Function<Vector, Vector, Rosenbrock<Vector, N>>::Input;
+      using typename Function<Vector, Vector, Rosenbrock<Vector, N>>::Output;
+      using typename Function<Vector, Vector, Rosenbrock<Vector, N>>::Matrix;
+      using typename Function<Vector, Vector, Rosenbrock<Vector, N>>::Tensor;
 
-      using typename Function<Real, N, N, Rosenbrock<Real, N>>::InputVector;
-      using typename Function<Real, N, N, Rosenbrock<Real, N>>::OutputVector;
-      using typename Function<Real, N, N, Rosenbrock<Real, N>>::Matrix;
-      using typename Function<Real, N, N, Rosenbrock<Real, N>>::Tensor;
+      OPTIMIST_BASIC_CONSTANTS(Scalar)
 
       /**
        * Class constructor for the extended Rosenbrock function.
+       * \param[in] n Input dimension (must be even).
        */
       Rosenbrock()
       {
-        this->m_solutions.emplace_back(OutputVector::Ones());
-        this->m_guesses.emplace_back(InputVector::Ones());
+        this->m_solutions.emplace_back(Output::Ones());
+        this->m_guesses.emplace_back(Input::Ones());
         for (Integer i{0}; i < N; i += 2) {
           this->m_guesses[0](i) = -1.2;
           this->m_guesses[0](i+1) = 1.0;
@@ -68,7 +71,7 @@ namespace Optimist
        * Get the function name.
        * \return The function name.
        */
-      std::string name_impl() const {return "Rosenbrock<" + std::to_string(N) + ">";}
+      constexpr std::string name_impl() const {return "Rosenbrock<" + std::to_string(N) + ">";}
 
       /**
        * Compute the function value at the input point.
@@ -76,7 +79,7 @@ namespace Optimist
        * \param[out] out The function value.
        * \return The boolean flag for successful evaluation.
        */
-      bool evaluate_impl(InputVector const & x, OutputVector & out) const
+      bool evaluate_impl(Input const & x, Output & out) const
       {
         for (Integer i{0}; i < N; i += 2) {
           out(i)   = 10.0*(x(i+1) - x(i)*x(i));
@@ -91,7 +94,7 @@ namespace Optimist
        * \param[out] out The first derivative value.
        * \return The boolean flag for successful evaluation.
        */
-      bool first_derivative_impl(InputVector const & x, Matrix & out) const
+      bool first_derivative_impl(Input const & x, Matrix & out) const
       {
         out.setZero();
         for (Integer i{0}; i < N; i += 2) {
@@ -108,7 +111,7 @@ namespace Optimist
        * \param[out] out The second derivative value.
        * \return The boolean flag for successful evaluation.
        */
-      bool second_derivative_impl(InputVector const & /*x*/, Tensor & out) const
+      bool second_derivative_impl(Input const & /*x*/, Tensor & out) const
       {
         out.resize(this->output_dimension());
         for (size_t i{0}; i < out.size(); ++i) {
@@ -124,38 +127,38 @@ namespace Optimist
 
     /**
      * \brief Class container for the 2D Rosenbrock function.
-     * \tparam Real Scalar number type.
+     * \tparam Vector Eigen vector type.
      */
-    template <typename Real>
-    using Rosenbrock2 = Rosenbrock<Real, 2>;
+    template <typename Vector>
+    using Rosenbrock2 = Rosenbrock<Vector, 2>;
 
     /**
      * \brief Class container for the 4D Rosenbrock function.
-     * \tparam Real Scalar number type.
+     * \tparam Vector Eigen vector type.
      */
-    template <typename Real>
-    using Rosenbrock4 = Rosenbrock<Real, 4>;
+    template <typename Vector>
+    using Rosenbrock4 = Rosenbrock<Vector, 4>;
 
     /**
      * \brief Class container for the 6D Rosenbrock function.
-     * \tparam Real Scalar number type.
+     * \tparam Vector Eigen vector type.
      */
-    template <typename Real>
-    using Rosenbrock6 = Rosenbrock<Real, 6>;
+    template <typename Vector>
+    using Rosenbrock6 = Rosenbrock<Vector, 6>;
 
     /**
      * \brief Class container for the 8D Rosenbrock function.
-     * \tparam Real Scalar number type.
+     * \tparam Vector Eigen vector type.
      */
-    template <typename Real>
-    using Rosenbrock8 = Rosenbrock<Real, 8>;
+    template <typename Vector>
+    using Rosenbrock8 = Rosenbrock<Vector, 8>;
 
     /**
      * \brief Class container for the 10D Rosenbrock function.
-     * \tparam Real Scalar number type.
+     * \tparam Vector Eigen vector type.
      */
-    template <typename Real>
-    using Rosenbrock10 = Rosenbrock<Real, 10>;
+    template <typename Vector>
+    using Rosenbrock10 = Rosenbrock<Vector, 10>;
 
 
   } // namespace TestSet

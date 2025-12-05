@@ -1,11 +1,11 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
- * Copyright (c) 2025, Davide Stocco, Mattia Piazza and Enrico Bertolazzi.                       *
+ * Copyright (c) 2025, Davide Stocco.                                                            *
  *                                                                                               *
  * The Optimist project is distributed under the BSD 2-Clause License.                           *
  *                                                                                               *
- * Davide Stocco                          Mattia Piazza                        Enrico Bertolazzi *
- * University of Trento               University of Trento                  University of Trento *
- * davide.stocco@unitn.it            mattia.piazza@unitn.it           enrico.bertolazzi@unitn.it *
+ * Davide Stocco                                                                                 *
+ * University of Trento                                                                          *
+ * davide.stocco@unitn.it                                                                        *
 \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #pragma once
@@ -34,17 +34,17 @@ namespace Optimist
      *
      * \includedoc docs/markdown/RootFinder/Chebyshev.md
      *
-     * \tparam Real Scalar number type.
+     * \tparam Scalar Floating-point number type.
      */
-    template <typename Real>
-    class Chebyshev : public RootFinder<Real, 1, Chebyshev<Real>>
+    template <typename Scalar>
+    class Chebyshev : public RootFinder<Scalar, Scalar, Chebyshev<Scalar>>
     {
     public:
-      static constexpr bool requires_function{true};
-      static constexpr bool requires_first_derivative{true};
-      static constexpr bool requires_second_derivative{true};
+      static constexpr bool RequiresFunction{true};
+      static constexpr bool RequiresFirstDerivative{true};
+      static constexpr bool RequiresSecondDerivative{true};
 
-      OPTIMIST_BASIC_CONSTANTS(Real)
+      OPTIMIST_BASIC_CONSTANTS(Scalar)
 
       /**
        * Class constructor for the Chebyshev solver.
@@ -55,7 +55,7 @@ namespace Optimist
        * Get the Chebyshev solver name.
        * \return The Chebyshev solver name.
        */
-      std::string name_impl() const {return "Chebyshev";}
+      constexpr std::string name_impl() const {return "Chebyshev";}
 
       /**
        * Solve the nonlinear equation \f$ f(x) = 0 \f$, with \f$ f: \mathbb{R} \rightarrow \mathbb{R} \f$.
@@ -71,7 +71,7 @@ namespace Optimist
        */
       template <typename FunctionLambda, typename FirstDerivativeLambda, typename SecondDerivativeLambda>
       bool solve_impl(FunctionLambda && function, FirstDerivativeLambda && first_derivative,
-        SecondDerivativeLambda && second_derivative, Real x_ini, Real & x_sol)
+        SecondDerivativeLambda && second_derivative, Scalar x_ini, Scalar & x_sol)
       {
         #define CMD "Optimist::RootFinder::Chebyshev::solve(...): "
 
@@ -83,9 +83,9 @@ namespace Optimist
 
         // Initialize variables
         bool damped, success;
-        Real residuals, step_norm;
-        Real x_old, x_new, function_old, function_new, step_old, step_new;
-        Real first_derivative_old, second_derivative_old;
+        Scalar residuals, step_norm;
+        Scalar x_old, x_new, function_old, function_new, step_old, step_new;
+        Scalar first_derivative_old, second_derivative_old;
 
         // Set initial iteration
         x_old = x_ini;
@@ -94,8 +94,8 @@ namespace Optimist
           CMD "function evaluation failed at iteration " << this->m_iterations << ".");
 
         // Algorithm iterations
-        Real tolerance_residuals{this->m_tolerance};
-        Real tolerance_step_norm{this->m_tolerance * this->m_tolerance};
+        Scalar tolerance_residuals{this->m_tolerance};
+        Scalar tolerance_step_norm{this->m_tolerance * this->m_tolerance};
         for (this->m_iterations = 1; this->m_iterations < this->m_max_iterations; ++this->m_iterations)
         {
           // Evaluate derivatives

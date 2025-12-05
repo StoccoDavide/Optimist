@@ -1,11 +1,11 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
- * Copyright (c) 2025, Davide Stocco, Mattia Piazza and Enrico Bertolazzi.                       *
+ * Copyright (c) 2025, Davide Stocco.                                                            *
  *                                                                                               *
  * The Optimist project is distributed under the BSD 2-Clause License.                           *
  *                                                                                               *
- * Davide Stocco                          Mattia Piazza                        Enrico Bertolazzi *
- * University of Trento               University of Trento                  University of Trento *
- * davide.stocco@unitn.it            mattia.piazza@unitn.it           enrico.bertolazzi@unitn.it *
+ * Davide Stocco                                                                                 *
+ * University of Trento                                                                          *
+ * davide.stocco@unitn.it                                                                        *
 \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #pragma once
@@ -13,7 +13,7 @@
 #ifndef OPTIMIST_TESTSET_SINH_HH
 #define OPTIMIST_TESTSET_SINH_HH
 
-#include "Optimist/TestSet.hh"
+#include "Optimist/Function.hh"
 
 namespace Optimist
 {
@@ -30,13 +30,14 @@ namespace Optimist
      * \f]
      * The function has a zero at \f$x = 0\f$, with \f$f(x) = 0\f$. The initial guesses are generated
      * on the range \f$x \in \left[-10, 10\right]\f$.
-     * \tparam Real Scalar number type.
+     * \tparam Scalar Floating-point number type.
      */
-    template <typename Real>
-    class Sinh : public Function<Real, 1, 1, Sinh<Real>>
+    template <typename Scalar>
+    requires TypeTrait<Scalar>::IsScalar
+    class Sinh : public Function<Scalar, Scalar, Sinh<Scalar>>
     {
     public:
-      OPTIMIST_BASIC_CONSTANTS(Real)
+      OPTIMIST_BASIC_CONSTANTS(Scalar)
 
       /**
        * Class constructor for the hyperbolic sine function.
@@ -52,7 +53,7 @@ namespace Optimist
        * Get the function name.
        * \return The function name.
        */
-      std::string name_impl() const {return "Sinh";}
+      constexpr std::string name_impl() const {return "Sinh";}
 
       /**
        * Compute the function value at the input point.
@@ -60,7 +61,7 @@ namespace Optimist
        * \param[out] out The function value.
        * \return The boolean flag for successful evaluation.
        */
-      bool evaluate_impl(Real x, Real & out) const
+      bool evaluate_impl(Scalar x, Scalar & out) const
       {
         out = std::sinh(x);
         return std::isfinite(out);
@@ -72,7 +73,7 @@ namespace Optimist
        * \param[out] out The first derivative value.
        * \return The boolean flag for successful evaluation.
        */
-      bool first_derivative_impl(Real x, Real & out) const
+      bool first_derivative_impl(Scalar x, Scalar & out) const
       {
         out = std::cosh(x);
         return std::isfinite(out);
@@ -84,7 +85,7 @@ namespace Optimist
        * \param[out] out The second derivative value.
        * \return The boolean flag for successful evaluation.
        */
-      bool second_derivative_impl(Real x, Real & out) const
+      bool second_derivative_impl(Scalar x, Scalar & out) const
       {
         out = std::sinh(x);
         return std::isfinite(out);

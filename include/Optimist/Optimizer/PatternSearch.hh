@@ -1,11 +1,11 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
- * Copyright (c) 2025, Davide Stocco, Mattia Piazza and Enrico Bertolazzi.                       *
+ * Copyright (c) 2025, Davide Stocco.                                                            *
  *                                                                                               *
  * The Optimist project is distributed under the BSD 2-Clause License.                           *
  *                                                                                               *
- * Davide Stocco                          Mattia Piazza                        Enrico Bertolazzi *
- * University of Trento               University of Trento                  University of Trento *
- * davide.stocco@unitn.it            mattia.piazza@unitn.it           enrico.bertolazzi@unitn.it *
+ * Davide Stocco                                                                                 *
+ * University of Trento                                                                          *
+ * davide.stocco@unitn.it                                                                        *
 \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #pragma once
@@ -33,8 +33,6 @@ namespace Optimist
     /**
      * \brief Class container for the Hooke and Jeeves Pattern Search algorithm.
      *
-     * \includedoc docs/markdown/Optimizer/PatternSearch.md
-     *
      * \tparam Real Scalar number type.
      * \tparam N Dimension of the root-finding problem.
      */
@@ -42,9 +40,9 @@ namespace Optimist
     class PatternSearch : public Optimizer<Real, N, PatternSearch<Real, N>, true>
     {
     public:
-      static constexpr bool requires_function{true};
-      static constexpr bool requires_first_derivative{false};
-      static constexpr bool requires_second_derivative{false};
+      static constexpr bool RequiresFunction{true};
+      static constexpr bool RequiresFirstDerivative{false};
+      static constexpr bool RequiresSecondDerivative{false};
 
       using typename Optimizer<Real, N, PatternSearch<Real, N>, true>::Vector;
       using typename Optimizer<Real, N, PatternSearch<Real, N>, true>::Matrix;
@@ -67,7 +65,7 @@ namespace Optimist
        * Get the Nelder-Mead's solver name.
        * \return The Nelder-Mead's solver name.
        */
-      std::string name_impl() const {return "PatternSearch";}
+      constexpr std::string name_impl() const {return "PatternSearch";}
 
       void set_max_num_stagnation( integer nstg ) {
         UTILS_ASSERT(
@@ -129,7 +127,6 @@ namespace Optimist
         // Initialize
         m_stencil_failure = true;
 
-        // ----------------------------------------------------------------------------------------
         // Cycle on all stencil directions
 
         for ( integer j = 0; j < N; ++j ) {

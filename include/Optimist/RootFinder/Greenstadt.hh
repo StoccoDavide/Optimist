@@ -1,11 +1,11 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
- * Copyright (c) 2025, Davide Stocco, Mattia Piazza and Enrico Bertolazzi.                       *
+ * Copyright (c) 2025, Davide Stocco.                                                            *
  *                                                                                               *
  * The Optimist project is distributed under the BSD 2-Clause License.                           *
  *                                                                                               *
- * Davide Stocco                          Mattia Piazza                        Enrico Bertolazzi *
- * University of Trento               University of Trento                  University of Trento *
- * davide.stocco@unitn.it            mattia.piazza@unitn.it           enrico.bertolazzi@unitn.it *
+ * Davide Stocco                                                                                 *
+ * University of Trento                                                                          *
+ * davide.stocco@unitn.it                                                                        *
 \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #pragma once
@@ -41,9 +41,9 @@ namespace Optimist
     class Greenstadt : public QuasiNewton<Real, N, Greenstadt<Real, N>>
     {
     public:
-      static constexpr bool requires_function{true};
-      static constexpr bool requires_first_derivative{true};
-      static constexpr bool requires_second_derivative{false};
+      static constexpr bool RequiresFunction{true};
+      static constexpr bool RequiresFirstDerivative{true};
+      static constexpr bool RequiresSecondDerivative{false};
 
       OPTIMIST_BASIC_CONSTANTS(Real)
 
@@ -68,7 +68,7 @@ namespace Optimist
        * Get the Greenstadt solver name.
        * \return The Greenstadt solver name.
        */
-      std::string name_impl() const
+      constexpr std::string name_impl() const
       {
         std::ostringstream os;
         os << "Greenstadt";

@@ -1,11 +1,11 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
- * Copyright (c) 2025, Davide Stocco, Mattia Piazza and Enrico Bertolazzi.                       *
+ * Copyright (c) 2025, Davide Stocco.                                                            *
  *                                                                                               *
  * The Optimist project is distributed under the BSD 2-Clause License.                           *
  *                                                                                               *
- * Davide Stocco                          Mattia Piazza                        Enrico Bertolazzi *
- * University of Trento               University of Trento                  University of Trento *
- * davide.stocco@unitn.it            mattia.piazza@unitn.it           enrico.bertolazzi@unitn.it *
+ * Davide Stocco                                                                                 *
+ * University of Trento                                                                          *
+ * davide.stocco@unitn.it                                                                        *
 \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #pragma once
@@ -13,8 +13,18 @@
 #ifndef INCLUDE_OPTIMIST_TESTSET_HH
 #define INCLUDE_OPTIMIST_TESTSET_HH
 
-#include "Optimist.hh"
-#include "Optimist/Function.hh"
+#include "Optimist/TestSet/Booth.hh"
+#include "Optimist/TestSet/Brown.hh"
+#include "Optimist/TestSet/Cos.hh"
+#include "Optimist/TestSet/Cosh.hh"
+#include "Optimist/TestSet/EllipticParaboloid.hh"
+#include "Optimist/TestSet/Linear.hh"
+#include "Optimist/TestSet/Quadratic.hh"
+#include "Optimist/TestSet/Schaffer2.hh"
+#include "Optimist/TestSet/Rosenbrock.hh"
+#include "Optimist/TestSet/Sin.hh"
+#include "Optimist/TestSet/Sinh.hh"
+#include "Optimist/TestSet/Test11.hh"
 
 namespace Optimist
 {
@@ -37,6 +47,7 @@ namespace Optimist
      * List of cost functions.
      */
     static const std::vector<std::string> COST_FUNCTIONS = {
+      "EllipticParaboloid",
       "Schaffer2"
     };
 
@@ -44,8 +55,11 @@ namespace Optimist
      * List of scalar-valued functions.
      */
     static const std::vector<std::string> SCALAR_FUNCTIONS = {
+      "Linear",
+      "Quadratic",
       "Sin",
       "Cos",
+      "Sinh",
       "Cosh"
     };
 

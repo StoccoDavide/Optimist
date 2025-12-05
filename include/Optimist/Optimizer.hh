@@ -1,11 +1,11 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
- * Copyright (c) 2025, Davide Stocco, Mattia Piazza and Enrico Bertolazzi.                       *
+ * Copyright (c) 2025, Davide Stocco.                                                            *
  *                                                                                               *
  * The Optimist project is distributed under the BSD 2-Clause License.                           *
  *                                                                                               *
- * Davide Stocco                          Mattia Piazza                        Enrico Bertolazzi *
- * University of Trento               University of Trento                  University of Trento *
- * davide.stocco@unitn.it            mattia.piazza@unitn.it           enrico.bertolazzi@unitn.it *
+ * Davide Stocco                                                                                 *
+ * University of Trento                                                                          *
+ * davide.stocco@unitn.it                                                                        *
 \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #pragma once
@@ -51,8 +51,8 @@ namespace Optimist
 
       friend class SolverBase<Real, N, 1, Optimizer<Real, N, DerivedSolver, ForceEigen>>;
 
-      static constexpr bool is_rootfinder{false};
-      static constexpr bool is_optimizer{true};
+      static constexpr bool IsRootFinder{false};
+      static constexpr bool IsOptimizer{true};
 
       OPTIMIST_BASIC_CONSTANTS(Real)
 
@@ -72,7 +72,7 @@ namespace Optimist
        * Get the solver name.
        * \return The solver name.
        */
-      std::string name() const {return static_cast<const DerivedSolver *>(this)->name_impl();}
+      constexpr std::string name() const {return static_cast<const DerivedSolver *>(this)->name_impl();}
 
       /**
        * Get the number of gradient evaluations.
@@ -158,7 +158,7 @@ namespace Optimist
       {
         #define CMD "Optimist::Optimizer::solve(...): "
 
-        static_assert(DerivedSolver::requires_function,
+        static_assert(DerivedSolver::RequiresFunction,
           CMD "the solver requires the function.");
         return static_cast<DerivedSolver *>(this)->solve_impl(
           std::forward<FunctionLambda>(function),
@@ -182,9 +182,9 @@ namespace Optimist
       {
         #define CMD "Optimist::Optimizer::solve(...): "
 
-        static_assert(DerivedSolver::requires_function,
+        static_assert(DerivedSolver::RequiresFunction,
           CMD "the solver requires the function.");
-        static_assert(DerivedSolver::requires_first_derivative,
+        static_assert(DerivedSolver::RequiresFirstDerivative,
           CMD "the solver requires the first derivative.");
         return static_cast<DerivedSolver *>(this)->solve_impl(
           std::forward<FunctionLambda>(function),
@@ -212,11 +212,11 @@ namespace Optimist
       {
         #define CMD "Optimist::Optimizer::solve(...): "
 
-        static_assert(DerivedSolver::requires_function,
+        static_assert(DerivedSolver::RequiresFunction,
           CMD "the solver requires the function.");
-        static_assert(DerivedSolver::requires_first_derivative,
+        static_assert(DerivedSolver::RequiresFirstDerivative,
           CMD "the solver requires the first derivative.");
-        static_assert(DerivedSolver::requires_second_derivative,
+        static_assert(DerivedSolver::RequiresSecondDerivative,
           CMD "the solver requires the second derivative.");
         return static_cast<DerivedSolver *>(this)->solve_impl(
           std::forward<FunctionLambda>(function),
@@ -243,8 +243,8 @@ namespace Optimist
     public:
       friend class SolverBase<Real, 1, 1, Optimizer<Real, 1, DerivedSolver>>;
 
-      static constexpr bool is_rootfinder{false};
-      static constexpr bool is_optimizer{true};
+      static constexpr bool IsRootFinder{false};
+      static constexpr bool IsOptimizer{true};
 
       OPTIMIST_BASIC_CONSTANTS(Real)
 
@@ -257,7 +257,7 @@ namespace Optimist
        * Get the solver name.
        * \return The solver name.
        */
-      std::string name() const {return static_cast<const DerivedSolver *>(this)->name_impl();}
+      constexpr std::string name() const {return static_cast<const DerivedSolver *>(this)->name_impl();}
 
     }; // class Optimizer
 

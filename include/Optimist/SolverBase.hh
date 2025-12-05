@@ -1,11 +1,11 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
- * Copyright (c) 2025, Davide Stocco, Mattia Piazza and Enrico Bertolazzi.                       *
+ * Copyright (c) 2025, Davide Stocco.                                                            *
  *                                                                                               *
  * The Optimist project is distributed under the BSD 2-Clause License.                           *
  *                                                                                               *
- * Davide Stocco                          Mattia Piazza                        Enrico Bertolazzi *
- * University of Trento               University of Trento                  University of Trento *
- * davide.stocco@unitn.it            mattia.piazza@unitn.it           enrico.bertolazzi@unitn.it *
+ * Davide Stocco                                                                                 *
+ * University of Trento                                                                          *
+ * davide.stocco@unitn.it                                                                        *
 \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #pragma once
@@ -42,12 +42,18 @@ namespace Optimist
   {
   public:
     // Input and output types
-    using InputTrait  = TypeTraits<Input>;
-    using OutputTrait = TypeTraits<Output>;
+    using InputTrait  = TypeTrait<Input>;
+    using OutputTrait = TypeTrait<Output>;
     using Scalar = typename InputTrait::Scalar;
 
+    // Input and output must be non-zero dimensional
+    static_assert(InputTrait::Dimension != 0,
+      "Input must be non-zero dimensional");
+    static_assert(OutputTrait::Dimension != 0,
+      "Output must be non-zero dimensional");
+
     // Input and output must have the same scalar type
-    static_assert(std::is_same<typename Input::Scalar, typename Output::Scalar>::value,
+    static_assert(std::is_same<typename InputTrait::Scalar, typename OutputTrait::Scalar>::value,
       "Input and output scalar types must be the same.");
 
     // If both input and output are eigen types they be both fixed-size, dynamic-size, or sparse
@@ -114,7 +120,7 @@ namespace Optimist
     SolverBase() {
       if constexpr (InputTrait::IsEigen) {
         // Resize bounds if dynamic or sparse
-        if constexpr (InputTrait::IsDynamic || InputTrait::IsSparse) {
+        if constexpr (InputTrait::IsDynamicSize) {
           this->m_lower_bound.resize(InputTrait::Dimension);
           this->m_upper_bound.resize(InputTrait::Dimension);
         }
@@ -502,7 +508,7 @@ namespace Optimist
     {
       #define CMD "Optimist::Solver::solve(...): "
 
-      static_assert(DerivedSolver::requires_function,
+      static_assert(DerivedSolver::RequiresFunction,
         CMD "the solver requires a function.");
       return static_cast<DerivedSolver *>(this)->solve_impl(
         std::forward<FunctionLambda>(function),
@@ -528,9 +534,9 @@ namespace Optimist
     {
       #define CMD "Optimist::Solver::solve(...): "
 
-      static_assert(DerivedSolver::requires_function,
+      static_assert(DerivedSolver::RequiresFunction,
         CMD "the solver requires a function.");
-      static_assert(DerivedSolver::requires_first_derivative,
+      static_assert(DerivedSolver::RequiresFirstDerivative,
         CMD "the solver requires the first derivative.");
       return static_cast<DerivedSolver *>(this)->solve_impl(
         std::forward<FunctionLambda>(function),
@@ -559,11 +565,11 @@ namespace Optimist
       {
       #define CMD "Optimist::Solver::solve(...): "
 
-      static_assert(DerivedSolver::requires_function,
+      static_assert(DerivedSolver::RequiresFunction,
         CMD "the solver requires the function.");
-      static_assert(DerivedSolver::requires_first_derivative,
+      static_assert(DerivedSolver::RequiresFirstDerivative,
         CMD "the solver requires the first derivative.");
-      static_assert(DerivedSolver::requires_second_derivative,
+      static_assert(DerivedSolver::RequiresSecondDerivative,
         CMD "the solver requires the second derivative.");
       return static_cast<DerivedSolver *>(this)->solve_impl(
         std::forward<FunctionLambda>(function),
@@ -590,13 +596,16 @@ namespace Optimist
     {
       #define CMD "Optimist::Solver::rootfind(...): "
 
-      static_assert(InputTrait::Dimension == FunctionInput::Dimension,
+      using FunctionInputTrait  = TypeTrait<FunctionInput>;
+      using FunctionOutputTrait = TypeTrait<FunctionOutput>;
+
+      static_assert(InputTrait::Dimension == FunctionInputTrait::Dimension,
         CMD "solver input dimension must be equal to the function input dimension.");
-      static_assert(OutputTrait::Dimension == FunctionOutput::Dimension || OutputTrait::Dimension == 1,
+      static_assert(OutputTrait::Dimension == FunctionOutputTrait::Dimension || OutputTrait::Dimension == 1,
         CMD "solver output dimension must be equal to the function output dimension or 1.");
-      static_assert(!(InputTrait::Dimension == 1 && DerivedSolver::is_optimizer),
+      static_assert(!(InputTrait::Dimension == 1 && DerivedSolver::IsOptimizer),
         CMD "one-dimensional optimizers do not support root-finding problems.");
-      return this->solve(function, x_ini, x_sol, (OutputTrait::Dimension != FunctionOutput::Dimension) || InputTrait::IsEigen);
+      return this->solve(function, x_ini, x_sol, (OutputTrait::Dimension != FunctionOutputTrait::Dimension) || InputTrait::IsEigen);
       #undef CMD
     }
 
@@ -615,7 +624,9 @@ namespace Optimist
     {
       #define CMD "Optimist::Solver::optimize(...): "
 
-      static_assert(InputTrait::Dimension == FunctionInput::Dimension,
+      using FunctionInputTrait = TypeTrait<FunctionInput>;
+
+      static_assert(InputTrait::Dimension == FunctionInputTrait::Dimension,
         CMD "solver input dimension must be equal to the function input dimension.");
       static_assert(OutputTrait::Dimension == 1,
         CMD "solver output dimension must be equal to the function output dimension or 1.");
@@ -630,7 +641,7 @@ namespace Optimist
      * Get the solver name.
      * \return The solver name.
      */
-    std::string name() const {return static_cast<const DerivedSolver *>(this)->name_impl();};
+    constexpr std::string name() const {return static_cast<const DerivedSolver *>(this)->name_impl();};
 
   protected:
     /**
@@ -650,8 +661,8 @@ namespace Optimist
       #define CMD "Optimist::Solver::solve(...): "
 
       using FunctionType = FunctionBase<FunctionInput, FunctionOutput, DerivedFunction>;
-      using FunctionInputTrait  = TypeTraits<FunctionInput>;
-      using FunctionOutputTrait = TypeTraits<FunctionOutput>;
+      using FunctionInputTrait  = TypeTrait<FunctionInput>;
+      using FunctionOutputTrait = TypeTrait<FunctionOutput>;
 
       static_assert(InputTrait::Dimension == FunctionInputTrait::Dimension,
         CMD "solver input dimension must be equal to the function input dimension.");
@@ -662,7 +673,7 @@ namespace Optimist
       auto function_lambda = [&function, is_optimization] (Input const & x, Output & out) -> bool
       {
         bool success{false};
-        typename FunctionType::Output f; success = function.evaluate(x, f);
+        FunctionOutput f; success = function.evaluate(x, f);
         OPTIMIST_ASSERT(success,
           CMD "function evaluation failed during function computation.");
 
@@ -687,7 +698,7 @@ namespace Optimist
 
         if (is_optimization) {
           bool success{false};
-          typename FunctionType::Output f; success = function.evaluate(x, f);
+          FunctionOutput f; success = function.evaluate(x, f);
           OPTIMIST_ASSERT(success,
             CMD "function evaluation failed during first derivative computation.");
           this->m_function_evaluations++;
@@ -710,7 +721,7 @@ namespace Optimist
           CMD "function evaluation failed during second derivative computation.");
 
         if (is_optimization) {
-          typename FunctionType::Output f; success = function.evaluate(x, f);
+          FunctionOutput f; success = function.evaluate(x, f);
           this->m_function_evaluations++;
           OPTIMIST_ASSERT(success,
             CMD "function evaluation failed during second derivative computation.");
@@ -732,15 +743,15 @@ namespace Optimist
       };
 
       // Select solver method based on derivative requirements
-      if constexpr (DerivedSolver::requires_function && !DerivedSolver::requires_first_derivative &&
-        !DerivedSolver::requires_second_derivative) {
+      if constexpr (DerivedSolver::RequiresFunction && !DerivedSolver::RequiresFirstDerivative &&
+        !DerivedSolver::RequiresSecondDerivative) {
         return static_cast<DerivedSolver *>(this)->solve_impl(function_lambda, x_ini, x_sol);
-      } else if constexpr (DerivedSolver::requires_function && DerivedSolver::requires_first_derivative &&
-        !DerivedSolver::requires_second_derivative) {
+      } else if constexpr (DerivedSolver::RequiresFunction && DerivedSolver::RequiresFirstDerivative &&
+        !DerivedSolver::RequiresSecondDerivative) {
         return static_cast<DerivedSolver *>(this)->solve_impl(function_lambda, first_derivative_lambda,
           x_ini, x_sol);
-      } else if constexpr (DerivedSolver::requires_function && DerivedSolver::requires_first_derivative &&
-        DerivedSolver::requires_second_derivative) {
+      } else if constexpr (DerivedSolver::RequiresFunction && DerivedSolver::RequiresFirstDerivative &&
+        DerivedSolver::RequiresSecondDerivative) {
         return static_cast<DerivedSolver *>(this)->solve_impl(function_lambda, first_derivative_lambda,
           second_derivative_lambda, x_ini, x_sol);
       } else {

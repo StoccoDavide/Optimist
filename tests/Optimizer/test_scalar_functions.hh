@@ -1,14 +1,17 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
- * Copyright (c) 2025, Davide Stocco, Mattia Piazza and Enrico Bertolazzi.                       *
+ * Copyright (c) 2025, Davide Stocco.                                                            *
  *                                                                                               *
  * The Optimist project is distributed under the BSD 2-Clause License.                           *
  *                                                                                               *
- * Davide Stocco                          Mattia Piazza                        Enrico Bertolazzi *
- * University of Trento               University of Trento                  University of Trento *
- * davide.stocco@unitn.it            mattia.piazza@unitn.it           enrico.bertolazzi@unitn.it *
+ * Davide Stocco                                                                                 *
+ * University of Trento                                                                          *
+ * davide.stocco@unitn.it                                                                        *
 \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #pragma once
+
+#ifndef OPTIMIST_TESTSET_SCALAR_FUNCTIONS_HH
+#define OPTIMIST_TESTSET_SCALAR_FUNCTIONS_HH
 
 #include "Optimist/TestSet/Quadratic.hh"
 #include "Optimist/TestSet/Cos.hh"
@@ -22,3 +25,5 @@
   Optimist::TestSet::Sin<double>,       \
   Optimist::TestSet::Cosh<double>
 #endif
+
+#endif /* OPTIMIST_TESTSET_SCALAR_FUNCTIONS_HH */
