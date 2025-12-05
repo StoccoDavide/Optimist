@@ -627,7 +627,8 @@ namespace Optimist
       static_assert(!(InputTrait::Dimension == 1 && DerivedSolver::IsOptimizer),
         CMD "one-dimensional optimizers do not support root-finding problems.");
       return this->solve(function, x_ini, x_sol,
-        (OutputTrait::Dimension != FunctionOutputTrait::Dimension) || InputTrait::IsEigen);
+        (OutputTrait::Dimension != FunctionOutputTrait::Dimension) ||
+        (InputTrait::IsEigen && FunctionOutputTrait::IsScalar));
       #undef CMD
     }
 
