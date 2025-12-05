@@ -49,8 +49,8 @@ namespace Optimist
       using Scalar = typename Vector::Scalar;
       using typename RootFinder<Vector, Vector, Newton<Vector>>::Vector;
       using typename RootFinder<Vector, Vector, Newton<Vector>>::Matrix;
-      using Factorization = std::conditional_t<VectorTrait::IsSparse, Eigen::SparseLU<Matrix>,
-        Eigen::FullPivLU<Matrix>>;
+      using Factorization = std::conditional_t<VectorTrait::IsSparse,
+        Eigen::SparseLU<Matrix>, Eigen::FullPivLU<Matrix>>;
 
       OPTIMIST_BASIC_CONSTANTS(Scalar)
 
@@ -86,8 +86,8 @@ namespace Optimist
       {
         #define CMD "Optimist::RootFinder::Newton::solve(...): "
 
-        // Setup internal variables
-        this->reset();
+        // Reset internal variables
+        this->reset_counters();
 
         // Print header
         if (this->m_verbose) {this->header();}
@@ -114,8 +114,13 @@ namespace Optimist
           OPTIMIST_ASSERT(success,
             CMD "jacobian evaluation failed at iteration " << this->m_iterations << ".");
           this->m_lu.compute(jacobian_old);
-          OPTIMIST_ASSERT(this->m_lu.rank() == x_ini.size(),
-            "Optimist::RootFinder::Newton::solve(...): singular Jacobian detected.");
+          if constexpr (VectorTrait::IsSparse) {
+            OPTIMIST_ASSERT_WARNING(this->m_lu.info() == Eigen::Success,
+              CMD "jacobian factorization failed.");
+          } else {
+            OPTIMIST_ASSERT(this->m_lu.isInvertible(),
+              CMD "singular Jacobian detected.");
+          }
           step_old = -this->m_lu.solve(function_old);
 
           // Check convergence

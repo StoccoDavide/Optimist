@@ -39,8 +39,8 @@ namespace Optimist
      * \tparam N Input dimension (must be even).
      */
     template <typename Vector, Integer N>
-    requires TypeTrait<Vector>::IsEigen && (TypeTrait<Vector>::IsDynamicSize ||
-      (TypeTrait<Vector>::IsFixedSize && Vector::Dimension == N)) && (N % 2 == 0)
+    requires (N % 2 == 0) && TypeTrait<Vector>::IsEigen &&
+      (!TypeTrait<Vector>::IsFixed || TypeTrait<Vector>::Dimension == N)
     class Rosenbrock : public Function<Vector, Vector, Rosenbrock<Vector, N>>
     {
     public:

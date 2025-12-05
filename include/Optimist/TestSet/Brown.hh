@@ -35,8 +35,8 @@ namespace Optimist
      */
     template <typename Input, typename Output>
     requires TypeTrait<Input>::IsEigen && TypeTrait<Output>::IsEigen &&
-      (TypeTrait<Input>::IsDynamicSize || (TypeTrait<Input>::IsFixedSize && Input::RowsAtCompileTime == 2)) &&
-      (TypeTrait<Output>::IsDynamicSize || (TypeTrait<Output>::IsFixedSize && Output::RowsAtCompileTime == 3))
+      (!TypeTrait<Input>::IsFixed || TypeTrait<Input>::Dimension == 2) &&
+      (!TypeTrait<Output>::IsFixed || TypeTrait<Output>::Dimension == 3)
     class Brown : public Function<Input, Output, Brown<Input, Output>>
     {
     private:

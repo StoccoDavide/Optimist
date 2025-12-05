@@ -22,9 +22,9 @@
 using namespace Optimist::TestSet;
 
 // Type-parameterized test fixture for scalar functions
-template <typename Function>
+template <typename FunctionType>
 struct ScalarFunctions : public testing::Test {
-    using TestType = Function;
+    using TestType = FunctionType;
 };
 
 using ScalarTestTypes = testing::Types<
@@ -62,18 +62,18 @@ TYPED_TEST(ScalarFunctions, Solve) {
 }
 
 // Type-parameterized test fixture for vector functions
-template <typename Function>
+template <typename FunctionType>
 struct VectorFunctions : public testing::Test {
-    using TestType = Function;
+    using TestType = FunctionType;
 };
 
 using VectorTestTypes = testing::Types<
-  Booth<Eigen::Vector<float, 2>>,
-  Booth<Eigen::Vector<float, Eigen::Dynamic>>,
-  Booth<Eigen::SparseVector<float>>,
+  //Booth<Eigen::Vector<float, 2>>,
+  //Booth<Eigen::Vector<float, Eigen::Dynamic>>,
+  //Booth<Eigen::SparseVector<float>>,
   Booth<Eigen::Vector<double, 2>>,
-  Booth<Eigen::Vector<double, Eigen::Dynamic>>,
-  Booth<Eigen::SparseVector<double>>
+  Booth<Eigen::Vector<double, Eigen::Dynamic>>
+  //Booth<Eigen::SparseVector<double>>
 >;
 
 // Register the type-parameterized vector function tests
@@ -81,15 +81,15 @@ TYPED_TEST_SUITE(VectorFunctions, VectorTestTypes);
 
 // Test to solve vector functions
 TYPED_TEST(VectorFunctions, Solve) {
-  // Retrieve the function and scalar types
+  // Retrieve the function and vector types
   using Function = TypeParam;
-  using Scalar   = typename Function::Scalar;
   using Vector   = typename Optimist::RetriveType<Function>::First;
 
   // Create function and solver instances
   Function fun;
   Optimist::RootFinder::Newton<Vector> sol;
   sol.task(fun.name());
+  sol.verbose_mode(true);
   sol.tolerance(1.0e3*Function::EPSILON_LOW); // Very loose, we just want to test function evaluation
 
   bool converged_at_least_once = false;

@@ -90,7 +90,7 @@ namespace Optimist
 
         // Setup internal variables
         bool success;
-        this->reset();
+        this->reset_counters();
 
         // Print header
         if (this->m_verbose) {this->header();}

@@ -10,8 +10,8 @@
 
 #pragma once
 
-#ifndef OPTIMIST_OPTIMIZER_HJ_PATTERN_SEARCH_HH
-#define OPTIMIST_OPTIMIZER_HJ_PATTERN_SEARCH_HH
+#ifndef OPTIMIST_OPTIMIZER_PARTICLE_SWARM_HH
+#define OPTIMIST_OPTIMIZER_PARTICLE_SWARM_HH
 
 #include "Optimist/Optimizer.hh"
 
@@ -123,10 +123,11 @@ namespace Optimist
       void best_nearby()
       {
         /*
-        */
+         */
         // Initialize
         m_stencil_failure = true;
 
+        // ----------------------------------------------------------------------------------------
         // Cycle on all stencil directions
 
         for ( integer j = 0; j < N; ++j ) {
@@ -174,12 +175,7 @@ namespace Optimist
         // Set initial iteration
         Vector x_best(x_ini);
         Real f_best;
-        bool success{this->evaluate_function(std::forward<FunctionLambda>(function), x_best, f_best)};
-        UTILS_ASSERT(
-          success,
-          "Optimist::Optimizer::PatternSearch::solve(...): "
-          "function evaluation failed at the initial point."
-        );
+        this->evaluate_function(std::forward<FunctionLambda>(function), x_best, f_best);
         search_sign.setOnes(); // First direction will be positive for each direction
         this->m_h = h;
 
@@ -228,3 +224,6 @@ namespace Optimist
 } // namespace Optimist
 
 #endif // OPTIMIST_OPTIMIZER_HJ_PATTERN_SEARCH_HH
+
+
+#endif /* A07D533D_899A_43DD_BCBC_2CAC21A8A0FC */

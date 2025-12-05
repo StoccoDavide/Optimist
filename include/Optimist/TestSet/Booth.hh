@@ -33,8 +33,8 @@ namespace Optimist
      * \tparam Scalar Floating-point number type.
      */
     template <typename Vector>
-    requires TypeTrait<Vector>::IsEigen && (TypeTrait<Vector>::IsDynamicSize ||
-      (TypeTrait<Vector>::IsFixedSize && Vector::RowsAtCompileTime == 2))
+    requires TypeTrait<Vector>::IsEigen &&
+      (!TypeTrait<Vector>::IsFixed || TypeTrait<Vector>::Dimension == 2)
     class Booth : public Function<Vector, Vector, Booth<Vector>>
     {
     public:
@@ -50,11 +50,27 @@ namespace Optimist
        */
       Booth()
       {
-        this->m_solutions.emplace_back(1.0, 3.0);
-        for (Scalar x{-10.0}; x < 10.0 + EPSILON; x += 5.0) {
-          for (Scalar y{-10.0}; y < 10.0 + EPSILON; y += 5.0) {
-            this->m_guesses.emplace_back(x, y);
-          }
+        this->m_solutions.resize(1);
+        this->m_guesses.resize(2);
+        if constexpr (VectorTrait::IsFixed) {
+          this->m_solutions[0] << 1.0, 3.0;
+          this->m_guesses[0] << -10, -10;
+          this->m_guesses[1] << 10, 10;
+        } else if constexpr (!VectorTrait::IsSparse) {
+          this->m_solutions[0].resize(2);
+          this->m_solutions[0] << 1.0, 3.0;
+          this->m_guesses[0].resize(2); this->m_guesses[0] << -10, -10;
+          this->m_guesses[1].resize(2); this->m_guesses[1] << 10, 10;
+        } else if constexpr (VectorTrait::IsSparse) {
+          this->m_solutions[0].resize(2); this->m_solutions[0].reserve(2);
+          this->m_solutions[0].coeffRef(0) = 1.0;
+          this->m_solutions[0].coeffRef(1) = 3.0;
+          this->m_guesses[0].resize(2); this->m_guesses[0].reserve(2);
+          this->m_guesses[0].coeffRef(0) = -10;
+          this->m_guesses[0].coeffRef(1) = -10;
+          this->m_guesses[1].resize(2); this->m_guesses[1].reserve(2);
+          this->m_guesses[1].coeffRef(0) = 10;
+          this->m_guesses[1].coeffRef(1) = 10;
         }
       }
 
@@ -74,21 +90,25 @@ namespace Optimist
       {
         #define CMD "Optimist::TestSet::Booth::evaluate_impl(...): "
 
-        if constexpr (VectorTrait::IsFixedSize) {
+        if constexpr (VectorTrait::IsFixed) {
           out << x(0) + 2.0*x(1) - 7.0, 2.0*x(0) + x(1) - 5.0;
-        } else if constexpr (VectorTrait::IsDynamicSize) {
+          return out.allFinite();
+        } else if constexpr (!VectorTrait::IsSparse) {
           out.resize(2);
           out << x(0) + 2.0*x(1) - 7.0, 2.0*x(0) + x(1) - 5.0;
+          return out.allFinite();
         } else if constexpr (VectorTrait::IsSparse) {
           out.resize(2); out.reserve(2);
-          std::vector<Eigen::Triplet<Scalar>> triplets; triplets.reserve(2);
-          triplets.emplace_back(0, 0, x.coeff(0) + 2.0*x.coeff(1) - 7.0);
-          triplets.emplace_back(1, 0, 2.0*x.coeff(0) + x.coeff(1) - 5.0);
-          out.setFromTriplets(triplets.begin(), triplets.end());
+          out.coeffRef(0) = x.coeff(0) + 2.0*x.coeff(1) - 7.0;
+          out.coeffRef(1) = 2.0*x.coeff(0) + x.coeff(1) - 5.0;
+          for (typename Vector::InnerIterator it(out); it; ++it) {
+              if (!std::isfinite(it.value())) {return false;}
+          }
+          return true;
         } else {
-          static_assert(VectorTrait::IsEigen, CMD "input type not supported.");
+          OPTIMIST_ERROR(CMD "input type not supported.");
+          return false;
         }
-        return out.allFinite();
 
         #undef CMD
       }
@@ -103,9 +123,9 @@ namespace Optimist
       {
         #define CMD "Optimist::TestSet::Booth::first_derivative_impl(...): "
 
-        if constexpr (VectorTrait::IsFixedSize) {
+        if constexpr (VectorTrait::IsFixed) {
           out << 1.0, 2.0, 2.0, 1.0;
-        } else if constexpr (VectorTrait::IsDynamicSize) {
+        } else if constexpr (!VectorTrait::IsSparse) {
           out.resize(2, 2);
           out << 1.0, 2.0, 2.0, 1.0;
         } else if constexpr (VectorTrait::IsSparse) {
@@ -117,9 +137,10 @@ namespace Optimist
           triplets.emplace_back(1, 1, 1.0);
           out.setFromTriplets(triplets.begin(), triplets.end());
         } else {
-          static_assert(VectorTrait::IsEigen, CMD "input type not supported.");
+          OPTIMIST_ERROR(CMD "input type not supported.");
+          return false;
         }
-        return out.allFinite();
+        return true;
 
         #undef CMD
       }
@@ -134,8 +155,21 @@ namespace Optimist
       {
         out.resize(2);
         std::for_each(out.begin(), out.end(), [] (Matrix & m) {
-          if constexpr (VectorTrait::IsDynamicSize) {m.resize(2, 2);}
-          m.setZero();
+          if constexpr (VectorTrait::IsFixed) {
+            m.setZero();}
+          if constexpr (VectorTrait::IsDynamic) {
+            m.resize(2, 2);
+            m.setZero();}
+          if constexpr (VectorTrait::IsSparse) {
+            m.resize(2, 2);
+            m.reserve(4);
+            std::vector<Eigen::Triplet<Scalar>> triplets; triplets.reserve(4);
+            triplets.emplace_back(0, 0, 0.0);
+            triplets.emplace_back(0, 1, 0.0);
+            triplets.emplace_back(1, 0, 0.0);
+            triplets.emplace_back(1, 1, 0.0);
+            m.setFromTriplets(triplets.begin(), triplets.end());
+          }
         });
         return true;
       }

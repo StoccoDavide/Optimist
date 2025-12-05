@@ -24,7 +24,6 @@
 #include "Optimist/TestSet/Rosenbrock.hh"
 #include "Optimist/TestSet/Sin.hh"
 #include "Optimist/TestSet/Sinh.hh"
-#include "Optimist/TestSet/Test11.hh"
 
 namespace Optimist
 {

@@ -125,10 +125,9 @@ namespace Optimist
     static constexpr Integer Dimension{1};
     static constexpr bool IsScalar{true};
     static constexpr bool IsEigen{false};
-    static constexpr bool IsDense{false};
+    static constexpr bool IsFixed{false};
+    static constexpr bool IsDynamic{false};
     static constexpr bool IsSparse{false};
-    static constexpr bool IsFixedSize{false};
-    static constexpr bool IsDynamicSize{false};
   };
 
   /**
@@ -136,18 +135,16 @@ namespace Optimist
    * \tparam Scalar The scalar type.
    * \tparam N The vector dimension.
    */
-  template <typename ScalarType, int N>
+  template <typename ScalarType, Integer N>
   struct TypeTrait<Eigen::Matrix<ScalarType, N, 1>, std::enable_if_t<(N > 0)>>
   {
     using Scalar = ScalarType;
     static constexpr Integer Dimension{N};
     static constexpr bool IsScalar{false};
     static constexpr bool IsEigen{true};
+    static constexpr bool IsFixed{true};
     static constexpr bool IsDynamic{false};
-    static constexpr bool IsDense{true};
     static constexpr bool IsSparse{false};
-    static constexpr bool IsFixedSize{true};
-    static constexpr bool IsDynamicSize{false};
   };
 
   /**
@@ -155,16 +152,15 @@ namespace Optimist
    * \tparam Scalar The scalar type.
    */
   template <typename ScalarType>
-  struct TypeTrait<Eigen::Matrix<ScalarType, Eigen::Dynamic, 1>, void>
+  struct TypeTrait<Eigen::Matrix<ScalarType, Eigen::Dynamic, 1>>
   {
     using Scalar = ScalarType;
     static constexpr Integer Dimension{Eigen::Dynamic};
     static constexpr bool IsScalar{false};
     static constexpr bool IsEigen{true};
-    static constexpr bool IsDense{true};
+    static constexpr bool IsFixed{false};
+    static constexpr bool IsDynamic{true};
     static constexpr bool IsSparse{false};
-    static constexpr bool IsFixedSize{false};
-    static constexpr bool IsDynamicSize{true};
   };
 
   /**
@@ -178,10 +174,9 @@ namespace Optimist
     static constexpr Integer Dimension{Eigen::Dynamic};
     static constexpr bool IsScalar{false};
     static constexpr bool IsEigen{true};
-    static constexpr bool IsDense{false};
+    static constexpr bool IsFixed{false};
+    static constexpr bool IsDynamic{false};
     static constexpr bool IsSparse{true};
-    static constexpr bool IsFixedSize{false};
-    static constexpr bool IsDynamicSize{true};
   };
 
   /**
@@ -195,14 +190,40 @@ namespace Optimist
     static constexpr Integer Dimension{Eigen::Dynamic};
     static constexpr bool IsScalar{false};
     static constexpr bool IsEigen{true};
-    static constexpr bool IsDense{false};
+    static constexpr bool IsFixed{false};
+    static constexpr bool IsDynamic{false};
     static constexpr bool IsSparse{true};
-    static constexpr bool IsFixedSize{false};
-    static constexpr bool IsDynamicSize{true};
   };
 
   /**
-   * Retrieve the type of a the trait of a given type (fallback for unsupported types).
+   * Traits class for understanding if two types are the comaptible (fallback).
+   * \tparam FirstType The first type.
+   * \tparam SecondType The second type.
+   */
+  template <typename FirstType, typename SecondType>
+  struct AreCompatibleTypes;
+
+  /**
+   * Traits class for understanding if two types are the comaptible.
+   * Specialization for compatible types.
+   * \tparam FirstType The first type.
+   * \tparam SecondType The second type.
+   */
+  template <typename FirstType, typename SecondType>
+  struct AreCompatibleTypes<TypeTrait<FirstType>, TypeTrait<SecondType>>
+  {
+    static constexpr bool Value{
+      (TypeTrait<FirstType>::IsScalar && TypeTrait<SecondType>::IsScalar) ||
+      ((TypeTrait<FirstType>::IsEigen && TypeTrait<SecondType>::IsEigen) &&
+      ((TypeTrait<FirstType>::IsFixed && TypeTrait<SecondType>::IsFixed &&
+        (TypeTrait<FirstType>::Dimension == TypeTrait<SecondType>::Dimension)) ||
+      (TypeTrait<FirstType>::IsDynamic && TypeTrait<SecondType>::IsDynamic) ||
+      (TypeTrait<FirstType>::IsSparse && TypeTrait<SecondType>::IsSparse)))
+    };
+  };
+
+  /**
+   * Retrieve the type of a the trait of a given type (fallback).
    * \tparam T The type to be specialized.
    * \tparam N The index of the type to retrieve.
    */
@@ -221,7 +242,6 @@ namespace Optimist
   {
     using Full  = BaseType<FirstType, OtherTypes...>;
     using First = FirstType;
-
   };
 
   /*\

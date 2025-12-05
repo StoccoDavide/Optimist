@@ -56,7 +56,7 @@ namespace Optimist
 
       OPTIMIST_BASIC_CONSTANTS(Real)
 
-      // I/O types
+      // Input and output types
       using Vector = typename SolverBase<Real, N, 1, DerivedSolver, ForceEigen>::InputType;
 
       // Derivative types

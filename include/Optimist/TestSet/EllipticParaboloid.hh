@@ -33,8 +33,8 @@ namespace Optimist
      * \tparam Scalar Floating-point number type.
      */
     template <typename Vector>
-    requires TypeTrait<Vector>::IsEigen && (TypeTrait<Vector>::IsDynamicSize ||
-      (TypeTrait<Vector>::IsFixedSize && Vector::RowsAtCompileTime == 2))
+    requires TypeTrait<Vector>::IsEigen &&
+      (!TypeTrait<Vector>::IsFixed || TypeTrait<Vector>::Dimension == 2)
     class EllipticParaboloid : public Function<Vector, typename Vector::Scalar, EllipticParaboloid<Vector>>
     {
     public:

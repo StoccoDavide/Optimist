@@ -33,8 +33,8 @@ namespace Optimist
      * \tparam Vector Eigen vector type.
      */
     template <typename Vector>
-    requires TypeTrait<Vector>::IsEigen && (TypeTrait<Vector>::IsDynamicSize ||
-      (TypeTrait<Vector>::IsFixedSize && Vector::RowsAtCompileTime == 2))
+    requires TypeTrait<Vector>::IsEigen &&
+      (!TypeTrait<Vector>::IsFixed || TypeTrait<Vector>::Dimension == 2)
     class Schaffer2 : public Function<Vector, typename Vector::Scalar, Schaffer2<Vector>>
     {
     public:

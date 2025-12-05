@@ -282,8 +282,8 @@ namespace Optimist
           OPTIMIST_ERROR(CMD "invalid method detected.");
         }
 
-        // Setup internal variables
-        this->reset();
+        // Reset internal variables
+        this->reset_counters();
 
         // Print header
         if (this->m_verbose) {this->header();}

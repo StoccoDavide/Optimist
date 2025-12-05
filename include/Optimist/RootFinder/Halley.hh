@@ -75,8 +75,8 @@ namespace Optimist
       {
         #define CMD "Optimist::RootFinder::Halley::solve(...): "
 
-        // Setup internal variables
-        this->reset();
+        // Reset internal variables
+        this->reset_counters();
 
         // Print header
         if (this->m_verbose) {this->header();}

@@ -45,8 +45,8 @@ namespace Optimist
     template <typename Input, typename Output, typename DerivedSolver>
     requires (TypeTrait<Input>::IsScalar && TypeTrait<Output>::IsScalar) ||
       ((TypeTrait<Input>::IsEigen && TypeTrait<Output>::IsEigen) &&
-      ((TypeTrait<Input>::IsFixedSize && TypeTrait<Output>::IsFixedSize) ||
-      (TypeTrait<Input>::IsDense && TypeTrait<Output>::IsDense) ||
+      ((TypeTrait<Input>::IsFixed && TypeTrait<Output>::IsFixed) ||
+      (TypeTrait<Input>::IsDynamic && TypeTrait<Output>::IsDynamic) ||
       (TypeTrait<Input>::IsSparse && TypeTrait<Output>::IsSparse)))
     class RootFinder : public SolverBase<Input, Output, DerivedSolver>
     {
@@ -56,7 +56,7 @@ namespace Optimist
       static constexpr bool IsRootFinder{true};
       static constexpr bool IsOptimizer{false};
 
-      // I/O types
+      // Input and output types
       using Scalar = typename TypeTrait<Input>::Scalar;
       using Vector = Input;
 

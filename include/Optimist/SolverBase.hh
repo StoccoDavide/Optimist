@@ -58,8 +58,8 @@ namespace Optimist
 
     // If both input and output are eigen types they be both fixed-size, dynamic-size, or sparse
     static_assert(!(InputTrait::IsEigen && OutputTrait::IsEigen) ||
-      (InputTrait::IsFixedSize && OutputTrait::IsFixedSize) ||
-      (!InputTrait::IsDynamicSize && !OutputTrait::IsDynamicSize) ||
+      (InputTrait::IsFixed && OutputTrait::IsFixed) ||
+      (InputTrait::IsDynamic && OutputTrait::IsDynamic) ||
       (InputTrait::IsSparse && OutputTrait::IsSparse),
       "Input and output Eigen types must be both fixed-size, dynamic-size, or sparse.");
 
@@ -117,20 +117,7 @@ namespace Optimist
     /**
      * Class constructor for the nonlinear solver.
      */
-    SolverBase() {
-      if constexpr (InputTrait::IsEigen) {
-        // Resize bounds if dynamic or sparse
-        if constexpr (InputTrait::IsDynamicSize) {
-          this->m_lower_bound.resize(InputTrait::Dimension);
-          this->m_upper_bound.resize(InputTrait::Dimension);
-        }
-        this->m_lower_bound.setConstant(-INFTY);
-        this->m_upper_bound.setConstant(INFTY);
-      } else {
-        this->m_lower_bound = -INFTY;
-        this->m_upper_bound = INFTY;
-      }
-    }
+    SolverBase() {}
 
     /**
      * Class constructor for the nonlinear solver.
@@ -185,6 +172,39 @@ namespace Optimist
         std::forward<FirstDerivativeLambda>(first_derivative),
         std::forward<SecondDerivativeLambda>(second_derivative),
         x_ini, x_sol);
+    }
+
+    /**
+     * Reset lower and upper bounds to default values.
+     * \param[in] n Input dimension for dynamic-size types.
+     */
+    void reset_bounds(Integer n = InputTrait::IsDynamic ? 0 : InputTrait::Dimension)
+    {
+      #define CMD "Optimist::Solver::reset_bounds(...): "
+
+      if constexpr (InputTrait::IsScalar) {
+        this->m_lower_bound = -INFTY;
+        this->m_upper_bound = +INFTY;
+      } else if constexpr (InputTrait::IsFixed) {
+        this->m_lower_bound.setConstant(-INFTY);
+        this->m_upper_bound.setConstant(+INFTY);
+      } else if constexpr (InputTrait::IsDynamic) {
+        this->m_lower_bound.resize(n); this->m_lower_bound.setConstant(-INFTY);
+        this->m_upper_bound.resize(n); this->m_upper_bound.setConstant(+INFTY);
+      } else if constexpr (InputTrait::IsSparse) {
+        this->m_lower_bound.resize(n); this->m_lower_bound.reserve(n);
+        this->m_upper_bound.resize(n); this->m_upper_bound.reserve(n);
+        std::vector<Eigen::Triplet<Scalar>> triplets; triplets.reserve(n);
+        for (Integer i{0}; i < n; ++i) {triplets.emplace_back(i, 0, -INFTY);}
+        this->m_lower_bound.setFromTriplets(triplets.begin(), triplets.end());
+        triplets.clear(); triplets.reserve(n);
+        for (Integer i{0}; i < n; ++i) {triplets.emplace_back(i, 0, +INFTY);}
+        this->m_upper_bound.setFromTriplets(triplets.begin(), triplets.end());
+      } else {
+        OPTIMIST_ERROR(CMD "unsupported input type for bounds reset.");
+      }
+
+      #undef CMD
     }
 
     /**
@@ -591,6 +611,7 @@ namespace Optimist
      * \param[out] x_sol Solution point.
      */
     template <typename FunctionInput, typename FunctionOutput, typename DerivedFunction>
+    // TODO: make requires clauses to avoid invalid combinations
     bool rootfind(FunctionBase<FunctionInput, FunctionOutput, DerivedFunction> const & function,
       Input const & x_ini, Input & x_sol)
     {
@@ -605,7 +626,8 @@ namespace Optimist
         CMD "solver output dimension must be equal to the function output dimension or 1.");
       static_assert(!(InputTrait::Dimension == 1 && DerivedSolver::IsOptimizer),
         CMD "one-dimensional optimizers do not support root-finding problems.");
-      return this->solve(function, x_ini, x_sol, (OutputTrait::Dimension != FunctionOutputTrait::Dimension) || InputTrait::IsEigen);
+      return this->solve(function, x_ini, x_sol,
+        (OutputTrait::Dimension != FunctionOutputTrait::Dimension) || InputTrait::IsEigen);
       #undef CMD
     }
 
@@ -655,6 +677,7 @@ namespace Optimist
      * \param[in] is_optimization Boolean flag for optimization.
      */
     template <typename FunctionInput, typename FunctionOutput, typename DerivedFunction>
+    // TODO: make requires clauses to avoid invalid combinations
     bool solve(FunctionBase<FunctionInput, FunctionOutput, DerivedFunction>
       const & function, Input const & x_ini, Input & x_sol, bool is_optimization)
     {
@@ -667,7 +690,7 @@ namespace Optimist
       static_assert(InputTrait::Dimension == FunctionInputTrait::Dimension,
         CMD "solver input dimension must be equal to the function input dimension.");
       static_assert(OutputTrait::Dimension == FunctionOutputTrait::Dimension || OutputTrait::Dimension == 1,
-        CMD "solver output dimension must be equal to the function output dimension or 1.");
+        CMD "solver output dimension must be equal to the function output dimension or a scalar.");
 
       // Lambda generators for function and derivatives
       auto function_lambda = [&function, is_optimization] (Input const & x, Output & out) -> bool
@@ -762,9 +785,9 @@ namespace Optimist
     }
 
     /**
-     * Reset solver internal counters and variables.
+     * Reset internal counters and flags.
      */
-    void reset()
+    void reset_counters()
     {
       this->m_function_evaluations          = 0;
       this->m_first_derivative_evaluations  = 0;
@@ -888,19 +911,19 @@ namespace Optimist
      */
     void header()
     {
-      std::string c_tl{table_top_left_corner()};
-      std::string c_tr{table_top_right_corner()};
-      std::string h_7{table_horizontal_line<7>()};
-      std::string h_14{table_horizontal_line<14>()};
-      std::string h_23{table_horizontal_line<23>()};
-      std::string h_78{table_horizontal_line<78>()};
-      std::string v_ll{table_vertical_line() + " "};
-      std::string v_rr{" " + table_vertical_line()};
-      std::string v_lc{" " + table_vertical_line() + " "};
-      std::string j_tt{table_top_junction()};
-      std::string j_cc{table_center_cross()};
-      std::string j_ll{table_left_junction()};
-      std::string j_rr{table_right_junction()};
+      static constexpr std::string c_tl{table_top_left_corner()};
+      static constexpr std::string c_tr{table_top_right_corner()};
+      static constexpr std::string h_7{table_horizontal_line<7>()};
+      static std::string h_14{table_horizontal_line<14>()};
+      static std::string h_23{table_horizontal_line<23>()};
+      static std::string h_78{table_horizontal_line<78>()};
+      static constexpr std::string v_ll{table_vertical_line() + " "};
+      static constexpr std::string v_rr{" " + table_vertical_line()};
+      static constexpr std::string v_lc{" " + table_vertical_line() + " "};
+      static constexpr std::string j_tt{table_top_junction()};
+      static constexpr std::string j_cc{table_center_cross()};
+      static constexpr std::string j_ll{table_left_junction()};
+      static constexpr std::string j_rr{table_right_junction()};
 
       *this->m_ostream
         << c_tl << h_78 << c_tr << std::endl
@@ -918,17 +941,17 @@ namespace Optimist
      */
     void bottom()
     {
-      std::string c_bl{table_bottom_left_corner()};
-      std::string c_br{table_bottom_right_corner()};
-      std::string h_7{table_horizontal_line<7>()};
-      std::string h_14{table_horizontal_line<14>()};
-      std::string h_23{table_horizontal_line<23>()};
-      std::string h_78{table_horizontal_line<78>()};
-      std::string v_ll{table_vertical_line() + " "};
-      std::string v_rr{" " + table_vertical_line()};
-      std::string j_ll{table_left_junction()};
-      std::string j_rr{table_right_junction()};
-      std::string j_bb{table_bottom_junction()};
+      static constexpr std::string c_bl{table_bottom_left_corner()};
+      static constexpr std::string c_br{table_bottom_right_corner()};
+      static std::string h_7{table_horizontal_line<7>()};
+      static std::string h_14{table_horizontal_line<14>()};
+      static std::string h_23{table_horizontal_line<23>()};
+      static std::string h_78{table_horizontal_line<78>()};
+      static constexpr std::string v_ll{table_vertical_line() + " "};
+      static constexpr std::string v_rr{" " + table_vertical_line()};
+      static constexpr std::string j_ll{table_left_junction()};
+      static constexpr std::string j_rr{table_right_junction()};
+      static constexpr std::string j_bb{table_bottom_junction()};
 
       *this->m_ostream
         << j_ll << h_7 << j_bb << h_7 << j_bb << h_7 << j_bb << h_7 << j_bb << h_7 << j_bb << h_14 << j_bb << h_23 << j_rr << std::endl
@@ -942,9 +965,9 @@ namespace Optimist
      */
     void info(Scalar residuals, std::string const & notes = "-")
     {
-      std::string v_rr{" " + table_vertical_line()};
-      std::string v_ll{table_vertical_line() + " "};
-      std::string v_lc{" " + table_vertical_line() + " "};
+      static constexpr std::string v_rr{" " + table_vertical_line()};
+      static constexpr std::string v_ll{table_vertical_line() + " "};
+      static constexpr std::string v_lc{" " + table_vertical_line() + " "};
 
       *this->m_ostream << v_ll
         << std::setw(5) << this->m_iterations << v_lc

@@ -50,8 +50,8 @@ namespace Optimist
 
     // If both input and output are eigen types they be both fixed-size, dynamic-size, or sparse
     static_assert(!(InputTrait::IsEigen && OutputTrait::IsEigen) ||
-      (InputTrait::IsFixedSize && OutputTrait::IsFixedSize) ||
-      (InputTrait::IsDynamicSize && OutputTrait::IsDynamicSize) ||
+      (InputTrait::IsFixed && OutputTrait::IsFixed) ||
+      (InputTrait::IsDynamic && OutputTrait::IsDynamic) ||
       (InputTrait::IsSparse && OutputTrait::IsSparse),
       "Input and output Eigen types must be both fixed-size, dynamic-size, or sparse.");
 
