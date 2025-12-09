@@ -33,23 +33,45 @@ namespace Optimist
     /**
      * \brief Class container for the Nelder-Mead's method.
      *
-     * \tparam Real Scalar number type.
-     * \tparam N Dimension of the root-finding problem.
+     * \tparam Vector Eigen vector type.
      */
-    template <typename Real, Integer N>
-    class NelderMead : public Optimizer<Real, N, NelderMead<Real, N>>
+    template <typename Vector>
+    requires TypeTrait<Vector>::IsEigen &&
+      (!TypeTrait<Vector>::IsFixed || TypeTrait<Vector>::Dimension > 0)
+    class NelderMead : public Optimizer<Vector, NelderMead<Vector>>
     {
     public:
       static constexpr bool RequiresFunction{true};
       static constexpr bool RequiresFirstDerivative{false};
       static constexpr bool RequiresSecondDerivative{false};
 
-      using typename Optimizer<Real, N, NelderMead<Real, N>>::Vector;
-      using typename Optimizer<Real, N, NelderMead<Real, N>>::Matrix;
+      using VectorTrait = TypeTrait<Vector>;
+      using Scalar      = typename Vector::Scalar;
 
-      using VectorF = Eigen::Vector<Real, N+1>;
-      using MatrixP = Eigen::Matrix<Real, N, N+1>;
-      using MatrixD = Eigen::Matrix<Real, N+1, N+1>;
+      using Costs = std::conditional_t<VectorTrait::IsFixed,
+        Eigen::Vector<Scalar, VectorTrait::Dimension+1>,
+        std::conditional_t<VectorTrait::IsDynamic,
+          Eigen::Vector<Scalar, Eigen::Dynamic>,
+          Eigen::SparseVector<Scalar>>>;
+      using MatrixX = std::conditional_t<VectorTrait::IsFixed,
+        Eigen::Matrix<Scalar, VectorTrait::Dimension, VectorTrait::Dimension>,
+        std::conditional_t<VectorTrait::IsDynamic,
+          Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>,
+          Eigen::SparseMatrix<Scalar>>>;
+      using Simplex = std::conditional_t<VectorTrait::IsFixed,
+        Eigen::Matrix<Scalar, VectorTrait::Dimension, VectorTrait::Dimension+1>,
+        std::conditional_t<VectorTrait::IsDynamic,
+          Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>,
+          Eigen::SparseMatrix<Scalar>>>;
+      using MatrixD = std::conditional_t<VectorTrait::IsFixed,
+        Eigen::Matrix<Scalar, VectorTrait::Dimension+1, VectorTrait::Dimension+1>,
+        std::conditional_t<VectorTrait::IsDynamic,
+          Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>,
+          Eigen::SparseMatrix<Scalar>>>;
+      using Factorization = std::conditional_t<VectorTrait::IsSparse,
+        Eigen::SparseLU<Simplex>, Eigen::FullPivLU<Simplex>>;
+
+      OPTIMIST_BASIC_CONSTANTS(Scalar)
 
       /**
        * NelderMead move type enumeration.
@@ -65,66 +87,49 @@ namespace Optimist
     private:
       // Solver parameters
       Method m_method{Method::STANDARD}; /**< NelderMead solver method. */
-      Real   m_delta{1.0};               /**< Initial simplex size. */
-      Real   m_rho{1.0};                 /**< Reflection coefficient. */
-      Real   m_chi{2.0};                 /**< Expansion coefficient. */
-      Real   m_gamma{0.5};               /**< Contraction coefficient. */
-      Real   m_sigma{0.25};              /**< Shrink coefficient. */
-      Real   m_volume_tolerance{std::sqrt(this->m_tolerance)}; /**< Simplex volume tolerance. */
+      Scalar m_delta{1.0};               /**< Initial simplex size. */
+      Scalar m_rho{1.0};                 /**< Reflection coefficient. */
+      Scalar m_chi{2.0};                 /**< Expansion coefficient. */
+      Scalar m_gamma{0.5};               /**< Contraction coefficient. */
+      Scalar m_sigma{0.25};              /**< Shrink coefficient. */
+      Scalar m_volume_tolerance{std::sqrt(this->m_tolerance)}; /**< Simplex volume tolerance. */
 
       // Internal variables
-      Real m_dim_factorial{0};          /**< Factorial of the problem dimension. */
-      Real m_regular_simplex_volume{0}; /**< Volume of a regular simplex. */
+      Integer m_dim{0};                    /**< Problem dimension. */
+      Scalar  m_dim_factorial{0};          /**< Factorial of the problem dimension. */
+      Scalar  m_regular_simplex_volume{0}; /**< Volume of a regular simplex. */
 
       Integer m_low{0};  /**< Index of the lowest (best) point. */
       Integer m_mid{0};  /**< Index of the middle point. */
       Integer m_high{0}; /**< Index of the highest (worst) point. */
 
-      VectorF m_f;      /**< Function values at simplex points. */
-      MatrixP m_p;      /**< Simplex points. */
+      Costs m_f;      /**< Function values at simplex points. */
+      Simplex m_p;      /**< Simplex points. */
       MatrixD m_dist;   /**< Distance matrix between simplex points. */
       Vector  m_f_work; /**< Work function values. */
-      Matrix  m_p_work; /**< Work simplex points. */
+      Simplex m_p_work; /**< Work simplex points. */
       Vector  m_p_sum;  /**< Sum of simplex points. */
 
-      Eigen::PartialPivLU<Matrix> m_lu; /**< LU decomposition. */
+      //Factorization m_lu; /**< LU decomposition. */
 
       Vector m_p_r; /**< Reflection point. */
       Vector m_p_e; /**< Expansion point. */
       Vector m_p_c; /**< Contraction point. */
 
-      Real m_diameter{0};       /**< Simplex diameter. */
-      Real m_simplex_volume{0}; /**< Simplex volume. */
+      Scalar m_diameter{0};       /**< Simplex diameter. */
+      Scalar m_simplex_volume{0}; /**< Simplex volume. */
 
     public:
       /**
        * Class constructor for the NelderMead solver.
        */
-      NelderMead()
-      {
-        // Precompute constants
-        this->m_dim_factorial = 1;
-        for (Integer i{2}; i <= N+1; ++i) {this->m_dim_factorial *= i;}
-        this->m_regular_simplex_volume = (std::sqrt(static_cast<Real>(N+1)) /
-          static_cast<Real>(this->m_dim_factorial)) / std::pow(2.0, static_cast<Real>(N)/2.0);
-
-        // Initialize internal variables
-        this->m_f.setZero();
-        this->m_p.setZero();
-        this->m_dist.setZero();
-        this->m_f_work.setZero();
-        this->m_p_work.setZero();
-        this->m_p_sum.setZero();
-        this->m_p_r.setZero();
-        this->m_p_e.setZero();
-        this->m_p_c.setZero();
-      }
+      NelderMead() {}
 
       /**
        * Class constructor for the NelderMead solver.
        * \param[in] delta Initial simplex size.
        */
-       NelderMead(Real const delta) : NelderMead()
+       NelderMead(Scalar const delta) : NelderMead()
       {
         this->delta(delta);
       }
@@ -133,16 +138,7 @@ namespace Optimist
        * Get the NelderMead solver name.
        * \return The NelderMead solver name.
        */
-      constexpr std::string name_impl() const {
-        std::ostringstream os;
-        os << "NelderMead";
-        if (this->m_method == Method::STANDARD) {
-          os << "Standard";
-        } else if (this->m_method == Method::SPENDLEY) {
-          os << "Spendley";
-        }
-        return os.str();
-      }
+      constexpr std::string name_impl() const {return "NelderMead";}
 
       /**
        * Get the enumeration type of the NelderMead solver method.
@@ -154,19 +150,19 @@ namespace Optimist
        * Set the enumeration type of the NelderMead solver method.
        * \param[in] t_method The NelderMead solver enumeration type.
        */
-      void method(Method t_method) {this->m_method = t_method;}
+      void method(Method const t_method) {this->m_method = t_method;}
 
       /**
        * Get the initial simplex size.
        * \return The initial simplex size.
        */
-      Real delta() const {return this->m_delta;}
+      Scalar delta() const {return this->m_delta;}
 
       /**
        * Set the initial simplex size.
        * \param[in] t_delta The initial simplex size.
        */
-      void delta(Real t_delta)
+      void delta(Scalar const t_delta)
       {
         OPTIMIST_ASSERT(t_delta > 0,
           "Optimist::Optimizer::NelderMead::delta(...): invalid input detected.");
@@ -177,13 +173,13 @@ namespace Optimist
        * Get the reflection coefficient.
        * \return The reflection coefficient.
        */
-      Real rho() const {return this->m_rho;}
+      Scalar rho() const {return this->m_rho;}
 
       /**
        * Set the reflection coefficient.
        * \param[in] t_rho The reflection coefficient.
        */
-      void rho(Real t_rho)
+      void rho(Scalar const t_rho)
       {
         OPTIMIST_ASSERT(t_rho > 0,
           "Optimist::Optimizer::NelderMead::rho(...): invalid input detected.");
@@ -194,13 +190,13 @@ namespace Optimist
        * Get the expansion coefficient.
        * \return The expansion coefficient.
        */
-      Real chi() const {return this->m_chi;}
+      Scalar chi() const {return this->m_chi;}
 
       /**
        * Set the expansion coefficient.
        * \param[in] t_chi The expansion coefficient.
        */
-      void chi(Real t_chi)
+      void chi(Scalar const t_chi)
       {
         OPTIMIST_ASSERT(t_chi > 1,
           "Optimist::Optimizer::NelderMead::chi(...): invalid input detected.");
@@ -211,13 +207,13 @@ namespace Optimist
        * Get the contraction coefficient.
        * \return The contraction coefficient.
        */
-      Real gamma() const {return this->m_gamma;}
+      Scalar gamma() const {return this->m_gamma;}
 
       /**
        * Set the contraction coefficient.
        * \param[in] t_gamma The contraction coefficient.
        */
-      void gamma(Real t_gamma)
+      void gamma(Scalar const t_gamma)
       {
         OPTIMIST_ASSERT(t_gamma > 0 && t_gamma < 1,
           "Optimist::Optimizer::NelderMead::gamma(...): invalid input detected.");
@@ -228,13 +224,13 @@ namespace Optimist
        * Get the shrink coefficient.
        * \return The shrink coefficient.
        */
-      Real sigma() const {return this->m_sigma;}
+      Scalar sigma() const {return this->m_sigma;}
 
       /**
        * Set the shrink coefficient.
        * \param[in] t_sigma The shrink coefficient.
        */
-      void sigma(Real t_sigma)
+      void sigma(Scalar const t_sigma)
       {
         OPTIMIST_ASSERT(t_sigma > 0 && t_sigma < 1,
           "Optimist::Optimizer::NelderMead::sigma(...): invalid input detected.");
@@ -245,13 +241,13 @@ namespace Optimist
        * Get the simplex volume tolerance.
        * \return The simplex volume tolerance.
        */
-      Real volume_tolerance() const {return this->m_volume_tolerance;}
+      Scalar volume_tolerance() const {return this->m_volume_tolerance;}
 
       /**
        * Set the simplex volume tolerance.
        * \param[in] t_volume_tolerance The simplex volume tolerance.
        */
-      void volume_tolerance(Real t_volume_tolerance)
+      void volume_tolerance(Scalar const t_volume_tolerance)
       {
         OPTIMIST_ASSERT(t_volume_tolerance > 0,
           "Optimist::Optimizer::NelderMead::volume_tolerance(...): invalid input detected.");
@@ -273,6 +269,64 @@ namespace Optimist
       {
         #define CMD "Optimist::Optimizer::NelderMead::solve_impl(...): "
 
+        // Precompute constants
+        this->m_dim = x_ini.size();
+        this->m_dim_factorial = 1;
+        for (Integer i{2}; i <= this->m_dim+1; ++i) {this->m_dim_factorial *= i;}
+        this->m_regular_simplex_volume = (std::sqrt(static_cast<Scalar>(this->m_dim+1)) /
+          static_cast<Scalar>(this->m_dim_factorial)) / std::pow(2.0, static_cast<Scalar>(this->m_dim)/2.0);
+
+        // Initialize internal variables
+        if constexpr (VectorTrait::IsFixed) {
+          this->m_p.setZero();
+          this->m_dist.setZero();
+          this->m_f.setZero();
+          this->m_f_work.setZero();
+          this->m_p_work.setZero();
+          this->m_p_sum.setZero();
+          this->m_p_r.setZero();
+          this->m_p_e.setZero();
+          this->m_p_c.setZero();
+        } else if constexpr (VectorTrait::IsDynamic) {
+          this->m_p.resize(this->m_dim, this->m_dim+1);
+          this->m_dist.resize(this->m_dim+1, this->m_dim+1);
+          this->m_f.resize(this->m_dim+1);
+          this->m_f_work.resize(this->m_dim+1);
+          this->m_p_work.resize(this->m_dim, this->m_dim+1);
+          this->m_p_sum.resize(this->m_dim);
+          this->m_p_r.resize(this->m_dim);
+          this->m_p_e.resize(this->m_dim);
+          this->m_p_c.resize(this->m_dim);
+          this->m_p.setZero();
+          this->m_dist.setZero();
+          this->m_f.setZero();
+          this->m_f_work.setZero();
+          this->m_p_work.setZero();
+          this->m_p_sum.setZero();
+          this->m_p_r.setZero();
+          this->m_p_e.setZero();
+          this->m_p_c.setZero();
+        } else if constexpr (VectorTrait::IsSparse) {
+          this->m_p.resize(this->m_dim, this->m_dim+1);
+          this->m_dist.resize(this->m_dim+1, this->m_dim+1);
+          this->m_f.resize(this->m_dim+1);
+          this->m_f_work.resize(this->m_dim+1);
+          this->m_p_work.resize(this->m_dim, this->m_dim+1);
+          this->m_p_sum.resize(this->m_dim);
+          this->m_p_r.resize(this->m_dim);
+          this->m_p_e.resize(this->m_dim);
+          this->m_p_c.resize(this->m_dim);
+          this->m_p.reserve(this->m_dim, this->m_dim+1);
+          this->m_dist.reserve(this->m_dim+1, this->m_dim+1);
+          this->m_f.reserve(this->m_dim+1);
+          this->m_f_work.reserve(this->m_dim+1);
+          this->m_p_work.reserve(this->m_dim, this->m_dim+1);
+          this->m_p_sum.reserve(this->m_dim);
+          this->m_p_r.reserve(this->m_dim);
+          this->m_p_e.reserve(this->m_dim);
+          this->m_p_c.reserve(this->m_dim);
+        }
+
         // Initialize simplex
         if (this->m_method == Method::STANDARD) {
           this->diamond(std::forward<FunctionLambda>(function), x_ini, this->m_delta);
@@ -289,8 +343,8 @@ namespace Optimist
         if (this->m_verbose) {this->header();}
 
         this->dist_init();
-        this->m_p_sum.noalias() = this->m_p.col(N);
-        for (Integer i{0}; i < N; ++i) {this->m_p_sum.noalias() += this->m_p.col(i);}
+        this->m_p_sum.noalias() = this->m_p.col(this->m_dim);
+        for (Integer i{0}; i < this->m_dim; ++i) {this->m_p_sum.noalias() += this->m_p.col(i);}
 
         // Algorithm iterations
         Move move{Move::INITIALIZE};
@@ -303,7 +357,7 @@ namespace Optimist
           if (this->m_f(this->m_low) > this->m_f(this->m_mid))  {std::swap(this->m_low, this->m_mid);}
           if (this->m_f(this->m_low) > this->m_f(this->m_high)) {std::swap(this->m_low, this->m_high);}
           if (this->m_f(this->m_mid) > this->m_f(this->m_high)) {std::swap(this->m_mid, this->m_high);}
-          for (Integer i{3}; i <= N; ++i)
+          for (Integer i{3}; i <= this->m_dim; ++i)
           {
             if (this->m_f(i) < this->m_f(this->m_low) ) {
               this->m_low = i; // New minima
@@ -315,12 +369,12 @@ namespace Optimist
             }
           }
 
-          Real f_low{this->m_f(this->m_low)};
-          Real f_mid{this->m_f(this->m_mid)};
-          Real f_high{this->m_f(this->m_high)};
+          Scalar f_low{this->m_f(this->m_low)};
+          Scalar f_mid{this->m_f(this->m_mid)};
+          Scalar f_high{this->m_f(this->m_high)};
 
           // Compute the fractional range from highest to lowest and return if satisfactory
-          Real rtol{std::abs(f_high - f_low) / (std::abs(f_low) + this->m_tolerance)};
+          Scalar rtol{std::abs(f_high - f_low) / (std::abs(f_low) + this->m_tolerance)};
 
           if (this->m_verbose) {
             std::string move_str;
@@ -342,7 +396,7 @@ namespace Optimist
             break;
           }
 
-          Real ratio{std::pow(this->m_simplex_volume / this->m_regular_simplex_volume, 1.0 / N) /
+          Scalar ratio{std::pow(this->m_simplex_volume/this->m_regular_simplex_volume, 1.0/this->m_dim) /
             this->m_diameter};
           if (ratio <= this->m_volume_tolerance)
           {
@@ -356,8 +410,8 @@ namespace Optimist
               OPTIMIST_ERROR(CMD "invalid method detected.");
             }
             this->dist_init();
-            this->m_p_sum.noalias() = this->m_p.col(N);
-            for (Integer i{0}; i < N; ++i) {this->m_p_sum.noalias() += this->m_p.col(i);}
+            this->m_p_sum.noalias() = this->m_p.col(this->m_dim);
+            for (Integer i{0}; i < this->m_dim; ++i) {this->m_p_sum.noalias() += this->m_p.col(i);}
             move = Move::RESTART;
             continue;
           }
@@ -365,9 +419,9 @@ namespace Optimist
           // Begin a new iteration: first extrapolate by a factor alpha (default: −1 a reflection)
           // through the face of the simplex across from the high point, i.e., reflect the simplex
           // from the high point
-          Real f_r{this->reflect(std::forward<FunctionLambda>(function), this->m_p_r)};
+          Scalar f_r{this->reflect(std::forward<FunctionLambda>(function), this->m_p_r)};
           if (f_r < f_low) {
-            Real f_e{this->expand(std::forward<FunctionLambda>(function), this->m_p_e)};
+            Scalar f_e{this->expand(std::forward<FunctionLambda>(function), this->m_p_e)};
             if (f_e < f_r) {
               move = Move::EXPAND_E;
               this->replace_point(f_e, this->m_p_e, this->m_high);
@@ -379,7 +433,7 @@ namespace Optimist
             move = Move::REFLECT;
             this->replace_point(f_r, this->m_p_r, this->m_high);
           } else if (f_r < f_high) {
-            Real f_c{this->outside(std::forward<FunctionLambda>(function), this->m_p_c)};
+            Scalar f_c{this->outside(std::forward<FunctionLambda>(function), this->m_p_c)};
             if (f_c < f_r) {
               move = Move::CONTRACT_O;
               this->replace_point(f_c, this->m_p_c, this->m_high);
@@ -388,7 +442,7 @@ namespace Optimist
               this->replace_point(f_r, this->m_p_r, this->m_high);
             }
           } else {
-            Real f_c{this->inside(std::forward<FunctionLambda>(function), this->m_p_c)};
+            Scalar f_c{this->inside(std::forward<FunctionLambda>(function), this->m_p_c)};
             if (f_c < f_high) {
               move = Move::CONTRACT_I;
               this->replace_point(f_c, this->m_p_c, this->m_high);
@@ -416,7 +470,7 @@ namespace Optimist
        * \param[in] p New simplex point.
        * \param[in] j Index of the point to be replaced.
        */
-      void replace_point(Real const f, Vector const & p, Integer const j)
+      void replace_point(Scalar const f, Vector const & p, Integer const j)
       {
         this->m_f(j)               = f;
         this->m_p_sum             += p - this->m_p.col(j);
@@ -432,20 +486,20 @@ namespace Optimist
        * \param[in] delta Initial simplex size.
        */
       template <typename FunctionLambda>
-      void spendley(FunctionLambda && function, Vector const x, Real const delta)
+      void spendley(FunctionLambda && function, Vector const x, Scalar const delta)
       {
         #define CMD "Optimist::Optimizer::NelderMead::spendley(...): "
 
-        Real t1{std::sqrt(static_cast<Real>(N + 1)) - 1.0};
-        Real t2{static_cast<Real>(N)*std::sqrt(static_cast<Real>(2))};
-        Real p{delta * (N+t1)/t2};
-        Real q{delta * t1/t2};
+        Scalar  const t1{std::sqrt(static_cast<Scalar>(this->m_dim + 1)) - 1.0};
+        Scalar  const t2{static_cast<Scalar>(this->m_dim)*std::sqrt(static_cast<Scalar>(2))};
+        Scalar  const p{delta * (this->m_dim+t1)/t2};
+        Scalar  const q{delta * t1/t2};
         bool success;
-        for (Integer i{0}; i < N; ++i) {this->m_p(i,0) = x(i);}
+        for (Integer i{0}; i < this->m_dim; ++i) {this->m_p(i,0) = x(i);}
         success = this->evaluate_function(std::forward<FunctionLambda>(function), this->m_p.col(0), this->m_f(0));
         OPTIMIST_ASSERT(success,
           CMD "function evaluation failed at the initial point.");
-        for (Integer i{0}; i < N; ++i) {
+        for (Integer i{0}; i < this->m_dim; ++i) {
           this->m_p.col(i+1) = this->m_p.col(0).array()+p;
           this->m_p(i, i+1) += q;
           success = this->evaluate_function(std::forward<FunctionLambda>(function), this->m_p.col(i+1), this->m_f(i+1));
@@ -464,18 +518,18 @@ namespace Optimist
        * \param[in] delta Initial simplex size.
        */
       template <typename FunctionLambda>
-      void diamond(FunctionLambda && function, Vector const x, Real const delta)
+      void diamond(FunctionLambda && function, Vector const x, Scalar const delta)
       {
         #define CMD "Optimist::Optimizer::NelderMead::diamond(...): "
 
         bool success;
-        for (Integer i{0}; i < N; ++i) {this->m_p.row(i).setConstant(x(i));}
+        for (Integer i{0}; i < this->m_dim; ++i) {this->m_p.row(i).setConstant(x(i));}
         success = this->evaluate_function(std::forward<FunctionLambda>(function), x, this->m_f(0));
         OPTIMIST_ASSERT(success,
           CMD "function evaluation failed at the initial point.");
-        for (Integer i{0}; i < N; ++i)
+        for (Integer i{0}; i < this->m_dim; ++i)
         {
-          Real f_p, f_m;
+          Scalar f_p, f_m;
           this->m_p(i, i+1) = x(i) + delta;
           success = this->evaluate_function(std::forward<FunctionLambda>(function), this->m_p.col(i+1), f_p);
           OPTIMIST_ASSERT(success,
@@ -502,7 +556,7 @@ namespace Optimist
       void simplex_volume(Integer k)
       {
         Integer j{0};
-        for (Integer i{0}; i <= N; ++i)
+        for (Integer i{0}; i <= this->m_dim; ++i)
         {
           if (i != k) {
             this->m_p_work.col(j).noalias() = this->m_p.col(i) - this->m_p.col(k);
@@ -519,9 +573,9 @@ namespace Optimist
        */
       void dist_init()
       {
-        for (Integer i{0}; i < N; ++i) {
+        for (Integer i{0}; i < this->m_dim; ++i) {
           this->m_dist(i, i) = 0;
-          for (Integer j{i+1}; j <= N; ++j) {
+          for (Integer j{i+1}; j <= this->m_dim; ++j) {
             this->m_dist(i, j) = (this->m_p.col(i) - this->m_p.col(j)).norm();
             this->m_dist(j, i) = this->m_dist(i, j);
           }
@@ -536,7 +590,7 @@ namespace Optimist
        */
       void dist_update(Integer j)
       {
-        for (Integer i{0}; i <= N; ++i) {
+        for (Integer i{0}; i <= this->m_dim; ++i) {
           if (i != j) {
             this->m_dist(i, j) = (this->m_p.col(i) - this->m_p.col(j) ).norm();
             this->m_dist(j, i) = this->m_dist(i, j);
@@ -557,8 +611,8 @@ namespace Optimist
         #define CMD "Optimist::Optimizer::NelderMead::shrink(...): "
 
         bool success;
-        Real const c_1{1.0 - this->m_sigma}, c_2{this->m_sigma};
-        for (Integer i{0}; i <= N; ++i)
+        Scalar const c_1{1.0 - this->m_sigma}, c_2{this->m_sigma};
+        for (Integer i{0}; i <= this->m_dim; ++i)
         {
           if (i != this->m_low) {
             this->m_p.col(i) = c_1 * this->m_p.col(i) + c_2 * this->m_p.col(this->m_low);
@@ -567,11 +621,11 @@ namespace Optimist
               CMD "function evaluation failed at simplex point " << i << ".");
           }
         }
-        this->m_p_sum.noalias() = this->m_p.col(N);
-        for (Integer i{0}; i < N; ++i) {this->m_p_sum.noalias() += this->m_p.col(i);}
+        this->m_p_sum.noalias() = this->m_p.col(this->m_dim);
+        for (Integer i{0}; i < this->m_dim; ++i) {this->m_p_sum.noalias() += this->m_p.col(i);}
         this->m_dist           *= c_1;
         this->m_diameter       *= c_1;
-        this->m_simplex_volume *= std::pow(c_1, static_cast<Real>(N));
+        this->m_simplex_volume *= std::pow(c_1, static_cast<Scalar>(this->m_dim));
         #undef CMD
       }
 
@@ -585,7 +639,7 @@ namespace Optimist
        * \return Function value at the extrapolated point.
        */
       template <typename FunctionLambda>
-      Real extrapolate(FunctionLambda && function, Real const alpha, Integer const j, Vector & p)
+      Scalar extrapolate(FunctionLambda && function, Scalar const alpha, Integer const j, Vector & p)
       {
         // Extrapolates by a factor alpha through the face of the simplex
         // across from the high point.
@@ -606,10 +660,10 @@ namespace Optimist
 
         #define CMD "Optimist::Optimizer::NelderMead::extrapolate(...): "
 
-        Real const beta_1{(1.0 + alpha)/static_cast<Real>(N)};
-        Real const beta{(static_cast<Real>(N) + 1.0)*beta_1};
+        Scalar const beta_1{(1.0 + alpha)/static_cast<Scalar>(this->m_n)};
+        Scalar const beta{(static_cast<Scalar>(this->m_n) + 1.0)*beta_1};
         p.noalias() = beta_1*this->m_p_sum + (1.0 - beta) * this->m_p.col(j);
-        Real f;
+        Scalar f;
         bool success{this->evaluate_function(std::forward<FunctionLambda>(function), p, f)};
         OPTIMIST_ASSERT(success,
           CMD "function evaluation failed during extrapolation.");
@@ -626,7 +680,7 @@ namespace Optimist
        * \return Function value at the reflected point.
        */
       template <typename FunctionLambda>
-      Real reflect(FunctionLambda && function, Vector & p)
+      Scalar reflect(FunctionLambda && function, Vector & p)
       {
         return this->extrapolate(std::forward<FunctionLambda>(function), this->m_rho, this->m_high, p);
       }
@@ -639,7 +693,7 @@ namespace Optimist
        * \return Function value at the expanded point.
        */
       template <typename FunctionLambda>
-      Real expand(FunctionLambda && function, Vector & p)
+      Scalar expand(FunctionLambda && function, Vector & p)
       {
         return this->extrapolate(std::forward<FunctionLambda>(function), this->m_rho*this->m_chi, this->m_high, p);
       }
@@ -652,7 +706,7 @@ namespace Optimist
        * \return Function value at the outside contracted point.
        */
       template <typename FunctionLambda>
-      Real outside(FunctionLambda && function, Vector & p)
+      Scalar outside(FunctionLambda && function, Vector & p)
       {
         return this->extrapolate(std::forward<FunctionLambda>(function), this->m_rho*this->m_gamma, this->m_high, p);
       }
@@ -665,7 +719,7 @@ namespace Optimist
        * \return Function value at the inside contracted point.
        */
       template <typename FunctionLambda>
-      Real inside(FunctionLambda && function, Vector & p)
+      Scalar inside(FunctionLambda && function, Vector & p)
       {
         return this->extrapolate(std::forward<FunctionLambda>(function), -this->m_gamma, this->m_high, p);
       }

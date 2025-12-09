@@ -37,7 +37,7 @@ namespace Optimist
      * \tparam Scalar Floating-point number type.
      */
     template <typename Scalar, typename DerivedSolver>
-    class Bracketing : public RootFinder<Scalar, Scalar, DerivedSolver>
+    class Bracketing : public RootFinder<Scalar, DerivedSolver>
     {
     public:
       OPTIMIST_BASIC_CONSTANTS(Scalar)

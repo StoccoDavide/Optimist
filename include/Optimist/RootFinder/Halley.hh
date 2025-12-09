@@ -37,7 +37,7 @@ namespace Optimist
      * \tparam Scalar Floating-point number type.
      */
     template <typename Scalar>
-    class Halley : public RootFinder<Scalar, Scalar, Halley<Scalar>>
+    class Halley : public RootFinder<Scalar, Halley<Scalar>>
     {
     public:
       static constexpr bool RequiresFunction{true};

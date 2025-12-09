@@ -37,8 +37,9 @@ namespace Optimist
      * \tparam Vector Eigen vector type.
      */
     template <typename Vector>
-    requires TypeTrait<Vector>::IsEigen
-    class Newton : public RootFinder<Vector, Vector, Newton<Vector>>
+    requires TypeTrait<Vector>::IsEigen &&
+      (!TypeTrait<Vector>::IsFixed || TypeTrait<Vector>::Dimension > 0)
+    class Newton : public RootFinder<Vector, Newton<Vector>>
     {
     public:
       static constexpr bool RequiresFunction{true};
@@ -46,11 +47,10 @@ namespace Optimist
       static constexpr bool RequiresSecondDerivative{false};
 
       using VectorTrait = TypeTrait<Vector>;
-      using Scalar      = typename Vector::Scalar;
-      using typename RootFinder<Vector, Vector, Newton<Vector>>::Vector;
-      using typename RootFinder<Vector, Vector, Newton<Vector>>::Matrix;
+      using Scalar      = typename TypeTrait<Vector>::Scalar;
+      using typename RootFinder<Vector, Newton<Vector>>::FirstDerivative;
       using Factorization = std::conditional_t<VectorTrait::IsSparse,
-        Eigen::SparseLU<Matrix>, Eigen::FullPivLU<Matrix>>;
+        Eigen::SparseLU<FirstDerivative>, Eigen::FullPivLU<FirstDerivative>>;
 
       OPTIMIST_BASIC_CONSTANTS(Scalar)
 
@@ -96,7 +96,7 @@ namespace Optimist
         bool damped, success;
         Scalar residuals, step_norm;
         Vector x_old, x_new, function_old, function_new, step_old, step_new;
-        Matrix jacobian_old;
+        FirstDerivative jacobian_old;
 
         // Set initial iteration
         x_old = x_ini;

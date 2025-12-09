@@ -41,8 +41,8 @@ namespace Optimist
       using VectorTrait = TypeTrait<Vector>;
       using Scalar      = typename Vector::Scalar;
       using typename Function<Vector, Scalar, EllipticParaboloid<Scalar>>::Vector;
-      using typename Function<Vector, Scalar, EllipticParaboloid<Scalar>>::RowVector;
-      using typename Function<Vector, Scalar, EllipticParaboloid<Scalar>>::Matrix;
+      using typename Function<Vector, Scalar, EllipticParaboloid<Scalar>>::FirstDerivative;
+      using typename Function<Vector, Scalar, EllipticParaboloid<Scalar>>::SecondDerivative;
 
       OPTIMIST_BASIC_CONSTANTS(Scalar)
 
@@ -86,7 +86,7 @@ namespace Optimist
        * \param[in] x Input point.
        * \param[out] out The first derivative value.
        */
-      bool first_derivative_impl(Vector const & x, RowVector & out) const
+      bool first_derivative_impl(Vector const & x, FirstDerivative & out) const
       {
         out << 2.0*this->m_a*x(0), 2.0*this->m_b*x(1);
         return out.allFinite();
@@ -97,7 +97,7 @@ namespace Optimist
        * \param[in] x Input point.
        * \param[out] out The second derivative value.
        */
-      bool second_derivative_impl(Vector const & /*x*/, Matrix & out) const
+      bool second_derivative_impl(Vector const & /*x*/, SecondDerivative & out) const
       {
         out << 2.0*this->m_a, 0.0,
                0.0, 2.0*this->m_b;

@@ -38,30 +38,30 @@ namespace Optimist
      *
      * \includedoc docs/markdown/Optimizer.md
      *
-     * \tparam N Dimension of the optimization problem.
+     * \tparam T Input type (scalar or Eigen vector).
      * \tparam DerivedSolver Derived solver class.
-     * \tparam ForceEigen Force the use of Eigen types for input and output.
      */
-    template <typename Real, Integer N, typename DerivedSolver, bool ForceEigen = false>
-    class Optimizer : public SolverBase<Real, N, 1, DerivedSolver, ForceEigen>
+    template <typename T, typename DerivedSolver>
+    requires (TypeTrait<T>::IsScalar || TypeTrait<T>::IsEigen) &&
+      (!TypeTrait<T>::IsFixed || TypeTrait<T>::Dimension > 0)
+    class Optimizer : public SolverBase<T, typename TypeTrait<T>::Scalar, DerivedSolver>
     {
     public:
-      // Fancy static assertions (just for fun, don't take it too seriously)
-      static_assert(N != 0, "Have you ever heard of a zero-dimensional optimization problem?");
-
-      friend class SolverBase<Real, N, 1, Optimizer<Real, N, DerivedSolver, ForceEigen>>;
+      friend class SolverBase<T, typename TypeTrait<T>::Scalar, DerivedSolver>;
 
       static constexpr bool IsRootFinder{false};
       static constexpr bool IsOptimizer{true};
 
-      OPTIMIST_BASIC_CONSTANTS(Real)
-
       // Input and output types
-      using Vector = typename SolverBase<Real, N, 1, DerivedSolver, ForceEigen>::InputType;
+      using Scalar = typename TypeTrait<T>::Scalar;
+      using Input  = T;
+      using Output = Scalar;
 
       // Derivative types
-      using RowVector = typename SolverBase<Real, N, 1, DerivedSolver, ForceEigen>::FirstDerivativeType;
-      using Matrix    = typename SolverBase<Real, N, 1, DerivedSolver, ForceEigen>::SecondDerivativeType;
+      using typename SolverBase<T, Scalar, DerivedSolver>::FirstDerivative;
+      using typename SolverBase<T, Scalar, DerivedSolver>::SecondDerivative;
+
+      OPTIMIST_BASIC_CONSTANTS(Scalar)
 
       /**
        * Class constructor for the multi-dimensional optimizer.
@@ -90,7 +90,7 @@ namespace Optimist
        * Set the number of maximum allowed gradient evaluations.
        * \param[in] t_gradient_evaluations The number of maximum allowed gradient evaluations.
        */
-      void max_gradient_evaluations(Integer t_gradient_evaluations)
+      void max_gradient_evaluations(Integer const t_gradient_evaluations)
       {
         this->max_first_derivative_evaluations(t_gradient_evaluations);
       }
@@ -111,7 +111,7 @@ namespace Optimist
        * Set the number of maximum allowed hessian evaluations.
        * \param[in] t_hessian_evaluations The number of maximum allowed hessian evaluations.
        */
-      void max_hessian_evaluations(Integer t_hessian_evaluations)
+      void max_hessian_evaluations(Integer const t_hessian_evaluations)
       {
         this->max_second_derivative_evaluations(t_hessian_evaluations);
       }
@@ -126,7 +126,7 @@ namespace Optimist
        * \return The boolean flag for successful evaluation.
        */
       template <typename GradientLambda>
-      bool evaluate_gradient(GradientLambda && gradient, Vector const & x, Matrix & out)
+      bool evaluate_gradient(GradientLambda && gradient, Input const & x, FirstDerivative & out)
       {
         return this->evaluate_first_derivative(std::forward<GradientLambda>(gradient), x, out);
       }
@@ -140,7 +140,7 @@ namespace Optimist
        * \return The boolean flag for successful evaluation.
        */
       template <typename HessianLambda>
-      bool evaluate_hessian(HessianLambda && hessian, Vector const & x, Matrix & out)
+      bool evaluate_hessian(HessianLambda && hessian, Input const & x, SecondDerivative & out)
       {
         return this->evaluate_second_derivative(std::forward<HessianLambda>(hessian), x, out);
       }
@@ -154,7 +154,7 @@ namespace Optimist
        * \return The convergence boolean flag.
        */
       template <typename FunctionLambda>
-      bool solve(FunctionLambda && function, Vector const & x_ini, Vector & x_sol)
+      bool solve(FunctionLambda && function, Input const & x_ini, Output & x_sol)
       {
         #define CMD "Optimist::Optimizer::solve(...): "
 
@@ -178,7 +178,8 @@ namespace Optimist
        * \return The convergence boolean flag.
        */
       template <typename FunctionLambda, typename GradientLambda>
-      bool solve(FunctionLambda && function, GradientLambda && gradient, Vector const & x_ini, Vector & x_sol)
+      bool solve(FunctionLambda && function, GradientLambda && gradient, Input const & x_ini,
+        Output & x_sol)
       {
         #define CMD "Optimist::Optimizer::solve(...): "
 
@@ -208,7 +209,7 @@ namespace Optimist
        */
       template <typename FunctionLambda, typename GradientLambda, typename HessianLambda>
       bool solve(FunctionLambda && function, GradientLambda && gradient, HessianLambda && hessian,
-         Vector const & x_ini, Vector & x_sol)
+         Input const & x_ini, Output & x_sol)
       {
         #define CMD "Optimist::Optimizer::solve(...): "
 
@@ -226,38 +227,6 @@ namespace Optimist
 
         #undef CMD
       }
-
-    }; // class Optimizer
-
-    /**
-     * \brief Class container for the scalar optimizer.
-     *
-     * \includedoc docs/markdown/ScalarOptimizer.md
-     *
-     * \tparam Real Scalar number type.
-     * \tparam DerivedSolver Derived solver class.
-     */
-    template <typename Real, typename DerivedSolver>
-    class Optimizer<Real, 1, DerivedSolver> : public SolverBase<Real, 1, 1, DerivedSolver>
-    {
-    public:
-      friend class SolverBase<Real, 1, 1, Optimizer<Real, 1, DerivedSolver>>;
-
-      static constexpr bool IsRootFinder{false};
-      static constexpr bool IsOptimizer{true};
-
-      OPTIMIST_BASIC_CONSTANTS(Real)
-
-      /**
-       * Class constructor for the scalar optimizer.
-       */
-      Optimizer<Real, 1, DerivedSolver>() {}
-
-      /**
-       * Get the solver name.
-       * \return The solver name.
-       */
-      constexpr std::string name() const {return static_cast<const DerivedSolver *>(this)->name_impl();}
 
     }; // class Optimizer
 

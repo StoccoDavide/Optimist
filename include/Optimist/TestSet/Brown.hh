@@ -40,14 +40,9 @@ namespace Optimist
     class Brown : public Function<Input, Output, Brown<Input, Output>>
     {
     private:
-
-      using VectorTraitInput  = TypeTrait<Input>;
-      using VectorTraitOutput = TypeTrait<Output>;
-      using Scalar            = typename Input::Scalar;
-      using typename Function<Input, Output, Brown<Input, Output>>::Input;
-      using typename Function<Input, Output, Brown<Input, Output>>::Output;
-      using typename Function<Input, Output, Brown<Input, Output>>::Matrix;
-      using typename Function<Input, Output, Brown<Input, Output>>::Tensor;
+      using Scalar = typename Input::Scalar;
+      using typename Function<Input, Output, Brown<Input, Output>>::FirstDerivative;
+      using typename Function<Input, Output, Brown<Input, Output>>::SecondDerivative;
 
       Scalar m_a{1.0e-6}; /**< Scaling value (keep it low to guarantee bad scaling). */
 
@@ -75,7 +70,7 @@ namespace Optimist
        * \param[out] out The function value.
        * \return The boolean flag for successful evaluation.
        */
-      bool evaluate_impl(const Input & x, Output & out) const
+      bool evaluate_impl(Input const & x, Output & out) const
       {
         out << x(0) - this->m_a,
                x(1) - 2.0*this->m_a,
@@ -89,7 +84,7 @@ namespace Optimist
        * \param[out] out The first derivative value.
        * \return The boolean flag for successful evaluation.
        */
-      bool first_derivative_impl(const Input & x, Matrix & out) const
+      bool first_derivative_impl(Input const & x, FirstDerivative & out) const
       {
         out << 1.0, 0.0, x(1),
                0.0, 1.0, x(0);
@@ -102,7 +97,7 @@ namespace Optimist
        * \param[out] out The second derivative value.
        * \return The boolean flag for successful evaluation.
        */
-      bool second_derivative_impl(const Input & /*x*/, Tensor & out) const
+      bool second_derivative_impl(Input const & /*x*/, SecondDerivative & out) const
       {
         out.resize(this->output_dimension());
         out[0].setZero();

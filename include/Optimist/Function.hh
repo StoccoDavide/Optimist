@@ -35,6 +35,15 @@ namespace Optimist
    * \tparam DerivedFunction Derived function class.
    */
   template <typename Input, typename Output, typename DerivedFunction>
+  requires std::is_same<typename TypeTrait<Input>::Scalar, typename TypeTrait<Output>::Scalar>::value &&
+    (TypeTrait<Input>::IsScalar || TypeTrait<Input>::IsEigen) &&
+    (TypeTrait<Output>::IsScalar || TypeTrait<Output>::IsEigen) &&
+    (!TypeTrait<Input>::IsFixed || TypeTrait<Input>::Dimension > 0) &&
+    (!TypeTrait<Output>::IsFixed || TypeTrait<Output>::Dimension > 0) &&
+    (!(TypeTrait<Input>::IsEigen && TypeTrait<Output>::IsEigen) ||
+      (TypeTrait<Input>::IsFixed && TypeTrait<Output>::IsFixed) ||
+      (TypeTrait<Input>::IsDynamic && TypeTrait<Output>::IsDynamic) ||
+      (TypeTrait<Input>::IsSparse && TypeTrait<Output>::IsSparse))
   class FunctionBase
   {
   public:
@@ -43,17 +52,6 @@ namespace Optimist
     using InputTrait  = TypeTrait<Input>;
     using OutputTrait = TypeTrait<Output>;
     using Scalar      = typename InputTrait::Scalar;
-
-    // Input and output must have the same scalar type
-    static_assert(std::is_same<Scalar, typename OutputTrait::Scalar>::value,
-      "Input and output scalar types must be the same.");
-
-    // If both input and output are eigen types they be both fixed-size, dynamic-size, or sparse
-    static_assert(!(InputTrait::IsEigen && OutputTrait::IsEigen) ||
-      (InputTrait::IsFixed && OutputTrait::IsFixed) ||
-      (InputTrait::IsDynamic && OutputTrait::IsDynamic) ||
-      (InputTrait::IsSparse && OutputTrait::IsSparse),
-      "Input and output Eigen types must be both fixed-size, dynamic-size, or sparse.");
 
     // Derivative types
     using FirstDerivative = std::conditional_t<InputTrait::IsEigen || OutputTrait::IsEigen,
@@ -91,7 +89,7 @@ namespace Optimist
      * \param[out] out The function value.
      * \return The boolean flag for successful evaluation.
      */
-    bool evaluate(const Input & x, Output & out) const
+    bool evaluate(Input const & x, Output & out) const
     {
       return static_cast<const DerivedFunction *>(this)->evaluate_impl(x, out);
     }
@@ -102,7 +100,7 @@ namespace Optimist
      * \param[out] out The function first derivative.
      * \return The boolean flag for successful evaluation.
      */
-    bool first_derivative(const Input & x, FirstDerivative & out) const
+    bool first_derivative(Input const & x, FirstDerivative & out) const
     {
       return static_cast<const DerivedFunction *>(this)->first_derivative_impl(x, out);
     }
@@ -113,7 +111,7 @@ namespace Optimist
      * \param[out] out The function second derivative.
      * \return The boolean flag for successful evaluation.
      */
-    bool second_derivative(const Input & x, SecondDerivative & out) const
+    bool second_derivative(Input const & x, SecondDerivative & out) const
     {
       return static_cast<const DerivedFunction *>(this)->second_derivative_impl(x, out);
     }
@@ -147,14 +145,14 @@ namespace Optimist
      * \param[in] i The index of the known solution.
      * \return The known solution.
      */
-    const Input & solution(Integer const i) const {return this->m_solutions.at(i);}
+    Input const & solution(Integer const i) const {return this->m_solutions.at(i);}
 
     /**
      * Retrieve the initial guess at the index.
      * \param[in] i The index of the initial guess.
      * \return The initial guess.
      */
-    const Input & guess(Integer const i) const {return this->m_guesses.at(i);}
+    Input const & guess(Integer const i) const {return this->m_guesses.at(i);}
 
     /**
      * Check if the input point is a known solution.
@@ -162,7 +160,7 @@ namespace Optimist
      * \param[in] tol Tolerance.
      * \return True if the input point is a known solution, false otherwise.
      */
-    bool is_solution(const Input & x, Scalar const tol = EPSILON_LOW) const
+    bool is_solution(Input const & x, Scalar const tol = EPSILON_LOW) const
     {
       for (const auto & s : this->m_solutions) {
         if constexpr (InputTrait::IsEigen) {
@@ -200,8 +198,8 @@ namespace Optimist
     friend class FunctionBase<Input, Output, DerivedFunction>;
 
     // Derivative types
-    using Matrix = typename FunctionBase<Input, Output, DerivedFunction>::FirstDerivative;
-    using Tensor = typename FunctionBase<Input, Output, DerivedFunction>::SecondDerivative;
+    using typename FunctionBase<Input, Output, DerivedFunction>::FirstDerivative;
+    using typename FunctionBase<Input, Output, DerivedFunction>::SecondDerivative;
 
     /**
      * Class constructor for the vector-valued function.
@@ -220,7 +218,7 @@ namespace Optimist
      * \param[out] out The function value.
      * \return The boolean flag for successful evaluation.
      */
-    bool evaluate(const Input & x, Output & out) const
+    bool evaluate(Input const & x, Output & out) const
     {
       return static_cast<const DerivedFunction *>(this)->evaluate_impl(x, out);
     }
@@ -231,7 +229,7 @@ namespace Optimist
      * \param[out] out The function first derivative.
      * \return The boolean flag for successful evaluation.
      */
-    bool jacobian(const Input & x, Matrix & out) const
+    bool jacobian(Input const & x, FirstDerivative & out) const
     {
       return static_cast<const DerivedFunction *>(this)->first_derivative_impl(x, out);
     }
@@ -242,7 +240,7 @@ namespace Optimist
      * \param[out] out The function second derivative.
      * \return The boolean flag for successful evaluation.
      */
-    bool hessian(const Input & x, Tensor & out) const
+    bool hessian(Input const & x, SecondDerivative & out) const
     {
       return static_cast<const DerivedFunction *>(this)->second_derivative_impl(x, out);
     }
@@ -254,26 +252,29 @@ namespace Optimist
   /**
    * \brief Class container for the cost function.
    *
-   * \tparam Input Function input type.
+   * \tparam T Input and output type (scalar or Eigen vector).
    * \tparam DerivedFunction Derived cost function class.
    */
-  template <typename Input, typename DerivedFunction>
-  requires TypeTrait<Input>::IsEigen
-  class Function<Input, typename Input::Scalar, DerivedFunction> : public FunctionBase<Input, typename Input::Scalar, DerivedFunction>
+  template <typename T, typename DerivedFunction>
+  requires (TypeTrait<T>::IsScalar || TypeTrait<T>::IsEigen) &&
+      (!TypeTrait<T>::IsFixed || TypeTrait<T>::Dimension > 0)
+  class Function<T, T, DerivedFunction> : public FunctionBase<T, T, DerivedFunction>
   {
   public:
-    friend class FunctionBase<Input, typename Input::Scalar, DerivedFunction>;
+    friend class FunctionBase<T, T, DerivedFunction>;
 
     // Input and output types
-    using Vector = typename FunctionBase<Input, typename Input::Scalar, DerivedFunction>::Input;
+    using Scalar = typename TypeTrait<T>::Scalar;
+    using Input  = T;
+    using Output = T;
 
     // Derivative types
-    using RowVector = typename FunctionBase<Input, typename Input::Scalar, DerivedFunction>::FirstDerivative;
-    using Matrix    = typename FunctionBase<Input, typename Input::Scalar, DerivedFunction>::SecondDerivative;
+    using typename FunctionBase<T, T, DerivedFunction>::FirstDerivative;
+    using typename FunctionBase<T, T, DerivedFunction>::SecondDerivative;
     /**
      * Class constructor for the function.
      */
-    Function<Input, typename Input::Scalar, DerivedFunction>() {}
+    Function<T, T, DerivedFunction>() {}
     /**
      * Get the function name.
      * \return The function name.
@@ -286,7 +287,7 @@ namespace Optimist
      * \param[out] out The function value.
      * \return The boolean flag for successful evaluation.
      */
-    bool evaluate(Vector const & x, Vector & out) const
+    bool evaluate(Input const & x, Output & out) const
     {
       return static_cast<const DerivedFunction *>(this)->evaluate_impl(x, out);
     }
@@ -297,7 +298,7 @@ namespace Optimist
      * \param[out] out The function first derivative.
      * \return The boolean flag for successful evaluation.
      */
-    bool gradient(Vector const & x, RowVector & out) const
+    bool gradient(Input const & x, FirstDerivative & out) const
     {
       return static_cast<const DerivedFunction *>(this)->first_derivative_impl(x, out);
     }
@@ -308,68 +309,7 @@ namespace Optimist
      * \param[out] out The function second derivative.
      * \return The boolean flag for successful evaluation.
      */
-    bool hessian(Vector const & x, Matrix & out) const
-    {
-      return static_cast<const DerivedFunction *>(this)->second_derivative_impl(x, out);
-    }
-
-  }; // class Function
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-  /**
-  * \brief Class container for the scalar function.
-  *
-  * \tparam Scalar Floating-point number type.
-  * \tparam DerivedFunction Derived scalar function class.
-  */
-  template <typename Scalar, typename DerivedFunction>
-  requires std::is_floating_point_v<Scalar>
-  class Function<Scalar, Scalar, DerivedFunction> : public FunctionBase<Scalar, Scalar, DerivedFunction>
-  {
-  public:
-    friend class FunctionBase<Scalar, Scalar, DerivedFunction>;
-
-    /**
-     * Class constructor for the function.
-     */
-    Function<Scalar, Scalar, DerivedFunction>() {}
-
-    /**
-     * Get the function name.
-     * \return The function name.
-     */
-    constexpr std::string name() const {return static_cast<const DerivedFunction *>(this)->name_impl();}
-
-    /**
-     * Compute the function value at the input point.
-     * \param[in] x Input point.
-     * \param[out] out The function value.
-     * \return The boolean flag for successful evaluation.
-     */
-    bool evaluate(Scalar const x, Scalar & out) const
-    {
-      return static_cast<const DerivedFunction *>(this)->evaluate_impl(x, out);
-    }
-
-    /**
-     * Compute the function first derivative at the input point.
-     * \param[in] x Input point.
-     * \param[out] out The function first derivative.
-     * \return The boolean flag for successful evaluation.
-     */
-    bool first_derivative(Scalar const x, Scalar & out) const
-    {
-      return static_cast<const DerivedFunction *>(this)->first_derivative_impl(x, out);
-    }
-
-    /**
-     * Compute the function second derivative at the input point.
-     * \param[in] x Input point.
-     * \param[out] out The function second derivative.
-     * \return The boolean flag for successful evaluation.
-     */
-    bool second_derivative(Scalar const x, Scalar & out) const
+    bool hessian(Input const & x, SecondDerivative & out) const
     {
       return static_cast<const DerivedFunction *>(this)->second_derivative_impl(x, out);
     }

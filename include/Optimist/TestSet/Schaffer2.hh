@@ -40,9 +40,8 @@ namespace Optimist
     public:
       using VectorTrait = TypeTrait<Vector>;
       using Scalar      = typename Vector::Scalar;
-      using typename Function<Vector, typename Vector::Scalar, Schaffer2<Vector>>::Vector;
-      using typename Function<Vector, typename Vector::Scalar, Schaffer2<Vector>>::RowVector;
-      using typename Function<Vector, typename Vector::Scalar, Schaffer2<Vector>>::Matrix;
+      using typename Function<Vector, typename Vector::Scalar, Schaffer2<Vector>>::FirstDerivative;
+      using typename Function<Vector, typename Vector::Scalar, Schaffer2<Vector>>::SecondDerivative;
 
       OPTIMIST_BASIC_CONSTANTS(Scalar)
 
@@ -106,13 +105,13 @@ namespace Optimist
        * \param[out] out The first derivative value.
        * \return The boolean flag for successful evaluation.
        */
-      bool first_derivative_impl(Vector const & x, RowVector & out) const
+      bool first_derivative_impl(Vector const & x, FirstDerivative & out) const
       {
         Scalar xx_0{x(0)*x(0)};
         Scalar xx_1{x(1)*x(1)};
         Scalar xx_0_m_xx_1{xx_0 - xx_1};
         Scalar xx_0_p_xx_1{xx_0 + xx_1};
-        Scalar tmp{1.0 + 0.001*(xx_0_p_xx_1)};
+        Scalar tmp{1.0 + 0.001*xx_0_p_xx_1};
         Scalar tmp2{tmp*tmp}, tmp3{tmp2*tmp};
         out(0) = 2.0*x(0)*std::sin(xx_0_m_xx_1) / tmp2 -
           2.0*0.001*x(0)*std::cos(xx_0_m_xx_1) / tmp3;
@@ -127,7 +126,7 @@ namespace Optimist
        * \param[out] out The second derivative value.
        * \return The boolean flag for successful evaluation.
        */
-      bool second_derivative_impl(Vector const & x, Matrix & out) const
+      bool second_derivative_impl(Vector const & x, SecondDerivative & out) const
       {
         Scalar xx_0{x(0)*x(0)};
         Scalar xx_1{x(1)*x(1)};

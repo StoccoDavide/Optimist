@@ -123,8 +123,8 @@ namespace Optimist
     public:
       using VectorTrait = TypeTrait<Vector>;
       using Scalar      = typename Vector::Scalar;
-      using typename Function<Vector, Vector, Linear1<Vector>>::Matrix;
-      using typename Function<Vector, Vector, Linear1<Vector>>::Tensor;
+      using typename Function<Vector, Vector, Linear1<Vector>>::FirstDerivative;
+      using typename Function<Vector, Vector, Linear1<Vector>>::SecondDerivative;
 
     private:
       Scalar m_m{1.0}; /**< Coefficient \f$ m \f$. */
@@ -197,7 +197,7 @@ namespace Optimist
        * \param[out] out The first derivative value.
        * \return The boolean flag for successful evaluation.
        */
-      bool first_derivative_impl(Vector const & /*x*/, Matrix & out) const
+      bool first_derivative_impl(Vector const & /*x*/, FirstDerivative & out) const
       {
         #define CMD "Optimist::TestSet::Linear1::first_derivative_impl(...): "
 
@@ -224,7 +224,7 @@ namespace Optimist
        * \param[out] out The second derivative value.
        * \return The boolean flag for successful evaluation.
        */
-      bool second_derivative_impl(Vector const & /*x*/, Tensor & out) const
+      bool second_derivative_impl(Vector const & /*x*/, SecondDerivative & out) const
       {
         #define CMD "Optimist::TestSet::Linear1::second_derivative_impl(...): "
 

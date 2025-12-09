@@ -38,31 +38,28 @@ namespace Optimist
      *
      * \includedoc docs/markdown/RootFinder.md
      *
-     * \tparam Input Solver input type.
-     * \tparam Output Solver output type.
+     * \tparam T Input and output type (scalar or Eigen vector).
      * \tparam DerivedSolver Derived solver class.
      */
-    template <typename Input, typename Output, typename DerivedSolver>
-    requires (TypeTrait<Input>::IsScalar && TypeTrait<Output>::IsScalar) ||
-      ((TypeTrait<Input>::IsEigen && TypeTrait<Output>::IsEigen) &&
-      ((TypeTrait<Input>::IsFixed && TypeTrait<Output>::IsFixed) ||
-      (TypeTrait<Input>::IsDynamic && TypeTrait<Output>::IsDynamic) ||
-      (TypeTrait<Input>::IsSparse && TypeTrait<Output>::IsSparse)))
-    class RootFinder : public SolverBase<Input, Output, DerivedSolver>
+    template <typename T, typename DerivedSolver>
+    requires (TypeTrait<T>::IsScalar || TypeTrait<T>::IsEigen) &&
+      (!TypeTrait<T>::IsFixed || TypeTrait<T>::Dimension > 0)
+    class RootFinder : public SolverBase<T, T, DerivedSolver>
     {
     public:
-      friend class SolverBase<Input, Output, DerivedSolver>;
+      friend class SolverBase<T, T, DerivedSolver>;
 
       static constexpr bool IsRootFinder{true};
       static constexpr bool IsOptimizer{false};
 
       // Input and output types
-      using Scalar = typename TypeTrait<Input>::Scalar;
-      using Vector = Input;
+      using Scalar = typename TypeTrait<T>::Scalar;
+      using Input  = T;
+      using Output = T;
 
       // Derivative types
-      using Matrix = typename SolverBase<Input, Output, DerivedSolver>::FirstDerivative;
-      using Tensor = typename SolverBase<Input, Output, DerivedSolver>::SecondDerivative;
+      using typename SolverBase<T, T, DerivedSolver>::FirstDerivative;
+      using typename SolverBase<T, T, DerivedSolver>::SecondDerivative;
 
       OPTIMIST_BASIC_CONSTANTS(Scalar)
 
@@ -93,7 +90,7 @@ namespace Optimist
        * Set the number of maximum allowed Jacobian evaluations.
        * \param[in] t_jacobian_evaluations The number of maximum allowed Jacobian evaluations.
        */
-      void max_jacobian_evaluations(Integer t_jacobian_evaluations)
+      void max_jacobian_evaluations(Integer const t_jacobian_evaluations)
       {
         this->max_first_derivative_evaluations(t_jacobian_evaluations);
       }
@@ -114,7 +111,7 @@ namespace Optimist
        * Set the number of maximum allowed Hessian evaluations.
        * \param[in] t_hessian_evaluations The number of maximum allowed Hessian evaluations.
        */
-      void max_hessian_evaluations(Integer t_hessian_evaluations)
+      void max_hessian_evaluations(Integer const t_hessian_evaluations)
       {
         this->max_first_derivative_evaluations(t_hessian_evaluations);
       }
@@ -129,7 +126,7 @@ namespace Optimist
        * \return The boolean flag for successful evaluation.
        */
       template <typename JacobianLambda>
-      bool evaluate_jacobian(JacobianLambda && jacobian, Vector const & x, Matrix & out)
+      bool evaluate_jacobian(JacobianLambda && jacobian, Input const & x, FirstDerivative & out)
       {
         return this->evaluate_first_derivative(std::forward<JacobianLambda>(jacobian), x, out);
       }
@@ -143,7 +140,7 @@ namespace Optimist
        * \return The boolean flag for successful evaluation.
        */
       template <typename HessianLambda>
-      bool evaluate_hessian(HessianLambda && hessian, Vector const & x, Matrix & out)
+      bool evaluate_hessian(HessianLambda && hessian, Input const & x, SecondDerivative & out)
       {
         return this->evaluate_second_derivative(std::forward<HessianLambda>(hessian), x, out);
       }
@@ -158,7 +155,7 @@ namespace Optimist
        * \return The convergence boolean flag.
        */
       template <typename FunctionLambda>
-      bool solve(FunctionLambda && function, Vector const & x_ini, Vector & x_sol)
+      bool solve(FunctionLambda && function, Input const & x_ini, Output & x_sol)
       {
         #define CMD "Optimist::RootFinder::solve(...): "
 
@@ -182,8 +179,8 @@ namespace Optimist
        * \return The convergence boolean flag.
        */
       template <typename FunctionLambda, typename JacobianLambda>
-      bool solve(FunctionLambda && function, JacobianLambda && jacobian, Vector const & x_ini,
-        Vector & x_sol)
+      bool solve(FunctionLambda && function, JacobianLambda && jacobian, Input const & x_ini,
+        Output & x_sol)
       {
         #define CMD "Optimist::RootFinder::solve(...): "
 
@@ -213,7 +210,7 @@ namespace Optimist
        */
       template <typename FunctionLambda, typename JacobianLambda, typename HessianLambda>
       bool solve(FunctionLambda && function, JacobianLambda && jacobian, HessianLambda && hessian,
-        Vector const & x_ini, Vector & x_sol)
+        Input const & x_ini, Output & x_sol)
       {
         #define CMD "Optimist::RootFinder::solve(...): "
 
@@ -230,100 +227,6 @@ namespace Optimist
           x_ini, x_sol);
 
         #undef CMD
-      }
-
-    }; // class RootFinder
-
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    /**
-     * \brief Class container for the scalar scalar root-finder.
-     *
-     * \includedoc docs/markdown/RootFinder.md
-     *
-     * \tparam Scalar Scalar number type.
-     * \tparam DerivedSolver Derived solver class.
-     */
-    template <typename Scalar, typename DerivedSolver>
-    requires TypeTrait<Scalar>::IsScalar
-    class RootFinder<Scalar, Scalar, DerivedSolver> : public SolverBase<Scalar, Scalar, DerivedSolver>
-    {
-    public:
-      friend class SolverBase<Scalar, Scalar, DerivedSolver>;
-
-      static constexpr bool IsRootFinder{true};
-      static constexpr bool IsOptimizer{false};
-
-      OPTIMIST_BASIC_CONSTANTS(Scalar)
-
-      /**
-       * Class constructor for the scalar root-finder.
-       */
-      RootFinder<Scalar, 1, DerivedSolver>() {}
-
-      /**
-       * Get the solver name.
-       * \return The solver name.
-       */
-      constexpr std::string name() const {return static_cast<const DerivedSolver *>(this)->name_impl();}
-
-      /**
-       * Solve the root-finding problem given the function, and without derivatives.
-       * \tparam FunctionLambda The lambda function type.
-       * \param[in] function Function lambda.
-       * \param[in] x_ini Initialization point.
-       * \param[out] x_sol Solution point.
-       * \return The convergence boolean flag.
-       */
-      template <typename FunctionLambda>
-      bool solve(FunctionLambda && function, Scalar x_ini, Scalar & x_sol)
-      {
-        return static_cast<DerivedSolver *>(this)->solve_impl(
-          std::forward<FunctionLambda>(function),
-          x_ini, x_sol);
-      }
-
-      /**
-       * Solve the root-finding problem given the function, and its first derivative.
-       * \tparam FunctionLambda The lambda function type.
-       * \tparam FirstDerivativeLambda The first derivative lambda type.
-       * \param[in] function Function lambda.
-       * \param[in] first_derivative First derivative lambda.
-       * \param[in] x_ini Initialization point.
-       * \param[out] x_sol Solution point.
-       * \return The convergence boolean flag.
-       */
-       template <typename FunctionLambda, typename FirstDerivativeLambda>
-      bool solve(FunctionLambda && function, FirstDerivativeLambda && first_derivative, Scalar x_ini,
-        Scalar & x_sol)
-      {
-        return static_cast<DerivedSolver *>(this)->solve_impl(
-          std::forward<FunctionLambda>(function),
-          std::forward<FirstDerivativeLambda>(first_derivative),
-          x_ini, x_sol);
-      }
-
-      /**
-       * Solve the root-finding problem given the function, and its first and second derivatives.
-       * \tparam FunctionLambda The lambda function type.
-       * \tparam FirstDerivativeLambda The first derivative lambda type.
-       * \tparam SecondDerivativeLambda The second derivative lambda type.
-       * \param[in] function Function lambda.
-       * \param[in] first_derivative First derivative lambda.
-       * \param[in] second_derivate Second derivative lambda.
-       * \param[in] x_ini Initialization point.
-       * \param[out] x_sol Solution point.
-       * \return The convergence boolean flag.
-       */
-      template <typename FunctionLambda, typename FirstDerivativeLambda, typename SecondDerivativeLambda>
-      bool solve(FunctionLambda && function, FirstDerivativeLambda && first_derivative, SecondDerivativeLambda
-        && second_derivate, Scalar const x_ini, Scalar & x_sol)
-      {
-        return static_cast<DerivedSolver *>(this)->solve_impl(
-          std::forward<FunctionLambda>(function),
-          std::forward<FirstDerivativeLambda>(first_derivative),
-          std::forward<SecondDerivativeLambda>(second_derivate),
-          x_ini, x_sol);
       }
 
     }; // class RootFinder

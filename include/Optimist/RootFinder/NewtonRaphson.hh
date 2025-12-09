@@ -35,7 +35,7 @@ namespace Optimist
      * \tparam Scalar Scalar number type.
      */
     template <typename Scalar>
-    class NewtonRaphson : public RootFinder<Scalar, Scalar, NewtonRaphson<Scalar>>
+    class NewtonRaphson : public RootFinder<Scalar, NewtonRaphson<Scalar>>
     {
     public:
       static constexpr bool RequiresFunction{true};

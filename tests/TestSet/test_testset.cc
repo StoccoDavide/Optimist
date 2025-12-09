@@ -13,7 +13,7 @@
 #include "Optimist/TestSet.hh"
 #include "Optimist/RootFinder/NewtonRaphson.hh" // For testing scalar functions
 #include "Optimist/RootFinder/Newton.hh"        // For testing vector functions
-#include "Optimist/RootFinder/NelderMead.hh"    // For testing cost functions
+#include "Optimist/Optimizer/NelderMead.hh"    // For testing cost functions
 
 // Test functions for the Optimist library
 // Google Test framework
@@ -58,9 +58,9 @@ TYPED_TEST(ScalarFunctions, Solve) {
   sol.tolerance(std::sqrt(Function::EPSILON));
 
   bool converged_at_least_once{false};
+  Scalar x_out;
   for (size_t i{0}; i < fun.guesses().size(); ++i) {
-    Scalar x_ini{fun.guess(i)}, x_out;
-    sol.rootfind(fun, x_ini, x_out);
+    sol.rootfind(fun, fun.guess(i), x_out);
 
     // Check convergence
     if (sol.converged() && fun.is_solution(x_out, std::cbrt(Function::EPSILON))) {
@@ -132,9 +132,9 @@ TYPED_TEST(VectorFunctions, Solve) {
   sol.tolerance(std::sqrt(Function::EPSILON));
 
   bool converged_at_least_once{false};
+  Vector x_out;
   for (size_t i{0}; i < fun.guesses().size(); ++i) {
-    Vector x_ini{fun.guess(i)}, x_out;
-    sol.rootfind(fun, x_ini, x_out);
+    sol.rootfind(fun, fun.guess(i), x_out);
 
     // Check convergence
     if (sol.converged() && fun.is_solution(x_out, std::cbrt(Function::EPSILON))) {
@@ -143,6 +143,12 @@ TYPED_TEST(VectorFunctions, Solve) {
   }
   ASSERT_TRUE(converged_at_least_once);
 }
+
+// Type-parameterized test fixture for cost functions
+template <typename FunctionType>
+struct CostFunctions : public testing::Test {
+    using TestType = FunctionType;
+};
 
 // Type-parameterized test fixture for cost functions
 using CostTestTypes = testing::Types<
@@ -167,25 +173,26 @@ using CostTestTypes = testing::Types<
 >;
 
 // Register the type-parameterized cost function tests
-TYPED_TEST_SUITE(VectorFunctions, CostTestTypes);
+TYPED_TEST_SUITE(CostFunctions, CostTestTypes);
 
 // Test to solve cost functions
-TYPED_TEST(VectorFunctions, SolveCost) {
+TYPED_TEST(CostFunctions, SolveCost) {
   // Retrieve the function and vector types
   using Function = TypeParam;
   using Vector   = typename Function::VectorTrait::Type;
 
   // Create function and solver instances
   Function fun;
-  Optimist::RootFinder::NelderMead<Vector> sol;
+  Optimist::Optimizer::NelderMead<Vector> sol;
   sol.task(fun.name());
-  sol.verbose_mode(false);
+  sol.verbose_mode(true);
   sol.tolerance(std::sqrt(Function::EPSILON));
 
   bool converged_at_least_once{false};
+  Vector x_out;
   for (size_t i{0}; i < fun.guesses().size(); ++i) {
-    Vector x_ini{fun.guess(i)}, x_out;
-    sol.minimize(fun, x_ini, x_out);
+    sol.optimize(fun, fun.guess(i), x_out);
+
     // Check convergence
     if (sol.converged() && fun.is_solution(x_out, std::cbrt(Function::EPSILON))) {
       converged_at_least_once = true;

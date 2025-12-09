@@ -37,7 +37,7 @@ namespace Optimist
      * \tparam Scalar Floating-point number type.
      */
     template <typename Scalar>
-    class Chebyshev : public RootFinder<Scalar, Scalar, Chebyshev<Scalar>>
+    class Chebyshev : public RootFinder<Scalar, Chebyshev<Scalar>>
     {
     public:
       static constexpr bool RequiresFunction{true};

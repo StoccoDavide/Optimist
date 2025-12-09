@@ -38,6 +38,15 @@ namespace Optimist
   * \tparam DerivedSolver Derived solver class.
   */
   template <typename Input, typename Output, typename DerivedSolver>
+  requires std::is_same<typename TypeTrait<Input>::Scalar, typename TypeTrait<Output>::Scalar>::value &&
+    (TypeTrait<Input>::IsScalar || TypeTrait<Input>::IsEigen) &&
+    (TypeTrait<Output>::IsScalar || TypeTrait<Output>::IsEigen) &&
+    (!TypeTrait<Input>::IsFixed || TypeTrait<Input>::Dimension > 0) &&
+    (!TypeTrait<Output>::IsFixed || TypeTrait<Output>::Dimension > 0) &&
+    (!(TypeTrait<Input>::IsEigen && TypeTrait<Output>::IsEigen) ||
+      (TypeTrait<Input>::IsFixed && TypeTrait<Output>::IsFixed) ||
+      (TypeTrait<Input>::IsDynamic && TypeTrait<Output>::IsDynamic) ||
+      (TypeTrait<Input>::IsSparse && TypeTrait<Output>::IsSparse))
   class SolverBase
   {
   public:
@@ -174,7 +183,7 @@ namespace Optimist
      * Reset lower and upper bounds to default values.
      * \param[in] n Input dimension for dynamic-size types.
      */
-    void reset_bounds(Integer n = InputTrait::IsDynamic ? 0 : InputTrait::Dimension)
+    void reset_bounds(Integer const n = InputTrait::IsDynamic ? 0 : InputTrait::Dimension)
     {
       #define CMD "Optimist::Solver::reset_bounds(...): "
 
@@ -297,7 +306,7 @@ namespace Optimist
      * Set the number of maximum allowed function evaluations.
      * \param[in] t_max_function_evaluations The number of maximum allowed function evaluations.
      */
-    void max_function_evaluations(Integer t_max_function_evaluations)
+    void max_function_evaluations(Integer const t_max_function_evaluations)
     {
       OPTIMIST_ASSERT(t_max_function_evaluations > 0,
         "Optimist::Solver::max_function_evaluations(...): invalid input detected.");
@@ -325,13 +334,13 @@ namespace Optimist
 
     /**
      * Set the number of maximum allowed first derivative evaluations.
-     * \param[in] first_derivative_evaluations The number of maximum allowed first derivative evaluations.
+     * \param[in] t_first_derivative_evaluations The number of maximum allowed first derivative evaluations.
      */
-    void max_first_derivative_evaluations(Integer first_derivative_evaluations)
+    void max_first_derivative_evaluations(Integer const t_first_derivative_evaluations)
     {
-      OPTIMIST_ASSERT(first_derivative_evaluations > 0,
+      OPTIMIST_ASSERT(t_first_derivative_evaluations > 0,
         "Optimist::Solver::max_first_derivative_evaluations(...): invalid input detected.");
-      this->m_max_first_derivative_evaluations = first_derivative_evaluations;
+      this->m_max_first_derivative_evaluations = t_first_derivative_evaluations;
     }
 
     /**
@@ -348,13 +357,13 @@ namespace Optimist
 
     /**
      * Set the number of maximum allowed second derivative evaluations.
-     * \param[in] second_derivative_evaluations The number of maximum allowed second derivative evaluations.
+     * \param[in] t_second_derivative_evaluations The number of maximum allowed second derivative evaluations.
      */
-    void max_second_derivative_evaluations(Integer second_derivative_evaluations)
+    void max_second_derivative_evaluations(Integer const t_second_derivative_evaluations)
     {
-      OPTIMIST_ASSERT(second_derivative_evaluations > 0,
+      OPTIMIST_ASSERT(t_second_derivative_evaluations > 0,
         "Optimist::Solver::max_second_derivative_evaluations(...): invalid input detected.");
-      this->m_max_second_derivative_evaluations = second_derivative_evaluations;
+      this->m_max_second_derivative_evaluations = t_second_derivative_evaluations;
     }
 
   public:
@@ -373,7 +382,7 @@ namespace Optimist
      * Set the number of maximum allowed iterations.
      * \param[in] t_max_iterations The number of maximum allowed iterations.
      */
-    void max_iterations(Integer t_max_iterations) {
+    void max_iterations(Integer const t_max_iterations) {
       OPTIMIST_ASSERT(t_max_iterations > 0,
         "Optimist::Solver::max_iterations(...): invalid input detected.");
       this->m_max_iterations = t_max_iterations;
@@ -413,7 +422,7 @@ namespace Optimist
      * Set the number of maximum allowed relaxations.
      * \param[in] t_max_relaxations The number of maximum allowed relaxations.
      */
-    void max_relaxations(Integer t_max_relaxations)
+    void max_relaxations(Integer const t_max_relaxations)
     {
       OPTIMIST_ASSERT(t_max_relaxations > 0,
         "Optimist::Solver::max_relaxations(...): invalid input detected.");

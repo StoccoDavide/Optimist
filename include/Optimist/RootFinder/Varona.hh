@@ -35,7 +35,7 @@ namespace Optimist
      * \tparam Scalar Floating-point number type.
      */
     template <typename Scalar>
-    class Varona : public RootFinder<Scalar, Scalar, Varona<Scalar>>
+    class Varona : public RootFinder<Scalar, Varona<Scalar>>
     {
     public:
       static constexpr bool RequiresFunction{true};

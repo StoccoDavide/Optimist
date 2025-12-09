@@ -46,8 +46,8 @@ namespace Optimist
     public:
       using VectorTrait = TypeTrait<Vector>;
       using Scalar      = typename Vector::Scalar;
-      using typename Function<Vector, Vector, Rosenbrock<Vector, N>>::Matrix;
-      using typename Function<Vector, Vector, Rosenbrock<Vector, N>>::Tensor;
+      using typename Function<Vector, Vector, Rosenbrock<Vector, N>>::FirstDerivative;
+      using typename Function<Vector, Vector, Rosenbrock<Vector, N>>::SecondDerivative;
 
       OPTIMIST_BASIC_CONSTANTS(Scalar)
 
@@ -138,7 +138,7 @@ namespace Optimist
        * \param[out] out The first derivative value.
        * \return The boolean flag for successful evaluation.
        */
-      bool first_derivative_impl(Vector const & x, Matrix & out) const
+      bool first_derivative_impl(Vector const & x, FirstDerivative & out) const
       {
         #define CMD "Optimist::TestSet::Rosenbrock<" + std::to_string(N) + ">::first_derivative_impl(...): "
 
@@ -167,7 +167,7 @@ namespace Optimist
             out.coeffRef(i+1, i) = -1.0;
           }
           for (Integer k{0}; k < out.outerSize(); ++k) {
-            for (typename Matrix::InnerIterator it(out, k); it; ++it) {
+            for (typename FirstDerivative::InnerIterator it(out, k); it; ++it) {
               if (!std::isfinite(it.value())) {return false;}
             }
           }
@@ -186,12 +186,12 @@ namespace Optimist
        * \param[out] out The second derivative value.
        * \return The boolean flag for successful evaluation.
        */
-      bool second_derivative_impl(Vector const & /*x*/, Tensor & out) const
+      bool second_derivative_impl(Vector const & /*x*/, SecondDerivative & out) const
       {
         #define CMD "Optimist::TestSet::Rosenbrock<" + std::to_string(N) + ">::second_derivative_impl(...): "
 
         out.resize(N);
-        std::for_each(out.begin(), out.end(), [] (Matrix & m) {
+        std::for_each(out.begin(), out.end(), [] (auto & m) {
           if constexpr (VectorTrait::IsFixed) {
             m.setZero();
             for (Integer j{0}; j < N; j += 2) {
