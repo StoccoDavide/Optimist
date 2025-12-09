@@ -45,9 +45,7 @@ namespace Optimist
     {
     public:
       using VectorTrait = TypeTrait<Vector>;
-      using Scalar = typename Vector::Scalar;
-      using typename Function<Vector, Vector, Rosenbrock<Vector, N>>::Input;
-      using typename Function<Vector, Vector, Rosenbrock<Vector, N>>::Output;
+      using Scalar      = typename Vector::Scalar;
       using typename Function<Vector, Vector, Rosenbrock<Vector, N>>::Matrix;
       using typename Function<Vector, Vector, Rosenbrock<Vector, N>>::Tensor;
 
@@ -55,15 +53,35 @@ namespace Optimist
 
       /**
        * Class constructor for the extended Rosenbrock function.
-       * \param[in] n Input dimension (must be even).
        */
       Rosenbrock()
       {
-        this->m_solutions.emplace_back(Output::Ones());
-        this->m_guesses.emplace_back(Input::Ones());
-        for (Integer i{0}; i < N; i += 2) {
-          this->m_guesses[0](i) = -1.2;
-          this->m_guesses[0](i+1) = 1.0;
+        this->m_solutions.resize(1);
+        this->m_guesses.resize(1);
+        if constexpr (VectorTrait::IsFixed) {
+          this->m_solutions[0].setConstant(1.0);
+          for (Integer i{0}; i < N; i += 2) {
+            this->m_guesses[0](i) = -1.2;
+            this->m_guesses[0](i+1) = 1.0;
+          }
+        } else if constexpr (VectorTrait::IsDynamic) {
+          this->m_solutions[0].resize(N);
+          this->m_solutions[0].setConstant(1.0);
+          this->m_guesses[0].resize(N);
+          for (Integer i{0}; i < N; i += 2) {
+            this->m_guesses[0](i) = -1.2;
+            this->m_guesses[0](i+1) = 1.0;
+          }
+        } else if constexpr (VectorTrait::IsSparse) {
+          this->m_solutions[0].resize(N); this->m_solutions[0].reserve(N);
+          for (Integer i{0}; i < N; ++i) {
+            this->m_solutions[0].coeffRef(i) = 1.0;
+          }
+          this->m_guesses[0].resize(N); this->m_guesses[0].reserve(N);
+          for (Integer i{0}; i < N; i += 2) {
+            this->m_guesses[0].coeffRef(i) = -1.2;
+            this->m_guesses[0].coeffRef(i+1) = 1.0;
+          }
         }
       }
 
@@ -79,13 +97,39 @@ namespace Optimist
        * \param[out] out The function value.
        * \return The boolean flag for successful evaluation.
        */
-      bool evaluate_impl(Input const & x, Output & out) const
+      bool evaluate_impl(Vector const & x, Vector & out) const
       {
-        for (Integer i{0}; i < N; i += 2) {
-          out(i)   = 10.0*(x(i+1) - x(i)*x(i));
-          out(i+1) = 1.0 - x(i);
+        #define CMD "Optimist::TestSet::Rosenbrock<" + std::to_string(N) + ">::evaluate_impl(...): "
+
+        if constexpr (VectorTrait::IsFixed) {
+          for (Integer i{0}; i < N; i += 2) {
+            out(i)   = 10.0*(x(i+1) - x(i)*x(i));
+            out(i+1) = 1.0 - x(i);
+          }
+          return out.allFinite();
+        } else if constexpr (VectorTrait::IsDynamic) {
+          out.resize(N);
+          for (Integer i{0}; i < N; i += 2) {
+            out(i)   = 10.0*(x(i+1) - x(i)*x(i));
+            out(i+1) = 1.0 - x(i);
+          }
+          return out.allFinite();
+        } else if constexpr (VectorTrait::IsSparse) {
+          out.resize(N); out.reserve(N);
+          for (Integer i{0}; i < N; i += 2) {
+            out.coeffRef(i) = 10.0*(x.coeff(i+1) - x.coeff(i)*x.coeff(i));
+            out.coeffRef(i+1) = 1.0 - x.coeff(i);
+          }
+          for (typename Vector::InnerIterator it(out); it; ++it) {
+            if (!std::isfinite(it.value())) {return false;}
+          }
+          return true;
+        } else {
+          OPTIMIST_ERROR(CMD "input type not supported.");
+          return false;
         }
-        return out.allFinite();
+
+        #undef CMD
       }
 
       /**
@@ -94,15 +138,46 @@ namespace Optimist
        * \param[out] out The first derivative value.
        * \return The boolean flag for successful evaluation.
        */
-      bool first_derivative_impl(Input const & x, Matrix & out) const
+      bool first_derivative_impl(Vector const & x, Matrix & out) const
       {
-        out.setZero();
-        for (Integer i{0}; i < N; i += 2) {
-          out(i, i)   = -20.0*x(i);
-          out(i, i+1) = 10.0;
-          out(i+1, i) = -1.0;
+        #define CMD "Optimist::TestSet::Rosenbrock<" + std::to_string(N) + ">::first_derivative_impl(...): "
+
+        if constexpr (VectorTrait::IsFixed) {
+          out.setZero();
+          for (Integer i{0}; i < N; i += 2) {
+            out(i, i)   = -20.0*x(i);
+            out(i, i+1) = 10.0;
+            out(i+1, i) = -1.0;
+          }
+          return out.allFinite();
+        } else if constexpr (VectorTrait::IsDynamic) {
+          out.resize(N, N);
+          out.setZero();
+          for (Integer i{0}; i < N; i += 2) {
+            out(i, i)   = -20.0*x(i);
+            out(i, i+1) = 10.0;
+            out(i+1, i) = -1.0;
+          }
+          return out.allFinite();
+        } else if constexpr (VectorTrait::IsSparse) {
+          out.resize(N, N); out.reserve(N*N);
+          for (Integer i{0}; i < N; i += 2) {
+            out.coeffRef(i, i)   = -20.0*x.coeff(i);
+            out.coeffRef(i, i+1) = 10.0;
+            out.coeffRef(i+1, i) = -1.0;
+          }
+          for (Integer k{0}; k < out.outerSize(); ++k) {
+            for (typename Matrix::InnerIterator it(out, k); it; ++it) {
+              if (!std::isfinite(it.value())) {return false;}
+            }
+          }
+          return true;
+        } else {
+          OPTIMIST_ERROR(CMD "input type not supported.");
+          return false;
         }
-        return out.allFinite();
+
+        #undef CMD
       }
 
       /**
@@ -111,16 +186,34 @@ namespace Optimist
        * \param[out] out The second derivative value.
        * \return The boolean flag for successful evaluation.
        */
-      bool second_derivative_impl(Input const & /*x*/, Tensor & out) const
+      bool second_derivative_impl(Vector const & /*x*/, Tensor & out) const
       {
-        out.resize(this->output_dimension());
-        for (size_t i{0}; i < out.size(); ++i) {
-          out[i].setZero();
-          for (Integer j{0}; j < N; j += 2) {
-            out[i](j, j) = -20.0;
+        #define CMD "Optimist::TestSet::Rosenbrock<" + std::to_string(N) + ">::second_derivative_impl(...): "
+
+        out.resize(N);
+        std::for_each(out.begin(), out.end(), [] (Matrix & m) {
+          if constexpr (VectorTrait::IsFixed) {
+            m.setZero();
+            for (Integer j{0}; j < N; j += 2) {
+              m(j, j) = -20.0;
+            }
+          } else if constexpr (VectorTrait::IsDynamic) {
+            m.resize(N, N); m.setZero();
+            for (Integer j{0}; j < N; j += 2) {
+              m(j, j) = -20.0;
+            }
+          } else if constexpr (VectorTrait::IsSparse) {
+            m.resize(N, N); m.setZero();
+            for (Integer j{0}; j < N; j += 2) {
+              m.coeffRef(j, j) = -20.0;
+            }
+          } else {
+            OPTIMIST_ERROR(CMD "input type not supported.");
           }
-        }
+        });
         return true;
+
+        #undef CMD
       }
 
     }; // class Rosenbrock

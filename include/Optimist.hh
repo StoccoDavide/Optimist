@@ -122,6 +122,7 @@ namespace Optimist
   struct TypeTrait<ScalarType, std::enable_if_t<std::is_floating_point<ScalarType>::value>>
   {
     using Scalar = ScalarType;
+    using Type   = ScalarType;
     static constexpr Integer Dimension{1};
     static constexpr bool IsScalar{true};
     static constexpr bool IsEigen{false};
@@ -139,6 +140,7 @@ namespace Optimist
   struct TypeTrait<Eigen::Matrix<ScalarType, N, 1>, std::enable_if_t<(N > 0)>>
   {
     using Scalar = ScalarType;
+    using Type   = Eigen::Matrix<ScalarType, N, 1>;
     static constexpr Integer Dimension{N};
     static constexpr bool IsScalar{false};
     static constexpr bool IsEigen{true};
@@ -155,6 +157,7 @@ namespace Optimist
   struct TypeTrait<Eigen::Matrix<ScalarType, Eigen::Dynamic, 1>>
   {
     using Scalar = ScalarType;
+    using Type   = Eigen::Matrix<ScalarType, Eigen::Dynamic, 1>;
     static constexpr Integer Dimension{Eigen::Dynamic};
     static constexpr bool IsScalar{false};
     static constexpr bool IsEigen{true};
@@ -171,6 +174,7 @@ namespace Optimist
   struct TypeTrait<Eigen::SparseVector<ScalarType>>
   {
     using Scalar = ScalarType;
+    using Type   = Eigen::SparseVector<ScalarType>;
     static constexpr Integer Dimension{Eigen::Dynamic};
     static constexpr bool IsScalar{false};
     static constexpr bool IsEigen{true};
@@ -187,6 +191,7 @@ namespace Optimist
   struct TypeTrait<Eigen::SparseMatrix<ScalarType, Options, StorageIndex>>
   {
     using Scalar = ScalarType;
+    using Type   = Eigen::SparseMatrix<ScalarType, Options, StorageIndex>;
     static constexpr Integer Dimension{Eigen::Dynamic};
     static constexpr bool IsScalar{false};
     static constexpr bool IsEigen{true};
@@ -196,39 +201,9 @@ namespace Optimist
   };
 
   /**
-   * Traits class for understanding if two types are the comaptible (fallback).
-   * \tparam FirstType The first type.
-   * \tparam SecondType The second type.
-   */
-  template <typename FirstType, typename SecondType>
-  struct AreCompatibleTypes;
-
-  /**
-   * Traits class for understanding if two types are the comaptible.
-   * Specialization for compatible types.
-   * \tparam FirstType The first type.
-   * \tparam SecondType The second type.
-   */
-  template <typename FirstType, typename SecondType>
-  struct AreCompatibleTypes<TypeTrait<FirstType>, TypeTrait<SecondType>>
-  {
-    static constexpr bool Value{
-      (TypeTrait<FirstType>::IsScalar && TypeTrait<SecondType>::IsScalar) ||
-      ((TypeTrait<FirstType>::IsEigen && TypeTrait<SecondType>::IsEigen) &&
-      ((TypeTrait<FirstType>::IsFixed && TypeTrait<SecondType>::IsFixed &&
-        (TypeTrait<FirstType>::Dimension == TypeTrait<SecondType>::Dimension)) ||
-      (TypeTrait<FirstType>::IsDynamic && TypeTrait<SecondType>::IsDynamic) ||
-      (TypeTrait<FirstType>::IsSparse && TypeTrait<SecondType>::IsSparse)))
-    };
-  };
-
-  /**
    * Retrieve the type of a the trait of a given type (fallback).
    * \tparam T The type to be specialized.
-   * \tparam N The index of the type to retrieve.
    */
-  template<typename T, int N = 0>
-  struct RetriveType;
 
 
   /**
@@ -237,13 +212,17 @@ namespace Optimist
    * \tparam FirstType The first template type.
    * \tparam OtherTypes Other template types.
    */
-  template<template<typename...> typename BaseType, typename FirstType, typename... OtherTypes>
-  struct RetriveType<BaseType<FirstType, OtherTypes...>>
-  {
-    using Full  = BaseType<FirstType, OtherTypes...>;
-    using First = FirstType;
-  };
+template<typename T>
+struct RetrieveType;   // primary template
 
+template<template<typename, auto...> class BaseType,
+         typename FirstType,
+         auto... Rest>
+struct RetrieveType<BaseType<FirstType, Rest...>>
+{
+    using Full  = BaseType<FirstType, Rest...>;
+    using First = FirstType;
+};
   /*\
    |   ____  _          __  __
    |  / ___|| |_ _   _ / _|/ _|

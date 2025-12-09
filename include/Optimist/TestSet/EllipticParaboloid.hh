@@ -39,7 +39,7 @@ namespace Optimist
     {
     public:
       using VectorTrait = TypeTrait<Vector>;
-      using Scalar = typename Vector::Scalar;
+      using Scalar      = typename Vector::Scalar;
       using typename Function<Vector, Scalar, EllipticParaboloid<Scalar>>::Vector;
       using typename Function<Vector, Scalar, EllipticParaboloid<Scalar>>::RowVector;
       using typename Function<Vector, Scalar, EllipticParaboloid<Scalar>>::Matrix;

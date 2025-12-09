@@ -41,6 +41,7 @@ namespace Optimist
      * \tparam Scalar Floating-point number type.
      */
     template <typename Scalar>
+    requires TypeTrait<Scalar>::IsScalar
     class Quadratic : public Function<Scalar, Scalar, Quadratic<Scalar>>
     {
       Scalar m_a{1.0}; /**< Coefficient \f$a\f$. */
@@ -74,7 +75,7 @@ namespace Optimist
        * \param[out] out The function value.
        * \return The boolean flag for successful evaluation.
        */
-      bool evaluate_impl(Scalar x, Scalar & out) const
+      bool evaluate_impl(Scalar const x, Scalar & out) const
       {
         out = this->m_a*x*x + this->m_b*x + this->m_c;
         return std::isfinite(out);
@@ -86,7 +87,7 @@ namespace Optimist
        * \param[out] out The first derivative value.
        * \return The boolean flag for successful evaluation.
        */
-      bool first_derivative_impl(Scalar x, Scalar & out) const
+      bool first_derivative_impl(Scalar const x, Scalar & out) const
       {
         out = 2.0*this->m_a*x + this->m_b;
         return std::isfinite(out);

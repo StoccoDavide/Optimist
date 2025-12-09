@@ -41,9 +41,9 @@ namespace Optimist
     {
     private:
 
-      using VectorTraitInput = TypeTrait<Input>;
+      using VectorTraitInput  = TypeTrait<Input>;
       using VectorTraitOutput = TypeTrait<Output>;
-      using Scalar = typename Input::Scalar;
+      using Scalar            = typename Input::Scalar;
       using typename Function<Input, Output, Brown<Input, Output>>::Input;
       using typename Function<Input, Output, Brown<Input, Output>>::Output;
       using typename Function<Input, Output, Brown<Input, Output>>::Matrix;

@@ -39,7 +39,7 @@ namespace Optimist
     {
     public:
       using VectorTrait = TypeTrait<Vector>;
-      using Scalar = typename Vector::Scalar;
+      using Scalar      = typename Vector::Scalar;
       using typename Function<Vector, Vector, Booth<Vector>>::Matrix;
       using typename Function<Vector, Vector, Booth<Vector>>::Tensor;
 
@@ -56,7 +56,7 @@ namespace Optimist
           this->m_solutions[0] << 1.0, 3.0;
           this->m_guesses[0] << -10, -10;
           this->m_guesses[1] << 10, 10;
-        } else if constexpr (!VectorTrait::IsSparse) {
+        } else if constexpr (VectorTrait::IsDynamic) {
           this->m_solutions[0].resize(2);
           this->m_solutions[0] << 1.0, 3.0;
           this->m_guesses[0].resize(2); this->m_guesses[0] << -10, -10;
@@ -93,7 +93,7 @@ namespace Optimist
         if constexpr (VectorTrait::IsFixed) {
           out << x(0) + 2.0*x(1) - 7.0, 2.0*x(0) + x(1) - 5.0;
           return out.allFinite();
-        } else if constexpr (!VectorTrait::IsSparse) {
+        } else if constexpr (VectorTrait::IsDynamic) {
           out.resize(2);
           out << x(0) + 2.0*x(1) - 7.0, 2.0*x(0) + x(1) - 5.0;
           return out.allFinite();
@@ -125,7 +125,7 @@ namespace Optimist
 
         if constexpr (VectorTrait::IsFixed) {
           out << 1.0, 2.0, 2.0, 1.0;
-        } else if constexpr (!VectorTrait::IsSparse) {
+        } else if constexpr (VectorTrait::IsDynamic) {
           out.resize(2, 2);
           out << 1.0, 2.0, 2.0, 1.0;
         } else if constexpr (VectorTrait::IsSparse) {
@@ -153,6 +153,8 @@ namespace Optimist
        */
       bool second_derivative_impl(Vector const & /*x*/, Tensor & out) const
       {
+        #define CMD "Optimist::TestSet::Booth::second_derivative_impl(...): "
+
         out.resize(2);
         std::for_each(out.begin(), out.end(), [] (Matrix & m) {
           if constexpr (VectorTrait::IsFixed) {
@@ -169,9 +171,13 @@ namespace Optimist
             triplets.emplace_back(1, 0, 0.0);
             triplets.emplace_back(1, 1, 0.0);
             m.setFromTriplets(triplets.begin(), triplets.end());
+          } else {
+            OPTIMIST_ERROR(CMD "input type not supported.");
           }
         });
         return true;
+
+        #undef CMD
       }
 
     }; // class Booth

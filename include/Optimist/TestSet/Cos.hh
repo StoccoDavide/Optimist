@@ -66,7 +66,7 @@ namespace Optimist
        * \param[out] out The function value.
        * \return The boolean flag for successful evaluation.
        */
-      bool evaluate_impl(Scalar x, Scalar & out) const
+      bool evaluate_impl(Scalar const x, Scalar & out) const
       {
         out = std::cos(x);
         return std::isfinite(out);
@@ -78,7 +78,7 @@ namespace Optimist
        * \param[out] out The first derivative value.
        * \return The boolean flag for successful evaluation.
        */
-      bool first_derivative_impl(Scalar x, Scalar & out) const
+      bool first_derivative_impl(Scalar const x, Scalar & out) const
       {
         out = -std::sin(x);
         return std::isfinite(out);
@@ -90,7 +90,7 @@ namespace Optimist
        * \param[out] out The second derivative value.
        * \return The boolean flag for successful evaluation.
        */
-      bool second_derivative_impl(Scalar x, Scalar & out) const
+      bool second_derivative_impl(Scalar const x, Scalar & out) const
       {
         out = -std::cos(x);
         return std::isfinite(out);

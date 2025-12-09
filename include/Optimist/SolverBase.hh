@@ -44,7 +44,7 @@ namespace Optimist
     // Input and output types
     using InputTrait  = TypeTrait<Input>;
     using OutputTrait = TypeTrait<Output>;
-    using Scalar = typename InputTrait::Scalar;
+    using Scalar      = typename InputTrait::Scalar;
 
     // Input and output must be non-zero dimensional
     static_assert(InputTrait::Dimension != 0,
@@ -70,13 +70,9 @@ namespace Optimist
         Eigen::Matrix<Scalar, OutputTrait::Dimension, InputTrait::Dimension>>,
       Scalar>;
     using SecondDerivative = std::conditional_t<InputTrait::IsEigen || OutputTrait::IsEigen,
-      std::conditional_t<(InputTrait::Dimension == 1) || (OutputTrait::Dimension == 1),
-        std::conditional_t<InputTrait::IsSparse || OutputTrait::IsSparse,
-          Eigen::SparseMatrix<Scalar>,
-          Eigen::Matrix<Scalar, OutputTrait::Dimension, InputTrait::Dimension>>,
-        std::conditional_t<InputTrait::IsSparse || OutputTrait::IsSparse,
-          std::vector<Eigen::SparseMatrix<Scalar>>,
-          std::vector<Eigen::Matrix<Scalar, OutputTrait::Dimension, InputTrait::Dimension>>>>,
+      std::conditional_t<InputTrait::IsSparse || OutputTrait::IsSparse,
+        std::vector<Eigen::SparseMatrix<Scalar>>,
+        std::vector<Eigen::Matrix<Scalar, OutputTrait::Dimension, InputTrait::Dimension>>>,
       Scalar>;
 
     OPTIMIST_BASIC_CONSTANTS(Scalar)
@@ -624,7 +620,7 @@ namespace Optimist
         CMD "solver input dimension must be equal to the function input dimension.");
       static_assert(OutputTrait::Dimension == FunctionOutputTrait::Dimension || OutputTrait::Dimension == 1,
         CMD "solver output dimension must be equal to the function output dimension or 1.");
-      static_assert(!(InputTrait::Dimension == 1 && DerivedSolver::IsOptimizer),
+      static_assert(!(InputTrait::IsScalar && DerivedSolver::IsOptimizer),
         CMD "one-dimensional optimizers do not support root-finding problems.");
       return this->solve(function, x_ini, x_sol,
         (OutputTrait::Dimension != FunctionOutputTrait::Dimension) ||
@@ -702,12 +698,19 @@ namespace Optimist
           CMD "function evaluation failed during function computation.");
 
         if (is_optimization) {
-          if constexpr (FunctionOutputTrait::Dimension == 1) {out = 0.5*f*f;}
-          else if constexpr (OutputTrait::Dimension != FunctionOutputTrait::Dimension) {out = 0.5*f.squaredNorm();}
-          else {OPTIMIST_ERROR(CMD "optimization problem with inconsistent output in function.");}
+          if constexpr (FunctionOutputTrait::Dimension == 1) {
+            out = 0.5*f*f;
+          } else if constexpr (OutputTrait::Dimension != FunctionOutputTrait::Dimension) {
+            out = 0.5*f.squaredNorm();
+          } else {
+            OPTIMIST_ERROR(CMD "optimization problem with inconsistent output in function.");
+          }
         } else {
-          if constexpr (OutputTrait::Dimension == FunctionOutputTrait::Dimension) {out = f;}
-          else {OPTIMIST_ERROR(CMD "root-finding problem with inconsistent output in function.");}
+          if constexpr (OutputTrait::Dimension == FunctionOutputTrait::Dimension) {
+            out = f;
+          } else {
+            OPTIMIST_ERROR(CMD "root-finding problem with inconsistent output in function.");
+          }
         }
         return success;
       };
@@ -726,12 +729,19 @@ namespace Optimist
           OPTIMIST_ASSERT(success,
             CMD "function evaluation failed during first derivative computation.");
           this->m_function_evaluations++;
-          if constexpr (FunctionInputTrait::Dimension == 1 && FunctionOutputTrait::Dimension == 1) {out = J*f;}
-          else if constexpr (OutputTrait::Dimension != FunctionOutputTrait::Dimension) {out = J.transpose()*f;}
-          else {OPTIMIST_ERROR(CMD "optimization problem inconsistent output in first derivative.");}
+          if constexpr (FunctionInputTrait::IsScalar && FunctionOutputTrait::IsScalar) {
+            out = J*f;
+          } else if constexpr (OutputTrait::Dimension != FunctionOutputTrait::Dimension) {
+            out = J.transpose()*f;
+          } else {
+            OPTIMIST_ERROR(CMD "optimization problem inconsistent output in first derivative.");
+          }
         } else {
-          if constexpr (OutputTrait::Dimension == FunctionOutputTrait::Dimension) {out = J;}
-          else {OPTIMIST_ERROR(CMD "root-finding problem with inconsistent output in first derivative.");}
+          if constexpr (OutputTrait::Dimension == FunctionOutputTrait::Dimension) {
+            out = J;
+          } else {
+            OPTIMIST_ERROR(CMD "root-finding problem with inconsistent output in first derivative.");
+          }
         }
         return success;
       };
@@ -753,15 +763,21 @@ namespace Optimist
           this->m_first_derivative_evaluations++;
           OPTIMIST_ASSERT(success,
             CMD "first derivative evaluation failed during second derivative computation.");
-          if constexpr (FunctionInputTrait::Dimension == 1 && FunctionOutputTrait::Dimension == 1) {out = J*J + f*H;}
-          else if constexpr (OutputTrait::Dimension != FunctionOutputTrait::Dimension) {
+          if constexpr (FunctionInputTrait::IsScalar && FunctionOutputTrait::IsScalar) {
+            out = J*J + f*H;
+          } else if constexpr (OutputTrait::Dimension != FunctionOutputTrait::Dimension) {
             out = J.transpose()*J;
             for (Integer i{0}; i < static_cast<Integer>(H.size()); ++i) {out += f(i)*H[i];}
           }
-          else {OPTIMIST_ERROR(CMD "optimization problem with inconsistent output in second derivative.");}
+          else {
+            OPTIMIST_ERROR(CMD "optimization problem with inconsistent output in second derivative.");
+          }
         } else {
-          if constexpr (OutputTrait::Dimension == FunctionOutputTrait::Dimension) {out = H;}
-          else {OPTIMIST_ERROR(CMD "root-finding problem with inconsistent output in second derivative.");}
+          if constexpr (OutputTrait::Dimension == FunctionOutputTrait::Dimension) {
+            out = H;
+          } else {
+            OPTIMIST_ERROR(CMD "root-finding problem with inconsistent output in second derivative.");
+          }
         }
         return success;
       };

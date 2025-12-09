@@ -317,7 +317,7 @@ namespace Optimist
        */
       template <typename FunctionLambda, typename FirstDerivativeLambda, typename SecondDerivativeLambda>
       bool solve(FunctionLambda && function, FirstDerivativeLambda && first_derivative, SecondDerivativeLambda
-        && second_derivate, Scalar x_ini, Scalar & x_sol)
+        && second_derivate, Scalar const x_ini, Scalar & x_sol)
       {
         return static_cast<DerivedSolver *>(this)->solve_impl(
           std::forward<FunctionLambda>(function),

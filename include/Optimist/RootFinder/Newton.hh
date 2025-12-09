@@ -46,7 +46,7 @@ namespace Optimist
       static constexpr bool RequiresSecondDerivative{false};
 
       using VectorTrait = TypeTrait<Vector>;
-      using Scalar = typename Vector::Scalar;
+      using Scalar      = typename Vector::Scalar;
       using typename RootFinder<Vector, Vector, Newton<Vector>>::Vector;
       using typename RootFinder<Vector, Vector, Newton<Vector>>::Matrix;
       using Factorization = std::conditional_t<VectorTrait::IsSparse,
@@ -117,11 +117,12 @@ namespace Optimist
           if constexpr (VectorTrait::IsSparse) {
             OPTIMIST_ASSERT_WARNING(this->m_lu.info() == Eigen::Success,
               CMD "jacobian factorization failed.");
+            step_old = -this->m_lu.solve(function_old).eval();
           } else {
             OPTIMIST_ASSERT(this->m_lu.isInvertible(),
               CMD "singular Jacobian detected.");
+            step_old = -this->m_lu.solve(function_old);
           }
-          step_old = -this->m_lu.solve(function_old);
 
           // Check convergence
           residuals = function_old.norm();
@@ -135,7 +136,8 @@ namespace Optimist
           if (this->m_damped)
           {
             // Relax the iteration process
-            damped = this->damp(std::forward<FunctionLambda>(function), x_old, function_old, step_old, x_new, function_new, step_new);
+            damped = this->damp(std::forward<FunctionLambda>(function), x_old, function_old,
+              step_old, x_new, function_new, step_new);
             OPTIMIST_ASSERT_WARNING(damped,
               "Optimist::RootFinder::Newton::solve(...): damping failed.");
           } else {

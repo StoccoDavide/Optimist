@@ -29,7 +29,7 @@ namespace Optimist
      * f(\mathbf{x}) = 0.5 + \displaystyle\frac{\sin^{2}(x_1^2 - x_2^2) - 0.5}{(1 + 0.001(x_1^2 + x_2^2))^2} \text{.}
      * \f]
      * The function has global minima at \f$\mathbf{x} = (0, 0)\f$, with \f$f(\mathbf{x}) = 0\f$.
-     * The initial guesses are generated on the square \f$x_i \in \left[-100, 100\right]\f$.
+     * The initial guesses are generated on the square \f$x_i \in \left[-10, 10\right]\f$.
      * \tparam Vector Eigen vector type.
      */
     template <typename Vector>
@@ -39,7 +39,7 @@ namespace Optimist
     {
     public:
       using VectorTrait = TypeTrait<Vector>;
-      using Scalar = typename Vector::Scalar;
+      using Scalar      = typename Vector::Scalar;
       using typename Function<Vector, typename Vector::Scalar, Schaffer2<Vector>>::Vector;
       using typename Function<Vector, typename Vector::Scalar, Schaffer2<Vector>>::RowVector;
       using typename Function<Vector, typename Vector::Scalar, Schaffer2<Vector>>::Matrix;
@@ -51,11 +51,29 @@ namespace Optimist
        */
       Schaffer2()
       {
-        this->m_solutions.emplace_back(0.0, 0.0);
-        for (Scalar x{-100}; x < 100 + EPSILON; x += 100/25.0) {
-          for (Scalar y{-100}; y < 100 + EPSILON; y += 100/25.0) {
-            this->m_guesses.emplace_back(x, y);
-          }
+        this->m_solutions.resize(1);
+        this->m_guesses.resize(2);
+        this->m_solutions.resize(1);
+        this->m_guesses.resize(2);
+        if constexpr (VectorTrait::IsFixed) {
+          this->m_solutions[0] << 0.0, 0.0;
+          this->m_guesses[0] << -10, -10;
+          this->m_guesses[1] << 10, 10;
+        } else if constexpr (!VectorTrait::IsSparse) {
+          this->m_solutions[0].resize(2);
+          this->m_solutions[0] << 0.0, 0.0;
+          this->m_guesses[0].resize(2); this->m_guesses[0] << -10, -10;
+          this->m_guesses[1].resize(2); this->m_guesses[1] << 10, 10;
+        } else if constexpr (VectorTrait::IsSparse) {
+          this->m_solutions[0].resize(2); this->m_solutions[0].reserve(2);
+          this->m_solutions[0].coeffRef(0) = 0.0;
+          this->m_solutions[0].coeffRef(1) = 0.0;
+          this->m_guesses[0].resize(2); this->m_guesses[0].reserve(2);
+          this->m_guesses[0].coeffRef(0) = -10;
+          this->m_guesses[0].coeffRef(1) = -10;
+          this->m_guesses[1].resize(2); this->m_guesses[1].reserve(2);
+          this->m_guesses[1].coeffRef(0) = 10;
+          this->m_guesses[1].coeffRef(1) = 10;
         }
       }
 

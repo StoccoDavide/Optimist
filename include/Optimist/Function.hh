@@ -62,13 +62,9 @@ namespace Optimist
         Eigen::Matrix<Scalar, OutputTrait::Dimension, InputTrait::Dimension>>,
       Scalar>;
     using SecondDerivative = std::conditional_t<InputTrait::IsEigen || OutputTrait::IsEigen,
-      std::conditional_t<(InputTrait::Dimension == 1) || (OutputTrait::Dimension == 1),
-        std::conditional_t<InputTrait::IsSparse || OutputTrait::IsSparse,
-          Eigen::SparseMatrix<Scalar>,
-          Eigen::Matrix<Scalar, OutputTrait::Dimension, InputTrait::Dimension>>,
-        std::conditional_t<InputTrait::IsSparse || OutputTrait::IsSparse,
-          std::vector<Eigen::SparseMatrix<Scalar>>,
-          std::vector<Eigen::Matrix<Scalar, OutputTrait::Dimension, InputTrait::Dimension>>>>,
+      std::conditional_t<InputTrait::IsSparse || OutputTrait::IsSparse,
+        std::vector<Eigen::SparseMatrix<Scalar>>,
+        std::vector<Eigen::Matrix<Scalar, OutputTrait::Dimension, InputTrait::Dimension>>>,
       Scalar>;
 
     OPTIMIST_BASIC_CONSTANTS(Scalar)
@@ -172,6 +168,7 @@ namespace Optimist
         if constexpr (InputTrait::IsEigen) {
           if((x - s).norm() < tol) {return true;}
         } else {
+          std::cout << this->name() << ": comparing " << x << " and " << s << " with tol " << tol << std::endl;
           if (std::abs(x - s) < tol) {return true;}
         }
       }
@@ -350,7 +347,7 @@ namespace Optimist
      * \param[out] out The function value.
      * \return The boolean flag for successful evaluation.
      */
-    bool evaluate(Scalar x, Scalar & out) const
+    bool evaluate(Scalar const x, Scalar & out) const
     {
       return static_cast<const DerivedFunction *>(this)->evaluate_impl(x, out);
     }
@@ -361,7 +358,7 @@ namespace Optimist
      * \param[out] out The function first derivative.
      * \return The boolean flag for successful evaluation.
      */
-    bool first_derivative(Scalar x, Scalar & out) const
+    bool first_derivative(Scalar const x, Scalar & out) const
     {
       return static_cast<const DerivedFunction *>(this)->first_derivative_impl(x, out);
     }
@@ -372,7 +369,7 @@ namespace Optimist
      * \param[out] out The function second derivative.
      * \return The boolean flag for successful evaluation.
      */
-    bool second_derivative(Scalar x, Scalar & out) const
+    bool second_derivative(Scalar const x, Scalar & out) const
     {
       return static_cast<const DerivedFunction *>(this)->second_derivative_impl(x, out);
     }
