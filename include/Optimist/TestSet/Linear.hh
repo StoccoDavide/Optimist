@@ -40,7 +40,7 @@ namespace Optimist
     requires TypeTrait<Scalar>::IsScalar
     class Linear : public Function<Scalar, Scalar, Linear<Scalar>>
     {
-      Scalar m_m{1.0}; /**< Coefficient \f$ m \f$. */
+      Scalar m_m{-1.0}; /**< Coefficient \f$ m \f$. */
       Scalar m_q{1.0}; /**< Coefficient \f$ q \f$. */
 
     public:

@@ -62,9 +62,9 @@ target_link_libraries(test_rootfinder_greenstadt PRIVATE Optimist GTest::gtest_m
 
 # Optimizer
 
-# file(GLOB_RECURSE TEST_OPTIMIZER_NEWTONRAPHSON "${CMAKE_CURRENT_SOURCE_DIR}/Optimizer/test_newtonraphson.cc")
-# add_executable(test_optimizer_newtonraphson ${TEST_OPTIMIZER_NEWTONRAPHSON})
-# target_link_libraries(test_optimizer_newtonraphson PRIVATE Optimist GTest::gtest_main)
+file(GLOB_RECURSE TEST_OPTIMIZER_NEWTONRAPHSON "${CMAKE_CURRENT_SOURCE_DIR}/Optimizer/test_newtonraphson.cc")
+add_executable(test_optimizer_newtonraphson ${TEST_OPTIMIZER_NEWTONRAPHSON})
+target_link_libraries(test_optimizer_newtonraphson PRIVATE Optimist GTest::gtest_main)
 
 # file(GLOB_RECURSE TEST_OPTIMIZER_NELDERMEAD "${CMAKE_CURRENT_SOURCE_DIR}/Optimizer/test_neldermead.cc")
 # add_executable(test_optimizer_neldermead ${TEST_OPTIMIZER_NELDERMEAD})

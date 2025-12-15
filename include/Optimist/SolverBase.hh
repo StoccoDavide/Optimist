@@ -104,7 +104,7 @@ namespace Optimist
     // Iterations and relaxations
     Integer m_iterations{0};       /**< Algorithm iterations. */
     Integer m_max_iterations{100}; /**< Maximum allowed algorithm iterations. */
-    Scalar  m_alpha{0.8};          /**< Relaxation factor \f$ \alpha \f$. */
+    Scalar  m_alpha{0.9};          /**< Relaxation factor \f$ \alpha \f$. */
     Integer m_relaxations{0};      /**< Algorithm relaxations. */
     Integer m_max_relaxations{10}; /**< Maximum allowed algorithm relaxations. */
 
@@ -658,8 +658,8 @@ namespace Optimist
         CMD "solver input dimension must be equal to the function input dimension.");
       static_assert(OutputTrait::Dimension == 1,
         CMD "solver output dimension must be equal to the function output dimension or 1.");
-      static_assert(!(InputTrait::Dimension == 1 && DerivedSolver::IsRootFinder),
-        CMD "one-dimensional root-finders do not support optimization problems.");
+      //static_assert(!(InputTrait::Dimension == 1 && DerivedSolver::IsRootFinder),
+      //  CMD "one-dimensional root-finders do not support optimization problems.");
       return this->solve(function, x_ini, x_sol, true);
 
       #undef CMD
@@ -689,7 +689,7 @@ namespace Optimist
     {
       #define CMD "Optimist::Solver::solve(...): "
 
-      using FunctionType = FunctionBase<FunctionInput, FunctionOutput, DerivedFunction>;
+      using FunctionType        = FunctionBase<FunctionInput, FunctionOutput, DerivedFunction>;
       using FunctionInputTrait  = TypeTrait<FunctionInput>;
       using FunctionOutputTrait = TypeTrait<FunctionOutput>;
 

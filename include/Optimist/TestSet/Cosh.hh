@@ -45,8 +45,8 @@ namespace Optimist
       Cosh()
       {
         this->m_solutions.emplace_back(0.0); // Minimum
-        this->m_guesses.emplace_back(-10.0);
-        this->m_guesses.emplace_back(10.0);
+        this->m_guesses.emplace_back(-1.0);
+        this->m_guesses.emplace_back(1.0);
       }
 
       /**

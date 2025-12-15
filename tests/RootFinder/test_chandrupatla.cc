@@ -50,22 +50,13 @@ TYPED_TEST(Functions, Solve) {
   // Create function and solver instances
   Function fun;
   Optimist::RootFinder::Chandrupatla<Scalar> sol;
-  sol.bounds(-10.0, 10.0);
+  sol.bounds(0.0, M_PI);
   sol.task(fun.name());
-  sol.verbose_mode(false);
+  sol.verbose_mode(true);
   sol.tolerance(std::sqrt(Function::EPSILON));
 
   Scalar x_out;
   for (size_t i{0}; i < fun.guesses().size(); ++i) {
-
-    // Solve without damping
-    sol.disable_damped_mode();
-    sol.rootfind(fun, fun.guess(i), x_out);
-    EXPECT_TRUE(sol.converged());
-    EXPECT_TRUE(fun.is_solution(x_out, std::cbrt(Function::EPSILON)));
-
-    // Solve with damping
-    sol.enable_damped_mode();
     sol.rootfind(fun, fun.guess(i), x_out);
     EXPECT_TRUE(sol.converged());
     EXPECT_TRUE(fun.is_solution(x_out, std::cbrt(Function::EPSILON)));

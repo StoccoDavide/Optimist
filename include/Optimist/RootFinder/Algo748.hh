@@ -209,8 +209,12 @@ namespace Optimist
         Scalar tolerance_function{this->m_tolerance_bracketing};
 
         // Check for trivial solution
-        this->m_converged = this->m_fa == 0; if (this->m_converged) {return this->m_a;}
-        this->m_converged = this->m_fb == 0; if (this->m_converged) {return this->m_b;}
+        this->m_converged = this->m_fa == 0;
+        if (this->m_verbose) {this->info(std::abs(this->m_fa));}
+        if (this->m_converged) {return this->m_fa;}
+        this->m_converged = this->m_fb == 0;
+        if (this->m_verbose) {this->info(std::abs(this->m_fb));}
+        if (this->m_converged) {return this->m_fb;}
 
         // Initialize to dumb values
         this->m_e  = QUIET_NAN;
@@ -219,12 +223,13 @@ namespace Optimist
         // While f(left) or f(right) are infinite perform bisection
         while (!(std::isfinite(this->m_fa) && std::isfinite(this->m_fb))) {
           ++this->m_iterations;
-          this->m_c  = (this->m_a + this->m_b)/2.0;
+          this->m_c = (this->m_a + this->m_b)/2.0;
           success = this->evaluate_function(std::forward<FunctionLambda>(function), this->m_c, this->m_fc);
           OPTIMIST_ASSERT(success,
             CMD "function evaluation failed at iteration " << this->m_iterations << ".");
           this->m_converged = this->m_fc == 0;
-          if (this->m_converged) {return this->m_c;}
+          if (this->m_verbose) {this->info(std::abs(this->m_fc));}
+          if (this->m_converged) {return this->m_fc;}
           if (this->m_fa*this->m_fc < 0) {
             // -> [a, c]
             this->m_b = this->m_c; this->m_fb = this->m_fc;
@@ -236,6 +241,7 @@ namespace Optimist
           // Check for convergence
           Scalar abs_fa{std::abs(this->m_fa)};
           Scalar abs_fb{std::abs(this->m_fb)};
+          if (this->m_verbose) {this->info(abs_fa < abs_fb ? abs_fa : abs_fb);}
           this->m_converged = (this->m_b - this->m_a) < tolerance_step ||
                                abs_fa < tolerance_function ||abs_fb < tolerance_function;
           if (this->m_converged) {return abs_fb < abs_fa ? this->m_b : this->m_a;}
@@ -254,7 +260,8 @@ namespace Optimist
 
         // Call "bracketing" to get a shrinked enclosing interval and to update the termination criterion
         this->m_converged = this->bracketing(std::forward<FunctionLambda>(function));
-        if (this->m_converged ) {return this->m_a;}
+        if (this->m_verbose) {this->info(std::abs(this->m_fa));}
+        if (this->m_converged) {return this->m_a;}
         this->m_converged = false;
 
         // The enclosing interval is recorded as [a0, b0] before executing the iteration steps
@@ -266,6 +273,7 @@ namespace Optimist
           {
             Scalar abs_fa {std::abs(this->m_fa)};
             Scalar abs_fb {std::abs(this->m_fb)};
+            if (this->m_verbose) {this->info(abs_fa < abs_fb ? abs_fa : abs_fb);}
             this->m_converged = abs_fa < tolerance_function || abs_fb < tolerance_function;
             if (this->m_converged) {return abs_fa < abs_fb ? this->m_a : this->m_b;}
           }
@@ -287,6 +295,7 @@ namespace Optimist
 
           // Call "bracketing" to get a shrinked enclosing interval and to update the termination criterion
           this->m_converged = this->bracketing(std::forward<FunctionLambda>(function)) || (this->m_b-this->m_a) <= this->m_tolerance;
+          if (this->m_verbose) {this->info(std::abs(this->m_fa) < std::abs(this->m_fb) ? std::abs(this->m_fa) : std::abs(this->m_fb));}
           if (this->m_converged) {
             return std::abs(this->m_fa) < std::abs(this->m_fb) ? this->m_a : this->m_b;
           }
@@ -303,6 +312,7 @@ namespace Optimist
             this->m_converged = this->bracketing(std::forward<FunctionLambda>(function)) || (this->m_b-this->m_a) <= this->m_tolerance;
             Scalar abs_fa{std::abs(this->m_fa)};
             Scalar abs_fb{std::abs(this->m_fb)};
+            if (this->m_verbose) {this->info(abs_fa < abs_fb ? abs_fa : abs_fb);}
             if (this->m_converged) {return abs_fa < abs_fb ? this->m_a : this->m_b;}
 
             this->m_e  = this->m_d;

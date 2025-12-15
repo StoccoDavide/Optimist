@@ -46,7 +46,6 @@ namespace Optimist
       Cos()
       {
         this->m_solutions.emplace_back(-M_PI/2.0); // Zero
-        this->m_solutions.emplace_back(0.0); // Zero
         this->m_solutions.emplace_back(M_PI/2.0); // Zero
         this->m_solutions.emplace_back(-M_PI); // Minimum
         this->m_solutions.emplace_back(M_PI); // Minimum

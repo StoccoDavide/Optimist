@@ -57,9 +57,9 @@ namespace Optimist
       Quadratic()
       {
         Scalar delta{static_cast<Scalar>(std::sqrt(this->m_b*this->m_b - 4.0*this->m_a*this->m_c))};
-        this->m_solutions.emplace_back((-this->m_b + delta)/(2.0*this->m_a));
-        this->m_solutions.emplace_back((-this->m_b - delta)/(2.0*this->m_a));
-        this->m_solutions.emplace_back(this->m_b/(2.0*this->m_a));
+        this->m_solutions.emplace_back((-this->m_b + delta)/(2.0*this->m_a)); // Zero
+        this->m_solutions.emplace_back((-this->m_b - delta)/(2.0*this->m_a)); // Zero
+        this->m_solutions.emplace_back(-this->m_b/(2.0*this->m_a)); // Minimum
         this->m_guesses.emplace_back(0.0);
       }
 

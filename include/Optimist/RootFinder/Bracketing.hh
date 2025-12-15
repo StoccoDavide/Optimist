@@ -107,7 +107,10 @@ namespace Optimist
           CMD "function evaluation failed at the upper bound.");
 
         // Check if the solution exists
-        if (this->m_fa*this->m_fb > 0) {return false;}
+        if (this->m_fa*this->m_fb > 0) {
+          OPTIMIST_WARNING(CMD "the function has the same sign at the interval extremes.");
+          return false;
+        }
         else {x_sol = this->find_root(std::forward<FunctionLambda>(function));}
 
         // Print bottom
