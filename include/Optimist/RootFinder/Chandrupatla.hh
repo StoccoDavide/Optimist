@@ -113,7 +113,7 @@ namespace Optimist
         while (++this->m_iterations < this->m_max_iterations) {
 
           Scalar direction{this->m_b - this->m_a};
-          Scalar tolerance{tolerance_step/(2.0*std::abs(direction))};
+          Scalar tolerance{tolerance_step/(static_cast<Scalar>(2.0)*std::abs(direction))};
           this->m_converged = tolerance >= 0.5;
           if (this->m_converged) {break;}
 
@@ -161,7 +161,7 @@ namespace Optimist
 
           Scalar xi{ba/bd};
           Scalar ph{fba/fbd};
-          Scalar fl{1.0 - std::sqrt(1.0 - xi)};
+          Scalar fl{static_cast<Scalar>(1.0) - std::sqrt(static_cast<Scalar>(1.0) - xi)};
           Scalar fh{std::sqrt(xi)};
 
           if (fl < ph && ph < fh) {

@@ -34,28 +34,30 @@ namespace Optimist
      *
      * \includedoc docs/markdown/RootFinder/Broyden.md
      *
-     * \tparam N Dimension of the root-finding problem.
-     * \tparam Real Scalar number type.
+     * \tparam Vector Eigen vector type.
      */
-    template <typename Real, Integer N>
-    class Broyden : public QuasiNewton<Real, N, Broyden<Real, N>>
+    template <typename Vector>
+    requires TypeTrait<Vector>::IsEigen &&
+      (!TypeTrait<Vector>::IsFixed || TypeTrait<Vector>::Dimension > 0)
+    class Broyden : public QuasiNewton<Vector, Broyden<Vector>>
     {
     public:
       static constexpr bool RequiresFunction{true};
       static constexpr bool RequiresFirstDerivative{true};
       static constexpr bool RequiresSecondDerivative{false};
 
-      OPTIMIST_BASIC_CONSTANTS(Real)
+      using VectorTrait = TypeTrait<Vector>;
+      using Scalar      = typename TypeTrait<Vector>::Scalar;
+      using typename QuasiNewton<Vector, Broyden<Vector>>::FirstDerivative;
 
-      using typename QuasiNewton<Real, N, Broyden<Real, N>>::Vector;
-      using typename QuasiNewton<Real, N, Broyden<Real, N>>::Matrix;
+      OPTIMIST_BASIC_CONSTANTS(Scalar)
 
       /**
        * Broyden solver type enumeration.
        */
       using Method = enum class Method : Integer {GOOD = 0, BAD = 1, COMBINED = 2};
 
-      private:
+    private:
       Method m_method{Method::COMBINED}; /**< Broyden solver method. */
 
     public:
@@ -68,19 +70,7 @@ namespace Optimist
        * Get the Broyden solver name.
        * \return The Broyden solver name.
        */
-      constexpr std::string name_impl() const
-      {
-        std::ostringstream os;
-        os << "Broyden";
-        if (this->m_method == Method::GOOD) {
-          os << "Good";
-        } else if (this->m_method == Method::BAD) {
-          os << "Bad";
-        } else if (this->m_method == Method::COMBINED) {
-          os << "Combined";
-        }
-        return os.str();
-      }
+      constexpr std::string name_impl() const {return "Broyden";}
 
       /**
        * Get the enumeration type of the Broyden solver method.
@@ -126,19 +116,19 @@ namespace Optimist
        * \param[out] jacobian_new New jacobian approximation.
        */
       void update_impl(
-        Vector const & delta_x_old, Vector const & delta_function_old, Matrix const & jacobian_old,
+        Vector const & delta_x_old, Vector const & delta_function_old, FirstDerivative const & jacobian_old,
         Vector const & delta_x_new, Vector const & delta_function_new, Vector const & /*function_new*/,
-        Matrix       & jacobian_new
+        FirstDerivative & jacobian_new
       ) {
         Vector tmp_1(jacobian_old * delta_function_new);
-        Real tmp_2{delta_function_new.squaredNorm()};
+        Scalar tmp_2{delta_function_new.squaredNorm()};
         // Selection criteria: |(dx_new'*dx_old) / (dx_new'*J_old*dF_new)| < |(dF_new'*dF_old) / (dF_new'*dF_new)|
         if (this->m_method == Method::COMBINED || this->m_method == Method::GOOD || this->iterations() < Integer(2) ||
-            std::abs(delta_x_new.transpose() * delta_x_old) / std::abs(delta_x_new.transpose() * tmp_1)
-            < std::abs(delta_function_new.transpose() * delta_function_old) / tmp_2) {
+            std::abs(delta_x_new.dot(delta_x_old)) / std::abs(delta_x_new.dot(tmp_1))
+            < std::abs(delta_function_new.dot(delta_function_old)) / tmp_2) {
           // Broyden's Good solver: J_new = J_old - (J_old*dF_new-dx_new) / (C'*dF_new)*C', where C = J_old'*dx_new;
           Vector C_g(jacobian_old.transpose() * delta_x_new);
-          jacobian_new = jacobian_old - (tmp_1 - delta_x_new) / (C_g.transpose() * delta_function_new) * C_g.transpose();
+          jacobian_new = jacobian_old - (tmp_1 - delta_x_new) / (C_g.dot(delta_function_new)) * C_g.transpose();
         } else {
           // Broyden's Bad solver: J_new = J_old - (J_old*dF_old-dx_new) / (C'*dF_old)*C', where C = dF_old;
           jacobian_new = jacobian_old - (tmp_1 - delta_x_new) / tmp_2 * delta_function_old.transpose();

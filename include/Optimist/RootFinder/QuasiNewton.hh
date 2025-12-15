@@ -34,27 +34,21 @@ namespace Optimist
      *
      * \includedoc docs/markdown/RootFinder/QuasiNewton.md
      *
-     * \tparam Real Scalar number type.
-     * \tparam N Dimension of the root-finding problem.
+     * \tparam Vector Eigen vector type.
+     * \tparam DerivedSolver Derived solver type.
      */
-    template <typename Real, Integer N, typename DerivedSolver>
-    class QuasiNewton : public RootFinder<Real, N, DerivedSolver, true>
+    template <typename Vector, typename DerivedSolver>
+    requires TypeTrait<Vector>::IsEigen &&
+      (!TypeTrait<Vector>::IsFixed || TypeTrait<Vector>::Dimension > 0)
+    class QuasiNewton : public RootFinder<Vector, DerivedSolver>
     {
     public:
-      OPTIMIST_BASIC_CONSTANTS(Real)
+      using VectorTrait = TypeTrait<Vector>;
+      using Scalar      = typename TypeTrait<Vector>::Scalar;
+      using typename RootFinder<Vector, DerivedSolver>::FirstDerivative;
 
-      using typename RootFinder<Real, N, DerivedSolver, true>::Vector;
-      using typename RootFinder<Real, N, DerivedSolver, true>::Matrix;
+      OPTIMIST_BASIC_CONSTANTS(Scalar)
 
-      /**
-       * QuasiNewton solver type enumeration.
-       */
-      using Method = enum class Method : Integer {GOOD = 0, BAD = 1, COMBINED = 2};
-
-    private:
-      Method m_method{Method::COMBINED}; /**< QuasiNewton solver type. */
-
-    public:
       /**
        * Class constructor for the QuasiNewton solver.
        */
@@ -94,10 +88,10 @@ namespace Optimist
 
         // Initialize variables
         bool damped, success;
-        Real residuals, step_norm;
+        Scalar residuals, step_norm;
         Vector x_old, x_new, function_old, function_new, step_old, step_new, delta_x_old, delta_x_new,
           delta_function_old, delta_function_new;
-        Matrix jacobian_old, jacobian_new;
+        FirstDerivative jacobian_old, jacobian_new;
 
         // Set initial iteration
         x_old = x_ini;
@@ -109,8 +103,8 @@ namespace Optimist
           CMD "jacobian evaluation failed at the initial point.");
 
         // Algorithm iterations
-        Real tolerance_residuals{this->m_tolerance};
-        Real tolerance_step_norm{this->m_tolerance * this->m_tolerance};
+        Scalar tolerance_residuals{this->m_tolerance};
+        Scalar tolerance_step_norm{this->m_tolerance * this->m_tolerance};
         for (this->m_iterations = 1; this->m_iterations < this->m_max_iterations; ++this->m_iterations)
         {
           // Calculate step
@@ -177,9 +171,9 @@ namespace Optimist
        * \param[out] jacobian_new New jacobian approximation.
        */
       void update(
-        Vector const & delta_x_old, Vector const & delta_function_old, Matrix const & jacobian_old,
+        Vector const & delta_x_old, Vector const & delta_function_old, FirstDerivative const & jacobian_old,
         Vector const & delta_x_new, Vector const & delta_function_new, Vector const & function_new,
-        Matrix       & jacobian_new
+        FirstDerivative & jacobian_new
       ) {
         static_cast<DerivedSolver *>(this)->update_impl(
           delta_x_old, delta_function_old, jacobian_old, // Old step data

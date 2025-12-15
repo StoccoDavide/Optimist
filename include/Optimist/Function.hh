@@ -160,13 +160,12 @@ namespace Optimist
      * \param[in] tol Tolerance.
      * \return True if the input point is a known solution, false otherwise.
      */
-    bool is_solution(Input const & x, Scalar const tol = EPSILON_LOW) const
+    bool is_solution(Input const & x, Scalar const tol = FunctionBase::SQRT_EPSILON) const
     {
       for (const auto & s : this->m_solutions) {
         if constexpr (InputTrait::IsEigen) {
           if((x - s).norm() < tol) {return true;}
         } else {
-          std::cout << this->name() << ": comparing " << x << " and " << s << " with tol " << tol << std::endl;
           if (std::abs(x - s) < tol) {return true;}
         }
       }

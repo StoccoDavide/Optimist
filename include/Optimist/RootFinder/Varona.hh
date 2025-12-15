@@ -63,17 +63,7 @@ namespace Optimist
        * Get the Varona solver name.
        * \return The Varona solver name.
        */
-      constexpr std::string name_impl() const
-      {
-        std::ostringstream os;
-        os << "Varona";
-        if (this->m_method == Method::ORDER_4) {os << "4";}
-        else if (this->m_method == Method::ORDER_8) {os << "8";}
-        else if (this->m_method == Method::ORDER_16) {os << "16";}
-        else if (this->m_method == Method::ORDER_32) {os << "32";}
-        else {os << "UNKNOWN";}
-        return os.str();
-      }
+      constexpr std::string name_impl() const {return "Varona";}
 
       /**
        * Get the enumeration type of the Varona solver method.
@@ -158,9 +148,9 @@ namespace Optimist
             CMD "first derivative evaluation failed at iteration " << this->m_iterations << ".");
 
           // Calculate step
-          if (std::abs(first_derivative_old) < EPSILON_LOW) {
-            OPTIMIST_WARNING( CMD "singular first derivative detected.");
-            first_derivative_old = (first_derivative_old > 0) ? EPSILON_LOW : -EPSILON_LOW;
+          if (std::abs(first_derivative_old) < Varona::SQRT_EPSILON) {
+            OPTIMIST_WARNING(CMD "close-to-singular first derivative detected.");
+            first_derivative_old = (first_derivative_old > 0) ? Varona::SQRT_EPSILON : -Varona::SQRT_EPSILON;
           }
 
           this->compute_step(std::forward<FunctionLambda>(function), x_old, function_old, first_derivative_old, step_old);
@@ -308,7 +298,7 @@ namespace Optimist
         Scalar t2{t1*t1};
         Scalar t8{s*s};
         Scalar t17{s*t8};
-        Scalar t23{2.0*u};
+        Scalar t23{static_cast<Scalar>(2.0)*u};
         return
           ((8.0*u + 6.0*t2 + 4.0)*s -
           (6.0*t8 + 4.0*(s + u + 1.0))*t1 +
@@ -334,9 +324,9 @@ namespace Optimist
         Scalar t32{t17*t17};
         Scalar t34{t*t32};
         Scalar t37{t*t17};
-        Scalar t46{1.0 + v};
-        Scalar t65{u + 1.0 + v};
-        Scalar t76{(-2.0*t22 + u + 4.0*v + 2.0)*u};
+        Scalar t46{static_cast<Scalar>(1.0) + v};
+        Scalar t65{u + static_cast<Scalar>(1.0) + v};
+        Scalar t76{static_cast<Scalar>(-2.0*t22 + u + 4.0*v + 2.0)*u};
         return
           (-1.0 + 2.0*t)*(2.0 + 5.0*t)*u*t*t2 +
           (4.0*t + 1.0)*u*s*t2 +

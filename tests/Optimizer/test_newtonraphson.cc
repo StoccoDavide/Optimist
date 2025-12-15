@@ -34,12 +34,12 @@ TEMPLATE_TEST_CASE("NewtonRaphson", "[template]", TEST_SCALAR_FUNCTIONS) {
         sol.disable_damped_mode();
         sol.rootfind(fun, x_ini, x_out);
         REQUIRE(sol.converged());
-        REQUIRE(fun.is_solution(x_out,TestType::EPSILON_LOW));
+        REQUIRE(fun.is_solution(x_out, TestType::SQRT_EPSILON));
         // Solve with damping
         sol.enable_damped_mode();
         sol.rootfind(fun, x_ini, x_out);
         REQUIRE(sol.converged());
-        REQUIRE(fun.is_solution(x_out,TestType::EPSILON_LOW));
+        REQUIRE(fun.is_solution(x_out, TestType::SQRT_EPSILON));
       }
     }
   }

@@ -611,7 +611,7 @@ namespace Optimist
         #define CMD "Optimist::Optimizer::NelderMead::shrink(...): "
 
         bool success;
-        Scalar const c_1{1.0 - this->m_sigma}, c_2{this->m_sigma};
+        Scalar const c_1{static_cast<Scalar>(1.0) - this->m_sigma}, c_2{this->m_sigma};
         for (Integer i{0}; i <= this->m_dim; ++i)
         {
           if (i != this->m_low) {

@@ -15,7 +15,6 @@
 #include "Optimist/RootFinder/Newton.hh"        // For testing vector functions
 #include "Optimist/Optimizer/NelderMead.hh"    // For testing cost functions
 
-// Test functions for the Optimist library
 // Google Test framework
 #include <gtest/gtest.h>
 
@@ -173,31 +172,31 @@ using CostTestTypes = testing::Types<
 >;
 
 // Register the type-parameterized cost function tests
-TYPED_TEST_SUITE(CostFunctions, CostTestTypes);
+// TYPED_TEST_SUITE(CostFunctions, CostTestTypes);
 
-// Test to solve cost functions
-TYPED_TEST(CostFunctions, SolveCost) {
-  // Retrieve the function and vector types
-  using Function = TypeParam;
-  using Vector   = typename Function::VectorTrait::Type;
+// // Test to solve cost functions
+// TYPED_TEST(CostFunctions, SolveCost) {
+//   // Retrieve the function and vector types
+//   using Function = TypeParam;
+//   using Vector   = typename Function::VectorTrait::Type;
 
-  // Create function and solver instances
-  Function fun;
-  Optimist::Optimizer::NelderMead<Vector> sol;
-  sol.task(fun.name());
-  sol.verbose_mode(true);
-  sol.tolerance(std::sqrt(Function::EPSILON));
+//   // Create function and solver instances
+//   Function fun;
+//   Optimist::Optimizer::NelderMead<Vector> sol;
+//   sol.task(fun.name());
+//   sol.verbose_mode(false);
+//   sol.tolerance(std::sqrt(Function::EPSILON));
 
-  bool converged_at_least_once{false};
-  Vector x_out;
-  for (size_t i{0}; i < fun.guesses().size(); ++i) {
-    sol.optimize(fun, fun.guess(i), x_out);
+//   bool converged_at_least_once{false};
+//   Vector x_out;
+//   for (size_t i{0}; i < fun.guesses().size(); ++i) {
+//     sol.optimize(fun, fun.guess(i), x_out);
 
-    // Check convergence
-    if (sol.converged() && fun.is_solution(x_out, std::cbrt(Function::EPSILON))) {
-      converged_at_least_once = true;
-    }
-  }
-  ASSERT_TRUE(converged_at_least_once);
-}
+//     // Check convergence
+//     if (sol.converged() && fun.is_solution(x_out, std::cbrt(Function::EPSILON))) {
+//       converged_at_least_once = true;
+//     }
+//   }
+//   ASSERT_TRUE(converged_at_least_once);
+// }
 

@@ -73,11 +73,10 @@
 #ifndef OPTIMIST_BASIC_CONSTANTS
 #define OPTIMIST_BASIC_CONSTANTS(Scalar) \
   static constexpr Scalar EPSILON{std::numeric_limits<Scalar>::epsilon()};     /**< Machine epsilon epsilon static constant value. */ \
-  static constexpr Scalar EPSILON_HIGH{1.0e-12};                             /**< High precision epsilon static constant value. */ \
-  static constexpr Scalar EPSILON_MEDIUM{1.0e-10};                           /**< Medium precision epsilon static constant value. */ \
-  static constexpr Scalar EPSILON_LOW{1.0e-08};                              /**< Low precision epsilon static constant value. */ \
   static constexpr Scalar INFTY{std::numeric_limits<Scalar>::infinity()};      /**< Infinity static constant value. */ \
-  static constexpr Scalar QUIET_NAN{std::numeric_limits<Scalar>::quiet_NaN()}; /**< Not-a-number static constant value. */
+  static constexpr Scalar QUIET_NAN{std::numeric_limits<Scalar>::quiet_NaN()}; /**< Not-a-number static constant value. */ \
+  inline static const Scalar SQRT_EPSILON{std::sqrt(EPSILON)};                 /**< Square root of epsilon static constant value. */ \
+  inline static const Scalar CBRT_EPSILON{std::cbrt(EPSILON)};                 /**< Cube root of epsilon static constant value. */
 #endif
 
 #ifndef OPTIMIST_DEFAULT_INTEGER_TYPE

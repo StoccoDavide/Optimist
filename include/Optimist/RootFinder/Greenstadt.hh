@@ -34,21 +34,23 @@ namespace Optimist
      *
      * \includedoc docs/markdown/RootFinder/Greenstadt.md
      *
-     * \tparam Real Scalar number type.
-     * \tparam N Dimension of the root-finding problem.
+     * \tparam Vector Eigen vector type.
      */
-    template <typename Real, Integer N>
-    class Greenstadt : public QuasiNewton<Real, N, Greenstadt<Real, N>>
+    template <typename Vector>
+    requires TypeTrait<Vector>::IsEigen &&
+      (!TypeTrait<Vector>::IsFixed || TypeTrait<Vector>::Dimension > 0)
+    class Greenstadt : public QuasiNewton<Vector, Greenstadt<Vector>>
     {
     public:
       static constexpr bool RequiresFunction{true};
       static constexpr bool RequiresFirstDerivative{true};
       static constexpr bool RequiresSecondDerivative{false};
 
-      OPTIMIST_BASIC_CONSTANTS(Real)
+      using VectorTrait = TypeTrait<Vector>;
+      using Scalar      = typename TypeTrait<Vector>::Scalar;
+      using typename QuasiNewton<Vector, Greenstadt<Vector>>::FirstDerivative;
 
-      using typename QuasiNewton<Real, N, Greenstadt<Real, N>>::Vector;
-      using typename QuasiNewton<Real, N, Greenstadt<Real, N>>::Matrix;
+      OPTIMIST_BASIC_CONSTANTS(Scalar)
 
       /**
        * Greenstadt solver type enumeration.
@@ -68,17 +70,7 @@ namespace Optimist
        * Get the Greenstadt solver name.
        * \return The Greenstadt solver name.
        */
-      constexpr std::string name_impl() const
-      {
-        std::ostringstream os;
-        os << "Greenstadt";
-        if (this->m_method == Method::ONE) {
-          os << "1";
-        } else if (this->m_method == Method::TWO) {
-          os << "2";
-        }
-        return os.str();
-      }
+      constexpr std::string name_impl() const {return "Greenstadt";}
 
       /**
        * Get the enumeration type of the Greenstadt solver method.
@@ -119,19 +111,21 @@ namespace Optimist
        * \param[out] jacobian_new New jacobian approximation.
        */
       void update_impl(
-        Vector const & /*delta_x_old*/, Vector const & /*delta_function_old*/, Matrix const & jacobian_old,
+        Vector const & /*delta_x_old*/, Vector const & /*delta_function_old*/, FirstDerivative const & jacobian_old,
         Vector const & delta_x_new,     Vector const & delta_function_new,     Vector const & function_new,
-        Matrix       & jacobian_new
+        FirstDerivative & jacobian_new
       ) {
         if (this->m_method == Method::ONE) {
           // Greenstadt's 1st method
           // J1 = J0 - (J0*DF1-DX1)/(C'*DF1)*C', where C = F1;
-          jacobian_new = jacobian_old - (jacobian_old*delta_function_new-delta_x_new)/(function_new.transpose()*delta_function_new)*function_new.transpose();
+          jacobian_new = jacobian_old - (jacobian_old*delta_function_new - delta_x_new) /
+            (function_new.dot(delta_function_new))*function_new.transpose();
         } else if (this->m_method == Method::TWO) {
           // Greenstadt's 2nd method
           // J1 = J0 - (J0*DF1-DX1)/(C'*DF1)*C', where C  = J0'*J0*DF1;
           Vector C(jacobian_old.transpose()*jacobian_old*delta_function_new);
-          jacobian_new = jacobian_old - (jacobian_old*delta_function_new-delta_x_new)/(C.transpose()*delta_function_new)*C.transpose();
+          jacobian_new = jacobian_old - (jacobian_old*delta_function_new - delta_x_new) /
+            (C.dot(delta_function_new))*C.transpose();
         }
       }
 

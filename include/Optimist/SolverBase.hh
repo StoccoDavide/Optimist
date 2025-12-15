@@ -109,7 +109,7 @@ namespace Optimist
     Integer m_max_relaxations{10}; /**< Maximum allowed algorithm relaxations. */
 
     // Settings
-    Scalar         m_tolerance{EPSILON_LOW}; /**< Solver tolerance \f$ \epsilon \f$ for convergence. */
+    Scalar         m_tolerance{SQRT_EPSILON}; /**< Solver tolerance \f$ \epsilon \f$ for convergence. */
     bool           m_verbose{false};         /**< Verbose mode boolean flag. */
     bool           m_damped{true};           /**< Damped mode boolean flag. */
     std::ostream * m_ostream{&std::cout};    /**< Output stream for verbose mode. */

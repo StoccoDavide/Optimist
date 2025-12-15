@@ -90,8 +90,14 @@ namespace Optimist
        */
       bool evaluate_impl(Vector const & x, Scalar & out) const
       {
-        Scalar xx_0{x(0)*x(0)};
-        Scalar xx_1{x(1)*x(1)};
+        Scalar xx_0, xx_1;
+        if constexpr (VectorTrait::IsSparse) {
+          xx_0 = x.coeff(0)*x.coeff(0);
+          xx_1 = x.coeff(1)*x.coeff(1);
+        } else {
+          xx_0 = x(0)*x(0);
+          xx_1 = x(1)*x(1);
+        }
         Scalar xx_0_m_xx_1{xx_0 - xx_1};
         Scalar xx_0_p_xx_1{xx_0 + xx_1};
         out = 0.5 + (std::sin(xx_0_m_xx_1)*std::sin(xx_0_m_xx_1) - 0.5) /
@@ -107,16 +113,31 @@ namespace Optimist
        */
       bool first_derivative_impl(Vector const & x, FirstDerivative & out) const
       {
-        Scalar xx_0{x(0)*x(0)};
-        Scalar xx_1{x(1)*x(1)};
+        Scalar xx_0, xx_1;
+        if constexpr (VectorTrait::IsSparse) {
+          xx_0 = x.coeff(0)*x.coeff(0);
+          xx_1 = x.coeff(1)*x.coeff(1);
+        } else {
+          xx_0 = x(0)*x(0);
+          xx_1 = x(1)*x(1);
+        }
         Scalar xx_0_m_xx_1{xx_0 - xx_1};
         Scalar xx_0_p_xx_1{xx_0 + xx_1};
-        Scalar tmp{1.0 + 0.001*xx_0_p_xx_1};
+        Scalar tmp{static_cast<Scalar>(1.0) + static_cast<Scalar>(0.001)*xx_0_p_xx_1};
         Scalar tmp2{tmp*tmp}, tmp3{tmp2*tmp};
-        out(0) = 2.0*x(0)*std::sin(xx_0_m_xx_1) / tmp2 -
-          2.0*0.001*x(0)*std::cos(xx_0_m_xx_1) / tmp3;
-        out(1) = -2.0*x(1)*std::sin(xx_0_m_xx_1) / tmp2 +
-          2.0*0.001*x(1)*std::cos(xx_0_m_xx_1) / tmp3;
+        if constexpr (VectorTrait::IsFixed) {
+          out << 2.0*x(0)*std::sin(xx_0_m_xx_1) / tmp2 - 2.0*0.001*x(0)*std::cos(xx_0_m_xx_1) / tmp3,
+            -2.0*x(1)*std::sin(xx_0_m_xx_1) / tmp2 + 2.0*0.001*x(1)*std::cos(xx_0_m_xx_1) / tmp3;
+        } else if constexpr (VectorTrait::IsDynamic) {
+          out.resize(2);
+          out << 2.0*x(0)*std::sin(xx_0_m_xx_1) / tmp2 - 2.0*0.001*x(0)*std::cos(xx_0_m_xx_1) / tmp3,
+            -2.0*x(1)*std::sin(xx_0_m_xx_1) / tmp2 + 2.0*0.001*x(1)*std::cos(xx_0_m_xx_1) / tmp3;
+        } else if constexpr (VectorTrait::IsSparse) {
+          out.resize(2); out.reserve(2);
+          out.coeffRef(0) = +2.0*x(0)*std::sin(xx_0_m_xx_1) / tmp2 - 2.0*0.001*x(0)*std::cos(xx_0_m_xx_1) / tmp3;
+          out.coeffRef(1) = -2.0*x(1)*std::sin(xx_0_m_xx_1) / tmp2 + 2.0*0.001*x(1)*std::cos(xx_0_m_xx_1) / tmp3;
+        }
+
         return out.allFinite();
       }
 
@@ -128,21 +149,53 @@ namespace Optimist
        */
       bool second_derivative_impl(Vector const & x, SecondDerivative & out) const
       {
-        Scalar xx_0{x(0)*x(0)};
-        Scalar xx_1{x(1)*x(1)};
+        Scalar xx_0, xx_1;
+        if constexpr (VectorTrait::IsSparse) {
+          xx_0 = x.coeff(0)*x.coeff(0);
+          xx_1 = x.coeff(1)*x.coeff(1);
+        } else {
+          xx_0 = x(0)*x(0);
+          xx_1 = x(1)*x(1);
+        }
         Scalar xx_0_m_xx_1{xx_0 - xx_1};
         Scalar xx_0_p_xx_1{xx_0 + xx_1};
-        Scalar tmp{1.0 + 0.001*(xx_0_p_xx_1)};
+        Scalar tmp{static_cast<Scalar>(1.0) + static_cast<Scalar>(0.001)*(xx_0_p_xx_1)};
         Scalar tmp2{tmp*tmp}, tmp3{tmp2*tmp}, tmp4{tmp2*tmp2};
-        out(0, 0) = 2.0*std::sin(xx_0_m_xx_1) / tmp2 -
-          4.0*x(0)*x(0)*std::sin(xx_0_m_xx_1) / tmp3 +
-          6.0*0.001*x(0)*x(0)*std::cos(xx_0_m_xx_1) / tmp4;
-        out(0, 1) = -2.0*x(0)*x(1)*std::sin(xx_0_m_xx_1) / tmp3 +
-          6.0*0.001*x(0)*x(1)*std::cos(xx_0_m_xx_1) / tmp4;
-        out(1, 0) = out(0, 1);
-        out(1, 1) = 2.0*std::sin(xx_0_m_xx_1) / tmp2 -
-          4.0*x(1)*x(1)*std::sin(xx_0_m_xx_1) / tmp3 +
-          6.0*0.001*x(1)*x(1)*std::cos(xx_0_m_xx_1) / tmp4;
+        if constexpr (VectorTrait::IsFixed) {
+          out.resize(2, 2);
+          out(0, 0) = 2.0*std::sin(xx_0_m_xx_1) / tmp2 -
+            4.0*x(0)*x(0)*std::sin(xx_0_m_xx_1) / tmp3 +
+            6.0*0.001*x(0)*x(0)*std::cos(xx_0_m_xx_1) / tmp4;
+          out(0, 1) = -2.0*x(0)*x(1)*std::sin(xx_0_m_xx_1) / tmp3 +
+            6.0*0.001*x(0)*x(1)*std::cos(xx_0_m_xx_1) / tmp4;
+          out(1, 0) = out(0, 1);
+          out(1, 1) = 2.0*std::sin(xx_0_m_xx_1) / tmp2 -
+            4.0*x(1)*x(1)*std::sin(xx_0_m_xx_1) / tmp3 +
+            6.0*0.001*x(1)*x(1)*std::cos(xx_0_m_xx_1) / tmp4;
+        } else if constexpr (VectorTrait::IsDynamic) {
+          out.resize(2, 2);
+          out(0, 0) = 2.0*std::sin(xx_0_m_xx_1) / tmp2 -
+            4.0*x(0)*x(0)*std::sin(xx_0_m_xx_1) / tmp3 +
+            6.0*0.001*x(0)*x(0)*std::cos(xx_0_m_xx_1) / tmp4;
+          out(0, 1) = -2.0*x(0)*x(1)*std::sin(xx_0_m_xx_1) / tmp3 +
+            6.0*0.001*x(0)*x(1)*std::cos(xx_0_m_xx_1) / tmp4;
+          out(1, 0) = out(0, 1);
+          out(1, 1) = 2.0*std::sin(xx_0_m_xx_1) / tmp2 -
+            4.0*x(1)*x(1)*std::sin(xx_0_m_xx_1) / tmp3 +
+            6.0*0.001*x(1)*x(1)*std::cos(xx_0_m_xx_1) / tmp4;
+        } else if constexpr (VectorTrait::IsSparse) {
+          out.resize(2, 2); out.reserve(4);
+          out.coeffRef(0, 0) = 2.0*std::sin(xx_0_m_xx_1) / tmp2 -
+            4.0*x(0)*x(0)*std::sin(xx_0_m_xx_1) / tmp3 +
+            6.0*0.001*x(0)*x(0)*std::cos(xx_0_m_xx_1) / tmp4;
+          out.coeffRef(0, 1) = -2.0*x.coeff(0)*x.coeff(1)*std::sin(xx_0_m_xx_1) / tmp3 +
+            6.0*0.001*x.coeff(0)*x.coeff(1)*std::cos(xx_0_m_xx_1) / tmp4;
+          out.coeffRef(1, 0) = out.coeff(0, 1);
+          out.coeffRef(1, 1) = 2.0*std::sin(xx_0_m_xx_1) / tmp2 -
+            4.0*x.coeff(1)*x.coeff(1)*std::sin(xx_0_m_xx_1) / tmp3 +
+            6.0*0.001*x.coeff(1)*x.coeff(1)*std::cos(xx_0_m_xx_1) / tmp4;
+        }
+
         return out.allFinite();
       }
 

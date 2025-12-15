@@ -107,16 +107,16 @@ namespace Optimist
             CMD "second derivative evaluation failed at iteration " << this->m_iterations << ".");
 
           // Calculate step
-          if (std::abs(first_derivative_old) < EPSILON_LOW) {
-            OPTIMIST_WARNING( CMD "singular first derivative detected.");
-            first_derivative_old = (first_derivative_old > 0) ? EPSILON_LOW : -EPSILON_LOW;
+          if (std::abs(first_derivative_old) < Halley::SQRT_EPSILON) {
+            OPTIMIST_WARNING(CMD "close-to-singular first derivative detected.");
+            first_derivative_old = (first_derivative_old > 0) ? Halley::SQRT_EPSILON : -Halley::SQRT_EPSILON;
           }
-          if (std::abs(second_derivative_old) < EPSILON_LOW) {
-            OPTIMIST_WARNING( CMD "singular second derivative detected.");
-            second_derivative_old = (second_derivative_old > 0) ? EPSILON_LOW : -EPSILON_LOW;
+          if (std::abs(second_derivative_old) < Halley::SQRT_EPSILON) {
+            OPTIMIST_WARNING(CMD "close-to-singular second derivative detected.");
+            second_derivative_old = (second_derivative_old > 0) ? Halley::SQRT_EPSILON : -Halley::SQRT_EPSILON;
           }
-          step_old = -(function_old / first_derivative_old) * (1.0 - (function_old * second_derivative_old) /
-            (first_derivative_old * first_derivative_old));
+          step_old = -(function_old / first_derivative_old) /
+            (1.0 - (function_old * second_derivative_old) / (2.0 * first_derivative_old * first_derivative_old));
           OPTIMIST_ASSERT(std::isfinite(step_old), CMD "step " << this->m_iterations << " is not finite.");
 
           // Check convergence

@@ -89,8 +89,8 @@ namespace Optimist
         #define CMD "Optimist::RootFinder::Algo748::bracketing(...): "
 
         {
-          Scalar tolerance{0.7*this->m_tolerance_bracketing};
-          Scalar hba{(this->m_b - this->m_a)/2.0};
+          Scalar tolerance{static_cast<Scalar>(0.7)*this->m_tolerance_bracketing};
+          Scalar hba{(this->m_b - this->m_a)/static_cast<Scalar>(2.0)};
           if (hba <= tolerance) {this->m_c = this->m_a + hba;}
           else if (this->m_c <= this->m_a + tolerance) {this->m_c = this->m_a + tolerance;}
           else if (this->m_c >= this->m_b - tolerance) {this->m_c = this->m_b - tolerance;}
@@ -144,7 +144,7 @@ namespace Optimist
 
         // Compute the approximate root
         Scalar root{this->m_a - this->m_fa*(dd_0 - this->m_fb*(ddd_0 - this->m_fd*dddd_0))};
-        Scalar tolerance{0.7*this->m_tolerance_bracketing};
+        Scalar tolerance{static_cast<Scalar>(0.7)*this->m_tolerance_bracketing};
         if (root <= this->m_a + tolerance || root >= this->m_b - tolerance) {
           root = (this->m_a + this->m_b)/2.0;
         }
@@ -312,7 +312,7 @@ namespace Optimist
             Scalar u, fu;
             if (abs_fa < abs_fb) {u = this->m_a; fu = this->m_fa;}
             else {u = this->m_b; fu = this->m_fb;}
-            Scalar hba{(this->m_b - this->m_a)/2.0};
+            Scalar hba{(this->m_b - this->m_a)/static_cast<Scalar>(2.0)};
             this->m_c = u - 4.0*(fu/(this->m_fb - this->m_fa))*hba;
             if (std::abs(this->m_c - u) > hba) {this->m_c = this->m_a + hba;}
           }

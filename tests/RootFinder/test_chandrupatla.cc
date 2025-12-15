@@ -9,37 +9,65 @@
 \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 // Optimist library
+#include "Optimist.hh"
+#include "Optimist/TestSet.hh"
 #include "Optimist/RootFinder/Chandrupatla.hh"
 
-// Catch2 library
-#include <catch2/catch_test_macros.hpp>
-#include <catch2/generators/catch_generators_range.hpp>
-#include <catch2/catch_template_test_macros.hpp>
+// Google Test framework
+#include <gtest/gtest.h>
 
-#include "test_scalar_functions.hh"
-
-using namespace Optimist;
 using namespace Optimist::TestSet;
 
-TEMPLATE_TEST_CASE("Chandrupatla", "[template]", TEST_SCALAR_FUNCTIONS) {
-  TestType fun;
-  SECTION(fun.name()) {
-    RootFinder::Chandrupatla<double> sol;
-    sol.bounds(-10.0, 10.0);
-    sol.task(fun.name());
-    typename TestType::InputType x_ini, x_out;
-    for (size_t i{0}; i < fun.guesses().size(); ++i) {
-      x_ini = fun.guess(i);
-      // Solve without damping
-      sol.disable_damped_mode();
-      sol.rootfind(fun, x_ini, x_out);
-      REQUIRE(sol.converged());
-      REQUIRE(fun.is_solution(x_out,TestType::EPSILON_LOW));
-      // Solve with damping
-      sol.enable_damped_mode();
-      sol.rootfind(fun, x_ini, x_out);
-      REQUIRE(sol.converged());
-      REQUIRE(fun.is_solution(x_out,TestType::EPSILON_LOW));
-    }
+// Type-parameterized test fixture for functions
+template <typename FunctionType>
+struct Functions : public testing::Test {
+    using TestType = FunctionType;
+};
+
+using TestTypes = testing::Types<
+  Linear<float>,
+  Linear<double>,
+  Quadratic<float>,
+  Quadratic<double>,
+  Cos<float>,
+  Cos<double>,
+  Sin<float>,
+  Sin<double>,
+  Sinh<float>,
+  Sinh<double>
+>;
+
+// Register the type-parameterized function tests
+TYPED_TEST_SUITE(Functions, TestTypes);
+
+// Test to solve functions
+TYPED_TEST(Functions, Solve) {
+
+  // Retrieve the function and scalar types
+  using Function = TypeParam;
+  using Scalar   = typename Function::Scalar;
+
+  // Create function and solver instances
+  Function fun;
+  Optimist::RootFinder::Chandrupatla<Scalar> sol;
+  sol.bounds(-10.0, 10.0);
+  sol.task(fun.name());
+  sol.verbose_mode(false);
+  sol.tolerance(std::sqrt(Function::EPSILON));
+
+  Scalar x_out;
+  for (size_t i{0}; i < fun.guesses().size(); ++i) {
+
+    // Solve without damping
+    sol.disable_damped_mode();
+    sol.rootfind(fun, fun.guess(i), x_out);
+    EXPECT_TRUE(sol.converged());
+    EXPECT_TRUE(fun.is_solution(x_out, std::cbrt(Function::EPSILON)));
+
+    // Solve with damping
+    sol.enable_damped_mode();
+    sol.rootfind(fun, fun.guess(i), x_out);
+    EXPECT_TRUE(sol.converged());
+    EXPECT_TRUE(fun.is_solution(x_out, std::cbrt(Function::EPSILON)));
   }
 }
