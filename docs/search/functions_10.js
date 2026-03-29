@@ -1,9 +1,6 @@
 var searchData=
 [
-  ['reflection_0',['reflection',['../class_optimist_1_1_optimizer_1_1_nelder_mead.html#ac9bcda37bfdf5583ebe6dca1da4b95c3',1,'Optimist::Optimizer::NelderMead']]],
-  ['relaxations_1',['relaxations',['../class_optimist_1_1_solver_base.html#a4747b541f31910b9deef78f4d2b7e9ae',1,'Optimist::SolverBase']]],
-  ['reset_2',['reset',['../class_optimist_1_1_solver_base.html#a681a3df775b41fa38ccf747606a44ccf',1,'Optimist::SolverBase']]],
-  ['rootfind_3',['rootfind',['../class_optimist_1_1_solver_base.html#adab9c7c46dfda550e5f4ca9abac7fd03',1,'Optimist::SolverBase']]],
-  ['rootfinder_4',['RootFinder',['../class_optimist_1_1_root_finder_1_1_root_finder.html#a7d0894526be5ff17fef5a6f3700513cb',1,'Optimist::RootFinder::RootFinder::RootFinder()'],['../class_optimist_1_1_root_finder_1_1_root_finder_3_01_real_00_011_00_01_derived_solver_01_4.html#ab321be8eff8bdb012aae546ebe43bcee',1,'Optimist::RootFinder::RootFinder&lt; Real, 1, DerivedSolver &gt;::RootFinder()']]],
-  ['rosenbrock_5',['Rosenbrock',['../class_optimist_1_1_test_set_1_1_rosenbrock.html#a7b47a8d0e5201ee1ab72686608c1a78a',1,'Optimist::TestSet::Rosenbrock']]]
+  ['q_0',['Q',['../class_optimist_1_1_root_finder_1_1_varona.html#ae19c1a913db95d02a6287b3c8a9d41b2',1,'Optimist::RootFinder::Varona']]],
+  ['quadratic_1',['Quadratic',['../class_optimist_1_1_test_set_1_1_quadratic.html#a9ab1a2c12b796c92613b6ea4fcd217d3',1,'Optimist::TestSet::Quadratic']]],
+  ['quasinewton_2',['QuasiNewton',['../class_optimist_1_1_root_finder_1_1_quasi_newton.html#a37a9336c1b4dc7d7b2251b1850de4daf',1,'Optimist::RootFinder::QuasiNewton']]]
 ];

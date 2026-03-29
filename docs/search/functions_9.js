@@ -1,7 +1,9 @@
 var searchData=
 [
-  ['j_0',['J',['../class_optimist_1_1_root_finder_1_1_varona.html#acedc4ef39fc9a3f290fa1d529c338262',1,'Optimist::RootFinder::Varona']]],
-  ['jacobian_1',['Jacobian',['../namespace_optimist_1_1_finite_differences.html#a4f1a1cde5e9633b4c84a1d287722182a',1,'Optimist::FiniteDifferences']]],
-  ['jacobian_2',['jacobian',['../class_optimist_1_1_function.html#a07418695a4a414c5701a91d369b04e9f',1,'Optimist::Function::jacobian()'],['../class_optimist_1_1_function.html#a07418695a4a414c5701a91d369b04e9f',1,'Optimist::Function&lt; Real, 1, 1, DerivedFunction &gt;::jacobian()'],['../class_optimist_1_1_function.html#a07418695a4a414c5701a91d369b04e9f',1,'Optimist::Function&lt; Real, N, 1, DerivedFunction &gt;::jacobian()']]],
-  ['jacobian_5fevaluations_3',['jacobian_evaluations',['../class_optimist_1_1_root_finder_1_1_root_finder.html#aa88ba3113e4f3f6b80f10fb578c06cb3',1,'Optimist::RootFinder::RootFinder::jacobian_evaluations()'],['../class_optimist_1_1_root_finder_1_1_root_finder.html#aa88ba3113e4f3f6b80f10fb578c06cb3',1,'Optimist::RootFinder::RootFinder&lt; Real, 1, DerivedSolver &gt;::jacobian_evaluations()']]]
+  ['inertia_5fweight_5fstrategy_0',['inertia_weight_strategy',['../class_optimist_1_1_optimizer_1_1_particle_swarm.html#a9165e62a330ffab0baae7564f73e4384',1,'Optimist::Optimizer::ParticleSwarm']]],
+  ['info_1',['info',['../class_optimist_1_1_solver_base.html#a836f018048c50988fde6f0d4cbad7bbd',1,'Optimist::SolverBase']]],
+  ['input_5fdimension_2',['input_dimension',['../class_optimist_1_1_function_base.html#abc54d5a640765d436a44b68f79b7253a',1,'Optimist::FunctionBase::input_dimension()'],['../class_optimist_1_1_solver_base.html#a3497a3d14340e56b78f061d0e908b818',1,'Optimist::SolverBase::input_dimension()']]],
+  ['inside_3',['inside',['../class_optimist_1_1_optimizer_1_1_nelder_mead.html#a6f9943871c29fb6157d36b6a9b42d265',1,'Optimist::Optimizer::NelderMead']]],
+  ['is_5fsolution_4',['is_solution',['../class_optimist_1_1_function_base.html#ae6c388b51aa509c7f5f36139be4b46b0',1,'Optimist::FunctionBase']]],
+  ['iterations_5',['iterations',['../class_optimist_1_1_solver_base.html#ac12449a64c8c0d44ee48f8aabd8cf576',1,'Optimist::SolverBase']]]
 ];

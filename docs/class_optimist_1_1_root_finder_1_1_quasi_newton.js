@@ -1,9 +1,9 @@
 var class_optimist_1_1_root_finder_1_1_quasi_newton =
 [
-    [ "Method", "class_optimist_1_1_root_finder_1_1_quasi_newton.html#a8e9176cad30022f003a181b6b5dcba58", null ],
-    [ "QuasiNewton", "class_optimist_1_1_root_finder_1_1_quasi_newton.html#a338b9da7c91f7024cbda7d6f825f55b9", null ],
-    [ "name_impl", "class_optimist_1_1_root_finder_1_1_quasi_newton.html#a8e98af392096ac0d48d5f97945cc28e2", null ],
-    [ "solve_impl", "class_optimist_1_1_root_finder_1_1_quasi_newton.html#a513f1ca7b6fc843b9acf9b61b3170323", null ],
-    [ "update", "class_optimist_1_1_root_finder_1_1_quasi_newton.html#a154c508833f36e697af385aa9527f4a3", null ],
-    [ "m_method", "class_optimist_1_1_root_finder_1_1_quasi_newton.html#a5b50d2092f2e5b84f97f3658612e391d", null ]
+    [ "Scalar", "class_optimist_1_1_root_finder_1_1_quasi_newton.html#ac3b31edc7ecee57e191d5c3be8949c67", null ],
+    [ "VectorTrait", "class_optimist_1_1_root_finder_1_1_quasi_newton.html#a9bd60a9cd61305bb06827900c4189efd", null ],
+    [ "QuasiNewton", "class_optimist_1_1_root_finder_1_1_quasi_newton.html#a37a9336c1b4dc7d7b2251b1850de4daf", null ],
+    [ "name_impl", "class_optimist_1_1_root_finder_1_1_quasi_newton.html#a8f09837cf677f565ca0bf3ea261cce38", null ],
+    [ "solve_impl", "class_optimist_1_1_root_finder_1_1_quasi_newton.html#ad9f611733ffa671c3d90632e6ce11816", null ],
+    [ "update", "class_optimist_1_1_root_finder_1_1_quasi_newton.html#aa72572110e352fff1f3a230a4be6ded7", null ]
 ];

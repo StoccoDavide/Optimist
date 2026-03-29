@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['inputtype_0',['InputType',['../class_optimist_1_1_function_base.html#a639af199ef0fb00f8914e538337b67a0',1,'Optimist::FunctionBase::InputType'],['../class_optimist_1_1_solver_base.html#adb16d3d5f0c40c6f34893a5b45ec51d9',1,'Optimist::SolverBase::InputType']]],
-  ['inputvector_1',['InputVector',['../class_optimist_1_1_function.html#a96594f7ce4fc2d6728d4982a9df51093',1,'Optimist::Function::InputVector'],['../class_optimist_1_1_function.html#a96594f7ce4fc2d6728d4982a9df51093',1,'Optimist::Function&lt; Real, 1, 1, DerivedFunction &gt;::InputVector'],['../class_optimist_1_1_function.html#a96594f7ce4fc2d6728d4982a9df51093',1,'Optimist::Function&lt; Real, N, 1, DerivedFunction &gt;::InputVector']]],
-  ['integer_2',['Integer',['../namespace_optimist.html#a71c803585df543aec4079c8282e83baa',1,'Optimist']]]
+  ['factorization_0',['Factorization',['../class_optimist_1_1_optimizer_1_1_nelder_mead.html#a59146c7bb20545b36077da5e9e79729e',1,'Optimist::Optimizer::NelderMead::Factorization'],['../class_optimist_1_1_root_finder_1_1_newton.html#a0f5ab56de27e710f5817abdc1dc8422d',1,'Optimist::RootFinder::Newton::Factorization']]],
+  ['first_1',['First',['../struct_optimist_1_1_retrieve_type_3_01_base_type_3_01_first_type_00_01_rest_8_8_8_01_4_01_4.html#ad134b1a348292c6a04f18a04ee7261e8',1,'Optimist::RetrieveType&lt; BaseType&lt; FirstType, Rest... &gt; &gt;']]],
+  ['firstderivative_2',['FirstDerivative',['../class_optimist_1_1_function_base.html#ac2e468087bfbce7ded4e78874a246503',1,'Optimist::FunctionBase::FirstDerivative'],['../class_optimist_1_1_solver_base.html#ab9cf3527890241dead5f157c9db77694',1,'Optimist::SolverBase::FirstDerivative']]],
+  ['full_3',['Full',['../struct_optimist_1_1_retrieve_type_3_01_base_type_3_01_first_type_00_01_rest_8_8_8_01_4_01_4.html#a52e6266eed7b41533e5637e55425dd77',1,'Optimist::RetrieveType&lt; BaseType&lt; FirstType, Rest... &gt; &gt;']]]
 ];

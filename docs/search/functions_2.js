@@ -1,12 +1,11 @@
 var searchData=
 [
-  ['centeredfinitedifferences_0',['CenteredFiniteDifferences',['../namespace_optimist_1_1_finite_differences.html#a7ac77794e2f572040663b57705ee42dc',1,'Optimist::FiniteDifferences::CenteredFiniteDifferences(Real const f_l, Real const f_c, Real const f_r, Real h)'],['../namespace_optimist_1_1_finite_differences.html#a191cd15b163926deec2bbcc5f6f83dad',1,'Optimist::FiniteDifferences::CenteredFiniteDifferences(Vector const &amp;f_l, Vector const &amp;f_c, Vector const &amp;f_r, Real h)']]],
-  ['centroid_1',['centroid',['../class_optimist_1_1_optimizer_1_1_nelder_mead.html#a4a8e4dc04b5244aba06c480b5f5077eb',1,'Optimist::Optimizer::NelderMead']]],
-  ['chandrupatla_2',['Chandrupatla',['../class_optimist_1_1_root_finder_1_1_chandrupatla.html#ad5ea2cba12bb9a84cb05ba385c988f85',1,'Optimist::RootFinder::Chandrupatla']]],
-  ['chebyshev_3',['Chebyshev',['../class_optimist_1_1_root_finder_1_1_chebyshev.html#a597f2ff8626d58a93b7e9be6a0c043d0',1,'Optimist::RootFinder::Chebyshev']]],
-  ['compute_5fstep_4',['compute_step',['../class_optimist_1_1_root_finder_1_1_varona.html#a9e900d9f6631cd889e1547ca8df2bd7e',1,'Optimist::RootFinder::Varona']]],
-  ['converged_5',['converged',['../class_optimist_1_1_solver_base.html#a10899c8a8e799c9006c494dd9fa5dec1',1,'Optimist::SolverBase']]],
-  ['cos_6',['Cos',['../class_optimist_1_1_test_set_1_1_cos.html#abd31f63df4739cc5c36d40d451d7fcd4',1,'Optimist::TestSet::Cos']]],
-  ['cosh_7',['Cosh',['../class_optimist_1_1_test_set_1_1_cosh.html#a1fe15b835e6317058c9647872d7425d3',1,'Optimist::TestSet::Cosh']]],
-  ['cubic_5finterpolation_8',['cubic_interpolation',['../class_optimist_1_1_root_finder_1_1_algo748.html#a0c21e1925380c724e14c726ac314d5ae',1,'Optimist::RootFinder::Algo748']]]
+  ['best_5fnearby_0',['best_nearby',['../class_optimist_1_1_optimizer_1_1_pattern_search.html#aa2ca9951a9d04b4d8d345fb48ce3470d',1,'Optimist::Optimizer::PatternSearch']]],
+  ['booth_1',['Booth',['../class_optimist_1_1_test_set_1_1_booth.html#ac075aaebeb98f88a373ebabceae8f602',1,'Optimist::TestSet::Booth']]],
+  ['bottom_2',['bottom',['../class_optimist_1_1_solver_base.html#afedfe01629bf6b3ed7e9706380fdbb9f',1,'Optimist::SolverBase']]],
+  ['bounds_3',['bounds',['../class_optimist_1_1_solver_base.html#a56d959a2ee3adff65c15249c00a7ac86',1,'Optimist::SolverBase']]],
+  ['bracketing_4',['Bracketing',['../class_optimist_1_1_root_finder_1_1_bracketing.html#a9a7fcf65e1a5b6e1435cf6abdc549852',1,'Optimist::RootFinder::Bracketing']]],
+  ['bracketing_5',['bracketing',['../class_optimist_1_1_root_finder_1_1_algo748.html#af4abf950c0a5493a3621f4eb66bc1d5f',1,'Optimist::RootFinder::Algo748']]],
+  ['brown_6',['Brown',['../class_optimist_1_1_test_set_1_1_brown.html#a26dbbf56e74536f76c4d47cdd3cbf427',1,'Optimist::TestSet::Brown']]],
+  ['broyden_7',['Broyden',['../class_optimist_1_1_root_finder_1_1_broyden.html#ab19a5ac25336b6ebb638aacda767e5a3',1,'Optimist::RootFinder::Broyden']]]
 ];

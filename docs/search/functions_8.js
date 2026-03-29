@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['info_0',['info',['../class_optimist_1_1_solver_base.html#a1e91443ae03a4dbe11e08ab84692bba7',1,'Optimist::SolverBase']]],
-  ['initialize_1',['initialize',['../class_optimist_1_1_optimizer_1_1_nelder_mead.html#a2e13032cf1bef8b92a2552733665944c',1,'Optimist::Optimizer::NelderMead']]],
-  ['input_5fdimension_2',['input_dimension',['../class_optimist_1_1_function_base.html#aa75b5461a365869b40bb58ead7d51b3e',1,'Optimist::FunctionBase::input_dimension()'],['../class_optimist_1_1_solver_base.html#a9d8717d02798a10b5718785b8c1f641f',1,'Optimist::SolverBase::input_dimension()']]],
-  ['inward_5fcontraction_3',['inward_contraction',['../class_optimist_1_1_optimizer_1_1_nelder_mead.html#a18928712307151f4ebc6e8c802d74e9a',1,'Optimist::Optimizer::NelderMead']]],
-  ['is_5fsolution_4',['is_solution',['../class_optimist_1_1_function_base.html#ab9636d8b05d8a00d48cab1e9120c7c61',1,'Optimist::FunctionBase']]],
-  ['iterations_5',['iterations',['../class_optimist_1_1_solver_base.html#a6372e085c2b9fadc7b28d75889eedd01',1,'Optimist::SolverBase']]]
+  ['h_0',['H',['../class_optimist_1_1_root_finder_1_1_varona.html#a3c985ffb859878ce56bc4343c3d543f4',1,'Optimist::RootFinder::Varona']]],
+  ['halley_1',['Halley',['../class_optimist_1_1_root_finder_1_1_halley.html#a9ba18b14c1eab21d029874476b0b75fe',1,'Optimist::RootFinder::Halley']]],
+  ['header_2',['header',['../class_optimist_1_1_solver_base.html#a845dc526e24f6d1799ecc7e707701604',1,'Optimist::SolverBase']]],
+  ['hessian_3',['Hessian',['../namespace_optimist_1_1_finite_differences.html#a66d39e3d9618da521eca88d790147156',1,'Optimist::FiniteDifferences']]],
+  ['hessian_4',['hessian',['../class_optimist_1_1_function.html#af177cdfcc256238b9dac9b31169a2d8a',1,'Optimist::Function::hessian()'],['../class_optimist_1_1_function_3_01_t_00_01_t_00_01_derived_function_01_4.html#a0529bd2ff20b5074a892e25fc0d91ca4',1,'Optimist::Function&lt; T, T, DerivedFunction &gt;::hessian()']]],
+  ['hessian_5fevaluations_5',['hessian_evaluations',['../class_optimist_1_1_optimizer_1_1_optimizer.html#a435c6cd464bf8edfe8425227d5edd792',1,'Optimist::Optimizer::Optimizer::hessian_evaluations()'],['../class_optimist_1_1_root_finder_1_1_root_finder.html#a810ae1d16abf481b094149daa2538749',1,'Optimist::RootFinder::RootFinder::hessian_evaluations()']]]
 ];

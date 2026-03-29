@@ -1,0 +1,47 @@
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
+ * Copyright (c) 2025, Davide Stocco and Enrico Bertolazzi.                  *
+ *                                                                           *
+ * The Optimist project is distributed under the BSD 2-Clause License.       *
+ *                                                                           *
+ * Davide Stocco                                           Enrico Bertolazzi *
+ * University of Trento                                 University of Trento *
+ * davide.stocco@unitn.it                         enrico.bertolazzi@unitn.it *
+\* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+// Optimist library
+#include "Optimist/Optimizer/NelderMead.hh"
+
+// Catch2 library
+#include <catch2/catch_template_test_macros.hpp>
+#include <catch2/catch_test_macros.hpp>
+#include <catch2/generators/catch_generators_range.hpp>
+
+#include "test_cost_functions.hh"
+
+using namespace Optimist;
+using namespace Optimist::TestSet;
+
+TEMPLATE_TEST_CASE("NelderMead", "[template]", TEST_COST_FUNCTIONS) {
+  TestType fun;
+  SECTION(fun.name()) {
+    Optimizer::NelderMead<double, fun.input_dimension()> sol;
+    SECTION(sol.name()) {
+      sol.task(fun.name());
+      sol.enable_verbose_mode();
+      typename TestType::InputType x_ini, x_out;
+      for (size_t i{0}; i < fun.guesses().size(); ++i) {
+        x_ini = fun.guess(i);
+        // Solve without damping
+        sol.disable_damped_mode();
+        sol.rootfind(fun, x_ini, x_out);
+        REQUIRE(sol.converged());
+        REQUIRE(fun.is_solution(x_out, TestType::SQRT_EPSILON));
+        // Solve with damping
+        sol.enable_damped_mode();
+        sol.rootfind(fun, x_ini, x_out);
+        REQUIRE(sol.converged());
+        REQUIRE(fun.is_solution(x_out, TestType::SQRT_EPSILON));
+      }
+    }
+  }
+}

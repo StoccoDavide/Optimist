@@ -1,13 +1,13 @@
 var class_optimist_1_1_root_finder_1_1_algo748 =
 [
-    [ "Algo748", "class_optimist_1_1_root_finder_1_1_algo748.html#a6839021dc344bc3de3b825bef7e531cd", null ],
-    [ "all_different", "class_optimist_1_1_root_finder_1_1_algo748.html#a87f5ab4a31addd94a1f8e35ae2b708be", null ],
-    [ "bracketing", "class_optimist_1_1_root_finder_1_1_algo748.html#adae234c656c26291ec48d45d7cd622c4", null ],
-    [ "cubic_interpolation", "class_optimist_1_1_root_finder_1_1_algo748.html#a0c21e1925380c724e14c726ac314d5ae", null ],
-    [ "find_root_impl", "class_optimist_1_1_root_finder_1_1_algo748.html#a27a26020b4c8f07ae96f348b3423042c", null ],
-    [ "name_impl", "class_optimist_1_1_root_finder_1_1_algo748.html#a83efa9af3128ad6175bd850ca2e889ef", null ],
-    [ "newton_quadratic", "class_optimist_1_1_root_finder_1_1_algo748.html#ac5f8370dc125b28c585f3362b768a90f", null ],
-    [ "requires_first_derivative", "class_optimist_1_1_root_finder_1_1_algo748.html#aabb0a02e20c7111eab3b5d54f2c77a64", null ],
-    [ "requires_function", "class_optimist_1_1_root_finder_1_1_algo748.html#a948ab648502f4e82f8b30ba8882327db", null ],
-    [ "requires_second_derivative", "class_optimist_1_1_root_finder_1_1_algo748.html#a1ab862e8a87ec4ecd77258ad796657b9", null ]
+    [ "Algo748", "class_optimist_1_1_root_finder_1_1_algo748.html#a798d15e904e4f1b65652faab6450904f", null ],
+    [ "all_different", "class_optimist_1_1_root_finder_1_1_algo748.html#a24d30ae7da3f40c418a7bf0e26b1cd64", null ],
+    [ "bracketing", "class_optimist_1_1_root_finder_1_1_algo748.html#af4abf950c0a5493a3621f4eb66bc1d5f", null ],
+    [ "cubic_interpolation", "class_optimist_1_1_root_finder_1_1_algo748.html#ac5cbd4e09cf273b99d096ce1d1a6c195", null ],
+    [ "find_root_impl", "class_optimist_1_1_root_finder_1_1_algo748.html#a1113092a8d478c2eb90f8c29cc4f41c9", null ],
+    [ "name_impl", "class_optimist_1_1_root_finder_1_1_algo748.html#a82a30d8c826cb5d013d3c62161e6c484", null ],
+    [ "newton_quadratic", "class_optimist_1_1_root_finder_1_1_algo748.html#aefd7aef14de18f977953a8a06aa6cc74", null ],
+    [ "RequiresFirstDerivative", "class_optimist_1_1_root_finder_1_1_algo748.html#a95bc48484ea62be4701817e407e14ea3", null ],
+    [ "RequiresFunction", "class_optimist_1_1_root_finder_1_1_algo748.html#a47d7f61786bf243a0cbcb4e18b24625f", null ],
+    [ "RequiresSecondDerivative", "class_optimist_1_1_root_finder_1_1_algo748.html#aade1158dfd6ac407518fa4a74ef8b6f1", null ]
 ];

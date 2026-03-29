@@ -31,5 +31,5 @@
 *.out
 *.app
 
-# Fetched content
-third_party/
+# Clang format
+.clang-format

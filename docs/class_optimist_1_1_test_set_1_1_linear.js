@@ -1,10 +1,10 @@
 var class_optimist_1_1_test_set_1_1_linear =
 [
-    [ "Linear", "class_optimist_1_1_test_set_1_1_linear.html#a696136d9763d14cb768faa07347cacd0", null ],
-    [ "evaluate_impl", "class_optimist_1_1_test_set_1_1_linear.html#a26649abb1541fb22ef7b404b9890b04e", null ],
-    [ "first_derivative_impl", "class_optimist_1_1_test_set_1_1_linear.html#a65cb263ea24e828982bdb0f93ac94d5c", null ],
-    [ "name_impl", "class_optimist_1_1_test_set_1_1_linear.html#abdcfe1c9ff37b08cdecbe0bfb9f78ad2", null ],
-    [ "second_derivative_impl", "class_optimist_1_1_test_set_1_1_linear.html#aa75399628b1122d84e641479fd1dc856", null ],
-    [ "m_m", "class_optimist_1_1_test_set_1_1_linear.html#a228e568ff50d31a594bcf9bc23e20c01", null ],
-    [ "m_q", "class_optimist_1_1_test_set_1_1_linear.html#a5ab1004df3f3865a266139948ac58183", null ]
+    [ "Linear", "class_optimist_1_1_test_set_1_1_linear.html#aa66ef539ab2938449af4dbbe33839d76", null ],
+    [ "evaluate_impl", "class_optimist_1_1_test_set_1_1_linear.html#aca7818c7416a76d76bbc5a2fbcd31505", null ],
+    [ "first_derivative_impl", "class_optimist_1_1_test_set_1_1_linear.html#a81e9d34205303406af7c933aee833e64", null ],
+    [ "name_impl", "class_optimist_1_1_test_set_1_1_linear.html#a1d9a393b7a64b40898177ec38ac150d1", null ],
+    [ "second_derivative_impl", "class_optimist_1_1_test_set_1_1_linear.html#aa01a02824b97d9e16a41eb68beaf0a2c", null ],
+    [ "m_m", "class_optimist_1_1_test_set_1_1_linear.html#a962a8145985196be9fe3af18ace44939", null ],
+    [ "m_q", "class_optimist_1_1_test_set_1_1_linear.html#a60b5aad21e0463599366f96277645caa", null ]
 ];

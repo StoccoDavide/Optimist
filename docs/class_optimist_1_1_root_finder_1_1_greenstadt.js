@@ -1,16 +1,18 @@
 var class_optimist_1_1_root_finder_1_1_greenstadt =
 [
-    [ "Method", "class_optimist_1_1_root_finder_1_1_greenstadt.html#a324d014daf19c48c19189702fbaf03c8", null ],
-    [ "Greenstadt", "class_optimist_1_1_root_finder_1_1_greenstadt.html#ac4e18414e97e6b863f3a788a1fe6b5d6", null ],
-    [ "enable_one_method", "class_optimist_1_1_root_finder_1_1_greenstadt.html#a93ee6bccbc69ea379103c401930288f9", null ],
-    [ "enable_two_method", "class_optimist_1_1_root_finder_1_1_greenstadt.html#a14bf8ce265a2230a08be2f48935d4d50", null ],
-    [ "method", "class_optimist_1_1_root_finder_1_1_greenstadt.html#a27dd811b1401ca5654eb290d457f720a", null ],
-    [ "method", "class_optimist_1_1_root_finder_1_1_greenstadt.html#a1ae2386da8efcff29007d13292f22eba", null ],
-    [ "name_impl", "class_optimist_1_1_root_finder_1_1_greenstadt.html#a3d5e42178cd3991f77f3a675de72c651", null ],
-    [ "set_method", "class_optimist_1_1_root_finder_1_1_greenstadt.html#a43d42386a4da61506e826f04243117f4", null ],
-    [ "update_impl", "class_optimist_1_1_root_finder_1_1_greenstadt.html#aa95d9806ca8c1bb4c5de25473e90a889", null ],
-    [ "m_method", "class_optimist_1_1_root_finder_1_1_greenstadt.html#aec97f1db8924c1c06a34be2ac4fa25f1", null ],
-    [ "requires_first_derivative", "class_optimist_1_1_root_finder_1_1_greenstadt.html#a7c37f5e56af7c28332e8c266deb6fda7", null ],
-    [ "requires_function", "class_optimist_1_1_root_finder_1_1_greenstadt.html#a521e2f516e78a6e9d3c92d4ef1429498", null ],
-    [ "requires_second_derivative", "class_optimist_1_1_root_finder_1_1_greenstadt.html#ac5ea9d1fd86e897407699b93e1dd8f7f", null ]
+    [ "Method", "class_optimist_1_1_root_finder_1_1_greenstadt.html#af7647d37a83f1b76e4383f745d6e72cb", null ],
+    [ "Scalar", "class_optimist_1_1_root_finder_1_1_greenstadt.html#abc5b2e26268886c56f77500bdbf8c7fa", null ],
+    [ "VectorTrait", "class_optimist_1_1_root_finder_1_1_greenstadt.html#ac40f9e2e55666057de5cb8efd68d8c77", null ],
+    [ "Greenstadt", "class_optimist_1_1_root_finder_1_1_greenstadt.html#acb5e8ee607ff038baef2a8869be0406e", null ],
+    [ "enable_one_method", "class_optimist_1_1_root_finder_1_1_greenstadt.html#a9ebcb09652d36b7416c2ffb39101308b", null ],
+    [ "enable_two_method", "class_optimist_1_1_root_finder_1_1_greenstadt.html#a7da48d7080b0557c24e0c7ca5a144bd5", null ],
+    [ "method", "class_optimist_1_1_root_finder_1_1_greenstadt.html#a470c48ed36d283c7e59f702cd6a5e53d", null ],
+    [ "method", "class_optimist_1_1_root_finder_1_1_greenstadt.html#ae57c81180a7e2995f97030b4799c9c65", null ],
+    [ "name_impl", "class_optimist_1_1_root_finder_1_1_greenstadt.html#a254ebdf41542162bf306b25dfc1f90ab", null ],
+    [ "set_method", "class_optimist_1_1_root_finder_1_1_greenstadt.html#a9beccc593edc85a1c24d2e55ed8173a4", null ],
+    [ "update_impl", "class_optimist_1_1_root_finder_1_1_greenstadt.html#a8d2b30fff952ff5175fd0e76a57a9ee8", null ],
+    [ "m_method", "class_optimist_1_1_root_finder_1_1_greenstadt.html#acaa3d9f7b069de1b56a8df2922c3812f", null ],
+    [ "RequiresFirstDerivative", "class_optimist_1_1_root_finder_1_1_greenstadt.html#afeb2012aee05f0005ccfa1edc6918cbc", null ],
+    [ "RequiresFunction", "class_optimist_1_1_root_finder_1_1_greenstadt.html#a88efdaf04604d2346fcc312f6b0abec1", null ],
+    [ "RequiresSecondDerivative", "class_optimist_1_1_root_finder_1_1_greenstadt.html#a479588699920fca5e59ee43f16ba55b8", null ]
 ];

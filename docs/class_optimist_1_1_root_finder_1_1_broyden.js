@@ -1,17 +1,19 @@
 var class_optimist_1_1_root_finder_1_1_broyden =
 [
-    [ "Method", "class_optimist_1_1_root_finder_1_1_broyden.html#ac6b9374234dce5936aad225d0da8f9ff", null ],
-    [ "Broyden", "class_optimist_1_1_root_finder_1_1_broyden.html#a1f1893ac2670aa59d604ebba79396929", null ],
-    [ "enable_bad_method", "class_optimist_1_1_root_finder_1_1_broyden.html#a28052a300f65c9f588699663327e21e5", null ],
-    [ "enable_combined_method", "class_optimist_1_1_root_finder_1_1_broyden.html#aae1227cf035ffa4b6a7cfe5240c35cb6", null ],
-    [ "enable_good_method", "class_optimist_1_1_root_finder_1_1_broyden.html#a27cdbecdb06890207bed5cc43809b3ca", null ],
-    [ "method", "class_optimist_1_1_root_finder_1_1_broyden.html#ab1e2deb1232479887bc284f64ac40fe2", null ],
-    [ "method", "class_optimist_1_1_root_finder_1_1_broyden.html#a1719aa755f50094eb09f9bf892b1c486", null ],
-    [ "name_impl", "class_optimist_1_1_root_finder_1_1_broyden.html#a7a4e3ff06bc4d792362602d14cabe1f4", null ],
-    [ "set_method", "class_optimist_1_1_root_finder_1_1_broyden.html#ad92eab5dfe7ebb7a742bdcb264c4928e", null ],
-    [ "update_impl", "class_optimist_1_1_root_finder_1_1_broyden.html#ac070dd3a880a10fffc71860f38f373de", null ],
-    [ "m_method", "class_optimist_1_1_root_finder_1_1_broyden.html#a5b59f5b50c203e7d786abfc2d4d259f4", null ],
-    [ "requires_first_derivative", "class_optimist_1_1_root_finder_1_1_broyden.html#a236ce366e60dde1dad2035a856054e67", null ],
-    [ "requires_function", "class_optimist_1_1_root_finder_1_1_broyden.html#a146fd1af656cc2f65feea3414d3b1c73", null ],
-    [ "requires_second_derivative", "class_optimist_1_1_root_finder_1_1_broyden.html#a5236063c18298c2cec775e8afc19330b", null ]
+    [ "Method", "class_optimist_1_1_root_finder_1_1_broyden.html#ad7e2b5eb07fad4b7dfde71cdea8a3cb4", null ],
+    [ "Scalar", "class_optimist_1_1_root_finder_1_1_broyden.html#abf2ec8113b41d58d5980a560c49b2d40", null ],
+    [ "VectorTrait", "class_optimist_1_1_root_finder_1_1_broyden.html#a687d883b2ad070e5a0f75bfe6b440f82", null ],
+    [ "Broyden", "class_optimist_1_1_root_finder_1_1_broyden.html#ab19a5ac25336b6ebb638aacda767e5a3", null ],
+    [ "enable_bad_method", "class_optimist_1_1_root_finder_1_1_broyden.html#a9ffeb55d835524344a68b94ba7dd7c9b", null ],
+    [ "enable_combined_method", "class_optimist_1_1_root_finder_1_1_broyden.html#a6591d15a217484d25b6d4c4284f100fe", null ],
+    [ "enable_good_method", "class_optimist_1_1_root_finder_1_1_broyden.html#a1c45492a2bdde02bad17a7b7f601e52c", null ],
+    [ "method", "class_optimist_1_1_root_finder_1_1_broyden.html#a29745839e6858f8739ff9b78545bc010", null ],
+    [ "method", "class_optimist_1_1_root_finder_1_1_broyden.html#ae22328ebe546c963a73d66e376995020", null ],
+    [ "name_impl", "class_optimist_1_1_root_finder_1_1_broyden.html#a759fcc0f9aaf1f3a2e8a8889d05d231a", null ],
+    [ "set_method", "class_optimist_1_1_root_finder_1_1_broyden.html#ab34dfc54608ff07b82493daa4a09ded9", null ],
+    [ "update_impl", "class_optimist_1_1_root_finder_1_1_broyden.html#a2d2868ecb3ab9cb3bc422a174b2bb68b", null ],
+    [ "m_method", "class_optimist_1_1_root_finder_1_1_broyden.html#ac62523e8cf77b210658779b8bdbf990d", null ],
+    [ "RequiresFirstDerivative", "class_optimist_1_1_root_finder_1_1_broyden.html#ad952288d70f076aba11182691cbcc7f0", null ],
+    [ "RequiresFunction", "class_optimist_1_1_root_finder_1_1_broyden.html#a52ebab10612665a6b9dcdc413a89f040", null ],
+    [ "RequiresSecondDerivative", "class_optimist_1_1_root_finder_1_1_broyden.html#a8e4c361ecadce5886acd4dcc84ce1e00", null ]
 ];

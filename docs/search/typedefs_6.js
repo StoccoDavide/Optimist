@@ -1,5 +1,8 @@
 var searchData=
 [
-  ['tensor_0',['Tensor',['../class_optimist_1_1_function.html#ae2752068a8abf16fa0cc7a3aefae4ec6',1,'Optimist::Function::Tensor'],['../class_optimist_1_1_root_finder_1_1_root_finder.html#a74b76bd357aa517be944ef3a200dc7e1',1,'Optimist::RootFinder::RootFinder::Tensor'],['../class_optimist_1_1_function.html#ae2752068a8abf16fa0cc7a3aefae4ec6',1,'Optimist::Function&lt; Real, 1, 1, DerivedFunction &gt;::Tensor'],['../class_optimist_1_1_function.html#ae2752068a8abf16fa0cc7a3aefae4ec6',1,'Optimist::Function&lt; Real, N, 1, DerivedFunction &gt;::Tensor'],['../class_optimist_1_1_root_finder_1_1_root_finder.html#a74b76bd357aa517be944ef3a200dc7e1',1,'Optimist::RootFinder::RootFinder&lt; Real, 1, DerivedSolver &gt;::Tensor']]],
-  ['tracetype_1',['TraceType',['../class_optimist_1_1_solver_base.html#a079fe1a1e9ae915d654d4dd0b15c64bc',1,'Optimist::SolverBase']]]
+  ['rosenbrock10_0',['Rosenbrock10',['../namespace_optimist_1_1_test_set.html#a4d2144630763766dfd57218b71383677',1,'Optimist::TestSet']]],
+  ['rosenbrock2_1',['Rosenbrock2',['../namespace_optimist_1_1_test_set.html#a2957ed2990eaa0a0b00520c2782802db',1,'Optimist::TestSet']]],
+  ['rosenbrock4_2',['Rosenbrock4',['../namespace_optimist_1_1_test_set.html#aef1187024ae7099fcfe8dd918a33d9e1',1,'Optimist::TestSet']]],
+  ['rosenbrock6_3',['Rosenbrock6',['../namespace_optimist_1_1_test_set.html#a03ff330ec8eca0b6799478dad0bc245e',1,'Optimist::TestSet']]],
+  ['rosenbrock8_4',['Rosenbrock8',['../namespace_optimist_1_1_test_set.html#a85c439daad867162cd6da940231d6d00',1,'Optimist::TestSet']]]
 ];

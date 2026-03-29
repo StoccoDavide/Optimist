@@ -1,9 +1,5 @@
 var searchData=
 [
-  ['rosenbrock10_0',['Rosenbrock10',['../namespace_optimist_1_1_test_set.html#ace38454d206af9beda66b48ed5a6db6e',1,'Optimist::TestSet']]],
-  ['rosenbrock2_1',['Rosenbrock2',['../namespace_optimist_1_1_test_set.html#a09e7e6ac3b76dd6a9cb83a62608ae41f',1,'Optimist::TestSet']]],
-  ['rosenbrock4_2',['Rosenbrock4',['../namespace_optimist_1_1_test_set.html#a1679f6b3e8784a01b90039c6e316f3c4',1,'Optimist::TestSet']]],
-  ['rosenbrock6_3',['Rosenbrock6',['../namespace_optimist_1_1_test_set.html#aa13e480f1dd5c619b845d992e096d624',1,'Optimist::TestSet']]],
-  ['rosenbrock8_4',['Rosenbrock8',['../namespace_optimist_1_1_test_set.html#a519dd953ef10f22ba4168260298633a9',1,'Optimist::TestSet']]],
-  ['rowvector_5',['RowVector',['../class_optimist_1_1_function_3_01_real_00_01_n_00_011_00_01_derived_function_01_4.html#a7c397f5ffb28e3264f7a971d4cb6176b',1,'Optimist::Function&lt; Real, N, 1, DerivedFunction &gt;::RowVector'],['../class_optimist_1_1_optimizer_1_1_optimizer.html#a6e82e1d78df15d5f5687d3946cb4de8a',1,'Optimist::Optimizer::Optimizer::RowVector'],['../class_optimist_1_1_optimizer_1_1_optimizer.html#a6e82e1d78df15d5f5687d3946cb4de8a',1,'Optimist::Optimizer::Optimizer&lt; Real, 1, DerivedSolver &gt;::RowVector']]]
+  ['output_0',['Output',['../class_optimist_1_1_function_3_01_t_00_01_t_00_01_derived_function_01_4.html#ad964401b67ce698f532af4e2d49dacfe',1,'Optimist::Function&lt; T, T, DerivedFunction &gt;::Output'],['../class_optimist_1_1_optimizer_1_1_optimizer.html#a78d8deca97106344501cc9765dc4e85c',1,'Optimist::Optimizer::Optimizer::Output'],['../class_optimist_1_1_root_finder_1_1_root_finder.html#a8ba6934f326da46e48391121c45530ca',1,'Optimist::RootFinder::RootFinder::Output']]],
+  ['outputtrait_1',['OutputTrait',['../class_optimist_1_1_function_base.html#aa9bdfdd48f32f7f17ccdcd29b0640a33',1,'Optimist::FunctionBase::OutputTrait'],['../class_optimist_1_1_solver_base.html#ab9ac4d8299157b054a5fc4a106859069',1,'Optimist::SolverBase::OutputTrait']]]
 ];

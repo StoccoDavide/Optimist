@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['linear_0',['Linear',['../class_optimist_1_1_test_set_1_1_linear.html#a696136d9763d14cb768faa07347cacd0',1,'Optimist::TestSet::Linear']]],
-  ['lower_5fbound_1',['lower_bound',['../class_optimist_1_1_solver_base.html#abaf3e8a9b796163b37bb536ad0dac498',1,'Optimist::SolverBase::lower_bound() const'],['../class_optimist_1_1_solver_base.html#a0d86ead9301ed842eaf42bd76941839a',1,'Optimist::SolverBase::lower_bound(InputType const &amp;t_lower_bound)']]]
+  ['j_0',['J',['../class_optimist_1_1_root_finder_1_1_varona.html#a284b201acd1794d41b0bfeaea89df599',1,'Optimist::RootFinder::Varona']]],
+  ['jacobian_1',['Jacobian',['../namespace_optimist_1_1_finite_differences.html#a4f1a1cde5e9633b4c84a1d287722182a',1,'Optimist::FiniteDifferences']]],
+  ['jacobian_2',['jacobian',['../class_optimist_1_1_function.html#aacadc8ba8b89ee3d746d18785c2a0cc1',1,'Optimist::Function::jacobian()'],['../class_optimist_1_1_function.html#aacadc8ba8b89ee3d746d18785c2a0cc1',1,'Optimist::Function&lt; T, T, DerivedFunction &gt;::jacobian()']]],
+  ['jacobian_5fevaluations_3',['jacobian_evaluations',['../class_optimist_1_1_root_finder_1_1_root_finder.html#a9d253aae349d572d6066725990dc605f',1,'Optimist::RootFinder::RootFinder']]]
 ];

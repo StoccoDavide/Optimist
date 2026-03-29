@@ -19,22 +19,6 @@ add_subdirectory(path/to/Optimist)
 target_link_libraries(your_target PRIVATE Optimist::Optimist)
 ```
 
-You can use `FetchContent` to download the library from GitHub.
-
-```cmake
-include(FetchContent)
-
-# Optionally specify a custom path to fetch content to
-set(FETCHCONTENT_BASE_DIR "path/to/your/dependencies")
-fetchcontent_declare(
-  Optimist
-  GIT_REPOSITORY https://github.com/StoccoDavide/Optimist.git
-  GIT_TAG        main
-)
-fetchcontent_makeavailable(Optimist)
-target_link_libraries(your_target PRIVATE Optimist::Optimist)
-```
-
 If you already have `Optimist` somewhere on your system, you can use `find_package` directly.
 
 ```cmake
@@ -49,50 +33,12 @@ find_package(
 target_link_libraries(your_target PRIVATE Optimist::Optimist)
 ```
 
-Since we are nice people, we also show you how to conditionally use `FetchContent` based if you already have the library or not.
-
-```cmake
-# Optionally specify a custom path to find content from
-list(APPEND CMAKE_PREFIX_PATH "path/to/your/dependencies")
-find_package(
-  Optimist
-  ${YOUR_DESIRED_OPTIMIST_VERSION}
-  NO_MODULE
-)
-
-if(NOT TARGET Optimist::Optimist)
-  include(FetchContent)
-
-  # Optionally specify a custom path to fetch content to
-  set(FETCHCONTENT_BASE_DIR "path/to/your/dependencies")
-  fetchcontent_declare(
-    Optimist
-    GIT_REPOSITORY https://github.com/StoccoDavide/Optimist.git
-    GIT_TAG        main
-  )
-
-  fetchcontent_makeavailable(Optimist)
-endif()
-
-target_link_libraries(your_target PRIVATE Optimist::Optimist)
-```
-
-## Authors
+## Author
 
 - Davide Stocco <br>
   University of Trento <br>
   Department of Industrial Engineering <br>
   email: davide.stocco@unitn.it
-
-- Mattia Piazza <br>
-  University of Trento <br>
-  Department of Industrial Engineering <br>
-  email: mattia.piazza@unitn.it
-
-- Enrico Bertolazzi <br>
-  University of Trento <br>
-  Department of Industrial Engineering <br>
-  email: enrico.bertolazzi@unitn.it
 
 ## License
 

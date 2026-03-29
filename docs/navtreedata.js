@@ -25,12 +25,12 @@
 var NAVTREE =
 [
   [ "Optimist", "index.html", [
-    [ "Installation", "index.html#autotoc_md14", [
-      [ "Quick and dirty", "index.html#autotoc_md15", null ],
-      [ "CMake", "index.html#autotoc_md16", null ]
+    [ "Installation", "index.html#autotoc_md10", [
+      [ "Quick and dirty", "index.html#autotoc_md11", null ],
+      [ "CMake", "index.html#autotoc_md12", null ]
     ] ],
-    [ "Authors", "index.html#autotoc_md17", null ],
-    [ "License", "index.html#autotoc_md18", null ],
+    [ "Author", "index.html#autotoc_md13", null ],
+    [ "License", "index.html#autotoc_md14", null ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
@@ -65,10 +65,11 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_algo748_8hh.html",
-"class_optimist_1_1_function_base.html#a8fbdcb72ee68290c9d64ec326cc6c355",
-"class_optimist_1_1_root_finder_1_1_broyden.html#a5b59f5b50c203e7d786abfc2d4d259f4",
-"class_optimist_1_1_solver_base.html#a021db3168e657b4e001f0b50417a7225",
-"class_optimist_1_1_test_set_1_1_linear.html#abdcfe1c9ff37b08cdecbe0bfb9f78ad2"
+"class_optimist_1_1_optimizer_1_1_exponential_decrease1.html#a7c8ce3d88e832ba65d1945ee36d0d0dc",
+"class_optimist_1_1_optimizer_1_1_particle_swarm.html#a5e23837f955a1a6735816dffa8adeeba",
+"class_optimist_1_1_root_finder_1_1_newton.html#ad3f0e5242d9d6a1d684758d1b92f4307",
+"class_optimist_1_1_solver_base.html#ac75e7d3bb4fd0cd2a06b8b58a4abd48b",
+"functions_func_o.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';
