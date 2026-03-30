@@ -71,10 +71,10 @@ struct Quadratic : public TestFunction<Vector, Matrix, Scalar> {
     this->jac_analytical = [](const Vector &x, Matrix &jac) {
       if constexpr (TypeTrait<Vector>::IsDynamic) {
         jac.resize(x.size(), x.size());
-        jac.setZero();
       } else if constexpr (TypeTrait<Vector>::IsSparse) {
         jac.resize(x.size(), x.size());
       }
+      jac.setZero();
       for (Eigen::Index i{0}; i < x.size(); ++i) {
         if constexpr (TypeTrait<Vector>::IsFixed ||
                       TypeTrait<Vector>::IsDynamic) {
@@ -89,10 +89,10 @@ struct Quadratic : public TestFunction<Vector, Matrix, Scalar> {
     this->hes_analytical = [](const Vector &x, Matrix &hes) {
       if constexpr (TypeTrait<Vector>::IsDynamic) {
         hes.resize(x.size(), x.size());
-        hes.setZero();
       } else if constexpr (TypeTrait<Vector>::IsSparse) {
         hes.resize(x.size(), x.size());
       }
+      hes.setZero();
       for (Eigen::Index i{0}; i < x.size(); ++i) {
         if constexpr (TypeTrait<Matrix>::IsFixed ||
                       TypeTrait<Matrix>::IsDynamic) {
@@ -113,7 +113,13 @@ struct Complex : public TestFunction<Vector, Matrix, Scalar> {
   Complex() {
     // Scalar function: f(x) = x(0)*x(1) + sin(x(2)) + exp(x(3))
     this->scalar_fun = [](const Vector &x, Scalar &out) -> bool {
-      out = x(0) * x(1) + std::sin(x(2)) + std::exp(x(3));
+      if constexpr (TypeTrait<Vector>::IsDynamic ||
+                    TypeTrait<Vector>::IsFixed) {
+        out = x(0) * x(1) + std::sin(x(2)) + std::exp(x(3));
+      } else if constexpr (TypeTrait<Vector>::IsSparse) {
+        out = x.coeff(0) * x.coeff(1) + std::sin(x.coeff(2)) +
+              std::exp(x.coeff(3));
+      }
       return true;
     };
 
@@ -135,6 +141,7 @@ struct Complex : public TestFunction<Vector, Matrix, Scalar> {
         out.coeffRef(2) = std::exp(x.coeff(3));
         out.coeffRef(3) = x.coeff(0) * x.coeff(3);
       }
+      return true;
     };
 
     // Analytical gradient
@@ -163,9 +170,9 @@ struct Complex : public TestFunction<Vector, Matrix, Scalar> {
                     TypeTrait<Vector>::IsSparse) {
         jac.resize(x.size(), x.size());
       }
+      jac.setZero();
       if constexpr (TypeTrait<Vector>::IsDynamic ||
                     TypeTrait<Vector>::IsFixed) {
-        jac.setZero();
         jac(0, 0) = x(1);
         jac(0, 1) = x(0);
         jac(1, 2) = std::cos(x(2));
@@ -173,7 +180,6 @@ struct Complex : public TestFunction<Vector, Matrix, Scalar> {
         jac(3, 0) = x(3);
         jac(3, 3) = x(0);
       } else if constexpr (TypeTrait<Vector>::IsSparse) {
-        jac.setZero();
         jac.coeffRef(0, 0) = x.coeff(1);
         jac.coeffRef(0, 1) = x.coeff(0);
         jac.coeffRef(1, 2) = std::cos(x.coeff(2));
@@ -189,15 +195,14 @@ struct Complex : public TestFunction<Vector, Matrix, Scalar> {
                     TypeTrait<Vector>::IsSparse) {
         hes.resize(x.size(), x.size());
       }
+      hes.setZero();
       if constexpr (TypeTrait<Vector>::IsDynamic ||
                     TypeTrait<Vector>::IsFixed) {
-        hes.setZero();
         hes(0, 1) = 1.0;
         hes(1, 0) = 1.0;
         hes(2, 2) = -std::sin(x(2));
         hes(3, 3) = std::exp(x(3));
       } else if constexpr (TypeTrait<Vector>::IsSparse) {
-        hes.setZero();
         hes.coeffRef(0, 1) = 1.0;
         hes.coeffRef(1, 0) = 1.0;
         hes.coeffRef(2, 2) = -std::sin(x.coeff(2));
@@ -262,17 +267,16 @@ TYPED_TEST(FiniteDifferences, Quadratic) {
     EXPECT_TRUE((jac_fd - jac_an).norm() < CBRT_EPSILON);
 
     // Compute Hessian
-    // Matrix hes_fd, hes_an;
-    // bool out_hes{
-    //  Optimist::FiniteDifferences::Hessian(quadratic.scalar_fun, x, hes_fd)};
-    // EXPECT_TRUE(out_hes);
-    // quadratic.hes_analytical(x, hes_an);
-    // EXPECT_TRUE((hes_fd - hes_an).norm() < CBRT_EPSILON);
+    Matrix hes_fd, hes_an;
+    bool out_hes{
+      Optimist::FiniteDifferences::Hessian(quadratic.scalar_fun, x, hes_fd)};
+    EXPECT_TRUE(out_hes);
+    quadratic.hes_analytical(x, hes_an);
+    EXPECT_TRUE((hes_fd - hes_an).norm() < CBRT_EPSILON);
   }
 
-  // Test with the more complex function
   {
-    // Instantiate the quadratic test function
+    // Instantiate the complex test function
     Complex<Vector, Matrix, Scalar> complex;
 
     // Compute gradient
@@ -292,11 +296,11 @@ TYPED_TEST(FiniteDifferences, Quadratic) {
     EXPECT_TRUE((jac_fd - jac_an).norm() < CBRT_EPSILON);
 
     // Compute Hessian
-    // Matrix hes_fd, hes_an;
-    // bool out_hes{
-    //   Optimist::FiniteDifferences::Hessian(complex.scalar_fun, x, hes_fd)};
-    // EXPECT_TRUE(out_hes);
-    // complex.hes_analytical(x, hes_an);
-    // EXPECT_TRUE((hes_fd - hes_an).norm() < CBRT_EPSILON);
+    Matrix hes_fd, hes_an;
+    bool out_hes{
+      Optimist::FiniteDifferences::Hessian(complex.scalar_fun, x, hes_fd)};
+    EXPECT_TRUE(out_hes);
+    complex.hes_analytical(x, hes_an);
+    EXPECT_TRUE((hes_fd - hes_an).norm() < CBRT_EPSILON);
   }
 }

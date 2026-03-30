@@ -194,12 +194,11 @@ namespace Optimist {
       } else if constexpr (TypeTrait<Vector>::IsSparse) {
         Scalar weight_r, weight_l, weight_max;
         for (Eigen::Index j{0}; j < diff_r.size(); ++j) {
-          weight_max =
-              std::max(std::abs(diff_r.coeff(j)), std::abs(diff_l.coeff(j)));
-          weight_r = std::abs(diff_r.coeff(j)) + EPSILON;
-          weight_l = std::abs(diff_l.coeff(j)) + EPSILON;
-          weight_r = std::sqrt(weight_r / weight_max);
-          weight_l = std::sqrt(weight_l / weight_max);
+          weight_r   = std::abs(diff_r.coeff(j)) + EPSILON;
+          weight_l   = std::abs(diff_l.coeff(j)) + EPSILON;
+          weight_max = std::max(weight_r, weight_l);
+          weight_r   = std::sqrt(weight_r / weight_max);
+          weight_l   = std::sqrt(weight_l / weight_max);
           out.coeffRef(j, i) =
               (diff_r.coeff(j) * weight_l + diff_l.coeff(j) * weight_r) /
               (weight_r + weight_l);
@@ -235,11 +234,10 @@ namespace Optimist {
                     TypeTrait<Vector>::IsSparse) {
         out.resize(dim_x);
       }
-      if constexpr (!TypeTrait<Vector>::IsSparse) {
-        out.setZero();
-      } else {
+      if constexpr (TypeTrait<Vector>::IsSparse) {
         out.reserve(dim_x);
       }
+      out.setZero();
       for (Eigen::Index i{0}; i < dim_x; ++i) {
         Vector v_x(x);
         Scalar tmp;
@@ -361,28 +359,72 @@ namespace Optimist {
     inline bool Jacobian(Function &&function, const Vector &x, Matrix &out) {
       Epsilon<Scalar> eps;
       Vector v_c;
-      if (!function(x, v_c) || !v_c.allFinite()) {
+      if (!function(x, v_c)) {
         return false;
+      }
+      if constexpr (TypeTrait<Vector>::IsFixed ||
+                    TypeTrait<Vector>::IsDynamic) {
+        if (!v_c.allFinite()) {
+          return false;
+        }
+      } else if constexpr (TypeTrait<Vector>::IsSparse) {
+        for (Eigen::Index r{0}; r < v_c.rows(); ++r) {
+          if (!std::isfinite(v_c.coeff(r))) {
+            return false;
+          }
+        }
       }
       Eigen::Index dim_x{x.size()};
       if constexpr (TypeTrait<Matrix>::IsDynamic ||
                     TypeTrait<Matrix>::IsSparse) {
         out.resize(dim_x, dim_x);
       }
-      if constexpr (!TypeTrait<Matrix>::IsSparse) {
-        out.setZero();
-      } else {
+      if constexpr (TypeTrait<Matrix>::IsSparse) {
         out.reserve(dim_x * dim_x);
       }
+      out.setZero();
       for (Eigen::Index j{0}; j < dim_x; ++j) {
         Vector v_x(x);
-        Scalar tmp{x(j)}, h_1{eps.epsilon_1(tmp)}, h_2{eps.epsilon_2(tmp)};
-        v_x(j) = tmp + h_1;
+        Scalar tmp;
+        if constexpr (TypeTrait<Vector>::IsFixed ||
+                      TypeTrait<Vector>::IsDynamic) {
+          tmp = x(j);
+        } else if constexpr (TypeTrait<Vector>::IsSparse) {
+          tmp = x.coeff(j);
+        }
+        Scalar h_1{eps.epsilon_1(tmp)}, h_2{eps.epsilon_2(tmp)};
+        if constexpr (TypeTrait<Vector>::IsFixed ||
+                      TypeTrait<Vector>::IsDynamic) {
+          v_x(j) = tmp + h_1;
+        } else if constexpr (TypeTrait<Vector>::IsSparse) {
+          v_x.coeffRef(j) = tmp + h_1;
+        }
         Vector v_r;
-        bool is_finite_r{function(v_x, v_r) && v_r.allFinite()};
-        v_x(j) = tmp - h_1;
+        bool is_finite_r{function(v_x, v_r)};
+        if constexpr (TypeTrait<Vector>::IsFixed ||
+                      TypeTrait<Vector>::IsDynamic) {
+          is_finite_r = is_finite_r && v_r.allFinite();
+        } else if constexpr (TypeTrait<Vector>::IsSparse) {
+          for (Eigen::Index r{0}; r < v_r.rows(); ++r) {
+            is_finite_r = is_finite_r && std::isfinite(v_r.coeff(r));
+          }
+        }
+        if constexpr (TypeTrait<Vector>::IsFixed ||
+                      TypeTrait<Vector>::IsDynamic) {
+          v_x(j) = tmp - h_1;
+        } else if constexpr (TypeTrait<Vector>::IsSparse) {
+          v_x.coeffRef(j) = tmp - h_1;
+        }
         Vector v_l;
-        bool is_finite_l{function(v_x, v_l) && v_l.allFinite()};
+        bool is_finite_l{function(v_x, v_l)};
+        if constexpr (TypeTrait<Vector>::IsFixed ||
+                      TypeTrait<Vector>::IsDynamic) {
+          is_finite_l = is_finite_l && v_l.allFinite();
+        } else if constexpr (TypeTrait<Vector>::IsSparse) {
+          for (Eigen::Index r{0}; r < v_l.rows(); ++r) {
+            is_finite_l = is_finite_l && std::isfinite(v_l.coeff(r));
+          }
+        }
         Eigen::Index ic{(is_finite_r && is_finite_l)
                             ? 0
                             : (is_finite_r ? 1 : (is_finite_l ? -1 : -2))};
@@ -391,29 +433,76 @@ namespace Optimist {
             CenteredFiniteDifferences(v_l, v_c, v_r, h_1, j, out);
             break;
           case 1: {
-            v_x(j) = tmp + h_2;
+            if constexpr (TypeTrait<Vector>::IsFixed ||
+                          TypeTrait<Vector>::IsDynamic) {
+              v_x(j) = tmp + h_2;
+            } else if constexpr (TypeTrait<Vector>::IsSparse) {
+              v_x.coeffRef(j) = tmp + h_2;
+            }
             Vector v_rr;
-            bool is_finite_rr{function(v_x, v_rr) && v_rr.allFinite()};
+            bool is_finite_rr{function(v_x, v_rr)};
+            if constexpr (TypeTrait<Vector>::IsFixed ||
+                          TypeTrait<Vector>::IsDynamic) {
+              is_finite_rr = is_finite_rr && v_rr.allFinite();
+            } else if constexpr (TypeTrait<Vector>::IsSparse) {
+              for (Eigen::Index r{0}; r < v_rr.rows(); ++r) {
+                is_finite_rr = is_finite_rr && std::isfinite(v_rr.coeff(r));
+              }
+            }
             if (is_finite_rr) {
               SideFiniteDifferences(v_c, v_r, v_rr, h_1, h_2, j, out);
             } else {
-              out.col(j) = (v_r - v_c) / h_1;
+              if constexpr (TypeTrait<Vector>::IsFixed ||
+                            TypeTrait<Vector>::IsDynamic) {
+                out.col(j) = (v_r - v_c) / h_1;
+              } else if constexpr (TypeTrait<Vector>::IsSparse) {
+                for (Eigen::Index r{0}; r < v_r.rows(); ++r) {
+                  out.coeffRef(r, j) = (v_r.coeff(r) - v_c.coeff(r)) / h_1;
+                }
+              }
             }
             break;
           }
           case -1: {
-            v_x(j) = tmp - h_2;
+            if constexpr (TypeTrait<Vector>::IsFixed ||
+                          TypeTrait<Vector>::IsDynamic) {
+              v_x(j) = tmp - h_2;
+            } else if constexpr (TypeTrait<Vector>::IsSparse) {
+              v_x.coeffRef(j) = tmp - h_2;
+            }
             Vector v_ll;
-            bool is_finite_ll{function(v_x, v_ll) && v_ll.allFinite()};
+            bool is_finite_ll{function(v_x, v_ll)};
+            if constexpr (TypeTrait<Vector>::IsFixed ||
+                          TypeTrait<Vector>::IsDynamic) {
+              is_finite_ll = is_finite_ll && v_ll.allFinite();
+            } else if constexpr (TypeTrait<Vector>::IsSparse) {
+              for (Eigen::Index r{0}; r < v_ll.rows(); ++r) {
+                is_finite_ll = is_finite_ll && std::isfinite(v_ll.coeff(r));
+              }
+            }
             if (is_finite_ll) {
               SideFiniteDifferences(v_c, v_l, v_ll, -h_1, -h_2, j, out);
             } else {
-              out.col(j) = (v_c - v_l) / h_1;
+              if constexpr (TypeTrait<Vector>::IsFixed ||
+                            TypeTrait<Vector>::IsDynamic) {
+                out.col(j) = (v_c - v_l) / h_1;
+              } else if constexpr (TypeTrait<Vector>::IsSparse) {
+                for (Eigen::Index r{0}; r < v_l.rows(); ++r) {
+                  out.coeffRef(r, j) = (v_c.coeff(r) - v_l.coeff(r)) / h_1;
+                }
+              }
             }
             break;
           }
           case -2: {
-            out.col(j).setZero();
+            if constexpr (TypeTrait<Vector>::IsFixed ||
+                          TypeTrait<Vector>::IsDynamic) {
+              out.col(j).setZero();
+            } else if constexpr (TypeTrait<Vector>::IsSparse) {
+              for (typename Matrix::InnerIterator it(out, j); it; ++it) {
+                it.valueRef() = 0.0;
+              }
+            }
             return false;
           }
         }
@@ -436,7 +525,7 @@ namespace Optimist {
     /**
      * Compute finite differences Hessian for a scalar function (for dense
      * Eigen vectors).
-     * \tparam Function Callable type <tt>bool(Vector const &, Real &)</tt>.
+     * \tparam Function Callable type <tt>bool(Vector const &, Scalar &)</tt>.
      * \tparam Vector Dense Eigen vector type.
      * \tparam Matrix Dense Eigen matrix type.
      * \tparam Scalar Floating-point number type.
@@ -452,60 +541,126 @@ namespace Optimist {
       requires std::
                    is_invocable_r_v<bool, Function, const Vector &, Scalar &> &&
                TypeTrait<Scalar>::IsScalar && TypeTrait<Vector>::IsEigen &&
-               (!TypeTrait<Vector>::IsSparse) && TypeTrait<Matrix>::IsEigen &&
-               (!TypeTrait<Matrix>::IsSparse)
+               TypeTrait<Matrix>::IsEigen
     inline bool Hessian(Function &&function, const Vector &x, Matrix &out) {
       Epsilon<Scalar> eps;
       Eigen::Index dim_x{x.size()};
-      out.resize(dim_x, dim_x);
+      if constexpr (TypeTrait<Matrix>::IsDynamic ||
+                    TypeTrait<Matrix>::IsSparse) {
+        out.resize(dim_x, dim_x);
+      }
+      if constexpr (TypeTrait<Matrix>::IsSparse) {
+        out.reserve(dim_x * dim_x);
+      }
       out.setZero();
       Scalar fc{0.0};
       if (!function(x, fc) || !std::isfinite(fc)) {
         return false;
       }
       for (Eigen::Index j{0}; j < dim_x; ++j) {
-        Scalar tmp_j{x(j)}, h_j{eps.epsilon_3(tmp_j)};
+        Scalar tmp_j;
+        if constexpr (TypeTrait<Vector>::IsFixed ||
+                      TypeTrait<Vector>::IsDynamic) {
+          tmp_j = x(j);
+        } else if constexpr (TypeTrait<Vector>::IsSparse) {
+          tmp_j = x.coeff(j);
+        }
+        Scalar h_j{eps.epsilon_3(tmp_j)};
         Vector v_x(x);
-        v_x(j) = tmp_j + h_j;
+        if constexpr (TypeTrait<Vector>::IsFixed ||
+                      TypeTrait<Vector>::IsDynamic) {
+          v_x(j) = tmp_j + h_j;
+        } else if constexpr (TypeTrait<Vector>::IsSparse) {
+          v_x.coeffRef(j) = tmp_j + h_j;
+        }
         Scalar fp;
         if (!function(v_x, fp) || !std::isfinite(fp)) {
           return false;
         }
-        v_x(j) = tmp_j - h_j;
+        if constexpr (TypeTrait<Vector>::IsFixed ||
+                      TypeTrait<Vector>::IsDynamic) {
+          v_x(j) = tmp_j - h_j;
+        } else if constexpr (TypeTrait<Vector>::IsSparse) {
+          v_x.coeffRef(j) = tmp_j - h_j;
+        }
         Scalar fm;
         if (!function(v_x, fm) || !std::isfinite(fm)) {
           return false;
         }
-        out(j, j) = ((fp + fm) - 2.0 * fc) / (h_j * h_j);
+        if constexpr (TypeTrait<Vector>::IsFixed ||
+                      TypeTrait<Vector>::IsDynamic) {
+          out(j, j) = ((fp + fm) - 2.0 * fc) / (h_j * h_j);
+        } else if constexpr (TypeTrait<Vector>::IsSparse) {
+          out.coeffRef(j, j) = ((fp + fm) - 2.0 * fc) / (h_j * h_j);
+        }
         for (Eigen::Index i{j + 1}; i < dim_x; ++i) {
-          Scalar tmp_i{x(i)}, h_i{eps.epsilon_3(tmp_i)};
-          v_x(i) = tmp_i + h_i;
-          v_x(j) = tmp_j + h_j;
+          Scalar tmp_i;
+          if constexpr (TypeTrait<Vector>::IsFixed ||
+                        TypeTrait<Vector>::IsDynamic) {
+            tmp_i = x(i);
+          } else if constexpr (TypeTrait<Vector>::IsSparse) {
+            tmp_i = x.coeff(i);
+          }
+          Scalar h_i{eps.epsilon_3(tmp_i)};
+          if constexpr (TypeTrait<Vector>::IsFixed ||
+                        TypeTrait<Vector>::IsDynamic) {
+            v_x(i) = tmp_i + h_i;
+            v_x(j) = tmp_j + h_j;
+          } else if constexpr (TypeTrait<Vector>::IsSparse) {
+            v_x.coeffRef(i) = tmp_i + h_i;
+            v_x.coeffRef(j) = tmp_j + h_j;
+          }
           Scalar fpp;
           if (!function(v_x, fpp) || !std::isfinite(fpp)) {
             return false;
           }
-          v_x(i) = tmp_i - h_i;
+          if constexpr (TypeTrait<Vector>::IsFixed ||
+                        TypeTrait<Vector>::IsDynamic) {
+            v_x(i) = tmp_i - h_i;
+          } else if constexpr (TypeTrait<Vector>::IsSparse) {
+            v_x.coeffRef(i) = tmp_i - h_i;
+          }
           Scalar fmp;
           if (!function(v_x, fmp) || !std::isfinite(fmp)) {
             return false;
           }
-          v_x(j) = tmp_j - h_j;
+          if constexpr (TypeTrait<Vector>::IsFixed ||
+                        TypeTrait<Vector>::IsDynamic) {
+            v_x(j) = tmp_j - h_j;
+          } else if constexpr (TypeTrait<Vector>::IsSparse) {
+            v_x.coeffRef(j) = tmp_j - h_j;
+          }
           Scalar fmm;
           if (!function(v_x, fmm) || !std::isfinite(fmm)) {
             return false;
           }
-          v_x(i) = tmp_i + h_i;
+          if constexpr (TypeTrait<Vector>::IsFixed ||
+                        TypeTrait<Vector>::IsDynamic) {
+            v_x(i) = tmp_i + h_i;
+          } else if constexpr (TypeTrait<Vector>::IsSparse) {
+            v_x.coeffRef(i) = tmp_i + h_i;
+          }
           Scalar fpm;
           if (!function(v_x, fpm) || !std::isfinite(fpm)) {
             return false;
           }
           Scalar h_ij{4.0 * h_i * h_j},
               value{((fpp + fmm) - (fpm + fmp)) / h_ij};
-          out(j, i) = out(i, j) = value;
-          v_x(i)                = tmp_i;
+          if constexpr (TypeTrait<Vector>::IsFixed ||
+                        TypeTrait<Vector>::IsDynamic) {
+            out(j, i) = out(i, j) = value;
+            v_x(i)                = tmp_i;
+          } else if constexpr (TypeTrait<Vector>::IsSparse) {
+            out.coeffRef(j, i) = out.coeffRef(i, j) = value;
+            v_x.coeffRef(i)                         = tmp_i;
+          }
         }
-        v_x(j) = tmp_j;
+        if constexpr (TypeTrait<Vector>::IsFixed ||
+                      TypeTrait<Vector>::IsDynamic) {
+          v_x(j) = tmp_j;
+        } else if constexpr (TypeTrait<Vector>::IsSparse) {
+          v_x.coeffRef(j) = tmp_j;
+        }
       }
       if constexpr (TypeTrait<Vector>::IsFixed ||
                     TypeTrait<Vector>::IsDynamic) {
