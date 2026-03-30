@@ -1,9 +1,9 @@
-<map id="include/Optimist/Optimizer.hh" name="include/Optimist/Optimizer.hh">
-<area shape="rect" id="Node000001" title=" " alt="" coords="197,5,389,31"/>
-<area shape="rect" id="Node000002" href="$_nelder_mead_8hh.html" title=" " alt="" coords="5,79,181,120"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="251,37,144,81,142,76,246,38"/>
-<area shape="rect" id="Node000003" href="$_particle_swarm_8hh.html" title=" " alt="" coords="205,79,381,120"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="295,45,295,80,291,77,291,48"/>
-<area shape="rect" id="Node000004" href="$_pattern_search_8hh.html" title=" " alt="" coords="405,79,581,120"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="338,34,446,78,440,79,337,40"/>
+<map id="core/include/Optimist/Optimizer.hh" name="core/include/Optimist/Optimizer.hh">
+<area shape="rect" id="Node000001" title=" " alt="" coords="225,5,370,46"/>
+<area shape="rect" id="Node000002" href="$_nelder_mead_8hh.html" title=" " alt="" coords="5,94,179,135"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="239,52,140,96,138,91,234,53"/>
+<area shape="rect" id="Node000003" href="$_particle_swarm_8hh.html" title=" " alt="" coords="203,94,392,135"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="299,60,300,95,295,92,295,64"/>
+<area shape="rect" id="Node000004" href="$_pattern_search_8hh.html" title=" " alt="" coords="416,94,602,135"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="360,50,464,93,458,94,359,55"/>
 </map>

@@ -1,0 +1,1204 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.16.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>Optimist: Optimist::Optimizer::ParticleSwarm&lt; Vector, InertiaWeightStrategy &gt; Class Template Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.png"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/StoccoDavide/Optimist" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Optimist
+   &#160;<span id="projectnumber">0.0.0</span>
+   </div>
+   <div id="projectbrief">A C++ library for optimization</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('class_optimist_1_1_optimizer_1_1_particle_swarm.html','','class_optimist_1_1_optimizer_1_1_particle_swarm-members'); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Optimist::Optimizer::ParticleSwarm&lt; Vector, InertiaWeightStrategy &gt; Class Template Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Class container for the particle swarm optimizer.  
+ <a href="#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_particle_swarm_8hh_source.html">ParticleSwarm.hh</a>&gt;</code></p>
+
+<p>Inherits <a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html">Optimist::Optimizer::Optimizer&lt; Vector, ParticleSwarm&lt; Vector &gt;, true &gt;</a>.</p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-types" class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:aaef042f75e0240fa8b6d69dfa52cd3f3" id="r_aaef042f75e0240fa8b6d69dfa52cd3f3"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#aaef042f75e0240fa8b6d69dfa52cd3f3">VectorTrait</a> = <a class="el" href="struct_optimist_1_1_type_trait.html">TypeTrait</a>&lt;Vector&gt;</td></tr>
+<tr class="memitem:aa95ef97a15aecf4683bc1396436054e7" id="r_aa95ef97a15aecf4683bc1396436054e7"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#aa95ef97a15aecf4683bc1396436054e7">Scalar</a> = typename Vector::Scalar</td></tr>
+<tr class="memitem:ac80846bc0cdad2941da0684d608a07f6" id="r_ac80846bc0cdad2941da0684d608a07f6"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#ac80846bc0cdad2941da0684d608a07f6">Particles</a> = std::vector&lt;Vector&gt;</td></tr>
+<tr class="inherit_header pub_types_class_optimist_1_1_optimizer_1_1_optimizer"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_types_class_optimist_1_1_optimizer_1_1_optimizer')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Types inherited from <a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html">Optimist::Optimizer::Optimizer&lt; Vector, ParticleSwarm&lt; Vector &gt;, true &gt;</a></td></tr>
+<tr class="memitem:a197c73c6d1f951e4725630404e20a087 inherit pub_types_class_optimist_1_1_optimizer_1_1_optimizer" id="r_a197c73c6d1f951e4725630404e20a087"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#a197c73c6d1f951e4725630404e20a087">Scalar</a></td></tr>
+<tr class="memitem:a9d7df1de1e9a36f5dc4ce81073caf732 inherit pub_types_class_optimist_1_1_optimizer_1_1_optimizer" id="r_a9d7df1de1e9a36f5dc4ce81073caf732"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#a9d7df1de1e9a36f5dc4ce81073caf732">Input</a></td></tr>
+<tr class="memitem:a78d8deca97106344501cc9765dc4e85c inherit pub_types_class_optimist_1_1_optimizer_1_1_optimizer" id="r_a78d8deca97106344501cc9765dc4e85c"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#a78d8deca97106344501cc9765dc4e85c">Output</a></td></tr>
+<tr class="inherit_header pub_types_class_optimist_1_1_solver_base"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_types_class_optimist_1_1_solver_base')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Types inherited from <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase&lt; Vector, TypeTrait&lt; Vector &gt;::Scalar, ParticleSwarm&lt; Vector &gt; &gt;</a></td></tr>
+<tr class="memitem:a9fcd00e8eaed3a5255e8e1b6bf8cff2e inherit pub_types_class_optimist_1_1_solver_base" id="r_a9fcd00e8eaed3a5255e8e1b6bf8cff2e"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#a9fcd00e8eaed3a5255e8e1b6bf8cff2e">InputTrait</a></td></tr>
+<tr class="memitem:ab9ac4d8299157b054a5fc4a106859069 inherit pub_types_class_optimist_1_1_solver_base" id="r_ab9ac4d8299157b054a5fc4a106859069"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#ab9ac4d8299157b054a5fc4a106859069">OutputTrait</a></td></tr>
+<tr class="memitem:a745da0e273971470c511dbcad16da3cc inherit pub_types_class_optimist_1_1_solver_base" id="r_a745da0e273971470c511dbcad16da3cc"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#a745da0e273971470c511dbcad16da3cc">Scalar</a></td></tr>
+<tr class="memitem:a37ee7d0c41fea1a0691aefcd2849dafe inherit pub_types_class_optimist_1_1_solver_base" id="r_a37ee7d0c41fea1a0691aefcd2849dafe"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#a37ee7d0c41fea1a0691aefcd2849dafe">FirstDerivative</a></td></tr>
+<tr class="memitem:aa3938ba18852f615a33c9b79a671f3b7 inherit pub_types_class_optimist_1_1_solver_base" id="r_aa3938ba18852f615a33c9b79a671f3b7"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#aa3938ba18852f615a33c9b79a671f3b7">SecondDerivative</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a5e23837f955a1a6735816dffa8adeeba" id="r_a5e23837f955a1a6735816dffa8adeeba"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a5e23837f955a1a6735816dffa8adeeba">ParticleSwarm</a> ()</td></tr>
+<tr class="memitem:a0631aef4718c394e8c928d3b519fb9bb" id="r_a0631aef4718c394e8c928d3b519fb9bb"><td class="memItemLeft">constexpr std::string&#160;</td><td class="memItemRight"><a class="el" href="#a0631aef4718c394e8c928d3b519fb9bb">name_impl</a> () const</td></tr>
+<tr class="memitem:a6b0f8f77a3bc1923d9228f951e7fb331" id="r_a6b0f8f77a3bc1923d9228f951e7fb331"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a6b0f8f77a3bc1923d9228f951e7fb331">randomize_particles</a> (<a class="el" href="#ac80846bc0cdad2941da0684d608a07f6">Particles</a> &amp;particles) const</td></tr>
+<tr class="memitem:aa963290415cb59d077361b470dc3d3c3" id="r_aa963290415cb59d077361b470dc3d3c3"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aa963290415cb59d077361b470dc3d3c3">randomize_velocities</a> (<a class="el" href="#ac80846bc0cdad2941da0684d608a07f6">Particles</a> &amp;velocities) const</td></tr>
+<tr class="memitem:a9bf48acda1d86e65e493c15e869a4a55" id="r_a9bf48acda1d86e65e493c15e869a4a55"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a9bf48acda1d86e65e493c15e869a4a55">evaluate_objective</a> (const <a class="el" href="#ac80846bc0cdad2941da0684d608a07f6">Particles</a> &amp;particles, Vector &amp;fvals)</td></tr>
+<tr class="memitem:a7e0b3cbeebcb9405e8d67f63a107a2c9" id="r_a7e0b3cbeebcb9405e8d67f63a107a2c9"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a7e0b3cbeebcb9405e8d67f63a107a2c9">maintainBounds</a> (Matrix &amp;particles) const</td></tr>
+<tr class="memitem:ade6845f1caee43425b03e128b5a9362e" id="r_ade6845f1caee43425b03e128b5a9362e"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ade6845f1caee43425b03e128b5a9362e">calculateVelocities</a> (const Matrix &amp;particles, const Matrix &amp;best_particles, const <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> gbest, const <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> iteration, Matrix &amp;velocities)</td></tr>
+<tr class="memitem:a048afedc955125f6faca840ecedd1a00" id="r_a048afedc955125f6faca840ecedd1a00"><td class="memItemLeft">Result&#160;</td><td class="memItemRight"><a class="el" href="#a048afedc955125f6faca840ecedd1a00">_minimize</a> (const Matrix &amp;<a class="el" href="class_optimist_1_1_solver_base.html#aab4b15867c206fd7105aa0a63419d2a6">bounds</a>, Matrix &amp;particles)</td></tr>
+<tr class="memitem:a723ec6d18a525e1f5665284b6797939d" id="r_a723ec6d18a525e1f5665284b6797939d"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a723ec6d18a525e1f5665284b6797939d">ParticleSwarmOptimization</a> ()</td></tr>
+<tr class="memitem:a89311bbf68c16b409067884a97cd9d59" id="r_a89311bbf68c16b409067884a97cd9d59"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a89311bbf68c16b409067884a97cd9d59">setMinParticleChange</a> (const <a class="el" href="#aa95ef97a15aecf4683bc1396436054e7">Scalar</a> change=ParticleSwarm::SQRT_EPSILON)</td></tr>
+<tr class="memitem:ac444ca5b0be84fd52b7a39f0c1097414" id="r_ac444ca5b0be84fd52b7a39f0c1097414"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ac444ca5b0be84fd52b7a39f0c1097414">setMinFunctionChange</a> (const <a class="el" href="#aa95ef97a15aecf4683bc1396436054e7">Scalar</a> change=ParticleSwarm::SQRT_EPSILON)</td></tr>
+<tr class="memitem:ab2b7a866fd9a7de8913f003ed7ab693e" id="r_ab2b7a866fd9a7de8913f003ed7ab693e"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ab2b7a866fd9a7de8913f003ed7ab693e">setPhiParticles</a> (const <a class="el" href="#aa95ef97a15aecf4683bc1396436054e7">Scalar</a> phip)</td></tr>
+<tr class="memitem:a35fc0c2e7e9883ceaa8bbfd23955e5fb" id="r_a35fc0c2e7e9883ceaa8bbfd23955e5fb"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a35fc0c2e7e9883ceaa8bbfd23955e5fb">setPhiGlobal</a> (const <a class="el" href="#aa95ef97a15aecf4683bc1396436054e7">Scalar</a> phig)</td></tr>
+<tr class="memitem:a3f23db921def5ace3ba5682365cd0398" id="r_a3f23db921def5ace3ba5682365cd0398"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a3f23db921def5ace3ba5682365cd0398">setMaxVelocity</a> (const <a class="el" href="#aa95ef97a15aecf4683bc1396436054e7">Scalar</a> max_velocity)</td></tr>
+<tr class="memitem:a9d5027c39da4e429cc55c8bfa5e956e0" id="r_a9d5027c39da4e429cc55c8bfa5e956e0"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a9d5027c39da4e429cc55c8bfa5e956e0">inertia_weight_strategy</a> (const InertiaWeightStrategy &amp;t_weightStrategy)</td></tr>
+<tr class="memitem:a19b1004fa54402595ee6bd29f0ea2bd0" id="r_a19b1004fa54402595ee6bd29f0ea2bd0"><td class="memItemLeft">Result&#160;</td><td class="memItemRight"><a class="el" href="#a19b1004fa54402595ee6bd29f0ea2bd0">minimize</a> (const <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> cnt)</td></tr>
+<tr class="memitem:a6dc320fd446a7008fc89d78996ff1268" id="r_a6dc320fd446a7008fc89d78996ff1268"><td class="memItemLeft">Result&#160;</td><td class="memItemRight"><a class="el" href="#a6dc320fd446a7008fc89d78996ff1268">minimize</a> (const <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> cnt, const Vector &amp;initGuess)</td></tr>
+<tr class="memitem:aff1156d165b83b9dc4fe04a4fff031ef" id="r_aff1156d165b83b9dc4fe04a4fff031ef"><td class="memItemLeft">Result&#160;</td><td class="memItemRight"><a class="el" href="#aff1156d165b83b9dc4fe04a4fff031ef">minimize</a> (Matrix &amp;particles)</td></tr>
+<tr class="memitem:a8b2f1d33b1707a4f178de3a60adf3a57" id="r_a8b2f1d33b1707a4f178de3a60adf3a57"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a8b2f1d33b1707a4f178de3a60adf3a57">getRandomParticles</a> (const <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> cnt, Matrix &amp;particles)</td></tr>
+<tr class="inherit_header pub_methods_class_optimist_1_1_optimizer_1_1_optimizer"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_class_optimist_1_1_optimizer_1_1_optimizer')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html">Optimist::Optimizer::Optimizer&lt; Vector, ParticleSwarm&lt; Vector &gt;, true &gt;</a></td></tr>
+<tr class="memitem:ab5448e3266150b563d5d56b2ab5a404e inherit pub_methods_class_optimist_1_1_optimizer_1_1_optimizer" id="r_ab5448e3266150b563d5d56b2ab5a404e"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#ab5448e3266150b563d5d56b2ab5a404e">Optimizer</a> ()</td></tr>
+<tr class="memitem:a79cde26b2bab63102c78ec36c1f9b48c inherit pub_methods_class_optimist_1_1_optimizer_1_1_optimizer" id="r_a79cde26b2bab63102c78ec36c1f9b48c"><td class="memItemLeft">constexpr std::string&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#a79cde26b2bab63102c78ec36c1f9b48c">name</a> () const</td></tr>
+<tr class="memitem:ac2df6fa7bcaed1ee1706c4068d9feaa9 inherit pub_methods_class_optimist_1_1_optimizer_1_1_optimizer" id="r_ac2df6fa7bcaed1ee1706c4068d9feaa9"><td class="memItemLeft"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a>&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#ac2df6fa7bcaed1ee1706c4068d9feaa9">gradient_evaluations</a> () const</td></tr>
+<tr class="memitem:a340e80708008a198594bfafcdb0384c2 inherit pub_methods_class_optimist_1_1_optimizer_1_1_optimizer" id="r_a340e80708008a198594bfafcdb0384c2"><td class="memItemLeft"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a>&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#a340e80708008a198594bfafcdb0384c2">max_gradient_evaluations</a> () const</td></tr>
+<tr class="memitem:a435c6cd464bf8edfe8425227d5edd792 inherit pub_methods_class_optimist_1_1_optimizer_1_1_optimizer" id="r_a435c6cd464bf8edfe8425227d5edd792"><td class="memItemLeft"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a>&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#a435c6cd464bf8edfe8425227d5edd792">hessian_evaluations</a> () const</td></tr>
+<tr class="memitem:a5de242fd0ffa20d38dd41d6855441192 inherit pub_methods_class_optimist_1_1_optimizer_1_1_optimizer" id="r_a5de242fd0ffa20d38dd41d6855441192"><td class="memItemLeft"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a>&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#a5de242fd0ffa20d38dd41d6855441192">max_hessian_evaluations</a> () const</td></tr>
+<tr class="inherit_header pub_methods_class_optimist_1_1_solver_base"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_class_optimist_1_1_solver_base')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase&lt; Vector, TypeTrait&lt; Vector &gt;::Scalar, ParticleSwarm&lt; Vector &gt; &gt;</a></td></tr>
+<tr class="memitem:ae5377d9583da6b3d0007f3d9b74f1bc6 inherit pub_methods_class_optimist_1_1_solver_base" id="r_ae5377d9583da6b3d0007f3d9b74f1bc6"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#ae5377d9583da6b3d0007f3d9b74f1bc6">SolverBase</a> ()</td></tr>
+<tr class="memitem:a1caf17b35f44c3ea79658fc933ab5ce4 inherit pub_methods_class_optimist_1_1_solver_base" id="r_a1caf17b35f44c3ea79658fc933ab5ce4"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#a1caf17b35f44c3ea79658fc933ab5ce4">reset_bounds</a> (const <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> n=InputTrait::IsDynamic ? 0 :InputTrait::Dimension)</td></tr>
+<tr class="memitem:a7fa629dc75462ed80cee5923a24548c6 inherit pub_methods_class_optimist_1_1_solver_base" id="r_a7fa629dc75462ed80cee5923a24548c6"><td class="memItemLeft">const Vector &amp;&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#a7fa629dc75462ed80cee5923a24548c6">lower_bound</a> () const</td></tr>
+<tr class="memitem:a6098dfd9ed1cca76d874133d4bfccf33 inherit pub_methods_class_optimist_1_1_solver_base" id="r_a6098dfd9ed1cca76d874133d4bfccf33"><td class="memItemLeft">const Vector &amp;&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#a6098dfd9ed1cca76d874133d4bfccf33">upper_bound</a> () const</td></tr>
+<tr class="memitem:aab4b15867c206fd7105aa0a63419d2a6 inherit pub_methods_class_optimist_1_1_solver_base" id="r_aab4b15867c206fd7105aa0a63419d2a6"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#aab4b15867c206fd7105aa0a63419d2a6">bounds</a> (const Vector &amp;t_lower_bound, const Vector &amp;t_upper_bound)</td></tr>
+<tr class="memitem:a3497a3d14340e56b78f061d0e908b818 inherit pub_methods_class_optimist_1_1_solver_base" id="r_a3497a3d14340e56b78f061d0e908b818"><td class="memItemLeft">constexpr <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a>&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#a3497a3d14340e56b78f061d0e908b818">input_dimension</a> () const</td></tr>
+<tr class="memitem:a46f3b320bd4e640ee34c761a6f6d3d25 inherit pub_methods_class_optimist_1_1_solver_base" id="r_a46f3b320bd4e640ee34c761a6f6d3d25"><td class="memItemLeft">constexpr <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a>&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#a46f3b320bd4e640ee34c761a6f6d3d25">output_dimension</a> () const</td></tr>
+<tr class="memitem:a403170407abc827db1086e87dd8311b5 inherit pub_methods_class_optimist_1_1_solver_base" id="r_a403170407abc827db1086e87dd8311b5"><td class="memItemLeft"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a>&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#a403170407abc827db1086e87dd8311b5">function_evaluations</a> () const</td></tr>
+<tr class="memitem:a29be59224b3d663060b41f1d94ab1d10 inherit pub_methods_class_optimist_1_1_solver_base" id="r_a29be59224b3d663060b41f1d94ab1d10"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#a29be59224b3d663060b41f1d94ab1d10">max_function_evaluations</a> (const <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> t_max_function_evaluations)</td></tr>
+<tr class="memitem:ac12449a64c8c0d44ee48f8aabd8cf576 inherit pub_methods_class_optimist_1_1_solver_base" id="r_ac12449a64c8c0d44ee48f8aabd8cf576"><td class="memItemLeft"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a>&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#ac12449a64c8c0d44ee48f8aabd8cf576">iterations</a> () const</td></tr>
+<tr class="memitem:a69ac089ab0fa86556fe11381c723007d inherit pub_methods_class_optimist_1_1_solver_base" id="r_a69ac089ab0fa86556fe11381c723007d"><td class="memItemLeft"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a>&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#a69ac089ab0fa86556fe11381c723007d">max_iterations</a> () const</td></tr>
+<tr class="memitem:a2a27a542dd72a6d987f8a36cc33a1bb9 inherit pub_methods_class_optimist_1_1_solver_base" id="r_a2a27a542dd72a6d987f8a36cc33a1bb9"><td class="memItemLeft"><a class="el" href="class_optimist_1_1_solver_base.html#a745da0e273971470c511dbcad16da3cc">Scalar</a>&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#a2a27a542dd72a6d987f8a36cc33a1bb9">alpha</a> () const</td></tr>
+<tr class="memitem:a5d537ed39edc05aeea2972d9e3a0768c inherit pub_methods_class_optimist_1_1_solver_base" id="r_a5d537ed39edc05aeea2972d9e3a0768c"><td class="memItemLeft"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a>&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#a5d537ed39edc05aeea2972d9e3a0768c">relaxations</a> () const</td></tr>
+<tr class="memitem:ab6ea500cfb409335fa316f0c0c4dcbd7 inherit pub_methods_class_optimist_1_1_solver_base" id="r_ab6ea500cfb409335fa316f0c0c4dcbd7"><td class="memItemLeft"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a>&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#ab6ea500cfb409335fa316f0c0c4dcbd7">max_relaxations</a> () const</td></tr>
+<tr class="memitem:a7e2ec415f6f102c3d8774a95b0058620 inherit pub_methods_class_optimist_1_1_solver_base" id="r_a7e2ec415f6f102c3d8774a95b0058620"><td class="memItemLeft"><a class="el" href="class_optimist_1_1_solver_base.html#a745da0e273971470c511dbcad16da3cc">Scalar</a>&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#a7e2ec415f6f102c3d8774a95b0058620">tolerance</a> () const</td></tr>
+<tr class="memitem:af43ab63d5cf179dfb217a1c7b9df2b9f inherit pub_methods_class_optimist_1_1_solver_base" id="r_af43ab63d5cf179dfb217a1c7b9df2b9f"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#af43ab63d5cf179dfb217a1c7b9df2b9f">verbose_mode</a> (bool t_verbose)</td></tr>
+<tr class="memitem:a3ed55ecedf839cbe216c38a5644381c9 inherit pub_methods_class_optimist_1_1_solver_base" id="r_a3ed55ecedf839cbe216c38a5644381c9"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#a3ed55ecedf839cbe216c38a5644381c9">enable_verbose_mode</a> ()</td></tr>
+<tr class="memitem:a998b61fa95464ba4a4cfddda464ae2a5 inherit pub_methods_class_optimist_1_1_solver_base" id="r_a998b61fa95464ba4a4cfddda464ae2a5"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#a998b61fa95464ba4a4cfddda464ae2a5">disable_verbose_mode</a> ()</td></tr>
+<tr class="memitem:a0729bf2a302790fb8fbe8cfc2340ee65 inherit pub_methods_class_optimist_1_1_solver_base" id="r_a0729bf2a302790fb8fbe8cfc2340ee65"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#a0729bf2a302790fb8fbe8cfc2340ee65">damped_mode</a> (bool t_damped)</td></tr>
+<tr class="memitem:aae51979247ba1f5594730efdc64dce88 inherit pub_methods_class_optimist_1_1_solver_base" id="r_aae51979247ba1f5594730efdc64dce88"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#aae51979247ba1f5594730efdc64dce88">enable_damped_mode</a> ()</td></tr>
+<tr class="memitem:a060d504cbdc31039fbcb4a7662fb619f inherit pub_methods_class_optimist_1_1_solver_base" id="r_a060d504cbdc31039fbcb4a7662fb619f"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#a060d504cbdc31039fbcb4a7662fb619f">disable_damped_mode</a> ()</td></tr>
+<tr class="memitem:acbbf8c2c42758669832fb9976eb7440d inherit pub_methods_class_optimist_1_1_solver_base" id="r_acbbf8c2c42758669832fb9976eb7440d"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#acbbf8c2c42758669832fb9976eb7440d">task</a> () const</td></tr>
+<tr class="memitem:a5dffcc5532d8a638b8c1de317551d2c3 inherit pub_methods_class_optimist_1_1_solver_base" id="r_a5dffcc5532d8a638b8c1de317551d2c3"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#a5dffcc5532d8a638b8c1de317551d2c3">converged</a> () const</td></tr>
+<tr class="memitem:a6405b619865780610583cdb9457c8d12 inherit pub_methods_class_optimist_1_1_solver_base" id="r_a6405b619865780610583cdb9457c8d12"><td class="memItemLeft">std::ostream &amp;&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#a6405b619865780610583cdb9457c8d12">ostream</a> () const</td></tr>
+<tr class="memitem:a707dc74de2c854c42b86562f8e93c9e0 inherit pub_methods_class_optimist_1_1_solver_base" id="r_a707dc74de2c854c42b86562f8e93c9e0"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#a707dc74de2c854c42b86562f8e93c9e0">solve</a> (FunctionLambda &amp;&amp;function, const Vector &amp;x_ini, Vector &amp;x_sol)</td></tr>
+<tr class="memitem:a96222ebf7e75e10e2a3c30a9f5f853d6 inherit pub_methods_class_optimist_1_1_solver_base" id="r_a96222ebf7e75e10e2a3c30a9f5f853d6"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#a96222ebf7e75e10e2a3c30a9f5f853d6">rootfind</a> (const <a class="el" href="class_optimist_1_1_function_base.html">FunctionBase</a>&lt; FunctionInput, FunctionOutput, DerivedFunction &gt; &amp;function, const Vector &amp;x_ini, Vector &amp;x_sol)</td></tr>
+<tr class="memitem:a6e13bbf668eea69bbbc70fc8b0e2c7d6 inherit pub_methods_class_optimist_1_1_solver_base" id="r_a6e13bbf668eea69bbbc70fc8b0e2c7d6"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#a6e13bbf668eea69bbbc70fc8b0e2c7d6">optimize</a> (const <a class="el" href="class_optimist_1_1_function_base.html">FunctionBase</a>&lt; FunctionInput, FunctionOutput, DerivedFunction &gt; &amp;function, const Vector &amp;x_ini, Vector &amp;x_sol)</td></tr>
+<tr class="memitem:a7c93ced80a3ae2fd7a906e37acab9eb0 inherit pub_methods_class_optimist_1_1_solver_base" id="r_a7c93ced80a3ae2fd7a906e37acab9eb0"><td class="memItemLeft">constexpr std::string&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#a7c93ced80a3ae2fd7a906e37acab9eb0">name</a> () const</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-attribs" class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:a3bb59f1f84fc9161fd61514faa0ddc39" id="r_a3bb59f1f84fc9161fd61514faa0ddc39"><td class="memItemLeft">static constexpr bool&#160;</td><td class="memItemRight"><a class="el" href="#a3bb59f1f84fc9161fd61514faa0ddc39">RequiresFunction</a> {true}</td></tr>
+<tr class="memitem:a8cfaf2ea962508c1696e7de4f71e846a" id="r_a8cfaf2ea962508c1696e7de4f71e846a"><td class="memItemLeft">static constexpr bool&#160;</td><td class="memItemRight"><a class="el" href="#a8cfaf2ea962508c1696e7de4f71e846a">RequiresFirstDerivative</a> {false}</td></tr>
+<tr class="memitem:a13ab9b3de89cb1d0ca370d85396b545e" id="r_a13ab9b3de89cb1d0ca370d85396b545e"><td class="memItemLeft">static constexpr bool&#160;</td><td class="memItemRight"><a class="el" href="#a13ab9b3de89cb1d0ca370d85396b545e">RequiresSecondDerivative</a> {false}</td></tr>
+<tr class="inherit_header pub_static_attribs_class_optimist_1_1_optimizer_1_1_optimizer"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_static_attribs_class_optimist_1_1_optimizer_1_1_optimizer')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Static Public Attributes inherited from <a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html">Optimist::Optimizer::Optimizer&lt; Vector, ParticleSwarm&lt; Vector &gt;, true &gt;</a></td></tr>
+<tr class="memitem:a0d6ab32d95d413a46aee737b0dd4577d inherit pub_static_attribs_class_optimist_1_1_optimizer_1_1_optimizer" id="r_a0d6ab32d95d413a46aee737b0dd4577d"><td class="memItemLeft">static constexpr bool&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#a0d6ab32d95d413a46aee737b0dd4577d">IsRootFinder</a></td></tr>
+<tr class="memitem:aebc47d559d7a1fa0b0e85a9e9c9f9dd5 inherit pub_static_attribs_class_optimist_1_1_optimizer_1_1_optimizer" id="r_aebc47d559d7a1fa0b0e85a9e9c9f9dd5"><td class="memItemLeft">static constexpr bool&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#aebc47d559d7a1fa0b0e85a9e9c9f9dd5">IsOptimizer</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a67f7d778502028f9db8fe83061905cdd" id="r_a67f7d778502028f9db8fe83061905cdd"><td class="memItemLeft">InertiaWeightStrategy&#160;</td><td class="memItemRight"><a class="el" href="#a67f7d778502028f9db8fe83061905cdd">m_weight_strategy</a></td></tr>
+<tr class="memitem:a78c0ec6635b5525316552f90ce37f691" id="r_a78c0ec6635b5525316552f90ce37f691"><td class="memItemLeft"><a class="el" href="#aa95ef97a15aecf4683bc1396436054e7">Scalar</a>&#160;</td><td class="memItemRight"><a class="el" href="#a78c0ec6635b5525316552f90ce37f691">m_phi_p</a> {SQRT_EPSILON}</td></tr>
+<tr class="memitem:a4c0c6e8f882b78f7f77bb33f577f3cb8" id="r_a4c0c6e8f882b78f7f77bb33f577f3cb8"><td class="memItemLeft"><a class="el" href="#aa95ef97a15aecf4683bc1396436054e7">Scalar</a>&#160;</td><td class="memItemRight"><a class="el" href="#a4c0c6e8f882b78f7f77bb33f577f3cb8">m_phi_g</a> {SQRT_EPSILON}</td></tr>
+<tr class="memitem:a780afd301ac832f6bf401841ef8d8eaa" id="r_a780afd301ac832f6bf401841ef8d8eaa"><td class="memItemLeft"><a class="el" href="#aa95ef97a15aecf4683bc1396436054e7">Scalar</a>&#160;</td><td class="memItemRight"><a class="el" href="#a780afd301ac832f6bf401841ef8d8eaa">xeps_</a></td></tr>
+<tr class="memitem:a517fb6f13f6cdfb9b617f3096b8cbb8a" id="r_a517fb6f13f6cdfb9b617f3096b8cbb8a"><td class="memItemLeft"><a class="el" href="#aa95ef97a15aecf4683bc1396436054e7">Scalar</a>&#160;</td><td class="memItemRight"><a class="el" href="#a517fb6f13f6cdfb9b617f3096b8cbb8a">feps_</a></td></tr>
+<tr class="memitem:a0b8399d2382064ad5a081b826c6dbcae" id="r_a0b8399d2382064ad5a081b826c6dbcae"><td class="memItemLeft">std::function&lt; <a class="el" href="#aa95ef97a15aecf4683bc1396436054e7">Scalar</a>()&gt; this&#160;</td><td class="memItemRight"><a class="el" href="#a0b8399d2382064ad5a081b826c6dbcae">m_dice</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pro_methods_class_optimist_1_1_optimizer_1_1_optimizer"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_methods_class_optimist_1_1_optimizer_1_1_optimizer')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Protected Member Functions inherited from <a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html">Optimist::Optimizer::Optimizer&lt; Vector, ParticleSwarm&lt; Vector &gt;, true &gt;</a></td></tr>
+<tr class="memitem:add4b6353d014d543d2140f3558a073ac inherit pro_methods_class_optimist_1_1_optimizer_1_1_optimizer" id="r_add4b6353d014d543d2140f3558a073ac"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#add4b6353d014d543d2140f3558a073ac">evaluate_gradient</a> (GradientLambda &amp;&amp;gradient, const <a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#a9d7df1de1e9a36f5dc4ce81073caf732">Input</a> &amp;x, <a class="el" href="class_optimist_1_1_solver_base.html#a37ee7d0c41fea1a0691aefcd2849dafe">FirstDerivative</a> &amp;out)</td></tr>
+<tr class="memitem:a9048ea479c914d54024d032ba48efbd0 inherit pro_methods_class_optimist_1_1_optimizer_1_1_optimizer" id="r_a9048ea479c914d54024d032ba48efbd0"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#a9048ea479c914d54024d032ba48efbd0">evaluate_hessian</a> (HessianLambda &amp;&amp;hessian, const <a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#a9d7df1de1e9a36f5dc4ce81073caf732">Input</a> &amp;x, <a class="el" href="class_optimist_1_1_solver_base.html#aa3938ba18852f615a33c9b79a671f3b7">SecondDerivative</a> &amp;out)</td></tr>
+<tr class="memitem:a65f542cc851aed9ea635bed856de472c inherit pro_methods_class_optimist_1_1_optimizer_1_1_optimizer" id="r_a65f542cc851aed9ea635bed856de472c"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#a65f542cc851aed9ea635bed856de472c">solve</a> (FunctionLambda &amp;&amp;function, const <a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#a9d7df1de1e9a36f5dc4ce81073caf732">Input</a> &amp;x_ini, <a class="el" href="class_optimist_1_1_optimizer_1_1_optimizer.html#a78d8deca97106344501cc9765dc4e85c">Output</a> &amp;x_sol)</td></tr>
+<tr class="inherit_header pro_methods_class_optimist_1_1_solver_base"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_methods_class_optimist_1_1_solver_base')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Protected Member Functions inherited from <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase&lt; Vector, TypeTrait&lt; Vector &gt;::Scalar, ParticleSwarm&lt; Vector &gt; &gt;</a></td></tr>
+<tr class="memitem:a013755ffcb333e88960ac6d37d183a6f inherit pro_methods_class_optimist_1_1_solver_base" id="r_a013755ffcb333e88960ac6d37d183a6f"><td class="memItemLeft"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a>&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#a013755ffcb333e88960ac6d37d183a6f">first_derivative_evaluations</a> () const</td></tr>
+<tr class="memitem:a75189a36e9de1d28b1828dd280113dde inherit pro_methods_class_optimist_1_1_solver_base" id="r_a75189a36e9de1d28b1828dd280113dde"><td class="memItemLeft"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a>&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#a75189a36e9de1d28b1828dd280113dde">max_first_derivative_evaluations</a> () const</td></tr>
+<tr class="memitem:a9368cc1892a1ee86cd276ddc59412af3 inherit pro_methods_class_optimist_1_1_solver_base" id="r_a9368cc1892a1ee86cd276ddc59412af3"><td class="memItemLeft"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a>&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#a9368cc1892a1ee86cd276ddc59412af3">second_derivative_evaluations</a> () const</td></tr>
+<tr class="memitem:a9c892e3637c8f249ebc1c240816c18cb inherit pro_methods_class_optimist_1_1_solver_base" id="r_a9c892e3637c8f249ebc1c240816c18cb"><td class="memItemLeft"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a>&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#a9c892e3637c8f249ebc1c240816c18cb">max_second_derivative_evaluations</a> () const</td></tr>
+<tr class="memitem:aaabb0b2cce2b44555ab0da633501f7b9 inherit pro_methods_class_optimist_1_1_solver_base" id="r_aaabb0b2cce2b44555ab0da633501f7b9"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#aaabb0b2cce2b44555ab0da633501f7b9">reset_counters</a> ()</td></tr>
+<tr class="memitem:a38a5d43530e7fefa31ffaf45bfcdb565 inherit pro_methods_class_optimist_1_1_solver_base" id="r_a38a5d43530e7fefa31ffaf45bfcdb565"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#a38a5d43530e7fefa31ffaf45bfcdb565">evaluate_function</a> (FunctionLambda &amp;&amp;function, const Vector &amp;x, <a class="el" href="struct_optimist_1_1_type_trait.html">TypeTrait</a>&lt; Vector &gt;<a class="el" href="class_optimist_1_1_solver_base.html#a745da0e273971470c511dbcad16da3cc">::Scalar</a> &amp;out)</td></tr>
+<tr class="memitem:a3978165fab3ab96b728874fb7badb8b9 inherit pro_methods_class_optimist_1_1_solver_base" id="r_a3978165fab3ab96b728874fb7badb8b9"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#a3978165fab3ab96b728874fb7badb8b9">evaluate_first_derivative</a> (FirstDerivativeLambda &amp;&amp;function, const Vector &amp;x, <a class="el" href="class_optimist_1_1_solver_base.html#a37ee7d0c41fea1a0691aefcd2849dafe">FirstDerivative</a> &amp;out)</td></tr>
+<tr class="memitem:a63ef1ec94897d4ba244079d2224b179c inherit pro_methods_class_optimist_1_1_solver_base" id="r_a63ef1ec94897d4ba244079d2224b179c"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#a63ef1ec94897d4ba244079d2224b179c">evaluate_second_derivative</a> (SecondDerivativeLambda &amp;&amp;function, const Vector &amp;x, <a class="el" href="class_optimist_1_1_solver_base.html#aa3938ba18852f615a33c9b79a671f3b7">SecondDerivative</a> &amp;out)</td></tr>
+<tr class="memitem:a06cc6fcbf29ec7463d4b538b3919fb2b inherit pro_methods_class_optimist_1_1_solver_base" id="r_a06cc6fcbf29ec7463d4b538b3919fb2b"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#a06cc6fcbf29ec7463d4b538b3919fb2b">damp</a> (FunctionLambda &amp;&amp;function, const Vector &amp;x_old, const Vector &amp;function_old, const Vector &amp;step_old, Vector &amp;x_new, Vector &amp;function_new, Vector &amp;step_new)</td></tr>
+<tr class="memitem:a845dc526e24f6d1799ecc7e707701604 inherit pro_methods_class_optimist_1_1_solver_base" id="r_a845dc526e24f6d1799ecc7e707701604"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#a845dc526e24f6d1799ecc7e707701604">header</a> ()</td></tr>
+<tr class="memitem:afedfe01629bf6b3ed7e9706380fdbb9f inherit pro_methods_class_optimist_1_1_solver_base" id="r_afedfe01629bf6b3ed7e9706380fdbb9f"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#afedfe01629bf6b3ed7e9706380fdbb9f">bottom</a> ()</td></tr>
+<tr class="memitem:a08ed686a97cc6dc2a143ece4ebb421e0 inherit pro_methods_class_optimist_1_1_solver_base" id="r_a08ed686a97cc6dc2a143ece4ebb421e0"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#a08ed686a97cc6dc2a143ece4ebb421e0">info</a> (<a class="el" href="class_optimist_1_1_solver_base.html#a745da0e273971470c511dbcad16da3cc">Scalar</a> residuals, const std::string &amp;notes=&quot;-&quot;)</td></tr>
+<tr class="inherit_header pro_attribs_class_optimist_1_1_solver_base"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_attribs_class_optimist_1_1_solver_base')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Protected Attributes inherited from <a class="el" href="class_optimist_1_1_solver_base.html">Optimist::SolverBase&lt; Vector, TypeTrait&lt; Vector &gt;::Scalar, ParticleSwarm&lt; Vector &gt; &gt;</a></td></tr>
+<tr class="memitem:a9b4640482969da5965a6ae3c23869efb inherit pro_attribs_class_optimist_1_1_solver_base" id="r_a9b4640482969da5965a6ae3c23869efb"><td class="memItemLeft">Vector&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#a9b4640482969da5965a6ae3c23869efb">m_lower_bound</a></td></tr>
+<tr class="memitem:ad542b0aa1415b21bc02e33db8b8db771 inherit pro_attribs_class_optimist_1_1_solver_base" id="r_ad542b0aa1415b21bc02e33db8b8db771"><td class="memItemLeft">Vector&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#ad542b0aa1415b21bc02e33db8b8db771">m_upper_bound</a></td></tr>
+<tr class="memitem:a166dffb28a35ef1ff49d8fb86bfdc4ab inherit pro_attribs_class_optimist_1_1_solver_base" id="r_a166dffb28a35ef1ff49d8fb86bfdc4ab"><td class="memItemLeft"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a>&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#a166dffb28a35ef1ff49d8fb86bfdc4ab">m_function_evaluations</a></td></tr>
+<tr class="memitem:aecf0584aa70048b02222c34699cf4c00 inherit pro_attribs_class_optimist_1_1_solver_base" id="r_aecf0584aa70048b02222c34699cf4c00"><td class="memItemLeft"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a>&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#aecf0584aa70048b02222c34699cf4c00">m_first_derivative_evaluations</a></td></tr>
+<tr class="memitem:ae9d3ebd35e972418cef97bfce953d838 inherit pro_attribs_class_optimist_1_1_solver_base" id="r_ae9d3ebd35e972418cef97bfce953d838"><td class="memItemLeft"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a>&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#ae9d3ebd35e972418cef97bfce953d838">m_second_derivative_evaluations</a></td></tr>
+<tr class="memitem:a738665897689274dbfab88fb7ea39342 inherit pro_attribs_class_optimist_1_1_solver_base" id="r_a738665897689274dbfab88fb7ea39342"><td class="memItemLeft"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a>&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#a738665897689274dbfab88fb7ea39342">m_max_function_evaluations</a></td></tr>
+<tr class="memitem:aeca0af1e63cfd249426f7981fb4fc2f4 inherit pro_attribs_class_optimist_1_1_solver_base" id="r_aeca0af1e63cfd249426f7981fb4fc2f4"><td class="memItemLeft"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a>&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#aeca0af1e63cfd249426f7981fb4fc2f4">m_max_first_derivative_evaluations</a></td></tr>
+<tr class="memitem:aa77393a5958f30226955628fa3bb5b7e inherit pro_attribs_class_optimist_1_1_solver_base" id="r_aa77393a5958f30226955628fa3bb5b7e"><td class="memItemLeft"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a>&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#aa77393a5958f30226955628fa3bb5b7e">m_max_second_derivative_evaluations</a></td></tr>
+<tr class="memitem:ab48e0fc65ce173c233c50c314ba59e17 inherit pro_attribs_class_optimist_1_1_solver_base" id="r_ab48e0fc65ce173c233c50c314ba59e17"><td class="memItemLeft"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a>&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#ab48e0fc65ce173c233c50c314ba59e17">m_iterations</a></td></tr>
+<tr class="memitem:a69295f7a09081eb8f90f124c5c2acb68 inherit pro_attribs_class_optimist_1_1_solver_base" id="r_a69295f7a09081eb8f90f124c5c2acb68"><td class="memItemLeft"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a>&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#a69295f7a09081eb8f90f124c5c2acb68">m_max_iterations</a></td></tr>
+<tr class="memitem:af5b4438f0c637f15303188c05a322d8c inherit pro_attribs_class_optimist_1_1_solver_base" id="r_af5b4438f0c637f15303188c05a322d8c"><td class="memItemLeft"><a class="el" href="class_optimist_1_1_solver_base.html#a745da0e273971470c511dbcad16da3cc">Scalar</a>&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#af5b4438f0c637f15303188c05a322d8c">m_alpha</a></td></tr>
+<tr class="memitem:ade59773a8258c554559961c11e34430a inherit pro_attribs_class_optimist_1_1_solver_base" id="r_ade59773a8258c554559961c11e34430a"><td class="memItemLeft"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a>&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#ade59773a8258c554559961c11e34430a">m_relaxations</a></td></tr>
+<tr class="memitem:ab656d6b737947e135283223e12b35765 inherit pro_attribs_class_optimist_1_1_solver_base" id="r_ab656d6b737947e135283223e12b35765"><td class="memItemLeft"><a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a>&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#ab656d6b737947e135283223e12b35765">m_max_relaxations</a></td></tr>
+<tr class="memitem:a7019f00274a2227d8997fe6b00d21018 inherit pro_attribs_class_optimist_1_1_solver_base" id="r_a7019f00274a2227d8997fe6b00d21018"><td class="memItemLeft"><a class="el" href="class_optimist_1_1_solver_base.html#a745da0e273971470c511dbcad16da3cc">Scalar</a>&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#a7019f00274a2227d8997fe6b00d21018">m_tolerance</a></td></tr>
+<tr class="memitem:af7b647d27a26421da1c593070bc63cbc inherit pro_attribs_class_optimist_1_1_solver_base" id="r_af7b647d27a26421da1c593070bc63cbc"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#af7b647d27a26421da1c593070bc63cbc">m_verbose</a></td></tr>
+<tr class="memitem:a4856f77292d94a51f6ab9de7df7cab81 inherit pro_attribs_class_optimist_1_1_solver_base" id="r_a4856f77292d94a51f6ab9de7df7cab81"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#a4856f77292d94a51f6ab9de7df7cab81">m_damped</a></td></tr>
+<tr class="memitem:a61ad0aef89d6a4d59f73666106c65bab inherit pro_attribs_class_optimist_1_1_solver_base" id="r_a61ad0aef89d6a4d59f73666106c65bab"><td class="memItemLeft">std::ostream *&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#a61ad0aef89d6a4d59f73666106c65bab">m_ostream</a></td></tr>
+<tr class="memitem:aaa1ed1513d73a7ba482345a8f2a933cf inherit pro_attribs_class_optimist_1_1_solver_base" id="r_aaa1ed1513d73a7ba482345a8f2a933cf"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#aaa1ed1513d73a7ba482345a8f2a933cf">m_task</a></td></tr>
+<tr class="memitem:afc6d9026cd969627cb2e72c43c69ac71 inherit pro_attribs_class_optimist_1_1_solver_base" id="r_afc6d9026cd969627cb2e72c43c69ac71"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="class_optimist_1_1_solver_base.html#afc6d9026cd969627cb2e72c43c69ac71">m_converged</a></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename Vector, typename InertiaWeightStrategy = ConstantWeight&lt;typename Vector::Scalar&gt;&gt;<br />
+requires <a class="el" href="struct_optimist_1_1_type_trait.html">TypeTrait</a>&lt;Vector&gt;::IsEigen &amp;&amp; (!<a class="el" href="struct_optimist_1_1_type_trait.html">TypeTrait</a>&lt;Vector&gt;::IsFixed || <a class="el" href="struct_optimist_1_1_type_trait.html">TypeTrait</a>&lt;Vector&gt;::Dimension &gt; 0)<br />
+class Optimist::Optimizer::ParticleSwarm&lt; Vector, InertiaWeightStrategy &gt;</div><p>The optimization process can be configured by providing an inertia weight strategy functor. The inertia weight functor determines the amount of velocity, which is maintained from the previous iterations. It has a huge effect on convergence speed and stability of the optimization.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Vector</td><td>Eigen vector type. </td></tr>
+    <tr><td class="paramname">InertiaWeightStrategy</td><td>Inertia weight strategy functor type. </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
+<a id="ac80846bc0cdad2941da0684d608a07f6" name="ac80846bc0cdad2941da0684d608a07f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac80846bc0cdad2941da0684d608a07f6">&#9670;&#160;</a></span>Particles</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Vector, typename InertiaWeightStrategy = ConstantWeight&lt;typename Vector::Scalar&gt;&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="class_optimist_1_1_optimizer_1_1_particle_swarm.html">Optimist::Optimizer::ParticleSwarm</a>&lt; Vector, InertiaWeightStrategy &gt;::Particles = std::vector&lt;Vector&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p><a class="el" href="#ac80846bc0cdad2941da0684d608a07f6">Particles</a> container type. </p>
+
+</div>
+</div>
+<a id="aa95ef97a15aecf4683bc1396436054e7" name="aa95ef97a15aecf4683bc1396436054e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa95ef97a15aecf4683bc1396436054e7">&#9670;&#160;</a></span>Scalar</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Vector, typename InertiaWeightStrategy = ConstantWeight&lt;typename Vector::Scalar&gt;&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="class_optimist_1_1_optimizer_1_1_particle_swarm.html">Optimist::Optimizer::ParticleSwarm</a>&lt; Vector, InertiaWeightStrategy &gt;::Scalar = typename Vector::Scalar</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aaef042f75e0240fa8b6d69dfa52cd3f3" name="aaef042f75e0240fa8b6d69dfa52cd3f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaef042f75e0240fa8b6d69dfa52cd3f3">&#9670;&#160;</a></span>VectorTrait</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Vector, typename InertiaWeightStrategy = ConstantWeight&lt;typename Vector::Scalar&gt;&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="class_optimist_1_1_optimizer_1_1_particle_swarm.html">Optimist::Optimizer::ParticleSwarm</a>&lt; Vector, InertiaWeightStrategy &gt;::VectorTrait = <a class="el" href="struct_optimist_1_1_type_trait.html">TypeTrait</a>&lt;Vector&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a5e23837f955a1a6735816dffa8adeeba" name="a5e23837f955a1a6735816dffa8adeeba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e23837f955a1a6735816dffa8adeeba">&#9670;&#160;</a></span>ParticleSwarm()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Vector, typename InertiaWeightStrategy = ConstantWeight&lt;typename Vector::Scalar&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_optimist_1_1_optimizer_1_1_particle_swarm.html">Optimist::Optimizer::ParticleSwarm</a>&lt; Vector, InertiaWeightStrategy &gt;::ParticleSwarm </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Class constructor for the <a class="el" href="class_optimist_1_1_optimizer_1_1_particle_swarm.html" title="Class container for the particle swarm optimizer.">ParticleSwarm</a> solver. </p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a048afedc955125f6faca840ecedd1a00" name="a048afedc955125f6faca840ecedd1a00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a048afedc955125f6faca840ecedd1a00">&#9670;&#160;</a></span>_minimize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Vector, typename InertiaWeightStrategy = ConstantWeight&lt;typename Vector::Scalar&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Result <a class="el" href="class_optimist_1_1_optimizer_1_1_particle_swarm.html">Optimist::Optimizer::ParticleSwarm</a>&lt; Vector, InertiaWeightStrategy &gt;::_minimize </td>
+          <td>(</td>
+          <td class="paramtype">const Matrix &amp;</td>          <td class="paramname"><span class="paramname"><em>bounds</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Matrix &amp;</td>          <td class="paramname"><span class="paramname"><em>particles</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ade6845f1caee43425b03e128b5a9362e" name="ade6845f1caee43425b03e128b5a9362e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade6845f1caee43425b03e128b5a9362e">&#9670;&#160;</a></span>calculateVelocities()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Vector, typename InertiaWeightStrategy = ConstantWeight&lt;typename Vector::Scalar&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_optimist_1_1_optimizer_1_1_particle_swarm.html">Optimist::Optimizer::ParticleSwarm</a>&lt; Vector, InertiaWeightStrategy &gt;::calculateVelocities </td>
+          <td>(</td>
+          <td class="paramtype">const Matrix &amp;</td>          <td class="paramname"><span class="paramname"><em>particles</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Matrix &amp;</td>          <td class="paramname"><span class="paramname"><em>best_particles</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a></td>          <td class="paramname"><span class="paramname"><em>gbest</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a></td>          <td class="paramname"><span class="paramname"><em>iteration</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Matrix &amp;</td>          <td class="paramname"><span class="paramname"><em>velocities</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9bf48acda1d86e65e493c15e869a4a55" name="a9bf48acda1d86e65e493c15e869a4a55"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9bf48acda1d86e65e493c15e869a4a55">&#9670;&#160;</a></span>evaluate_objective()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Vector, typename InertiaWeightStrategy = ConstantWeight&lt;typename Vector::Scalar&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_optimist_1_1_optimizer_1_1_particle_swarm.html">Optimist::Optimizer::ParticleSwarm</a>&lt; Vector, InertiaWeightStrategy &gt;::evaluate_objective </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="#ac80846bc0cdad2941da0684d608a07f6">Particles</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>particles</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Vector &amp;</td>          <td class="paramname"><span class="paramname"><em>fvals</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8b2f1d33b1707a4f178de3a60adf3a57" name="a8b2f1d33b1707a4f178de3a60adf3a57"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b2f1d33b1707a4f178de3a60adf3a57">&#9670;&#160;</a></span>getRandomParticles()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Vector, typename InertiaWeightStrategy = ConstantWeight&lt;typename Vector::Scalar&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_optimist_1_1_optimizer_1_1_particle_swarm.html">Optimist::Optimizer::ParticleSwarm</a>&lt; Vector, InertiaWeightStrategy &gt;::getRandomParticles </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a></td>          <td class="paramname"><span class="paramname"><em>cnt</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Matrix &amp;</td>          <td class="paramname"><span class="paramname"><em>particles</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9d5027c39da4e429cc55c8bfa5e956e0" name="a9d5027c39da4e429cc55c8bfa5e956e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d5027c39da4e429cc55c8bfa5e956e0">&#9670;&#160;</a></span>inertia_weight_strategy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Vector, typename InertiaWeightStrategy = ConstantWeight&lt;typename Vector::Scalar&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_optimist_1_1_optimizer_1_1_particle_swarm.html">Optimist::Optimizer::ParticleSwarm</a>&lt; Vector, InertiaWeightStrategy &gt;::inertia_weight_strategy </td>
+          <td>(</td>
+          <td class="paramtype">const InertiaWeightStrategy &amp;</td>          <td class="paramname"><span class="paramname"><em>t_weightStrategy</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7e0b3cbeebcb9405e8d67f63a107a2c9" name="a7e0b3cbeebcb9405e8d67f63a107a2c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e0b3cbeebcb9405e8d67f63a107a2c9">&#9670;&#160;</a></span>maintainBounds()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Vector, typename InertiaWeightStrategy = ConstantWeight&lt;typename Vector::Scalar&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_optimist_1_1_optimizer_1_1_particle_swarm.html">Optimist::Optimizer::ParticleSwarm</a>&lt; Vector, InertiaWeightStrategy &gt;::maintainBounds </td>
+          <td>(</td>
+          <td class="paramtype">Matrix &amp;</td>          <td class="paramname"><span class="paramname"><em>particles</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a19b1004fa54402595ee6bd29f0ea2bd0" name="a19b1004fa54402595ee6bd29f0ea2bd0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a19b1004fa54402595ee6bd29f0ea2bd0">&#9670;&#160;</a></span>minimize() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Vector, typename InertiaWeightStrategy = ConstantWeight&lt;typename Vector::Scalar&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Result <a class="el" href="class_optimist_1_1_optimizer_1_1_particle_swarm.html">Optimist::Optimizer::ParticleSwarm</a>&lt; Vector, InertiaWeightStrategy &gt;::minimize </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a></td>          <td class="paramname"><span class="paramname"><em>cnt</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Perform minimization with the given bounds and number of particels.</p>
+<p>The swarm of particles will be drawn uniform randomly within the given bounds.</p>
+<p>The bounds matrix has to have 2 rows and one column per dimension of particle. The first row holds the minimum value of the respective dimension and the second row holds the maximum value.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="class_optimist_1_1_solver_base.html#aab4b15867c206fd7105aa0a63419d2a6">bounds</a></td><td>2xM matrix for bounds of M-dimensional particles </td></tr>
+    <tr><td class="paramname">cnt</td><td>number of particles used for optimization </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6dc320fd446a7008fc89d78996ff1268" name="a6dc320fd446a7008fc89d78996ff1268"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6dc320fd446a7008fc89d78996ff1268">&#9670;&#160;</a></span>minimize() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Vector, typename InertiaWeightStrategy = ConstantWeight&lt;typename Vector::Scalar&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Result <a class="el" href="class_optimist_1_1_optimizer_1_1_particle_swarm.html">Optimist::Optimizer::ParticleSwarm</a>&lt; Vector, InertiaWeightStrategy &gt;::minimize </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a></td>          <td class="paramname"><span class="paramname"><em>cnt</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Vector &amp;</td>          <td class="paramname"><span class="paramname"><em>initGuess</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Perform minimization with the given bounds, number of particels and initial guess.</p>
+<p>The swarm of particles will be drawn uniform randomly within the given bounds.</p>
+<p>The bounds matrix has to have 2 rows and one column per dimension of particle. The first row holds the minimum value of the respective dimension and the second row holds the maximum value.</p>
+<p>The initial guess vector has to have the same length as the number of columns of the bounds. It will be included as one particle of the swarm.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="class_optimist_1_1_solver_base.html#aab4b15867c206fd7105aa0a63419d2a6">bounds</a></td><td>2xM matrix for bounds of M-dimensional particles </td></tr>
+    <tr><td class="paramname">cnt</td><td>number of particles used for optimization </td></tr>
+    <tr><td class="paramname">initGuess</td><td>initial guess for a particle </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aff1156d165b83b9dc4fe04a4fff031ef" name="aff1156d165b83b9dc4fe04a4fff031ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff1156d165b83b9dc4fe04a4fff031ef">&#9670;&#160;</a></span>minimize() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Vector, typename InertiaWeightStrategy = ConstantWeight&lt;typename Vector::Scalar&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Result <a class="el" href="class_optimist_1_1_optimizer_1_1_particle_swarm.html">Optimist::Optimizer::ParticleSwarm</a>&lt; Vector, InertiaWeightStrategy &gt;::minimize </td>
+          <td>(</td>
+          <td class="paramtype">Matrix &amp;</td>          <td class="paramname"><span class="paramname"><em>particles</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Perform minimization with the given bounds and a pre-computed swarm of particles.</p>
+<p>The bounds matrix has to have 2 rows and one column per dimension of particle. The first row holds the minimum value of the respective dimension and the second row holds the maximum value.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="class_optimist_1_1_solver_base.html#aab4b15867c206fd7105aa0a63419d2a6">bounds</a></td><td>2xM matrix for bounds of M-dimensional particles </td></tr>
+    <tr><td class="paramname">particles</td><td>initial swarm used for optimization </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a0631aef4718c394e8c928d3b519fb9bb" name="a0631aef4718c394e8c928d3b519fb9bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0631aef4718c394e8c928d3b519fb9bb">&#9670;&#160;</a></span>name_impl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Vector, typename InertiaWeightStrategy = ConstantWeight&lt;typename Vector::Scalar&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string <a class="el" href="class_optimist_1_1_optimizer_1_1_particle_swarm.html">Optimist::Optimizer::ParticleSwarm</a>&lt; Vector, InertiaWeightStrategy &gt;::name_impl </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Get the <a class="el" href="class_optimist_1_1_optimizer_1_1_particle_swarm.html" title="Class container for the particle swarm optimizer.">ParticleSwarm</a>'s solver name. </p><dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="class_optimist_1_1_optimizer_1_1_particle_swarm.html" title="Class container for the particle swarm optimizer.">ParticleSwarm</a>'s solver name. </dd></dl>
+
+</div>
+</div>
+<a id="a723ec6d18a525e1f5665284b6797939d" name="a723ec6d18a525e1f5665284b6797939d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a723ec6d18a525e1f5665284b6797939d">&#9670;&#160;</a></span>ParticleSwarmOptimization()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Vector, typename InertiaWeightStrategy = ConstantWeight&lt;typename Vector::Scalar&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_optimist_1_1_optimizer_1_1_particle_swarm.html">Optimist::Optimizer::ParticleSwarm</a>&lt; Vector, InertiaWeightStrategy &gt;::ParticleSwarmOptimization </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6b0f8f77a3bc1923d9228f951e7fb331" name="a6b0f8f77a3bc1923d9228f951e7fb331"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b0f8f77a3bc1923d9228f951e7fb331">&#9670;&#160;</a></span>randomize_particles()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Vector, typename InertiaWeightStrategy = ConstantWeight&lt;typename Vector::Scalar&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_optimist_1_1_optimizer_1_1_particle_swarm.html">Optimist::Optimizer::ParticleSwarm</a>&lt; Vector, InertiaWeightStrategy &gt;::randomize_particles </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#ac80846bc0cdad2941da0684d608a07f6">Particles</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>particles</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Randomize the particles within the given bounds. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">particles</td><td>Matrix containing the particles to be randomized. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aa963290415cb59d077361b470dc3d3c3" name="aa963290415cb59d077361b470dc3d3c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa963290415cb59d077361b470dc3d3c3">&#9670;&#160;</a></span>randomize_velocities()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Vector, typename InertiaWeightStrategy = ConstantWeight&lt;typename Vector::Scalar&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_optimist_1_1_optimizer_1_1_particle_swarm.html">Optimist::Optimizer::ParticleSwarm</a>&lt; Vector, InertiaWeightStrategy &gt;::randomize_velocities </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#ac80846bc0cdad2941da0684d608a07f6">Particles</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>velocities</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Randomize the velocities within the given bounds. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">velocities</td><td>Matrix containing the velocities to be randomized. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a3f23db921def5ace3ba5682365cd0398" name="a3f23db921def5ace3ba5682365cd0398"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f23db921def5ace3ba5682365cd0398">&#9670;&#160;</a></span>setMaxVelocity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Vector, typename InertiaWeightStrategy = ConstantWeight&lt;typename Vector::Scalar&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_optimist_1_1_optimizer_1_1_particle_swarm.html">Optimist::Optimizer::ParticleSwarm</a>&lt; Vector, InertiaWeightStrategy &gt;::setMaxVelocity </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="#aa95ef97a15aecf4683bc1396436054e7">Scalar</a></td>          <td class="paramname"><span class="paramname"><em>max_velocity</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Set an upper bound for the velocity of particles. A particle cannot move faster than this value, which may prevent divergence. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">max_velocity</td><td>maximum velocity of a particle </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac444ca5b0be84fd52b7a39f0c1097414" name="ac444ca5b0be84fd52b7a39f0c1097414"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac444ca5b0be84fd52b7a39f0c1097414">&#9670;&#160;</a></span>setMinFunctionChange()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Vector, typename InertiaWeightStrategy = ConstantWeight&lt;typename Vector::Scalar&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_optimist_1_1_optimizer_1_1_particle_swarm.html">Optimist::Optimizer::ParticleSwarm</a>&lt; Vector, InertiaWeightStrategy &gt;::setMinFunctionChange </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="#aa95ef97a15aecf4683bc1396436054e7">Scalar</a></td>          <td class="paramname"><span class="paramname"><em>change</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="#a5e23837f955a1a6735816dffa8adeeba">ParticleSwarm</a>&lt;&#160;Vector,&#160;InertiaWeightStrategy&#160;&gt;::SQRT_EPSILON</span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Set the minimum average change of function values per iteration. If the average change of functions values falls below this value, the optimization terminates. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">change</td><td>minimum change of function values </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a89311bbf68c16b409067884a97cd9d59" name="a89311bbf68c16b409067884a97cd9d59"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a89311bbf68c16b409067884a97cd9d59">&#9670;&#160;</a></span>setMinParticleChange()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Vector, typename InertiaWeightStrategy = ConstantWeight&lt;typename Vector::Scalar&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_optimist_1_1_optimizer_1_1_particle_swarm.html">Optimist::Optimizer::ParticleSwarm</a>&lt; Vector, InertiaWeightStrategy &gt;::setMinParticleChange </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="#aa95ef97a15aecf4683bc1396436054e7">Scalar</a></td>          <td class="paramname"><span class="paramname"><em>change</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="#a5e23837f955a1a6735816dffa8adeeba">ParticleSwarm</a>&lt;&#160;Vector,&#160;InertiaWeightStrategy&#160;&gt;::SQRT_EPSILON</span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Set the minimum average change of particles per iteration. If the average change of particles (input parameters) falls below this value, the optimization terminates. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">change</td><td>minimum change of input paramaters </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a35fc0c2e7e9883ceaa8bbfd23955e5fb" name="a35fc0c2e7e9883ceaa8bbfd23955e5fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35fc0c2e7e9883ceaa8bbfd23955e5fb">&#9670;&#160;</a></span>setPhiGlobal()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Vector, typename InertiaWeightStrategy = ConstantWeight&lt;typename Vector::Scalar&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_optimist_1_1_optimizer_1_1_particle_swarm.html">Optimist::Optimizer::ParticleSwarm</a>&lt; Vector, InertiaWeightStrategy &gt;::setPhiGlobal </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="#aa95ef97a15aecf4683bc1396436054e7">Scalar</a></td>          <td class="paramname"><span class="paramname"><em>phig</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Set the tendency of particles to move towards the global optimum found so far. The swarm maintains a collective memory of where it has visited the lowest function value so far. Increasing this value increases the particles' tendency to move towards that point. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">phig</td><td>tendency to move towards collective optimum </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab2b7a866fd9a7de8913f003ed7ab693e" name="ab2b7a866fd9a7de8913f003ed7ab693e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2b7a866fd9a7de8913f003ed7ab693e">&#9670;&#160;</a></span>setPhiParticles()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Vector, typename InertiaWeightStrategy = ConstantWeight&lt;typename Vector::Scalar&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_optimist_1_1_optimizer_1_1_particle_swarm.html">Optimist::Optimizer::ParticleSwarm</a>&lt; Vector, InertiaWeightStrategy &gt;::setPhiParticles </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="#aa95ef97a15aecf4683bc1396436054e7">Scalar</a></td>          <td class="paramname"><span class="paramname"><em>phip</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Set the tendency of particles to move towards their local optimum found so far. Each particle individually maintains a memory of where it has visited the lowest function value so far. Increasing this value increases the particles' tendency to move towards that point. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">phip</td><td>tendency to move towards individual optimum </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a517fb6f13f6cdfb9b617f3096b8cbb8a" name="a517fb6f13f6cdfb9b617f3096b8cbb8a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a517fb6f13f6cdfb9b617f3096b8cbb8a">&#9670;&#160;</a></span>feps_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Vector, typename InertiaWeightStrategy = ConstantWeight&lt;typename Vector::Scalar&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#aa95ef97a15aecf4683bc1396436054e7">Scalar</a> <a class="el" href="class_optimist_1_1_optimizer_1_1_particle_swarm.html">Optimist::Optimizer::ParticleSwarm</a>&lt; Vector, InertiaWeightStrategy &gt;::feps_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0b8399d2382064ad5a081b826c6dbcae" name="a0b8399d2382064ad5a081b826c6dbcae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b8399d2382064ad5a081b826c6dbcae">&#9670;&#160;</a></span>m_dice</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Vector, typename InertiaWeightStrategy = ConstantWeight&lt;typename Vector::Scalar&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::function&lt;<a class="el" href="#aa95ef97a15aecf4683bc1396436054e7">Scalar</a>()&gt; this <a class="el" href="class_optimist_1_1_optimizer_1_1_particle_swarm.html">Optimist::Optimizer::ParticleSwarm</a>&lt; Vector, InertiaWeightStrategy &gt;::m_dice</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4c0c6e8f882b78f7f77bb33f577f3cb8" name="a4c0c6e8f882b78f7f77bb33f577f3cb8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c0c6e8f882b78f7f77bb33f577f3cb8">&#9670;&#160;</a></span>m_phi_g</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Vector, typename InertiaWeightStrategy = ConstantWeight&lt;typename Vector::Scalar&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#aa95ef97a15aecf4683bc1396436054e7">Scalar</a> <a class="el" href="class_optimist_1_1_optimizer_1_1_particle_swarm.html">Optimist::Optimizer::ParticleSwarm</a>&lt; Vector, InertiaWeightStrategy &gt;::m_phi_g {SQRT_EPSILON}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="#aa95ef97a15aecf4683bc1396436054e7">Scalar</a> m_max_velocity; /**&lt; Maximum velocity for each particle. </p>
+
+</div>
+</div>
+<a id="a78c0ec6635b5525316552f90ce37f691" name="a78c0ec6635b5525316552f90ce37f691"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78c0ec6635b5525316552f90ce37f691">&#9670;&#160;</a></span>m_phi_p</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Vector, typename InertiaWeightStrategy = ConstantWeight&lt;typename Vector::Scalar&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#aa95ef97a15aecf4683bc1396436054e7">Scalar</a> <a class="el" href="class_optimist_1_1_optimizer_1_1_particle_swarm.html">Optimist::Optimizer::ParticleSwarm</a>&lt; Vector, InertiaWeightStrategy &gt;::m_phi_p {SQRT_EPSILON}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Cognitive coefficient. </p>
+
+</div>
+</div>
+<a id="a67f7d778502028f9db8fe83061905cdd" name="a67f7d778502028f9db8fe83061905cdd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67f7d778502028f9db8fe83061905cdd">&#9670;&#160;</a></span>m_weight_strategy</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Vector, typename InertiaWeightStrategy = ConstantWeight&lt;typename Vector::Scalar&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">InertiaWeightStrategy <a class="el" href="class_optimist_1_1_optimizer_1_1_particle_swarm.html">Optimist::Optimizer::ParticleSwarm</a>&lt; Vector, InertiaWeightStrategy &gt;::m_weight_strategy</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Inertia weight strategy functor. </p>
+
+</div>
+</div>
+<a id="a8cfaf2ea962508c1696e7de4f71e846a" name="a8cfaf2ea962508c1696e7de4f71e846a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8cfaf2ea962508c1696e7de4f71e846a">&#9670;&#160;</a></span>RequiresFirstDerivative</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Vector, typename InertiaWeightStrategy = ConstantWeight&lt;typename Vector::Scalar&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="class_optimist_1_1_optimizer_1_1_particle_swarm.html">Optimist::Optimizer::ParticleSwarm</a>&lt; Vector, InertiaWeightStrategy &gt;::RequiresFirstDerivative {false}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3bb59f1f84fc9161fd61514faa0ddc39" name="a3bb59f1f84fc9161fd61514faa0ddc39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3bb59f1f84fc9161fd61514faa0ddc39">&#9670;&#160;</a></span>RequiresFunction</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Vector, typename InertiaWeightStrategy = ConstantWeight&lt;typename Vector::Scalar&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="class_optimist_1_1_optimizer_1_1_particle_swarm.html">Optimist::Optimizer::ParticleSwarm</a>&lt; Vector, InertiaWeightStrategy &gt;::RequiresFunction {true}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a13ab9b3de89cb1d0ca370d85396b545e" name="a13ab9b3de89cb1d0ca370d85396b545e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a13ab9b3de89cb1d0ca370d85396b545e">&#9670;&#160;</a></span>RequiresSecondDerivative</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Vector, typename InertiaWeightStrategy = ConstantWeight&lt;typename Vector::Scalar&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="class_optimist_1_1_optimizer_1_1_particle_swarm.html">Optimist::Optimizer::ParticleSwarm</a>&lt; Vector, InertiaWeightStrategy &gt;::RequiresSecondDerivative {false}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a780afd301ac832f6bf401841ef8d8eaa" name="a780afd301ac832f6bf401841ef8d8eaa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a780afd301ac832f6bf401841ef8d8eaa">&#9670;&#160;</a></span>xeps_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Vector, typename InertiaWeightStrategy = ConstantWeight&lt;typename Vector::Scalar&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#aa95ef97a15aecf4683bc1396436054e7">Scalar</a> <a class="el" href="class_optimist_1_1_optimizer_1_1_particle_swarm.html">Optimist::Optimizer::ParticleSwarm</a>&lt; Vector, InertiaWeightStrategy &gt;::xeps_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>core/include/Optimist/Optimizer/<a class="el" href="_particle_swarm_8hh_source.html">ParticleSwarm.hh</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="namespace_optimist.html">Optimist</a></li><li class="navelem"><a href="namespace_optimist_1_1_optimizer.html">Optimizer</a></li><li class="navelem"><a href="class_optimist_1_1_optimizer_1_1_particle_swarm.html">ParticleSwarm</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.1 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -9,10 +9,12 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 # Eigen
-set(EIGEN_BUILD_TESTS OFF)
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/eigen)
+if (NOT OPTIMIST_EXTERNAL_EIGEN)
+  set(EIGEN_BUILD_TESTS OFF)
+  add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/eigen)
+endif()
 
 # GoogleTest
 if (OPTIMIST_BUILD_TESTS)
-  add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/googletest)
+  add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/googletest)
 endif()

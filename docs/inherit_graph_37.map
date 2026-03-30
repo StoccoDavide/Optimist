@@ -1,0 +1,9 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$class_optimist_1_1_solver_base.html" title=" " alt="" coords="5,5,193,61"/>
+<area shape="rect" id="Node000001" href="$class_optimist_1_1_root_finder_1_1_root_finder.html" title=" " alt="" coords="241,5,404,61"/>
+<area shape="poly" id="edge61_Node000000_Node000001" title=" " alt="" coords="208,31,243,33,237,33,208,36"/>
+<area shape="rect" id="Node000002" href="$class_optimist_1_1_root_finder_1_1_quasi_newton.html" title=" " alt="" coords="452,5,615,61"/>
+<area shape="poly" id="edge62_Node000001_Node000002" title=" " alt="" coords="419,31,454,33,449,33,419,36"/>
+<area shape="rect" id="Node000003" href="$class_optimist_1_1_root_finder_1_1_greenstadt.html" title="Class container for the Greenstadt&#39;s method." alt="" coords="663,13,819,54"/>
+<area shape="poly" id="edge63_Node000002_Node000003" title=" " alt="" coords="631,31,665,33,660,33,631,36"/>
+</map>

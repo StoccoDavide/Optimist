@@ -1,6 +1,6 @@
 var class_optimist_1_1_root_finder_1_1_varona =
 [
-    [ "Method", "class_optimist_1_1_root_finder_1_1_varona.html#aacdd26e3d098424919439cf1371643fc", null ],
+    [ "Method", "class_optimist_1_1_root_finder_1_1_varona.html#a37389425118b8e106ffbabc183421be0", null ],
     [ "Varona", "class_optimist_1_1_root_finder_1_1_varona.html#a961096458254cbe61f0bce2b54588a3d", null ],
     [ "compute_step", "class_optimist_1_1_root_finder_1_1_varona.html#af00fe778c1bf75bc639a314f45b30923", null ],
     [ "enable_16th_order_method", "class_optimist_1_1_root_finder_1_1_varona.html#a12d54594dd149c4f3471146c175b34d3", null ],

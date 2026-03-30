@@ -1,6 +1,6 @@
 var class_optimist_1_1_root_finder_1_1_greenstadt =
 [
-    [ "Method", "class_optimist_1_1_root_finder_1_1_greenstadt.html#af7647d37a83f1b76e4383f745d6e72cb", null ],
+    [ "Method", "class_optimist_1_1_root_finder_1_1_greenstadt.html#a3e1c08eef770648d9d9bcae66305ca79", null ],
     [ "Scalar", "class_optimist_1_1_root_finder_1_1_greenstadt.html#abc5b2e26268886c56f77500bdbf8c7fa", null ],
     [ "VectorTrait", "class_optimist_1_1_root_finder_1_1_greenstadt.html#ac40f9e2e55666057de5cb8efd68d8c77", null ],
     [ "Greenstadt", "class_optimist_1_1_root_finder_1_1_greenstadt.html#acb5e8ee607ff038baef2a8869be0406e", null ],
@@ -10,7 +10,7 @@ var class_optimist_1_1_root_finder_1_1_greenstadt =
     [ "method", "class_optimist_1_1_root_finder_1_1_greenstadt.html#ae57c81180a7e2995f97030b4799c9c65", null ],
     [ "name_impl", "class_optimist_1_1_root_finder_1_1_greenstadt.html#a254ebdf41542162bf306b25dfc1f90ab", null ],
     [ "set_method", "class_optimist_1_1_root_finder_1_1_greenstadt.html#a9beccc593edc85a1c24d2e55ed8173a4", null ],
-    [ "update_impl", "class_optimist_1_1_root_finder_1_1_greenstadt.html#a8d2b30fff952ff5175fd0e76a57a9ee8", null ],
+    [ "update_impl", "class_optimist_1_1_root_finder_1_1_greenstadt.html#a974601701487371447bb99027fcc4bc4", null ],
     [ "m_method", "class_optimist_1_1_root_finder_1_1_greenstadt.html#acaa3d9f7b069de1b56a8df2922c3812f", null ],
     [ "RequiresFirstDerivative", "class_optimist_1_1_root_finder_1_1_greenstadt.html#afeb2012aee05f0005ccfa1edc6918cbc", null ],
     [ "RequiresFunction", "class_optimist_1_1_root_finder_1_1_greenstadt.html#a88efdaf04604d2346fcc312f6b0abec1", null ],

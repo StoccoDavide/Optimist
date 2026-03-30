@@ -3,7 +3,9 @@
 include(CMakeFindDependencyMacro)
 
 # List dependencies
-find_dependency(Eigen3 REQUIRED)
+if (NOT OPTIMIST_EXTERNAL_EIGEN)
+  find_dependency(Eigen3 REQUIRED)
+endif()
 
 # Provide the target
 include("${CMAKE_CURRENT_LIST_DIR}/OptimistTargets.cmake")

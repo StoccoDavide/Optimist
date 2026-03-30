@@ -1,12 +1,12 @@
 var _finite_differences_8hh =
 [
-    [ "Optimist::FiniteDifferences::Epsilon&lt; Real &gt;", "class_optimist_1_1_finite_differences_1_1_epsilon.html", "class_optimist_1_1_finite_differences_1_1_epsilon" ],
+    [ "Optimist::FiniteDifferences::Epsilon&lt; Scalar &gt;", "class_optimist_1_1_finite_differences_1_1_epsilon.html", "class_optimist_1_1_finite_differences_1_1_epsilon" ],
     [ "OPTIMIST_FINITE_DIFFERENCES_HH", "_finite_differences_8hh.html#a908f9678523c323dbf4e5455dbcf6c95", null ],
-    [ "Optimist::FiniteDifferences::CenteredFiniteDifferences", "namespace_optimist_1_1_finite_differences.html#a7ac77794e2f572040663b57705ee42dc", null ],
-    [ "Optimist::FiniteDifferences::CenteredFiniteDifferences", "namespace_optimist_1_1_finite_differences.html#a191cd15b163926deec2bbcc5f6f83dad", null ],
-    [ "Optimist::FiniteDifferences::Gradient", "namespace_optimist_1_1_finite_differences.html#a00f4a229fdff9eb5c40a92f7e93b4515", null ],
-    [ "Optimist::FiniteDifferences::Hessian", "namespace_optimist_1_1_finite_differences.html#a66d39e3d9618da521eca88d790147156", null ],
-    [ "Optimist::FiniteDifferences::Jacobian", "namespace_optimist_1_1_finite_differences.html#a4f1a1cde5e9633b4c84a1d287722182a", null ],
-    [ "Optimist::FiniteDifferences::SideFiniteDifferences", "namespace_optimist_1_1_finite_differences.html#a3ae3f38f1ec581f1e06a92c0a82ed252", null ],
-    [ "Optimist::FiniteDifferences::SideFiniteDifferences", "namespace_optimist_1_1_finite_differences.html#a1384eedb4ec6b9d60a2fb7310742a071", null ]
+    [ "Optimist::FiniteDifferences::CenteredFiniteDifferences", "namespace_optimist_1_1_finite_differences.html#a804f01333b0e3511c3c26d0fbb1ca841", null ],
+    [ "Optimist::FiniteDifferences::CenteredFiniteDifferences", "namespace_optimist_1_1_finite_differences.html#a5a800f07c7a5b4d178eaa59f37655465", null ],
+    [ "Optimist::FiniteDifferences::Gradient", "namespace_optimist_1_1_finite_differences.html#aa6403818f9e90ca34f875e85439a12e1", null ],
+    [ "Optimist::FiniteDifferences::Hessian", "namespace_optimist_1_1_finite_differences.html#a1efc77fabf413a02a167ba17cefc1720", null ],
+    [ "Optimist::FiniteDifferences::Jacobian", "namespace_optimist_1_1_finite_differences.html#a46e77d1a1851a9e57102dbeefaf75ba2", null ],
+    [ "Optimist::FiniteDifferences::SideFiniteDifferences", "namespace_optimist_1_1_finite_differences.html#aff4f4812416844cbec2185f651f77cc3", null ],
+    [ "Optimist::FiniteDifferences::SideFiniteDifferences", "namespace_optimist_1_1_finite_differences.html#ad0bdd5592fbc3c58416f2f43fe274dc1", null ]
 ];

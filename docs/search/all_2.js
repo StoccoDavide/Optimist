@@ -4,7 +4,7 @@ var searchData=
   ['booth_1',['Booth',['../class_optimist_1_1_test_set_1_1_booth.html',1,'Optimist::TestSet::Booth&lt; Vector &gt;'],['../class_optimist_1_1_test_set_1_1_booth.html#ac075aaebeb98f88a373ebabceae8f602',1,'Optimist::TestSet::Booth::Booth()']]],
   ['booth_2ehh_2',['Booth.hh',['../_booth_8hh.html',1,'']]],
   ['bottom_3',['bottom',['../class_optimist_1_1_solver_base.html#afedfe01629bf6b3ed7e9706380fdbb9f',1,'Optimist::SolverBase']]],
-  ['bounds_4',['bounds',['../class_optimist_1_1_solver_base.html#a56d959a2ee3adff65c15249c00a7ac86',1,'Optimist::SolverBase']]],
+  ['bounds_4',['bounds',['../class_optimist_1_1_solver_base.html#aab4b15867c206fd7105aa0a63419d2a6',1,'Optimist::SolverBase']]],
   ['bracketing_5',['Bracketing',['../class_optimist_1_1_root_finder_1_1_bracketing.html',1,'Optimist::RootFinder::Bracketing&lt; Scalar, DerivedSolver &gt;'],['../class_optimist_1_1_root_finder_1_1_bracketing.html#a9a7fcf65e1a5b6e1435cf6abdc549852',1,'Optimist::RootFinder::Bracketing::Bracketing()']]],
   ['bracketing_6',['bracketing',['../class_optimist_1_1_root_finder_1_1_algo748.html#af4abf950c0a5493a3621f4eb66bc1d5f',1,'Optimist::RootFinder::Algo748']]],
   ['bracketing_2ehh_7',['Bracketing.hh',['../_bracketing_8hh.html',1,'']]],

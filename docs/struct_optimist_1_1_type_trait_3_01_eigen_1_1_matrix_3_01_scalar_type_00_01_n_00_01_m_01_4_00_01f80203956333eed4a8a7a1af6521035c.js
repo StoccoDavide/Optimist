@@ -1,0 +1,11 @@
+var struct_optimist_1_1_type_trait_3_01_eigen_1_1_matrix_3_01_scalar_type_00_01_n_00_01_m_01_4_00_01f80203956333eed4a8a7a1af6521035c =
+[
+    [ "Scalar", "struct_optimist_1_1_type_trait_3_01_eigen_1_1_matrix_3_01_scalar_type_00_01_n_00_01_m_01_4_00_01f80203956333eed4a8a7a1af6521035c.html#a061bc8a8d4ab21e8cb5cf7d81f0899d8", null ],
+    [ "Type", "struct_optimist_1_1_type_trait_3_01_eigen_1_1_matrix_3_01_scalar_type_00_01_n_00_01_m_01_4_00_01f80203956333eed4a8a7a1af6521035c.html#ab8bc3339f118b0822d17b57e28157eec", null ],
+    [ "Dimension", "struct_optimist_1_1_type_trait_3_01_eigen_1_1_matrix_3_01_scalar_type_00_01_n_00_01_m_01_4_00_01f80203956333eed4a8a7a1af6521035c.html#a8942bba4e4c40cddc8872823255b83f1", null ],
+    [ "IsDynamic", "struct_optimist_1_1_type_trait_3_01_eigen_1_1_matrix_3_01_scalar_type_00_01_n_00_01_m_01_4_00_01f80203956333eed4a8a7a1af6521035c.html#adbc287fa13af2584f37fccafb688e2fd", null ],
+    [ "IsEigen", "struct_optimist_1_1_type_trait_3_01_eigen_1_1_matrix_3_01_scalar_type_00_01_n_00_01_m_01_4_00_01f80203956333eed4a8a7a1af6521035c.html#a034d093e18835c377e0fce3c757aae47", null ],
+    [ "IsFixed", "struct_optimist_1_1_type_trait_3_01_eigen_1_1_matrix_3_01_scalar_type_00_01_n_00_01_m_01_4_00_01f80203956333eed4a8a7a1af6521035c.html#aea3cb3d1e8f845b5ab24bdb5f67dd474", null ],
+    [ "IsScalar", "struct_optimist_1_1_type_trait_3_01_eigen_1_1_matrix_3_01_scalar_type_00_01_n_00_01_m_01_4_00_01f80203956333eed4a8a7a1af6521035c.html#ac4f9def2825a069d02b760502bcce44f", null ],
+    [ "IsSparse", "struct_optimist_1_1_type_trait_3_01_eigen_1_1_matrix_3_01_scalar_type_00_01_n_00_01_m_01_4_00_01f80203956333eed4a8a7a1af6521035c.html#ac5f6ad3d5c92acdb02f9508e0ef877ff", null ]
+];

@@ -1,0 +1,7 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$class_optimist_1_1_solver_base.html" title=" " alt="" coords="5,5,203,76"/>
+<area shape="rect" id="Node000001" href="$class_optimist_1_1_optimizer_1_1_optimizer.html" title=" " alt="" coords="251,13,420,68"/>
+<area shape="poly" id="edge52_Node000000_Node000001" title=" " alt="" coords="218,38,253,40,247,41,218,43"/>
+<area shape="rect" id="Node000002" href="$class_optimist_1_1_optimizer_1_1_nelder_mead.html" title="Class container for the Nelder&#45;Mead&#39;s method." alt="" coords="468,20,629,61"/>
+<area shape="poly" id="edge53_Node000001_Node000002" title=" " alt="" coords="435,38,470,41,465,41,436,43"/>
+</map>

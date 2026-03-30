@@ -29,6 +29,12 @@ if(NOT CMAKE_INSTALL_PREFIX)
   message(STATUS "Optimist: CMAKE_INSTALL_PREFIX not specified, defaulting to ${CMAKE_CURRENT_SOURCE_DIR}")
 endif()
 
+set(OPTIMIST_EXTERNAL_EIGEN OFF)
+if(TARGET eigen)
+  message(STATUS "OPTIMIST: Found external eigen")
+  set(OPTIMIST_EXTERNAL_EIGEN ON)
+endif()
+
 # Dependencies
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/external)
 
@@ -44,18 +50,7 @@ target_include_directories(Optimist INTERFACE
 )
 
 # Source files
-file(GLOB_RECURSE HEADER_FILES_HH "${CMAKE_CURRENT_SOURCE_DIR}/core/include/*.hh")
-
-foreach(HEADER_FILE IN LISTS HEADER_FILES_HH)
-  file(
-    RELATIVE_PATH
-    RELATIVE_PATH_HEADER_FILE
-    ${CMAKE_CURRENT_SOURCE_DIR} ${HEADER_FILE}
-  )
-  list(APPEND RELATIVE_HEADER_FILES ${RELATIVE_PATH_HEADER_FILE})
-endforeach()
-
-target_sources(Optimist INTERFACE $<BUILD_INTERFACE:${RELATIVE_HEADER_FILES}>)
+file(GLOB_RECURSE RELATIVE_HEADER_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "${CMAKE_CURRENT_SOURCE_DIR}/core/include/*.hh")
 
 # Tests
 option(OPTIMIST_BUILD_TESTS "Build tests" OFF)
@@ -72,10 +67,12 @@ else()
 endif()
 
 # Installation
-install(
-  TARGETS eigen
-  EXPORT OptimistTargets
-)
+if (NOT OPTIMIST_EXTERNAL_EIGEN)
+  install(
+    TARGETS eigen
+    EXPORT OptimistTargets
+  )
+endif()
 
 install(
   TARGETS Optimist

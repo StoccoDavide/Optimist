@@ -1,0 +1,11 @@
+var struct_optimist_1_1_type_trait_3_01_scalar_type_00_01std_1_1enable__if__t_3_01std_1_1is__floatin4d9e0dd507858cd40194e6970aaf604e =
+[
+    [ "Scalar", "struct_optimist_1_1_type_trait_3_01_scalar_type_00_01std_1_1enable__if__t_3_01std_1_1is__floatin4d9e0dd507858cd40194e6970aaf604e.html#a71dd89dfedd0ecaf3ab1ccb5e7ed8e59", null ],
+    [ "Type", "struct_optimist_1_1_type_trait_3_01_scalar_type_00_01std_1_1enable__if__t_3_01std_1_1is__floatin4d9e0dd507858cd40194e6970aaf604e.html#a1f88fc7dec119cc7b19342c30891ca4c", null ],
+    [ "Dimension", "struct_optimist_1_1_type_trait_3_01_scalar_type_00_01std_1_1enable__if__t_3_01std_1_1is__floatin4d9e0dd507858cd40194e6970aaf604e.html#a26ff62ba407bacf5921c4611f16f5d52", null ],
+    [ "IsDynamic", "struct_optimist_1_1_type_trait_3_01_scalar_type_00_01std_1_1enable__if__t_3_01std_1_1is__floatin4d9e0dd507858cd40194e6970aaf604e.html#adb38982d55f4d3a4cacb3a3d411ce928", null ],
+    [ "IsEigen", "struct_optimist_1_1_type_trait_3_01_scalar_type_00_01std_1_1enable__if__t_3_01std_1_1is__floatin4d9e0dd507858cd40194e6970aaf604e.html#ab5a54067552a554dfb88303b0ee049ab", null ],
+    [ "IsFixed", "struct_optimist_1_1_type_trait_3_01_scalar_type_00_01std_1_1enable__if__t_3_01std_1_1is__floatin4d9e0dd507858cd40194e6970aaf604e.html#a84e5aa0aa19f049b0524d6dc4d999e0c", null ],
+    [ "IsScalar", "struct_optimist_1_1_type_trait_3_01_scalar_type_00_01std_1_1enable__if__t_3_01std_1_1is__floatin4d9e0dd507858cd40194e6970aaf604e.html#aa3994139c1d4021046622bdeeb4d1e65", null ],
+    [ "IsSparse", "struct_optimist_1_1_type_trait_3_01_scalar_type_00_01std_1_1enable__if__t_3_01std_1_1is__floatin4d9e0dd507858cd40194e6970aaf604e.html#acf2c07e533fc551ad1005b59271745d6", null ]
+];

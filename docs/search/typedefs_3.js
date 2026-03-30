@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['matrixd_0',['MatrixD',['../class_optimist_1_1_optimizer_1_1_nelder_mead.html#a0d07fe0dca6bef28b8af501a63a00136',1,'Optimist::Optimizer::NelderMead']]],
-  ['matrixx_1',['MatrixX',['../class_optimist_1_1_optimizer_1_1_nelder_mead.html#a64f08fd2c8f4d361e65cdf619b8691d6',1,'Optimist::Optimizer::NelderMead']]],
-  ['method_2',['Method',['../class_optimist_1_1_optimizer_1_1_nelder_mead.html#a13ded2cfb7e6ec2144cf59a2ef7d23dd',1,'Optimist::Optimizer::NelderMead::Method'],['../class_optimist_1_1_root_finder_1_1_broyden.html#ad7e2b5eb07fad4b7dfde71cdea8a3cb4',1,'Optimist::RootFinder::Broyden::Method'],['../class_optimist_1_1_root_finder_1_1_greenstadt.html#af7647d37a83f1b76e4383f745d6e72cb',1,'Optimist::RootFinder::Greenstadt::Method'],['../class_optimist_1_1_root_finder_1_1_varona.html#aacdd26e3d098424919439cf1371643fc',1,'Optimist::RootFinder::Varona::Method']]],
-  ['move_3',['Move',['../class_optimist_1_1_optimizer_1_1_nelder_mead.html#ab28d48e9880a944c34ffcf0985efef24',1,'Optimist::Optimizer::NelderMead']]]
+  ['matrixd_0',['MatrixD',['../class_optimist_1_1_optimizer_1_1_nelder_mead.html#af021bef3644628104cafe4ffac8911e9',1,'Optimist::Optimizer::NelderMead']]],
+  ['matrixx_1',['MatrixX',['../class_optimist_1_1_optimizer_1_1_nelder_mead.html#ad0ed55247d3a7091775d94094337c99c',1,'Optimist::Optimizer::NelderMead']]],
+  ['method_2',['Method',['../class_optimist_1_1_optimizer_1_1_nelder_mead.html#af9a012447c1313e918ffbe977b2b6f1a',1,'Optimist::Optimizer::NelderMead::Method'],['../class_optimist_1_1_root_finder_1_1_broyden.html#a961a016a8309db1dd0573f717895aa28',1,'Optimist::RootFinder::Broyden::Method'],['../class_optimist_1_1_root_finder_1_1_greenstadt.html#a3e1c08eef770648d9d9bcae66305ca79',1,'Optimist::RootFinder::Greenstadt::Method'],['../class_optimist_1_1_root_finder_1_1_varona.html#a37389425118b8e106ffbabc183421be0',1,'Optimist::RootFinder::Varona::Method']]],
+  ['move_3',['Move',['../class_optimist_1_1_optimizer_1_1_nelder_mead.html#a5ea9f85aa7c306290991e27f804de8f8',1,'Optimist::Optimizer::NelderMead']]]
 ];

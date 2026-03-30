@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['operator_28_29_0',['operator()',['../class_optimist_1_1_optimizer_1_1_constant_weight.html#ab5680edaf5abd163787790be7efbf89c',1,'Optimist::Optimizer::ConstantWeight::operator()()'],['../class_optimist_1_1_optimizer_1_1_linear_decrease.html#a6e0f6947ff16a07322315d862d17e239',1,'Optimist::Optimizer::LinearDecrease::operator()()'],['../class_optimist_1_1_optimizer_1_1_exponential_decrease1.html#a14d724b36e5197c21a3da9f8c7a2420c',1,'Optimist::Optimizer::ExponentialDecrease1::operator()()'],['../class_optimist_1_1_optimizer_1_1_exponential_decrease2.html#a4ce08289a315164c443b165b651b44de',1,'Optimist::Optimizer::ExponentialDecrease2::operator()()'],['../class_optimist_1_1_optimizer_1_1_exponential_decrease3.html#a775bbabd27f40b9d5df202b6f5c440d6',1,'Optimist::Optimizer::ExponentialDecrease3::operator()()']]],
+  ['operator_28_29_0',['operator()',['../class_optimist_1_1_optimizer_1_1_constant_weight.html#ade34408a75912778038d0d4b5b3b2337',1,'Optimist::Optimizer::ConstantWeight::operator()()'],['../class_optimist_1_1_optimizer_1_1_linear_decrease.html#acd3a6c408159cad8544aaf759768d067',1,'Optimist::Optimizer::LinearDecrease::operator()()'],['../class_optimist_1_1_optimizer_1_1_exponential_decrease1.html#a22fe81dbc6bb4dc924ae92429bb673e5',1,'Optimist::Optimizer::ExponentialDecrease1::operator()()'],['../class_optimist_1_1_optimizer_1_1_exponential_decrease2.html#a5229d0251e3190e06313720ee73070ec',1,'Optimist::Optimizer::ExponentialDecrease2::operator()()'],['../class_optimist_1_1_optimizer_1_1_exponential_decrease3.html#acd9eea4ac2b1b9fa16146efa90c2618b',1,'Optimist::Optimizer::ExponentialDecrease3::operator()()']]],
   ['optimist_1',['Optimist',['../namespace_optimist.html',1,'Optimist'],['../index.html',1,'Optimist']]],
   ['optimist_2ehh_2',['Optimist.hh',['../_optimist_8hh.html',1,'']]],
   ['optimist_3a_3afinitedifferences_3',['FiniteDifferences',['../namespace_optimist_1_1_finite_differences.html',1,'Optimist']]],
@@ -42,7 +42,7 @@ var searchData=
   ['optimist_5ftestset_5fsin_5fhh_39',['OPTIMIST_TESTSET_SIN_HH',['../_sin_8hh.html#a396d16f35cbb0903db433521f441838b',1,'Sin.hh']]],
   ['optimist_5ftestset_5fsinh_5fhh_40',['OPTIMIST_TESTSET_SINH_HH',['../_sinh_8hh.html#ad02c6dc398674e3e78e33163cf75f063',1,'Sinh.hh']]],
   ['optimist_5fwarning_41',['OPTIMIST_WARNING',['../_optimist_8hh.html#a18e435251f770acfeb56ada15278ddb4',1,'Optimist.hh']]],
-  ['optimize_42',['optimize',['../class_optimist_1_1_solver_base.html#a146d0e554c6e2d29ffeb32c710de470d',1,'Optimist::SolverBase']]],
+  ['optimize_42',['optimize',['../class_optimist_1_1_solver_base.html#a6e13bbf668eea69bbbc70fc8b0e2c7d6',1,'Optimist::SolverBase']]],
   ['optimizer_43',['Optimizer',['../class_optimist_1_1_optimizer_1_1_optimizer.html',1,'Optimist::Optimizer::Optimizer&lt; T, DerivedSolver &gt;'],['../class_optimist_1_1_optimizer_1_1_optimizer.html#ab5448e3266150b563d5d56b2ab5a404e',1,'Optimist::Optimizer::Optimizer::Optimizer()'],['../class_optimist_1_1_optimizer_1_1_optimizer.html#autotoc_md0',1,'Optimizer']]],
   ['optimizer_2ehh_44',['Optimizer.hh',['../_optimizer_8hh.html',1,'']]],
   ['optimizer_3c_20real_2c_20n_2c_20patternsearch_3c_20real_2c_20n_20_3e_2c_20true_20_3e_45',['Optimizer&lt; Real, N, PatternSearch&lt; Real, N &gt;, true &gt;',['../class_optimist_1_1_optimizer_1_1_optimizer.html',1,'Optimist::Optimizer']]],

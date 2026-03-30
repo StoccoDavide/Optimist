@@ -1,6 +1,6 @@
 var class_optimist_1_1_root_finder_1_1_broyden =
 [
-    [ "Method", "class_optimist_1_1_root_finder_1_1_broyden.html#ad7e2b5eb07fad4b7dfde71cdea8a3cb4", null ],
+    [ "Method", "class_optimist_1_1_root_finder_1_1_broyden.html#a961a016a8309db1dd0573f717895aa28", null ],
     [ "Scalar", "class_optimist_1_1_root_finder_1_1_broyden.html#abf2ec8113b41d58d5980a560c49b2d40", null ],
     [ "VectorTrait", "class_optimist_1_1_root_finder_1_1_broyden.html#a687d883b2ad070e5a0f75bfe6b440f82", null ],
     [ "Broyden", "class_optimist_1_1_root_finder_1_1_broyden.html#ab19a5ac25336b6ebb638aacda767e5a3", null ],
@@ -11,7 +11,7 @@ var class_optimist_1_1_root_finder_1_1_broyden =
     [ "method", "class_optimist_1_1_root_finder_1_1_broyden.html#ae22328ebe546c963a73d66e376995020", null ],
     [ "name_impl", "class_optimist_1_1_root_finder_1_1_broyden.html#a759fcc0f9aaf1f3a2e8a8889d05d231a", null ],
     [ "set_method", "class_optimist_1_1_root_finder_1_1_broyden.html#ab34dfc54608ff07b82493daa4a09ded9", null ],
-    [ "update_impl", "class_optimist_1_1_root_finder_1_1_broyden.html#a2d2868ecb3ab9cb3bc422a174b2bb68b", null ],
+    [ "update_impl", "class_optimist_1_1_root_finder_1_1_broyden.html#aa00de772b82fc16376278a678f9a2218", null ],
     [ "m_method", "class_optimist_1_1_root_finder_1_1_broyden.html#ac62523e8cf77b210658779b8bdbf990d", null ],
     [ "RequiresFirstDerivative", "class_optimist_1_1_root_finder_1_1_broyden.html#ad952288d70f076aba11182691cbcc7f0", null ],
     [ "RequiresFunction", "class_optimist_1_1_root_finder_1_1_broyden.html#a52ebab10612665a6b9dcdc413a89f040", null ],

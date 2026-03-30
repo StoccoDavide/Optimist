@@ -1,0 +1,9 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$class_optimist_1_1_solver_base.html" title=" " alt="" coords="5,5,177,61"/>
+<area shape="rect" id="Node000001" href="$class_optimist_1_1_root_finder_1_1_root_finder.html" title=" " alt="" coords="225,5,372,61"/>
+<area shape="poly" id="edge56_Node000000_Node000001" title=" " alt="" coords="192,31,227,33,222,33,192,36"/>
+<area shape="rect" id="Node000002" href="$class_optimist_1_1_root_finder_1_1_quasi_newton.html" title=" " alt="" coords="420,5,581,61"/>
+<area shape="poly" id="edge57_Node000001_Node000002" title=" " alt="" coords="387,31,422,33,417,33,387,36"/>
+<area shape="rect" id="Node000003" href="$class_optimist_1_1_root_finder_1_1_broyden.html" title="Class container for the Broyden&#39;s method." alt="" coords="629,13,772,54"/>
+<area shape="poly" id="edge58_Node000002_Node000003" title=" " alt="" coords="597,31,631,33,626,33,597,36"/>
+</map>
