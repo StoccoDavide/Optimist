@@ -12,8 +12,10 @@ cmake_minimum_required(VERSION 3.14)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
+set(OPTIMIST_FULL_VERSION "0.0.0")
+
 project(Optimist
-  VERSION 0.0.0
+  VERSION ${OPTIMIST_FULL_VERSION}
   DESCRIPTION "A C++ library for optimization"
   HOMEPAGE_URL "https://github.com/StoccoDavide/Optimist"
   LANGUAGES CXX
@@ -31,7 +33,7 @@ endif()
 
 set(OPTIMIST_EXTERNAL_EIGEN OFF)
 if(TARGET eigen)
-  message(STATUS "OPTIMIST: Found external eigen")
+  message(STATUS "Optimist: Found external eigen")
   set(OPTIMIST_EXTERNAL_EIGEN ON)
 endif()
 
@@ -50,11 +52,11 @@ target_include_directories(Optimist INTERFACE
 )
 
 # Source files
-file(GLOB_RECURSE RELATIVE_HEADER_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "${CMAKE_CURRENT_SOURCE_DIR}/core/include/*.hh")
+file(GLOB_RECURSE RELATIVE_HEADER_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
+  "${CMAKE_CURRENT_SOURCE_DIR}/core/include/*.hh")
 
 # Tests
 option(OPTIMIST_BUILD_TESTS "Build tests" OFF)
-
 if(OPTIMIST_BUILD_TESTS)
   add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/core/tests)
 endif()
