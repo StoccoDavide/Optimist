@@ -119,7 +119,7 @@ namespace Optimist {
     // Iterations and relaxations
     Integer m_iterations{0};       /**< Algorithm iterations. */
     Integer m_max_iterations{100}; /**< Maximum allowed algorithm iterations. */
-    Scalar m_alpha{0.9};           /**< Relaxation factor \f$ \alpha \f$. */
+    Scalar m_alpha{0.8};           /**< Relaxation factor \f$ \alpha \f$. */
     Integer m_relaxations{0};      /**< Algorithm relaxations. */
     Integer m_max_relaxations{
       10}; /**< Maximum allowed algorithm relaxations. */

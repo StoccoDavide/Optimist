@@ -226,49 +226,46 @@ $(function(){initNavTree('_bracketing_8hh_source.html','',''); });
 <div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
 <div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>        <span class="comment">// Check if the solution exists</span></div>
 <div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>        <span class="keywordflow">if</span> (this-&gt;<a class="code hl_variable" href="class_optimist_1_1_root_finder_1_1_bracketing.html#a09af6fa7e6c75d371f6c78ad2a679585">m_fa</a> * this-&gt;<a class="code hl_variable" href="class_optimist_1_1_root_finder_1_1_bracketing.html#acf59b7349c3a05dfa716727d5ee8113a">m_fb</a> &gt; 0) {</div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>          <a class="code hl_define" href="_optimist_8hh.html#a18e435251f770acfeb56ada15278ddb4">OPTIMIST_WARNING</a>(</div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>              <a class="code hl_define" href="_optimizer_8hh.html#a0a5ceb9ceb914e08d345410b561cb37a">CMD</a> <span class="stringliteral">&quot;the function has the same sign at the interval extremes.&quot;</span>);</div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>          <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>        } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>          x_sol = this-&gt;<a class="code hl_function" href="class_optimist_1_1_root_finder_1_1_bracketing.html#a200d7e8dc395ec1d455bbbe2eb317b4d">find_root</a>(std::forward&lt;FunctionLambda&gt;(function));</div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>        }</div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>        <span class="comment">// Print bottom</span></div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>        <span class="keywordflow">if</span> (this-&gt;<a class="code hl_variable" href="class_optimist_1_1_solver_base.html#af7b647d27a26421da1c593070bc63cbc">m_verbose</a>) {</div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>          this-&gt;<a class="code hl_function" href="class_optimist_1_1_solver_base.html#afedfe01629bf6b3ed7e9706380fdbb9f">bottom</a>();</div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>        }</div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>        <span class="comment">// Convergence data</span></div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>        <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="class_optimist_1_1_solver_base.html#afc6d9026cd969627cb2e72c43c69ac71">m_converged</a>;</div>
-<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span> </div>
-<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span><span class="preprocessor">#undef CMD</span></div>
-<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>      }</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>          <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>          x_sol = this-&gt;<a class="code hl_function" href="class_optimist_1_1_root_finder_1_1_bracketing.html#a200d7e8dc395ec1d455bbbe2eb317b4d">find_root</a>(std::forward&lt;FunctionLambda&gt;(function));</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>        }</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>        <span class="comment">// Print bottom</span></div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>        <span class="keywordflow">if</span> (this-&gt;<a class="code hl_variable" href="class_optimist_1_1_solver_base.html#af7b647d27a26421da1c593070bc63cbc">m_verbose</a>) {</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>          this-&gt;<a class="code hl_function" href="class_optimist_1_1_solver_base.html#afedfe01629bf6b3ed7e9706380fdbb9f">bottom</a>();</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>        }</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>        <span class="comment">// Convergence data</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>        <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="class_optimist_1_1_solver_base.html#afc6d9026cd969627cb2e72c43c69ac71">m_converged</a>;</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span> </div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span><span class="preprocessor">#undef CMD</span></div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>      }</div>
 </div>
-<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span></div>
-<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>      <span class="keyword">template</span> &lt;<span class="keyword">typename</span> FunctionLambda&gt;</div>
-<div class="foldopen" id="foldopen00150" data-start="{" data-end="}">
-<div class="line"><a id="l00150" name="l00150"></a><span class="lineno"><a class="line" href="class_optimist_1_1_root_finder_1_1_bracketing.html#a200d7e8dc395ec1d455bbbe2eb317b4d">  150</a></span>      <a class="code hl_typedef" href="class_optimist_1_1_root_finder_1_1_root_finder.html#a9217c7d11a1b2936c900281ec28d2416">Scalar</a> <a class="code hl_function" href="class_optimist_1_1_root_finder_1_1_bracketing.html#a200d7e8dc395ec1d455bbbe2eb317b4d">find_root</a>(FunctionLambda &amp;&amp;function) {</div>
-<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>        <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span>DerivedSolver *<span class="keyword">&gt;</span>(<span class="keyword">this</span>)-&gt;find_root_impl(</div>
-<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>            std::forward&lt;FunctionLambda&gt;(function));</div>
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>      }</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span></div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>      <span class="keyword">template</span> &lt;<span class="keyword">typename</span> FunctionLambda&gt;</div>
+<div class="foldopen" id="foldopen00148" data-start="{" data-end="}">
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno"><a class="line" href="class_optimist_1_1_root_finder_1_1_bracketing.html#a200d7e8dc395ec1d455bbbe2eb317b4d">  148</a></span>      <a class="code hl_typedef" href="class_optimist_1_1_root_finder_1_1_root_finder.html#a9217c7d11a1b2936c900281ec28d2416">Scalar</a> <a class="code hl_function" href="class_optimist_1_1_root_finder_1_1_bracketing.html#a200d7e8dc395ec1d455bbbe2eb317b4d">find_root</a>(FunctionLambda &amp;&amp;function) {</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>        <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span>DerivedSolver *<span class="keyword">&gt;</span>(<span class="keyword">this</span>)-&gt;find_root_impl(</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>            std::forward&lt;FunctionLambda&gt;(function));</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>      }</div>
+</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span> </div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    };  <span class="comment">// class Bracketing</span></div>
 </div>
 <div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span> </div>
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    };  <span class="comment">// class Bracketing</span></div>
-</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>  }  <span class="comment">// namespace RootFinder</span></div>
 <div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span> </div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>  }  <span class="comment">// namespace RootFinder</span></div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>}  <span class="comment">// namespace Optimist</span></div>
 <div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span> </div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>}  <span class="comment">// namespace Optimist</span></div>
-<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span> </div>
-<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span><span class="preprocessor">#endif  </span><span class="comment">// OPTIMIST_ROOTFINDER_BRACKTING_HH</span></div>
-<div class="ttc" id="a_optimist_8hh_html_a18e435251f770acfeb56ada15278ddb4"><div class="ttname"><a href="_optimist_8hh.html#a18e435251f770acfeb56ada15278ddb4">OPTIMIST_WARNING</a></div><div class="ttdeci">#define OPTIMIST_WARNING(MSG)</div><div class="ttdef"><b>Definition</b> Optimist.hh:55</div></div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span><span class="preprocessor">#endif  </span><span class="comment">// OPTIMIST_ROOTFINDER_BRACKTING_HH</span></div>
 <div class="ttc" id="a_optimist_8hh_html_a437ef92626d0fc8f1fabd296ca796056"><div class="ttname"><a href="_optimist_8hh.html#a437ef92626d0fc8f1fabd296ca796056">OPTIMIST_BASIC_CONSTANTS</a></div><div class="ttdeci">#define OPTIMIST_BASIC_CONSTANTS(Scalar)</div><div class="ttdef"><b>Definition</b> Optimist.hh:69</div></div>
 <div class="ttc" id="a_optimist_8hh_html_ae84977f5cfcc4fc8178fd20cf52f9068"><div class="ttname"><a href="_optimist_8hh.html#ae84977f5cfcc4fc8178fd20cf52f9068">OPTIMIST_ASSERT</a></div><div class="ttdeci">#define OPTIMIST_ASSERT(COND, MSG)</div><div class="ttdef"><b>Definition</b> Optimist.hh:47</div></div>
 <div class="ttc" id="a_optimizer_8hh_html_a0a5ceb9ceb914e08d345410b561cb37a"><div class="ttname"><a href="_optimizer_8hh.html#a0a5ceb9ceb914e08d345410b561cb37a">CMD</a></div><div class="ttdeci">#define CMD</div></div>
 <div class="ttc" id="a_root_finder_8hh_html"><div class="ttname"><a href="_root_finder_8hh.html">RootFinder.hh</a></div></div>
 <div class="ttc" id="aclass_optimist_1_1_root_finder_1_1_bracketing_html_a0680262d9f7761baff2bfb61079e1de8"><div class="ttname"><a href="class_optimist_1_1_root_finder_1_1_bracketing.html#a0680262d9f7761baff2bfb61079e1de8">Optimist::RootFinder::Bracketing::m_mu</a></div><div class="ttdeci">Scalar m_mu</div><div class="ttdef"><b>Definition</b> Bracketing.hh:45</div></div>
 <div class="ttc" id="aclass_optimist_1_1_root_finder_1_1_bracketing_html_a09af6fa7e6c75d371f6c78ad2a679585"><div class="ttname"><a href="class_optimist_1_1_root_finder_1_1_bracketing.html#a09af6fa7e6c75d371f6c78ad2a679585">Optimist::RootFinder::Bracketing::m_fa</a></div><div class="ttdeci">Scalar m_fa</div><div class="ttdef"><b>Definition</b> Bracketing.hh:48</div></div>
-<div class="ttc" id="aclass_optimist_1_1_root_finder_1_1_bracketing_html_a200d7e8dc395ec1d455bbbe2eb317b4d"><div class="ttname"><a href="class_optimist_1_1_root_finder_1_1_bracketing.html#a200d7e8dc395ec1d455bbbe2eb317b4d">Optimist::RootFinder::Bracketing::find_root</a></div><div class="ttdeci">Scalar find_root(FunctionLambda &amp;&amp;function)</div><div class="ttdef"><b>Definition</b> Bracketing.hh:150</div></div>
+<div class="ttc" id="aclass_optimist_1_1_root_finder_1_1_bracketing_html_a200d7e8dc395ec1d455bbbe2eb317b4d"><div class="ttname"><a href="class_optimist_1_1_root_finder_1_1_bracketing.html#a200d7e8dc395ec1d455bbbe2eb317b4d">Optimist::RootFinder::Bracketing::find_root</a></div><div class="ttdeci">Scalar find_root(FunctionLambda &amp;&amp;function)</div><div class="ttdef"><b>Definition</b> Bracketing.hh:148</div></div>
 <div class="ttc" id="aclass_optimist_1_1_root_finder_1_1_bracketing_html_a30a317320518e5e460904c2d6e3505e9"><div class="ttname"><a href="class_optimist_1_1_root_finder_1_1_bracketing.html#a30a317320518e5e460904c2d6e3505e9">Optimist::RootFinder::Bracketing::m_fd</a></div><div class="ttdeci">Scalar m_fd</div><div class="ttdef"><b>Definition</b> Bracketing.hh:51</div></div>
 <div class="ttc" id="aclass_optimist_1_1_root_finder_1_1_bracketing_html_a32b3610172742f164de4f09b8ef36723"><div class="ttname"><a href="class_optimist_1_1_root_finder_1_1_bracketing.html#a32b3610172742f164de4f09b8ef36723">Optimist::RootFinder::Bracketing::m_c</a></div><div class="ttdeci">Scalar m_c</div><div class="ttdef"><b>Definition</b> Bracketing.hh:50</div></div>
 <div class="ttc" id="aclass_optimist_1_1_root_finder_1_1_bracketing_html_a63f42e2861ba8611a9492284118f4c3f"><div class="ttname"><a href="class_optimist_1_1_root_finder_1_1_bracketing.html#a63f42e2861ba8611a9492284118f4c3f">Optimist::RootFinder::Bracketing::m_e</a></div><div class="ttdeci">Scalar m_e</div><div class="ttdef"><b>Definition</b> Bracketing.hh:52</div></div>
