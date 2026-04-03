@@ -1166,19 +1166,20 @@ namespace Optimist {
      * \note This has to be properly placed in the derived classes.
      */
     void header() {
-      static constexpr std::string c_tl{table_top_left_corner()};
-      static constexpr std::string c_tr{table_top_right_corner()};
-      static constexpr std::string h_7{table_horizontal_line<7>()};
+      static constexpr std::string_view c_tl{table_top_left_corner()};
+      static constexpr std::string_view c_tr{table_top_right_corner()};
+      static std::string h_7{table_horizontal_line<7>()};
       static std::string h_14{table_horizontal_line<14>()};
       static std::string h_23{table_horizontal_line<23>()};
       static std::string h_78{table_horizontal_line<78>()};
-      static constexpr std::string v_ll{table_vertical_line() + " "};
-      static constexpr std::string v_rr{" " + table_vertical_line()};
-      static constexpr std::string v_lc{" " + table_vertical_line() + " "};
-      static constexpr std::string j_tt{table_top_junction()};
-      static constexpr std::string j_cc{table_center_cross()};
-      static constexpr std::string j_ll{table_left_junction()};
-      static constexpr std::string j_rr{table_right_junction()};
+      static constexpr std::string vert_line{table_vertical_line()};
+      static constexpr std::string v_ll{vert_line + " "};
+      static constexpr std::string v_rr{" " + vert_line};
+      static constexpr std::string v_lc{" " + vert_line + " "};
+      static constexpr std::string_view j_tt{table_top_junction()};
+      static constexpr std::string_view j_cc{table_center_cross()};
+      static constexpr std::string_view j_ll{table_left_junction()};
+      static constexpr std::string_view j_rr{table_right_junction()};
 
       *this->m_ostream << c_tl << h_78 << c_tr << std::endl
                        << v_ll << "Solver:" << std::setw(69) << this->name()
@@ -1202,17 +1203,18 @@ namespace Optimist {
      * \note This has to be properly placed in the derived classes.
      */
     void bottom() {
-      static constexpr std::string c_bl{table_bottom_left_corner()};
-      static constexpr std::string c_br{table_bottom_right_corner()};
+      static constexpr std::string_view c_bl{table_bottom_left_corner()};
+      static constexpr std::string_view c_br{table_bottom_right_corner()};
       static std::string h_7{table_horizontal_line<7>()};
       static std::string h_14{table_horizontal_line<14>()};
       static std::string h_23{table_horizontal_line<23>()};
       static std::string h_78{table_horizontal_line<78>()};
-      static constexpr std::string v_ll{table_vertical_line() + " "};
-      static constexpr std::string v_rr{" " + table_vertical_line()};
-      static constexpr std::string j_ll{table_left_junction()};
-      static constexpr std::string j_rr{table_right_junction()};
-      static constexpr std::string j_bb{table_bottom_junction()};
+      static constexpr std::string vert_line{table_vertical_line()};
+      static constexpr std::string v_ll{vert_line + " "};
+      static constexpr std::string v_rr{" " + vert_line};
+      static constexpr std::string_view j_ll{table_left_junction()};
+      static constexpr std::string_view j_rr{table_right_junction()};
+      static constexpr std::string_view j_bb{table_bottom_junction()};
 
       *this->m_ostream << j_ll << h_7 << j_bb << h_7 << j_bb << h_7 << j_bb
                        << h_7 << j_bb << h_7 << j_bb << h_14 << j_bb << h_23
@@ -1228,9 +1230,10 @@ namespace Optimist {
      * \note This has to be properly placed in the derived classes.
      */
     void info(Scalar residuals, const std::string &notes = "-") {
-      static constexpr std::string v_rr{" " + table_vertical_line()};
-      static constexpr std::string v_ll{table_vertical_line() + " "};
-      static constexpr std::string v_lc{" " + table_vertical_line() + " "};
+      static constexpr std::string vert_line{table_vertical_line()};
+      static constexpr std::string v_rr{" " + vert_line};
+      static constexpr std::string v_ll{vert_line + " "};
+      static constexpr std::string v_lc{" " + vert_line + " "};
 
       *this->m_ostream << v_ll << std::setw(5) << this->m_iterations << v_lc
                        << std::setw(5) << this->m_function_evaluations << v_lc
