@@ -29,9 +29,8 @@ using TestTypes =
                      // Eigen::Dynamic>>,
                      // EllipticParaboloid<Eigen::SparseVector<float>>,
         Schaffer2<Eigen::Vector<double, 2>>,
-        Schaffer2<Eigen::Vector<double, Eigen::Dynamic>>
-        // Schaffer2<Eigen::SparseVector<double>>
-        >;
+        Schaffer2<Eigen::Vector<double, Eigen::Dynamic>>,
+        Schaffer2<Eigen::SparseVector<double>>>;
 // Schaffer2<double>,
 // Brown<double>
 

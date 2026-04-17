@@ -59,15 +59,15 @@ namespace Optimist {
         this->m_guesses.resize(2);
         if constexpr (VectorTrait::IsFixed) {
           this->m_solutions[0] << 0.0, 0.0;
-          this->m_guesses[0] << -10, -10;
-          this->m_guesses[1] << 10, 10;
+          this->m_guesses[0] << -50, -50;
+          this->m_guesses[1] << 50, 50;
         } else if constexpr (!VectorTrait::IsSparse) {
           this->m_solutions[0].resize(2);
           this->m_solutions[0] << 0.0, 0.0;
           this->m_guesses[0].resize(2);
-          this->m_guesses[0] << -10, -10;
+          this->m_guesses[0] << -50, -50;
           this->m_guesses[1].resize(2);
-          this->m_guesses[1] << 10, 10;
+          this->m_guesses[1] << 50, 50;
         } else if constexpr (VectorTrait::IsSparse) {
           this->m_solutions[0].resize(2);
           this->m_solutions[0].reserve(2);
@@ -75,12 +75,12 @@ namespace Optimist {
           this->m_solutions[0].coeffRef(1) = 0.0;
           this->m_guesses[0].resize(2);
           this->m_guesses[0].reserve(2);
-          this->m_guesses[0].coeffRef(0) = -10;
-          this->m_guesses[0].coeffRef(1) = -10;
+          this->m_guesses[0].coeffRef(0) = -50;
+          this->m_guesses[0].coeffRef(1) = -50;
           this->m_guesses[1].resize(2);
           this->m_guesses[1].reserve(2);
-          this->m_guesses[1].coeffRef(0) = 10;
-          this->m_guesses[1].coeffRef(1) = 10;
+          this->m_guesses[1].coeffRef(0) = 50;
+          this->m_guesses[1].coeffRef(1) = 50;
         }
       }
 
@@ -138,6 +138,7 @@ namespace Optimist {
                    cos(-x_0 * x_0 + x_1 * x_1) * sin(x_0 * x_0 - x_1 * x_1) +
                0.20e-2 * x_1) *
                   pow(1 + 0.1e-2 * x_0 * x_0 + 0.1e-2 * x_1 * x_1, -3);
+          return out.allFinite();
         } else if constexpr (VectorTrait::IsDynamic) {
           out.resize(2);
           out << (-0.4e-2 * x_0 * pow(sin(x_0 * x_0 - x_1 * x_1), 2) +
@@ -150,7 +151,7 @@ namespace Optimist {
                    cos(-x_0 * x_0 + x_1 * x_1) * sin(x_0 * x_0 - x_1 * x_1) +
                0.20e-2 * x_1) *
                   pow(1 + 0.1e-2 * x_0 * x_0 + 0.1e-2 * x_1 * x_1, -3);
-
+          return out.allFinite();
         } else if constexpr (VectorTrait::IsSparse) {
           out.resize(2);
           out.reserve(2);
@@ -166,9 +167,15 @@ namespace Optimist {
                    cos(-x_0 * x_0 + x_1 * x_1) * sin(x_0 * x_0 - x_1 * x_1) +
                0.20e-2 * x_1) *
               pow(1 + 0.1e-2 * x_0 * x_0 + 0.1e-2 * x_1 * x_1, -3);
+          for (Integer k{0}; k < out.outerSize(); ++k) {
+            for (typename FirstDerivative::InnerIterator it(out, k); it; ++it) {
+              if (!std::isfinite(it.value())) {
+                return false;
+              }
+            }
+          }
+          return true;
         }
-
-        return out.allFinite();
       }
 
       /**
@@ -251,6 +258,7 @@ namespace Optimist {
                   x_1 * pow(x_0 * x_0 + x_1 * x_1 + 1000, -4) +
               (-4000000 * pow(sin(x_0 * x_0 - x_1 * x_1), 2) + 0.20000000e7) *
                   pow(x_0 * x_0 + x_1 * x_1 + 1000, -3);
+          return out.allFinite();
         } else if constexpr (VectorTrait::IsDynamic) {
           out.resize(2, 2);
           out(0, 0) =
@@ -315,6 +323,7 @@ namespace Optimist {
                   x_1 * pow(x_0 * x_0 + x_1 * x_1 + 1000, -4) +
               (-4000000 * pow(sin(x_0 * x_0 - x_1 * x_1), 2) + 0.20000000e7) *
                   pow(x_0 * x_0 + x_1 * x_1 + 1000, -3);
+          return out.allFinite();
         } else if constexpr (VectorTrait::IsSparse) {
           out.resize(2, 2);
           out.reserve(4);
@@ -382,9 +391,16 @@ namespace Optimist {
                   x_1 * pow(x_0 * x_0 + x_1 * x_1 + 1000, -4) +
               (-4000000 * pow(sin(x_0 * x_0 - x_1 * x_1), 2) + 0.20000000e7) *
                   pow(x_0 * x_0 + x_1 * x_1 + 1000, -3);
+          for (Integer k{0}; k < out.outerSize(); ++k) {
+            for (typename SecondDerivative::InnerIterator it(out, k); it;
+                 ++it) {
+              if (!std::isfinite(it.value())) {
+                return false;
+              }
+            }
+          }
+          return true;
         }
-
-        return out.allFinite();
       }
 
     };  // class Schaffer2

@@ -46,17 +46,26 @@ namespace Optimist {
     // Derivative types
     using FirstDerivative = std::conditional_t<
         InputTrait::IsEigen || OutputTrait::IsEigen,
-        std::conditional_t<InputTrait::IsSparse || OutputTrait::IsSparse,
-                           Eigen::SparseMatrix<Scalar>,
-                           Eigen::Matrix<Scalar,
-                                         OutputTrait::Dimension,
-                                         InputTrait::Dimension>>,
+        std::conditional_t<
+            OutputTrait::IsScalar,
+            std::conditional_t<InputTrait::IsSparse,
+                               Eigen::SparseVector<Scalar>,
+                               Eigen::Matrix<Scalar, InputTrait::Dimension, 1>>,
+            std::conditional_t<InputTrait::IsSparse,
+                               Eigen::SparseMatrix<Scalar>,
+                               Eigen::Matrix<Scalar,
+                                             OutputTrait::Dimension,
+                                             InputTrait::Dimension>>>,
         Scalar>;
     using SecondDerivative = std::conditional_t<
         InputTrait::IsEigen || OutputTrait::IsEigen,
         std::conditional_t<
-            InputTrait::IsEigen && OutputTrait::IsScalar,
-            Eigen::Matrix<Scalar, 1, InputTrait::Dimension>,
+            OutputTrait::IsScalar,
+            std::conditional_t<InputTrait::IsSparse,
+                               Eigen::SparseMatrix<Scalar>,
+                               Eigen::Matrix<Scalar,
+                                             InputTrait::Dimension,
+                                             InputTrait::Dimension>>,
             std::conditional_t<
                 InputTrait::IsSparse || OutputTrait::IsSparse,
                 std::vector<Eigen::SparseMatrix<Scalar>>,

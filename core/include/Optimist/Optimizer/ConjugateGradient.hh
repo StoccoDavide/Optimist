@@ -140,34 +140,6 @@ namespace Optimist {
       }
 
       /**
-       * Convert the optimizer first-derivative type into a column vector.
-       * \tparam GradientLambda Gradient lambda type.
-       * \param[in] gradient Gradient lambda.
-       * \param[in] x Evaluation point.
-       * \param[out] out Gradient vector.
-       * \return The boolean flag for successful evaluation.
-       */
-      template <typename GradientLambda>
-      bool evaluate_gradient_vector(GradientLambda &gradient,
-                                    const Vector &x,
-                                    Vector &out) {
-        FirstDerivative gradient_value;
-        bool success{this->evaluate_gradient(gradient, x, gradient_value)};
-        if (!success) {
-          return false;
-        }
-        if constexpr (VectorTrait::IsFixed || VectorTrait::IsDynamic) {
-          out = gradient_value.transpose();
-          return out.allFinite();
-        } else if constexpr (VectorTrait::IsSparse) {
-          out = gradient_value.transpose();
-          return true;
-        } else {
-          return false;
-        }
-      }
-
-      /**
        * Check whether the current direction is a descent direction.
        * \param[in] gradient Current gradient.
        * \param[in] direction Current search direction.
@@ -175,9 +147,10 @@ namespace Optimist {
        */
       bool is_descent_direction(const Vector &gradient,
                                 const Vector &direction) const {
-        Scalar directional_derivative{gradient.dot(direction)};
-        Scalar threshold{-SQRT_EPSILON * std::max(static_cast<Scalar>(1.0),
-                                                  gradient.squaredNorm())};
+        const Scalar directional_derivative{gradient.dot(direction)};
+        const Scalar threshold{
+          -SQRT_EPSILON *
+          std::max(static_cast<Scalar>(1.0), gradient.squaredNorm())};
         return std::isfinite(directional_derivative) &&
                directional_derivative < threshold;
       }
@@ -192,8 +165,9 @@ namespace Optimist {
        */
       bool has_sufficient_descent(const Vector &gradient,
                                   const Vector &direction) const {
-        Scalar directional_derivative{gradient.dot(direction)};
-        Scalar threshold{-this->m_descent_parameter * gradient.squaredNorm()};
+        const Scalar directional_derivative{gradient.dot(direction)};
+        const Scalar threshold{-this->m_descent_parameter *
+                               gradient.squaredNorm()};
         return std::isfinite(directional_derivative) &&
                directional_derivative <= threshold;
       }
@@ -209,8 +183,8 @@ namespace Optimist {
         if (!this->m_powell_restart) {
           return false;
         }
-        Scalar gradient_old_norm{gradient_old.norm()};
-        Scalar gradient_new_norm{gradient_new.norm()};
+        const Scalar gradient_old_norm{gradient_old.norm()};
+        const Scalar gradient_new_norm{gradient_new.norm()};
         if (gradient_old_norm <= SQRT_EPSILON ||
             gradient_new_norm <= SQRT_EPSILON) {
           return false;
@@ -232,11 +206,11 @@ namespace Optimist {
                           const Vector &gradient_new,
                           const Vector &direction_old,
                           const Vector &y) const {
-        Scalar gradient_old_norm_sq{gradient_old.squaredNorm()};
-        Scalar gradient_new_norm_sq{gradient_new.squaredNorm()};
-        Scalar direction_gradient{-direction_old.dot(gradient_old)};
-        Scalar direction_y{direction_old.dot(y)};
-        Scalar gradient_y{gradient_new.dot(y)};
+        const Scalar gradient_old_norm_sq{gradient_old.squaredNorm()};
+        const Scalar gradient_new_norm_sq{gradient_new.squaredNorm()};
+        const Scalar direction_gradient{-direction_old.dot(gradient_old)};
+        const Scalar direction_y{direction_old.dot(y)};
+        const Scalar gradient_y{gradient_new.dot(y)};
 
         switch (this->m_method) {
           case Method::FLETCHER_REEVES:
@@ -311,15 +285,6 @@ namespace Optimist {
       }
 
       /**
-       * Update the next trial step from the accepted line-search step.
-       * \param[in] current_step Current accepted step length.
-       * \return The next trial step.
-       */
-      Scalar next_trial_step(const Scalar current_step) const {
-        return this->clamp_step(current_step);
-      }
-
-      /**
        * Perform a standard Wolfe line search.
        * \tparam FunctionLambda Function lambda type.
        * \tparam GradientLambda Gradient lambda type.
@@ -341,12 +306,12 @@ namespace Optimist {
                        GradientLambda &gradient,
                        const Vector &x_old,
                        const Scalar function_old,
-                       const Vector &gradient_old,
+                       const FirstDerivative &gradient_old,
                        const Vector &direction_old,
                        const Scalar trial_step,
                        Vector &x_new,
                        Scalar &function_new,
-                       Vector &gradient_new,
+                       FirstDerivative &gradient_new,
                        Scalar &accepted_step) {
 #define CMD "Optimist::Optimizer::ConjugateGradient::line_search(...): "
 
@@ -371,8 +336,7 @@ namespace Optimist {
                                                 directional_derivative) {
             upper_step = accepted_step;
           } else {
-            success =
-                this->evaluate_gradient_vector(gradient, x_new, gradient_new);
+            success = this->evaluate_gradient(gradient, x_new, gradient_new);
             OPTIMIST_ASSERT(success,
                             CMD
                             "gradient evaluation failed during line search.");
@@ -814,10 +778,11 @@ namespace Optimist {
         bool success{false};
         Scalar function_old{0.0}, function_new{0.0},
             step_length{this->clamp_step(this->m_initial_step)}, beta{0.0},
-            accepted_step{0.0}, gradient_norm{0.0}, step_norm{0.0};
-        Vector x_old(x_ini), x_new(x_ini), gradient_old(x_ini),
-            gradient_new(x_ini), direction_old(x_ini), direction_new(x_ini),
-            y(x_ini), step(x_ini);
+            accepted_step{0.0}, gradient_norm{0.0};
+        const Integer size{static_cast<Integer>(x_ini.size())};
+        Vector x_old(x_ini), x_new(x_ini), y(size), step(size), direction_new;
+        FirstDerivative gradient_old(size), gradient_new(size),
+            direction_old(size);
         gradient_old.setZero();
         gradient_new.setZero();
         direction_old.setZero();
@@ -830,8 +795,7 @@ namespace Optimist {
         success = this->evaluate_function(function_ref, x_old, function_old);
         OPTIMIST_ASSERT(success,
                         CMD "function evaluation failed at the initial point.");
-        success =
-            this->evaluate_gradient_vector(gradient_ref, x_old, gradient_old);
+        success = this->evaluate_gradient(gradient_ref, x_old, gradient_old);
         OPTIMIST_ASSERT(success,
                         CMD "gradient evaluation failed at the initial point.");
         direction_old = -gradient_old;
@@ -872,9 +836,8 @@ namespace Optimist {
             break;
           }
 
-          step      = x_new - x_old;
-          step_norm = step.norm();
-          if (step_norm < tolerance_step ||
+          step = x_new - x_old;
+          if (step.norm() < tolerance_step ||
               gradient_new.norm() < tolerance_gradient) {
             x_old             = x_new;
             function_old      = function_new;
@@ -897,7 +860,7 @@ namespace Optimist {
             notes = std::string(this->method_string(this->m_method));
           }
 
-          step_length   = this->next_trial_step(accepted_step);
+          step_length   = this->clamp_step(accepted_step);
           x_old         = x_new;
           function_old  = function_new;
           gradient_old  = gradient_new;
