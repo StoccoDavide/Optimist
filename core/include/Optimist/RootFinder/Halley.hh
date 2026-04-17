@@ -18,15 +18,6 @@
 namespace Optimist {
   namespace RootFinder {
 
-    /*\
-     |   _   _       _ _
-     |  | | | | __ _| | | ___ _   _
-     |  | |_| |/ _` | | |/ _ \ | | |
-     |  |  _  | (_| | | |  __/ |_| |
-     |  |_| |_|\__,_|_|_|\___|\__, |
-     |                        |___/
-    \*/
-
     /**
      * \brief Class container for the Halley's method.
      *

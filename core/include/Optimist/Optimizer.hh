@@ -22,15 +22,6 @@ namespace Optimist {
    */
   namespace Optimizer {
 
-    /*\
-     |    ___        _   _           _
-     |   / _ \ _ __ | |_(_)_ __ ___ (_)_______ _ __
-     |  | | | | '_ \| __| | '_ ` _ \| |_  / _ \ '__|
-     |  | |_| | |_) | |_| | | | | | | |/ /  __/ |
-     |   \___/| .__/ \__|_|_| |_| |_|_/___\___|_|
-     |        |_|
-    \*/
-
     /**
      * \brief Class container for the multi-dimensional optimizer.
      *

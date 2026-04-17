@@ -18,15 +18,6 @@
 namespace Optimist {
   namespace RootFinder {
 
-    /*\
-     |   _   _               _
-     |  | \ | | _____      _| |_ ___  _ __
-     |  |  \| |/ _ \ \ /\ / / __/ _ \| '_ \
-     |  | |\  |  __/\ V  V /| || (_) | | | |
-     |  |_| \_|\___| \_/\_/  \__\___/|_| |_|
-     |
-    \*/
-
     /**
      * \brief Class container for the Newton's method.
      *

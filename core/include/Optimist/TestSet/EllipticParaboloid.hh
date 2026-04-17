@@ -10,8 +10,8 @@
 
 #pragma once
 
-#ifndef OPTIMIST_TESTSET_ELLIPTICPARABOLOID_HH
-#define OPTIMIST_TESTSET_ELLIPTICPARABOLOID_HH
+#ifndef OPTIMIST_TESTSET_ELLIPTIC_PARABOLOID_HH
+#define OPTIMIST_TESTSET_ELLIPTIC_PARABOLOID_HH
 
 #include "Optimist/Function.hh"
 
@@ -40,9 +40,9 @@ namespace Optimist {
      public:
       using VectorTrait = TypeTrait<Vector>;
       using Scalar      = typename Vector::Scalar;
-      using typename Function<Vector, Scalar, EllipticParaboloid<Scalar>>::
+      using typename Function<Vector, Scalar, EllipticParaboloid<Vector>>::
           FirstDerivative;
-      using typename Function<Vector, Scalar, EllipticParaboloid<Scalar>>::
+      using typename Function<Vector, Scalar, EllipticParaboloid<Vector>>::
           SecondDerivative;
 
       OPTIMIST_BASIC_CONSTANTS(Scalar)
@@ -109,4 +109,4 @@ namespace Optimist {
 
 }  // namespace Optimist
 
-#endif  // OPTIMIST_TESTSET_ELLIPTICPARABOLOID_HH
+#endif  // OPTIMIST_TESTSET_ELLIPTIC_PARABOLOID_HH

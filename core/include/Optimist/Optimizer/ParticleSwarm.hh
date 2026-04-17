@@ -52,8 +52,6 @@ namespace Optimist {
     };  // class ConstantWeight
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    // - -
-    // - - - - - - - -
 
     /**
      * \brief Inertia weight functor, which decreases linearly over time.
@@ -103,8 +101,6 @@ namespace Optimist {
     };  // class LinearDecrease
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    // - -
-    // - - - - - - - -
 
     /**
      * \brief Inertia weight functor, which decreases exponentially over time.
@@ -153,8 +149,6 @@ namespace Optimist {
     };  // class ExponentialDecrease1
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    // - -
-    // - - - - - - - -
 
     /** \brief Inertia weight functor, which decreases exponentially over time.
      *
@@ -205,8 +199,6 @@ namespace Optimist {
     };  // class ExponentialDecrease2
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    // - -
-    // - - - - - - - -
 
     /** \brief Inertia weight functor, which decreases exponentially over time.
      *
@@ -267,17 +259,6 @@ namespace Optimist {
     };  // class ExponentialDecrease3
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    // - -
-    // - - - - - - - -
-
-    /*\
-     |   ____            _   _      _      ____
-     |  |  _ \ __ _ _ __| |_(_) ___| | ___/ ___|_      ____ _ _ __ _ __ ___
-     |  | |_) / _` | '__| __| |/ __| |/ _ \___ \ \ /\ / / _` | '__| '_ ` _ \
-     |  |  __/ (_| | |  | |_| | (__| |  __/___) \ V  V / (_| | |  | | | | | |
-     |  |_|   \__,_|_|   \__|_|\___|_|\___|____/ \_/\_/ \__,_|_|  |_| |_| |_|
-     |
-    \*/
 
     /**
      * \brief Class container for the particle swarm optimizer.

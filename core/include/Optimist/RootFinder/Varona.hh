@@ -18,15 +18,6 @@
 namespace Optimist {
   namespace RootFinder {
 
-    /*\
-     |  __     __                          _  _
-     |  \ \   / /_ _ _ __ ___  _ __   __ _| || |
-     |   \ \ / / _` | '__/ _ \| '_ \ / _` | || |_
-     |    \ V / (_| | | | (_) | | | | (_| |__   _|
-     |     \_/ \__,_|_|  \___/|_| |_|\__,_|  |_|
-     |
-    \*/
-
     /**
      * \brief Class container for the Varona's methods.
      *

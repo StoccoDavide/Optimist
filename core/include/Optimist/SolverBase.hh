@@ -18,15 +18,6 @@
 
 namespace Optimist {
 
-  /*\
-   |   ____        _                ____
-   |  / ___|  ___ | |_   _____ _ __| __ )  __ _ ___  ___
-   |  \___ \ / _ \| \ \ / / _ \ '__|  _ \ / _` / __|/ _ \
-   |   ___) | (_) | |\ V /  __/ |  | |_) | (_| \__ \  __/
-   |  |____/ \___/|_| \_/ \___|_|  |____/ \__,_|___/\___|
-   |
-  \*/
-
   /**
    * \brief Class container for the generic root-finding/optimization problem
    * solver.
@@ -77,22 +68,10 @@ namespace Optimist {
                   "dynamic-size, or sparse.");
 
     // Derivative types
-    using FirstDerivative = std::conditional_t<
-        InputTrait::IsEigen || OutputTrait::IsEigen,
-        std::conditional_t<InputTrait::IsSparse || OutputTrait::IsSparse,
-                           Eigen::SparseMatrix<Scalar>,
-                           Eigen::Matrix<Scalar,
-                                         OutputTrait::Dimension,
-                                         InputTrait::Dimension>>,
-        Scalar>;
-    using SecondDerivative = std::conditional_t<
-        InputTrait::IsEigen || OutputTrait::IsEigen,
-        std::conditional_t<InputTrait::IsSparse || OutputTrait::IsSparse,
-                           std::vector<Eigen::SparseMatrix<Scalar>>,
-                           std::vector<Eigen::Matrix<Scalar,
-                                                     OutputTrait::Dimension,
-                                                     InputTrait::Dimension>>>,
-        Scalar>;
+    using FirstDerivative =
+        FunctionBase<Input, Output, DerivedSolver>::FirstDerivative;
+    using SecondDerivative =
+        FunctionBase<Input, Output, DerivedSolver>::SecondDerivative;
 
     OPTIMIST_BASIC_CONSTANTS(Scalar)
 
@@ -798,10 +777,6 @@ namespace Optimist {
                     CMD
                     "solver output dimension must be equal to the function "
                     "output dimension or 1.");
-      // static_assert(!(InputTrait::Dimension == 1 &&
-      // DerivedSolver::IsRootFinder),
-      //   CMD "one-dimensional root-finders do not support optimization
-      //   problems.");
       return this->solve(function, x_ini, x_sol, true);
 
 #undef CMD
@@ -910,6 +885,8 @@ namespace Optimist {
           if constexpr (FunctionInputTrait::IsScalar &&
                         FunctionOutputTrait::IsScalar) {
             out = J * f;
+          } else if constexpr (FunctionOutputTrait::Dimension == 1) {
+            out = f * J;
           } else if constexpr (OutputTrait::Dimension !=
                                FunctionOutputTrait::Dimension) {
             out = J.transpose() * f;

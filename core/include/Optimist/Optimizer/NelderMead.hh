@@ -18,15 +18,6 @@
 namespace Optimist {
   namespace Optimizer {
 
-    /*\
-     |   _   _      _     _           __  __                _
-     |  | \ | | ___| | __| | ___ _ __|  \/  | ___  __ _  __| |
-     |  |  \| |/ _ \ |/ _` |/ _ \ '__| |\/| |/ _ \/ _` |/ _` |
-     |  | |\  |  __/ | (_| |  __/ |  | |  | |  __/ (_| | (_| |
-     |  |_| \_|\___|_|\__,_|\___|_|  |_|  |_|\___|\__,_|\__,_|
-     |
-    \*/
-
     /**
      * \brief Class container for the Nelder-Mead's method.
      *
@@ -112,7 +103,7 @@ namespace Optimist {
       Scalar m_gamma{0.5};               /**< Contraction coefficient. */
       Scalar m_sigma{0.25};              /**< Shrink coefficient. */
       Scalar m_volume_tolerance{
-        std::sqrt(this->m_tolerance)}; /**< Simplex volume tolerance. */
+        std::sqrt(this->m_tolerance)};   /**< Simplex volume tolerance. */
 
       // Internal variables
       Integer m_dim{0};          /**< Problem dimension. */

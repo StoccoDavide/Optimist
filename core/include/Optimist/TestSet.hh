@@ -27,15 +27,6 @@
 
 namespace Optimist {
 
-  /*\
-   |   _____         _   ____       _
-   |  |_   _|__  ___| |_/ ___|  ___| |_
-   |    | |/ _ \/ __| __\___ \ / _ \ __|
-   |    | |  __/\__ \ |_ ___) |  __/ |_
-   |    |_|\___||___/\__|____/ \___|\__|
-   |
-  \*/
-
   /**
    * \brief Namespace for the Optimist library test set functions.
    */

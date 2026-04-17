@@ -60,6 +60,10 @@ file(GLOB_RECURSE TEST_OPTIMIZER_NEWTONRAPHSON "${CMAKE_CURRENT_SOURCE_DIR}/Opti
 add_executable(test_optimizer_newtonraphson ${TEST_OPTIMIZER_NEWTONRAPHSON})
 target_link_libraries(test_optimizer_newtonraphson PRIVATE Optimist GTest::gtest_main)
 
+file(GLOB_RECURSE TEST_OPTIMIZER_CONJUGATEGRADIENT "${CMAKE_CURRENT_SOURCE_DIR}/Optimizer/test_conjugategradient.cc")
+add_executable(test_optimizer_conjugategradient ${TEST_OPTIMIZER_CONJUGATEGRADIENT})
+target_link_libraries(test_optimizer_conjugategradient PRIVATE Optimist GTest::gtest_main)
+
 # file(GLOB_RECURSE TEST_OPTIMIZER_NELDERMEAD "${CMAKE_CURRENT_SOURCE_DIR}/Optimizer/test_neldermead.cc")
 # add_executable(test_optimizer_neldermead ${TEST_OPTIMIZER_NELDERMEAD})
 # target_link_libraries(test_optimizer_neldermead PRIVATE Optimist GTest::gtest_main)

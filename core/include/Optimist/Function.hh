@@ -17,15 +17,6 @@
 
 namespace Optimist {
 
-  /*\
-   |   _____                 _   _             ____
-   |  |  ___|   _ _ __   ___| |_(_) ___  _ __ | __ )  __ _ ___  ___
-   |  | |_ | | | | '_ \ / __| __| |/ _ \| '_ \|  _ \ / _` / __|/ _ \
-   |  |  _|| |_| | | | | (__| |_| | (_) | | | | |_) | (_| \__ \  __/
-   |  |_|   \__,_|_| |_|\___|\__|_|\___/|_| |_|____/ \__,_|___/\___|
-   |
-  \*/
-
   /**
    * \brief Class container for the generic function.
    *
@@ -63,11 +54,15 @@ namespace Optimist {
         Scalar>;
     using SecondDerivative = std::conditional_t<
         InputTrait::IsEigen || OutputTrait::IsEigen,
-        std::conditional_t<InputTrait::IsSparse || OutputTrait::IsSparse,
-                           std::vector<Eigen::SparseMatrix<Scalar>>,
-                           std::vector<Eigen::Matrix<Scalar,
-                                                     OutputTrait::Dimension,
-                                                     InputTrait::Dimension>>>,
+        std::conditional_t<
+            InputTrait::IsEigen && OutputTrait::IsScalar,
+            Eigen::Matrix<Scalar, 1, InputTrait::Dimension>,
+            std::conditional_t<
+                InputTrait::IsSparse || OutputTrait::IsSparse,
+                std::vector<Eigen::SparseMatrix<Scalar>>,
+                std::vector<Eigen::Matrix<Scalar,
+                                          OutputTrait::Dimension,
+                                          InputTrait::Dimension>>>>,
         Scalar>;
 
     OPTIMIST_BASIC_CONSTANTS(Scalar)
@@ -200,18 +195,14 @@ namespace Optimist {
 
   };  // class FunctionBase
 
-  /*\
-   |   _____                 _   _
-   |  |  ___|   _ _ __   ___| |_(_) ___  _ __
-   |  | |_ | | | | '_ \ / __| __| |/ _ \| '_ \
-   |  |  _|| |_| | | | | (__| |_| | (_) | | | |
-   |  |_|   \__,_|_| |_|\___|\__|_|\___/|_| |_|
-   |
-  \*/
-
   /**
    * \brief Class container for the vector-valued function (both input and
    * output are vectors).
+   *
+   * This specialization of the Function class is for functions \f$ f:
+   * \mathbb{R}^n \to \mathbb{R}^m \f$, where the input and output are both
+   * vectors. In this case, the first derivative is the Jacobian matrix and the
+   * second derivative is a vector of Hessian matrices (tensor of order 3).
    *
    * \tparam Input Function input type.
    * \tparam Output Function output type.
@@ -278,35 +269,37 @@ namespace Optimist {
   };  // class Function
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // -
-  // - - - - - - - - -
 
   /**
    * \brief Class container for the cost function.
    *
-   * \tparam T Input and output type (scalar or Eigen vector).
+   * This specialization of the Function class is for functions \f$ f:
+   * \mathbb{R}^n \to \mathbb{R} \f$, where the input is a vector and the output
+   * is a scalar. In this case, the first derivative is the gradient vector and
+   * the second derivative is the Hessian matrix.
+   *
+   * \tparam Input Input type (scalar or Eigen vector).
    * \tparam DerivedFunction Derived cost function class.
    */
-  template <typename T, typename DerivedFunction>
-    requires(TypeTrait<T>::IsScalar || TypeTrait<T>::IsEigen) &&
-            (!TypeTrait<T>::IsFixed || TypeTrait<T>::Dimension > 0)
-  class Function<T, T, DerivedFunction>
-      : public FunctionBase<T, T, DerivedFunction> {
+  template <typename Input, typename DerivedFunction>
+    requires(TypeTrait<Input>::IsScalar || TypeTrait<Input>::IsEigen) &&
+            (!TypeTrait<Input>::IsFixed || TypeTrait<Input>::Dimension > 0)
+  class Function<Input, typename Input::Scalar, DerivedFunction>
+      : public FunctionBase<Input, typename Input::Scalar, DerivedFunction> {
    public:
-    friend class FunctionBase<T, T, DerivedFunction>;
-
-    // Input and output types
-    using Scalar = typename TypeTrait<T>::Scalar;
-    using Input  = T;
-    using Output = T;
+    using InputTrait = TypeTrait<Input>;
+    using Scalar     = InputTrait::Scalar;
+    friend class FunctionBase<Input, Scalar, DerivedFunction>;
 
     // Derivative types
-    using typename FunctionBase<T, T, DerivedFunction>::FirstDerivative;
-    using typename FunctionBase<T, T, DerivedFunction>::SecondDerivative;
+    using
+        typename FunctionBase<Input, Scalar, DerivedFunction>::FirstDerivative;
+    using
+        typename FunctionBase<Input, Scalar, DerivedFunction>::SecondDerivative;
     /**
      * Class constructor for the function.
      */
-    Function<T, T, DerivedFunction>() {}
+    Function<Input, Scalar, DerivedFunction>() {}
     /**
      * Get the function name.
      * \return The function name.
@@ -321,7 +314,7 @@ namespace Optimist {
      * \param[out] out The function value.
      * \return The boolean flag for successful evaluation.
      */
-    bool evaluate(const Input &x, Output &out) const {
+    bool evaluate(const Input &x, Scalar &out) const {
       return static_cast<const DerivedFunction *>(this)->evaluate_impl(x, out);
     }
 

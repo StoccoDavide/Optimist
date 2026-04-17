@@ -18,15 +18,6 @@
 namespace Optimist {
   namespace RootFinder {
 
-    /*\
-     |   ____                      _
-     |  | __ ) _ __ ___  _   _  __| | ___ _ __
-     |  |  _ \| '__/ _ \| | | |/ _` |/ _ \ '_ \
-     |  | |_) | | | (_) | |_| | (_| |  __/ | | |
-     |  |____/|_|  \___/ \__, |\__,_|\___|_| |_|
-     |                   |___/
-    \*/
-
     /**
      * \brief Class container for the Broyden's method.
      *

@@ -100,15 +100,6 @@ namespace Optimist {
    */
   using Integer = OPTIMIST_DEFAULT_INTEGER_TYPE;
 
-  /*\
-   |   _____                _____          _ _
-   |  |_   _|   _ _ __   __|_   _| __ __ _(_) |_ ___
-   |    | || | | | '_ \ / _ \| || '__/ _` | | __/ __|
-   |    | || |_| | |_) |  __/| || | | (_| | | |_\__ \
-   |    |_| \__, | .__/ \___||_||_|  \__,_|_|\__|___/
-   |        |___/|_|
-  \*/
-
   /**
    * Traits class for vectors and matrices (fallback for unsupported types).
    * \tparam T The type to be specialized.
@@ -238,14 +229,6 @@ namespace Optimist {
     using Full  = BaseType<FirstType, Rest...>;
     using First = FirstType;
   };
-  /*\
-   |   ____  _          __  __
-   |  / ___|| |_ _   _ / _|/ _|
-   |  \___ \| __| | | | |_| |_
-   |   ___) | |_| |_| |  _|  _|
-   |  |____/ \__|\__,_|_| |_|
-   |
-  \*/
 
   /**
    * \brief Retrieve the Unicode character for the top-left corner of a table.
