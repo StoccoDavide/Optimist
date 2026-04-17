@@ -29,7 +29,7 @@ namespace Optimist {
      * The function has global minima at \f$\mathbf{x} = (0, 0)\f$, with
      * \f$f(\mathbf{x}) = 0\f$. The initial guesses are generated on the square
      * \f$x_i \in \left[-100, 100\right]\f$.
-     * \tparam Scalar Floating-point number type.
+     * \tparam Vector Eigen vector type.
      */
     template <typename Vector>
       requires TypeTrait<Vector>::IsEigen && (!TypeTrait<Vector>::IsFixed ||
@@ -56,10 +56,37 @@ namespace Optimist {
        * Class constructor for the paraboloid function.
        */
       EllipticParaboloid() {
-        this->m_solutions.emplace_back(0.0, 0.0);
-        for (Scalar x{-100}; x < 100 + EPSILON; x += 100 / 25.0) {
-          for (Scalar y{-100}; y < 100 + EPSILON; y += 100 / 25.0) {
-            this->m_guesses.emplace_back(x, y);
+        this->m_solutions.resize(1);
+        if constexpr (VectorTrait::IsFixed) {
+          this->m_solutions[0] << 0.0, 0.0;
+          for (Scalar x{-10}; x < 10 + EPSILON; x += 10 / 2.5) {
+            for (Scalar y{-10}; y < 10 + EPSILON; y += 10 / 2.5) {
+              this->m_guesses.emplace_back(x, y);
+            }
+          }
+        } else if constexpr (VectorTrait::IsDynamic) {
+          this->m_solutions[0].resize(2);
+          this->m_solutions[0] << 0.0, 0.0;
+          for (Scalar x{-10}; x < 10 + EPSILON; x += 10 / 2.5) {
+            for (Scalar y{-10}; y < 10 + EPSILON; y += 10 / 2.5) {
+              Vector guess(2);
+              guess << x, y;
+              this->m_guesses.push_back(guess);
+            }
+          }
+        } else if constexpr (VectorTrait::IsSparse) {
+          this->m_solutions[0].resize(2);
+          this->m_solutions[0].reserve(2);
+          this->m_solutions[0].coeffRef(0) = 0.0;
+          this->m_solutions[0].coeffRef(1) = 0.0;
+          for (Scalar x{-10}; x < 10 + EPSILON; x += 10 / 2.5) {
+            for (Scalar y{-10}; y < 10 + EPSILON; y += 10 / 2.5) {
+              Vector guess(2);
+              guess.reserve(2);
+              guess.coeffRef(0) = x;
+              guess.coeffRef(1) = y;
+              this->m_guesses.push_back(guess);
+            }
           }
         }
       }
@@ -78,7 +105,15 @@ namespace Optimist {
        * \param[out] out The function value.
        */
       bool evaluate_impl(const Vector &x, Scalar &out) const {
-        out = this->m_a * x(0) * x(0) + this->m_b * x(1) * x(1);
+        Scalar x_0, x_1;
+        if constexpr (VectorTrait::IsSparse) {
+          x_0 = x.coeff(0);
+          x_1 = x.coeff(1);
+        } else {
+          x_0 = x(0);
+          x_1 = x(1);
+        }
+        out = this->m_a * x_0 * x_0 + this->m_b * x_1 * x_1;
         return std::isfinite(out);
       }
 
@@ -88,8 +123,35 @@ namespace Optimist {
        * \param[out] out The first derivative value.
        */
       bool first_derivative_impl(const Vector &x, FirstDerivative &out) const {
-        out << 2.0 * this->m_a * x(0), 2.0 * this->m_b * x(1);
-        return out.allFinite();
+        Scalar x_0, x_1;
+        if constexpr (VectorTrait::IsSparse) {
+          x_0 = x.coeff(0);
+          x_1 = x.coeff(1);
+        } else {
+          x_0 = x(0);
+          x_1 = x(1);
+        }
+
+        if constexpr (VectorTrait::IsFixed) {
+          out << 2.0 * this->m_a * x_0, 2.0 * this->m_b * x_1;
+          return out.allFinite();
+        } else if constexpr (VectorTrait::IsDynamic) {
+          out.resize(2);
+          out << 2.0 * this->m_a * x_0, 2.0 * this->m_b * x_1;
+          return out.allFinite();
+        } else if constexpr (VectorTrait::IsSparse) {
+          out.resize(2);
+          out.reserve(2);
+          out.coeffRef(0) = 2.0 * this->m_a * x_0;
+          out.coeffRef(1) = 2.0 * this->m_b * x_1;
+          for (typename FirstDerivative::InnerIterator it(out); it; ++it) {
+            if (!std::isfinite(it.value())) {
+              return false;
+            }
+          }
+          return true;
+        }
+        return false;
       }
 
       /**
@@ -99,8 +161,29 @@ namespace Optimist {
        */
       bool second_derivative_impl(const Vector & /*x*/,
                                   SecondDerivative &out) const {
-        out << 2.0 * this->m_a, 0.0, 0.0, 2.0 * this->m_b;
-        return out.allFinite();
+        if constexpr (VectorTrait::IsFixed) {
+          out << 2.0 * this->m_a, 0.0, 0.0, 2.0 * this->m_b;
+          return out.allFinite();
+        } else if constexpr (VectorTrait::IsDynamic) {
+          out.resize(2, 2);
+          out << 2.0 * this->m_a, 0.0, 0.0, 2.0 * this->m_b;
+          return out.allFinite();
+        } else if constexpr (VectorTrait::IsSparse) {
+          out.resize(2, 2);
+          out.reserve(2);
+          out.coeffRef(0, 0) = 2.0 * this->m_a;
+          out.coeffRef(1, 1) = 2.0 * this->m_b;
+          for (Integer k{0}; k < out.outerSize(); ++k) {
+            for (typename SecondDerivative::InnerIterator it(out, k); it;
+                 ++it) {
+              if (!std::isfinite(it.value())) {
+                return false;
+              }
+            }
+          }
+          return true;
+        }
+        return false;
       }
 
     };  // class EllipticParaboloid

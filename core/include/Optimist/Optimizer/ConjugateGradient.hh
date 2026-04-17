@@ -45,7 +45,7 @@ namespace Optimist {
       /**
        * Conjugate gradient update method enumeration.
        */
-      using Method = enum class Method : Integer {
+      using BetaMethod = enum class BetaMethod : Integer {
         FLETCHER_REEVES    = 0,
         POLAK_RIBIERE      = 1,
         POLAK_RIBIERE_PLUS = 2,
@@ -57,16 +57,28 @@ namespace Optimist {
         HAGER_ZHANG_PLUS   = 8
       };
 
-     private:
-      Method m_method{Method::HAGER_ZHANG};  /**< Conjugate gradient method. */
+      /**
+       * Step-length initialization strategy enumeration.
+       */
+      using AlphaMethod = enum class AlphaMethod : Integer {
+        ACCEPTED_STEP    = 0,
+        BARZILAI_BORWEIN = 1
+      };
 
-      Scalar m_initial_step{1.0};            /**< Initial line-search step. */
-      Scalar m_min_step{SQRT_EPSILON};       /**< Minimum admissible step. */
-      Scalar m_max_step{1.0 / SQRT_EPSILON}; /**< Maximum admissible step. */
-      Scalar m_step_expand{2.0}; /**< Line-search expansion factor. */
-      Scalar m_step_shrink{0.5}; /**< Line-search shrink factor. */
+     private:
+      BetaMethod m_beta_method{
+        BetaMethod::HAGER_ZHANG};      /**< Conjugate gradient method. */
+      AlphaMethod m_alpha_method{
+        AlphaMethod::ACCEPTED_STEP};   /**< Trial step initialization method. */
+
+      Scalar m_initial_step{1.0};      /**< Initial line-search step. */
+      Scalar m_min_step{SQRT_EPSILON}; /**< Minimum admissible step. */
+      Scalar m_max_step{static_cast<Scalar>(1.0) /
+                        SQRT_EPSILON}; /**< Maximum admissible step. */
+      Scalar m_step_expand{2.0};       /**< Line-search expansion factor. */
+      Scalar m_step_shrink{0.5};       /**< Line-search shrink factor. */
       Scalar m_armijo_parameter{
-        1.0e-4};                 /**< Armijo sufficient decrease constant. */
+        1.0e-4}; /**< Armijo sufficient decrease constant. */
       Scalar m_descent_parameter{1.0e-2}; /**< Sufficient descent constant. */
       Scalar m_curvature_parameter{0.1};  /**< Wolfe curvature constant. */
       Scalar m_truncation_parameter{
@@ -78,36 +90,6 @@ namespace Optimist {
       Scalar m_restart_tolerance{0.9}; /**< Powell restart tolerance. */
 
      private:
-      /**
-       * Get the string representation of the selected method.
-       * \param[in] t_method Conjugate gradient method.
-       * \return Method label.
-       */
-      static constexpr std::string_view method_string(const Method t_method) {
-        switch (t_method) {
-          case Method::FLETCHER_REEVES:
-            return "Fletcher-Reeves";
-          case Method::POLAK_RIBIERE:
-            return "Polak-Ribiere";
-          case Method::POLAK_RIBIERE_PLUS:
-            return "Polak-Ribiere+";
-          case Method::HESTENES_STIEFEL:
-            return "Hestenes-Stiefel";
-          case Method::CONJUGATE_DESCENT:
-            return "Conjugate descent";
-          case Method::LIU_STOREY:
-            return "Liu-Storey";
-          case Method::DAI_YUAN:
-            return "Dai-Yuan";
-          case Method::HAGER_ZHANG:
-            return "Hager-Zhang";
-          case Method::HAGER_ZHANG_PLUS:
-            return "Hager-Zhang+";
-          default:
-            return "Unknown";
-        }
-      }
-
       /**
        * Get the lower truncation bound used by the Hager-Zhang+ method.
        * \param[in] gradient_new Current gradient.
@@ -137,6 +119,63 @@ namespace Optimist {
           t_step = this->m_initial_step;
         }
         return std::min(this->m_max_step, std::max(this->m_min_step, t_step));
+      }
+
+      /**
+       * Compute the next trial step using the Barzilai-Borwein formula.
+       *
+       * The update uses the accepted step along the previous search direction
+       * and falls back to the accepted step when the curvature estimate is not
+       * positive or is numerically unreliable.
+       *
+       * \param[in] accepted_step Accepted line-search step.
+       * \param[in] direction_old Previous search direction.
+       * \param[in] gradient_old Previous gradient.
+       * \param[in] gradient_new Current gradient.
+       * \return The next trial step.
+       */
+      Scalar barzilai_borwein_step(const Scalar accepted_step,
+                                   const FirstDerivative &direction_old,
+                                   const FirstDerivative &gradient_old,
+                                   const FirstDerivative &gradient_new) const {
+        const Scalar fallback_step{this->clamp_step(accepted_step)};
+        const FirstDerivative y{gradient_new - gradient_old};
+        const Scalar denominator{direction_old.dot(y)};
+        if (!std::isfinite(denominator) || denominator <= SQRT_EPSILON) {
+          return fallback_step;
+        }
+
+        const Scalar numerator{accepted_step * direction_old.squaredNorm()};
+        if (!std::isfinite(numerator) || numerator <= SQRT_EPSILON) {
+          return fallback_step;
+        }
+
+        return this->clamp_step(numerator / denominator);
+      }
+
+      /**
+       * Compute the next trial step passed to the line search.
+       * \param[in] accepted_step Accepted line-search step.
+       * \param[in] direction_old Previous search direction.
+       * \param[in] gradient_old Previous gradient.
+       * \param[in] gradient_new Current gradient.
+       * \return The next trial step.
+       */
+      Scalar next_trial_step(const Scalar accepted_step,
+                             const FirstDerivative &direction_old,
+                             const FirstDerivative &gradient_old,
+                             const FirstDerivative &gradient_new) const {
+        switch (this->m_alpha_method) {
+          case AlphaMethod::BARZILAI_BORWEIN:
+            return this->barzilai_borwein_step(accepted_step,
+                                               direction_old,
+                                               gradient_old,
+                                               gradient_new);
+
+          case AlphaMethod::ACCEPTED_STEP:
+          default:
+            return this->clamp_step(accepted_step);
+        }
       }
 
       /**
@@ -212,51 +251,51 @@ namespace Optimist {
         const Scalar direction_y{direction_old.dot(y)};
         const Scalar gradient_y{gradient_new.dot(y)};
 
-        switch (this->m_method) {
-          case Method::FLETCHER_REEVES:
+        switch (this->m_beta_method) {
+          case BetaMethod::FLETCHER_REEVES:
             if (gradient_old_norm_sq <= SQRT_EPSILON) {
               return 0.0;
             }
             return gradient_new_norm_sq / gradient_old_norm_sq;
 
-          case Method::POLAK_RIBIERE:
+          case BetaMethod::POLAK_RIBIERE:
             if (gradient_old_norm_sq <= SQRT_EPSILON) {
               return 0.0;
             }
             return gradient_y / gradient_old_norm_sq;
 
-          case Method::POLAK_RIBIERE_PLUS:
+          case BetaMethod::POLAK_RIBIERE_PLUS:
             if (gradient_old_norm_sq <= SQRT_EPSILON) {
               return 0.0;
             }
             return std::max(gradient_y / gradient_old_norm_sq,
                             static_cast<Scalar>(0.0));
 
-          case Method::HESTENES_STIEFEL:
+          case BetaMethod::HESTENES_STIEFEL:
             if (std::abs(direction_y) <= SQRT_EPSILON) {
               return 0.0;
             }
             return gradient_y / direction_y;
 
-          case Method::CONJUGATE_DESCENT:
+          case BetaMethod::CONJUGATE_DESCENT:
             if (direction_gradient <= SQRT_EPSILON) {
               return 0.0;
             }
             return gradient_new_norm_sq / direction_gradient;
 
-          case Method::LIU_STOREY:
+          case BetaMethod::LIU_STOREY:
             if (direction_gradient <= SQRT_EPSILON) {
               return 0.0;
             }
             return gradient_y / direction_gradient;
 
-          case Method::DAI_YUAN:
+          case BetaMethod::DAI_YUAN:
             if (std::abs(direction_y) <= SQRT_EPSILON) {
               return 0.0;
             }
             return gradient_new_norm_sq / direction_y;
 
-          case Method::HAGER_ZHANG: {
+          case BetaMethod::HAGER_ZHANG: {
             if (std::abs(direction_y) <= SQRT_EPSILON) {
               return 0.0;
             }
@@ -266,7 +305,7 @@ namespace Optimist {
             return gradient_new.dot(tmp) / direction_y;
           }
 
-          case Method::HAGER_ZHANG_PLUS: {
+          case BetaMethod::HAGER_ZHANG_PLUS: {
             if (std::abs(direction_y) <= SQRT_EPSILON) {
               return 0.0;
             }
@@ -391,90 +430,128 @@ namespace Optimist {
       }
 
       /**
-       * Get the enumeration type of the conjugate gradient method.
+       * Get the enumeration type of the conjugate gradient mbeta ethod.
        * \return The conjugate gradient method.
        */
-      Method method() const {
-        return this->m_method;
+      BetaMethod beta_method() const {
+        return this->m_beta_method;
       }
 
       /**
-       * Set the enumeration type of the conjugate gradient method.
-       * \param[in] t_method Conjugate gradient method.
+       * Set the enumeration type of the conjugate gradient beta method.
+       * \param[in] t_beta_method Conjugate gradient method.
        */
-      void method(const Method t_method) {
-        this->m_method = t_method;
+      void beta_method(const BetaMethod t_beta_method) {
+        this->m_beta_method = t_beta_method;
       }
 
       /**
        * Enable the Fletcher-Reeves method.
        */
       void enable_fletcher_reeves_method() {
-        this->m_method = Method::FLETCHER_REEVES;
+        this->m_beta_method = BetaMethod::FLETCHER_REEVES;
       }
 
       /**
        * Enable the Polak-Ribiere method.
        */
       void enable_polak_ribiere_method() {
-        this->m_method = Method::POLAK_RIBIERE;
+        this->m_beta_method = BetaMethod::POLAK_RIBIERE;
       }
 
       /**
        * Enable the Polak-Ribiere+ method.
        */
       void enable_polak_ribiere_plus_method() {
-        this->m_method = Method::POLAK_RIBIERE_PLUS;
+        this->m_beta_method = BetaMethod::POLAK_RIBIERE_PLUS;
       }
 
       /**
        * Enable the Hestenes-Stiefel method.
        */
       void enable_hestenes_stiefel_method() {
-        this->m_method = Method::HESTENES_STIEFEL;
+        this->m_beta_method = BetaMethod::HESTENES_STIEFEL;
       }
 
       /**
        * Enable the conjugate descent method.
        */
       void enable_conjugate_descent_method() {
-        this->m_method = Method::CONJUGATE_DESCENT;
+        this->m_beta_method = BetaMethod::CONJUGATE_DESCENT;
       }
 
       /**
        * Enable the Liu-Storey method.
        */
       void enable_liu_storey_method() {
-        this->m_method = Method::LIU_STOREY;
+        this->m_beta_method = BetaMethod::LIU_STOREY;
       }
 
       /**
        * Enable the Dai-Yuan method.
        */
       void enable_dai_yuan_method() {
-        this->m_method = Method::DAI_YUAN;
+        this->m_beta_method = BetaMethod::DAI_YUAN;
       }
 
       /**
        * Enable the Hager-Zhang method.
        */
       void enable_hager_zhang_method() {
-        this->m_method = Method::HAGER_ZHANG;
+        this->m_beta_method = BetaMethod::HAGER_ZHANG;
       }
 
       /**
        * Enable the Hager-Zhang+ method.
        */
       void enable_hager_zhang_plus_method() {
-        this->m_method = Method::HAGER_ZHANG_PLUS;
+        this->m_beta_method = BetaMethod::HAGER_ZHANG_PLUS;
       }
 
       /**
-       * Set the conjugate gradient method.
-       * \param[in] t_method Conjugate gradient method.
+       * Set the conjugate gradient beta method.
+       * \param[in] t_method Conjugate gradient beta method.
        */
-      void set_method(const Method t_method) {
-        this->m_method = t_method;
+      void set_method(const BetaMethod t_method) {
+        this->m_beta_method = t_method;
+      }
+
+      /**
+       * Get the enumeration type of the alpha computation method.
+       * \return The alpha computation method.
+       */
+      AlphaMethod alpha_method() const {
+        return this->m_alpha_method;
+      }
+
+      /**
+       * Set the enumeration type of the alpha computation method.
+       * \param[in] t_alpha_method Alpha computation method.
+       */
+      void alpha_method(const AlphaMethod t_alpha_method) {
+        this->m_alpha_method = t_alpha_method;
+      }
+
+      /**
+       * Enable the reuse of the last accepted line-search step.
+       */
+      void enable_accepted_step_alpha_method() {
+        this->m_alpha_method = AlphaMethod::ACCEPTED_STEP;
+      }
+
+      /**
+       * Enable the Barzilai-Borwein trial-step update.
+       */
+      void enable_barzilai_borwein_alpha_method() {
+        this->m_alpha_method = AlphaMethod::BARZILAI_BORWEIN;
+      }
+
+      /**
+       * Set the alpha computation method.
+       * \param[in] t_alpha_method Alpha computation method.
+       */
+      void set_alpha_method(const AlphaMethod t_alpha_method) {
+        this->m_alpha_method = t_alpha_method;
       }
 
       /**
@@ -856,11 +933,12 @@ namespace Optimist {
               !this->has_sufficient_descent(gradient_new, direction_new)) {
             direction_new = -gradient_new;
             notes         = "Restart";
-          } else {
-            notes = std::string(this->method_string(this->m_method));
           }
 
-          step_length   = this->clamp_step(accepted_step);
+          step_length   = this->next_trial_step(accepted_step,
+                                              direction_old,
+                                              gradient_old,
+                                              gradient_new);
           x_old         = x_new;
           function_old  = function_new;
           gradient_old  = gradient_new;

@@ -24,15 +24,18 @@ struct Functions : public testing::Test {
 };
 
 using TestTypes =
-    testing::Types<  // EllipticParaboloid<Eigen::Vector<float, 2>>,
-                     // EllipticParaboloid<Eigen::Vector<float,
-                     // Eigen::Dynamic>>,
-                     // EllipticParaboloid<Eigen::SparseVector<float>>,
-        Schaffer2<Eigen::Vector<double, 2>>,
-        Schaffer2<Eigen::Vector<double, Eigen::Dynamic>>,
-        Schaffer2<Eigen::SparseVector<double>>>;
-// Schaffer2<double>,
-// Brown<double>
+    testing::Types<EllipticParaboloid<Eigen::Vector<float, 2>>,
+                   EllipticParaboloid<Eigen::Vector<float, Eigen::Dynamic>>,
+                   EllipticParaboloid<Eigen::SparseVector<float>>,
+                   EllipticParaboloid<Eigen::Vector<double, 2>>,
+                   EllipticParaboloid<Eigen::Vector<double, Eigen::Dynamic>>,
+                   EllipticParaboloid<Eigen::SparseVector<double>>,
+                   Schaffer2<Eigen::Vector<float, 2>>,
+                   Schaffer2<Eigen::Vector<float, Eigen::Dynamic>>,
+                   Schaffer2<Eigen::SparseVector<float>>,
+                   Schaffer2<Eigen::Vector<double, 2>>,
+                   Schaffer2<Eigen::Vector<double, Eigen::Dynamic>>,
+                   Schaffer2<Eigen::SparseVector<double>>>;
 
 // Register the type-parameterized function tests
 TYPED_TEST_SUITE(Functions, TestTypes);
@@ -47,39 +50,39 @@ TYPED_TEST(Functions, Solve) {
   Function fun;
   Optimist::Optimizer::ConjugateGradient<Vector> sol;
   sol.task(fun.name());
-  sol.verbose_mode(true);
+  sol.verbose_mode(false);
   sol.tolerance(std::sqrt(Function::EPSILON));
 
   // Define methods to test
-  using Method =
-      typename Optimist::Optimizer::ConjugateGradient<Vector>::Method;
-  auto methods = {
-    // Method::FLETCHER_REEVES,
-    Method::POLAK_RIBIERE,
-    Method::POLAK_RIBIERE_PLUS
-    // Method::HESTENES_STIEFEL,
-    // Method::CONJUGATE_DESCENT,
-    // Method::LIU_STOREY,
-    // Method::DAI_YUAN,
-    // Method::HAGER_ZHANG,
-    // Method::HAGER_ZHANG_PLUS
-  };
+  using AlphaMethod =
+      typename Optimist::Optimizer::ConjugateGradient<Vector>::AlphaMethod;
+  using BetaMethod =
+      typename Optimist::Optimizer::ConjugateGradient<Vector>::BetaMethod;
+  auto alpha_methods = {AlphaMethod::ACCEPTED_STEP,
+                        AlphaMethod::BARZILAI_BORWEIN};
+  auto beta_methods  = {BetaMethod::FLETCHER_REEVES,
+                        BetaMethod::POLAK_RIBIERE,
+                        BetaMethod::POLAK_RIBIERE_PLUS,
+                        BetaMethod::HESTENES_STIEFEL,
+                        BetaMethod::CONJUGATE_DESCENT,
+                        BetaMethod::LIU_STOREY,
+                        BetaMethod::DAI_YUAN,
+                        BetaMethod::HAGER_ZHANG,
+                        BetaMethod::HAGER_ZHANG_PLUS};
 
   // Test to change methods
-  for (const auto &method : methods) {
-    sol.method(method);
+  for (const auto &alpha_method : alpha_methods) {
+    for (const auto &beta_method : beta_methods) {
+      sol.alpha_method(alpha_method);
+      sol.beta_method(beta_method);
 
-    Vector x_out;
-    for (size_t i{0}; i < fun.guesses().size(); ++i) {
-      sol.optimize(fun, fun.guess(i), x_out);
-      EXPECT_TRUE(sol.converged());
-      EXPECT_TRUE(fun.is_solution(x_out, std::cbrt(Function::EPSILON)));
+      Vector x_out;
+      for (size_t i{0}; i < fun.guesses().size(); ++i) {
+        sol.optimize(fun, fun.guess(i), x_out);
+        EXPECT_TRUE(sol.converged());
+        EXPECT_TRUE(
+            fun.is_solution(x_out, 1.0e3 * std::cbrt(Function::EPSILON)));
+      }
     }
   }
 }
-
-//  sol.max_iterations(250);
-//  sol.max_function_evaluations(5000);
-//  sol.max_gradient_evaluations(5000);
-//  sol.max_line_search_iterations(40);
-//

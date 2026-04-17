@@ -155,10 +155,10 @@ using CostTestTypes = testing::Types<
     // Eigen::Vector<double, 3>>, Brown<Eigen::Vector<double, Eigen::Dynamic>,
     // Eigen::Vector<double, Eigen::Dynamic>>,
     // Brown<Eigen::SparseVector<double>, Eigen::SparseVector<double>>,
-    Schaffer2<Eigen::Vector<float, 2>>
-    // Schaffer2<Eigen::Vector<float, Eigen::Dynamic>>,
+    // Schaffer2<Eigen::Vector<float, 2>>
+    //    Schaffer2<Eigen::Vector<float, Eigen::Dynamic>>,
     // Schaffer2<Eigen::SparseVector<float>>,
-    // Schaffer2<Eigen::Vector<double, 2>>,
+    Schaffer2<Eigen::Vector<double, 2>>
     // Schaffer2<Eigen::Vector<double, Eigen::Dynamic>>,
     // Schaffer2<Eigen::SparseVector<double>>,
     // EllipticParaboloid<Eigen::Vector<float, 2>>,
@@ -197,4 +197,82 @@ using CostTestTypes = testing::Types<
 //     }
 //   }
 //   ASSERT_TRUE(converged_at_least_once);
+// }
+
+// template <typename FunctionType>
+// struct CostFunctionStorage : public testing::Test {
+//   using TestType = FunctionType;
+// };
+
+// using CostStorageTestTypes =
+//     testing::Types<EllipticParaboloid<Eigen::Vector<float, 2>>,
+//                    EllipticParaboloid<Eigen::Vector<float,
+//                    Eigen::Dynamic>>,
+//                    EllipticParaboloid<Eigen::SparseVector<float>>,
+//                    EllipticParaboloid<Eigen::Vector<double, 2>>,
+//                    EllipticParaboloid<Eigen::Vector<double,
+//                    Eigen::Dynamic>>,
+//                    EllipticParaboloid<Eigen::SparseVector<double>>>;
+
+// TYPED_TEST_SUITE(CostFunctionStorage, CostStorageTestTypes);
+
+// TYPED_TEST(CostFunctionStorage, EvaluateDerivatives) {
+//   using Function = TypeParam;
+
+//   Function fun;
+//   typename Function::Scalar value{0};
+//   typename Function::FirstDerivative gradient;
+//   typename Function::SecondDerivative hessian;
+
+//   ASSERT_FALSE(fun.guesses().empty());
+//   EXPECT_TRUE(fun.evaluate(fun.guess(0), value));
+//   EXPECT_TRUE(std::isfinite(value));
+//   EXPECT_TRUE(fun.first_derivative(fun.guess(0), gradient));
+//   EXPECT_EQ(gradient.size(), 2);
+//   EXPECT_TRUE(fun.second_derivative(fun.guess(0), hessian));
+//   EXPECT_EQ(hessian.rows(), 2);
+//   EXPECT_EQ(hessian.cols(), 2);
+// }
+
+// template <typename FunctionType>
+// struct VectorFunctionStorage : public testing::Test {
+//   using TestType = FunctionType;
+// };
+
+// using VectorStorageTestTypes = testing::Types<
+//     Brown<Eigen::Vector<float, 2>, Eigen::Vector<float, 3>>,
+//     Brown<Eigen::Vector<float, Eigen::Dynamic>,
+//           Eigen::Vector<float, Eigen::Dynamic>>,
+//     Brown<Eigen::SparseVector<float>, Eigen::SparseVector<float>>,
+//     Brown<Eigen::Vector<double, 2>, Eigen::Vector<double, 3>>,
+//     Brown<Eigen::Vector<double, Eigen::Dynamic>,
+//           Eigen::Vector<double, Eigen::Dynamic>>,
+//     Brown<Eigen::SparseVector<double>, Eigen::SparseVector<double>>>;
+
+// TYPED_TEST_SUITE(VectorFunctionStorage, VectorStorageTestTypes);
+
+// TYPED_TEST(VectorFunctionStorage, EvaluateDerivatives) {
+//   using Function = TypeParam;
+//   using Output   = typename Function::OutputTrait::Type;
+//   using Scalar   = typename Function::Scalar;
+
+//   Function fun;
+//   Output value;
+//   typename Function::FirstDerivative jacobian;
+//   typename Function::SecondDerivative second_derivative;
+
+//   ASSERT_FALSE(fun.guesses().empty());
+//   EXPECT_TRUE(fun.evaluate(fun.guess(0), value));
+//   EXPECT_EQ(value.size(), 3);
+//   EXPECT_TRUE(fun.first_derivative(fun.guess(0), jacobian));
+//   EXPECT_EQ(jacobian.rows(), 3);
+//   EXPECT_EQ(jacobian.cols(), 2);
+//   EXPECT_TRUE(fun.second_derivative(fun.guess(0), second_derivative));
+//   EXPECT_EQ(second_derivative.size(), 2u);
+//   EXPECT_EQ(second_derivative[0].rows(), 3);
+//   EXPECT_EQ(second_derivative[0].cols(), 2);
+//   EXPECT_EQ(second_derivative[1].rows(), 3);
+//   EXPECT_EQ(second_derivative[1].cols(), 2);
+//   EXPECT_EQ(second_derivative[0].coeff(2, 1), Scalar(1.0));
+//   EXPECT_EQ(second_derivative[1].coeff(2, 0), Scalar(1.0));
 // }
