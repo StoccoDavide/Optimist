@@ -57,6 +57,15 @@ namespace Optimist {
               VectorTrait::IsDynamic,
               Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>,
               Eigen::SparseMatrix<Scalar>>>;
+      using SimplexTransp = std::conditional_t<
+          VectorTrait::IsFixed,
+          Eigen::Matrix<Scalar,
+                        VectorTrait::Dimension + 1,
+                        VectorTrait::Dimension>,
+          std::conditional_t<
+              VectorTrait::IsDynamic,
+              Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>,
+              Eigen::SparseMatrix<Scalar>>>;
       using MatrixD = std::conditional_t<
           VectorTrait::IsFixed,
           Eigen::Matrix<Scalar,
@@ -67,8 +76,8 @@ namespace Optimist {
               Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>,
               Eigen::SparseMatrix<Scalar>>>;
       using Factorization = std::conditional_t<VectorTrait::IsSparse,
-                                               Eigen::SparseLU<Simplex>,
-                                               Eigen::FullPivLU<Simplex>>;
+                                               Eigen::SparseLU<SimplexTransp>,
+                                               Eigen::FullPivLU<SimplexTransp>>;
 
       OPTIMIST_BASIC_CONSTANTS(Scalar)
 
@@ -110,24 +119,24 @@ namespace Optimist {
       Scalar m_dim_factorial{0}; /**< Factorial of the problem dimension. */
       Scalar m_regular_simplex_volume{0}; /**< Volume of a regular simplex. */
 
-      Integer m_low{0};  /**< Index of the lowest (best) point. */
-      Integer m_mid{0};  /**< Index of the middle point. */
-      Integer m_high{0}; /**< Index of the highest (worst) point. */
+      Integer m_low{0};     /**< Index of the lowest (best) point. */
+      Integer m_mid{0};     /**< Index of the middle point. */
+      Integer m_high{0};    /**< Index of the highest (worst) point. */
 
-      Costs m_f;         /**< Function values at simplex points. */
-      Simplex m_p;       /**< Simplex points. */
-      MatrixD m_dist;    /**< Distance matrix between simplex points. */
-      Vector m_f_work;   /**< Work function values. */
-      Simplex m_p_work;  /**< Work simplex points. */
-      Vector m_p_sum;    /**< Sum of simplex points. */
+      Costs m_f;            /**< Function values at simplex points. */
+      Simplex m_p;          /**< Simplex points. */
+      MatrixD m_dist;       /**< Distance matrix between simplex points. */
+      Vector m_f_work;      /**< Work function values. */
+      Simplex m_p_work;     /**< Work simplex points. */
+      Vector m_p_sum;       /**< Sum of simplex points. */
 
-      // Factorization m_lu; /**< LU decomposition. */
+      Factorization m_lu;   /**< LU decomposition. */
 
-      Vector m_p_r;               /**< Reflection point. */
-      Vector m_p_e;               /**< Expansion point. */
-      Vector m_p_c;               /**< Contraction point. */
+      Vector m_p_r;         /**< Reflection point. */
+      Vector m_p_e;         /**< Expansion point. */
+      Vector m_p_c;         /**< Contraction point. */
 
-      Scalar m_diameter{0};       /**< Simplex diameter. */
+      Scalar m_diameter{0}; /**< Simplex diameter. */
       Scalar m_simplex_volume{0}; /**< Simplex volume. */
 
      public:
@@ -467,10 +476,11 @@ namespace Optimist {
             break;
           }
 
-          Scalar ratio{
-            std::pow(this->m_simplex_volume / this->m_regular_simplex_volume,
-                     1.0 / this->m_dim) /
-            this->m_diameter};
+          Scalar ratio{static_cast<Scalar>(
+              std::pow<Scalar>(
+                  this->m_simplex_volume / this->m_regular_simplex_volume,
+                  1.0 / this->m_dim) /
+              this->m_diameter)};
           if (ratio <= this->m_volume_tolerance) {
             if (this->m_method == Method::STANDARD) {
               this->diamond(std::forward<FunctionLambda>(function),
@@ -572,7 +582,8 @@ namespace Optimist {
                     const Scalar delta) {
 #define CMD "Optimist::Optimizer::NelderMead::spendley(...): "
 
-        Scalar const t1{std::sqrt(static_cast<Scalar>(this->m_dim + 1)) - 1.0};
+        Scalar const t1{static_cast<Scalar>(
+            std::sqrt(static_cast<Scalar>(this->m_dim + 1)) - 1.0)};
         const Scalar t2{static_cast<Scalar>(this->m_dim) *
                         std::sqrt(static_cast<Scalar>(2))};
         const Scalar p{delta * (this->m_dim + t1) / t2};
@@ -774,8 +785,10 @@ namespace Optimist {
 
 #define CMD "Optimist::Optimizer::NelderMead::extrapolate(...): "
 
-        Scalar const beta_1{(1.0 + alpha) / static_cast<Scalar>(this->m_n)};
-        const Scalar beta{(static_cast<Scalar>(this->m_n) + 1.0) * beta_1};
+        Scalar const beta_1{static_cast<Scalar>(1.0 + alpha) /
+                            static_cast<Scalar>(this->m_dim)};
+        const Scalar beta{
+          static_cast<Scalar>(static_cast<Scalar>(this->m_dim) + 1.0 * beta_1)};
         p.noalias() = beta_1 * this->m_p_sum + (1.0 - beta) * this->m_p.col(j);
         Scalar f;
         bool success{
