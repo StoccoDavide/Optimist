@@ -69,109 +69,89 @@ namespace Optimist {
                       Vector &x_sol) {
 #define CMD "Optimist::RootFinder::QuasiNewton::solve(...): "
 
-        // Reset internal variables
         this->reset_counters();
-
-        // Print header
         if (this->m_verbose) {
           this->header();
         }
 
-        // Initialize variables
-        bool damped, success;
-        Scalar residuals, step_norm;
-        Vector x_old, x_new, function_old, function_new, step_old, step_new,
-            delta_x_old, delta_x_new, delta_function_old, delta_function_new;
-        FirstDerivative jacobian_old, jacobian_new;
-
-        // Set initial iteration
-        x_old = x_ini;
-        success =
-            this->evaluate_function(std::forward<FunctionLambda>(function),
-                                    x_old,
-                                    function_old);
-        OPTIMIST_ASSERT(success,
+        // H approximates the inverse of the Jacobian: it starts from the
+        // inverse of the exact Jacobian (or the identity if it is singular)
+        Vector x(x_ini), f, step, x_new, f_new, step_new, dx, df, dx_old,
+            df_old;
+        FirstDerivative H, H_new;
+        OPTIMIST_ASSERT(this->evaluate_function(function, x, f),
                         CMD "function evaluation failed at the initial point.");
-        success = this->evaluate_jacobian(jacobian, x_old, jacobian_old);
-        OPTIMIST_ASSERT(success,
+        OPTIMIST_ASSERT(this->evaluate_jacobian(jacobian, x, H),
                         CMD "jacobian evaluation failed at the initial point.");
+        this->invert_jacobian(H);
 
-        // Algorithm iterations
-        Scalar tolerance_residuals{this->m_tolerance};
-        Scalar tolerance_step_norm{this->m_tolerance * this->m_tolerance};
+        const Scalar tolerance_residuals{this->m_tolerance};
+        const Scalar tolerance_step{this->m_tolerance * this->m_tolerance};
         for (this->m_iterations = 1;
              this->m_iterations < this->m_max_iterations;
              ++this->m_iterations) {
-          // Calculate step
-          step_old = -jacobian_old * function_old;
+          // Quasi-Newton step
+          step = -H * f;
 
-          // Check convergence
-          residuals = function_old.norm();
-          step_norm = step_old.norm();
+          // Convergence
           if (this->m_verbose) {
-            this->info(residuals);
+            this->info(f.norm());
           }
-          if (residuals < tolerance_residuals ||
-              step_norm < tolerance_step_norm) {
+          if (f.norm() < tolerance_residuals || step.norm() < tolerance_step) {
             this->m_converged = true;
             break;
           }
 
+          // Update
           if (this->m_damped) {
-            // Relax the iteration process
-            damped = this->damp(std::forward<FunctionLambda>(function),
-                                x_old,
-                                function_old,
-                                step_old,
-                                x_new,
-                                function_new,
-                                step_new);
-            OPTIMIST_ASSERT_WARNING(damped,
-                                    "Optimist::RootFinder::QuasiNewton::solve(."
-                                    "..): damping failed.");
+            this->damp(function, x, f, step, x_new, f_new, step_new);
           } else {
-            // Update point
-            x_new = x_old + step_old;
-            success =
-                this->evaluate_function(std::forward<FunctionLambda>(function),
-                                        x_new,
-                                        function_new);
-            OPTIMIST_ASSERT(success,
+            x_new = x + step;
+            OPTIMIST_ASSERT(this->evaluate_function(function, x_new, f_new),
                             CMD "function evaluation failed at iteration "
                                 << this->m_iterations << ".");
           }
 
-          // Update jacobian approximation
-          delta_x_new        = x_new - x_old;
-          delta_function_new = function_new - function_old;
-          this->update(delta_x_old,
-                       delta_function_old,
-                       jacobian_old,  // Old step data
-                       delta_x_new,
-                       delta_function_new,
-                       function_new,
-                       jacobian_new  // New step data
-          );
-
-          // Update internal variables
-          x_old              = x_new;
-          function_old       = function_new;
-          delta_x_old        = delta_x_new;
-          delta_function_old = delta_function_new;
-          step_old           = step_new;
-          jacobian_old       = jacobian_new;
+          // Secant update of the inverse Jacobian
+          dx = x_new - x;
+          df = f_new - f;
+          this->update(dx_old, df_old, H, dx, df, f_new, H_new);
+          x      = x_new;
+          f      = f_new;
+          dx_old = dx;
+          df_old = df;
+          H      = H_new;
         }
 
-        // Print bottom
         if (this->m_verbose) {
           this->bottom();
         }
-
-        // Convergence data
-        x_sol = x_old;
+        x_sol = x;
         return this->m_converged;
 
 #undef CMD
+      }
+
+      /**
+       * Invert the Jacobian matrix in place. If the matrix is singular, it is
+       * replaced by the identity matrix.
+       * \param[in,out] jacobian Jacobian matrix to be inverted.
+       */
+      static void invert_jacobian(FirstDerivative &jacobian) {
+        using Dense = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
+        const Dense J(jacobian);
+        const Eigen::FullPivLU<Dense> lu(J);
+        Dense J_inv(J.rows(), J.cols());
+        if (lu.isInvertible()) {
+          J_inv = lu.inverse();
+        } else {
+          J_inv.setIdentity();
+        }
+        if constexpr (VectorTrait::IsSparse) {
+          jacobian = J_inv.sparseView();
+        } else {
+          jacobian = J_inv;
+        }
       }
 
       /**

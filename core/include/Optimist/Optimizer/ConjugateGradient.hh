@@ -13,13 +13,15 @@
 #ifndef OPTIMIST_OPTIMIZER_CONJUGATE_GRADIENT_HH
 #define OPTIMIST_OPTIMIZER_CONJUGATE_GRADIENT_HH
 
+#include "Optimist/LineSearch.hh"
 #include "Optimist/Optimizer.hh"
 
 namespace Optimist {
+
   namespace Optimizer {
 
     /**
-     * \brief Class container for nonlinear conjugate gradient methods.
+     * \brief Class container for the nonlinear conjugate gradient method.
      *
      * \includedoc docs/markdown/Optimizer/ConjugateGradient.md
      *
@@ -43,792 +45,285 @@ namespace Optimist {
       OPTIMIST_BASIC_CONSTANTS(Scalar)
 
       /**
-       * Conjugate gradient update method enumeration.
+       * Update formula for the conjugate direction parameter \f$ \beta_k \f$.
        */
       using BetaMethod = enum class BetaMethod : Integer {
-        FLETCHER_REEVES    = 0,
-        POLAK_RIBIERE      = 1,
-        POLAK_RIBIERE_PLUS = 2,
-        HESTENES_STIEFEL   = 3,
-        CONJUGATE_DESCENT  = 4,
-        LIU_STOREY         = 5,
-        DAI_YUAN           = 6,
-        HAGER_ZHANG        = 7,
-        HAGER_ZHANG_PLUS   = 8
+        FLETCHER_REEVES    = 0, /**< Fletcher-Reeves. */
+        POLAK_RIBIERE      = 1, /**< Polak-Ribière-Polyak. */
+        POLAK_RIBIERE_PLUS = 2, /**< Polak-Ribière-Polyak, non-negative. */
+        HESTENES_STIEFEL   = 3, /**< Hestenes-Stiefel. */
+        CONJUGATE_DESCENT  = 4, /**< Fletcher's conjugate descent. */
+        LIU_STOREY         = 5, /**< Liu-Storey. */
+        DAI_YUAN           = 6, /**< Dai-Yuan. */
+        HAGER_ZHANG        = 7, /**< Hager-Zhang. */
+        HAGER_ZHANG_PLUS   = 8  /**< Hager-Zhang, truncated. */
       };
 
       /**
-       * Step-length initialization strategy enumeration.
+       * Initial trial step of the line search.
        */
       using AlphaMethod = enum class AlphaMethod : Integer {
-        ACCEPTED_STEP    = 0,
-        BARZILAI_BORWEIN = 1
+        ACCEPTED_STEP    = 0, /**< Last accepted step. */
+        BARZILAI_BORWEIN = 1  /**< Barzilai-Borwein step. */
       };
 
      private:
-      BetaMethod m_beta_method{
-        BetaMethod::HAGER_ZHANG};      /**< Conjugate gradient method. */
+      BetaMethod m_beta_method{BetaMethod::HAGER_ZHANG}; /**< Beta formula. */
       AlphaMethod m_alpha_method{
-        AlphaMethod::ACCEPTED_STEP};   /**< Trial step initialization method. */
-
-      Scalar m_initial_step{1.0};      /**< Initial line-search step. */
-      Scalar m_min_step{SQRT_EPSILON}; /**< Minimum admissible step. */
-      Scalar m_max_step{static_cast<Scalar>(1.0) /
-                        SQRT_EPSILON}; /**< Maximum admissible step. */
-      Scalar m_step_expand{2.0};       /**< Line-search expansion factor. */
-      Scalar m_step_shrink{0.5};       /**< Line-search shrink factor. */
-      Scalar m_armijo_parameter{
-        1.0e-4}; /**< Armijo sufficient decrease constant. */
-      Scalar m_descent_parameter{1.0e-2}; /**< Sufficient descent constant. */
-      Scalar m_curvature_parameter{0.1};  /**< Wolfe curvature constant. */
-      Scalar m_truncation_parameter{
-        1.0e-2}; /**< Truncation parameter for Hager-Zhang+. */
-      Integer m_max_line_search_iterations{
-        25};     /**< Maximum line-search iterations. */
-
-      bool m_powell_restart{true};     /**< Powell restart flag. */
-      Scalar m_restart_tolerance{0.9}; /**< Powell restart tolerance. */
-
-     private:
-      /**
-       * Get the lower truncation bound used by the Hager-Zhang+ method.
-       * \param[in] gradient_new Current gradient.
-       * \param[in] direction_old Previous search direction.
-       * \return The lower truncation bound.
-       */
-      Scalar hager_zhang_plus_bound(const Vector &gradient_new,
-                                    const Vector &direction_old) const {
-        Scalar direction_norm{direction_old.norm()};
-        Scalar gradient_norm{gradient_new.norm()};
-        Scalar denominator{
-          direction_norm *
-          std::min(this->m_truncation_parameter, gradient_norm)};
-        if (!std::isfinite(denominator) || denominator <= SQRT_EPSILON) {
-          return 0.0;
-        }
-        return -1.0 / denominator;
-      }
-
-      /**
-       * Clamp the line-search step inside the configured interval.
-       * \param[in] t_step Trial step.
-       * \return Clamped step.
-       */
-      Scalar clamp_step(Scalar t_step) const {
-        if (!std::isfinite(t_step) || t_step <= 0.0) {
-          t_step = this->m_initial_step;
-        }
-        return std::min(this->m_max_step, std::max(this->m_min_step, t_step));
-      }
-
-      /**
-       * Compute the next trial step using the Barzilai-Borwein formula.
-       *
-       * The update uses the accepted step along the previous search direction
-       * and falls back to the accepted step when the curvature estimate is not
-       * positive or is numerically unreliable.
-       *
-       * \param[in] accepted_step Accepted line-search step.
-       * \param[in] direction_old Previous search direction.
-       * \param[in] gradient_old Previous gradient.
-       * \param[in] gradient_new Current gradient.
-       * \return The next trial step.
-       */
-      Scalar barzilai_borwein_step(const Scalar accepted_step,
-                                   const FirstDerivative &direction_old,
-                                   const FirstDerivative &gradient_old,
-                                   const FirstDerivative &gradient_new) const {
-        const Scalar fallback_step{this->clamp_step(accepted_step)};
-        const FirstDerivative y{gradient_new - gradient_old};
-        const Scalar denominator{direction_old.dot(y)};
-        if (!std::isfinite(denominator) || denominator <= SQRT_EPSILON) {
-          return fallback_step;
-        }
-
-        const Scalar numerator{accepted_step * direction_old.squaredNorm()};
-        if (!std::isfinite(numerator) || numerator <= SQRT_EPSILON) {
-          return fallback_step;
-        }
-
-        return this->clamp_step(numerator / denominator);
-      }
-
-      /**
-       * Compute the next trial step passed to the line search.
-       * \param[in] accepted_step Accepted line-search step.
-       * \param[in] direction_old Previous search direction.
-       * \param[in] gradient_old Previous gradient.
-       * \param[in] gradient_new Current gradient.
-       * \return The next trial step.
-       */
-      Scalar next_trial_step(const Scalar accepted_step,
-                             const FirstDerivative &direction_old,
-                             const FirstDerivative &gradient_old,
-                             const FirstDerivative &gradient_new) const {
-        switch (this->m_alpha_method) {
-          case AlphaMethod::BARZILAI_BORWEIN:
-            return this->barzilai_borwein_step(accepted_step,
-                                               direction_old,
-                                               gradient_old,
-                                               gradient_new);
-
-          case AlphaMethod::ACCEPTED_STEP:
-          default:
-            return this->clamp_step(accepted_step);
-        }
-      }
-
-      /**
-       * Check whether the current direction is a descent direction.
-       * \param[in] gradient Current gradient.
-       * \param[in] direction Current search direction.
-       * \return True if the direction is a descent direction, false otherwise.
-       */
-      bool is_descent_direction(const Vector &gradient,
-                                const Vector &direction) const {
-        const Scalar directional_derivative{gradient.dot(direction)};
-        const Scalar threshold{
-          -SQRT_EPSILON *
-          std::max(static_cast<Scalar>(1.0), gradient.squaredNorm())};
-        return std::isfinite(directional_derivative) &&
-               directional_derivative < threshold;
-      }
-
-      /**
-       * Check whether the current direction satisfies a sufficient descent
-       * condition.
-       * \param[in] gradient Current gradient.
-       * \param[in] direction Current search direction.
-       * \return True if the direction satisfies a sufficient descent bound,
-       * false otherwise.
-       */
-      bool has_sufficient_descent(const Vector &gradient,
-                                  const Vector &direction) const {
-        const Scalar directional_derivative{gradient.dot(direction)};
-        const Scalar threshold{-this->m_descent_parameter *
-                               gradient.squaredNorm()};
-        return std::isfinite(directional_derivative) &&
-               directional_derivative <= threshold;
-      }
-
-      /**
-       * Check the Powell restart condition.
-       * \param[in] gradient_old Previous gradient.
-       * \param[in] gradient_new Current gradient.
-       * \return True if the search direction must be restarted.
-       */
-      bool should_restart(const Vector &gradient_old,
-                          const Vector &gradient_new) const {
-        if (!this->m_powell_restart) {
-          return false;
-        }
-        const Scalar gradient_old_norm{gradient_old.norm()};
-        const Scalar gradient_new_norm{gradient_new.norm()};
-        if (gradient_old_norm <= SQRT_EPSILON ||
-            gradient_new_norm <= SQRT_EPSILON) {
-          return false;
-        }
-        return gradient_new.dot(gradient_old) <= -this->m_restart_tolerance *
-                                                     gradient_new_norm *
-                                                     gradient_old_norm;
-      }
-
-      /**
-       * Compute the conjugate gradient update parameter.
-       * \param[in] gradient_old Previous gradient.
-       * \param[in] gradient_new Current gradient.
-       * \param[in] direction_old Previous search direction.
-       * \param[in] y Gradient difference.
-       * \return The update parameter \f$\beta_k\f$.
-       */
-      Scalar compute_beta(const Vector &gradient_old,
-                          const Vector &gradient_new,
-                          const Vector &direction_old,
-                          const Vector &y) const {
-        const Scalar gradient_old_norm_sq{gradient_old.squaredNorm()};
-        const Scalar gradient_new_norm_sq{gradient_new.squaredNorm()};
-        const Scalar direction_gradient{-direction_old.dot(gradient_old)};
-        const Scalar direction_y{direction_old.dot(y)};
-        const Scalar gradient_y{gradient_new.dot(y)};
-
-        switch (this->m_beta_method) {
-          case BetaMethod::FLETCHER_REEVES:
-            if (gradient_old_norm_sq <= SQRT_EPSILON) {
-              return 0.0;
-            }
-            return gradient_new_norm_sq / gradient_old_norm_sq;
-
-          case BetaMethod::POLAK_RIBIERE:
-            if (gradient_old_norm_sq <= SQRT_EPSILON) {
-              return 0.0;
-            }
-            return gradient_y / gradient_old_norm_sq;
-
-          case BetaMethod::POLAK_RIBIERE_PLUS:
-            if (gradient_old_norm_sq <= SQRT_EPSILON) {
-              return 0.0;
-            }
-            return std::max(gradient_y / gradient_old_norm_sq,
-                            static_cast<Scalar>(0.0));
-
-          case BetaMethod::HESTENES_STIEFEL:
-            if (std::abs(direction_y) <= SQRT_EPSILON) {
-              return 0.0;
-            }
-            return gradient_y / direction_y;
-
-          case BetaMethod::CONJUGATE_DESCENT:
-            if (direction_gradient <= SQRT_EPSILON) {
-              return 0.0;
-            }
-            return gradient_new_norm_sq / direction_gradient;
-
-          case BetaMethod::LIU_STOREY:
-            if (direction_gradient <= SQRT_EPSILON) {
-              return 0.0;
-            }
-            return gradient_y / direction_gradient;
-
-          case BetaMethod::DAI_YUAN:
-            if (std::abs(direction_y) <= SQRT_EPSILON) {
-              return 0.0;
-            }
-            return gradient_new_norm_sq / direction_y;
-
-          case BetaMethod::HAGER_ZHANG: {
-            if (std::abs(direction_y) <= SQRT_EPSILON) {
-              return 0.0;
-            }
-            Vector tmp(direction_old);
-            tmp *= 2.0 * y.squaredNorm() / direction_y;
-            tmp = y - tmp;
-            return gradient_new.dot(tmp) / direction_y;
-          }
-
-          case BetaMethod::HAGER_ZHANG_PLUS: {
-            if (std::abs(direction_y) <= SQRT_EPSILON) {
-              return 0.0;
-            }
-            Vector tmp(direction_old);
-            tmp *= 2.0 * y.squaredNorm() / direction_y;
-            tmp = y - tmp;
-            Scalar beta_hz{gradient_new.dot(tmp) / direction_y};
-            return std::max(
-                beta_hz,
-                this->hager_zhang_plus_bound(gradient_new, direction_old));
-          }
-
-          default:
-            return 0.0;
-        }
-      }
-
-      /**
-       * Perform a standard Wolfe line search.
-       * \tparam FunctionLambda Function lambda type.
-       * \tparam GradientLambda Gradient lambda type.
-       * \param[in] function Function lambda.
-       * \param[in] gradient Gradient lambda.
-       * \param[in] x_old Current point.
-       * \param[in] function_old Current objective value.
-       * \param[in] gradient_old Current gradient.
-       * \param[in] direction_old Current search direction.
-       * \param[in] trial_step Initial line-search step.
-       * \param[out] x_new Updated point.
-       * \param[out] function_new Updated objective value.
-       * \param[out] gradient_new Updated gradient.
-       * \param[out] accepted_step Accepted line-search step.
-       * \return The boolean flag for successful line search.
-       */
-      template <typename FunctionLambda, typename GradientLambda>
-      bool line_search(FunctionLambda &function,
-                       GradientLambda &gradient,
-                       const Vector &x_old,
-                       const Scalar function_old,
-                       const FirstDerivative &gradient_old,
-                       const Vector &direction_old,
-                       const Scalar trial_step,
-                       Vector &x_new,
-                       Scalar &function_new,
-                       FirstDerivative &gradient_new,
-                       Scalar &accepted_step) {
-#define CMD "Optimist::Optimizer::ConjugateGradient::line_search(...): "
-
-        Scalar directional_derivative{gradient_old.dot(direction_old)};
-        OPTIMIST_ASSERT(directional_derivative < 0.0,
-                        CMD "non-descent search direction detected.");
-
-        accepted_step = this->clamp_step(trial_step);
-        Scalar lower_step{0.0};
-        Scalar upper_step{INFTY};
-        for (this->m_relaxations = 0;
-             this->m_relaxations < this->m_max_line_search_iterations;
-             ++this->m_relaxations) {
-          x_new = x_old + accepted_step * direction_old;
-
-          bool success{this->evaluate_function(function, x_new, function_new)};
-          OPTIMIST_ASSERT(success,
-                          CMD "function evaluation failed during line search.");
-
-          if (function_new > function_old + this->m_armijo_parameter *
-                                                accepted_step *
-                                                directional_derivative) {
-            upper_step = accepted_step;
-          } else {
-            success = this->evaluate_gradient(gradient, x_new, gradient_new);
-            OPTIMIST_ASSERT(success,
-                            CMD
-                            "gradient evaluation failed during line search.");
-
-            Scalar directional_derivative_new{gradient_new.dot(direction_old)};
-            if (std::abs(directional_derivative_new) <=
-                -this->m_curvature_parameter * directional_derivative) {
-              return true;
-            }
-
-            if (directional_derivative_new >= 0.0) {
-              upper_step = accepted_step;
-            } else {
-              lower_step = accepted_step;
-            }
-          }
-
-          if (std::isfinite(upper_step)) {
-            if (lower_step <= this->m_min_step) {
-              accepted_step *= this->m_step_shrink;
-            } else {
-              accepted_step =
-                  static_cast<Scalar>(0.5) * (lower_step + upper_step);
-            }
-          } else {
-            accepted_step =
-                this->clamp_step(accepted_step * this->m_step_expand);
-          }
-          if (accepted_step < this->m_min_step ||
-              (std::isfinite(upper_step) &&
-               upper_step - lower_step < this->m_min_step)) {
-            break;
-          }
-        }
-        return false;
-
-#undef CMD
-      }
+        AlphaMethod::ACCEPTED_STEP}; /**< Initial trial step. */
+      LineSearch::Method m_line_search{
+        LineSearch::Method::STRONG_WOLFE};     /**< Line search strategy. */
+      LineSearch::Settings<Scalar> m_settings{
+        .c1             = static_cast<Scalar>(1.0e-4),
+        .c2             = static_cast<Scalar>(0.1),
+        .alpha_max      = 1 / SQRT_EPSILON,
+        .max_iterations = 25};                 /**< Line search settings. */
+      Scalar m_initial_step{1.0};              /**< Initial trial step. */
+      Scalar m_min_step{SQRT_EPSILON};         /**< Minimum trial step. */
+      Scalar m_descent_parameter{1.0e-2};      /**< Sufficient descent. */
+      Scalar m_truncation_parameter{1.0e-2};   /**< Hager-Zhang+ bound. */
+      bool m_powell_restart{true};             /**< Powell restart flag. */
+      Scalar m_restart_tolerance{0.9};         /**< Powell restart threshold. */
 
      public:
       /**
-       * Class constructor for the ConjugateGradient solver.
+       * Class constructor for the conjugate gradient solver.
        */
       ConjugateGradient() {}
 
       /**
-       * Get the ConjugateGradient solver name.
-       * \return The ConjugateGradient solver name.
+       * Get the conjugate gradient solver name.
+       * \return The conjugate gradient solver name.
        */
       constexpr std::string name_impl() const {
         return "ConjugateGradient";
       }
 
       /**
-       * Get the enumeration type of the conjugate gradient mbeta ethod.
-       * \return The conjugate gradient method.
+       * Get the update formula for \f$ \beta_k \f$.
        */
       BetaMethod beta_method() const {
         return this->m_beta_method;
       }
 
       /**
-       * Set the enumeration type of the conjugate gradient beta method.
-       * \param[in] t_beta_method Conjugate gradient method.
+       * Set the update formula for \f$ \beta_k \f$.
        */
       void beta_method(const BetaMethod t_beta_method) {
         this->m_beta_method = t_beta_method;
       }
 
-      /**
-       * Enable the Fletcher-Reeves method.
-       */
+      /** Enable the Fletcher-Reeves formula. */
       void enable_fletcher_reeves_method() {
         this->m_beta_method = BetaMethod::FLETCHER_REEVES;
       }
 
-      /**
-       * Enable the Polak-Ribiere method.
-       */
+      /** Enable the Polak-Ribière-Polyak formula. */
       void enable_polak_ribiere_method() {
         this->m_beta_method = BetaMethod::POLAK_RIBIERE;
       }
 
-      /**
-       * Enable the Polak-Ribiere+ method.
-       */
+      /** Enable the non-negative Polak-Ribière-Polyak formula. */
       void enable_polak_ribiere_plus_method() {
         this->m_beta_method = BetaMethod::POLAK_RIBIERE_PLUS;
       }
 
-      /**
-       * Enable the Hestenes-Stiefel method.
-       */
+      /** Enable the Hestenes-Stiefel formula. */
       void enable_hestenes_stiefel_method() {
         this->m_beta_method = BetaMethod::HESTENES_STIEFEL;
       }
 
-      /**
-       * Enable the conjugate descent method.
-       */
+      /** Enable Fletcher's conjugate descent formula. */
       void enable_conjugate_descent_method() {
         this->m_beta_method = BetaMethod::CONJUGATE_DESCENT;
       }
 
-      /**
-       * Enable the Liu-Storey method.
-       */
+      /** Enable the Liu-Storey formula. */
       void enable_liu_storey_method() {
         this->m_beta_method = BetaMethod::LIU_STOREY;
       }
 
-      /**
-       * Enable the Dai-Yuan method.
-       */
+      /** Enable the Dai-Yuan formula. */
       void enable_dai_yuan_method() {
         this->m_beta_method = BetaMethod::DAI_YUAN;
       }
 
-      /**
-       * Enable the Hager-Zhang method.
-       */
+      /** Enable the Hager-Zhang formula. */
       void enable_hager_zhang_method() {
         this->m_beta_method = BetaMethod::HAGER_ZHANG;
       }
 
-      /**
-       * Enable the Hager-Zhang+ method.
-       */
+      /** Enable the truncated Hager-Zhang formula. */
       void enable_hager_zhang_plus_method() {
         this->m_beta_method = BetaMethod::HAGER_ZHANG_PLUS;
       }
 
       /**
-       * Set the conjugate gradient beta method.
-       * \param[in] t_method Conjugate gradient beta method.
-       */
-      void set_method(const BetaMethod t_method) {
-        this->m_beta_method = t_method;
-      }
-
-      /**
-       * Get the enumeration type of the alpha computation method.
-       * \return The alpha computation method.
+       * Get the initial trial step strategy.
        */
       AlphaMethod alpha_method() const {
         return this->m_alpha_method;
       }
 
       /**
-       * Set the enumeration type of the alpha computation method.
-       * \param[in] t_alpha_method Alpha computation method.
+       * Set the initial trial step strategy.
        */
       void alpha_method(const AlphaMethod t_alpha_method) {
         this->m_alpha_method = t_alpha_method;
       }
 
-      /**
-       * Enable the reuse of the last accepted line-search step.
-       */
+      /** Start each line search from the last accepted step. */
       void enable_accepted_step_alpha_method() {
         this->m_alpha_method = AlphaMethod::ACCEPTED_STEP;
       }
 
-      /**
-       * Enable the Barzilai-Borwein trial-step update.
-       */
+      /** Start each line search from the Barzilai-Borwein step. */
       void enable_barzilai_borwein_alpha_method() {
         this->m_alpha_method = AlphaMethod::BARZILAI_BORWEIN;
       }
 
       /**
-       * Set the alpha computation method.
-       * \param[in] t_alpha_method Alpha computation method.
+       * Get the line search strategy.
        */
-      void set_alpha_method(const AlphaMethod t_alpha_method) {
-        this->m_alpha_method = t_alpha_method;
+      LineSearch::Method line_search() const {
+        return this->m_line_search;
       }
 
       /**
-       * Get the initial line-search step.
-       * \return The initial line-search step.
+       * Set the line search strategy. The strong Wolfe conditions (strong
+       * Wolfe or Moré-Thuente searches) are required by the convergence
+       * theory of most \f$ \beta_k \f$ formulas.
+       */
+      void line_search(const LineSearch::Method t_line_search) {
+        this->m_line_search = t_line_search;
+      }
+
+      /**
+       * Access the line search settings (by default \f$ c_1 = 10^{-4} \f$ and
+       * \f$ c_2 = 0.1 \f$, i.e., a fairly accurate line search).
+       */
+      LineSearch::Settings<Scalar> &line_search_settings() {
+        return this->m_settings;
+      }
+
+      /**
+       * Get the first trial step.
        */
       Scalar initial_step() const {
         return this->m_initial_step;
       }
 
       /**
-       * Set the initial line-search step.
-       * \param[in] t_initial_step Initial line-search step.
+       * Set the first trial step.
        */
       void initial_step(const Scalar t_initial_step) {
-        OPTIMIST_ASSERT(
-            !std::isnan(t_initial_step) && std::isfinite(t_initial_step) &&
-                t_initial_step > 0.0,
-            "Optimist::Optimizer::ConjugateGradient::initial_step(...): "
-            "invalid input detected.");
+        OPTIMIST_ASSERT(std::isfinite(t_initial_step) && t_initial_step > 0,
+                        "Optimist::Optimizer::ConjugateGradient::initial_step("
+                        "...): invalid input detected.");
         this->m_initial_step = t_initial_step;
       }
 
       /**
-       * Get the minimum admissible line-search step.
-       * \return The minimum admissible line-search step.
+       * Get the minimum trial step.
        */
       Scalar min_step() const {
         return this->m_min_step;
       }
 
       /**
-       * Set the minimum admissible line-search step.
-       * \param[in] t_min_step Minimum admissible line-search step.
+       * Set the minimum trial step.
        */
       void min_step(const Scalar t_min_step) {
-        OPTIMIST_ASSERT(
-            !std::isnan(t_min_step) && std::isfinite(t_min_step) &&
-                t_min_step > 0.0 && t_min_step <= this->m_max_step,
-            "Optimist::Optimizer::ConjugateGradient::min_step(...): "
-            "invalid input detected.");
+        OPTIMIST_ASSERT(std::isfinite(t_min_step) && t_min_step > 0,
+                        "Optimist::Optimizer::ConjugateGradient::min_step(...)"
+                        ": invalid input detected.");
         this->m_min_step = t_min_step;
       }
 
       /**
-       * Get the maximum admissible line-search step.
-       * \return The maximum admissible line-search step.
-       */
-      Scalar max_step() const {
-        return this->m_max_step;
-      }
-
-      /**
-       * Set the maximum admissible line-search step.
-       * \param[in] t_max_step Maximum admissible line-search step.
-       */
-      void max_step(const Scalar t_max_step) {
-        OPTIMIST_ASSERT(
-            !std::isnan(t_max_step) && std::isfinite(t_max_step) &&
-                t_max_step >= this->m_min_step,
-            "Optimist::Optimizer::ConjugateGradient::max_step(...): "
-            "invalid input detected.");
-        this->m_max_step = t_max_step;
-      }
-
-      /**
-       * Get the backtracking shrink factor.
-       * \return The backtracking shrink factor.
-       */
-      Scalar step_shrink() const {
-        return this->m_step_shrink;
-      }
-
-      /**
-       * Get the line-search expansion factor.
-       * \return The line-search expansion factor.
-       */
-      Scalar step_expand() const {
-        return this->m_step_expand;
-      }
-
-      /**
-       * Set the line-search expansion factor.
-       * \param[in] t_step_expand Line-search expansion factor.
-       */
-      void step_expand(const Scalar t_step_expand) {
-        OPTIMIST_ASSERT(
-            !std::isnan(t_step_expand) && std::isfinite(t_step_expand) &&
-                t_step_expand > 1.0,
-            "Optimist::Optimizer::ConjugateGradient::step_expand(...): "
-            "invalid input detected.");
-        this->m_step_expand = t_step_expand;
-      }
-
-      /**
-       * Set the backtracking shrink factor.
-       * \param[in] t_step_shrink Backtracking shrink factor.
-       */
-      void step_shrink(const Scalar t_step_shrink) {
-        OPTIMIST_ASSERT(
-            !std::isnan(t_step_shrink) && std::isfinite(t_step_shrink) &&
-                t_step_shrink > 0.0 && t_step_shrink < 1.0,
-            "Optimist::Optimizer::ConjugateGradient::step_shrink(...): "
-            "invalid input detected.");
-        this->m_step_shrink = t_step_shrink;
-      }
-
-      /**
-       * Get the Armijo sufficient decrease parameter.
-       * \return The Armijo sufficient decrease parameter.
-       */
-      Scalar armijo_parameter() const {
-        return this->m_armijo_parameter;
-      }
-
-      /**
-       * Set the Armijo sufficient decrease parameter.
-       * \param[in] t_armijo_parameter Armijo sufficient decrease parameter.
-       */
-      void armijo_parameter(const Scalar t_armijo_parameter) {
-        OPTIMIST_ASSERT(
-            !std::isnan(t_armijo_parameter) &&
-                std::isfinite(t_armijo_parameter) && t_armijo_parameter > 0.0 &&
-                t_armijo_parameter < 1.0,
-            "Optimist::Optimizer::ConjugateGradient::armijo_parameter(...): "
-            "invalid input detected.");
-        this->m_armijo_parameter = t_armijo_parameter;
-      }
-
-      /**
-       * Get the Wolfe curvature parameter.
-       * \return The Wolfe curvature parameter.
-       */
-      Scalar curvature_parameter() const {
-        return this->m_curvature_parameter;
-      }
-
-      /**
-       * Set the Wolfe curvature parameter.
-       * \param[in] t_curvature_parameter Wolfe curvature parameter.
-       */
-      void curvature_parameter(const Scalar t_curvature_parameter) {
-        OPTIMIST_ASSERT(
-            !std::isnan(t_curvature_parameter) &&
-                std::isfinite(t_curvature_parameter) &&
-                t_curvature_parameter > this->m_armijo_parameter &&
-                t_curvature_parameter < 1.0,
-            "Optimist::Optimizer::ConjugateGradient::curvature_parameter(...): "
-            "invalid input detected.");
-        this->m_curvature_parameter = t_curvature_parameter;
-      }
-
-      /**
-       * Get the truncation parameter used by the Hager-Zhang+ method.
-       * \return The truncation parameter.
-       */
-      Scalar truncation_parameter() const {
-        return this->m_truncation_parameter;
-      }
-
-      /**
-       * Set the truncation parameter used by the Hager-Zhang+ method.
-       * \param[in] t_truncation_parameter Truncation parameter.
-       */
-      void truncation_parameter(const Scalar t_truncation_parameter) {
-        OPTIMIST_ASSERT(!std::isnan(t_truncation_parameter) &&
-                            std::isfinite(t_truncation_parameter) &&
-                            t_truncation_parameter > 0.0,
-                        "Optimist::Optimizer::ConjugateGradient::truncation_"
-                        "parameter(...): "
-                        "invalid input detected.");
-        this->m_truncation_parameter = t_truncation_parameter;
-      }
-
-      /**
-       * Get the sufficient descent parameter.
-       * \return The sufficient descent parameter.
+       * Get the sufficient descent constant \f$ c \f$: a direction is kept
+       * only if \f$ \mathbf{g}^\top\mathbf{d} \leq -c\|\mathbf{g}\|^2 \f$.
        */
       Scalar descent_parameter() const {
         return this->m_descent_parameter;
       }
 
       /**
-       * Set the sufficient descent parameter.
-       * \param[in] t_descent_parameter Sufficient descent parameter.
+       * Set the sufficient descent constant \f$ 0 < c < 1 \f$.
        */
       void descent_parameter(const Scalar t_descent_parameter) {
-        OPTIMIST_ASSERT(
-            !std::isnan(t_descent_parameter) &&
-                std::isfinite(t_descent_parameter) &&
-                t_descent_parameter > 0.0 && t_descent_parameter < 1.0,
-            "Optimist::Optimizer::ConjugateGradient::descent_parameter(...): "
-            "invalid input detected.");
+        OPTIMIST_ASSERT(t_descent_parameter > 0 && t_descent_parameter < 1,
+                        "Optimist::Optimizer::ConjugateGradient::descent_"
+                        "parameter(...): invalid input detected.");
         this->m_descent_parameter = t_descent_parameter;
       }
 
       /**
-       * Get the maximum number of line-search iterations.
-       * \return The maximum number of line-search iterations.
+       * Get the truncation parameter \f$ \eta \f$ of the Hager-Zhang+ formula.
        */
-      Integer max_line_search_iterations() const {
-        return this->m_max_line_search_iterations;
+      Scalar truncation_parameter() const {
+        return this->m_truncation_parameter;
       }
 
       /**
-       * Set the maximum number of line-search iterations.
-       * \param[in] t_max_line_search_iterations Maximum line-search iterations.
+       * Set the truncation parameter \f$ \eta > 0 \f$ of the Hager-Zhang+
+       * formula.
        */
-      void max_line_search_iterations(
-          const Integer t_max_line_search_iterations) {
-        OPTIMIST_ASSERT(t_max_line_search_iterations > 0,
-                        "Optimist::Optimizer::ConjugateGradient::max_line_"
-                        "search_iterations(...): "
-                        "invalid input detected.");
-        this->m_max_line_search_iterations = t_max_line_search_iterations;
+      void truncation_parameter(const Scalar t_truncation_parameter) {
+        OPTIMIST_ASSERT(t_truncation_parameter > 0,
+                        "Optimist::Optimizer::ConjugateGradient::truncation_"
+                        "parameter(...): invalid input detected.");
+        this->m_truncation_parameter = t_truncation_parameter;
       }
 
       /**
        * Get the Powell restart flag.
-       * \return The Powell restart flag.
        */
       bool powell_restart() const {
         return this->m_powell_restart;
       }
 
       /**
-       * Set the Powell restart flag.
-       * \param[in] t_powell_restart Powell restart flag.
+       * Set the Powell restart flag: restart from the steepest descent
+       * direction when consecutive gradients are far from orthogonal.
        */
       void powell_restart(const bool t_powell_restart) {
         this->m_powell_restart = t_powell_restart;
       }
 
-      /**
-       * Enable the Powell restart safeguard.
-       */
+      /** Enable the Powell restart. */
       void enable_powell_restart() {
         this->m_powell_restart = true;
       }
 
-      /**
-       * Disable the Powell restart safeguard.
-       */
+      /** Disable the Powell restart. */
       void disable_powell_restart() {
         this->m_powell_restart = false;
       }
 
       /**
-       * Get the Powell restart tolerance.
-       * \return The Powell restart tolerance.
+       * Get the Powell restart threshold \f$ \nu \f$.
        */
       Scalar restart_tolerance() const {
         return this->m_restart_tolerance;
       }
 
       /**
-       * Set the Powell restart tolerance.
-       * \param[in] t_restart_tolerance Powell restart tolerance.
+       * Set the Powell restart threshold \f$ 0 < \nu < 1 \f$: restart when
+       * \f$ \mathbf{g}_{k+1}^\top\mathbf{g}_k \leq -\nu
+       * \|\mathbf{g}_{k+1}\|\|\mathbf{g}_k\| \f$.
        */
       void restart_tolerance(const Scalar t_restart_tolerance) {
-        OPTIMIST_ASSERT(
-            !std::isnan(t_restart_tolerance) &&
-                std::isfinite(t_restart_tolerance) &&
-                t_restart_tolerance > 0.0 && t_restart_tolerance < 1.0,
-            "Optimist::Optimizer::ConjugateGradient::restart_tolerance(...): "
-            "invalid input detected.");
+        OPTIMIST_ASSERT(t_restart_tolerance > 0 && t_restart_tolerance < 1,
+                        "Optimist::Optimizer::ConjugateGradient::restart_"
+                        "tolerance(...): invalid input detected.");
         this->m_restart_tolerance = t_restart_tolerance;
       }
 
       /**
-       * Solve the unconstrained optimization problem
-       * \f$ \min_{\mathbf{x}} f(\mathbf{x}) \f$, with
-       * \f$ f: \mathbb{R}^n \rightarrow \mathbb{R} \f$.
-       * \tparam FunctionLambda Function lambda type.
-       * \tparam GradientLambda Gradient lambda type.
-       * \param[in] function Function lambda.
-       * \param[in] gradient Gradient lambda.
+       * Solve the minimization problem.
+       * \param[in] function Cost function.
+       * \param[in] gradient Gradient of the cost function.
        * \param[in] x_ini Initialization point.
        * \param[out] x_sol Solution point.
        * \return The convergence boolean flag.
@@ -840,119 +335,275 @@ namespace Optimist {
                       Vector &x_sol) {
 #define CMD "Optimist::Optimizer::ConjugateGradient::solve_impl(...): "
 
-        auto &function_ref{function};
-        auto &gradient_ref{gradient};
-
-        // Reset internal variables
         this->reset_counters();
-
-        // Print header
         if (this->m_verbose) {
           this->header();
         }
 
-        // Initialize variables
-        bool success{false};
-        Scalar function_old{0.0}, function_new{0.0},
-            step_length{this->clamp_step(this->m_initial_step)}, beta{0.0},
-            accepted_step{0.0}, gradient_norm{0.0};
-        const Integer size{static_cast<Integer>(x_ini.size())};
-        Vector x_old(x_ini), x_new(x_ini), y(size), step(size), direction_new;
-        FirstDerivative gradient_old(size), gradient_new(size),
-            direction_old(size);
-        gradient_old.setZero();
-        gradient_new.setZero();
-        direction_old.setZero();
-        direction_new.setZero();
-        y.setZero();
-        step.setZero();
-        std::string notes{"Initialize"};
-
-        // Set initial iteration
-        success = this->evaluate_function(function_ref, x_old, function_old);
-        OPTIMIST_ASSERT(success,
+        // Current point (x, f, g), search direction d and trial step
+        Vector x(x_ini), x_new(x_ini);
+        Scalar f{0}, f_new{0};
+        FirstDerivative g, g_new, d;
+        OPTIMIST_ASSERT(this->evaluate_function(function, x, f),
                         CMD "function evaluation failed at the initial point.");
-        success = this->evaluate_gradient(gradient_ref, x_old, gradient_old);
-        OPTIMIST_ASSERT(success,
+        OPTIMIST_ASSERT(this->evaluate_gradient(gradient, x, g),
                         CMD "gradient evaluation failed at the initial point.");
-        direction_old = -gradient_old;
+        d = -g;
+        Scalar trial{this->clamp_step(this->m_initial_step)}, accepted{0};
 
-        // Algorithm iterations
-        Scalar tolerance_gradient{this->m_tolerance};
-        Scalar tolerance_step{this->m_tolerance * this->m_tolerance};
+        std::string notes{"Initialize"};
         for (this->m_iterations = 1;
              this->m_iterations < this->m_max_iterations;
              ++this->m_iterations) {
-          gradient_norm = gradient_old.norm();
           if (this->m_verbose) {
-            this->info(gradient_norm, notes);
+            this->info(g.norm(), notes);
           }
-          if (gradient_norm < tolerance_gradient) {
+          if (g.norm() < this->m_tolerance) {
             this->m_converged = true;
             break;
           }
-
-          if (!this->has_sufficient_descent(gradient_old, direction_old)) {
-            direction_old = -gradient_old;
-            notes         = "Restart";
+          notes = "-";
+          if (!this->has_sufficient_descent(g, d)) {
+            d     = -g;
+            notes = "Restart";
           }
 
-          bool accepted{this->line_search(function_ref,
-                                          gradient_ref,
-                                          x_old,
-                                          function_old,
-                                          gradient_old,
-                                          direction_old,
-                                          step_length,
-                                          x_new,
-                                          function_new,
-                                          gradient_new,
-                                          accepted_step)};
-          if (!accepted) {
-            notes = "Line search failed";
-            break;
+          // Line search. On failure, or if the step stagnates below the
+          // rounding level of x, retry once along the steepest descent
+          // direction before giving up
+          const bool ok{this->line_search(function, gradient, x, f, g, d, trial,
+                                          x_new, f_new, g_new, accepted)};
+          const bool steepest{(d + g).norm() <= EPSILON * g.norm()};
+          const bool stagnated{ok && (x_new - x).norm() <=
+                                         EPSILON * (1 + x.norm())};
+          if (!ok || stagnated) {
+            if (steepest) {
+              notes = ok ? "Stagnation" : "Line search failed";
+              if (ok) {
+                x = x_new;
+                f = f_new;
+                g = g_new;
+                this->m_converged = g.norm() < this->m_tolerance;
+              }
+              break;
+            }
+            if (ok) {
+              x = x_new;
+              f = f_new;
+              g = g_new;
+            }
+            d     = -g;
+            trial = this->clamp_step(this->m_initial_step);
+            notes = "Restart";
+            continue;
           }
 
-          step = x_new - x_old;
-          if (step.norm() < tolerance_step ||
-              gradient_new.norm() < tolerance_gradient) {
-            x_old             = x_new;
-            function_old      = function_new;
-            gradient_old      = gradient_new;
-            this->m_converged = true;
-            break;
+          // New conjugate direction
+          const FirstDerivative y{g_new - g};
+          const Scalar beta{this->compute_beta(g, g_new, d, y)};
+          FirstDerivative d_new{-g_new + beta * d};
+          if (!std::isfinite(beta) || this->should_restart(g, g_new) ||
+              !this->has_sufficient_descent(g_new, d_new)) {
+            d_new = -g_new;
+            notes = "Restart";
           }
-
-          y = gradient_new - gradient_old;
-          beta =
-              this->compute_beta(gradient_old, gradient_new, direction_old, y);
-
-          direction_new = -gradient_new + beta * direction_old;
-          if (!std::isfinite(beta) ||
-              this->should_restart(gradient_old, gradient_new) ||
-              !this->has_sufficient_descent(gradient_new, direction_new)) {
-            direction_new = -gradient_new;
-            notes         = "Restart";
-          }
-
-          step_length   = this->next_trial_step(accepted_step,
-                                              direction_old,
-                                              gradient_old,
-                                              gradient_new);
-          x_old         = x_new;
-          function_old  = function_new;
-          gradient_old  = gradient_new;
-          direction_old = direction_new;
+          trial = this->next_trial_step(accepted, d, g, g_new);
+          x     = x_new;
+          f     = f_new;
+          g     = g_new;
+          d     = d_new;
         }
 
-        // Print bottom
         if (this->m_verbose) {
           this->bottom();
         }
-
-        // Convergence data
-        x_sol = x_old;
+        x_sol = x;
         return this->m_converged;
+
+#undef CMD
+      }
+
+     private:
+      /**
+       * Clamp a trial step to \f$ [s_{\min}, \alpha_{\max}] \f$, replacing
+       * invalid values with the initial step.
+       */
+      Scalar clamp_step(Scalar t_step) const {
+        if (!std::isfinite(t_step) || t_step <= 0) {
+          t_step = this->m_initial_step;
+        }
+        return std::clamp(t_step, this->m_min_step, this->m_settings.alpha_max);
+      }
+
+      /**
+       * Initial trial step of the next line search.
+       */
+      Scalar next_trial_step(const Scalar accepted,
+                             const FirstDerivative &d,
+                             const FirstDerivative &g,
+                             const FirstDerivative &g_new) const {
+        if (this->m_alpha_method == AlphaMethod::BARZILAI_BORWEIN) {
+          // alpha = s's / s'y along the previous direction, s = accepted * d
+          const FirstDerivative y{g_new - g};
+          const Scalar dy{d.dot(y)};
+          if (dy > EPSILON * d.norm() * y.norm()) {
+            return this->clamp_step(accepted * d.squaredNorm() / dy);
+          }
+        }
+        return this->clamp_step(accepted);
+      }
+
+      /**
+       * Check the sufficient descent condition \f$ \mathbf{g}^\top\mathbf{d}
+       * \leq -c\|\mathbf{g}\|^2 \f$.
+       */
+      bool has_sufficient_descent(const FirstDerivative &g,
+                                  const FirstDerivative &d) const {
+        const Scalar gd{g.dot(d)};
+        return std::isfinite(gd) &&
+               gd <= -this->m_descent_parameter * g.squaredNorm();
+      }
+
+      /**
+       * Powell's restart test on consecutive gradients.
+       */
+      bool should_restart(const FirstDerivative &g,
+                          const FirstDerivative &g_new) const {
+        if (!this->m_powell_restart) {
+          return false;
+        }
+        const Scalar n{g.norm() * g_new.norm()};
+        return n > 0 && g_new.dot(g) <= -this->m_restart_tolerance * n;
+      }
+
+      /**
+       * Compute \f$ \beta_k \f$ with the selected formula. Degenerate
+       * denominators are detected relative to the scale of the vectors
+       * involved, so that the formulas keep working when the gradient is small
+       * (i.e., close to the minimizer); in that case \f$ \beta_k = 0 \f$
+       * (steepest descent).
+       * \param[in] g Previous gradient \f$ \mathbf{g}_k \f$.
+       * \param[in] g_new Current gradient \f$ \mathbf{g}_{k+1} \f$.
+       * \param[in] d Previous direction \f$ \mathbf{d}_k \f$.
+       * \param[in] y Gradient change \f$ \mathbf{y}_k = \mathbf{g}_{k+1} -
+       * \mathbf{g}_k \f$.
+       * \return The parameter \f$ \beta_k \f$.
+       */
+      Scalar compute_beta(const FirstDerivative &g,
+                          const FirstDerivative &g_new,
+                          const FirstDerivative &d,
+                          const FirstDerivative &y) const {
+        const Scalar gg{g.squaredNorm()};
+        const Scalar gg_new{g_new.squaredNorm()};
+        const Scalar dg{-d.dot(g)};
+        const Scalar dy{d.dot(y)};
+        const Scalar gy{g_new.dot(y)};
+        const bool ok_gg{gg > 0};
+        const bool ok_dg{dg > EPSILON * d.norm() * g.norm()};
+        const bool ok_dy{std::abs(dy) > EPSILON * d.norm() * y.norm()};
+
+        // Hager-Zhang: g_new'(y - 2 d |y|^2/(d'y)) / (d'y)
+        auto hager_zhang = [&]() -> Scalar {
+          return (gy - 2 * y.squaredNorm() / dy * g_new.dot(d)) / dy;
+        };
+
+        switch (this->m_beta_method) {
+          case BetaMethod::FLETCHER_REEVES:
+            return ok_gg ? gg_new / gg : 0;
+          case BetaMethod::POLAK_RIBIERE:
+            return ok_gg ? gy / gg : 0;
+          case BetaMethod::POLAK_RIBIERE_PLUS:
+            return ok_gg ? std::max(gy / gg, Scalar(0)) : 0;
+          case BetaMethod::HESTENES_STIEFEL:
+            return ok_dy ? gy / dy : 0;
+          case BetaMethod::CONJUGATE_DESCENT:
+            return ok_dg ? gg_new / dg : 0;
+          case BetaMethod::LIU_STOREY:
+            return ok_dg ? gy / dg : 0;
+          case BetaMethod::DAI_YUAN:
+            return ok_dy ? gg_new / dy : 0;
+          case BetaMethod::HAGER_ZHANG:
+            return ok_dy ? hager_zhang() : 0;
+          case BetaMethod::HAGER_ZHANG_PLUS: {
+            if (!ok_dy) {
+              return 0;
+            }
+            // Truncation eta_k = -1/(|d| min(eta, |g_new|))
+            const Scalar den{d.norm() *
+                             std::min(this->m_truncation_parameter,
+                                      std::sqrt(gg_new))};
+            const Scalar bound{den > 0 ? -1 / den : -INFTY};
+            return std::max(hager_zhang(), bound);
+          }
+          default:
+            return 0;
+        }
+      }
+
+      /**
+       * Line search along \f$ \mathbf{d} \f$ with the selected strategy.
+       * \return True if a step was accepted; in that case \c x_new, \c f_new
+       * and \c g_new refer to the accepted point.
+       */
+      template <typename FunctionLambda, typename GradientLambda>
+      bool line_search(FunctionLambda &function,
+                       GradientLambda &gradient,
+                       const Vector &x,
+                       const Scalar f,
+                       const FirstDerivative &g,
+                       const FirstDerivative &d,
+                       const Scalar trial,
+                       Vector &x_new,
+                       Scalar &f_new,
+                       FirstDerivative &g_new,
+                       Scalar &accepted) {
+#define CMD "Optimist::Optimizer::ConjugateGradient::line_search(...): "
+
+        const Scalar slope{g.dot(d)};
+        OPTIMIST_ASSERT(slope < 0, CMD "non-descent search direction.");
+
+        // Restriction of the objective, keeping the last evaluated point
+        Scalar last{-1};
+        bool g_valid{false};
+        this->m_relaxations = 0;
+        auto phi = [&](const Scalar a, Scalar &v, Scalar *dv) -> bool {
+          ++this->m_relaxations;
+          last    = a;
+          g_valid = false;
+          x_new   = x + a * d;
+          if (!this->evaluate_function(function, x_new, v)) {
+            return false;
+          }
+          f_new = v;
+          if (dv != nullptr) {
+            if (!this->evaluate_gradient(gradient, x_new, g_new)) {
+              return false;
+            }
+            g_valid = true;
+            *dv     = g_new.dot(d);
+          }
+          return true;
+        };
+
+        accepted = trial;
+        Scalar value{f}, dvalue{slope};
+        if (!LineSearch::search(this->m_line_search, phi, f, slope, accepted,
+                                value, dvalue, this->m_settings)) {
+          return false;
+        }
+
+        // Make sure the outputs refer to the accepted step
+        if (last != accepted) {
+          x_new = x + accepted * d;
+          OPTIMIST_ASSERT(this->evaluate_function(function, x_new, f_new),
+                          CMD "function evaluation failed.");
+          g_valid = false;
+        }
+        if (!g_valid) {
+          OPTIMIST_ASSERT(this->evaluate_gradient(gradient, x_new, g_new),
+                          CMD "gradient evaluation failed.");
+        }
+        return true;
 
 #undef CMD
       }

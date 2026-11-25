@@ -58,15 +58,12 @@ file(GLOB_RECURSE RELATIVE_HEADER_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
 # Tests
 option(OPTIMIST_BUILD_TESTS "Build tests" OFF)
 if(OPTIMIST_BUILD_TESTS)
+  enable_testing()
   add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/core/tests)
 endif()
 
-# Set compilation flags
-if(MSVC)
-  target_compile_options(Optimist INTERFACE /W4 /WX)
-else()
-  target_compile_options(Optimist INTERFACE -Wall -Wextra -pedantic -Werror) # -Wno-narrowing
-endif()
+# Warnings are enforced on the tests only (see core/tests/CMakeLists.txt): an
+# interface library must not impose -Werror on the projects that consume it
 
 # Installation
 if (NOT OPTIMIST_EXTERNAL_EIGEN)

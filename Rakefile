@@ -68,10 +68,8 @@ TESTS = []
 desc "Run tests"
 task :run do
   puts "run test".yellow
-  Dir.glob('build/core/tests/test_*') do |cmd|
-    next if cmd =~ /.manifest$|.dSYM$/
-    puts "execute: #{cmd}".yellow
-    sh cmd
+  FileUtils.cd "build" do
+    sh "ctest --output-on-failure #{PARALLEL.sub('--parallel', '-j')}"
   end
 end
 

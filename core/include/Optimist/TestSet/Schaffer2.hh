@@ -13,7 +13,7 @@
 #ifndef OPTIMIST_TESTSET_SCHAFFER2_HH
 #define OPTIMIST_TESTSET_SCHAFFER2_HH
 
-#include "Optimist/Function.hh"
+#include "Optimist/TestSet/DenseFunction.hh"
 
 namespace Optimist {
 
@@ -27,61 +27,27 @@ namespace Optimist {
      * f(\mathbf{x}) = 0.5 + \displaystyle\frac{\sin^{2}(x_1^2 - x_2^2) -
      * 0.5}{(1 + 0.001(x_1^2 + x_2^2))^2} \text{.}
      * \f]
-     * The function has global minima at \f$\mathbf{x} = (0, 0)\f$, with
-     * \f$f(\mathbf{x}) = 0\f$. The initial guesses are generated on the square
-     * \f$x_i \in \left[-10, 10\right]\f$.
+     * The function has a global minimum at \f$\mathbf{x} = (0, 0)\f$, with
+     * \f$f(\mathbf{x}) = 0\f$, surrounded by concentric rings of local
+     * minima. Local methods started far from the origin are expected to stop
+     * at one of these rings, so the function is meant for global optimizers.
      * \tparam Vector Eigen vector type.
      */
     template <typename Vector>
-      requires TypeTrait<Vector>::IsEigen && (!TypeTrait<Vector>::IsFixed ||
-                                              TypeTrait<Vector>::Dimension == 2)
-    class Schaffer2
-        : public Function<Vector, typename Vector::Scalar, Schaffer2<Vector>> {
+    class Schaffer2 : public DenseCostFunction<Vector, 2, Schaffer2<Vector>> {
      public:
-      using VectorTrait = TypeTrait<Vector>;
-      using Scalar      = typename Vector::Scalar;
-      using typename Function<Vector,
-                              typename Vector::Scalar,
-                              Schaffer2<Vector>>::FirstDerivative;
-      using typename Function<Vector,
-                              typename Vector::Scalar,
-                              Schaffer2<Vector>>::SecondDerivative;
-
-      OPTIMIST_BASIC_CONSTANTS(Scalar)
+      using Base = DenseCostFunction<Vector, 2, Schaffer2<Vector>>;
+      using typename Base::Dense;
+      using typename Base::DenseMatrix;
+      using typename Base::Scalar;
 
       /**
        * Class constructor for the Schaffer2 function.
        */
       Schaffer2() {
-        this->m_solutions.resize(1);
-        this->m_guesses.resize(2);
-        this->m_solutions.resize(1);
-        this->m_guesses.resize(2);
-        if constexpr (VectorTrait::IsFixed) {
-          this->m_solutions[0] << 0.0, 0.0;
-          this->m_guesses[0] << -50, -50;
-          this->m_guesses[1] << 50, 50;
-        } else if constexpr (!VectorTrait::IsSparse) {
-          this->m_solutions[0].resize(2);
-          this->m_solutions[0] << 0.0, 0.0;
-          this->m_guesses[0].resize(2);
-          this->m_guesses[0] << -50, -50;
-          this->m_guesses[1].resize(2);
-          this->m_guesses[1] << 50, 50;
-        } else if constexpr (VectorTrait::IsSparse) {
-          this->m_solutions[0].resize(2);
-          this->m_solutions[0].reserve(2);
-          this->m_solutions[0].coeffRef(0) = 0.0;
-          this->m_solutions[0].coeffRef(1) = 0.0;
-          this->m_guesses[0].resize(2);
-          this->m_guesses[0].reserve(2);
-          this->m_guesses[0].coeffRef(0) = -50;
-          this->m_guesses[0].coeffRef(1) = -50;
-          this->m_guesses[1].resize(2);
-          this->m_guesses[1].reserve(2);
-          this->m_guesses[1].coeffRef(0) = 50;
-          this->m_guesses[1].coeffRef(1) = 50;
-        }
+        this->add_solution(this->make({0.0, 0.0}));
+        this->add_guess(this->make({-50.0, -50.0}));
+        this->add_guess(this->make({50.0, 50.0}));
       }
 
       /**
@@ -93,314 +59,66 @@ namespace Optimist {
       }
 
       /**
-       * Compute the function value at the input point.
-       * \param[in] x Input point.
-       * \param[out] out The function value.
-       * \return The boolean flag for successful evaluation.
+       * Usual half-width of the search domain.
        */
-      bool evaluate_impl(const Vector &x, Scalar &out) const {
-        Scalar x_0, x_1;
-        if constexpr (VectorTrait::IsSparse) {
-          x_0 = x.coeff(0);
-          x_1 = x.coeff(1);
-        } else {
-          x_0 = x(0);
-          x_1 = x(1);
-        }
-        out = 0.5e0 + (pow(sin(x_0 * x_0 - x_1 * x_1), 2) - 0.5e0) *
-                          pow(1 + 0.1e-2 * x_0 * x_0 + 0.1e-2 * x_1 * x_1, -2);
-        return std::isfinite(out);
+      static constexpr Scalar domain() {
+        return 100.0;
       }
 
-      /**
-       * Compute the first derivative value at the input point.
-       * \param[in] x Input point.
-       * \param[out] out The first derivative value.
-       * \return The boolean flag for successful evaluation.
-       */
-      bool first_derivative_impl(const Vector &x, FirstDerivative &out) const {
-        Scalar x_0, x_1;
-        if constexpr (VectorTrait::IsSparse) {
-          x_0 = x.coeff(0);
-          x_1 = x.coeff(1);
-        } else {
-          x_0 = x(0);
-          x_1 = x(1);
-        }
-        if constexpr (VectorTrait::IsFixed) {
-          out << (-0.4e-2 * x_0 * pow(sin(x_0 * x_0 - x_1 * x_1), 2) +
-                  (0.4e-2 * pow(x_0, 3) + (0.4e1 + 0.4e-2 * x_1 * x_1) * x_0) *
-                      cos(x_0 * x_0 - x_1 * x_1) * sin(x_0 * x_0 - x_1 * x_1) +
-                  0.20e-2 * x_0) *
-                     pow(1 + 0.1e-2 * x_0 * x_0 + 0.1e-2 * x_1 * x_1, -3),
-              (-0.4e-2 * x_1 * pow(sin(x_0 * x_0 - x_1 * x_1), 2) +
-               (-0.4e-2 * pow(x_1, 3) + (-0.4e1 - 0.4e-2 * x_0 * x_0) * x_1) *
-                   cos(-x_0 * x_0 + x_1 * x_1) * sin(x_0 * x_0 - x_1 * x_1) +
-               0.20e-2 * x_1) *
-                  pow(1 + 0.1e-2 * x_0 * x_0 + 0.1e-2 * x_1 * x_1, -3);
-          return out.allFinite();
-        } else if constexpr (VectorTrait::IsDynamic) {
-          out.resize(2);
-          out << (-0.4e-2 * x_0 * pow(sin(x_0 * x_0 - x_1 * x_1), 2) +
-                  (0.4e-2 * pow(x_0, 3) + (0.4e1 + 0.4e-2 * x_1 * x_1) * x_0) *
-                      cos(x_0 * x_0 - x_1 * x_1) * sin(x_0 * x_0 - x_1 * x_1) +
-                  0.20e-2 * x_0) *
-                     pow(1 + 0.1e-2 * x_0 * x_0 + 0.1e-2 * x_1 * x_1, -3),
-              (-0.4e-2 * x_1 * pow(sin(x_0 * x_0 - x_1 * x_1), 2) +
-               (-0.4e-2 * pow(x_1, 3) + (-0.4e1 - 0.4e-2 * x_0 * x_0) * x_1) *
-                   cos(-x_0 * x_0 + x_1 * x_1) * sin(x_0 * x_0 - x_1 * x_1) +
-               0.20e-2 * x_1) *
-                  pow(1 + 0.1e-2 * x_0 * x_0 + 0.1e-2 * x_1 * x_1, -3);
-          return out.allFinite();
-        } else if constexpr (VectorTrait::IsSparse) {
-          out.resize(2);
-          out.reserve(2);
-          out.coeffRef(0) =
-              (-0.4e-2 * x_0 * pow(sin(x_0 * x_0 - x_1 * x_1), 2) +
-               (0.4e-2 * pow(x_0, 3) + (0.4e1 + 0.4e-2 * x_1 * x_1) * x_0) *
-                   cos(x_0 * x_0 - x_1 * x_1) * sin(x_0 * x_0 - x_1 * x_1) +
-               0.20e-2 * x_0) *
-              pow(1 + 0.1e-2 * x_0 * x_0 + 0.1e-2 * x_1 * x_1, -3);
-          out.coeffRef(1) =
-              (-0.4e-2 * x_1 * pow(sin(x_0 * x_0 - x_1 * x_1), 2) +
-               (-0.4e-2 * pow(x_1, 3) + (-0.4e1 - 0.4e-2 * x_0 * x_0) * x_1) *
-                   cos(-x_0 * x_0 + x_1 * x_1) * sin(x_0 * x_0 - x_1 * x_1) +
-               0.20e-2 * x_1) *
-              pow(1 + 0.1e-2 * x_0 * x_0 + 0.1e-2 * x_1 * x_1, -3);
-          for (Integer k{0}; k < out.outerSize(); ++k) {
-            for (typename FirstDerivative::InnerIterator it(out, k); it; ++it) {
-              if (!std::isfinite(it.value())) {
-                return false;
-              }
-            }
-          }
-          return true;
-        }
+      // f = 1/2 + A * B, with A = sin^2(u) - 1/2, u = x^2 - y^2, and
+      // B = D^(-2), D = 1 + (x^2 + y^2)/1000
+
+      Scalar value(const Dense &x) const {
+        const Scalar u{x(0) * x(0) - x(1) * x(1)};
+        const Scalar D{1 + (x(0) * x(0) + x(1) * x(1)) / 1000};
+        const Scalar s{std::sin(u)};
+        return Scalar(0.5) + (s * s - Scalar(0.5)) / (D * D);
       }
 
-      /**
-       * Compute the second derivative value at the input point.
-       * \param[in] x Input point.
-       * \param[out] out The second derivative value.
-       * \return The boolean flag for successful evaluation.
-       */
-      bool second_derivative_impl(const Vector &x,
-                                  SecondDerivative &out) const {
-        Scalar x_0, x_1;
-        if constexpr (VectorTrait::IsSparse) {
-          x_0 = x.coeff(0);
-          x_1 = x.coeff(1);
-        } else {
-          x_0 = x(0);
-          x_1 = x(1);
-        }
-        if constexpr (VectorTrait::IsFixed) {
-          out.resize(2, 2);
-          out(0, 0) =
-              ((-0.8000000e7 * pow(x_0, 6) +
-                (-0.1600000000e11 - 0.16000000e8 * x_1 * x_1) * pow(x_0, 4) -
-                0.8000000e7 * (x_1 * x_1 + 0.100158113883042665e4) *
-                    (x_1 * x_1 + 0.998418861169573461e3) * x_0 * x_0 -
-                0.4000000e7 * x_1 * x_1 - 0.4000000000e10) *
-                   pow(sin(x_0 * x_0 - x_1 * x_1), 2) +
-               (-0.28000000e8 * pow(x_0, 4) +
-                (-0.2400000000e11 - 0.24000000e8 * x_1 * x_1) * x_0 * x_0 +
-                0.4000000e7 * pow(x_1 * x_1 + 0.9999999999e3, 2)) *
-                   cos(x_0 * x_0 - x_1 * x_1) * sin(x_0 * x_0 - x_1 * x_1) +
-               (0.8000000e7 * pow(x_0, 6) +
-                (0.1600000000e11 + 0.16000000e8 * x_1 * x_1) * pow(x_0, 4) +
-                0.8000000e7 * pow(x_1 * x_1 + 0.9999999999e3, 2) * x_0 * x_0) *
-                   pow(cos(x_0 * x_0 - x_1 * x_1), 2) -
-               0.100000000e8 * x_0 * x_0 + 0.20000000e7 * x_1 * x_1 +
-               0.2000000000e10) *
-              pow(x_0 * x_0 + x_1 * x_1 + 1000, -4);
-          out(0, 1) = -8000000 * x_1 * cos(-x_0 * x_0 + x_1 * x_1) * x_0 *
-                          cos(x_0 * x_0 - x_1 * x_1) *
-                          pow(x_0 * x_0 + x_1 * x_1 + 1000, -2) -
-                      8000000 * sin(x_0 * x_0 - x_1 * x_1) * x_0 * x_1 *
-                          sin(-x_0 * x_0 + x_1 * x_1) *
-                          pow(x_0 * x_0 + x_1 * x_1 + 1000, -2) -
-                      16000000 * sin(x_0 * x_0 - x_1 * x_1) * x_0 * x_1 *
-                          cos(x_0 * x_0 - x_1 * x_1) *
-                          pow(x_0 * x_0 + x_1 * x_1 + 1000, -3) +
-                      16000000 * sin(x_0 * x_0 - x_1 * x_1) * x_0 * x_1 *
-                          cos(-x_0 * x_0 + x_1 * x_1) *
-                          pow(x_0 * x_0 + x_1 * x_1 + 1000, -3) +
-                      24000000 * (pow(sin(x_0 * x_0 - x_1 * x_1), 2) - 0.5e0) *
-                          x_0 * x_1 * pow(x_0 * x_0 + x_1 * x_1 + 1000, -4);
-          out(1, 0) = -8000000 * x_1 * cos(-x_0 * x_0 + x_1 * x_1) * x_0 *
-                          cos(x_0 * x_0 - x_1 * x_1) *
-                          pow(x_0 * x_0 + x_1 * x_1 + 1000, -2) -
-                      8000000 * sin(x_0 * x_0 - x_1 * x_1) * x_0 * x_1 *
-                          sin(-x_0 * x_0 + x_1 * x_1) *
-                          pow(x_0 * x_0 + x_1 * x_1 + 1000, -2) -
-                      16000000 * sin(x_0 * x_0 - x_1 * x_1) * x_0 * x_1 *
-                          cos(x_0 * x_0 - x_1 * x_1) *
-                          pow(x_0 * x_0 + x_1 * x_1 + 1000, -3) +
-                      16000000 * sin(x_0 * x_0 - x_1 * x_1) * x_0 * x_1 *
-                          cos(-x_0 * x_0 + x_1 * x_1) *
-                          pow(x_0 * x_0 + x_1 * x_1 + 1000, -3) +
-                      24000000 * (pow(sin(x_0 * x_0 - x_1 * x_1), 2) - 0.5e0) *
-                          x_0 * x_1 * pow(x_0 * x_0 + x_1 * x_1 + 1000, -4);
-          out(1, 1) =
-              8000000 * x_1 * x_1 * pow(cos(-x_0 * x_0 + x_1 * x_1), 2) *
-                  pow(x_0 * x_0 + x_1 * x_1 + 1000, -2) -
-              4000000 * sin(x_0 * x_0 - x_1 * x_1) *
-                  cos(-x_0 * x_0 + x_1 * x_1) *
-                  pow(x_0 * x_0 + x_1 * x_1 + 1000, -2) +
-              8000000 * sin(x_0 * x_0 - x_1 * x_1) * x_1 * x_1 *
-                  sin(-x_0 * x_0 + x_1 * x_1) *
-                  pow(x_0 * x_0 + x_1 * x_1 + 1000, -2) +
-              32000000 * sin(x_0 * x_0 - x_1 * x_1) * x_1 * x_1 *
-                  cos(-x_0 * x_0 + x_1 * x_1) *
-                  pow(x_0 * x_0 + x_1 * x_1 + 1000, -3) +
-              24000000 * (pow(sin(x_0 * x_0 - x_1 * x_1), 2) - 0.5e0) * x_1 *
-                  x_1 * pow(x_0 * x_0 + x_1 * x_1 + 1000, -4) +
-              (-4000000 * pow(sin(x_0 * x_0 - x_1 * x_1), 2) + 0.20000000e7) *
-                  pow(x_0 * x_0 + x_1 * x_1 + 1000, -3);
-          return out.allFinite();
-        } else if constexpr (VectorTrait::IsDynamic) {
-          out.resize(2, 2);
-          out(0, 0) =
-              ((-0.8000000e7 * pow(x_0, 6) +
-                (-0.1600000000e11 - 0.16000000e8 * x_1 * x_1) * pow(x_0, 4) -
-                0.8000000e7 * (x_1 * x_1 + 0.100158113883042665e4) *
-                    (x_1 * x_1 + 0.998418861169573461e3) * x_0 * x_0 -
-                0.4000000e7 * x_1 * x_1 - 0.4000000000e10) *
-                   pow(sin(x_0 * x_0 - x_1 * x_1), 2) +
-               (-0.28000000e8 * pow(x_0, 4) +
-                (-0.2400000000e11 - 0.24000000e8 * x_1 * x_1) * x_0 * x_0 +
-                0.4000000e7 * pow(x_1 * x_1 + 0.9999999999e3, 2)) *
-                   cos(x_0 * x_0 - x_1 * x_1) * sin(x_0 * x_0 - x_1 * x_1) +
-               (0.8000000e7 * pow(x_0, 6) +
-                (0.1600000000e11 + 0.16000000e8 * x_1 * x_1) * pow(x_0, 4) +
-                0.8000000e7 * pow(x_1 * x_1 + 0.9999999999e3, 2) * x_0 * x_0) *
-                   pow(cos(x_0 * x_0 - x_1 * x_1), 2) -
-               0.100000000e8 * x_0 * x_0 + 0.20000000e7 * x_1 * x_1 +
-               0.2000000000e10) *
-              pow(x_0 * x_0 + x_1 * x_1 + 1000, -4);
-          out(0, 1) = -8000000 * x_1 * cos(-x_0 * x_0 + x_1 * x_1) * x_0 *
-                          cos(x_0 * x_0 - x_1 * x_1) *
-                          pow(x_0 * x_0 + x_1 * x_1 + 1000, -2) -
-                      8000000 * sin(x_0 * x_0 - x_1 * x_1) * x_0 * x_1 *
-                          sin(-x_0 * x_0 + x_1 * x_1) *
-                          pow(x_0 * x_0 + x_1 * x_1 + 1000, -2) -
-                      16000000 * sin(x_0 * x_0 - x_1 * x_1) * x_0 * x_1 *
-                          cos(x_0 * x_0 - x_1 * x_1) *
-                          pow(x_0 * x_0 + x_1 * x_1 + 1000, -3) +
-                      16000000 * sin(x_0 * x_0 - x_1 * x_1) * x_0 * x_1 *
-                          cos(-x_0 * x_0 + x_1 * x_1) *
-                          pow(x_0 * x_0 + x_1 * x_1 + 1000, -3) +
-                      24000000 * (pow(sin(x_0 * x_0 - x_1 * x_1), 2) - 0.5e0) *
-                          x_0 * x_1 * pow(x_0 * x_0 + x_1 * x_1 + 1000, -4);
-          out(1, 0) = -8000000 * x_1 * cos(-x_0 * x_0 + x_1 * x_1) * x_0 *
-                          cos(x_0 * x_0 - x_1 * x_1) *
-                          pow(x_0 * x_0 + x_1 * x_1 + 1000, -2) -
-                      8000000 * sin(x_0 * x_0 - x_1 * x_1) * x_0 * x_1 *
-                          sin(-x_0 * x_0 + x_1 * x_1) *
-                          pow(x_0 * x_0 + x_1 * x_1 + 1000, -2) -
-                      16000000 * sin(x_0 * x_0 - x_1 * x_1) * x_0 * x_1 *
-                          cos(x_0 * x_0 - x_1 * x_1) *
-                          pow(x_0 * x_0 + x_1 * x_1 + 1000, -3) +
-                      16000000 * sin(x_0 * x_0 - x_1 * x_1) * x_0 * x_1 *
-                          cos(-x_0 * x_0 + x_1 * x_1) *
-                          pow(x_0 * x_0 + x_1 * x_1 + 1000, -3) +
-                      24000000 * (pow(sin(x_0 * x_0 - x_1 * x_1), 2) - 0.5e0) *
-                          x_0 * x_1 * pow(x_0 * x_0 + x_1 * x_1 + 1000, -4);
-          out(1, 1) =
-              8000000 * x_1 * x_1 * pow(cos(-x_0 * x_0 + x_1 * x_1), 2) *
-                  pow(x_0 * x_0 + x_1 * x_1 + 1000, -2) -
-              4000000 * sin(x_0 * x_0 - x_1 * x_1) *
-                  cos(-x_0 * x_0 + x_1 * x_1) *
-                  pow(x_0 * x_0 + x_1 * x_1 + 1000, -2) +
-              8000000 * sin(x_0 * x_0 - x_1 * x_1) * x_1 * x_1 *
-                  sin(-x_0 * x_0 + x_1 * x_1) *
-                  pow(x_0 * x_0 + x_1 * x_1 + 1000, -2) +
-              32000000 * sin(x_0 * x_0 - x_1 * x_1) * x_1 * x_1 *
-                  cos(-x_0 * x_0 + x_1 * x_1) *
-                  pow(x_0 * x_0 + x_1 * x_1 + 1000, -3) +
-              24000000 * (pow(sin(x_0 * x_0 - x_1 * x_1), 2) - 0.5e0) * x_1 *
-                  x_1 * pow(x_0 * x_0 + x_1 * x_1 + 1000, -4) +
-              (-4000000 * pow(sin(x_0 * x_0 - x_1 * x_1), 2) + 0.20000000e7) *
-                  pow(x_0 * x_0 + x_1 * x_1 + 1000, -3);
-          return out.allFinite();
-        } else if constexpr (VectorTrait::IsSparse) {
-          out.resize(2, 2);
-          out.reserve(4);
-          out.coeffRef(0, 0) =
-              ((-0.8000000e7 * pow(x_0, 6) +
-                (-0.1600000000e11 - 0.16000000e8 * x_1 * x_1) * pow(x_0, 4) -
-                0.8000000e7 * (x_1 * x_1 + 0.100158113883042665e4) *
-                    (x_1 * x_1 + 0.998418861169573461e3) * x_0 * x_0 -
-                0.4000000e7 * x_1 * x_1 - 0.4000000000e10) *
-                   pow(sin(x_0 * x_0 - x_1 * x_1), 2) +
-               (-0.28000000e8 * pow(x_0, 4) +
-                (-0.2400000000e11 - 0.24000000e8 * x_1 * x_1) * x_0 * x_0 +
-                0.4000000e7 * pow(x_1 * x_1 + 0.9999999999e3, 2)) *
-                   cos(x_0 * x_0 - x_1 * x_1) * sin(x_0 * x_0 - x_1 * x_1) +
-               (0.8000000e7 * pow(x_0, 6) +
-                (0.1600000000e11 + 0.16000000e8 * x_1 * x_1) * pow(x_0, 4) +
-                0.8000000e7 * pow(x_1 * x_1 + 0.9999999999e3, 2) * x_0 * x_0) *
-                   pow(cos(x_0 * x_0 - x_1 * x_1), 2) -
-               0.100000000e8 * x_0 * x_0 + 0.20000000e7 * x_1 * x_1 +
-               0.2000000000e10) *
-              pow(x_0 * x_0 + x_1 * x_1 + 1000, -4);
-          out.coeffRef(0, 1) =
-              -8000000 * x_1 * cos(-x_0 * x_0 + x_1 * x_1) * x_0 *
-                  cos(x_0 * x_0 - x_1 * x_1) *
-                  pow(x_0 * x_0 + x_1 * x_1 + 1000, -2) -
-              8000000 * sin(x_0 * x_0 - x_1 * x_1) * x_0 * x_1 *
-                  sin(-x_0 * x_0 + x_1 * x_1) *
-                  pow(x_0 * x_0 + x_1 * x_1 + 1000, -2) -
-              16000000 * sin(x_0 * x_0 - x_1 * x_1) * x_0 * x_1 *
-                  cos(x_0 * x_0 - x_1 * x_1) *
-                  pow(x_0 * x_0 + x_1 * x_1 + 1000, -3) +
-              16000000 * sin(x_0 * x_0 - x_1 * x_1) * x_0 * x_1 *
-                  cos(-x_0 * x_0 + x_1 * x_1) *
-                  pow(x_0 * x_0 + x_1 * x_1 + 1000, -3) +
-              24000000 * (pow(sin(x_0 * x_0 - x_1 * x_1), 2) - 0.5e0) * x_0 *
-                  x_1 * pow(x_0 * x_0 + x_1 * x_1 + 1000, -4);
-          out.coeffRef(1, 0) =
-              -8000000 * x_1 * cos(-x_0 * x_0 + x_1 * x_1) * x_0 *
-                  cos(x_0 * x_0 - x_1 * x_1) *
-                  pow(x_0 * x_0 + x_1 * x_1 + 1000, -2) -
-              8000000 * sin(x_0 * x_0 - x_1 * x_1) * x_0 * x_1 *
-                  sin(-x_0 * x_0 + x_1 * x_1) *
-                  pow(x_0 * x_0 + x_1 * x_1 + 1000, -2) -
-              16000000 * sin(x_0 * x_0 - x_1 * x_1) * x_0 * x_1 *
-                  cos(x_0 * x_0 - x_1 * x_1) *
-                  pow(x_0 * x_0 + x_1 * x_1 + 1000, -3) +
-              16000000 * sin(x_0 * x_0 - x_1 * x_1) * x_0 * x_1 *
-                  cos(-x_0 * x_0 + x_1 * x_1) *
-                  pow(x_0 * x_0 + x_1 * x_1 + 1000, -3) +
-              24000000 * (pow(sin(x_0 * x_0 - x_1 * x_1), 2) - 0.5e0) * x_0 *
-                  x_1 * pow(x_0 * x_0 + x_1 * x_1 + 1000, -4);
-          out.coeffRef(1, 1) =
-              8000000 * x_1 * x_1 * pow(cos(-x_0 * x_0 + x_1 * x_1), 2) *
-                  pow(x_0 * x_0 + x_1 * x_1 + 1000, -2) -
-              4000000 * sin(x_0 * x_0 - x_1 * x_1) *
-                  cos(-x_0 * x_0 + x_1 * x_1) *
-                  pow(x_0 * x_0 + x_1 * x_1 + 1000, -2) +
-              8000000 * sin(x_0 * x_0 - x_1 * x_1) * x_1 * x_1 *
-                  sin(-x_0 * x_0 + x_1 * x_1) *
-                  pow(x_0 * x_0 + x_1 * x_1 + 1000, -2) +
-              32000000 * sin(x_0 * x_0 - x_1 * x_1) * x_1 * x_1 *
-                  cos(-x_0 * x_0 + x_1 * x_1) *
-                  pow(x_0 * x_0 + x_1 * x_1 + 1000, -3) +
-              24000000 * (pow(sin(x_0 * x_0 - x_1 * x_1), 2) - 0.5e0) * x_1 *
-                  x_1 * pow(x_0 * x_0 + x_1 * x_1 + 1000, -4) +
-              (-4000000 * pow(sin(x_0 * x_0 - x_1 * x_1), 2) + 0.20000000e7) *
-                  pow(x_0 * x_0 + x_1 * x_1 + 1000, -3);
-          for (Integer k{0}; k < out.outerSize(); ++k) {
-            for (typename SecondDerivative::InnerIterator it(out, k); it;
-                 ++it) {
-              if (!std::isfinite(it.value())) {
-                return false;
-              }
-            }
-          }
-          return true;
-        }
+      void gradient(const Dense &x, Dense &g) const {
+        Scalar A, B;
+        Dense dA(2), dB(2);
+        DenseMatrix ddA(2, 2), ddB(2, 2);
+        this->terms(x, A, B, dA, dB, ddA, ddB);
+        g = dA * B + A * dB;
+      }
+
+      void hessian(const Dense &x, DenseMatrix &H) const {
+        Scalar A, B;
+        Dense dA(2), dB(2);
+        DenseMatrix ddA(2, 2), ddB(2, 2);
+        this->terms(x, A, B, dA, dB, ddA, ddB);
+        H = ddA * B + dA * dB.transpose() + dB * dA.transpose() + A * ddB;
+      }
+
+     private:
+      void terms(const Dense &x,
+                 Scalar &A,
+                 Scalar &B,
+                 Dense &dA,
+                 Dense &dB,
+                 DenseMatrix &ddA,
+                 DenseMatrix &ddB) const {
+        const Scalar u{x(0) * x(0) - x(1) * x(1)};
+        const Scalar D{1 + (x(0) * x(0) + x(1) * x(1)) / 1000};
+        const Scalar s{std::sin(u)}, s2{std::sin(2 * u)}, c2{std::cos(2 * u)};
+        A = s * s - Scalar(0.5);
+        B = 1 / (D * D);
+        // dA = sin(2u) * du, du = (2x, -2y)
+        dA(0) = 2 * x(0) * s2;
+        dA(1) = -2 * x(1) * s2;
+        ddA(0, 0) = 2 * s2 + 8 * x(0) * x(0) * c2;
+        ddA(1, 1) = -2 * s2 + 8 * x(1) * x(1) * c2;
+        ddA(0, 1) = -8 * x(0) * x(1) * c2;
+        ddA(1, 0) = ddA(0, 1);
+        // dB = -2 D^(-3) dD, dD = (x, y)/500
+        const Scalar D3{D * D * D}, D4{D3 * D};
+        dB(0) = -x(0) / (250 * D3);
+        dB(1) = -x(1) / (250 * D3);
+        ddB(0, 0) = -1 / (250 * D3) + 3 * x(0) * x(0) / (125000 * D4);
+        ddB(1, 1) = -1 / (250 * D3) + 3 * x(1) * x(1) / (125000 * D4);
+        ddB(0, 1) = 3 * x(0) * x(1) / (125000 * D4);
+        ddB(1, 0) = ddB(0, 1);
       }
 
     };  // class Schaffer2

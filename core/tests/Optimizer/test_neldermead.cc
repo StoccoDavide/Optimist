@@ -1,58 +1,5 @@
-// /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-// *\
-//  * Copyright (c) 2025, Davide Stocco and Enrico Bertolazzi. *
-//  * *
-//  * The Optimist project is distributed under the BSD 2-Clause License. *
-//  * *
-//  * Davide Stocco                                           Enrico Bertolazzi
-//  *
-//  * University of Trento                                 University of Trento
-//  *
-//  * davide.stocco@unitn.it                         enrico.bertolazzi@unitn.it
-//  *
-// \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-// */
-
-// // Optimist library
-// #include "Optimist/Optimizer/NelderMead.hh"
-
-// // Catch2 library
-// #include <catch2/catch_template_test_macros.hpp>
-// #include <catch2/catch_test_macros.hpp>
-// #include <catch2/generators/catch_generators_range.hpp>
-
-// #include "test_cost_functions.hh"
-
-// using namespace Optimist;
-// using namespace Optimist::TestSet;
-
-// TEMPLATE_TEST_CASE("NelderMead", "[template]", TEST_COST_FUNCTIONS) {
-//   TestType fun;
-//   SECTION(fun.name()) {
-//     Optimizer::NelderMead<double, fun.input_dimension()> sol;
-//     SECTION(sol.name()) {
-//       sol.task(fun.name());
-//       sol.enable_verbose_mode();
-//       typename TestType::InputType x_ini, x_out;
-//       for (size_t i{0}; i < fun.guesses().size(); ++i) {
-//         x_ini = fun.guess(i);
-//         // Solve without damping
-//         sol.disable_damped_mode();
-//         sol.rootfind(fun, x_ini, x_out);
-//         REQUIRE(sol.converged());
-//         REQUIRE(fun.is_solution(x_out, TestType::SQRT_EPSILON));
-//         // Solve with damping
-//         sol.enable_damped_mode();
-//         sol.rootfind(fun, x_ini, x_out);
-//         REQUIRE(sol.converged());
-//         REQUIRE(fun.is_solution(x_out, TestType::SQRT_EPSILON));
-//       }
-//     }
-//   }
-// }
-
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
- * Copyright (c) 2025, Davide Stocco and Enrico Bertolazzi.                  *
+ * Copyright (c) 2026, Davide Stocco and Enrico Bertolazzi.                  *
  *                                                                           *
  * The Optimist project is distributed under the BSD 2-Clause License.       *
  *                                                                           *
@@ -65,53 +12,52 @@
 #include "Optimist/Optimizer/NelderMead.hh"
 #include "Optimist/TestSet.hh"
 
-// Google Test framework
-#include <gtest/gtest.h>
+// Test utilities
+#include "TestUtils.hh"
 
 using namespace Optimist::TestSet;
+using namespace OptimistTest;
 
-// Type-parameterized test fixture for functions
-template <typename FunctionType>
-struct Functions : public testing::Test {
-  using TestType = FunctionType;
-};
+using TestTypes = ConcatT<VectorVariants<EllipticParaboloid, 2>,
+                          VectorVariants<Himmelblau, 2>,
+                          VectorVariants<Trid2, 2>,
+                          DoubleVectorVariants<Trid6, 6>,
+                          DoubleVectorVariants<RosenbrockCost2, 2>>;
 
-using TestTypes =
-    testing::Types<EllipticParaboloid<Eigen::Vector<float, 2>>,
-                   EllipticParaboloid<Eigen::Vector<float, Eigen::Dynamic>>,
-                   // EllipticParaboloid<Eigen::SparseVector<float>>,
-                   EllipticParaboloid<Eigen::Vector<double, 2>>,
-                   EllipticParaboloid<Eigen::Vector<double, Eigen::Dynamic>>,
-                   // EllipticParaboloid<Eigen::SparseVector<double>>,
-                   Schaffer2<Eigen::Vector<float, 2>>,
-                   Schaffer2<Eigen::Vector<float, Eigen::Dynamic>>,
-                   // Schaffer2<Eigen::SparseVector<float>>,
-                   Schaffer2<Eigen::Vector<double, 2>>,
-                   Schaffer2<Eigen::Vector<double, Eigen::Dynamic>>
-                   // Schaffer2<Eigen::SparseVector<double>>
-                   >;
+OPTIMIST_TYPED_TEST_SUITE(Functions, TestTypes);
 
-// Register the type-parameterized function tests
-TYPED_TEST_SUITE(Functions, TestTypes);
-
-// Test to solve functions
-TYPED_TEST(Functions, Solve) {
-  // Retrieve the function and vector types
+TYPED_TEST(Functions, LocalMinimum) {
   using Function = TypeParam;
   using Vector   = typename Function::VectorTrait::Type;
+  using Scalar   = typename Function::Scalar;
+  using Solver   = Optimist::Optimizer::NelderMead<Vector>;
+  using Method   = typename Solver::Method;
 
-  // Create function and solver instances
   Function fun;
-  Optimist::Optimizer::NelderMead<Vector> sol;
+  Solver sol;
   sol.task(fun.name());
-  sol.verbose_mode(false);
-  sol.tolerance(std::sqrt(Function::EPSILON));
-
-  // Test to change methods
-  Vector x_out;
-  for (size_t i{0}; i < fun.guesses().size(); ++i) {
-    sol.optimize(fun, fun.guess(i), x_out);
-    EXPECT_TRUE(sol.converged());
-    EXPECT_TRUE(fun.is_solution(x_out, 1.0e3 * std::cbrt(Function::EPSILON)));
+  sol.tolerance(solver_tolerance<Scalar>());
+  sol.max_iterations(5000);
+  sol.max_function_evaluations(20000);
+  for (const auto method : {Method::STANDARD, Method::SPENDLEY}) {
+    for (const bool adaptive : {false, true}) {
+      SCOPED_TRACE(testing::Message() << "method " << static_cast<int>(method)
+                                      << ", adaptive " << adaptive);
+      sol.method(method);
+      sol.adaptive_mode(adaptive);
+      expect_minimizes_all(sol, fun);
+    }
   }
+}
+
+TEST(NelderMead, OneDimensional) {
+  // A simplex in one dimension is a segment
+  using Vector = Eigen::Vector<double, 1>;
+  Rastrigin<Vector, 1> fun;
+  Optimist::Optimizer::NelderMead<Vector> sol;
+  sol.delta(0.1);
+  Vector x_out;
+  sol.optimize(fun, Vector(0.2), x_out);
+  EXPECT_TRUE(sol.converged());
+  EXPECT_NEAR(x_out(0), 0.0, 1.0e-6);
 }

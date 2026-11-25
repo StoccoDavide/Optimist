@@ -99,7 +99,7 @@ namespace Optimist {
        * \param[out] out The second derivative value.
        * \return The boolean flag for successful evaluation.
        */
-      bool second_derivative_impl(Scalar /*x*/, Scalar &out) const {
+      bool second_derivative_impl([[maybe_unused]] Scalar x, Scalar &out) const {
         out = 2.0 * this->m_a;
         return std::isfinite(out);
       }

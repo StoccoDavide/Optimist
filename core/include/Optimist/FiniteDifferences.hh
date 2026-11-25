@@ -31,9 +31,9 @@ namespace Optimist {
       Scalar m_epsilon_1{SQRT_EPSILON}; /**< Square root of machine epsilon \f$
                                            \sqrt{\epsilon} \f$. */
       Scalar m_epsilon_2{
-        std::pow(EPSILON, 0.75)};       /**< Epsilon to the power of 3/4. */
+        std::pow(EPSILON, static_cast<Scalar>(0.75))};       /**< Epsilon to the power of 3/4. */
       Scalar m_epsilon_3{
-        std::pow(EPSILON, 0.25)};       /**< Epsilon to the power of 1/4. */
+        std::pow(EPSILON, static_cast<Scalar>(0.25))};       /**< Epsilon to the power of 1/4. */
      public:
       /**
        * Returns \f$ \epsilon_1 \f$ scaled by |v|+1.
@@ -343,7 +343,7 @@ namespace Optimist {
      * \tparam Vector Dense Eigen vector type.
      * \tparam Matrix Dense Eigen matrix type.
      * \tparam Scalar Floating-point number type.
-     * \param[in] fun Function to differentiate.
+     * \param[in] function Function to differentiate.
      * \param[in] x Point at which to compute Jacobian.
      * \param[out] out Jacobian matrix.
      * \return True if successful, false otherwise.
@@ -644,7 +644,7 @@ namespace Optimist {
           if (!function(v_x, fpm) || !std::isfinite(fpm)) {
             return false;
           }
-          Scalar h_ij{4.0 * h_i * h_j},
+          Scalar h_ij{static_cast<Scalar>(4.0) * h_i * h_j},
               value{((fpp + fmm) - (fpm + fmp)) / h_ij};
           if constexpr (TypeTrait<Vector>::IsFixed ||
                         TypeTrait<Vector>::IsDynamic) {

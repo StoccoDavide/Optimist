@@ -10,148 +10,91 @@
 
 #pragma once
 
-#ifndef OPTIMIST_OPTIMIZER_HJ_PATTERN_SEARCH_HH
-#define OPTIMIST_OPTIMIZER_HJ_PATTERN_SEARCH_HH
+#ifndef OPTIMIST_OPTIMIZER_PATTERN_SEARCH_HH
+#define OPTIMIST_OPTIMIZER_PATTERN_SEARCH_HH
 
 #include "Optimist/Optimizer.hh"
 
 namespace Optimist {
+
   namespace Optimizer {
 
     /**
-     * \brief Class container for the Hooke and Jeeves Pattern Search algorithm.
+     * \brief Class container for the Hooke-Jeeves pattern search.
      *
-     * \tparam Real Scalar number type.
-     * \tparam N Dimension of the root-finding problem.
+     * \includedoc docs/markdown/Optimizer/PatternSearch.md
+     *
+     * \tparam Vector Eigen vector type.
      */
-    template <typename Real, Integer N>
-    class PatternSearch
-        : public Optimizer<Real, N, PatternSearch<Real, N>, true> {
+    template <typename Vector>
+      requires TypeTrait<Vector>::IsEigen &&
+               (!TypeTrait<Vector>::IsFixed || TypeTrait<Vector>::Dimension > 0)
+    class PatternSearch : public Optimizer<Vector, PatternSearch<Vector>> {
      public:
       static constexpr bool RequiresFunction{true};
       static constexpr bool RequiresFirstDerivative{false};
       static constexpr bool RequiresSecondDerivative{false};
 
-      using typename Optimizer<Real, N, PatternSearch<Real, N>, true>::Vector;
-      using typename Optimizer<Real, N, PatternSearch<Real, N>, true>::Matrix;
+      using VectorTrait = TypeTrait<Vector>;
+      using Scalar      = typename Vector::Scalar;
+      using Dense       = Utils::DenseVector<Vector>;
 
-      using Simplex = std::vector<Vector>;
+      OPTIMIST_BASIC_CONSTANTS(Scalar)
 
      private:
-      Real m_rho{0.9};  // stencil step decreasing factor (must be 0 < rho < 1)
-      Real m_h{0.1};
-      bool m_stencil_failure{false};  // stencil failure flag - used to shrink
-                                      // h, stencil_failure = true means failure
+      Scalar m_step{1.0}; /**< Initial stencil step. */
+      Scalar m_rho{0.5};  /**< Stencil step reduction factor in (0, 1). */
 
      public:
       /**
-       * Class constructor for the PatternSearch solver.
+       * Class constructor for the pattern search solver.
        */
       PatternSearch() {}
 
       /**
-       * Get the Nelder-Mead's solver name.
-       * \return The Nelder-Mead's solver name.
+       * Get the pattern search solver name.
        */
       constexpr std::string name_impl() const {
         return "PatternSearch";
       }
 
-      void set_max_num_stagnation(integer nstg) {
-        UTILS_ASSERT(nstg > 0,
-                     "set_max_num_stagnation({}) argument must be >0\n",
-                     nstg);
-        m_max_num_stagnation = nstg;
-      }
-
-      // SEARCH This method call the explore method on the first
-      // iteration and then continue to call explore until a stencil
-      // fails. In the case of a stencil failure, it tries once to go
-      // back of half a step along the search direction by setting x_center
-      // equal to the base point x_best.
-      // If the stencil fails again, it exits the while loop and stencil_failure
-      // is set to zero in order to signal that a reduction of h is necessary.
-      void search() {
-        ++m_iteration_count;  // augment counter
-
-        this->best_nearby();
-
-        while (m_stencil_failure) {
-          // reduce the scale
-          m_h *= m_rho;
-          this->best_nearby();
-          if (m_h <= m_tolerance)
-            return;
-          if (m_fun_evaluation_count >= m_max_fun_evaluation)
-            return;
-        }
-
-        search_dir.noalias() = x_best - x_old;  // Compute search direction
-
-        // Continue exploring until stencil failure or exceed of
-        Real lambda  = 1;
-        Real max_der = 0;
-        while (m_fun_evaluation_count < m_max_fun_evaluation && lambda > 0.1) {
-          x_new.noalias() = x_best + lambda * search_dir;
-          Real new_f      = eval_function(x_new);
-          if (new_f < f_best - (0.25 * lambda) * max_der) {
-            Real der = (f_best - new_f) / lambda;
-            if (der > max_der)
-              max_der = der;
-            x_best.noalias() = x_new;
-            f_best           = new_f;
-            // lambda *= 2;
-          }
-          lambda *= 0.5;
-        }
-      }
-
-      // This method explore all points on the stencil center at
-      // x_temporary = x_center and updates the current iteration x to the
-      // current best point x_current_best. If the current best point
-      // x_current_best is worse than the base point x_best, the current
-      // iteration x will remain constant (x = x_best) and stencil failure flag
-      // stencil_failure will be set to zero.
-      void best_nearby() {
-        /*
-         */
-        // Initialize
-        m_stencil_failure = true;
-
-        // Cycle on all stencil directions
-
-        for (integer j = 0; j < N; ++j) {
-          Real s_dirh   = search_sign(j) * m_h;
-          m_p.noalias() = x_best;
-          m_p(j) += s_dirh;
-          Real fp = eval_function(m_p);
-          if (fp >= f_best) {
-            m_p1.noalias() = x_best;
-            m_p1(j) -= s_dirh;  // try the opposite direction
-            Real fp1 = eval_function(m_p1);
-            if (fp1 < fp) {
-              m_p.noalias() = m_p1;
-              fp            = fp1;
-              // change priority of search direction to the opposite verse
-              search_sign(j) = -search_sign(j);
-            }
-          }
-          // Update temporary and current best point before checking
-          // the remaining directions j
-          if (fp < f_best) {
-            x_best.noalias()  = m_p;    // move temporary point
-            f_best            = fp;     // new current best point
-            m_stencil_failure = false;  // update stencil failure flag
-          }
-        }
+      /**
+       * Get the initial stencil step.
+       */
+      Scalar step() const {
+        return this->m_step;
       }
 
       /**
-       * Solve the nonlinear system of equations \f$ \mathbf{f}(\mathbf{x}) = 0
-       * \f$, with \f$
-       * \mathbf{f}: \mathbb{R}^n \rightarrow \mathbb{R}^n \f$.
-       * \tparam FunctionLambda Function lambda type.
-       * \param[in] function Function lambda.
+       * Set the initial stencil step.
+       */
+      void step(const Scalar t_step) {
+        OPTIMIST_ASSERT(t_step > 0,
+                        "Optimist::Optimizer::PatternSearch::step(...): "
+                        "invalid input detected.");
+        this->m_step = t_step;
+      }
+
+      /**
+       * Get the stencil step reduction factor.
+       */
+      Scalar rho() const {
+        return this->m_rho;
+      }
+
+      /**
+       * Set the stencil step reduction factor \f$ 0 < \rho < 1 \f$.
+       */
+      void rho(const Scalar t_rho) {
+        OPTIMIST_ASSERT(t_rho > 0 && t_rho < 1,
+                        "Optimist::Optimizer::PatternSearch::rho(...): "
+                        "invalid input detected.");
+        this->m_rho = t_rho;
+      }
+
+      /**
+       * Solve the minimization problem.
+       * \param[in] function Cost function.
        * \param[in] x_ini Initialization point.
        * \param[out] x_sol Solution point.
        * \return The convergence boolean flag.
@@ -160,72 +103,107 @@ namespace Optimist {
       bool solve_impl(FunctionLambda &&function,
                       const Vector &x_ini,
                       Vector &x_sol) {
-        // Reset internal variables
         this->reset_counters();
-        this->m_stencil_failure = false;
-
-        // Print header
         if (this->m_verbose) {
           this->header();
         }
 
-        // Set initial iteration
-        Vector x_best(x_ini);
-        Real f_best;
-        bool success{
-          this->evaluate_function(std::forward<FunctionLambda>(function),
-                                  x_best,
-                                  f_best)};
-        UTILS_ASSERT(success,
-                     "Optimist::Optimizer::PatternSearch::solve(...): "
-                     "function evaluation failed at the initial point.");
-        search_sign
-            .setOnes();  // First direction will be positive for each direction
-        this->m_h = h;
+        const Integer n{static_cast<Integer>(x_ini.size())};
+        Dense base(Utils::to_dense(x_ini));
+        Dense sign(Dense::Ones(n));  // Preferred direction per coordinate
+        Scalar h{this->m_step};
+        Scalar f_base{this->eval(function, base)};
+        std::string notes{"Initialize"};
 
-        // Algorithm iterations
-        integer stagnations{0};
-        for (this->m_iterations = 0;
-             this->m_iterations < this->m_max_iterations;
-             ++this->m_iterations) {
-          x_old = x_best;
-          f_old = f_best;
-
-          this->search();
-          if (this->m_stencil_failure) {
-            break;
-          }
-
-          // Check convergence
-          if (this->m_verbose) {
-            this->info(residuals);
-          }
-          if (this->m_h < this->m_tolerance) {
-            this->m_converged = true;
-            break;
-          }
-
-          // Reduce the scale
-          this->m_h *= this->m_rho;
-
-          // Check for stagnation
-          if (f_old <= f_best) {
-            ++stagnations;
-            if (stagnations > this->m_max_stagnations) {
+        try {
+          for (this->m_iterations = 1;
+               this->m_iterations < this->m_max_iterations;
+               ++this->m_iterations) {
+            if (this->m_verbose) {
+              this->info(h, notes);
+            }
+            if (h < this->m_tolerance * (1 + base.template lpNorm<Eigen::Infinity>())) {
+              this->m_converged = true;
               break;
             }
-          } else {
-            stagnations = 0;
+
+            // Exploratory moves around the base point
+            Dense x(base);
+            Scalar f{f_base};
+            this->explore(function, x, f, sign, h);
+            if (!(f < f_base)) {
+              h *= this->m_rho;
+              notes = "Shrink";
+              continue;
+            }
+
+            // Pattern moves: keep jumping along the successful direction as
+            // long as the exploration around the jump improves
+            notes = "Explore";
+            while (true) {
+              Dense jump{2 * x - base};
+              base   = x;
+              f_base = f;
+              Scalar f_jump{this->eval(function, jump)};
+              this->explore(function, jump, f_jump, sign, h);
+              if (f_jump < f_base) {
+                x     = jump;
+                f     = f_jump;
+                notes = "Pattern";
+              } else {
+                break;
+              }
+            }
           }
+        } catch (const std::runtime_error &) {
+          notes = "Budget exhausted";
         }
 
-        // Print bottom
         if (this->m_verbose) {
           this->bottom();
         }
+        x_sol = Utils::from_dense<Vector>(base);
+        return this->m_converged;
+      }
 
-        // Convergence data
-        x_sol = return this->m_converged;
+     private:
+      template <typename FunctionLambda>
+      Scalar eval(FunctionLambda &function, const Dense &x) {
+        Scalar f;
+        if (!this->evaluate_function(function, Utils::from_dense<Vector>(x), f) ||
+            !std::isfinite(f)) {
+          return INFTY;
+        }
+        return f;
+      }
+
+      /**
+       * Coordinate-wise exploration with step h, trying the preferred
+       * direction first.
+       */
+      template <typename FunctionLambda>
+      void explore(FunctionLambda &function,
+                   Dense &x,
+                   Scalar &f,
+                   Dense &sign,
+                   const Scalar h) {
+        for (Integer j{0}; j < static_cast<Integer>(x.size()); ++j) {
+          const Scalar x_j{x(j)};
+          x(j) = x_j + sign(j) * h;
+          Scalar f_try{this->eval(function, x)};
+          if (f_try < f) {
+            f = f_try;
+            continue;
+          }
+          x(j)  = x_j - sign(j) * h;
+          f_try = this->eval(function, x);
+          if (f_try < f) {
+            f       = f_try;
+            sign(j) = -sign(j);
+            continue;
+          }
+          x(j) = x_j;
+        }
       }
 
     };  // class PatternSearch
@@ -234,4 +212,4 @@ namespace Optimist {
 
 }  // namespace Optimist
 
-#endif  // OPTIMIST_OPTIMIZER_HJ_PATTERN_SEARCH_HH
+#endif  // OPTIMIST_OPTIMIZER_PATTERN_SEARCH_HH

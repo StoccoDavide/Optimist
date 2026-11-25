@@ -98,7 +98,7 @@ namespace Optimist {
 
         // If f(c) = 0 set a = c and return true
         bool success{
-          this->evaluate_function(std::forward<FunctionLambda>(function),
+          this->evaluate_function(function,
                                   this->m_c,
                                   this->m_fc)};
         OPTIMIST_ASSERT(success,
@@ -258,7 +258,7 @@ namespace Optimist {
           ++this->m_iterations;
           this->m_c = (this->m_a + this->m_b) / 2.0;
           success =
-              this->evaluate_function(std::forward<FunctionLambda>(function),
+              this->evaluate_function(function,
                                       this->m_c,
                                       this->m_fc);
           OPTIMIST_ASSERT(success,
@@ -313,7 +313,7 @@ namespace Optimist {
         // Call "bracketing" to get a shrinked enclosing interval and to update
         // the termination criterion
         this->m_converged =
-            this->bracketing(std::forward<FunctionLambda>(function));
+            this->bracketing(function);
         if (this->m_verbose) {
           this->info(std::abs(this->m_fa));
         }
@@ -367,7 +367,7 @@ namespace Optimist {
           // Call "bracketing" to get a shrinked enclosing interval and to
           // update the termination criterion
           this->m_converged =
-              this->bracketing(std::forward<FunctionLambda>(function)) ||
+              this->bracketing(function) ||
               (this->m_b - this->m_a) <= this->m_tolerance;
           if (this->m_verbose) {
             this->info(std::abs(this->m_fa) < std::abs(this->m_fb)
@@ -396,7 +396,7 @@ namespace Optimist {
           // update the termination criterion
           {
             this->m_converged =
-                this->bracketing(std::forward<FunctionLambda>(function)) ||
+                this->bracketing(function) ||
                 (this->m_b - this->m_a) <= this->m_tolerance;
             Scalar abs_fa{std::abs(this->m_fa)};
             Scalar abs_fb{std::abs(this->m_fb)};
@@ -429,7 +429,7 @@ namespace Optimist {
           // Call "bracketing" to get a shrinked enclosing interval and to
           // update the termination criterion
           this->m_converged =
-              this->bracketing(std::forward<FunctionLambda>(function)) ||
+              this->bracketing(function) ||
               (this->m_b - this->m_a) <= this->m_tolerance_bracketing;
           if (this->m_converged) {
             return std::abs(this->m_fa) < std::abs(this->m_fb) ? this->m_a
@@ -450,7 +450,7 @@ namespace Optimist {
             Scalar b_a{this->m_b - this->m_a};
             this->m_c = this->m_a + b_a / 2.0;
             this->m_converged =
-                this->bracketing(std::forward<FunctionLambda>(function)) ||
+                this->bracketing(function) ||
                 b_a <= this->m_tolerance_bracketing;
           }
         }

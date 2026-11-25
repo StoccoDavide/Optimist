@@ -10,21 +10,23 @@
 
 #pragma once
 
-#ifndef OPTIMIST_ROOTFINDER_VARONA4_HH
-#define OPTIMIST_ROOTFINDER_VARONA4_HH
+#ifndef OPTIMIST_ROOTFINDER_VARONA_HH
+#define OPTIMIST_ROOTFINDER_VARONA_HH
 
-#include "Optimist/RootFinder.hh"
+#include "Optimist/RootFinder/OpenMethod.hh"
 
 namespace Optimist {
+
   namespace RootFinder {
 
     /**
-     * \brief Class container for the Varona's methods.
+     * \brief Class container for Varona's family of high-order methods.
      *
      * \tparam Scalar Floating-point number type.
      */
     template <typename Scalar>
-    class Varona : public RootFinder<Scalar, Varona<Scalar>> {
+      requires TypeTrait<Scalar>::IsScalar
+    class Varona : public OpenMethod<Scalar, Varona<Scalar>> {
      public:
       static constexpr bool RequiresFunction{true};
       static constexpr bool RequiresFirstDerivative{true};
@@ -33,21 +35,21 @@ namespace Optimist {
       OPTIMIST_BASIC_CONSTANTS(Scalar)
 
       /**
-       * Varona solver type enumeration.
+       * Order of the method.
        */
       using Method = enum class Method : Integer {
-        ORDER_4  = 41,
-        ORDER_8  = 8,
-        ORDER_16 = 16,
-        ORDER_32 = 32
+        ORDER_4  = 4,  /**< Fourth order (2 function evaluations). */
+        ORDER_8  = 8,  /**< Eighth order (3 function evaluations). */
+        ORDER_16 = 16, /**< Sixteenth order (4 function evaluations). */
+        ORDER_32 = 32  /**< Thirty-second order (5 function evaluations). */
       };
 
      private:
-      Method m_method{Method::ORDER_4}; /**< Varona solver type. */
+      Method m_method{Method::ORDER_4}; /**< Order of the method. */
 
      public:
       /**
-       * Class constructor for the Varona's solvers.
+       * Class constructor for the Varona solver.
        */
       Varona() {}
 
@@ -60,300 +62,109 @@ namespace Optimist {
       }
 
       /**
-       * Get the enumeration type of the Varona solver method.
-       * \return The Varona solver enumeration type.
+       * Get the order of the method.
+       * \return The order of the method.
        */
       Method method() const {
         return this->m_method;
       }
 
       /**
-       * Set the enumeration type of the Varona solver method.
-       * \param[in] t_method The Varona solver enumeration type.
+       * Set the order of the method.
+       * \param[in] t_method The order of the method.
        */
-      void method(Method t_method) {
+      void method(const Method t_method) {
         this->m_method = t_method;
       }
 
       /**
-       * Enable the Varona's 4-th order method.
+       * Enable the fourth-order method.
        */
       void enable_4th_order_method() {
         this->m_method = Method::ORDER_4;
       }
 
       /**
-       * Enable the Varona's 8-th order method.
+       * Enable the eighth-order method.
        */
       void enable_8th_order_method() {
         this->m_method = Method::ORDER_8;
       }
 
       /**
-       * Enable the Varona's 16-th order method.
+       * Enable the sixteenth-order method.
        */
       void enable_16th_order_method() {
         this->m_method = Method::ORDER_16;
       }
 
       /**
-       * Enable the Varona's 32-th order method.
+       * Enable the thirty-second-order method.
        */
       void enable_32th_order_method() {
         this->m_method = Method::ORDER_32;
       }
 
       /**
-       * Set the Varona solver type.
-       * \param[in] t_method The Varona solver type enumeration.
-       */
-      void set_method(Method t_method) {
-        this->m_method = t_method;
-      }
-
-      /**
-       * Solve the nonlinear equation \f$ f(x) = 0 \f$, with \f$ f: \mathbb{R}
-       * \rightarrow \mathbb{R} \f$.
-       * \tparam FunctionLambda Function lambda type.
-       * \tparam FirstDerivativeLambda First derivative lambda type.
-       * \param[in] function Function lambda.
-       * \param[in] first_derivative First derivative lambda.
-       * \param[in] x_ini Initialization point.
-       * \param[out] x_sol Solution point.
-       * \return The convergence boolean flag.
-       */
-      template <typename FunctionLambda, typename FirstDerivativeLambda>
-      bool solve_impl(FunctionLambda &&function,
-                      FirstDerivativeLambda &&first_derivative,
-                      Scalar x_ini,
-                      Scalar &x_sol) {
-#define CMD "Optimist::RootFinder::Varona::solve(...): "
-
-        // Reset internal variables
-        this->reset_counters();
-
-        // Print header
-        if (this->m_verbose) {
-          this->header();
-        }
-
-        // Initialize variables
-        bool damped, success;
-        Scalar residuals, step_norm;
-        Scalar x_old, x_new, function_old, function_new, step_old, step_new;
-        Scalar first_derivative_old;
-
-        // Set initial iteration
-        x_old = x_ini;
-        success =
-            this->evaluate_function(std::forward<FunctionLambda>(function),
-                                    x_old,
-                                    function_old);
-        OPTIMIST_ASSERT(success,
-                        CMD "function evaluation failed at the initial point.");
-
-        // Algorithm iterations
-        Scalar tolerance_residuals{this->m_tolerance};
-        Scalar tolerance_step_norm{this->m_tolerance * this->m_tolerance};
-        for (this->m_iterations = 1;
-             this->m_iterations < this->m_max_iterations;
-             ++this->m_iterations) {
-          // Evaluate first derivative
-          success = this->evaluate_first_derivative(
-              std::forward<FirstDerivativeLambda>(first_derivative),
-              x_old,
-              first_derivative_old);
-          OPTIMIST_ASSERT(success,
-                          CMD "first derivative evaluation failed at iteration "
-                              << this->m_iterations << ".");
-
-          // Calculate step
-          if (std::abs(first_derivative_old) < Varona::SQRT_EPSILON) {
-            OPTIMIST_WARNING(CMD
-                             "close-to-singular first derivative detected.");
-            first_derivative_old = (first_derivative_old > 0)
-                                       ? Varona::SQRT_EPSILON
-                                       : -Varona::SQRT_EPSILON;
-          }
-
-          this->compute_step(std::forward<FunctionLambda>(function),
-                             x_old,
-                             function_old,
-                             first_derivative_old,
-                             step_old);
-
-          // Check convergence
-          residuals = std::abs(function_old);
-          step_norm = std::abs(step_old);
-          if (this->m_verbose) {
-            this->info(residuals);
-          }
-          if (residuals < tolerance_residuals ||
-              step_norm < tolerance_step_norm) {
-            this->m_converged = true;
-            break;
-          }
-
-          if (this->m_damped) {
-            // Relax the iteration process
-            damped = this->damp(std::forward<FunctionLambda>(function),
-                                x_old,
-                                function_old,
-                                step_old,
-                                x_new,
-                                function_new,
-                                step_new);
-            OPTIMIST_ASSERT_WARNING(damped, CMD "damping failed.");
-          } else {
-            // Update point
-            x_new = x_old + step_old;
-            success =
-                this->evaluate_function(std::forward<FunctionLambda>(function),
-                                        x_new,
-                                        function_new);
-            OPTIMIST_ASSERT(success,
-                            CMD "function evaluation failed at iteration "
-                                << this->m_iterations << ".");
-          }
-
-          // Update internal variables
-          x_old        = x_new;
-          function_old = function_new;
-          step_old     = step_new;
-        }
-
-        // Print bottom
-        if (this->m_verbose) {
-          this->bottom();
-        }
-
-        // Convergence data
-        x_sol = x_old;
-        return this->m_converged;
-
-#undef CMD
-      }
-
-     protected:
-      /**
-       * Compute the step using the Varona's methods.
-       * \param[in] function Function lambda.
-       * \param[in] x_old Old point.
-       * \param[in] function_old Old function value.
-       * \param[in] first_derivative_old Old first derivative value.
-       * \param[out] step_old Old step.
+       * Varona step: a Newton step followed by up to four corrections, each
+       * needing one more function evaluation and doubling the order. The
+       * weight functions are expansions around \f$ t = f(y)/f(x) = 0 \f$, so
+       * far from the root (\f$ |t| > 1/2 \f$) the Newton step is taken.
+       * \param[in] function Function.
+       * \param[in] x Current point.
+       * \param[in] f Function value.
+       * \param[in] df First derivative value.
+       * \param[in] ddf Second derivative value (unused).
+       * \return The step.
        */
       template <typename FunctionLambda>
-      void compute_step(FunctionLambda &&function,
-                        Scalar x_old,
-                        Scalar function_old,
-                        Scalar first_derivative_old,
-                        Scalar &step_old) {
-#define CMD "Optimist::RootFinder::Varona::compute_step(...): "
+      Scalar step_impl(FunctionLambda &function,
+                       const Scalar x,
+                       const Scalar f,
+                       const Scalar df,
+                       [[maybe_unused]] const Scalar ddf) {
+#define CMD "Optimist::RootFinder::Varona::step_impl(...): "
 
-        bool success;
-        Scalar function_y, function_z, function_w, function_h, step_tmp, t, s,
-            u, v;
-        Scalar tolerance_residuals{this->m_tolerance};
+        const Integer order{static_cast<Integer>(this->m_method)};
+        const Scalar tolerance{this->m_tolerance};
+        Scalar step{-f / df};
 
-        // Base step
-        step_old = -function_old / first_derivative_old;
+        // Evaluate the function at x + step, returning false if converged
+        auto next = [&](Scalar &value) -> bool {
+          OPTIMIST_ASSERT(this->evaluate_function(function, x + step, value),
+                          CMD "function evaluation failed.");
+          return std::abs(value) >= tolerance;
+        };
 
-        // Order 4 step
-        if (this->m_method == Method::ORDER_4 ||
-            this->m_method == Method::ORDER_8 ||
-            this->m_method == Method::ORDER_16 ||
-            this->m_method == Method::ORDER_32) {
-          success =
-              this->evaluate_function(std::forward<FunctionLambda>(function),
-                                      x_old + step_old,
-                                      function_y);
-          OPTIMIST_ASSERT(success,
-                          CMD
-                          "function evaluation failed during order 4 step.");
-          if (std::abs(function_y) < tolerance_residuals) {
-            return;
-          }
-          t        = function_y / function_old;
-          step_tmp = this->Q(t) * (function_y / first_derivative_old);
-          if (std::isfinite(step_tmp)) {
-            step_old -= step_tmp;
-          } else {
-            return;
-          }
+        Scalar f_y, f_z, f_w, f_h;
+        if (!next(f_y)) {
+          return step;
         }
-
-        // Order 8 step (continued order 4)
-        if (this->m_method == Method::ORDER_8 ||
-            this->m_method == Method::ORDER_16 ||
-            this->m_method == Method::ORDER_32) {
-          success =
-              this->evaluate_function(std::forward<FunctionLambda>(function),
-                                      x_old + step_old,
-                                      function_z);
-          OPTIMIST_ASSERT(success,
-                          CMD
-                          "function evaluation failed during order 8 step.");
-          if (std::abs(function_z) < tolerance_residuals) {
-            return;
-          }
-          s        = function_z / function_y;
-          step_tmp = this->W(t, s) * (function_z / first_derivative_old);
-          if (std::isfinite(step_tmp)) {
-            step_old -= step_tmp;
-          } else {
-            return;
-          }
+        const Scalar t{f_y / f};
+        if (std::abs(t) > 0.5) {
+          return step;
         }
-
-        // Order 16 step (continued order 8)
-        if (this->m_method == Method::ORDER_16 ||
-            this->m_method == Method::ORDER_32) {
-          success =
-              this->evaluate_function(std::forward<FunctionLambda>(function),
-                                      x_old + step_old,
-                                      function_w);
-          OPTIMIST_ASSERT(success,
-                          CMD
-                          "function evaluation failed during order 16 step.");
-          if (std::abs(function_w) < tolerance_residuals) {
-            return;
-          }
-          u        = function_w / function_z;
-          step_tmp = this->H(t, s, u) * (function_w / first_derivative_old);
-          if (std::isfinite(step_tmp)) {
-            step_old -= step_tmp;
-          } else {
-            return;
-          }
+        step -= Q(t) * f_y / df;
+        if (order < 8 || !next(f_z)) {
+          return step;
         }
-
-        // Order 32 step (continued order 16)
-        if (this->m_method == Method::ORDER_32) {
-          success =
-              this->evaluate_function(std::forward<FunctionLambda>(function),
-                                      x_old + step_old,
-                                      function_h);
-          OPTIMIST_ASSERT(success,
-                          CMD
-                          "function evaluation failed during order 32 step.");
-          if (std::abs(function_h) < tolerance_residuals) {
-            return;
-          }
-          v        = (function_h / function_w);
-          step_tmp = this->J(t, s, u, v) * (function_h / first_derivative_old);
-          if (std::isfinite(step_tmp)) {
-            step_old -= step_tmp;
-          } else {
-            return;
-          }
+        const Scalar s{f_z / f_y};
+        step -= W(t, s) * f_z / df;
+        if (order < 16 || !next(f_w)) {
+          return step;
         }
-
-        OPTIMIST_ASSERT(std::isfinite(step_old), CMD "step is not finite.");
+        const Scalar u{f_w / f_z};
+        step -= H(t, s, u) * f_w / df;
+        if (order < 32 || !next(f_h)) {
+          return step;
+        }
+        const Scalar w{f_h / f_w};
+        return step - J(t, s, u, w) * f_h / df;
 
 #undef CMD
       }
 
+     private:
       /**
        * Compute the \f$ Q \f$ function for the Varona's methods.
        * \param[in] t Input value.
@@ -441,4 +252,4 @@ namespace Optimist {
 
 }  // namespace Optimist
 
-#endif  // OPTIMIST_ROOTFINDER_VARONA4_HH
+#endif  // OPTIMIST_ROOTFINDER_VARONA_HH

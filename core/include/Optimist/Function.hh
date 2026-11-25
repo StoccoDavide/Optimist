@@ -57,6 +57,8 @@ namespace Optimist {
                                              OutputTrait::Dimension,
                                              InputTrait::Dimension>>>,
         Scalar>;
+    // For vector-valued functions the second derivative is the list of the
+    // Hessians of the output components, i.e., one n x n matrix per output
     using SecondDerivative = std::conditional_t<
         InputTrait::IsEigen || OutputTrait::IsEigen,
         std::conditional_t<
@@ -70,7 +72,7 @@ namespace Optimist {
                 InputTrait::IsSparse || OutputTrait::IsSparse,
                 std::vector<Eigen::SparseMatrix<Scalar>>,
                 std::vector<Eigen::Matrix<Scalar,
-                                          OutputTrait::Dimension,
+                                          InputTrait::Dimension,
                                           InputTrait::Dimension>>>>,
         Scalar>;
 
@@ -308,7 +310,7 @@ namespace Optimist {
     /**
      * Class constructor for the function.
      */
-    Function<Input, Scalar, DerivedFunction>() {}
+    Function() {}
     /**
      * Get the function name.
      * \return The function name.

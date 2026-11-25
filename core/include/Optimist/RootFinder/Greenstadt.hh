@@ -95,13 +95,6 @@ namespace Optimist {
         this->m_method = Method::TWO;
       }
 
-      /**
-       * Set the Greenstadt solver method.
-       * \param[in] t_method The Greenstadt solver method enumeration type.
-       */
-      void set_method(Method t_method) {
-        this->m_method = t_method;
-      }
 
       /**
        * Jacobian approximation update rule for the Greenstadt's method.
@@ -113,29 +106,29 @@ namespace Optimist {
        * \param[in] function_new New function value.
        * \param[out] jacobian_new New jacobian approximation.
        */
-      void update_impl(const Vector & /*delta_x_old*/,
-                       const Vector & /*delta_function_old*/,
+      void update_impl([[maybe_unused]] const Vector &delta_x_old,
+                       [[maybe_unused]] const Vector &delta_function_old,
                        const FirstDerivative &jacobian_old,
                        const Vector &delta_x_new,
                        const Vector &delta_function_new,
                        const Vector &function_new,
                        FirstDerivative &jacobian_new) {
+        // Both methods read: J_new = J_old - (J_old*dF_new-dx_new) /
+        // (C'*dF_new)*C', with C = F_new (1st) or C = J_old'*J_old*dF_new (2nd)
+        Vector C;
         if (this->m_method == Method::ONE) {
-          // Greenstadt's 1st method
-          // J1 = J0 - (J0*DF1-DX1)/(C'*DF1)*C', where C = F1;
-          jacobian_new =
-              jacobian_old - (jacobian_old * delta_function_new - delta_x_new) /
-                                 (function_new.dot(delta_function_new)) *
-                                 function_new.transpose();
-        } else if (this->m_method == Method::TWO) {
-          // Greenstadt's 2nd method
-          // J1 = J0 - (J0*DF1-DX1)/(C'*DF1)*C', where C  = J0'*J0*DF1;
-          Vector C(jacobian_old.transpose() * jacobian_old *
-                   delta_function_new);
-          jacobian_new =
-              jacobian_old - (jacobian_old * delta_function_new - delta_x_new) /
-                                 (C.dot(delta_function_new)) * C.transpose();
+          C = function_new;
+        } else {
+          C = jacobian_old.transpose() * (jacobian_old * delta_function_new);
         }
+        Scalar den{C.dot(delta_function_new)};
+        if (std::abs(den) <= EPSILON || !std::isfinite(den)) {
+          jacobian_new = jacobian_old;
+          return;
+        }
+        jacobian_new = jacobian_old -
+                       (jacobian_old * delta_function_new - delta_x_new) / den *
+                           C.transpose();
       }
 
     };  // class Greenstadt

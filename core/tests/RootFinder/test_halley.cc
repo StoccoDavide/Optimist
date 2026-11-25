@@ -1,5 +1,5 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
- * Copyright (c) 2025, Davide Stocco and Enrico Bertolazzi.                  *
+ * Copyright (c) 2026, Davide Stocco and Enrico Bertolazzi.                  *
  *                                                                           *
  * The Optimist project is distributed under the BSD 2-Clause License.       *
  *                                                                           *
@@ -12,56 +12,43 @@
 #include "Optimist/RootFinder/Halley.hh"
 #include "Optimist/TestSet.hh"
 
-// Google Test framework
-#include <gtest/gtest.h>
+// Test utilities
+#include "TestUtils.hh"
 
 using namespace Optimist::TestSet;
+using namespace OptimistTest;
 
-// Type-parameterized test fixture for functions
-template <typename FunctionType>
-struct Functions : public testing::Test {
-  using TestType = FunctionType;
-};
+using TestTypes = ConcatT<ScalarVariants<Linear>,
+                          ScalarVariants<Quadratic>,
+                          ScalarVariants<Cos>,
+                          ScalarVariants<Sin>,
+                          ScalarVariants<Sinh>>;
 
-using TestTypes = testing::Types<Linear<float>,
-                                 Linear<double>,
-                                 Quadratic<float>,
-                                 Quadratic<double>,
-                                 Cos<float>,
-                                 Cos<double>,
-                                 Sin<float>,
-                                 Sin<double>,
-                                 Sinh<float>,
-                                 Sinh<double>>;
+OPTIMIST_TYPED_TEST_SUITE(Functions, TestTypes);
 
-// Register the type-parameterized function tests
-TYPED_TEST_SUITE(Functions, TestTypes);
-
-// Test to solve functions
-TYPED_TEST(Functions, Solve) {
-  // Retrieve the function and scalar types
+TYPED_TEST(Functions, RootFind) {
   using Function = TypeParam;
   using Scalar   = typename Function::Scalar;
 
-  // Create function and solver instances
   Function fun;
   Optimist::RootFinder::Halley<Scalar> sol;
   sol.task(fun.name());
-  sol.verbose_mode(false);
-  sol.tolerance(std::sqrt(Function::EPSILON));
+  sol.tolerance(solver_tolerance<Scalar>());
 
-  Scalar x_out;
-  for (size_t i{0}; i < fun.guesses().size(); ++i) {
-    // Solve without damping
-    sol.disable_damped_mode();
-    sol.rootfind(fun, fun.guess(i), x_out);
-    EXPECT_TRUE(sol.converged());
-    EXPECT_TRUE(fun.is_solution(x_out, std::cbrt(Function::EPSILON)));
 
-    // Solve with damping
-    sol.disable_damped_mode();
-    sol.rootfind(fun, fun.guess(i), x_out);
-    EXPECT_TRUE(sol.converged());
-    EXPECT_TRUE(fun.is_solution(x_out, std::cbrt(Function::EPSILON)));
+  for (const bool damped : {false, true}) {
+    sol.damped_mode(damped);
+    expect_solves_all<Problem::ROOTFIND>(sol, fun, default_tolerance<Scalar>());
   }
+
+}
+
+TEST(Halley, ReportsIterationLimit) {
+  Sinh<double> fun;
+  Optimist::RootFinder::Halley<double> sol;
+  sol.max_iterations(2);
+  double x_out;
+  sol.rootfind(fun, 10.0, x_out);
+  EXPECT_FALSE(sol.converged());
+  EXPECT_LE(sol.iterations(), 2);
 }

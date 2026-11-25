@@ -15,6 +15,7 @@
 
 #include "Optimist.hh"
 #include "Optimist/Function.hh"
+#include "Optimist/Utils.hh"
 
 namespace Optimist {
 
@@ -118,81 +119,17 @@ namespace Optimist {
     /**
      * Class constructor for the nonlinear solver.
      */
-    SolverBase() {}
-
-    /**
-     * Class constructor for the nonlinear solver.
-     * \tparam FunctionLambda Function lambda type.
-     * \param[in] function Function lambda.
-     * \param[in] x_ini Initialization point.
-     * \param[out] x_sol Solution point.
-     */
-    template <typename FunctionLambda>
-    SolverBase(FunctionLambda &&function, const Input &x_ini, Input &x_sol)
-        : SolverBase() {
-      static_cast<const DerivedSolver *>(this)->solve_impl(
-          std::forward<FunctionLambda>(function),
-          x_ini,
-          x_sol);
-    }
-
-    /**
-     * Class constructor for the nonlinear solver.
-     * \tparam FunctionLambda Function lambda type.
-     * \tparam FirstDerivativeLambda First derivative lambda type.
-     * \param[in] function Function lambda.
-     * \param[in] first_derivative First derivative lambda.
-     * \param[in] x_ini Initialization point.
-     * \param[out] x_sol Solution point.
-     */
-    template <typename FunctionLambda, typename FirstDerivativeLambda>
-    SolverBase(FunctionLambda &&function,
-               FirstDerivativeLambda &&first_derivative,
-               const Input &x_ini,
-               Input &x_sol)
-        : SolverBase() {
-      static_cast<const DerivedSolver *>(this)->solve_impl(
-          std::forward<FunctionLambda>(function),
-          std::forward<FirstDerivativeLambda>(first_derivative),
-          x_ini,
-          x_sol);
-    }
-
-    /**
-     * Class constructor for the nonlinear solver.
-     * \tparam FunctionLambda Function lambda type.
-     * \tparam FirstDerivativeLambda First derivative lambda type.
-     * \tparam SecondDerivativeLambda Second derivative lambda type.
-     * \param[in] function Function lambda.
-     * \param[in] first_derivative First derivative lambda.
-     * \param[in] second_derivative The second derivative lambda.
-     * \param[in] x_ini Initialization point.
-     * \param[out] x_sol Solution point.
-     */
-    template <typename FunctionLambda,
-              typename FirstDerivativeLambda,
-              typename SecondDerivativeLambda>
-    SolverBase(FunctionLambda &&function,
-               FirstDerivativeLambda &&first_derivative,
-               SecondDerivativeLambda &&second_derivative,
-               const Input &x_ini,
-               Input &x_sol)
-        : SolverBase() {
-      static_cast<const DerivedSolver *>(this)->solve_impl(
-          std::forward<FunctionLambda>(function),
-          std::forward<FirstDerivativeLambda>(first_derivative),
-          std::forward<SecondDerivativeLambda>(second_derivative),
-          x_ini,
-          x_sol);
+    SolverBase() {
+      this->reset_bounds();
     }
 
     /**
      * Reset lower and upper bounds to default values.
      * \param[in] n Input dimension for dynamic-size types.
      */
-    void reset_bounds(const Integer n = InputTrait::IsDynamic
-                                            ? 0
-                                            : InputTrait::Dimension) {
+    void reset_bounds(const Integer n = InputTrait::IsFixed
+                                            ? InputTrait::Dimension
+                                            : 0) {
 #define CMD "Optimist::Solver::reset_bounds(...): "
 
       if constexpr (InputTrait::IsScalar) {
@@ -211,18 +148,10 @@ namespace Optimist {
         this->m_lower_bound.reserve(n);
         this->m_upper_bound.resize(n);
         this->m_upper_bound.reserve(n);
-        std::vector<Eigen::Triplet<Scalar>> triplets;
-        triplets.reserve(n);
         for (Integer i{0}; i < n; ++i) {
-          triplets.emplace_back(i, 0, -INFTY);
+          this->m_lower_bound.coeffRef(i) = -INFTY;
+          this->m_upper_bound.coeffRef(i) = +INFTY;
         }
-        this->m_lower_bound.setFromTriplets(triplets.begin(), triplets.end());
-        triplets.clear();
-        triplets.reserve(n);
-        for (Integer i{0}; i < n; ++i) {
-          triplets.emplace_back(i, 0, +INFTY);
-        }
-        this->m_upper_bound.setFromTriplets(triplets.begin(), triplets.end());
       } else {
         OPTIMIST_ERROR(CMD "unsupported input type for bounds reset.");
       }
@@ -243,18 +172,10 @@ namespace Optimist {
      * \param[in] t_lower_bound The lower bound.
      */
     void lower_bound(const Input &t_lower_bound) {
-#define CMD "Optimist::Solver::bounds(...): "
-
-      if constexpr (InputTrait::IsEigen) {
-        OPTIMIST_ASSERT((this->m_upper_bound - t_lower_bound).minCoeff() <= 0.0,
-                        CMD "invalid or degenarate bounds detected.");
-      } else {
-        OPTIMIST_ASSERT(this->m_upper_bound > t_lower_bound,
-                        CMD "invalid or degenarate bounds detected.");
-      }
+      OPTIMIST_ASSERT(valid_bounds(t_lower_bound, this->m_upper_bound),
+                      "Optimist::Solver::lower_bound(...): invalid or "
+                      "degenerate bounds detected.");
       this->m_lower_bound = t_lower_bound;
-
-#undef CMD
     }
 
     /**
@@ -270,18 +191,10 @@ namespace Optimist {
      * \param[in] t_upper_bound The upper bound.
      */
     void upper_bound(const Input &t_upper_bound) {
-#define CMD "Optimist::Solver::bounds(...): "
-
-      if constexpr (InputTrait::IsEigen) {
-        OPTIMIST_ASSERT((t_upper_bound - this->m_lower_bound).minCoeff() <= 0.0,
-                        CMD "invalid or degenarate bounds detected.");
-      } else {
-        OPTIMIST_ASSERT(t_upper_bound > this->m_lower_bound,
-                        CMD "invalid or degenarate bounds detected.");
-      }
+      OPTIMIST_ASSERT(valid_bounds(this->m_lower_bound, t_upper_bound),
+                      "Optimist::Solver::upper_bound(...): invalid or "
+                      "degenerate bounds detected.");
       this->m_upper_bound = t_upper_bound;
-
-#undef CMD
     }
 
     /**
@@ -290,20 +203,73 @@ namespace Optimist {
      * \param[in] t_upper_bound The upper bound.
      */
     void bounds(const Input &t_lower_bound, const Input &t_upper_bound) {
-#define CMD "Optimist::Solver::bounds(...): "
-
-      if constexpr (InputTrait::IsEigen) {
-        OPTIMIST_ASSERT((t_upper_bound - t_lower_bound).minCoeff() <= 0.0,
-                        CMD "invalid or degenarate bounds detected.");
-      } else {
-        OPTIMIST_ASSERT(t_upper_bound > t_lower_bound,
-                        CMD "invalid or degenarate bounds detected.");
-      }
+      OPTIMIST_ASSERT(
+          valid_bounds(t_lower_bound, t_upper_bound) &&
+              (InputTrait::IsScalar ||
+               Integer(size_of(t_lower_bound)) ==
+                   Integer(size_of(t_upper_bound))),
+          "Optimist::Solver::bounds(...): invalid or degenerate bounds "
+          "detected.");
       this->m_lower_bound = t_lower_bound;
       this->m_upper_bound = t_upper_bound;
-
-#undef CMD
     }
+
+    /**
+     * Check whether the solver has finite bounds on every component.
+     * 
+eturn True if the bounds are set and finite.
+     */
+    bool has_finite_bounds() const {
+      if constexpr (InputTrait::IsScalar) {
+        return std::isfinite(this->m_lower_bound) &&
+               std::isfinite(this->m_upper_bound);
+      } else {
+        using Dense = Eigen::Matrix<Scalar, Eigen::Dynamic, 1>;
+        if (this->m_lower_bound.size() == 0 ||
+            this->m_lower_bound.size() != this->m_upper_bound.size()) {
+          return false;
+        }
+        return Dense(this->m_lower_bound).allFinite() &&
+               Dense(this->m_upper_bound).allFinite();
+      }
+    }
+
+   protected:
+    /**
+     * Size of an input (1 for scalars).
+     */
+    static Integer size_of(const Input &x) {
+      if constexpr (InputTrait::IsScalar) {
+        return 1;
+      } else {
+        return static_cast<Integer>(x.size());
+      }
+    }
+
+    /**
+     * Check that the lower bound is strictly below the upper bound on every
+     * component. Bounds of different sizes (e.g., not yet initialized
+     * dynamic-size bounds) are not compared.
+     */
+    static bool valid_bounds(const Input &t_lower, const Input &t_upper) {
+      if constexpr (InputTrait::IsScalar) {
+        return !(t_upper <= t_lower);
+      } else {
+        using Dense = Eigen::Matrix<Scalar, Eigen::Dynamic, 1>;
+        if (t_lower.size() != t_upper.size() || t_lower.size() == 0) {
+          return true;
+        }
+        const Dense lower(t_lower), upper(t_upper);
+        for (Eigen::Index i{0}; i < lower.size(); ++i) {
+          if (!(upper(i) > lower(i))) {
+            return false;
+          }
+        }
+        return true;
+      }
+    }
+
+   public:
 
     /**
      * Get the input dimension of the function.
@@ -425,7 +391,7 @@ namespace Optimist {
      * \return The number of maximum allowed iterations.
      */
     Integer max_iterations() const {
-      return this->max_iterations;
+      return this->m_max_iterations;
     }
 
     /**
@@ -471,7 +437,7 @@ namespace Optimist {
      * \return The number of maximum allowed relaxations.
      */
     Integer max_relaxations() const {
-      return this->max_relaxations;
+      return this->m_max_relaxations;
     }
 
     /**
@@ -620,12 +586,10 @@ namespace Optimist {
     bool solve(FunctionLambda &&function, const Input &x_ini, Input &x_sol) {
 #define CMD "Optimist::Solver::solve(...): "
 
-      static_assert(DerivedSolver::RequiresFunction,
-                    CMD "the solver requires a function.");
+      static_assert(!DerivedSolver::RequiresFirstDerivative,
+                    CMD "the solver requires the first derivative.");
       return static_cast<DerivedSolver *>(this)->solve_impl(
           std::forward<FunctionLambda>(function),
-          nullptr,
-          nullptr,
           x_ini,
           x_sol);
 
@@ -654,10 +618,11 @@ namespace Optimist {
                     CMD "the solver requires a function.");
       static_assert(DerivedSolver::RequiresFirstDerivative,
                     CMD "the solver requires the first derivative.");
+      static_assert(!DerivedSolver::RequiresSecondDerivative,
+                    CMD "the solver requires the second derivative.");
       return static_cast<DerivedSolver *>(this)->solve_impl(
           std::forward<FunctionLambda>(function),
           std::forward<FirstDerivativeLambda>(first_derivative),
-          nullptr,
           x_ini,
           x_sol);
 
@@ -704,18 +669,26 @@ namespace Optimist {
     }
 
     /**
-     * Solve the root-finding problem given a function class.
-     * \tparam FunctionInput The function input dimension.
-     * \tparam FunctionOutput The function output dimension.
+     * Solve the root-finding problem \f$ \mathbf{f}(\mathbf{x}) = \mathbf{0}
+     * \f$ given a function class.
+     *
+     * - Root finders solve the system directly.
+     * - Optimizers minimize the least-squares merit function \f$
+     *   \frac{1}{2}\|\mathbf{f}(\mathbf{x})\|_2^2 \f$, whose global minima are
+     *   the roots of \f$ \mathbf{f} \f$.
+     *
+     * \tparam FunctionInput The function input type.
+     * \tparam FunctionOutput The function output type.
      * \tparam DerivedFunction Derived function class.
      * \param[in] function Function class.
      * \param[in] x_ini Initialization point.
      * \param[out] x_sol Solution point.
+     * \return The convergence boolean flag.
      */
     template <typename FunctionInput,
               typename FunctionOutput,
               typename DerivedFunction>
-    // TODO: make requires clauses to avoid invalid combinations
+      requires(TypeTrait<FunctionInput>::Dimension == InputTrait::Dimension)
     bool rootfind(
         const FunctionBase<FunctionInput, FunctionOutput, DerivedFunction>
             &function,
@@ -723,43 +696,53 @@ namespace Optimist {
         Input &x_sol) {
 #define CMD "Optimist::Solver::rootfind(...): "
 
-      using FunctionInputTrait  = TypeTrait<FunctionInput>;
       using FunctionOutputTrait = TypeTrait<FunctionOutput>;
 
-      static_assert(InputTrait::Dimension == FunctionInputTrait::Dimension,
-                    CMD
-                    "solver input dimension must be equal to the function "
-                    "input dimension.");
-      static_assert(OutputTrait::Dimension == FunctionOutputTrait::Dimension ||
-                        OutputTrait::Dimension == 1,
-                    CMD
-                    "solver output dimension must be equal to the function "
-                    "output dimension or 1.");
       static_assert(
           !(InputTrait::IsScalar && DerivedSolver::IsOptimizer),
           CMD
           "one-dimensional optimizers do not support root-finding problems.");
-      return this->solve(
-          function,
-          x_ini,
-          x_sol,
-          (OutputTrait::Dimension != FunctionOutputTrait::Dimension) ||
-              (InputTrait::IsEigen && FunctionOutputTrait::IsScalar));
+
+      if constexpr (DerivedSolver::IsOptimizer) {
+        return this->template solve<Problem::LEAST_SQUARES>(function,
+                                                            x_ini,
+                                                            x_sol);
+      } else {
+        static_assert(OutputTrait::Dimension == FunctionOutputTrait::Dimension,
+                      CMD
+                      "root finders require a function whose output dimension "
+                      "equals the input dimension.");
+        return this->template solve<Problem::ROOT>(function, x_ini, x_sol);
+      }
+
 #undef CMD
     }
 
     /**
      * Solve the optimization problem given a function class.
-     * \tparam FunctionInput The function input dimension.
-     * \tparam FunctionOutput The function output dimension.
+     *
+     * The objective \f$ \phi(\mathbf{x}) \f$ is selected as follows:
+     * - cost functions \f$ f : \mathbb{R}^n \to \mathbb{R} \f$ handed to an
+     *   optimizer are minimized directly, \f$ \phi = f \f$;
+     * - vector-valued functions are turned into the least-squares merit
+     *   function \f$ \phi = \frac{1}{2}\|\mathbf{f}\|_2^2 \f$, and so are
+     *   scalar functions handed to a one-dimensional root finder;
+     * - root finders locate the stationary points of \f$ \phi \f$ by solving
+     *   \f$ \nabla\phi(\mathbf{x}) = \mathbf{0} \f$, using \f$
+     *   \nabla^2\phi \f$ as the Jacobian.
+     *
+     * \tparam FunctionInput The function input type.
+     * \tparam FunctionOutput The function output type.
      * \tparam DerivedFunction Derived function class.
      * \param[in] function Function class.
      * \param[in] x_ini Initialization point.
      * \param[out] x_sol Solution point.
+     * \return The convergence boolean flag.
      */
     template <typename FunctionInput,
               typename FunctionOutput,
               typename DerivedFunction>
+      requires(TypeTrait<FunctionInput>::Dimension == InputTrait::Dimension)
     bool optimize(
         const FunctionBase<FunctionInput, FunctionOutput, DerivedFunction>
             &function,
@@ -767,17 +750,40 @@ namespace Optimist {
         Input &x_sol) {
 #define CMD "Optimist::Solver::optimize(...): "
 
-      using FunctionInputTrait = TypeTrait<FunctionInput>;
+      using FunctionInputTrait  = TypeTrait<FunctionInput>;
+      using FunctionOutputTrait = TypeTrait<FunctionOutput>;
 
-      static_assert(InputTrait::Dimension == FunctionInputTrait::Dimension,
-                    CMD
-                    "solver input dimension must be equal to the function "
-                    "input dimension.");
-      static_assert(OutputTrait::Dimension == 1,
-                    CMD
-                    "solver output dimension must be equal to the function "
-                    "output dimension or 1.");
-      return this->solve(function, x_ini, x_sol, true);
+      if constexpr (DerivedSolver::IsOptimizer) {
+        if constexpr (FunctionOutputTrait::IsScalar) {
+          return this->template solve<Problem::COST>(function, x_ini, x_sol);
+        } else {
+          return this->template solve<Problem::LEAST_SQUARES>(function,
+                                                              x_ini,
+                                                              x_sol);
+        }
+      } else {
+        static_assert(!DerivedSolver::RequiresSecondDerivative,
+                      CMD
+                      "root finders that require second derivatives cannot "
+                      "solve optimization problems (third derivatives of the "
+                      "function would be needed).");
+        if constexpr (FunctionInputTrait::IsEigen &&
+                      FunctionOutputTrait::IsScalar) {
+          return this->template solve<Problem::STATIONARY_COST>(function,
+                                                                x_ini,
+                                                                x_sol);
+        } else {
+          static_assert(
+              OutputTrait::Dimension == FunctionOutputTrait::Dimension,
+              CMD
+              "root finders require a function whose output dimension equals "
+              "the input dimension.");
+          return this->template solve<Problem::STATIONARY_LEAST_SQUARES>(
+              function,
+              x_ini,
+              x_sol);
+        }
+      }
 
 #undef CMD
     }
@@ -792,173 +798,175 @@ namespace Optimist {
 
    protected:
     /**
+     * Kind of problem handed to the solver implementation.
+     */
+    using Problem = enum class Problem : Integer {
+      ROOT          = 0, /**< Solve \f$ \mathbf{f} = \mathbf{0} \f$. */
+      COST          = 1, /**< Minimize \f$ f \f$. */
+      LEAST_SQUARES = 2, /**< Minimize \f$ \frac{1}{2}\|\mathbf{f}\|^2 \f$. */
+      STATIONARY_COST = 3, /**< Solve \f$ \nabla f = \mathbf{0} \f$. */
+      STATIONARY_LEAST_SQUARES =
+          4 /**< Solve \f$ \mathbf{J}^\top\mathbf{f} = \mathbf{0} \f$. */
+    };
+
+    /**
+     * Compute \f$ \mathbf{J}^\top\mathbf{f} \f$, the gradient of the
+     * least-squares merit function \f$ \frac{1}{2}\|\mathbf{f}\|^2 \f$.
+     */
+    template <typename FunctionValue, typename FunctionJacobian, typename Out>
+    static void least_squares_gradient(const FunctionValue &f,
+                                       const FunctionJacobian &J,
+                                       Out &out) {
+      if constexpr (TypeTrait<FunctionValue>::IsScalar &&
+                    TypeTrait<FunctionJacobian>::IsScalar) {
+        out = J * f;
+      } else if constexpr (TypeTrait<FunctionValue>::IsScalar) {
+        out = f * J;
+      } else {
+        out = J.transpose() * f;
+      }
+    }
+
+    /**
+     * Compute \f$ \mathbf{J}^\top\mathbf{J} + \sum_i f_i \nabla^2 f_i \f$, the
+     * Hessian of the least-squares merit function \f$
+     * \frac{1}{2}\|\mathbf{f}\|^2 \f$.
+     */
+    template <typename FunctionValue,
+              typename FunctionJacobian,
+              typename FunctionHessian,
+              typename Out>
+    static void least_squares_hessian(const FunctionValue &f,
+                                      const FunctionJacobian &J,
+                                      const FunctionHessian &H,
+                                      Out &out) {
+      if constexpr (TypeTrait<FunctionValue>::IsScalar &&
+                    TypeTrait<FunctionJacobian>::IsScalar) {
+        out = J * J + f * H;
+      } else if constexpr (TypeTrait<FunctionValue>::IsScalar) {
+        out = J * J.transpose() + f * H;
+      } else {
+        out = J.transpose() * J;
+        for (Integer i{0}; i < static_cast<Integer>(H.size()); ++i) {
+          Scalar f_i;
+          if constexpr (TypeTrait<FunctionValue>::IsSparse) {
+            f_i = f.coeff(i);
+          } else {
+            f_i = f(i);
+          }
+          if (f_i != 0.0) {
+            out += f_i * H[i];
+          }
+        }
+      }
+    }
+
+    /**
      * Solve the root-finding/optimization problem given a function class.
-     * \tparam Input Solver input type.
-     * \tparam Output Solver output type.
+     * \tparam Kind Kind of problem to be solved.
+     * \tparam FunctionInput Function input type.
+     * \tparam FunctionOutput Function output type.
      * \tparam DerivedFunction Derived function class.
      * \param[in] function Function class.
      * \param[in] x_ini Initialization point.
      * \param[out] x_sol Solution point.
-     * \param[in] is_optimization Boolean flag for optimization.
+     * \return The convergence boolean flag.
      */
-    template <typename FunctionInput,
+    template <Problem Kind,
+              typename FunctionInput,
               typename FunctionOutput,
               typename DerivedFunction>
-    // TODO: make requires clauses to avoid invalid combinations
     bool solve(
         const FunctionBase<FunctionInput, FunctionOutput, DerivedFunction>
             &function,
         const Input &x_ini,
-        Input &x_sol,
-        bool is_optimization) {
+        Input &x_sol) {
 #define CMD "Optimist::Solver::solve(...): "
 
       using FunctionType =
           FunctionBase<FunctionInput, FunctionOutput, DerivedFunction>;
-      using FunctionInputTrait  = TypeTrait<FunctionInput>;
-      using FunctionOutputTrait = TypeTrait<FunctionOutput>;
+      using FunctionFirstDerivative  = typename FunctionType::FirstDerivative;
+      using FunctionSecondDerivative = typename FunctionType::SecondDerivative;
 
-      static_assert(InputTrait::Dimension == FunctionInputTrait::Dimension,
-                    CMD
-                    "solver input dimension must be equal to the function "
-                    "input dimension.");
-      static_assert(OutputTrait::Dimension == FunctionOutputTrait::Dimension ||
-                        OutputTrait::Dimension == 1,
-                    CMD
-                    "solver output dimension must be equal to the function "
-                    "output dimension or a scalar.");
-
-      // Lambda generators for function and derivatives
-      auto function_lambda = [&function, is_optimization](const Input &x,
-                                                          Output &out) -> bool {
-        bool success{false};
-        FunctionOutput f;
-        success = function.evaluate(x, f);
-        OPTIMIST_ASSERT(
-            success,
-            CMD "function evaluation failed during function computation.");
-
-        if (is_optimization) {
-          if constexpr (FunctionOutputTrait::Dimension == 1) {
-            out = 0.5 * f * f;
-          } else if constexpr (OutputTrait::Dimension !=
-                               FunctionOutputTrait::Dimension) {
-            out = 0.5 * f.squaredNorm();
-          } else {
-            OPTIMIST_ERROR(
-                CMD
-                "optimization problem with inconsistent output in function.");
-          }
-        } else {
-          if constexpr (OutputTrait::Dimension ==
-                        FunctionOutputTrait::Dimension) {
-            out = f;
-          } else {
-            OPTIMIST_ERROR(
-                CMD
-                "root-finding problem with inconsistent output in function.");
-          }
-        }
-        return success;
-      };
-
-      auto first_derivative_lambda = [&function, is_optimization, this](
-                                         const Input &x,
-                                         FirstDerivative &out) -> bool {
-        bool success{false};
-        typename FunctionType::FirstDerivative J;
-        success = function.first_derivative(x, J);
-        OPTIMIST_ASSERT(success,
-                        CMD
-                        "first derivative evaluation failed during "
-                        "first derivative computation.");
-
-        if (is_optimization) {
-          bool success{false};
+      // Lambda generators for the function and its derivatives as seen by the
+      // solver implementation
+      auto function_lambda = [&function](const Input &x, Output &out) -> bool {
+        if constexpr (Kind == Problem::ROOT || Kind == Problem::COST) {
+          return function.evaluate(x, out);
+        } else if constexpr (Kind == Problem::LEAST_SQUARES) {
           FunctionOutput f;
-          success = function.evaluate(x, f);
-          OPTIMIST_ASSERT(success,
-                          CMD
-                          "function evaluation failed during first derivative "
-                          "computation.");
-          this->m_function_evaluations++;
-          if constexpr (FunctionInputTrait::IsScalar &&
-                        FunctionOutputTrait::IsScalar) {
-            out = J * f;
-          } else if constexpr (FunctionOutputTrait::Dimension == 1) {
-            out = f * J;
-          } else if constexpr (OutputTrait::Dimension !=
-                               FunctionOutputTrait::Dimension) {
-            out = J.transpose() * f;
-          } else {
-            OPTIMIST_ERROR(CMD
-                           "optimization problem inconsistent output in first "
-                           "derivative.");
+          if (!function.evaluate(x, f)) {
+            return false;
           }
+          if constexpr (TypeTrait<FunctionOutput>::IsScalar) {
+            out = 0.5 * f * f;
+          } else {
+            out = 0.5 * f.squaredNorm();
+          }
+          return std::isfinite(out);
+        } else if constexpr (Kind == Problem::STATIONARY_COST) {
+          return function.first_derivative(x, out);
         } else {
-          if constexpr (OutputTrait::Dimension ==
-                        FunctionOutputTrait::Dimension) {
-            out = J;
-          } else {
-            OPTIMIST_ERROR(CMD
-                           "root-finding problem with inconsistent output in "
-                           "first derivative.");
+          FunctionOutput f;
+          FunctionFirstDerivative J;
+          if (!function.evaluate(x, f) || !function.first_derivative(x, J)) {
+            return false;
           }
+          least_squares_gradient(f, J, out);
+          return true;
         }
-        return success;
       };
 
-      auto second_derivative_lambda = [&function, is_optimization, this](
+      auto first_derivative_lambda = [&function](const Input &x,
+                                                 FirstDerivative &out) -> bool {
+        if constexpr (Kind == Problem::ROOT || Kind == Problem::COST) {
+          return function.first_derivative(x, out);
+        } else if constexpr (Kind == Problem::LEAST_SQUARES) {
+          FunctionOutput f;
+          FunctionFirstDerivative J;
+          if (!function.evaluate(x, f) || !function.first_derivative(x, J)) {
+            return false;
+          }
+          least_squares_gradient(f, J, out);
+          return true;
+        } else if constexpr (Kind == Problem::STATIONARY_COST) {
+          return function.second_derivative(x, out);
+        } else {
+          FunctionOutput f;
+          FunctionFirstDerivative J;
+          FunctionSecondDerivative H;
+          if (!function.evaluate(x, f) || !function.first_derivative(x, J) ||
+              !function.second_derivative(x, H)) {
+            return false;
+          }
+          least_squares_hessian(f, J, H, out);
+          return true;
+        }
+      };
+
+      auto second_derivative_lambda = [&function](
                                           const Input &x,
                                           SecondDerivative &out) -> bool {
-        bool success{false};
-        typename FunctionType::SecondDerivative H;
-        success = function.second_derivative(x, H);
-        OPTIMIST_ASSERT(
-            success,
-            CMD
-            "function evaluation failed during second derivative computation.");
-
-        if (is_optimization) {
+        if constexpr (Kind == Problem::ROOT || Kind == Problem::COST) {
+          return function.second_derivative(x, out);
+        } else if constexpr (Kind == Problem::LEAST_SQUARES) {
           FunctionOutput f;
-          success = function.evaluate(x, f);
-          this->m_function_evaluations++;
-          OPTIMIST_ASSERT(success,
-                          CMD
-                          "function evaluation failed during second derivative "
-                          "computation.");
-          typename FunctionType::FirstDerivative J;
-          success = function.first_derivative(x, J);
-          this->m_first_derivative_evaluations++;
-          OPTIMIST_ASSERT(success,
-                          CMD
-                          "first derivative evaluation failed "
-                          "during second derivative computation.");
-          if constexpr (FunctionInputTrait::IsScalar &&
-                        FunctionOutputTrait::IsScalar) {
-            out = J * J + f * H;
-          } else if constexpr (OutputTrait::Dimension !=
-                               FunctionOutputTrait::Dimension) {
-            out = J.transpose() * J;
-            for (Integer i{0}; i < static_cast<Integer>(H.size()); ++i) {
-              out += f(i) * H[i];
-            }
-          } else {
-            OPTIMIST_ERROR(CMD
-                           "optimization problem with inconsistent output in "
-                           "second derivative.");
+          FunctionFirstDerivative J;
+          FunctionSecondDerivative H;
+          if (!function.evaluate(x, f) || !function.first_derivative(x, J) ||
+              !function.second_derivative(x, H)) {
+            return false;
           }
+          least_squares_hessian(f, J, H, out);
+          return true;
         } else {
-          if constexpr (OutputTrait::Dimension ==
-                        FunctionOutputTrait::Dimension) {
-            out = H;
-          } else {
-            OPTIMIST_ERROR(CMD
-                           "root-finding problem with inconsistent output in "
-                           "second derivative.");
-          }
+          static_cast<void>(function);
+          static_cast<void>(x);
+          static_cast<void>(out);
+          OPTIMIST_ERROR(CMD "second derivative not available for "
+                             "stationary-point problems.");
+          return false;
         }
-        return success;
       };
 
       // Select solver method based on derivative requirements
@@ -986,8 +994,9 @@ namespace Optimist {
             x_ini,
             x_sol);
       } else {
-        OPTIMIST_ERROR(CMD
-                       "no matching function signature found for the solver.");
+        static_assert(DerivedSolver::RequiresFunction,
+                      CMD "no matching function signature for the solver.");
+        return false;
       }
 
 #undef CMD
@@ -1101,7 +1110,7 @@ namespace Optimist {
         step_new = tau * step_old;
         x_new    = x_old + step_new;
         bool success{
-          this->evaluate_function(std::forward<FunctionLambda>(function),
+          this->evaluate_function(function,
                                   x_new,
                                   function_new)};
         OPTIMIST_ASSERT(success,

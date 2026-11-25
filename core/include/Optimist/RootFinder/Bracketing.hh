@@ -79,49 +79,38 @@ namespace Optimist {
        */
       template <typename FunctionLambda>
       bool solve_impl(FunctionLambda &&function,
-                      Scalar /*x_ini*/,
+                      [[maybe_unused]] Scalar x_ini,
                       Scalar &x_sol) {
 #define CMD "Optimist::RootFinder::Bracketing::solve_impl(...): "
 
-        // Setup internal variables
-        bool success;
         this->reset_counters();
-
-        // Print header
         if (this->m_verbose) {
           this->header();
         }
 
-        // Initialize variables
+        // Function values at the bounds
         this->m_a = this->m_lower_bound;
-        success =
-            this->evaluate_function(std::forward<FunctionLambda>(function),
-                                    this->m_a,
-                                    this->m_fa);
-        OPTIMIST_ASSERT(success,
-                        CMD "function evaluation failed at the lower bound.");
-
         this->m_b = this->m_upper_bound;
-        success =
-            this->evaluate_function(std::forward<FunctionLambda>(function),
-                                    this->m_b,
-                                    this->m_fb);
-        OPTIMIST_ASSERT(success,
+        OPTIMIST_ASSERT(this->evaluate_function(function, this->m_a, this->m_fa),
+                        CMD "function evaluation failed at the lower bound.");
+        OPTIMIST_ASSERT(this->evaluate_function(function, this->m_b, this->m_fb),
                         CMD "function evaluation failed at the upper bound.");
 
-        // Check if the solution exists
         if (this->m_fa * this->m_fb > 0) {
-          return false;
+          // Same sign at both bounds: no root is bracketed
+          if (this->m_verbose) {
+            this->info(std::min(std::abs(this->m_fa), std::abs(this->m_fb)),
+                       "No sign change");
+          }
+          x_sol = std::abs(this->m_fa) < std::abs(this->m_fb) ? this->m_a
+                                                              : this->m_b;
         } else {
-          x_sol = this->find_root(std::forward<FunctionLambda>(function));
+          x_sol = this->find_root(function);
         }
 
-        // Print bottom
         if (this->m_verbose) {
           this->bottom();
         }
-
-        // Convergence data
         return this->m_converged;
 
 #undef CMD
@@ -138,7 +127,7 @@ namespace Optimist {
       template <typename FunctionLambda>
       Scalar find_root(FunctionLambda &&function) {
         return static_cast<DerivedSolver *>(this)->find_root_impl(
-            std::forward<FunctionLambda>(function));
+            function);
       }
 
     };  // class Bracketing

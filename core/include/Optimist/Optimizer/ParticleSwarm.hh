@@ -13,6 +13,8 @@
 #ifndef OPTIMIST_OPTIMIZER_PARTICLE_SWARM_HH
 #define OPTIMIST_OPTIMIZER_PARTICLE_SWARM_HH
 
+#include <random>
+
 #include "Optimist/Optimizer.hh"
 
 namespace Optimist {
@@ -24,7 +26,7 @@ namespace Optimist {
      */
     template <typename Scalar>
     class ConstantWeight {
-      Scalar m_weight{1.0}; /**< Constant inertia weight. */
+      Scalar m_weight{0.7298}; /**< Constant inertia weight (Clerc). */
 
      public:
       /**
@@ -44,8 +46,8 @@ namespace Optimist {
        * \param[in] max_iterations Maximum number of iterations.
        * \return The inertia weight.
        */
-      Scalar operator()(const Integer /*iteration*/,
-                        const Integer /*max_iterations*/) const {
+      Scalar operator()([[maybe_unused]] const Integer iteration,
+                        [[maybe_unused]] const Integer max_iterations) const {
         return this->m_weight;
       }
 
@@ -70,7 +72,7 @@ namespace Optimist {
 
      public:
       /**
-       * Class class onstructor with default minimum and maximum weights equal
+       * Class constructor with default minimum and maximum weights equal
        * to 0.4 and 0.9, respectively.
        */
       LinearDecrease() {}
@@ -94,7 +96,7 @@ namespace Optimist {
                         const Integer max_iterations) const {
         Scalar factor{static_cast<Scalar>(iteration) /
                       static_cast<Scalar>(max_iterations)};
-        return this->m_min_weight +
+        return this->m_max_weight -
                (this->m_max_weight - this->m_min_weight) * factor;
       }
 
@@ -263,21 +265,19 @@ namespace Optimist {
     /**
      * \brief Class container for the particle swarm optimizer.
      *
-     * The optimization process can be configured by providing an inertia weight
-     * strategy functor. The inertia weight functor determines the amount of
-     * velocity, which is maintained from the previous iterations. It has a huge
-     * effect on convergence speed and stability of the optimization.
+     * \includedoc docs/markdown/Optimizer/ParticleSwarm.md
      *
      * \tparam Vector Eigen vector type.
-     * \tparam InertiaWeightStrategy Inertia weight strategy functor type.
+     * \tparam InertiaWeightStrategy Inertia weight strategy functor.
      */
     template <typename Vector,
               typename InertiaWeightStrategy =
-                  ConstantWeight<typename Vector::Scalar>>
+                  LinearDecrease<typename Vector::Scalar>>
       requires TypeTrait<Vector>::IsEigen &&
                (!TypeTrait<Vector>::IsFixed || TypeTrait<Vector>::Dimension > 0)
     class ParticleSwarm
-        : public Optimizer<Vector, ParticleSwarm<Vector>, true> {
+        : public Optimizer<Vector,
+                           ParticleSwarm<Vector, InertiaWeightStrategy>> {
      public:
       static constexpr bool RequiresFunction{true};
       static constexpr bool RequiresFirstDerivative{false};
@@ -285,360 +285,233 @@ namespace Optimist {
 
       using VectorTrait = TypeTrait<Vector>;
       using Scalar      = typename Vector::Scalar;
+      using Dense       = Utils::DenseVector<Vector>;
+      using DenseMatrix = Utils::DenseMatrix<Vector>;
 
-      using Particles = std::vector<Vector>; /**< Particles container type. */
+      OPTIMIST_BASIC_CONSTANTS(Scalar)
 
      private:
-      InertiaWeightStrategy
-          m_weight_strategy;        /**< Inertia weight strategy functor. */
-
-      Scalar m_phi_p{SQRT_EPSILON}; /**< Cognitive coefficient. */
-      Scalar m_phi_g{SQRT_EPSILON}; /**<
-      Scalar m_max_velocity;        /**< Maximum velocity for each particle. */
-
-      Scalar xeps_;
-      Scalar feps_;
-      std::function<Scalar()> this->m_dice;
+      InertiaWeightStrategy m_weight_strategy; /**< Inertia weight strategy. */
+      Integer m_particles{0}; /**< Swarm size (0 means automatic). */
+      Scalar m_phi_p{1.49445}; /**< Cognitive coefficient. */
+      Scalar m_phi_g{1.49445}; /**< Social coefficient. */
+      Scalar m_max_velocity{0.2}; /**< Maximum velocity (fraction of box). */
+      Scalar m_radius{1.0}; /**< Search radius around the initial guess when
+                               the bounds are not finite. */
+      std::mt19937 m_generator{42}; /**< Random number generator. */
 
      public:
       /**
-       * Class constructor for the ParticleSwarm solver.
+       * Class constructor for the particle swarm solver.
        */
       ParticleSwarm() {}
 
       /**
-       * Get the ParticleSwarm's solver name.
-       * \return The ParticleSwarm's solver name.
+       * Get the particle swarm solver name.
        */
       constexpr std::string name_impl() const {
         return "ParticleSwarm";
       }
 
       /**
-       * Randomize the particles within the given bounds.
-       * \param[out] particles Matrix containing the particles to be randomized.
+       * Set the seed of the random number generator.
        */
-      void randomize_particles(Particles &particles) const {
-        for (Integer i{0}; i < particles.size(); ++i) {
-          for (Integer j{0}; j < particles.rows(); ++j) {
-            Scalar lb{this->m_lower_bound(j)};
-            Scalar ub{this->m_upper_bound(j)};
-            particles(j, i) = lb + (this->m_dice() * (ub - lb));
-          }
-        }
+      void seed(const unsigned t_seed) {
+        this->m_generator.seed(t_seed);
       }
 
       /**
-       * Randomize the velocities within the given bounds.
-       * \param[out] velocities Matrix containing the velocities to be
-       * randomized.
+       * Get the swarm size (0 means \f$ 10 + 2\sqrt{n} \f$).
        */
-      void randomize_velocities(Particles &velocities) const {
-        for (Integer i{0}; i < velocities.cols(); ++i) {
-          for (Integer j{0}; j < velocities.rows(); ++j) {
-            Scalar lb{this->m_lower_bound(j)};
-            Scalar ub{this->m_upper_bound(j)};
-            Scalar diff{ub - lb};
-            Scalar vel{-diff + (this->m_dice() * 2.0 * diff)};
-            velocities(j, i) =
-                std::min(m_max_velocity, std::max(-m_max_velocity, vel));
+      Integer particles() const {
+        return this->m_particles;
+      }
+
+      /**
+       * Set the swarm size (0 means \f$ 10 + 2\sqrt{n} \f$).
+       */
+      void particles(const Integer t_particles) {
+        OPTIMIST_ASSERT(t_particles >= 0,
+                        "Optimist::Optimizer::ParticleSwarm::particles(...): "
+                        "invalid input detected.");
+        this->m_particles = t_particles;
+      }
+
+      /**
+       * Set the cognitive and social coefficients.
+       */
+      void coefficients(const Scalar t_phi_p, const Scalar t_phi_g) {
+        OPTIMIST_ASSERT(t_phi_p >= 0 && t_phi_g >= 0,
+                        "Optimist::Optimizer::ParticleSwarm::coefficients(...)"
+                        ": invalid input detected.");
+        this->m_phi_p = t_phi_p;
+        this->m_phi_g = t_phi_g;
+      }
+
+      /**
+       * Set the maximum velocity as a fraction of the search box width.
+       */
+      void max_velocity(const Scalar t_max_velocity) {
+        OPTIMIST_ASSERT(t_max_velocity > 0,
+                        "Optimist::Optimizer::ParticleSwarm::max_velocity(...)"
+                        ": invalid input detected.");
+        this->m_max_velocity = t_max_velocity;
+      }
+
+      /**
+       * Set the search radius around the initial guess, used when the bounds
+       * are not finite.
+       */
+      void radius(const Scalar t_radius) {
+        OPTIMIST_ASSERT(t_radius > 0,
+                        "Optimist::Optimizer::ParticleSwarm::radius(...): "
+                        "invalid input detected.");
+        this->m_radius = t_radius;
+      }
+
+      /**
+       * Set the inertia weight strategy.
+       */
+      void inertia_weight_strategy(const InertiaWeightStrategy &t_strategy) {
+        this->m_weight_strategy = t_strategy;
+      }
+
+      /**
+       * Solve the minimization problem.
+       * \param[in] function Cost function.
+       * \param[in] x_ini Initialization point (first particle).
+       * \param[out] x_sol Solution point.
+       * \return The convergence boolean flag.
+       */
+      template <typename FunctionLambda>
+      bool solve_impl(FunctionLambda &&function,
+                      const Vector &x_ini,
+                      Vector &x_sol) {
+        this->reset_counters();
+        if (this->m_verbose) {
+          this->header();
+        }
+
+        const Integer n{static_cast<Integer>(x_ini.size())};
+        const Integer m{this->m_particles > 0
+                            ? this->m_particles
+                            : 10 + static_cast<Integer>(
+                                       2 * std::sqrt(static_cast<Scalar>(n)))};
+        const Dense x0(Utils::to_dense(x_ini));
+
+        // Search box
+        Dense lb(n), ub(n);
+        if (this->has_finite_bounds()) {
+          lb = Utils::to_dense(this->m_lower_bound);
+          ub = Utils::to_dense(this->m_upper_bound);
+        } else {
+          lb = x0.array() - this->m_radius;
+          ub = x0.array() + this->m_radius;
+        }
+        const Dense width{ub - lb};
+        const Dense v_max{this->m_max_velocity * width};
+
+        // Swarm initialization (the first particle is the initial guess)
+        std::uniform_real_distribution<Scalar> unif(0, 1);
+        DenseMatrix x(n, m), v(n, m), p(n, m);
+        Dense f(m), f_p(m);
+        for (Integer i{0}; i < m; ++i) {
+          for (Integer j{0}; j < n; ++j) {
+            x(j, i) = lb(j) + unif(this->m_generator) * width(j);
+            v(j, i) = (2 * unif(this->m_generator) - 1) * v_max(j);
           }
         }
-      }
-
-      void evaluate_objective(const Particles &particles, Vector &fvals) {
-        for (Integer i{0}; i < particles.size(); ++i) {
-          fvals(i) = objective_(particles.col(i));
+        x.col(0) = x0.cwiseMax(lb).cwiseMin(ub);
+        for (Integer i{0}; i < m; ++i) {
+          f(i) = this->eval(function, x.col(i));
         }
-      }
+        p   = x;
+        f_p = f;
+        Integer best;
+        f_p.minCoeff(&best);
 
-      void maintainBounds(Matrix &particles) const {
-        for (Integer i{0}; i < particles.size(); ++i) {
-          for (Integer j{0}; j < particles.rows(); ++j) {
-            Scalar minval{bounds(0, j)};
-            Scalar maxval{bounds(1, j)};
-            particles[j](i) =
-                std::min(maxval, std::max(minval, particles[j](i)));
+        std::string notes{"Initialize"};
+        for (this->m_iterations = 1;
+             this->m_iterations < this->m_max_iterations;
+             ++this->m_iterations) {
+          // Convergence: personal bests collapsed onto the global best
+          Scalar radius{0};
+          for (Integer i{0}; i < m; ++i) {
+            radius = std::max(radius, (p.col(i) - p.col(best)).norm());
           }
-        }
-      }
-
-      void calculateVelocities(const Matrix &particles,
-                               const Matrix &best_particles,
-                               const Integer gbest,
-                               const Integer iteration,
-                               Matrix &velocities) {
-        assert(velocities.rows() == particles.rows());
-        assert(velocities.cols() == particles.size());
-        assert(velocities.rows() == best_particles.rows());
-        assert(velocities.cols() == best_particles.size());
-        assert(gbest < best_particles.size());
-
-        Scalar weight = m_weight_strategy(iteration, this->m_max_iterations);
-
-        for (Integer i{0}; i < velocities.cols(); ++i) {
-          for (Integer j{0}; j < velocities.rows(); ++j) {
-            Scalar velp =
-                this->m_dice() * (best_particles(j, i) - particles(j, i));
-            Scalar velg =
-                this->m_dice() * (best_particles(j, gbest) - particles(j, i));
-            Scalar vel =
-                weight * velocities(j, i) + m_phi_p * velp + m_phi_g * velg;
-
-            if (m_max_velocity > 0)
-              vel = std::min(m_max_velocity, std::max(-m_max_velocity, vel));
-
-            velocities(j, i) = vel;
+          if (this->m_verbose) {
+            this->info(radius, notes);
           }
-        }
-      }
+          // Converged when the personal bests collapsed onto the global best,
+          // or when they are all equal to rounding level in value (the swarm
+          // cannot resolve the minimizer any further)
+          const Scalar scale{1 + p.col(best).norm()};
+          const Scalar spread{f_p.maxCoeff() - f_p(best)};
+          if (radius < this->m_tolerance * scale ||
+              (spread <= 100 * EPSILON * std::max(Scalar(1), std::abs(f_p(best))) &&
+               radius < std::sqrt(this->m_tolerance) * scale)) {
+            this->m_converged = true;
+            break;
+          }
+          if (this->m_function_evaluations + m >
+              this->m_max_function_evaluations) {
+            notes = "Budget exhausted";
+            break;
+          }
 
-      Result _minimize(const Matrix &bounds, Matrix &particles) {
-        Matrix velocities(particles.rows(), particles.size());
-
-        Vector fvals(particles.size());
-
-        Matrix best_particles = particles;
-        Vector bestFvals(particles.size());
-
-        Matrix prevParticles(particles.rows(), particles.size());
-        Vector prevFvals(particles.size());
-
-        Vector diff(particles.rows());
-
-        Index gbest = 0;
-
-        // initialize velocities randomly
-        randomize_velocities(bounds, velocities);
-
-        // evaluate objective function for the initial particles
-        evaluate_objective(particles, fvals);
-        bestFvals = fvals;
-        bestFvals.minCoeff(&gbest);
-
-        // init stop conditions
-        Index iterations = 0;
-        Scalar fchange   = feps_ + 1;
-        Scalar xchange   = xeps_ + 1;
-
-        while ((this->m_iterations < this->m_max_iterations) &&
-               fchange > feps_ && xchange > xeps_) {
-          // calculate new velocities
-          calculateVelocities(particles,
-                              best_particles,
-                              gbest,
-                              iterations,
-                              velocities);
-
-          // move particles by velocity and stay within bounds
-          particles += velocities;
-          maintainBounds(bounds, particles);
-
-          // evaluate objective for moved particles
-          evaluate_objective(particles, fvals);
-
-          prevParticles = best_particles;
-          prevFvals     = bestFvals;
-
-          for (Integer i{0}; i < fvals.size(); ++i) {
-            // check if there was an improvement and update best vals
-            if (fvals(i) < bestFvals(i)) {
-              bestFvals(i)          = fvals(i);
-              best_particles.col(i) = particles.col(i);
+          // Velocity and position update
+          const Scalar w{this->m_weight_strategy(this->m_iterations,
+                                                 this->m_max_iterations)};
+          for (Integer i{0}; i < m; ++i) {
+            for (Integer j{0}; j < n; ++j) {
+              Scalar vel{w * v(j, i) +
+                         this->m_phi_p * unif(this->m_generator) *
+                             (p(j, i) - x(j, i)) +
+                         this->m_phi_g * unif(this->m_generator) *
+                             (p(j, best) - x(j, i))};
+              vel     = std::clamp(vel, -v_max(j), v_max(j));
+              v(j, i) = vel;
+              x(j, i) = x(j, i) + vel;
+              // Reflect on the box walls
+              if (x(j, i) < lb(j)) {
+                x(j, i) = lb(j);
+                v(j, i) = -v(j, i) / 2;
+              } else if (x(j, i) > ub(j)) {
+                x(j, i) = ub(j);
+                v(j, i) = -v(j, i) / 2;
+              }
+            }
+            f(i) = this->eval(function, x.col(i));
+            if (f(i) < f_p(i)) {
+              f_p(i)   = f(i);
+              p.col(i) = x.col(i);
             }
           }
-          bestFvals.minCoeff(&gbest);
-
-          // calculate new diffs
-          xchange = (best_particles - prevParticles).colwise().norm().sum();
-          fchange = (bestFvals - prevFvals).array().abs().sum();
-
-          xchange /= best_particles.size();
-          fchange /= bestFvals.size();
-
-          if (this->m_verbose) {
-            this->info(gbest);
-          }
-
-          ++iterations;
+          const Integer best_old{best};
+          f_p.minCoeff(&best);
+          notes = best != best_old ? "New best" : "-";
         }
 
-        result.iterations = iterations;
-        result.converged  = fchange <= feps_ || xchange <= xeps_;
-        result.fval       = bestFvals(gbest);
-        result.xval       = best_particles.col(gbest);
-
-        return result;
-      }
-
-     public:
-      ParticleSwarmOptimization()
-          : m_weight_strategy(),
-            xeps_(static_cast<Scalar>(1e-6)),
-            feps_(static_cast<Scalar>(1e-6)),
-            m_phi_p(static_cast<Scalar>(2.0)),
-            m_phi_g(static_cast<Scalar>(2.0)),
-            m_max_velocity(static_cast<Scalar>(0.0)),
-            this->m_verbose(0),
-            this->m_dice() {
-        std::default_random_engine gen(std::time(0));
-        std::uniform_real_distribution<Scalar> distrib(0.0, 1.0);
-        this->m_dice = std::bind(distrib, gen);
-      }
-
-      /**
-       * Set the minimum average change of particles per iteration.
-       * If the average change of particles (input parameters) falls below
-       * this value, the optimization terminates.
-       * \param change minimum change of input paramaters
-       */
-      void setMinParticleChange(
-          const Scalar change = ParticleSwarm::SQRT_EPSILON) {
-        xeps_ = change;
-      }
-
-      /** Set the minimum average change of function values per iteration.
-       * If the average change of functions values falls below
-       * this value, the optimization terminates.
-       * \param change minimum change of function values */
-      void setMinFunctionChange(
-          const Scalar change = ParticleSwarm::SQRT_EPSILON) {
-        feps_ = change;
-      }
-
-      /** Set the tendency of particles to move towards their local optimum
-       * found so far.
-       * Each particle individually maintains a memory of where it has
-       * visited the lowest function value so far.
-       * Increasing this value increases the particles' tendency to move
-       * towards that point.
-       * \param phip tendency to move towards individual optimum */
-      void setPhiParticles(const Scalar phip) {
-        m_phi_p = phip;
-      }
-
-      /** Set the tendency of particles to move towards the global optimum
-       * found so far.
-       * The swarm maintains a collective memory of where it has visited the
-       * lowest function value so far.
-       * Increasing this value increases the particles' tendency to move
-       * towards that point.
-       * \param phig tendency to move towards collective optimum */
-      void setPhiGlobal(const Scalar phig) {
-        m_phi_g = phig;
-      }
-
-      /**
-       * Set an upper bound for the velocity of particles.
-       * A particle cannot move faster than this value, which may prevent
-       * divergence.
-       * \param[in] max_velocity maximum velocity of a particle */
-      void setMaxVelocity(const Scalar max_velocity) {
-        this->m_max_velocity = max_velocity;
-      }
-
-      void inertia_weight_strategy(
-          const InertiaWeightStrategy &t_weightStrategy) {
-        this->m_weight_strategy = t_weightStrategy;
-      }
-
-      /** Perform minimization with the given bounds and number of particels.
-       *
-       * The swarm of particles will be drawn uniform randomly within the
-       * given bounds.
-       *
-       * The bounds matrix has to have 2 rows and one column per dimension
-       * of particle. The first row holds the minimum value of the respective
-       * dimension and the second row holds the maximum value.
-       *
-       * \param bounds 2xM matrix for bounds of M-dimensional particles
-       * \param cnt number of particles used for optimization */
-      Result minimize(const Integer cnt) {
-        if (cnt == 0)
-          throw std::runtime_error("particle count cannot be 0");
-        if (bounds.rows() != 2)
-          throw std::runtime_error("bounds has not exactly 2 rows (min, max)");
-        for (Integer i{0}; i < bounds.cols(); ++i) {
-          if (bounds(0, i) >= bounds(1, i))
-            throw std::runtime_error("bounds min is greater than max");
+        if (this->m_verbose) {
+          this->bottom();
         }
-
-        Matrix particles(bounds.cols(), cnt);
-        randomize_particles(bounds, particles);
-
-        return _minimize(bounds, particles);
+        x_sol = Utils::from_dense<Vector>(p.col(best));
+        return this->m_converged;
       }
 
-      /** Perform minimization with the given bounds, number of particels and
-       * initial guess.
-       *
-       * The swarm of particles will be drawn uniform randomly within the
-       * given bounds.
-       *
-       * The bounds matrix has to have 2 rows and one column per dimension
-       * of particle. The first row holds the minimum value of the respective
-       * dimension and the second row holds the maximum value.
-       *
-       * The initial guess vector has to have the same length as the number
-       * of columns of the bounds. It will be included as one particle of
-       * the swarm.
-       *
-       * \param bounds 2xM matrix for bounds of M-dimensional particles
-       * \param cnt number of particles used for optimization
-       * \param initGuess initial guess for a particle */
-      Result minimize(const Integer cnt, const Vector &initGuess) {
-        if (cnt == 0)
-          throw std::runtime_error("particle count cannot be 0");
-        if (bounds.rows() != 2)
-          throw std::runtime_error("bounds has not exactly 2 rows (min, max)");
-        for (Integer i{0}; i < bounds.cols(); ++i) {
-          if (bounds(0, i) >= bounds(1, i))
-            throw std::runtime_error("bounds min is greater than max");
+     private:
+      template <typename FunctionLambda, typename Derived>
+      Scalar eval(FunctionLambda &function,
+                  const Eigen::MatrixBase<Derived> &x) {
+        Scalar f;
+        if (!this->evaluate_function(function, Utils::from_dense<Vector>(x), f) ||
+            !std::isfinite(f)) {
+          return INFTY;
         }
-        if (bounds.cols() != initGuess.size())
-          throw std::runtime_error(
-              "init guess and bounds have different dimensions");
-
-        Matrix particles(bounds.cols(), cnt);
-        randomize_particles(bounds, particles);
-        particles.col(0) = initGuess;
-        maintainBounds(bounds, particles);
-
-        return _minimize(bounds, particles);
+        return f;
       }
 
-      /** Perform minimization with the given bounds and a pre-computed
-       * swarm of particles.
-       *
-       * The bounds matrix has to have 2 rows and one column per dimension
-       * of particle. The first row holds the minimum value of the respective
-       * dimension and the second row holds the maximum value.
-       *
-       * \param bounds 2xM matrix for bounds of M-dimensional particles
-       * \param particles initial swarm used for optimization */
-      Result minimize(Matrix &particles) {
-        if (bounds.rows() != 2)
-          throw std::runtime_error("bounds has not exactly 2 rows (min, max)");
-        if (bounds.cols() != particles.rows())
-          throw std::runtime_error(
-              "columns of bounds and rows of "
-              "particles do not match");
-        for (Integer i{0}; i < bounds.cols(); ++i) {
-          if (bounds(0, i) >= bounds(1, i))
-            throw std::runtime_error("bounds min is greater than max");
-        }
-
-        maintainBounds(bounds, particles);
-
-        return _minimize(bounds, particles);
-      }
-
-      void getRandomParticles(const Integer cnt, Matrix &particles) {
-        particles.resize(bounds.cols(), cnt);
-        randomize_particles(bounds, particles);
-      }
-
-    };  // class ParticleSwarmOptimization
+    };  // class ParticleSwarm
 
   }  // namespace Optimizer
 

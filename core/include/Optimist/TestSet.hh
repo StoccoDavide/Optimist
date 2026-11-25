@@ -13,17 +13,24 @@
 #ifndef INCLUDE_OPTIMIST_TESTSET_HH
 #define INCLUDE_OPTIMIST_TESTSET_HH
 
+#include "Optimist/TestSet/Ackley.hh"
+#include "Optimist/TestSet/Beale.hh"
 #include "Optimist/TestSet/Booth.hh"
 #include "Optimist/TestSet/Brown.hh"
 #include "Optimist/TestSet/Cos.hh"
 #include "Optimist/TestSet/Cosh.hh"
 #include "Optimist/TestSet/EllipticParaboloid.hh"
+#include "Optimist/TestSet/Himmelblau.hh"
 #include "Optimist/TestSet/Linear.hh"
+#include "Optimist/TestSet/PowellSingular.hh"
 #include "Optimist/TestSet/Quadratic.hh"
+#include "Optimist/TestSet/Rastrigin.hh"
 #include "Optimist/TestSet/Rosenbrock.hh"
+#include "Optimist/TestSet/RosenbrockCost.hh"
 #include "Optimist/TestSet/Schaffer2.hh"
 #include "Optimist/TestSet/Sin.hh"
 #include "Optimist/TestSet/Sinh.hh"
+#include "Optimist/TestSet/Trid.hh"
 
 namespace Optimist {
 

@@ -80,100 +80,62 @@ namespace Optimist {
                       Vector &x_sol) {
 #define CMD "Optimist::RootFinder::Newton::solve(...): "
 
-        // Reset internal variables
         this->reset_counters();
-
-        // Print header
         if (this->m_verbose) {
           this->header();
         }
 
-        // Initialize variables
-        bool damped, success;
-        Scalar residuals, step_norm;
-        Vector x_old, x_new, function_old, function_new, step_old, step_new;
-        FirstDerivative jacobian_old;
-
-        // Set initial iteration
-        x_old = x_ini;
-        success =
-            this->evaluate_function(std::forward<FunctionLambda>(function),
-                                    x_old,
-                                    function_old);
-        OPTIMIST_ASSERT(success,
+        Vector x(x_ini), f, step, x_new, f_new, step_new;
+        FirstDerivative J;
+        OPTIMIST_ASSERT(this->evaluate_function(function, x, f),
                         CMD "function evaluation failed at the initial point.");
 
-        // Algorithm iterations
-        Scalar tolerance_residuals{this->m_tolerance};
-        Scalar tolerance_step_norm{this->m_tolerance * this->m_tolerance};
+        const Scalar tolerance_residuals{this->m_tolerance};
+        const Scalar tolerance_step{this->m_tolerance * this->m_tolerance};
         for (this->m_iterations = 1;
              this->m_iterations < this->m_max_iterations;
              ++this->m_iterations) {
-          // Calculate step
-          success = this->evaluate_jacobian(jacobian, x_old, jacobian_old);
-          OPTIMIST_ASSERT(success,
+          // Newton step: J h = -f
+          OPTIMIST_ASSERT(this->evaluate_jacobian(jacobian, x, J),
                           CMD "jacobian evaluation failed at iteration "
                               << this->m_iterations << ".");
-          this->m_lu.compute(jacobian_old);
+          this->m_lu.compute(J);
           if constexpr (VectorTrait::IsSparse) {
-            OPTIMIST_ASSERT_WARNING(this->m_lu.info() == Eigen::Success,
-                                    CMD "jacobian factorization failed.");
-            step_old = -this->m_lu.solve(function_old).eval();
+            OPTIMIST_ASSERT(this->m_lu.info() == Eigen::Success,
+                            CMD "jacobian factorization failed.");
           } else {
             OPTIMIST_ASSERT(this->m_lu.isInvertible(),
-                            CMD "singular Jacobian detected.");
-            step_old = -this->m_lu.solve(function_old);
+                            CMD "singular jacobian detected.");
           }
+          step = this->m_lu.solve(f);
+          step = -step;
 
-          // Check convergence
-          residuals = function_old.norm();
-          step_norm = step_old.norm();
+          // Convergence
           if (this->m_verbose) {
-            this->info(residuals);
+            this->info(f.norm());
           }
-          if (residuals < tolerance_residuals ||
-              step_norm < tolerance_step_norm) {
+          if (f.norm() < tolerance_residuals || step.norm() < tolerance_step) {
             this->m_converged = true;
             break;
           }
 
+          // Update
           if (this->m_damped) {
-            // Relax the iteration process
-            damped = this->damp(std::forward<FunctionLambda>(function),
-                                x_old,
-                                function_old,
-                                step_old,
-                                x_new,
-                                function_new,
-                                step_new);
-            OPTIMIST_ASSERT_WARNING(
-                damped,
-                "Optimist::RootFinder::Newton::solve(...): damping failed.");
+            this->damp(function, x, f, step, x_new, f_new, step_new);
           } else {
-            // Update point
-            x_new = x_old + step_old;
-            success =
-                this->evaluate_function(std::forward<FunctionLambda>(function),
-                                        x_new,
-                                        function_new);
-            OPTIMIST_ASSERT(success,
+            x_new = x + step;
+            OPTIMIST_ASSERT(this->evaluate_function(function, x_new, f_new),
                             CMD "function evaluation failed at iteration "
                                 << this->m_iterations << ".");
           }
-
-          // Update internal variables
-          x_old        = x_new;
-          function_old = function_new;
-          step_old     = step_new;
+          x = x_new;
+          f = f_new;
         }
 
-        // Print bottom
         if (this->m_verbose) {
           this->bottom();
         }
-
-        // Convergence data
-        x_sol = x_old;
+        x_sol = x;
         return this->m_converged;
 
 #undef CMD

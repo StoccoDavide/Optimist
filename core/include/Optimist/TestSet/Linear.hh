@@ -13,7 +13,7 @@
 #ifndef OPTIMIST_TESTSET_LINEAR_HH
 #define OPTIMIST_TESTSET_LINEAR_HH
 
-#include "Optimist/Function.hh"
+#include "Optimist/TestSet/DenseFunction.hh"
 
 namespace Optimist {
 
@@ -77,7 +77,7 @@ namespace Optimist {
        * \param[out] out The first derivative value.
        * \return The boolean flag for successful evaluation.
        */
-      bool first_derivative_impl(const Scalar /*x*/, Scalar &out) const {
+      bool first_derivative_impl([[maybe_unused]] const Scalar x, Scalar &out) const {
         out = this->m_m;
         return std::isfinite(out);
       }
@@ -88,7 +88,7 @@ namespace Optimist {
        * \param[out] out The second derivative value.
        * \return The boolean flag for successful evaluation.
        */
-      bool second_derivative_impl(const Scalar /*x*/, Scalar &out) const {
+      bool second_derivative_impl([[maybe_unused]] const Scalar x, Scalar &out) const {
         out = 0.0;
         return std::isfinite(out);
       }
@@ -96,62 +96,32 @@ namespace Optimist {
     };  // class Linear
 
     /**
-     * \brief Class container for the linear function.
+     * \brief Class container for the one-dimensional linear system.
      *
-     * Class container for the linear function, which is defined as:
-     * \f[
-     * f(x) = mx + q \text{.}
-     * \f]
-     * The function has roots at
-     * \f[
-     * x = -\displaystyle\frac{q}{m} \text{.}
-     * \f]
-     * The default coefficients are \f$m = 1\f$ and \f$q = 1\f$, and the
-     * function initial guess is
-     * \f$x = 0\f$.
+     * Vector counterpart of Linear, \f$ f(x) = mx + q \f$ with \f$ m = q = 1
+     * \f$, used to test the vector solvers in the smallest dimension.
+     *
      * \tparam Vector Eigen vector type.
      */
     template <typename Vector>
-      requires TypeTrait<Vector>::IsEigen && (!TypeTrait<Vector>::IsFixed ||
-                                              TypeTrait<Vector>::Dimension == 1)
-    class Linear1 : public Function<Vector, Vector, Linear1<Vector>> {
+    class Linear1 : public DenseSystemFunction<Vector, 1, Linear1<Vector>> {
      public:
-      using VectorTrait = TypeTrait<Vector>;
-      using Scalar      = typename Vector::Scalar;
-      using typename Function<Vector, Vector, Linear1<Vector>>::FirstDerivative;
-      using
-          typename Function<Vector, Vector, Linear1<Vector>>::SecondDerivative;
+      using Base = DenseSystemFunction<Vector, 1, Linear1<Vector>>;
+      using typename Base::Dense;
+      using typename Base::DenseMatrix;
+      using typename Base::Scalar;
 
      private:
       Scalar m_m{1.0}; /**< Coefficient \f$ m \f$. */
       Scalar m_q{1.0}; /**< Coefficient \f$ q \f$. */
 
      public:
-      OPTIMIST_BASIC_CONSTANTS(Scalar)
-
       /**
-       * Class constructor for the linear function.
+       * Class constructor for the one-dimensional linear system.
        */
       Linear1() {
-        this->m_solutions.resize(1);
-        this->m_guesses.resize(1);
-        Scalar tmp{-this->m_q / this->m_m};
-        if constexpr (VectorTrait::IsFixed) {
-          this->m_solutions[0] << tmp;
-          this->m_guesses[0] << 0.0;
-        } else if constexpr (VectorTrait::IsDynamic) {
-          this->m_solutions[0].resize(1);
-          this->m_solutions[0] << tmp;
-          this->m_guesses[0].resize(1);
-          this->m_guesses[0] << 0.0;
-        } else if constexpr (VectorTrait::IsSparse) {
-          this->m_solutions[0].resize(1);
-          this->m_solutions[0].reserve(1);
-          this->m_solutions[0].coeffRef(0) = tmp;
-          this->m_guesses[0].resize(1);
-          this->m_guesses[0].reserve(1);
-          this->m_guesses[0].coeffRef(0) = 0.0;
-        }
+        this->add_solution(this->make({-this->m_q / this->m_m}));
+        this->add_guess(this->make({0.0}));
       }
 
       /**
@@ -162,90 +132,18 @@ namespace Optimist {
         return "Linear1";
       }
 
-      /**
-       * Compute the function value at the input point.
-       * \param[in] x Input point.
-       * \param[out] out The function value.
-       * \return The boolean flag for successful evaluation.
-       */
-      bool evaluate_impl(const Vector &x, Vector &out) const {
-#define CMD "Optimist::TestSet::Linear1::evaluate_impl(...): "
-
-        if constexpr (VectorTrait::IsFixed) {
-          out << this->m_m * x(0) + this->m_q;
-          return std::isfinite(out(0));
-        } else if constexpr (VectorTrait::IsDynamic) {
-          out.resize(1);
-          out << this->m_m * x(0) + this->m_q;
-          return std::isfinite(out(0));
-        } else if constexpr (VectorTrait::IsSparse) {
-          out.resize(1);
-          out.reserve(1);
-          out.coeffRef(0) = this->m_m * x.coeff(0) + this->m_q;
-          return std::isfinite(out.coeff(0));
-        } else {
-          OPTIMIST_ERROR(CMD "input type not supported.");
-          return false;
-        }
-
-#undef CMD
+      void residual(const Dense &x, Dense &F) const {
+        F(0) = this->m_m * x(0) + this->m_q;
       }
 
-      /**
-       * Compute the first derivative value at the input point.
-       * \param[in] x Input point.
-       * \param[out] out The first derivative value.
-       * \return The boolean flag for successful evaluation.
-       */
-      bool first_derivative_impl(const Vector & /*x*/,
-                                 FirstDerivative &out) const {
-#define CMD "Optimist::TestSet::Linear1::first_derivative_impl(...): "
-
-        if constexpr (VectorTrait::IsFixed) {
-          out << this->m_m;
-        } else if constexpr (VectorTrait::IsDynamic) {
-          out.resize(1, 1);
-          out << this->m_m;
-        } else if constexpr (VectorTrait::IsSparse) {
-          out.resize(1, 1);
-          out.reserve(1);
-          out.coeffRef(0, 0) = this->m_m;
-        } else {
-          OPTIMIST_ERROR(CMD "input type not supported.");
-          return false;
-        }
-        return std::isfinite(this->m_m);
-
-#undef CMD
+      void jacobian([[maybe_unused]] const Dense &x, DenseMatrix &J) const {
+        J(0, 0) = this->m_m;
       }
 
-      /**
-       * Compute the second derivative value at the input point.
-       * \param[in] x Input point.
-       * \param[out] out The second derivative value.
-       * \return The boolean flag for successful evaluation.
-       */
-      bool second_derivative_impl(const Vector & /*x*/,
-                                  SecondDerivative &out) const {
-#define CMD "Optimist::TestSet::Linear1::second_derivative_impl(...): "
-
-        out.resize(1);
-        if constexpr (VectorTrait::IsFixed) {
-          out[0] << 0.0;
-        } else if constexpr (VectorTrait::IsDynamic) {
-          out[0].resize(1, 1);
-          out[0] << 0.0;
-        } else if constexpr (VectorTrait::IsSparse) {
-          out[0].resize(1, 1);
-          out[0].reserve(1);
-          out[0].coeffRef(0, 0) = 0.0;
-        } else {
-          OPTIMIST_ERROR(CMD "input type not supported.");
-          return false;
-        }
-        return true;
-
-#undef CMD
+      void hessian([[maybe_unused]] const Dense &x,
+                   [[maybe_unused]] const Integer i,
+                   DenseMatrix &H) const {
+        H.setZero();
       }
 
     };  // class Linear1

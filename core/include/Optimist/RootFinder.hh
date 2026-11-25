@@ -27,15 +27,18 @@ namespace Optimist {
      *
      * \includedoc docs/markdown/RootFinder.md
      *
-     * \tparam T Input and output type (scalar or Eigen vector).
+     * \tparam T Input type (scalar or Eigen vector).
      * \tparam DerivedSolver Derived solver class.
+     * \tparam U Output type, equal to the input type for square systems.
+     * Solvers supporting non-square systems (in the least-squares sense) may
+     * use a different output dimension.
      */
-    template <typename T, typename DerivedSolver>
+    template <typename T, typename DerivedSolver, typename U = T>
       requires(TypeTrait<T>::IsScalar || TypeTrait<T>::IsEigen) &&
               (!TypeTrait<T>::IsFixed || TypeTrait<T>::Dimension > 0)
-    class RootFinder : public SolverBase<T, T, DerivedSolver> {
+    class RootFinder : public SolverBase<T, U, DerivedSolver> {
      public:
-      friend class SolverBase<T, T, DerivedSolver>;
+      friend class SolverBase<T, U, DerivedSolver>;
 
       static constexpr bool IsRootFinder{true};
       static constexpr bool IsOptimizer{false};
@@ -43,11 +46,11 @@ namespace Optimist {
       // Input and output types
       using Scalar = typename TypeTrait<T>::Scalar;
       using Input  = T;
-      using Output = T;
+      using Output = U;
 
       // Derivative types
-      using typename SolverBase<T, T, DerivedSolver>::FirstDerivative;
-      using typename SolverBase<T, T, DerivedSolver>::SecondDerivative;
+      using typename SolverBase<T, U, DerivedSolver>::FirstDerivative;
+      using typename SolverBase<T, U, DerivedSolver>::SecondDerivative;
 
       OPTIMIST_BASIC_CONSTANTS(Scalar)
 
@@ -94,7 +97,7 @@ namespace Optimist {
        * \return The number of Hessian evaluations.
        */
       Integer hessian_evaluations() const {
-        return this->first_derivative_evaluations();
+        return this->second_derivative_evaluations();
       }
 
       /**
@@ -102,7 +105,7 @@ namespace Optimist {
        * \return The number of maximum allowed Hessian evaluations.
        */
       Integer max_hessian_evaluations() const {
-        return this->max_first_derivative_evaluations();
+        return this->max_second_derivative_evaluations();
       }
 
       /**
@@ -111,7 +114,7 @@ namespace Optimist {
        * evaluations.
        */
       void max_hessian_evaluations(const Integer t_hessian_evaluations) {
-        this->max_first_derivative_evaluations(t_hessian_evaluations);
+        this->max_second_derivative_evaluations(t_hessian_evaluations);
       }
 
      protected:
@@ -149,99 +152,6 @@ namespace Optimist {
             std::forward<HessianLambda>(hessian),
             x,
             out);
-      }
-
-     public:
-      /**
-       * Solve the root-finding problem given the function, and without
-       * derivatives.
-       * \tparam FunctionLambda The lambda function type.
-       * \param[in] function Function lambda.
-       * \param[in] x_ini Initialization point.
-       * \param[out] x_sol Solution point.
-       * \return The convergence boolean flag.
-       */
-      template <typename FunctionLambda>
-      bool solve(FunctionLambda &&function, const Input &x_ini, Output &x_sol) {
-#define CMD "Optimist::RootFinder::solve(...): "
-
-        static_assert(DerivedSolver::RequiresFunction,
-                      CMD "the solver requires a function.");
-        return static_cast<DerivedSolver *>(this)->solve_impl(
-            std::forward<FunctionLambda>(function),
-            x_ini,
-            x_sol);
-
-#undef CMD
-      }
-
-      /**
-       * Solve the root-finding problem given the function, and its Jacobian.
-       * \tparam FunctionLambda The lambda function type.
-       * \tparam JacobianLambda The Jacobian lambda function type.
-       * \param[in] function Function lambda.
-       * \param[in] jacobian The Jacobian lambda function.
-       * \param[in] x_ini Initialization point.
-       * \param[out] x_sol Solution point.
-       * \return The convergence boolean flag.
-       */
-      template <typename FunctionLambda, typename JacobianLambda>
-      bool solve(FunctionLambda &&function,
-                 JacobianLambda &&jacobian,
-                 const Input &x_ini,
-                 Output &x_sol) {
-#define CMD "Optimist::RootFinder::solve(...): "
-
-        static_assert(DerivedSolver::RequiresFunction,
-                      CMD "the solver requires a function.");
-        static_assert(DerivedSolver::RequiresFirstDerivative,
-                      CMD "the solver requires the first derivative.");
-        return static_cast<DerivedSolver *>(this)->solve_impl(
-            std::forward<FunctionLambda>(function),
-            std::forward<JacobianLambda>(jacobian),
-            x_ini,
-            x_sol);
-
-#undef CMD
-      }
-
-      /**
-       * Solve the root-finding problem given the function, and its Jacobian and
-       * Hessian.
-       * \tparam FunctionLambda The lambda function type.
-       * \tparam JacobianLambda The Jacobian lambda function type.
-       * \tparam HessianLambda The Hessian lambda function type.
-       * \param[in] function Function lambda.
-       * \param[in] jacobian The Jacobian lambda function.
-       * \param[in] hessian The Hessian lambda function.
-       * \param[in] x_ini Initialization point.
-       * \param[out] x_sol Solution point.
-       * \return The convergence boolean flag.
-       */
-      template <typename FunctionLambda,
-                typename JacobianLambda,
-                typename HessianLambda>
-      bool solve(FunctionLambda &&function,
-                 JacobianLambda &&jacobian,
-                 HessianLambda &&hessian,
-                 const Input &x_ini,
-                 Output &x_sol) {
-#define CMD "Optimist::RootFinder::solve(...): "
-
-        static_assert(DerivedSolver::RequiresFunction,
-                      CMD "the solver requires the function.");
-        static_assert(DerivedSolver::RequiresFirstDerivative,
-                      CMD "the solver requires the first derivative.");
-        static_assert(DerivedSolver::RequiresSecondDerivative,
-                      CMD "the solver requires the second derivative.");
-        return static_cast<DerivedSolver *>(this)->solve_impl(
-            std::forward<FunctionLambda>(function),
-            std::forward<JacobianLambda>(jacobian),
-            std::forward<HessianLambda>(hessian),
-            x_ini,
-            x_sol);
-
-#undef CMD
       }
 
     };  // class RootFinder

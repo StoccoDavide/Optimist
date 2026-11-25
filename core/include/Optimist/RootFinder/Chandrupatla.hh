@@ -91,7 +91,7 @@ namespace Optimist {
           ++this->m_iterations;
           this->m_c = (this->m_a + this->m_b) / 2.0;
           success =
-              this->evaluate_function(std::forward<FunctionLambda>(function),
+              this->evaluate_function(function,
                                       this->m_c,
                                       this->m_fc);
           OPTIMIST_ASSERT(success,
@@ -159,7 +159,7 @@ namespace Optimist {
           Scalar c{this->m_a + t * direction};
           Scalar fc;
           success =
-              this->evaluate_function(std::forward<FunctionLambda>(function),
+              this->evaluate_function(function,
                                       c,
                                       fc);
           OPTIMIST_ASSERT(success,

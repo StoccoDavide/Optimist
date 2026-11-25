@@ -1,5 +1,5 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
- * Copyright (c) 2025, Davide Stocco and Enrico Bertolazzi.                  *
+ * Copyright (c) 2026, Davide Stocco and Enrico Bertolazzi.                  *
  *                                                                           *
  * The Optimist project is distributed under the BSD 2-Clause License.       *
  *                                                                           *
@@ -12,49 +12,61 @@
 #include "Optimist/RootFinder/Chandrupatla.hh"
 #include "Optimist/TestSet.hh"
 
-// Google Test framework
-#include <gtest/gtest.h>
+// Test utilities
+#include "TestUtils.hh"
 
 using namespace Optimist::TestSet;
+using namespace OptimistTest;
 
-// Type-parameterized test fixture for functions
-template <typename FunctionType>
-struct Functions : public testing::Test {
-  using TestType = FunctionType;
-};
+using TestTypes = ConcatT<ScalarVariants<Linear>,
+                          ScalarVariants<Quadratic>,
+                          ScalarVariants<Cos>,
+                          ScalarVariants<Sin>,
+                          ScalarVariants<Sinh>>;
 
-using TestTypes = testing::Types<Linear<float>,
-                                 Linear<double>,
-                                 Quadratic<float>,
-                                 Quadratic<double>,
-                                 Cos<float>,
-                                 Cos<double>,
-                                 Sin<float>,
-                                 Sin<double>,
-                                 Sinh<float>,
-                                 Sinh<double>>;
+OPTIMIST_TYPED_TEST_SUITE(Functions, TestTypes);
 
-// Register the type-parameterized function tests
-TYPED_TEST_SUITE(Functions, TestTypes);
-
-// Test to solve functions
-TYPED_TEST(Functions, Solve) {
-  // Retrieve the function and scalar types
+TYPED_TEST(Functions, RootFindInBracket) {
   using Function = TypeParam;
   using Scalar   = typename Function::Scalar;
 
-  // Create function and solver instances
   Function fun;
   Optimist::RootFinder::Chandrupatla<Scalar> sol;
-  sol.bounds(0.0, M_PI);
+  sol.bounds(0.0, static_cast<Scalar>(M_PI));
   sol.task(fun.name());
-  sol.verbose_mode(true);
-  sol.tolerance(std::sqrt(Function::EPSILON));
+  sol.tolerance(solver_tolerance<Scalar>());
+  expect_solves_all<Problem::ROOTFIND>(sol, fun, default_tolerance<Scalar>());
+}
 
-  Scalar x_out;
-  for (size_t i{0}; i < fun.guesses().size(); ++i) {
-    sol.rootfind(fun, fun.guess(i), x_out);
-    EXPECT_TRUE(sol.converged());
-    EXPECT_TRUE(fun.is_solution(x_out, std::cbrt(Function::EPSILON)));
+TYPED_TEST(Functions, RootFindInShiftedBracket) {
+  using Function = TypeParam;
+  using Scalar   = typename Function::Scalar;
+
+  // Asymmetric bracket around a known root
+  Function fun;
+  Optimist::RootFinder::Chandrupatla<Scalar> sol;
+  sol.tolerance(solver_tolerance<Scalar>());
+  for (const Scalar root : fun.solutions()) {
+    Scalar f;
+    ASSERT_TRUE(fun.evaluate(root, f));
+    if (std::abs(f) > Function::SQRT_EPSILON) {
+      continue;  // Stationary point, not a root
+    }
+    sol.bounds(root - Scalar(0.3), root + Scalar(0.7));
+    Scalar x_out;
+    sol.rootfind(fun, root, x_out);
+    EXPECT_TRUE(sol.converged()) << fun.name() << " around " << root;
+    EXPECT_NEAR(x_out, root, default_tolerance<Scalar>())
+        << fun.name() << " around " << root;
   }
+}
+
+TEST(Chandrupatla, NoSignChangeIsNotConverged) {
+  // cosh(x) > 0 everywhere: nothing is bracketed
+  Cosh<double> fun;
+  Optimist::RootFinder::Chandrupatla<double> sol;
+  sol.bounds(-1.0, 2.0);
+  double x_out;
+  EXPECT_FALSE(sol.rootfind(fun, 0.0, x_out));
+  EXPECT_FALSE(sol.converged());
 }

@@ -103,13 +103,6 @@ namespace Optimist {
         this->m_method = Method::COMBINED;
       }
 
-      /**
-       * Set the Broyden solver type.
-       * \param[in] t_method The Broyden solver type enumeration.
-       */
-      void set_method(Method t_method) {
-        this->m_method = t_method;
-      }
 
       /**
        * Jacobian approximation update rule for the Broyden's method.
@@ -126,28 +119,46 @@ namespace Optimist {
                        const FirstDerivative &jacobian_old,
                        const Vector &delta_x_new,
                        const Vector &delta_function_new,
-                       const Vector & /*function_new*/,
+                       [[maybe_unused]] const Vector &function_new,
                        FirstDerivative &jacobian_new) {
         Vector tmp_1(jacobian_old * delta_function_new);
         Scalar tmp_2{delta_function_new.squaredNorm()};
-        // Selection criteria: |(dx_new'*dx_old) / (dx_new'*J_old*dF_new)| <
+
+        // Select the update formula. The combined method uses the criterion of
+        // Martinez and Ochi: use the good update if
+        // |(dx_new'*dx_old) / (dx_new'*J_old*dF_new)| <
         // |(dF_new'*dF_old) / (dF_new'*dF_new)|
-        if (this->m_method == Method::COMBINED ||
-            this->m_method == Method::GOOD || this->iterations() < Integer(2) ||
-            std::abs(delta_x_new.dot(delta_x_old)) /
-                    std::abs(delta_x_new.dot(tmp_1)) <
-                std::abs(delta_function_new.dot(delta_function_old)) / tmp_2) {
-          // Broyden's Good solver: J_new = J_old - (J_old*dF_new-dx_new) /
-          // (C'*dF_new)*C', where C = J_old'*dx_new;
+        bool use_good{true};
+        if (this->m_method == Method::BAD) {
+          use_good = false;
+        } else if (this->m_method == Method::COMBINED &&
+                   this->iterations() >= Integer(2)) {
+          use_good = std::abs(delta_x_new.dot(delta_x_old)) /
+                         std::abs(delta_x_new.dot(tmp_1)) <
+                     std::abs(delta_function_new.dot(delta_function_old)) /
+                         tmp_2;
+        }
+
+        if (use_good) {
+          // Broyden's good method: J_new = J_old - (J_old*dF_new-dx_new) /
+          // (C'*dF_new)*C', where C = J_old'*dx_new
           Vector C_g(jacobian_old.transpose() * delta_x_new);
-          jacobian_new = jacobian_old - (tmp_1 - delta_x_new) /
-                                            (C_g.dot(delta_function_new)) *
-                                            C_g.transpose();
+          Scalar den{C_g.dot(delta_function_new)};
+          if (std::abs(den) <= EPSILON || !std::isfinite(den)) {
+            jacobian_new = jacobian_old;
+            return;
+          }
+          jacobian_new =
+              jacobian_old - (tmp_1 - delta_x_new) / den * C_g.transpose();
         } else {
-          // Broyden's Bad solver: J_new = J_old - (J_old*dF_old-dx_new) /
-          // (C'*dF_old)*C', where C = dF_old;
+          // Broyden's bad method: J_new = J_old - (J_old*dF_new-dx_new) /
+          // (dF_new'*dF_new)*dF_new'
+          if (tmp_2 <= EPSILON || !std::isfinite(tmp_2)) {
+            jacobian_new = jacobian_old;
+            return;
+          }
           jacobian_new = jacobian_old - (tmp_1 - delta_x_new) / tmp_2 *
-                                            delta_function_old.transpose();
+                                            delta_function_new.transpose();
         }
       }
 

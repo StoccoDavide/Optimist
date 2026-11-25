@@ -1,5 +1,5 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
- * Copyright (c) 2025, Davide Stocco and Enrico Bertolazzi.                  *
+ * Copyright (c) 2026, Davide Stocco and Enrico Bertolazzi.                  *
  *                                                                           *
  * The Optimist project is distributed under the BSD 2-Clause License.       *
  *                                                                           *
@@ -12,83 +12,61 @@
 #include "Optimist/RootFinder/Newton.hh"
 #include "Optimist/TestSet.hh"
 
-// Google Test framework
-#include <gtest/gtest.h>
+// Test utilities
+#include "TestUtils.hh"
 
 using namespace Optimist::TestSet;
+using namespace OptimistTest;
 
-// Type-parameterized test fixture for functions
-template <typename FunctionType>
-struct Functions : public testing::Test {
-  using TestType = FunctionType;
-};
+using TestTypes = ConcatT<VectorVariants<Linear1, 1>,
+                          VectorVariants<Booth, 2>,
+                          VectorVariants<Rosenbrock2, 2>,
+                          VectorVariants<Rosenbrock4, 4>,
+                          VectorVariants<Rosenbrock6, 6>,
+                          VectorVariants<Rosenbrock8, 8>>;
 
-using TestTypes =
-    testing::Types<Linear1<Eigen::Vector<float, 1>>,
-                   Linear1<Eigen::Vector<float, Eigen::Dynamic>>,
-                   Linear1<Eigen::SparseVector<float>>,
-                   Linear1<Eigen::Vector<double, 1>>,
-                   Linear1<Eigen::Vector<double, Eigen::Dynamic>>,
-                   Linear1<Eigen::SparseVector<double>>,
-                   Booth<Eigen::Vector<float, 2>>,
-                   Booth<Eigen::Vector<float, Eigen::Dynamic>>,
-                   Booth<Eigen::SparseVector<float>>,
-                   Booth<Eigen::Vector<double, 2>>,
-                   Booth<Eigen::Vector<double, Eigen::Dynamic>>,
-                   Booth<Eigen::SparseVector<double>>,
-                   Rosenbrock2<Eigen::Vector<float, 2>>,
-                   Rosenbrock2<Eigen::Vector<float, Eigen::Dynamic>>,
-                   Rosenbrock2<Eigen::SparseVector<float>>,
-                   Rosenbrock2<Eigen::Vector<double, 2>>,
-                   Rosenbrock2<Eigen::Vector<double, Eigen::Dynamic>>,
-                   Rosenbrock2<Eigen::SparseVector<double>>,
-                   Rosenbrock4<Eigen::Vector<float, 4>>,
-                   Rosenbrock4<Eigen::Vector<float, Eigen::Dynamic>>,
-                   Rosenbrock4<Eigen::SparseVector<float>>,
-                   Rosenbrock4<Eigen::Vector<double, 4>>,
-                   Rosenbrock4<Eigen::Vector<double, Eigen::Dynamic>>,
-                   Rosenbrock4<Eigen::SparseVector<double>>,
-                   Rosenbrock6<Eigen::Vector<float, 6>>,
-                   Rosenbrock6<Eigen::Vector<float, Eigen::Dynamic>>,
-                   Rosenbrock6<Eigen::SparseVector<float>>,
-                   Rosenbrock6<Eigen::Vector<double, 6>>,
-                   Rosenbrock6<Eigen::Vector<double, Eigen::Dynamic>>,
-                   Rosenbrock6<Eigen::SparseVector<double>>,
-                   Rosenbrock8<Eigen::Vector<float, 8>>,
-                   Rosenbrock8<Eigen::Vector<float, Eigen::Dynamic>>,
-                   Rosenbrock8<Eigen::SparseVector<float>>,
-                   Rosenbrock8<Eigen::Vector<double, 8>>,
-                   Rosenbrock8<Eigen::Vector<double, Eigen::Dynamic>>,
-                   Rosenbrock8<Eigen::SparseVector<double>>>;
+OPTIMIST_TYPED_TEST_SUITE(Functions, TestTypes);
 
-// Register the type-parameterized function tests
-TYPED_TEST_SUITE(Functions, TestTypes);
-
-// Test to solve functions
-TYPED_TEST(Functions, Solve) {
-  // Retrieve the function and vector types
+TYPED_TEST(Functions, RootFind) {
   using Function = TypeParam;
   using Vector   = typename Function::VectorTrait::Type;
+  using Scalar   = typename Function::Scalar;
 
-  // Create function and solver instances
   Function fun;
   Optimist::RootFinder::Newton<Vector> sol;
   sol.task(fun.name());
-  sol.verbose_mode(false);
-  sol.tolerance(std::sqrt(Function::EPSILON));
+  sol.tolerance(solver_tolerance<Scalar>());
 
-  Vector x_out;
-  for (size_t i{0}; i < fun.guesses().size(); ++i) {
-    // Solve without damping
-    sol.disable_damped_mode();
-    sol.rootfind(fun, fun.guess(i), x_out);
-    EXPECT_TRUE(sol.converged());
-    EXPECT_TRUE(fun.is_solution(x_out, std::cbrt(Function::EPSILON)));
+  for (const bool damped : {false, true}) {
+    sol.damped_mode(damped);
+    expect_solves_all<Problem::ROOTFIND>(sol, fun, default_tolerance<Scalar>());
+  }
 
-    // Solve with damping
-    sol.enable_damped_mode();
-    sol.rootfind(fun, fun.guess(i), x_out);
-    EXPECT_TRUE(sol.converged());
-    EXPECT_TRUE(fun.is_solution(x_out, std::cbrt(Function::EPSILON)));
+}
+
+// Root finders handed an optimization problem solve grad(phi) = 0
+using CostTypes = ConcatT<VectorVariants<EllipticParaboloid, 2>,
+                          VectorVariants<Trid2, 2>,
+                          DoubleVectorVariants<Himmelblau, 2>>;
+
+OPTIMIST_TYPED_TEST_SUITE(CostFunctions, CostTypes);
+
+TYPED_TEST(CostFunctions, StationaryPoint) {
+  using Function = TypeParam;
+  using Vector   = typename Function::VectorTrait::Type;
+  using Scalar   = typename Function::Scalar;
+
+  Function fun;
+  Optimist::RootFinder::Newton<Vector> sol;
+  sol.tolerance(solver_tolerance<Scalar>());
+  for (std::size_t i{0}; i < fun.guesses().size(); ++i) {
+    Vector x_out;
+    sol.optimize(fun, fun.guess(i), x_out);
+    EXPECT_TRUE(sol.converged()) << fun.name() << " guess #" << i;
+    typename Function::FirstDerivative g;
+    ASSERT_TRUE(fun.first_derivative(x_out, g));
+    EXPECT_LT(g.norm(), 10 * std::sqrt(Function::EPSILON))
+        << fun.name() << " guess #" << i;
+    static_cast<void>(default_tolerance<Scalar>);
   }
 }
