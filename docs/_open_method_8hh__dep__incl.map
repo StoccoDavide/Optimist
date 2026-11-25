@@ -1,0 +1,16 @@
+<map id="core/include/Optimist/RootFinder/OpenMethod.hh" name="core/include/Optimist/RootFinder/OpenMethod.hh">
+<area shape="rect" id="Node000001" title=" " alt="" coords="286,5,471,46"/>
+<area shape="rect" id="Node000002" href="$_chebyshev_8hh.html" title=" " alt="" coords="5,94,181,135"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="299,54,159,96,157,91,298,48"/>
+<area shape="rect" id="Node000004" href="$_halley_8hh.html" title=" " alt="" coords="205,94,352,135"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="346,58,303,96,299,92,342,54"/>
+<area shape="rect" id="Node000005" href="$_newton_raphson_8hh.html" title=" " alt="" coords="376,94,584,135"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="415,54,458,92,455,96,411,58"/>
+<area shape="rect" id="Node000006" href="$_varona_8hh.html" title=" " alt="" coords="608,94,759,135"/>
+<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="463,48,615,91,614,96,462,53"/>
+<area shape="rect" id="Node000003" href="$_solvers_8hh.html" title="Convenience header including every solver of the library." alt="" coords="306,183,450,223"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="174,137,314,180,313,185,172,142"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="314,143,357,180,354,184,311,147"/>
+<area shape="poly" id="edge6_Node000005_Node000003" title=" " alt="" coords="447,147,403,184,400,180,443,143"/>
+<area shape="poly" id="edge8_Node000006_Node000003" title=" " alt="" coords="600,142,448,185,447,180,599,137"/>
+</map>

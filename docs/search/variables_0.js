@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['cost_5ffunctions_0',['COST_FUNCTIONS',['../namespace_optimist_1_1_test_set.html#aff814bf3204c0a4926c6c1d6b9c5b370',1,'Optimist::TestSet']]]
+  ['alpha_5fmax_0',['alpha_max',['../struct_optimist_1_1_line_search_1_1_settings.html#a0a6e1204e5b7b9bc0c0206902f2e5fe0',1,'Optimist::LineSearch::Settings']]]
 ];

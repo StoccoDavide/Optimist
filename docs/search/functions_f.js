@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['particleswarm_0',['ParticleSwarm',['../class_optimist_1_1_optimizer_1_1_particle_swarm.html#a5e23837f955a1a6735816dffa8adeeba',1,'Optimist::Optimizer::ParticleSwarm']]],
-  ['particleswarmoptimization_1',['ParticleSwarmOptimization',['../class_optimist_1_1_optimizer_1_1_particle_swarm.html#a723ec6d18a525e1f5665284b6797939d',1,'Optimist::Optimizer::ParticleSwarm']]],
-  ['patternsearch_2',['PatternSearch',['../class_optimist_1_1_optimizer_1_1_pattern_search.html#af1eeb3abdc1bf9d02b61b434bea81444',1,'Optimist::Optimizer::PatternSearch']]]
+  ['q_0',['Q',['../class_optimist_1_1_root_finder_1_1_varona.html#ae19c1a913db95d02a6287b3c8a9d41b2',1,'Optimist::RootFinder::Varona']]],
+  ['quadratic_1',['Quadratic',['../class_optimist_1_1_test_set_1_1_quadratic.html#a9ab1a2c12b796c92613b6ea4fcd217d3',1,'Optimist::TestSet::Quadratic']]],
+  ['quasinewton_2',['QuasiNewton',['../class_optimist_1_1_root_finder_1_1_quasi_newton.html#a37a9336c1b4dc7d7b2251b1850de4daf',1,'Optimist::RootFinder::QuasiNewton']]]
 ];

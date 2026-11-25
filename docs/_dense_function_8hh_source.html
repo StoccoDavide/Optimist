@@ -1,0 +1,419 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>Optimist: core/include/Optimist/TestSet/DenseFunction.hh Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.png"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/StoccoDavide/Optimist" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Optimist
+   &#160;<span id="projectnumber">0.0.0</span>
+   </div>
+   <div id="projectbrief">A C++ library for optimization</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="application/json" id="doxygen-config">
+{
+  "relPath": "",
+  "generateTreeView": true,
+  "searchEngine": true,
+  "serverBasedSearch": false,
+  "disableIndex": false,
+  "dynamicMenus": true,
+  "fullSidebar": false
+}
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',() => { initNavTree('_dense_function_8hh_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">DenseFunction.hh</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_dense_function_8hh.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2026, Davide Stocco and Enrico Bertolazzi.                  *</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *                                                                           *</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * The Optimist project is distributed under the BSD 2-Clause License.       *</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> *                                                                           *</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"> * Davide Stocco                                           Enrico Bertolazzi *</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment"> * University of Trento                                 University of Trento *</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment"> * davide.stocco@unitn.it                         enrico.bertolazzi@unitn.it *</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">\* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#ifndef OPTIMIST_TESTSET_DENSE_FUNCTION_HH</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="_dense_function_8hh.html#a45ec8d87a81b2e6a46f1f8b3b71a7efb">   14</a></span><span class="preprocessor">#define OPTIMIST_TESTSET_DENSE_FUNCTION_HH</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &quot;<a class="code" href="_function_8hh.html">Optimist/Function.hh</a>&quot;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &quot;<a class="code" href="_utils_8hh.html">Optimist/Utils.hh</a>&quot;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_optimist.html">Optimist</a> {</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>  <span class="keyword">namespace </span>TestSet {</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Vector, Integer N, <span class="keyword">typename</span> Derived&gt;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>      <span class="keyword">requires</span> TypeTrait&lt;Vector&gt;::IsEigen &amp;&amp;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>               (!TypeTrait&lt;Vector&gt;::IsFixed || TypeTrait&lt;Vector&gt;::Dimension == N)</div>
+<div class="foldopen" id="foldopen00042" data-start="{" data-end="};">
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="class_optimist_1_1_test_set_1_1_dense_cost_function.html">   42</a></span>    <span class="keyword">class</span> <a class="code hl_class" href="class_optimist_1_1_test_set_1_1_dense_cost_function.html">DenseCostFunction</a></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        : public <a class="code hl_function" href="class_optimist_1_1_function.html#a531b0cd5b842475356263c89b934ee9f">Function</a>&lt;Vector, typename Vector::<a class="code hl_typedef" href="class_optimist_1_1_test_set_1_1_dense_cost_function.html#aa21572052507a35e88bb1ceb1cf5d865">Scalar</a>, Derived&gt; {</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>     <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="class_optimist_1_1_test_set_1_1_dense_cost_function.html#aa315b72850ff8608f62a59ebf03152bb">   45</a></span>      <span class="keyword">using </span><a class="code hl_typedef" href="class_optimist_1_1_test_set_1_1_dense_cost_function.html#aa315b72850ff8608f62a59ebf03152bb">VectorTrait</a> = <a class="code hl_struct" href="struct_optimist_1_1_type_trait.html">TypeTrait&lt;Vector&gt;</a>;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="class_optimist_1_1_test_set_1_1_dense_cost_function.html#aa21572052507a35e88bb1ceb1cf5d865">   46</a></span>      <span class="keyword">using </span><a class="code hl_typedef" href="class_optimist_1_1_test_set_1_1_dense_cost_function.html#aa21572052507a35e88bb1ceb1cf5d865">Scalar</a>      = <span class="keyword">typename</span> Vector::Scalar;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="class_optimist_1_1_test_set_1_1_dense_cost_function.html#a64d8efd08bfbba415aa24e193dfd61d1">   47</a></span>      <span class="keyword">using </span><a class="code hl_typedef" href="class_optimist_1_1_test_set_1_1_dense_cost_function.html#a64d8efd08bfbba415aa24e193dfd61d1">Dense</a>       = <a class="code hl_typedef" href="namespace_optimist_1_1_utils.html#aa725549c1dc82e4dfea63eae206af65e">Utils::DenseVector&lt;Vector&gt;</a>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="class_optimist_1_1_test_set_1_1_dense_cost_function.html#a56a5e3982909fcefd2b47909949bf433">   48</a></span>      <span class="keyword">using </span><a class="code hl_typedef" href="class_optimist_1_1_test_set_1_1_dense_cost_function.html#a56a5e3982909fcefd2b47909949bf433">DenseMatrix</a> = <a class="code hl_typedef" href="namespace_optimist_1_1_utils.html#a132445a4ec9a1898f8596ee6a78d0e85">Utils::DenseMatrix&lt;Vector&gt;</a>;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>      <span class="keyword">using </span>typename <a class="code hl_typedef" href="class_optimist_1_1_function_base.html#a0cb79d76aac240dd0e379453103b2911">Function&lt;Vector, Scalar, Derived&gt;::FirstDerivative</a>;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>      <span class="keyword">using </span>typename <a class="code hl_typedef" href="class_optimist_1_1_function_base.html#acb5a3a307f735766ff083c1dad1129b9">Function&lt;Vector, Scalar, Derived&gt;::SecondDerivative</a>;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>      <a class="code hl_define" href="_optimist_8hh.html#a437ef92626d0fc8f1fabd296ca796056">OPTIMIST_BASIC_CONSTANTS</a>(<a class="code hl_typedef" href="class_optimist_1_1_test_set_1_1_dense_cost_function.html#aa21572052507a35e88bb1ceb1cf5d865">Scalar</a>)</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>      </div>
+<div class="foldopen" id="foldopen00057" data-start="{" data-end="}">
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="class_optimist_1_1_test_set_1_1_dense_cost_function.html#af88b82c4fa07bc32e04cf440deb03a90">   57</a></span>      static constexpr <a class="code hl_typedef" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> <a class="code hl_function" href="class_optimist_1_1_test_set_1_1_dense_cost_function.html#af88b82c4fa07bc32e04cf440deb03a90">dimension</a>() {</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        <span class="keywordflow">return</span> N;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>      }</div>
+</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span></div>
+<div class="foldopen" id="foldopen00064" data-start="{" data-end="}">
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="class_optimist_1_1_test_set_1_1_dense_cost_function.html#a243bcde1154b837ed7da053eac216013">   64</a></span>      <span class="keywordtype">bool</span> <a class="code hl_function" href="class_optimist_1_1_test_set_1_1_dense_cost_function.html#a243bcde1154b837ed7da053eac216013">evaluate_impl</a>(<span class="keyword">const</span> Vector &amp;x, <a class="code hl_typedef" href="class_optimist_1_1_test_set_1_1_dense_cost_function.html#aa21572052507a35e88bb1ceb1cf5d865">Scalar</a> &amp;out)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        out = this-&gt;<a class="code hl_function" href="class_optimist_1_1_test_set_1_1_dense_cost_function.html#a4c6205ebc0bbe94f4842ea6c0f10c878">derived</a>().value(<a class="code hl_function" href="namespace_optimist_1_1_utils.html#af179bd7d3f4a8f60bc927454f7325df7">Utils::to_dense</a>(x));</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        <span class="keywordflow">return</span> std::isfinite(out);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>      }</div>
+</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span></div>
+<div class="foldopen" id="foldopen00072" data-start="{" data-end="}">
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="class_optimist_1_1_test_set_1_1_dense_cost_function.html#a9eb3e42f192e7d31dd6bf4d54803ad42">   72</a></span>      <span class="keywordtype">bool</span> <a class="code hl_function" href="class_optimist_1_1_test_set_1_1_dense_cost_function.html#a9eb3e42f192e7d31dd6bf4d54803ad42">first_derivative_impl</a>(<span class="keyword">const</span> Vector &amp;x, <a class="code hl_typedef" href="class_optimist_1_1_function_base.html#a0cb79d76aac240dd0e379453103b2911">FirstDerivative</a> &amp;out)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        <a class="code hl_typedef" href="class_optimist_1_1_test_set_1_1_dense_cost_function.html#a64d8efd08bfbba415aa24e193dfd61d1">Dense</a> g(N);</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        this-&gt;<a class="code hl_function" href="class_optimist_1_1_test_set_1_1_dense_cost_function.html#a4c6205ebc0bbe94f4842ea6c0f10c878">derived</a>().gradient(<a class="code hl_function" href="namespace_optimist_1_1_utils.html#af179bd7d3f4a8f60bc927454f7325df7">Utils::to_dense</a>(x), g);</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        out = <a class="code hl_function" href="namespace_optimist_1_1_utils.html#a077433b21d589010d6cead18938a663e">Utils::from_dense&lt;FirstDerivative&gt;</a>(g);</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        <span class="keywordflow">return</span> g.allFinite();</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>      }</div>
+</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span></div>
+<div class="foldopen" id="foldopen00082" data-start="{" data-end="}">
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="class_optimist_1_1_test_set_1_1_dense_cost_function.html#a65fe81870f5fbe7ceb2f943d3f39f0ca">   82</a></span>      <span class="keywordtype">bool</span> <a class="code hl_function" href="class_optimist_1_1_test_set_1_1_dense_cost_function.html#a65fe81870f5fbe7ceb2f943d3f39f0ca">second_derivative_impl</a>(<span class="keyword">const</span> Vector &amp;x,</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>                                  <a class="code hl_typedef" href="class_optimist_1_1_function_base.html#acb5a3a307f735766ff083c1dad1129b9">SecondDerivative</a> &amp;out)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        <a class="code hl_typedef" href="class_optimist_1_1_test_set_1_1_dense_cost_function.html#a56a5e3982909fcefd2b47909949bf433">DenseMatrix</a> H(N, N);</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        this-&gt;<a class="code hl_function" href="class_optimist_1_1_test_set_1_1_dense_cost_function.html#a4c6205ebc0bbe94f4842ea6c0f10c878">derived</a>().hessian(<a class="code hl_function" href="namespace_optimist_1_1_utils.html#af179bd7d3f4a8f60bc927454f7325df7">Utils::to_dense</a>(x), H);</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        out = <a class="code hl_function" href="namespace_optimist_1_1_utils.html#a95023ab8e6b58de52f351a561f067daf">Utils::from_dense_matrix&lt;SecondDerivative&gt;</a>(H);</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        <span class="keywordflow">return</span> H.allFinite();</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>      }</div>
+</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>     <span class="keyword">protected</span>:</div>
+<div class="foldopen" id="foldopen00094" data-start="{" data-end="}">
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="class_optimist_1_1_test_set_1_1_dense_cost_function.html#a189f41a73f5ae09405c6cee89c33475a">   94</a></span>      <span class="keywordtype">void</span> <a class="code hl_function" href="class_optimist_1_1_test_set_1_1_dense_cost_function.html#a189f41a73f5ae09405c6cee89c33475a">add_solution</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="class_optimist_1_1_test_set_1_1_dense_cost_function.html#a64d8efd08bfbba415aa24e193dfd61d1">Dense</a> &amp;x) {</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        this-&gt;<a class="code hl_variable" href="class_optimist_1_1_function_base.html#a49e3f7dd2c7967809cf89f02942d3239">m_solutions</a>.push_back(<a class="code hl_function" href="namespace_optimist_1_1_utils.html#a077433b21d589010d6cead18938a663e">Utils::from_dense&lt;Vector&gt;</a>(x));</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>      }</div>
+</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span></div>
+<div class="foldopen" id="foldopen00101" data-start="{" data-end="}">
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno"><a class="line" href="class_optimist_1_1_test_set_1_1_dense_cost_function.html#a5d54f0cfcbe8f3b2fb81632ef434e067">  101</a></span>      <span class="keywordtype">void</span> <a class="code hl_function" href="class_optimist_1_1_test_set_1_1_dense_cost_function.html#a5d54f0cfcbe8f3b2fb81632ef434e067">add_guess</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="class_optimist_1_1_test_set_1_1_dense_cost_function.html#a64d8efd08bfbba415aa24e193dfd61d1">Dense</a> &amp;x) {</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>        this-&gt;<a class="code hl_variable" href="class_optimist_1_1_function_base.html#a44b7729a5c990a4186c4a19c60b93bd9">m_guesses</a>.push_back(<a class="code hl_function" href="namespace_optimist_1_1_utils.html#a077433b21d589010d6cead18938a663e">Utils::from_dense&lt;Vector&gt;</a>(x));</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>      }</div>
+</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span></div>
+<div class="foldopen" id="foldopen00108" data-start="{" data-end="}">
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno"><a class="line" href="class_optimist_1_1_test_set_1_1_dense_cost_function.html#a87910693916308dd53ed8081b6c9e691">  108</a></span>      <span class="keyword">static</span> <a class="code hl_typedef" href="class_optimist_1_1_test_set_1_1_dense_cost_function.html#a64d8efd08bfbba415aa24e193dfd61d1">Dense</a> <a class="code hl_function" href="class_optimist_1_1_test_set_1_1_dense_cost_function.html#a87910693916308dd53ed8081b6c9e691">make</a>(std::initializer_list&lt;Scalar&gt; values) {</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>        <a class="code hl_typedef" href="class_optimist_1_1_test_set_1_1_dense_cost_function.html#a64d8efd08bfbba415aa24e193dfd61d1">Dense</a> x(<span class="keyword">static_cast&lt;</span><a class="code hl_typedef" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a><span class="keyword">&gt;</span>(values.size()));</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>        <a class="code hl_typedef" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> i{0};</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> v : values) {</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>          x(i++) = v;</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>        }</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>        <span class="keywordflow">return</span> x;</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>      }</div>
+</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>     <span class="keyword">private</span>:</div>
+<div class="foldopen" id="foldopen00118" data-start="{" data-end="}">
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno"><a class="line" href="class_optimist_1_1_test_set_1_1_dense_cost_function.html#a4c6205ebc0bbe94f4842ea6c0f10c878">  118</a></span>      <span class="keyword">const</span> Derived &amp;<a class="code hl_function" href="class_optimist_1_1_test_set_1_1_dense_cost_function.html#a4c6205ebc0bbe94f4842ea6c0f10c878">derived</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>        <span class="keywordflow">return</span> *<span class="keyword">static_cast&lt;</span><span class="keyword">const </span>Derived *<span class="keyword">&gt;</span>(<span class="keyword">this</span>);</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>      }</div>
+</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    };  <span class="comment">// class DenseCostFunction</span></div>
+</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span></div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Vector,</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>              <a class="code hl_typedef" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> N,</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>              <span class="keyword">typename</span> Derived,</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>              <span class="keyword">typename</span> OutVector = Vector,</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>              <a class="code hl_typedef" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> M          = N&gt;</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>      <span class="keyword">requires</span> <a class="code hl_struct" href="struct_optimist_1_1_type_trait.html">TypeTrait&lt;Vector&gt;::IsEigen</a> &amp;&amp; <a class="code hl_struct" href="struct_optimist_1_1_type_trait.html">TypeTrait&lt;OutVector&gt;::IsEigen</a> &amp;&amp;</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>               (!<a class="code hl_struct" href="struct_optimist_1_1_type_trait.html">TypeTrait&lt;Vector&gt;::IsFixed</a> ||</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>                <a class="code hl_struct" href="struct_optimist_1_1_type_trait.html">TypeTrait&lt;Vector&gt;::Dimension</a> == N) &amp;&amp;</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>               (!<a class="code hl_struct" href="struct_optimist_1_1_type_trait.html">TypeTrait&lt;OutVector&gt;::IsFixed</a> ||</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>                <a class="code hl_struct" href="struct_optimist_1_1_type_trait.html">TypeTrait&lt;OutVector&gt;::Dimension</a> == M)</div>
+<div class="foldopen" id="foldopen00151" data-start="{" data-end="};">
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno"><a class="line" href="class_optimist_1_1_test_set_1_1_dense_system_function.html">  151</a></span>    class <a class="code hl_class" href="class_optimist_1_1_test_set_1_1_dense_system_function.html">DenseSystemFunction</a> : public <a class="code hl_function" href="class_optimist_1_1_function.html#a531b0cd5b842475356263c89b934ee9f">Function</a>&lt;Vector, OutVector, Derived&gt; {</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>     <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno"><a class="line" href="class_optimist_1_1_test_set_1_1_dense_system_function.html#ac64f78ca41534645fe1793c853dcd1fe">  153</a></span>      <span class="keyword">using </span><a class="code hl_typedef" href="class_optimist_1_1_test_set_1_1_dense_system_function.html#ac64f78ca41534645fe1793c853dcd1fe">VectorTrait</a> = <a class="code hl_struct" href="struct_optimist_1_1_type_trait.html">TypeTrait&lt;Vector&gt;</a>;</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno"><a class="line" href="class_optimist_1_1_test_set_1_1_dense_system_function.html#a6809bc3dce4dfcccabada73f7b1a10ba">  154</a></span>      <span class="keyword">using </span><a class="code hl_typedef" href="class_optimist_1_1_test_set_1_1_dense_system_function.html#a6809bc3dce4dfcccabada73f7b1a10ba">Scalar</a>      = <span class="keyword">typename</span> Vector::Scalar;</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno"><a class="line" href="class_optimist_1_1_test_set_1_1_dense_system_function.html#a7e3e012855f02f35b99a8766358a0d28">  155</a></span>      <span class="keyword">using </span><a class="code hl_typedef" href="class_optimist_1_1_test_set_1_1_dense_system_function.html#a7e3e012855f02f35b99a8766358a0d28">Dense</a>       = <a class="code hl_typedef" href="namespace_optimist_1_1_utils.html#aa725549c1dc82e4dfea63eae206af65e">Utils::DenseVector&lt;Vector&gt;</a>;</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno"><a class="line" href="class_optimist_1_1_test_set_1_1_dense_system_function.html#a250ce4140ca6695aa2e5038bfa45020a">  156</a></span>      <span class="keyword">using </span><a class="code hl_typedef" href="class_optimist_1_1_test_set_1_1_dense_system_function.html#a250ce4140ca6695aa2e5038bfa45020a">DenseMatrix</a> = <a class="code hl_typedef" href="namespace_optimist_1_1_utils.html#a132445a4ec9a1898f8596ee6a78d0e85">Utils::DenseMatrix&lt;Vector&gt;</a>;</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>      <span class="keyword">using </span>typename <a class="code hl_typedef" href="class_optimist_1_1_function_base.html#a0cb79d76aac240dd0e379453103b2911">Function&lt;Vector, OutVector, Derived&gt;::FirstDerivative</a>;</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>      <span class="keyword">using </span>typename <a class="code hl_typedef" href="class_optimist_1_1_function_base.html#acb5a3a307f735766ff083c1dad1129b9">Function&lt;Vector, OutVector, Derived&gt;::SecondDerivative</a>;</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span> </div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>      <a class="code hl_define" href="_optimist_8hh.html#a437ef92626d0fc8f1fabd296ca796056">OPTIMIST_BASIC_CONSTANTS</a>(<a class="code hl_typedef" href="class_optimist_1_1_test_set_1_1_dense_system_function.html#a6809bc3dce4dfcccabada73f7b1a10ba">Scalar</a>)</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span> </div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>      </div>
+<div class="foldopen" id="foldopen00165" data-start="{" data-end="}">
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno"><a class="line" href="class_optimist_1_1_test_set_1_1_dense_system_function.html#a48611c98dfb04f9256a8d5d66ef55b71">  165</a></span>      static constexpr <a class="code hl_typedef" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> <a class="code hl_function" href="class_optimist_1_1_test_set_1_1_dense_system_function.html#a48611c98dfb04f9256a8d5d66ef55b71">dimension</a>() {</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>        <span class="keywordflow">return</span> N;</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>      }</div>
+</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span></div>
+<div class="foldopen" id="foldopen00172" data-start="{" data-end="}">
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno"><a class="line" href="class_optimist_1_1_test_set_1_1_dense_system_function.html#ae3d639614904ac8bc5adae18b9b26c04">  172</a></span>      <span class="keyword">static</span> <span class="keyword">constexpr</span> <a class="code hl_typedef" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> <a class="code hl_function" href="class_optimist_1_1_test_set_1_1_dense_system_function.html#ae3d639614904ac8bc5adae18b9b26c04">equations</a>() {</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>        <span class="keywordflow">return</span> M;</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>      }</div>
+</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span></div>
+<div class="foldopen" id="foldopen00179" data-start="{" data-end="}">
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno"><a class="line" href="class_optimist_1_1_test_set_1_1_dense_system_function.html#a5b5ced8704cdaa2df1b2010c11a15d85">  179</a></span>      <span class="keywordtype">bool</span> <a class="code hl_function" href="class_optimist_1_1_test_set_1_1_dense_system_function.html#a5b5ced8704cdaa2df1b2010c11a15d85">evaluate_impl</a>(<span class="keyword">const</span> Vector &amp;x, OutVector &amp;out)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>        <a class="code hl_typedef" href="class_optimist_1_1_test_set_1_1_dense_system_function.html#a7e3e012855f02f35b99a8766358a0d28">Dense</a> F(M);</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>        this-&gt;<a class="code hl_function" href="class_optimist_1_1_test_set_1_1_dense_system_function.html#afe6ee5bf062f0444ba1c1834e6ba8862">derived</a>().residual(<a class="code hl_function" href="namespace_optimist_1_1_utils.html#af179bd7d3f4a8f60bc927454f7325df7">Utils::to_dense</a>(x), F);</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>        out = <a class="code hl_function" href="namespace_optimist_1_1_utils.html#a077433b21d589010d6cead18938a663e">Utils::from_dense&lt;OutVector&gt;</a>(F);</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>        <span class="keywordflow">return</span> F.allFinite();</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>      }</div>
+</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span></div>
+<div class="foldopen" id="foldopen00189" data-start="{" data-end="}">
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno"><a class="line" href="class_optimist_1_1_test_set_1_1_dense_system_function.html#afd424f9f9a63f2ee56f2d613afe8e9dc">  189</a></span>      <span class="keywordtype">bool</span> <a class="code hl_function" href="class_optimist_1_1_test_set_1_1_dense_system_function.html#afd424f9f9a63f2ee56f2d613afe8e9dc">first_derivative_impl</a>(<span class="keyword">const</span> Vector &amp;x, <a class="code hl_typedef" href="class_optimist_1_1_function_base.html#a0cb79d76aac240dd0e379453103b2911">FirstDerivative</a> &amp;out)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>        <a class="code hl_typedef" href="class_optimist_1_1_test_set_1_1_dense_system_function.html#a250ce4140ca6695aa2e5038bfa45020a">DenseMatrix</a> J(M, N);</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>        this-&gt;<a class="code hl_function" href="class_optimist_1_1_test_set_1_1_dense_system_function.html#afe6ee5bf062f0444ba1c1834e6ba8862">derived</a>().jacobian(<a class="code hl_function" href="namespace_optimist_1_1_utils.html#af179bd7d3f4a8f60bc927454f7325df7">Utils::to_dense</a>(x), J);</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>        out = <a class="code hl_function" href="namespace_optimist_1_1_utils.html#a95023ab8e6b58de52f351a561f067daf">Utils::from_dense_matrix&lt;FirstDerivative&gt;</a>(J);</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>        <span class="keywordflow">return</span> J.allFinite();</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>      }</div>
+</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span></div>
+<div class="foldopen" id="foldopen00199" data-start="{" data-end="}">
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno"><a class="line" href="class_optimist_1_1_test_set_1_1_dense_system_function.html#a7308b47710098921bd79f142491b9a71">  199</a></span>      <span class="keywordtype">bool</span> <a class="code hl_function" href="class_optimist_1_1_test_set_1_1_dense_system_function.html#a7308b47710098921bd79f142491b9a71">second_derivative_impl</a>(<span class="keyword">const</span> Vector &amp;x,</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>                                  <a class="code hl_typedef" href="class_optimist_1_1_function_base.html#acb5a3a307f735766ff083c1dad1129b9">SecondDerivative</a> &amp;out)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>        <span class="keyword">using </span>Matrix = <span class="keyword">typename</span> SecondDerivative::value_type;</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>        <span class="keyword">const</span> <a class="code hl_typedef" href="class_optimist_1_1_test_set_1_1_dense_system_function.html#a7e3e012855f02f35b99a8766358a0d28">Dense</a> xd(<a class="code hl_function" href="namespace_optimist_1_1_utils.html#af179bd7d3f4a8f60bc927454f7325df7">Utils::to_dense</a>(x));</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>        out.resize(M);</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>        <span class="keywordtype">bool</span> finite{<span class="keyword">true</span>};</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>        <span class="keywordflow">for</span> (<a class="code hl_typedef" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> i{0}; i &lt; M; ++i) {</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>          <a class="code hl_typedef" href="class_optimist_1_1_test_set_1_1_dense_system_function.html#a250ce4140ca6695aa2e5038bfa45020a">DenseMatrix</a> H(N, N);</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>          this-&gt;<a class="code hl_function" href="class_optimist_1_1_test_set_1_1_dense_system_function.html#afe6ee5bf062f0444ba1c1834e6ba8862">derived</a>().hessian(xd, i, H);</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>          finite = finite &amp;&amp; H.allFinite();</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>          out[i] = <a class="code hl_function" href="namespace_optimist_1_1_utils.html#a95023ab8e6b58de52f351a561f067daf">Utils::from_dense_matrix&lt;Matrix&gt;</a>(H);</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>        }</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>        <span class="keywordflow">return</span> finite;</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>      }</div>
+</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span> </div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>     <span class="keyword">protected</span>:</div>
+<div class="foldopen" id="foldopen00218" data-start="{" data-end="}">
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno"><a class="line" href="class_optimist_1_1_test_set_1_1_dense_system_function.html#a961c779f91e9c1cd2757d28046e50cf8">  218</a></span>      <span class="keywordtype">void</span> <a class="code hl_function" href="class_optimist_1_1_test_set_1_1_dense_system_function.html#a961c779f91e9c1cd2757d28046e50cf8">add_solution</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="class_optimist_1_1_test_set_1_1_dense_system_function.html#a7e3e012855f02f35b99a8766358a0d28">Dense</a> &amp;x) {</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>        this-&gt;<a class="code hl_variable" href="class_optimist_1_1_function_base.html#a49e3f7dd2c7967809cf89f02942d3239">m_solutions</a>.push_back(<a class="code hl_function" href="namespace_optimist_1_1_utils.html#a077433b21d589010d6cead18938a663e">Utils::from_dense&lt;Vector&gt;</a>(x));</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>      }</div>
+</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span></div>
+<div class="foldopen" id="foldopen00225" data-start="{" data-end="}">
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno"><a class="line" href="class_optimist_1_1_test_set_1_1_dense_system_function.html#a127a7485c78c916b43ee877aa3b13847">  225</a></span>      <span class="keywordtype">void</span> <a class="code hl_function" href="class_optimist_1_1_test_set_1_1_dense_system_function.html#a127a7485c78c916b43ee877aa3b13847">add_guess</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="class_optimist_1_1_test_set_1_1_dense_system_function.html#a7e3e012855f02f35b99a8766358a0d28">Dense</a> &amp;x) {</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>        this-&gt;<a class="code hl_variable" href="class_optimist_1_1_function_base.html#a44b7729a5c990a4186c4a19c60b93bd9">m_guesses</a>.push_back(<a class="code hl_function" href="namespace_optimist_1_1_utils.html#a077433b21d589010d6cead18938a663e">Utils::from_dense&lt;Vector&gt;</a>(x));</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>      }</div>
+</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span></div>
+<div class="foldopen" id="foldopen00232" data-start="{" data-end="}">
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno"><a class="line" href="class_optimist_1_1_test_set_1_1_dense_system_function.html#aa04960c51384aedb468a8171ee9906dd">  232</a></span>      <span class="keyword">static</span> <a class="code hl_typedef" href="class_optimist_1_1_test_set_1_1_dense_system_function.html#a7e3e012855f02f35b99a8766358a0d28">Dense</a> <a class="code hl_function" href="class_optimist_1_1_test_set_1_1_dense_system_function.html#aa04960c51384aedb468a8171ee9906dd">make</a>(std::initializer_list&lt;Scalar&gt; values) {</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>        <a class="code hl_typedef" href="class_optimist_1_1_test_set_1_1_dense_system_function.html#a7e3e012855f02f35b99a8766358a0d28">Dense</a> x(<span class="keyword">static_cast&lt;</span><a class="code hl_typedef" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a><span class="keyword">&gt;</span>(values.size()));</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>        <a class="code hl_typedef" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> i{0};</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> v : values) {</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>          x(i++) = v;</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>        }</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>        <span class="keywordflow">return</span> x;</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>      }</div>
+</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span> </div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>     <span class="keyword">private</span>:</div>
+<div class="foldopen" id="foldopen00242" data-start="{" data-end="}">
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno"><a class="line" href="class_optimist_1_1_test_set_1_1_dense_system_function.html#afe6ee5bf062f0444ba1c1834e6ba8862">  242</a></span>      <span class="keyword">const</span> Derived &amp;<a class="code hl_function" href="class_optimist_1_1_test_set_1_1_dense_system_function.html#afe6ee5bf062f0444ba1c1834e6ba8862">derived</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>        <span class="keywordflow">return</span> *<span class="keyword">static_cast&lt;</span><span class="keyword">const </span>Derived *<span class="keyword">&gt;</span>(<span class="keyword">this</span>);</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>      }</div>
+</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span> </div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>    };  <span class="comment">// class DenseSystemFunction</span></div>
+</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span> </div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>  }  <span class="comment">// namespace TestSet</span></div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span> </div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>}  <span class="comment">// namespace Optimist</span></div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span> </div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span><span class="preprocessor">#endif  </span><span class="comment">// OPTIMIST_TESTSET_DENSE_FUNCTION_HH</span></div>
+<div class="ttc" id="a_function_8hh_html"><div class="ttname"><a href="_function_8hh.html">Function.hh</a></div></div>
+<div class="ttc" id="a_optimist_8hh_html_a437ef92626d0fc8f1fabd296ca796056"><div class="ttname"><a href="_optimist_8hh.html#a437ef92626d0fc8f1fabd296ca796056">OPTIMIST_BASIC_CONSTANTS</a></div><div class="ttdeci">#define OPTIMIST_BASIC_CONSTANTS(Scalar)</div><div class="ttdef"><b>Definition</b> Optimist.hh:70</div></div>
+<div class="ttc" id="a_utils_8hh_html"><div class="ttname"><a href="_utils_8hh.html">Utils.hh</a></div></div>
+<div class="ttc" id="aclass_optimist_1_1_function_base_html_a0cb79d76aac240dd0e379453103b2911"><div class="ttname"><a href="class_optimist_1_1_function_base.html#a0cb79d76aac240dd0e379453103b2911">Optimist::FunctionBase::FirstDerivative</a></div><div class="ttdeci">std::conditional_t&lt; InputTrait::IsEigen||OutputTrait::IsEigen, std::conditional_t&lt; OutputTrait::IsScalar, std::conditional_t&lt; InputTrait::IsSparse, Eigen::SparseVector&lt; Scalar &gt;, Eigen::Matrix&lt; Scalar, InputTrait::Dimension, 1 &gt; &gt;, std::conditional_t&lt; InputTrait::IsSparse, Eigen::SparseMatrix&lt; Scalar &gt;, Eigen::Matrix&lt; Scalar, OutputTrait::Dimension, InputTrait::Dimension &gt; &gt; &gt;, Scalar &gt; FirstDerivative</div><div class="ttdef"><b>Definition</b> Function.hh:47</div></div>
+<div class="ttc" id="aclass_optimist_1_1_function_base_html_a44b7729a5c990a4186c4a19c60b93bd9"><div class="ttname"><a href="class_optimist_1_1_function_base.html#a44b7729a5c990a4186c4a19c60b93bd9">Optimist::FunctionBase::m_guesses</a></div><div class="ttdeci">std::vector&lt; Input &gt; m_guesses</div><div class="ttdef"><b>Definition</b> Function.hh:85</div></div>
+<div class="ttc" id="aclass_optimist_1_1_function_base_html_a49e3f7dd2c7967809cf89f02942d3239"><div class="ttname"><a href="class_optimist_1_1_function_base.html#a49e3f7dd2c7967809cf89f02942d3239">Optimist::FunctionBase::m_solutions</a></div><div class="ttdeci">std::vector&lt; Input &gt; m_solutions</div><div class="ttdef"><b>Definition</b> Function.hh:83</div></div>
+<div class="ttc" id="aclass_optimist_1_1_function_base_html_acb5a3a307f735766ff083c1dad1129b9"><div class="ttname"><a href="class_optimist_1_1_function_base.html#acb5a3a307f735766ff083c1dad1129b9">Optimist::FunctionBase::SecondDerivative</a></div><div class="ttdeci">std::conditional_t&lt; InputTrait::IsEigen||OutputTrait::IsEigen, std::conditional_t&lt; OutputTrait::IsScalar, std::conditional_t&lt; InputTrait::IsSparse, Eigen::SparseMatrix&lt; Scalar &gt;, Eigen::Matrix&lt; Scalar, InputTrait::Dimension, InputTrait::Dimension &gt; &gt;, std::conditional_t&lt; InputTrait::IsSparse||OutputTrait::IsSparse, std::vector&lt; Eigen::SparseMatrix&lt; Scalar &gt; &gt;, std::vector&lt; Eigen::Matrix&lt; Scalar, InputTrait::Dimension, InputTrait::Dimension &gt; &gt; &gt; &gt;, Scalar &gt; SecondDerivative</div><div class="ttdef"><b>Definition</b> Function.hh:62</div></div>
+<div class="ttc" id="aclass_optimist_1_1_function_html_a531b0cd5b842475356263c89b934ee9f"><div class="ttname"><a href="class_optimist_1_1_function.html#a531b0cd5b842475356263c89b934ee9f">Optimist::Function&lt; Vector, Vector::Scalar, Derived &gt;::Function</a></div><div class="ttdeci">Function()</div><div class="ttdef"><b>Definition</b> Function.hh:236</div></div>
+<div class="ttc" id="aclass_optimist_1_1_test_set_1_1_dense_cost_function_html"><div class="ttname"><a href="class_optimist_1_1_test_set_1_1_dense_cost_function.html">Optimist::TestSet::DenseCostFunction</a></div><div class="ttdoc">Helper base class for scalar cost functions   written once in terms of dense vectors.</div><div class="ttdef"><b>Definition</b> DenseFunction.hh:43</div></div>
+<div class="ttc" id="aclass_optimist_1_1_test_set_1_1_dense_cost_function_html_a189f41a73f5ae09405c6cee89c33475a"><div class="ttname"><a href="class_optimist_1_1_test_set_1_1_dense_cost_function.html#a189f41a73f5ae09405c6cee89c33475a">Optimist::TestSet::DenseCostFunction::add_solution</a></div><div class="ttdeci">void add_solution(const Dense &amp;x)</div><div class="ttdef"><b>Definition</b> DenseFunction.hh:94</div></div>
+<div class="ttc" id="aclass_optimist_1_1_test_set_1_1_dense_cost_function_html_a243bcde1154b837ed7da053eac216013"><div class="ttname"><a href="class_optimist_1_1_test_set_1_1_dense_cost_function.html#a243bcde1154b837ed7da053eac216013">Optimist::TestSet::DenseCostFunction::evaluate_impl</a></div><div class="ttdeci">bool evaluate_impl(const Vector &amp;x, Scalar &amp;out) const</div><div class="ttdef"><b>Definition</b> DenseFunction.hh:64</div></div>
+<div class="ttc" id="aclass_optimist_1_1_test_set_1_1_dense_cost_function_html_a4c6205ebc0bbe94f4842ea6c0f10c878"><div class="ttname"><a href="class_optimist_1_1_test_set_1_1_dense_cost_function.html#a4c6205ebc0bbe94f4842ea6c0f10c878">Optimist::TestSet::DenseCostFunction&lt; Vector, N, Ackley&lt; Vector, N &gt; &gt;::derived</a></div><div class="ttdeci">const Ackley&lt; Vector, N &gt; &amp; derived() const</div><div class="ttdef"><b>Definition</b> DenseFunction.hh:118</div></div>
+<div class="ttc" id="aclass_optimist_1_1_test_set_1_1_dense_cost_function_html_a56a5e3982909fcefd2b47909949bf433"><div class="ttname"><a href="class_optimist_1_1_test_set_1_1_dense_cost_function.html#a56a5e3982909fcefd2b47909949bf433">Optimist::TestSet::DenseCostFunction&lt; Vector, N, Ackley&lt; Vector, N &gt; &gt;::DenseMatrix</a></div><div class="ttdeci">Utils::DenseMatrix&lt; Vector &gt; DenseMatrix</div><div class="ttdef"><b>Definition</b> DenseFunction.hh:48</div></div>
+<div class="ttc" id="aclass_optimist_1_1_test_set_1_1_dense_cost_function_html_a5d54f0cfcbe8f3b2fb81632ef434e067"><div class="ttname"><a href="class_optimist_1_1_test_set_1_1_dense_cost_function.html#a5d54f0cfcbe8f3b2fb81632ef434e067">Optimist::TestSet::DenseCostFunction::add_guess</a></div><div class="ttdeci">void add_guess(const Dense &amp;x)</div><div class="ttdef"><b>Definition</b> DenseFunction.hh:101</div></div>
+<div class="ttc" id="aclass_optimist_1_1_test_set_1_1_dense_cost_function_html_a64d8efd08bfbba415aa24e193dfd61d1"><div class="ttname"><a href="class_optimist_1_1_test_set_1_1_dense_cost_function.html#a64d8efd08bfbba415aa24e193dfd61d1">Optimist::TestSet::DenseCostFunction&lt; Vector, N, Ackley&lt; Vector, N &gt; &gt;::Dense</a></div><div class="ttdeci">Utils::DenseVector&lt; Vector &gt; Dense</div><div class="ttdef"><b>Definition</b> DenseFunction.hh:47</div></div>
+<div class="ttc" id="aclass_optimist_1_1_test_set_1_1_dense_cost_function_html_a65fe81870f5fbe7ceb2f943d3f39f0ca"><div class="ttname"><a href="class_optimist_1_1_test_set_1_1_dense_cost_function.html#a65fe81870f5fbe7ceb2f943d3f39f0ca">Optimist::TestSet::DenseCostFunction::second_derivative_impl</a></div><div class="ttdeci">bool second_derivative_impl(const Vector &amp;x, SecondDerivative &amp;out) const</div><div class="ttdef"><b>Definition</b> DenseFunction.hh:82</div></div>
+<div class="ttc" id="aclass_optimist_1_1_test_set_1_1_dense_cost_function_html_a87910693916308dd53ed8081b6c9e691"><div class="ttname"><a href="class_optimist_1_1_test_set_1_1_dense_cost_function.html#a87910693916308dd53ed8081b6c9e691">Optimist::TestSet::DenseCostFunction::make</a></div><div class="ttdeci">static Dense make(std::initializer_list&lt; Scalar &gt; values)</div><div class="ttdef"><b>Definition</b> DenseFunction.hh:108</div></div>
+<div class="ttc" id="aclass_optimist_1_1_test_set_1_1_dense_cost_function_html_a9eb3e42f192e7d31dd6bf4d54803ad42"><div class="ttname"><a href="class_optimist_1_1_test_set_1_1_dense_cost_function.html#a9eb3e42f192e7d31dd6bf4d54803ad42">Optimist::TestSet::DenseCostFunction::first_derivative_impl</a></div><div class="ttdeci">bool first_derivative_impl(const Vector &amp;x, FirstDerivative &amp;out) const</div><div class="ttdef"><b>Definition</b> DenseFunction.hh:72</div></div>
+<div class="ttc" id="aclass_optimist_1_1_test_set_1_1_dense_cost_function_html_aa21572052507a35e88bb1ceb1cf5d865"><div class="ttname"><a href="class_optimist_1_1_test_set_1_1_dense_cost_function.html#aa21572052507a35e88bb1ceb1cf5d865">Optimist::TestSet::DenseCostFunction::Scalar</a></div><div class="ttdeci">typename Vector::Scalar Scalar</div><div class="ttdef"><b>Definition</b> DenseFunction.hh:46</div></div>
+<div class="ttc" id="aclass_optimist_1_1_test_set_1_1_dense_cost_function_html_aa315b72850ff8608f62a59ebf03152bb"><div class="ttname"><a href="class_optimist_1_1_test_set_1_1_dense_cost_function.html#aa315b72850ff8608f62a59ebf03152bb">Optimist::TestSet::DenseCostFunction&lt; Vector, N, Ackley&lt; Vector, N &gt; &gt;::VectorTrait</a></div><div class="ttdeci">TypeTrait&lt; Vector &gt; VectorTrait</div><div class="ttdef"><b>Definition</b> DenseFunction.hh:45</div></div>
+<div class="ttc" id="aclass_optimist_1_1_test_set_1_1_dense_cost_function_html_af88b82c4fa07bc32e04cf440deb03a90"><div class="ttname"><a href="class_optimist_1_1_test_set_1_1_dense_cost_function.html#af88b82c4fa07bc32e04cf440deb03a90">Optimist::TestSet::DenseCostFunction&lt; Vector, N, Ackley&lt; Vector, N &gt; &gt;::dimension</a></div><div class="ttdeci">static constexpr Integer dimension()</div><div class="ttdef"><b>Definition</b> DenseFunction.hh:57</div></div>
+<div class="ttc" id="aclass_optimist_1_1_test_set_1_1_dense_system_function_html"><div class="ttname"><a href="class_optimist_1_1_test_set_1_1_dense_system_function.html">Optimist::TestSet::DenseSystemFunction</a></div><div class="ttdoc">Helper base class for nonlinear systems   written once in terms of dense vectors (square by default).</div><div class="ttdef"><b>Definition</b> DenseFunction.hh:151</div></div>
+<div class="ttc" id="aclass_optimist_1_1_test_set_1_1_dense_system_function_html_a127a7485c78c916b43ee877aa3b13847"><div class="ttname"><a href="class_optimist_1_1_test_set_1_1_dense_system_function.html#a127a7485c78c916b43ee877aa3b13847">Optimist::TestSet::DenseSystemFunction::add_guess</a></div><div class="ttdeci">void add_guess(const Dense &amp;x)</div><div class="ttdef"><b>Definition</b> DenseFunction.hh:225</div></div>
+<div class="ttc" id="aclass_optimist_1_1_test_set_1_1_dense_system_function_html_a250ce4140ca6695aa2e5038bfa45020a"><div class="ttname"><a href="class_optimist_1_1_test_set_1_1_dense_system_function.html#a250ce4140ca6695aa2e5038bfa45020a">Optimist::TestSet::DenseSystemFunction&lt; Vector, 2, Booth&lt; Vector &gt; &gt;::DenseMatrix</a></div><div class="ttdeci">Utils::DenseMatrix&lt; Vector &gt; DenseMatrix</div><div class="ttdef"><b>Definition</b> DenseFunction.hh:156</div></div>
+<div class="ttc" id="aclass_optimist_1_1_test_set_1_1_dense_system_function_html_a48611c98dfb04f9256a8d5d66ef55b71"><div class="ttname"><a href="class_optimist_1_1_test_set_1_1_dense_system_function.html#a48611c98dfb04f9256a8d5d66ef55b71">Optimist::TestSet::DenseSystemFunction&lt; Vector, 2, Booth&lt; Vector &gt; &gt;::dimension</a></div><div class="ttdeci">static constexpr Integer dimension()</div><div class="ttdef"><b>Definition</b> DenseFunction.hh:165</div></div>
+<div class="ttc" id="aclass_optimist_1_1_test_set_1_1_dense_system_function_html_a5b5ced8704cdaa2df1b2010c11a15d85"><div class="ttname"><a href="class_optimist_1_1_test_set_1_1_dense_system_function.html#a5b5ced8704cdaa2df1b2010c11a15d85">Optimist::TestSet::DenseSystemFunction::evaluate_impl</a></div><div class="ttdeci">bool evaluate_impl(const Vector &amp;x, OutVector &amp;out) const</div><div class="ttdef"><b>Definition</b> DenseFunction.hh:179</div></div>
+<div class="ttc" id="aclass_optimist_1_1_test_set_1_1_dense_system_function_html_a6809bc3dce4dfcccabada73f7b1a10ba"><div class="ttname"><a href="class_optimist_1_1_test_set_1_1_dense_system_function.html#a6809bc3dce4dfcccabada73f7b1a10ba">Optimist::TestSet::DenseSystemFunction&lt; Vector, 2, Booth&lt; Vector &gt; &gt;::Scalar</a></div><div class="ttdeci">typename Vector::Scalar Scalar</div><div class="ttdef"><b>Definition</b> DenseFunction.hh:154</div></div>
+<div class="ttc" id="aclass_optimist_1_1_test_set_1_1_dense_system_function_html_a7308b47710098921bd79f142491b9a71"><div class="ttname"><a href="class_optimist_1_1_test_set_1_1_dense_system_function.html#a7308b47710098921bd79f142491b9a71">Optimist::TestSet::DenseSystemFunction::second_derivative_impl</a></div><div class="ttdeci">bool second_derivative_impl(const Vector &amp;x, SecondDerivative &amp;out) const</div><div class="ttdef"><b>Definition</b> DenseFunction.hh:199</div></div>
+<div class="ttc" id="aclass_optimist_1_1_test_set_1_1_dense_system_function_html_a7e3e012855f02f35b99a8766358a0d28"><div class="ttname"><a href="class_optimist_1_1_test_set_1_1_dense_system_function.html#a7e3e012855f02f35b99a8766358a0d28">Optimist::TestSet::DenseSystemFunction&lt; Vector, 2, Booth&lt; Vector &gt; &gt;::Dense</a></div><div class="ttdeci">Utils::DenseVector&lt; Vector &gt; Dense</div><div class="ttdef"><b>Definition</b> DenseFunction.hh:155</div></div>
+<div class="ttc" id="aclass_optimist_1_1_test_set_1_1_dense_system_function_html_a961c779f91e9c1cd2757d28046e50cf8"><div class="ttname"><a href="class_optimist_1_1_test_set_1_1_dense_system_function.html#a961c779f91e9c1cd2757d28046e50cf8">Optimist::TestSet::DenseSystemFunction::add_solution</a></div><div class="ttdeci">void add_solution(const Dense &amp;x)</div><div class="ttdef"><b>Definition</b> DenseFunction.hh:218</div></div>
+<div class="ttc" id="aclass_optimist_1_1_test_set_1_1_dense_system_function_html_aa04960c51384aedb468a8171ee9906dd"><div class="ttname"><a href="class_optimist_1_1_test_set_1_1_dense_system_function.html#aa04960c51384aedb468a8171ee9906dd">Optimist::TestSet::DenseSystemFunction::make</a></div><div class="ttdeci">static Dense make(std::initializer_list&lt; Scalar &gt; values)</div><div class="ttdef"><b>Definition</b> DenseFunction.hh:232</div></div>
+<div class="ttc" id="aclass_optimist_1_1_test_set_1_1_dense_system_function_html_ac64f78ca41534645fe1793c853dcd1fe"><div class="ttname"><a href="class_optimist_1_1_test_set_1_1_dense_system_function.html#ac64f78ca41534645fe1793c853dcd1fe">Optimist::TestSet::DenseSystemFunction&lt; Vector, 2, Booth&lt; Vector &gt; &gt;::VectorTrait</a></div><div class="ttdeci">TypeTrait&lt; Vector &gt; VectorTrait</div><div class="ttdef"><b>Definition</b> DenseFunction.hh:153</div></div>
+<div class="ttc" id="aclass_optimist_1_1_test_set_1_1_dense_system_function_html_ae3d639614904ac8bc5adae18b9b26c04"><div class="ttname"><a href="class_optimist_1_1_test_set_1_1_dense_system_function.html#ae3d639614904ac8bc5adae18b9b26c04">Optimist::TestSet::DenseSystemFunction::equations</a></div><div class="ttdeci">static constexpr Integer equations()</div><div class="ttdef"><b>Definition</b> DenseFunction.hh:172</div></div>
+<div class="ttc" id="aclass_optimist_1_1_test_set_1_1_dense_system_function_html_afd424f9f9a63f2ee56f2d613afe8e9dc"><div class="ttname"><a href="class_optimist_1_1_test_set_1_1_dense_system_function.html#afd424f9f9a63f2ee56f2d613afe8e9dc">Optimist::TestSet::DenseSystemFunction::first_derivative_impl</a></div><div class="ttdeci">bool first_derivative_impl(const Vector &amp;x, FirstDerivative &amp;out) const</div><div class="ttdef"><b>Definition</b> DenseFunction.hh:189</div></div>
+<div class="ttc" id="aclass_optimist_1_1_test_set_1_1_dense_system_function_html_afe6ee5bf062f0444ba1c1834e6ba8862"><div class="ttname"><a href="class_optimist_1_1_test_set_1_1_dense_system_function.html#afe6ee5bf062f0444ba1c1834e6ba8862">Optimist::TestSet::DenseSystemFunction&lt; Vector, 2, Booth&lt; Vector &gt; &gt;::derived</a></div><div class="ttdeci">const Booth&lt; Vector &gt; &amp; derived() const</div><div class="ttdef"><b>Definition</b> DenseFunction.hh:242</div></div>
+<div class="ttc" id="anamespace_optimist_1_1_utils_html_a077433b21d589010d6cead18938a663e"><div class="ttname"><a href="namespace_optimist_1_1_utils.html#a077433b21d589010d6cead18938a663e">Optimist::Utils::from_dense</a></div><div class="ttdeci">Vector from_dense(const Eigen::MatrixBase&lt; Derived &gt; &amp;x)</div><div class="ttdef"><b>Definition</b> Utils.hh:59</div></div>
+<div class="ttc" id="anamespace_optimist_1_1_utils_html_a132445a4ec9a1898f8596ee6a78d0e85"><div class="ttname"><a href="namespace_optimist_1_1_utils.html#a132445a4ec9a1898f8596ee6a78d0e85">Optimist::Utils::DenseMatrix</a></div><div class="ttdeci">Eigen::Matrix&lt; typename TypeTrait&lt; Vector &gt;::Scalar, Eigen::Dynamic, Eigen::Dynamic &gt; DenseMatrix</div><div class="ttdef"><b>Definition</b> Utils.hh:38</div></div>
+<div class="ttc" id="anamespace_optimist_1_1_utils_html_a95023ab8e6b58de52f351a561f067daf"><div class="ttname"><a href="namespace_optimist_1_1_utils.html#a95023ab8e6b58de52f351a561f067daf">Optimist::Utils::from_dense_matrix</a></div><div class="ttdeci">Matrix from_dense_matrix(const Eigen::MatrixBase&lt; Derived &gt; &amp;A)</div><div class="ttdef"><b>Definition</b> Utils.hh:79</div></div>
+<div class="ttc" id="anamespace_optimist_1_1_utils_html_aa725549c1dc82e4dfea63eae206af65e"><div class="ttname"><a href="namespace_optimist_1_1_utils.html#aa725549c1dc82e4dfea63eae206af65e">Optimist::Utils::DenseVector</a></div><div class="ttdeci">Eigen::Matrix&lt; typename TypeTrait&lt; Vector &gt;::Scalar, Eigen::Dynamic, 1 &gt; DenseVector</div><div class="ttdef"><b>Definition</b> Utils.hh:31</div></div>
+<div class="ttc" id="anamespace_optimist_1_1_utils_html_af179bd7d3f4a8f60bc927454f7325df7"><div class="ttname"><a href="namespace_optimist_1_1_utils.html#af179bd7d3f4a8f60bc927454f7325df7">Optimist::Utils::to_dense</a></div><div class="ttdeci">DenseVector&lt; Vector &gt; to_dense(const Vector &amp;x)</div><div class="ttdef"><b>Definition</b> Utils.hh:48</div></div>
+<div class="ttc" id="anamespace_optimist_html"><div class="ttname"><a href="namespace_optimist.html">Optimist</a></div><div class="ttdoc">Namespace for the Optimist library.</div><div class="ttdef"><b>Definition</b> Optimist.hh:90</div></div>
+<div class="ttc" id="anamespace_optimist_html_a71c803585df543aec4079c8282e83baa"><div class="ttname"><a href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Optimist::Integer</a></div><div class="ttdeci">OPTIMIST_DEFAULT_INTEGER_TYPE Integer</div><div class="ttdoc">The Integer type as used for the API.</div><div class="ttdef"><b>Definition</b> Optimist.hh:98</div></div>
+<div class="ttc" id="astruct_optimist_1_1_type_trait_html"><div class="ttname"><a href="struct_optimist_1_1_type_trait.html">Optimist::TypeTrait</a></div><div class="ttdef"><b>Definition</b> Optimist.hh:105</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_4270bfced15e0e73154b13468c7c9ad9.html">core</a></li><li class="navelem"><a href="dir_24d671cfcbc5d5238a6bd565a49d198f.html">include</a></li><li class="navelem"><a href="dir_332c8dd6e4e80f93cb7aa0b11826f145.html">Optimist</a></li><li class="navelem"><a href="dir_0ffe73d8992a174c3e4b55af4e8a2ee4.html">TestSet</a></li><li class="navelem"><a href="_dense_function_8hh.html">DenseFunction.hh</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.18.0 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -13,9 +13,6 @@ var class_optimist_1_1_optimizer_1_1_optimizer =
     [ "max_hessian_evaluations", "class_optimist_1_1_optimizer_1_1_optimizer.html#a5de242fd0ffa20d38dd41d6855441192", null ],
     [ "max_hessian_evaluations", "class_optimist_1_1_optimizer_1_1_optimizer.html#a83c92a6a79522f1945c81ed5954fdd41", null ],
     [ "name", "class_optimist_1_1_optimizer_1_1_optimizer.html#a79cde26b2bab63102c78ec36c1f9b48c", null ],
-    [ "solve", "class_optimist_1_1_optimizer_1_1_optimizer.html#a65f542cc851aed9ea635bed856de472c", null ],
-    [ "solve", "class_optimist_1_1_optimizer_1_1_optimizer.html#ac4db25cb45f6f2da04845585f1cb523c", null ],
-    [ "solve", "class_optimist_1_1_optimizer_1_1_optimizer.html#ae7481412c004e9dc4c6d48a7df0bacd6", null ],
     [ "SolverBase< T, typename TypeTrait< T >::Scalar, DerivedSolver >", "class_optimist_1_1_optimizer_1_1_optimizer.html#a203404858e004023cca2939c0206de80", null ],
     [ "IsOptimizer", "class_optimist_1_1_optimizer_1_1_optimizer.html#aebc47d559d7a1fa0b0e85a9e9c9f9dd5", null ],
     [ "IsRootFinder", "class_optimist_1_1_optimizer_1_1_optimizer.html#a0d6ab32d95d413a46aee737b0dd4577d", null ]

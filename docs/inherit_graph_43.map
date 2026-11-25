@@ -1,3 +1,7 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$struct_optimist_1_1_type_trait_3_01_eigen_1_1_sparse_vector_3_01_scalar_type_01_4_01_4.html" title=" " alt="" coords="5,5,159,61"/>
+<area shape="rect" id="Node000000" href="$class_optimist_1_1_solver_base.html" title=" " alt="" coords="5,13,204,68"/>
+<area shape="rect" id="Node000001" href="$class_optimist_1_1_root_finder_1_1_root_finder.html" title=" " alt="" coords="252,5,448,76"/>
+<area shape="poly" id="edge115_Node000000_Node000001" title=" " alt="" coords="219,38,251,38,251,43,219,43"/>
+<area shape="rect" id="Node000002" href="$class_optimist_1_1_root_finder_1_1_levenberg_marquardt.html" title="Class container for the Levenberg&#45;Marquardt method." alt="" coords="496,13,645,68"/>
+<area shape="poly" id="edge116_Node000001_Node000002" title=" " alt="" coords="463,38,496,38,496,43,463,43"/>
 </map>

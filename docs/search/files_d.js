@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['rootfinder_2ehh_0',['RootFinder.hh',['../_root_finder_8hh.html',1,'']]],
-  ['rosenbrock_2ehh_1',['Rosenbrock.hh',['../_rosenbrock_8hh.html',1,'']]]
+  ['particleswarm_2ehh_0',['ParticleSwarm.hh',['../_particle_swarm_8hh.html',1,'']]],
+  ['patternsearch_2ehh_1',['PatternSearch.hh',['../_pattern_search_8hh.html',1,'']]],
+  ['powellsingular_2ehh_2',['PowellSingular.hh',['../_powell_singular_8hh.html',1,'']]]
 ];

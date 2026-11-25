@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['particleswarm_2ehh_0',['ParticleSwarm.hh',['../_particle_swarm_8hh.html',1,'']]],
-  ['patternsearch_2ehh_1',['PatternSearch.hh',['../_pattern_search_8hh.html',1,'']]]
+  ['neldermead_2ehh_0',['NelderMead.hh',['../_nelder_mead_8hh.html',1,'']]],
+  ['newton_2ehh_1',['Newton.hh',['../_newton_8hh.html',1,'']]],
+  ['newtonraphson_2ehh_2',['NewtonRaphson.hh',['../_newton_raphson_8hh.html',1,'']]]
 ];

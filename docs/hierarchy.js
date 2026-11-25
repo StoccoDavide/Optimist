@@ -6,12 +6,62 @@ var hierarchy =
     [ "Optimist::Optimizer::ExponentialDecrease2&lt; Scalar &gt;", "class_optimist_1_1_optimizer_1_1_exponential_decrease2.html", null ],
     [ "Optimist::Optimizer::ExponentialDecrease3&lt; Scalar &gt;", "class_optimist_1_1_optimizer_1_1_exponential_decrease3.html", null ],
     [ "Optimist::FunctionBase&lt; Input, Output, DerivedFunction &gt;", "class_optimist_1_1_function_base.html", [
-      [ "Optimist::Function< Input, Output, DerivedFunction >", "class_optimist_1_1_function.html", null ]
-    ] ],
-    [ "Optimist::FunctionBase&lt; Input, Output, Brown&lt; Input, Output &gt; &gt;", "class_optimist_1_1_function_base.html", [
-      [ "Optimist::Function< Input, Output, Brown< Input, Output > >", "class_optimist_1_1_function.html", [
-        [ "Optimist::TestSet::Brown< Input, Output >", "class_optimist_1_1_test_set_1_1_brown.html", null ]
+      [ "Optimist::Function< Input, typename Input::Scalar, DerivedFunction >", "class_optimist_1_1_function_3_01_input_00_01typename_01_input_1_1_scalar_00_01_derived_function_01_4.html", null ],
+      [ "Optimist::Function< Input, Output, DerivedFunction >", "class_optimist_1_1_function.html", [
+        [ "Optimist::TestSet::DenseCostFunction< Vector, N, Ackley< Vector, N > >", "class_optimist_1_1_test_set_1_1_dense_cost_function.html", [
+          [ "Optimist::TestSet::Ackley< Vector, 2 >", "class_optimist_1_1_test_set_1_1_ackley.html", null ],
+          [ "Optimist::TestSet::Ackley< Vector, N >", "class_optimist_1_1_test_set_1_1_ackley.html", null ]
+        ] ],
+        [ "Optimist::TestSet::DenseCostFunction< Vector, 2, Beale< Vector > >", "class_optimist_1_1_test_set_1_1_dense_cost_function.html", [
+          [ "Optimist::TestSet::Beale< Vector >", "class_optimist_1_1_test_set_1_1_beale.html", null ]
+        ] ],
+        [ "Optimist::TestSet::DenseCostFunction< Vector, 2, EllipticParaboloid< Vector > >", "class_optimist_1_1_test_set_1_1_dense_cost_function.html", [
+          [ "Optimist::TestSet::EllipticParaboloid< Vector >", "class_optimist_1_1_test_set_1_1_elliptic_paraboloid.html", null ]
+        ] ],
+        [ "Optimist::TestSet::DenseCostFunction< Vector, 2, Himmelblau< Vector > >", "class_optimist_1_1_test_set_1_1_dense_cost_function.html", [
+          [ "Optimist::TestSet::Himmelblau< Vector >", "class_optimist_1_1_test_set_1_1_himmelblau.html", null ]
+        ] ],
+        [ "Optimist::TestSet::DenseCostFunction< Vector, N, Rastrigin< Vector, N > >", "class_optimist_1_1_test_set_1_1_dense_cost_function.html", [
+          [ "Optimist::TestSet::Rastrigin< Vector, 2 >", "class_optimist_1_1_test_set_1_1_rastrigin.html", null ],
+          [ "Optimist::TestSet::Rastrigin< Vector, N >", "class_optimist_1_1_test_set_1_1_rastrigin.html", null ]
+        ] ],
+        [ "Optimist::TestSet::DenseCostFunction< Vector, N, RosenbrockCost< Vector, N > >", "class_optimist_1_1_test_set_1_1_dense_cost_function.html", [
+          [ "Optimist::TestSet::RosenbrockCost< Vector, 2 >", "class_optimist_1_1_test_set_1_1_rosenbrock_cost.html", null ],
+          [ "Optimist::TestSet::RosenbrockCost< Vector, 4 >", "class_optimist_1_1_test_set_1_1_rosenbrock_cost.html", null ],
+          [ "Optimist::TestSet::RosenbrockCost< Vector, N >", "class_optimist_1_1_test_set_1_1_rosenbrock_cost.html", null ]
+        ] ],
+        [ "Optimist::TestSet::DenseCostFunction< Vector, 2, Schaffer2< Vector > >", "class_optimist_1_1_test_set_1_1_dense_cost_function.html", [
+          [ "Optimist::TestSet::Schaffer2< Vector >", "class_optimist_1_1_test_set_1_1_schaffer2.html", null ]
+        ] ],
+        [ "Optimist::TestSet::DenseCostFunction< Vector, N, Trid< Vector, N > >", "class_optimist_1_1_test_set_1_1_dense_cost_function.html", [
+          [ "Optimist::TestSet::Trid< Vector, 2 >", "class_optimist_1_1_test_set_1_1_trid.html", null ],
+          [ "Optimist::TestSet::Trid< Vector, 6 >", "class_optimist_1_1_test_set_1_1_trid.html", null ],
+          [ "Optimist::TestSet::Trid< Vector, N >", "class_optimist_1_1_test_set_1_1_trid.html", null ]
+        ] ],
+        [ "Optimist::TestSet::DenseSystemFunction< Vector, 2, Booth< Vector > >", "class_optimist_1_1_test_set_1_1_dense_system_function.html", [
+          [ "Optimist::TestSet::Booth< Vector >", "class_optimist_1_1_test_set_1_1_booth.html", null ]
+        ] ],
+        [ "Optimist::TestSet::DenseSystemFunction< Input, 2, Brown< Input, Output >, Output, 3 >", "class_optimist_1_1_test_set_1_1_dense_system_function.html", [
+          [ "Optimist::TestSet::Brown< Input, Output >", "class_optimist_1_1_test_set_1_1_brown.html", null ]
+        ] ],
+        [ "Optimist::TestSet::DenseSystemFunction< Vector, 1, Linear1< Vector > >", "class_optimist_1_1_test_set_1_1_dense_system_function.html", [
+          [ "Optimist::TestSet::Linear1< Vector >", "class_optimist_1_1_test_set_1_1_linear1.html", null ]
+        ] ],
+        [ "Optimist::TestSet::DenseSystemFunction< Vector, 4, PowellSingular< Vector > >", "class_optimist_1_1_test_set_1_1_dense_system_function.html", [
+          [ "Optimist::TestSet::PowellSingular< Vector >", "class_optimist_1_1_test_set_1_1_powell_singular.html", null ]
+        ] ],
+        [ "Optimist::TestSet::DenseSystemFunction< Vector, N, Rosenbrock< Vector, N > >", "class_optimist_1_1_test_set_1_1_dense_system_function.html", [
+          [ "Optimist::TestSet::Rosenbrock< Vector, 2 >", "class_optimist_1_1_test_set_1_1_rosenbrock.html", null ],
+          [ "Optimist::TestSet::Rosenbrock< Vector, 4 >", "class_optimist_1_1_test_set_1_1_rosenbrock.html", null ],
+          [ "Optimist::TestSet::Rosenbrock< Vector, 6 >", "class_optimist_1_1_test_set_1_1_rosenbrock.html", null ],
+          [ "Optimist::TestSet::Rosenbrock< Vector, 8 >", "class_optimist_1_1_test_set_1_1_rosenbrock.html", null ],
+          [ "Optimist::TestSet::Rosenbrock< Vector, 10 >", "class_optimist_1_1_test_set_1_1_rosenbrock.html", null ],
+          [ "Optimist::TestSet::Rosenbrock< Vector, N >", "class_optimist_1_1_test_set_1_1_rosenbrock.html", null ]
+        ] ]
       ] ]
+    ] ],
+    [ "Optimist::FunctionBase&lt; Input, Input::Scalar, DerivedFunction &gt;", "class_optimist_1_1_function_base.html", [
+      [ "Optimist::Function< Input, typename Input::Scalar, DerivedFunction >", "class_optimist_1_1_function_3_01_input_00_01typename_01_input_1_1_scalar_00_01_derived_function_01_4.html", null ]
     ] ],
     [ "Optimist::FunctionBase&lt; Scalar, Scalar, Cos&lt; Scalar &gt; &gt;", "class_optimist_1_1_function_base.html", [
       [ "Optimist::Function< Scalar, Scalar, Cos< Scalar > >", "class_optimist_1_1_function.html", [
@@ -43,49 +93,21 @@ var hierarchy =
         [ "Optimist::TestSet::Sinh< Scalar >", "class_optimist_1_1_test_set_1_1_sinh.html", null ]
       ] ]
     ] ],
-    [ "Optimist::FunctionBase&lt; T, T, DerivedFunction &gt;", "class_optimist_1_1_function_base.html", [
-      [ "Optimist::Function< T, T, DerivedFunction >", "class_optimist_1_1_function_3_01_t_00_01_t_00_01_derived_function_01_4.html", null ],
-      [ "Optimist::Function< T, T, DerivedFunction >", "class_optimist_1_1_function_3_01_t_00_01_t_00_01_derived_function_01_4.html", null ]
-    ] ],
-    [ "Optimist::FunctionBase&lt; Vector, Vector, Booth&lt; Vector &gt; &gt;", "class_optimist_1_1_function_base.html", [
-      [ "Optimist::Function< Vector, Vector, Booth< Vector > >", "class_optimist_1_1_function.html", [
-        [ "Optimist::TestSet::Booth< Vector >", "class_optimist_1_1_test_set_1_1_booth.html", null ]
+    [ "Optimist::FunctionBase&lt; Vector, Vector, Derived &gt;", "class_optimist_1_1_function_base.html", [
+      [ "Optimist::Function< Vector, Vector, Derived >", "class_optimist_1_1_function.html", [
+        [ "Optimist::TestSet::DenseSystemFunction< Vector, N, Derived, OutVector, M >", "class_optimist_1_1_test_set_1_1_dense_system_function.html", null ]
       ] ]
     ] ],
-    [ "Optimist::FunctionBase&lt; Vector, Vector, Linear1&lt; Vector &gt; &gt;", "class_optimist_1_1_function_base.html", [
-      [ "Optimist::Function< Vector, Vector, Linear1< Vector > >", "class_optimist_1_1_function.html", [
-        [ "Optimist::TestSet::Linear1< Vector >", "class_optimist_1_1_test_set_1_1_linear1.html", null ]
-      ] ]
-    ] ],
-    [ "Optimist::FunctionBase&lt; Vector, Vector, Rosenbrock&lt; Vector, N &gt; &gt;", "class_optimist_1_1_function_base.html", [
-      [ "Optimist::Function< Vector, Vector, Rosenbrock< Vector, N > >", "class_optimist_1_1_function.html", [
-        [ "Optimist::TestSet::Rosenbrock< Vector, 2 >", "class_optimist_1_1_test_set_1_1_rosenbrock.html", null ],
-        [ "Optimist::TestSet::Rosenbrock< Vector, 4 >", "class_optimist_1_1_test_set_1_1_rosenbrock.html", null ],
-        [ "Optimist::TestSet::Rosenbrock< Vector, 6 >", "class_optimist_1_1_test_set_1_1_rosenbrock.html", null ],
-        [ "Optimist::TestSet::Rosenbrock< Vector, 8 >", "class_optimist_1_1_test_set_1_1_rosenbrock.html", null ],
-        [ "Optimist::TestSet::Rosenbrock< Vector, 10 >", "class_optimist_1_1_test_set_1_1_rosenbrock.html", null ],
-        [ "Optimist::TestSet::Rosenbrock< Vector, N >", "class_optimist_1_1_test_set_1_1_rosenbrock.html", null ]
-      ] ]
-    ] ],
-    [ "Optimist::FunctionBase&lt; Vector, Vector::Scalar, EllipticParaboloid&lt; Vector &gt; &gt;", "class_optimist_1_1_function_base.html", [
-      [ "Optimist::Function< Vector, Vector::Scalar, EllipticParaboloid< Vector > >", "class_optimist_1_1_function.html", [
-        [ "Optimist::TestSet::EllipticParaboloid< Vector >", "class_optimist_1_1_test_set_1_1_elliptic_paraboloid.html", null ]
-      ] ]
-    ] ],
-    [ "Optimist::FunctionBase&lt; Vector, Vector::Scalar, Schaffer2&lt; Vector &gt; &gt;", "class_optimist_1_1_function_base.html", [
-      [ "Optimist::Function< Vector, Vector::Scalar, Schaffer2< Vector > >", "class_optimist_1_1_function.html", [
-        [ "Optimist::TestSet::Schaffer2< Vector >", "class_optimist_1_1_test_set_1_1_schaffer2.html", null ]
+    [ "Optimist::FunctionBase&lt; Vector, Vector::Scalar, Derived &gt;", "class_optimist_1_1_function_base.html", [
+      [ "Optimist::Function< Vector, Vector::Scalar, Derived >", "class_optimist_1_1_function.html", [
+        [ "Optimist::TestSet::DenseCostFunction< Vector, N, Derived >", "class_optimist_1_1_test_set_1_1_dense_cost_function.html", null ]
       ] ]
     ] ],
     [ "Optimist::Optimizer::LinearDecrease&lt; Scalar &gt;", "class_optimist_1_1_optimizer_1_1_linear_decrease.html", null ],
     [ "Optimist::RetrieveType&lt; T &gt;", "struct_optimist_1_1_retrieve_type.html", null ],
     [ "Optimist::RetrieveType&lt; BaseType&lt; FirstType, Rest... &gt; &gt;", "struct_optimist_1_1_retrieve_type_3_01_base_type_3_01_first_type_00_01_rest_8_8_8_01_4_01_4.html", null ],
+    [ "Optimist::LineSearch::Settings&lt; Scalar &gt;", "struct_optimist_1_1_line_search_1_1_settings.html", null ],
     [ "Optimist::SolverBase&lt; Input, Output, DerivedSolver &gt;", "class_optimist_1_1_solver_base.html", null ],
-    [ "Optimist::SolverBase&lt; Real, TypeTrait&lt; Real &gt;::Scalar, N &gt;", "class_optimist_1_1_solver_base.html", [
-      [ "Optimist::Optimizer::Optimizer< Real, N, PatternSearch< Real, N >, true >", "class_optimist_1_1_optimizer_1_1_optimizer.html", [
-        [ "Optimist::Optimizer::PatternSearch< Real, N >", "class_optimist_1_1_optimizer_1_1_pattern_search.html", null ]
-      ] ]
-    ] ],
     [ "Optimist::SolverBase&lt; Scalar, Scalar, Algo748&lt; Scalar &gt; &gt;", "class_optimist_1_1_solver_base.html", [
       [ "Optimist::RootFinder::RootFinder< Scalar, Algo748< Scalar > >", "class_optimist_1_1_root_finder_1_1_root_finder.html", [
         [ "Optimist::RootFinder::Bracketing< Scalar, Algo748< Scalar > >", "class_optimist_1_1_root_finder_1_1_bracketing.html", [
@@ -102,43 +124,108 @@ var hierarchy =
     ] ],
     [ "Optimist::SolverBase&lt; Scalar, Scalar, Chebyshev&lt; Scalar &gt; &gt;", "class_optimist_1_1_solver_base.html", [
       [ "Optimist::RootFinder::RootFinder< Scalar, Chebyshev< Scalar > >", "class_optimist_1_1_root_finder_1_1_root_finder.html", [
-        [ "Optimist::RootFinder::Chebyshev< Scalar >", "class_optimist_1_1_root_finder_1_1_chebyshev.html", null ]
+        [ "Optimist::RootFinder::OpenMethod< Scalar, Chebyshev< Scalar > >", "class_optimist_1_1_root_finder_1_1_open_method.html", [
+          [ "Optimist::RootFinder::Chebyshev< Scalar >", "class_optimist_1_1_root_finder_1_1_chebyshev.html", null ]
+        ] ]
       ] ]
     ] ],
     [ "Optimist::SolverBase&lt; Scalar, Scalar, DerivedSolver &gt;", "class_optimist_1_1_solver_base.html", [
       [ "Optimist::RootFinder::RootFinder< Scalar, DerivedSolver >", "class_optimist_1_1_root_finder_1_1_root_finder.html", [
-        [ "Optimist::RootFinder::Bracketing< Scalar, DerivedSolver >", "class_optimist_1_1_root_finder_1_1_bracketing.html", null ]
+        [ "Optimist::RootFinder::Bracketing< Scalar, DerivedSolver >", "class_optimist_1_1_root_finder_1_1_bracketing.html", null ],
+        [ "Optimist::RootFinder::OpenMethod< Scalar, DerivedSolver >", "class_optimist_1_1_root_finder_1_1_open_method.html", null ]
       ] ]
     ] ],
     [ "Optimist::SolverBase&lt; Scalar, Scalar, Halley&lt; Scalar &gt; &gt;", "class_optimist_1_1_solver_base.html", [
       [ "Optimist::RootFinder::RootFinder< Scalar, Halley< Scalar > >", "class_optimist_1_1_root_finder_1_1_root_finder.html", [
-        [ "Optimist::RootFinder::Halley< Scalar >", "class_optimist_1_1_root_finder_1_1_halley.html", null ]
+        [ "Optimist::RootFinder::OpenMethod< Scalar, Halley< Scalar > >", "class_optimist_1_1_root_finder_1_1_open_method.html", [
+          [ "Optimist::RootFinder::Halley< Scalar >", "class_optimist_1_1_root_finder_1_1_halley.html", null ]
+        ] ]
+      ] ]
+    ] ],
+    [ "Optimist::SolverBase&lt; Scalar, Scalar, ITP&lt; Scalar &gt; &gt;", "class_optimist_1_1_solver_base.html", [
+      [ "Optimist::RootFinder::RootFinder< Scalar, ITP< Scalar > >", "class_optimist_1_1_root_finder_1_1_root_finder.html", [
+        [ "Optimist::RootFinder::Bracketing< Scalar, ITP< Scalar > >", "class_optimist_1_1_root_finder_1_1_bracketing.html", [
+          [ "Optimist::RootFinder::ITP< Scalar >", "class_optimist_1_1_root_finder_1_1_i_t_p.html", null ]
+        ] ]
       ] ]
     ] ],
     [ "Optimist::SolverBase&lt; Scalar, Scalar, NewtonRaphson&lt; Scalar &gt; &gt;", "class_optimist_1_1_solver_base.html", [
       [ "Optimist::RootFinder::RootFinder< Scalar, NewtonRaphson< Scalar > >", "class_optimist_1_1_root_finder_1_1_root_finder.html", [
-        [ "Optimist::RootFinder::NewtonRaphson< Scalar >", "class_optimist_1_1_root_finder_1_1_newton_raphson.html", null ]
+        [ "Optimist::RootFinder::OpenMethod< Scalar, NewtonRaphson< Scalar > >", "class_optimist_1_1_root_finder_1_1_open_method.html", [
+          [ "Optimist::RootFinder::NewtonRaphson< Scalar >", "class_optimist_1_1_root_finder_1_1_newton_raphson.html", null ]
+        ] ]
       ] ]
     ] ],
     [ "Optimist::SolverBase&lt; Scalar, Scalar, Varona&lt; Scalar &gt; &gt;", "class_optimist_1_1_solver_base.html", [
       [ "Optimist::RootFinder::RootFinder< Scalar, Varona< Scalar > >", "class_optimist_1_1_root_finder_1_1_root_finder.html", [
-        [ "Optimist::RootFinder::Varona< Scalar >", "class_optimist_1_1_root_finder_1_1_varona.html", null ]
+        [ "Optimist::RootFinder::OpenMethod< Scalar, Varona< Scalar > >", "class_optimist_1_1_root_finder_1_1_open_method.html", [
+          [ "Optimist::RootFinder::Varona< Scalar >", "class_optimist_1_1_root_finder_1_1_varona.html", null ]
+        ] ]
+      ] ]
+    ] ],
+    [ "Optimist::SolverBase&lt; Scalar, TypeTrait&lt; Scalar &gt;::Scalar, Brent&lt; Scalar &gt; &gt;", "class_optimist_1_1_solver_base.html", [
+      [ "Optimist::Optimizer::Optimizer< Scalar, Brent< Scalar > >", "class_optimist_1_1_optimizer_1_1_optimizer.html", [
+        [ "Optimist::Optimizer::ScalarMinimizer< Scalar, Brent< Scalar > >", "class_optimist_1_1_optimizer_1_1_scalar_minimizer.html", [
+          [ "Optimist::Optimizer::Brent< Scalar >", "class_optimist_1_1_optimizer_1_1_brent.html", null ]
+        ] ]
+      ] ]
+    ] ],
+    [ "Optimist::SolverBase&lt; Scalar, TypeTrait&lt; Scalar &gt;::Scalar, DerivedSolver &gt;", "class_optimist_1_1_solver_base.html", [
+      [ "Optimist::Optimizer::Optimizer< Scalar, DerivedSolver >", "class_optimist_1_1_optimizer_1_1_optimizer.html", [
+        [ "Optimist::Optimizer::ScalarMinimizer< Scalar, DerivedSolver >", "class_optimist_1_1_optimizer_1_1_scalar_minimizer.html", null ]
+      ] ]
+    ] ],
+    [ "Optimist::SolverBase&lt; Scalar, TypeTrait&lt; Scalar &gt;::Scalar, GoldenSection&lt; Scalar &gt; &gt;", "class_optimist_1_1_solver_base.html", [
+      [ "Optimist::Optimizer::Optimizer< Scalar, GoldenSection< Scalar > >", "class_optimist_1_1_optimizer_1_1_optimizer.html", [
+        [ "Optimist::Optimizer::ScalarMinimizer< Scalar, GoldenSection< Scalar > >", "class_optimist_1_1_optimizer_1_1_scalar_minimizer.html", [
+          [ "Optimist::Optimizer::GoldenSection< Scalar >", "class_optimist_1_1_optimizer_1_1_golden_section.html", null ]
+        ] ]
       ] ]
     ] ],
     [ "Optimist::SolverBase&lt; T, T, DerivedSolver &gt;", "class_optimist_1_1_solver_base.html", [
-      [ "Optimist::RootFinder::RootFinder< T, DerivedSolver >", "class_optimist_1_1_root_finder_1_1_root_finder.html", null ]
+      [ "Optimist::RootFinder::RootFinder< T, DerivedSolver, U >", "class_optimist_1_1_root_finder_1_1_root_finder.html", null ]
     ] ],
     [ "Optimist::SolverBase&lt; T, TypeTrait&lt; T &gt;::Scalar, DerivedSolver &gt;", "class_optimist_1_1_solver_base.html", [
-      [ "Optimist::Optimizer::Optimizer< T, DerivedSolver >", "class_optimist_1_1_optimizer_1_1_optimizer.html", null ]
+      [ "Optimist::Optimizer::Optimizer< T, DerivedSolver >", "class_optimist_1_1_optimizer_1_1_optimizer.html", [
+        [ "Optimist::Optimizer::ParticleSwarm< Vector, InertiaWeightStrategy >", "class_optimist_1_1_optimizer_1_1_particle_swarm.html", null ]
+      ] ]
+    ] ],
+    [ "Optimist::SolverBase&lt; Vector, TypeTrait&lt; Vector &gt;::Scalar, Adam&lt; Vector &gt; &gt;", "class_optimist_1_1_solver_base.html", [
+      [ "Optimist::Optimizer::Optimizer< Vector, Adam< Vector > >", "class_optimist_1_1_optimizer_1_1_optimizer.html", [
+        [ "Optimist::Optimizer::Adam< Vector >", "class_optimist_1_1_optimizer_1_1_adam.html", null ]
+      ] ]
+    ] ],
+    [ "Optimist::SolverBase&lt; Vector, TypeTrait&lt; Vector &gt;::Scalar, BFGS&lt; Vector &gt; &gt;", "class_optimist_1_1_solver_base.html", [
+      [ "Optimist::Optimizer::Optimizer< Vector, BFGS< Vector > >", "class_optimist_1_1_optimizer_1_1_optimizer.html", [
+        [ "Optimist::Optimizer::BFGS< Vector >", "class_optimist_1_1_optimizer_1_1_b_f_g_s.html", null ]
+      ] ]
+    ] ],
+    [ "Optimist::SolverBase&lt; Vector, TypeTrait&lt; Vector &gt;::Scalar, CMAES&lt; Vector &gt; &gt;", "class_optimist_1_1_solver_base.html", [
+      [ "Optimist::Optimizer::Optimizer< Vector, CMAES< Vector > >", "class_optimist_1_1_optimizer_1_1_optimizer.html", [
+        [ "Optimist::Optimizer::CMAES< Vector >", "class_optimist_1_1_optimizer_1_1_c_m_a_e_s.html", null ]
+      ] ]
+    ] ],
+    [ "Optimist::SolverBase&lt; Vector, TypeTrait&lt; Vector &gt;::Scalar, ConjugateGradient&lt; Vector &gt; &gt;", "class_optimist_1_1_solver_base.html", [
+      [ "Optimist::Optimizer::Optimizer< Vector, ConjugateGradient< Vector > >", "class_optimist_1_1_optimizer_1_1_optimizer.html", [
+        [ "Optimist::Optimizer::ConjugateGradient< Vector >", "class_optimist_1_1_optimizer_1_1_conjugate_gradient.html", null ]
+      ] ]
     ] ],
     [ "Optimist::SolverBase&lt; Vector, TypeTrait&lt; Vector &gt;::Scalar, NelderMead&lt; Vector &gt; &gt;", "class_optimist_1_1_solver_base.html", [
       [ "Optimist::Optimizer::Optimizer< Vector, NelderMead< Vector > >", "class_optimist_1_1_optimizer_1_1_optimizer.html", [
         [ "Optimist::Optimizer::NelderMead< Vector >", "class_optimist_1_1_optimizer_1_1_nelder_mead.html", null ]
       ] ]
     ] ],
-    [ "Optimist::SolverBase&lt; Vector, TypeTrait&lt; Vector &gt;::Scalar, ParticleSwarm&lt; Vector &gt; &gt;", "class_optimist_1_1_solver_base.html", [
-      [ "Optimist::Optimizer::Optimizer< Vector, ParticleSwarm< Vector >, true >", "class_optimist_1_1_optimizer_1_1_optimizer.html", [
-        [ "Optimist::Optimizer::ParticleSwarm< Vector, InertiaWeightStrategy >", "class_optimist_1_1_optimizer_1_1_particle_swarm.html", null ]
+    [ "Optimist::SolverBase&lt; Vector, TypeTrait&lt; Vector &gt;::Scalar, ParticleSwarm&lt; Vector, LinearDecrease&lt; typename Vector::Scalar &gt; &gt; &gt;", "class_optimist_1_1_solver_base.html", [
+      [ "Optimist::Optimizer::Optimizer< Vector, ParticleSwarm< Vector, LinearDecrease< typename Vector::Scalar > > >", "class_optimist_1_1_optimizer_1_1_optimizer.html", null ]
+    ] ],
+    [ "Optimist::SolverBase&lt; Vector, TypeTrait&lt; Vector &gt;::Scalar, PatternSearch&lt; Vector &gt; &gt;", "class_optimist_1_1_solver_base.html", [
+      [ "Optimist::Optimizer::Optimizer< Vector, PatternSearch< Vector > >", "class_optimist_1_1_optimizer_1_1_optimizer.html", [
+        [ "Optimist::Optimizer::PatternSearch< Vector >", "class_optimist_1_1_optimizer_1_1_pattern_search.html", null ]
+      ] ]
+    ] ],
+    [ "Optimist::SolverBase&lt; Vector, TypeTrait&lt; Vector &gt;::Scalar, TrustRegion&lt; Vector &gt; &gt;", "class_optimist_1_1_solver_base.html", [
+      [ "Optimist::Optimizer::Optimizer< Vector, TrustRegion< Vector > >", "class_optimist_1_1_optimizer_1_1_optimizer.html", [
+        [ "Optimist::Optimizer::TrustRegion< Vector >", "class_optimist_1_1_optimizer_1_1_trust_region.html", null ]
       ] ]
     ] ],
     [ "Optimist::SolverBase&lt; Vector, Vector, Broyden&lt; Vector &gt; &gt;", "class_optimist_1_1_solver_base.html", [
@@ -158,6 +245,11 @@ var hierarchy =
         [ "Optimist::RootFinder::QuasiNewton< Vector, Greenstadt< Vector > >", "class_optimist_1_1_root_finder_1_1_quasi_newton.html", [
           [ "Optimist::RootFinder::Greenstadt< Vector >", "class_optimist_1_1_root_finder_1_1_greenstadt.html", null ]
         ] ]
+      ] ]
+    ] ],
+    [ "Optimist::SolverBase&lt; Vector, Vector, LevenbergMarquardt&lt; Vector, Vector &gt; &gt;", "class_optimist_1_1_solver_base.html", [
+      [ "Optimist::RootFinder::RootFinder< Vector, LevenbergMarquardt< Vector, Vector >, Vector >", "class_optimist_1_1_root_finder_1_1_root_finder.html", [
+        [ "Optimist::RootFinder::LevenbergMarquardt< Vector, OutVector >", "class_optimist_1_1_root_finder_1_1_levenberg_marquardt.html", null ]
       ] ]
     ] ],
     [ "Optimist::SolverBase&lt; Vector, Vector, Newton&lt; Vector &gt; &gt;", "class_optimist_1_1_solver_base.html", [

@@ -1,3 +1,9 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$struct_optimist_1_1_retrieve_type.html" title=" " alt="" coords="5,5,193,31"/>
+<area shape="rect" id="Node000000" href="$class_optimist_1_1_solver_base.html" title=" " alt="" coords="5,5,193,61"/>
+<area shape="rect" id="Node000001" href="$class_optimist_1_1_root_finder_1_1_root_finder.html" title=" " alt="" coords="241,5,405,61"/>
+<area shape="poly" id="edge63_Node000000_Node000001" title=" " alt="" coords="208,30,240,30,240,36,208,36"/>
+<area shape="rect" id="Node000002" href="$class_optimist_1_1_root_finder_1_1_open_method.html" title=" " alt="" coords="453,5,617,61"/>
+<area shape="poly" id="edge64_Node000001_Node000002" title=" " alt="" coords="420,30,453,30,453,36,420,36"/>
+<area shape="rect" id="Node000003" href="$class_optimist_1_1_root_finder_1_1_chebyshev.html" title="Class container for Chebyshev&#39;s method." alt="" coords="665,13,822,54"/>
+<area shape="poly" id="edge65_Node000002_Node000003" title=" " alt="" coords="633,30,665,30,665,36,633,36"/>
 </map>

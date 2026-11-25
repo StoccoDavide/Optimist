@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['particles_0',['Particles',['../class_optimist_1_1_optimizer_1_1_particle_swarm.html#ac80846bc0cdad2941da0684d608a07f6',1,'Optimist::Optimizer::ParticleSwarm']]]
+  ['method_0',['Method',['../class_optimist_1_1_optimizer_1_1_b_f_g_s.html#a3c70addce9de88606061da36f55fd8fa',1,'Optimist::Optimizer::BFGS::Method'],['../class_optimist_1_1_optimizer_1_1_nelder_mead.html#a3b61ec436e8225d31bb36b2120e43106',1,'Optimist::Optimizer::NelderMead::Method'],['../class_optimist_1_1_optimizer_1_1_trust_region.html#aa40b34a351bb9631092a7e8734f23c08',1,'Optimist::Optimizer::TrustRegion::Method'],['../class_optimist_1_1_root_finder_1_1_broyden.html#a961a016a8309db1dd0573f717895aa28',1,'Optimist::RootFinder::Broyden::Method'],['../class_optimist_1_1_root_finder_1_1_greenstadt.html#a3e1c08eef770648d9d9bcae66305ca79',1,'Optimist::RootFinder::Greenstadt::Method'],['../class_optimist_1_1_root_finder_1_1_varona.html#af584a842a7a992a5eda3030c292d4453',1,'Optimist::RootFinder::Varona::Method'],['../namespace_optimist_1_1_line_search.html#ad480d0ba8f9c1ce5f8a8ae6c3d42804b',1,'Optimist::LineSearch::Method']]],
+  ['move_1',['Move',['../class_optimist_1_1_optimizer_1_1_nelder_mead.html#a5ea9f85aa7c306290991e27f804de8f8',1,'Optimist::Optimizer::NelderMead']]]
 ];

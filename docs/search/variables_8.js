@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['xeps_5f_0',['xeps_',['../class_optimist_1_1_optimizer_1_1_particle_swarm.html#a780afd301ac832f6bf401841ef8d8eaa',1,'Optimist::Optimizer::ParticleSwarm']]]
+  ['scalar_5ffunctions_0',['SCALAR_FUNCTIONS',['../namespace_optimist_1_1_test_set.html#aa502a3cc93585bccc9799eb951d1ead3',1,'Optimist::TestSet']]],
+  ['shrink_1',['shrink',['../struct_optimist_1_1_line_search_1_1_settings.html#a77e078874781ab4a14d3153c283deec4',1,'Optimist::LineSearch::Settings']]]
 ];

@@ -1,7 +1,8 @@
 var searchData=
 [
-  ['optimizer_0',['Optimizer',['../class_optimist_1_1_optimizer_1_1_optimizer.html',1,'Optimist::Optimizer']]],
-  ['optimizer_3c_20real_2c_20n_2c_20patternsearch_3c_20real_2c_20n_20_3e_2c_20true_20_3e_1',['Optimizer&lt; Real, N, PatternSearch&lt; Real, N &gt;, true &gt;',['../class_optimist_1_1_optimizer_1_1_optimizer.html',1,'Optimist::Optimizer']]],
-  ['optimizer_3c_20vector_2c_20neldermead_3c_20vector_20_3e_20_3e_2',['Optimizer&lt; Vector, NelderMead&lt; Vector &gt; &gt;',['../class_optimist_1_1_optimizer_1_1_optimizer.html',1,'Optimist::Optimizer']]],
-  ['optimizer_3c_20vector_2c_20particleswarm_3c_20vector_20_3e_2c_20true_20_3e_3',['Optimizer&lt; Vector, ParticleSwarm&lt; Vector &gt;, true &gt;',['../class_optimist_1_1_optimizer_1_1_optimizer.html',1,'Optimist::Optimizer']]]
+  ['levenbergmarquardt_0',['LevenbergMarquardt',['../class_optimist_1_1_root_finder_1_1_levenberg_marquardt.html',1,'Optimist::RootFinder']]],
+  ['linear_1',['Linear',['../class_optimist_1_1_test_set_1_1_linear.html',1,'Optimist::TestSet']]],
+  ['linear1_2',['Linear1',['../class_optimist_1_1_test_set_1_1_linear1.html',1,'Optimist::TestSet']]],
+  ['lineardecrease_3',['LinearDecrease',['../class_optimist_1_1_optimizer_1_1_linear_decrease.html',1,'Optimist::Optimizer']]],
+  ['lineardecrease_3c_20typename_20vector_3a_3ascalar_20_3e_4',['LinearDecrease&lt; typename Vector::Scalar &gt;',['../class_optimist_1_1_optimizer_1_1_linear_decrease.html',1,'Optimist::Optimizer']]]
 ];

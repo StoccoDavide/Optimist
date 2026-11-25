@@ -1,0 +1,5 @@
+# Covariance matrix adaptation evolution strategy
+
+The `CMAES` class implements the \f$(\mu/\mu_w, \lambda)\f$-CMA-ES following Hansen's tutorial (2016). At each generation \f$\lambda\f$ points are sampled from \f$\mathcal{N}(\mathbf{m}, \sigma^2\mathbf{C})\f$, and the best \f$\mu = \lambda/2\f$ are recombined with logarithmic weights to update the mean \f$\mathbf{m}\f$. The covariance \f$\mathbf{C}\f$ learns the local shape of the cost function through a rank-one update (along the evolution path \f$\mathbf{p}_c\f$) and a rank-\f$\mu\f$ update, while the step size \f$\sigma\f$ is adapted by cumulative step-size adaptation (path \f$\mathbf{p}_\sigma\f$). The method is invariant to rotations and monotone transformations of the cost and handles ill-conditioned and multimodal problems well.
+
+A run stops when \f$\sigma\max_i\sqrt{\lambda_i(\mathbf{C})}\f$ falls below the tolerance. With `restarts(k)` the solver performs up to \f$k\f$ IPOP restarts, doubling the population at each restart and starting from a random point of the bounded box, and returns the best point found. Samples outside finite bounds are projected onto the box.

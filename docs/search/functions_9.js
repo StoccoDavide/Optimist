@@ -1,9 +1,7 @@
 var searchData=
 [
-  ['inertia_5fweight_5fstrategy_0',['inertia_weight_strategy',['../class_optimist_1_1_optimizer_1_1_particle_swarm.html#a9d5027c39da4e429cc55c8bfa5e956e0',1,'Optimist::Optimizer::ParticleSwarm']]],
-  ['info_1',['info',['../class_optimist_1_1_solver_base.html#a08ed686a97cc6dc2a143ece4ebb421e0',1,'Optimist::SolverBase']]],
-  ['input_5fdimension_2',['input_dimension',['../class_optimist_1_1_function_base.html#abc54d5a640765d436a44b68f79b7253a',1,'Optimist::FunctionBase::input_dimension()'],['../class_optimist_1_1_solver_base.html#a3497a3d14340e56b78f061d0e908b818',1,'Optimist::SolverBase::input_dimension()']]],
-  ['inside_3',['inside',['../class_optimist_1_1_optimizer_1_1_nelder_mead.html#a6f9943871c29fb6157d36b6a9b42d265',1,'Optimist::Optimizer::NelderMead']]],
-  ['is_5fsolution_4',['is_solution',['../class_optimist_1_1_function_base.html#a50ffed61296da52cb57b9954a360e837',1,'Optimist::FunctionBase']]],
-  ['iterations_5',['iterations',['../class_optimist_1_1_solver_base.html#ac12449a64c8c0d44ee48f8aabd8cf576',1,'Optimist::SolverBase']]]
+  ['j_0',['J',['../class_optimist_1_1_root_finder_1_1_varona.html#a284b201acd1794d41b0bfeaea89df599',1,'Optimist::RootFinder::Varona']]],
+  ['jacobian_1',['Jacobian',['../namespace_optimist_1_1_finite_differences.html#ad6a032d0d6b2eecbad2ff8798ccdd74c',1,'Optimist::FiniteDifferences']]],
+  ['jacobian_2',['jacobian',['../class_optimist_1_1_function.html#a40aa97ca5f93b36071c47c4a59a9219f',1,'Optimist::Function::jacobian()'],['../class_optimist_1_1_test_set_1_1_booth.html#acbf190fe9c9495902cca189598f50142',1,'Optimist::TestSet::Booth::jacobian()'],['../class_optimist_1_1_test_set_1_1_brown.html#a4fbcb54a1fbbfe8cf7e701ed61e94c1f',1,'Optimist::TestSet::Brown::jacobian()'],['../class_optimist_1_1_test_set_1_1_linear1.html#af95d9fe73ac3f5dcef14499ec2a81145',1,'Optimist::TestSet::Linear1::jacobian()'],['../class_optimist_1_1_test_set_1_1_powell_singular.html#a6defdf478c036e86500005a9160f567c',1,'Optimist::TestSet::PowellSingular::jacobian()'],['../class_optimist_1_1_test_set_1_1_rosenbrock.html#aa1fbd675ff69116548c59d65357b3f5c',1,'Optimist::TestSet::Rosenbrock::jacobian()'],['../class_optimist_1_1_function.html#a40aa97ca5f93b36071c47c4a59a9219f',1,'Optimist::Function&lt; Input, typename Input::Scalar, DerivedFunction &gt;::jacobian()']]],
+  ['jacobian_5fevaluations_3',['jacobian_evaluations',['../class_optimist_1_1_root_finder_1_1_root_finder.html#add9edbe8a97627f7e864c74b8dee6bcc',1,'Optimist::RootFinder::RootFinder']]]
 ];

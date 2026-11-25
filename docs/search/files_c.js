@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['quadratic_2ehh_0',['Quadratic.hh',['../_quadratic_8hh.html',1,'']]],
-  ['quasinewton_2ehh_1',['QuasiNewton.hh',['../_quasi_newton_8hh.html',1,'']]]
+  ['openmethod_2ehh_0',['OpenMethod.hh',['../_open_method_8hh.html',1,'']]],
+  ['optimist_2ehh_1',['Optimist.hh',['../_optimist_8hh.html',1,'']]],
+  ['optimizer_2ehh_2',['Optimizer.hh',['../_optimizer_8hh.html',1,'']]]
 ];

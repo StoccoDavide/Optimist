@@ -1,5 +1,7 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$class_optimist_1_1_function_base.html" title=" " alt="" coords="5,5,174,46"/>
-<area shape="rect" id="Node000001" href="$class_optimist_1_1_function_3_01_t_00_01_t_00_01_derived_function_01_4.html" title="Class container for the cost function." alt="" coords="222,5,390,46"/>
-<area shape="poly" id="edge16_Node000000_Node000001" title=" " alt="" coords="189,23,224,25,218,26,189,28"/>
+<area shape="rect" id="Node000000" href="$class_optimist_1_1_function_base.html" title=" " alt="" coords="5,5,170,61"/>
+<area shape="rect" id="Node000001" href="$class_optimist_1_1_function.html" title=" " alt="" coords="218,5,382,61"/>
+<area shape="poly" id="edge55_Node000000_Node000001" title=" " alt="" coords="185,30,217,30,217,36,185,36"/>
+<area shape="rect" id="Node000002" href="$class_optimist_1_1_test_set_1_1_dense_cost_function.html" title="Helper base class for scalar cost functions &#160;&#160;written once in terms of dense vectors." alt="" coords="430,5,620,61"/>
+<area shape="poly" id="edge56_Node000001_Node000002" title=" " alt="" coords="397,30,430,30,430,36,397,36"/>
 </map>

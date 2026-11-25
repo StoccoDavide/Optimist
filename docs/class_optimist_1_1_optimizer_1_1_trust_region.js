@@ -1,0 +1,27 @@
+var class_optimist_1_1_optimizer_1_1_trust_region =
+[
+    [ "Dense", "class_optimist_1_1_optimizer_1_1_trust_region.html#a45a98776dbb7107bb987015f70d80349", null ],
+    [ "DenseMatrix", "class_optimist_1_1_optimizer_1_1_trust_region.html#af460e955d1aea9413114524e477a8a31", null ],
+    [ "Method", "class_optimist_1_1_optimizer_1_1_trust_region.html#aa40b34a351bb9631092a7e8734f23c08", null ],
+    [ "Scalar", "class_optimist_1_1_optimizer_1_1_trust_region.html#a22e2dbdaedc96290fc27a9b2713e06b6", null ],
+    [ "VectorTrait", "class_optimist_1_1_optimizer_1_1_trust_region.html#a884c21b19c6c1dbc56945ea0faf0ae5b", null ],
+    [ "TrustRegion", "class_optimist_1_1_optimizer_1_1_trust_region.html#a91c680e4e30799df7e7361fdbddcb321", null ],
+    [ "dogleg", "class_optimist_1_1_optimizer_1_1_trust_region.html#aff69d31ad0cb8aaf86a76d800e1032ba", null ],
+    [ "max_radius", "class_optimist_1_1_optimizer_1_1_trust_region.html#aad2e79c0f6245fa44f52908a6ba9159d", null ],
+    [ "max_radius", "class_optimist_1_1_optimizer_1_1_trust_region.html#a35f0c06fac191dc3d20ee44dea058385", null ],
+    [ "method", "class_optimist_1_1_optimizer_1_1_trust_region.html#aa059408470f0f2716b344da92965e229", null ],
+    [ "method", "class_optimist_1_1_optimizer_1_1_trust_region.html#ab9036ac224c9819f4cc88c9764e6718d", null ],
+    [ "name_impl", "class_optimist_1_1_optimizer_1_1_trust_region.html#accdda9bf0bd6fdda0766be0f199143d9", null ],
+    [ "radius", "class_optimist_1_1_optimizer_1_1_trust_region.html#a4707e57824483d0d20fb910e667a25ec", null ],
+    [ "radius", "class_optimist_1_1_optimizer_1_1_trust_region.html#a4ff65f53cc7c381ea361074291cdbdba", null ],
+    [ "solve_impl", "class_optimist_1_1_optimizer_1_1_trust_region.html#aacc229c2ea5e50c3716f78e2fede00f9", null ],
+    [ "steihaug", "class_optimist_1_1_optimizer_1_1_trust_region.html#aa20f73f44a38f1b7fd37844cade258e0", null ],
+    [ "to_boundary", "class_optimist_1_1_optimizer_1_1_trust_region.html#a941f2abb4772522d785e809a9c524bca", null ],
+    [ "m_eta", "class_optimist_1_1_optimizer_1_1_trust_region.html#a04fbc9fefc0329f306febc087384f86b", null ],
+    [ "m_max_radius", "class_optimist_1_1_optimizer_1_1_trust_region.html#ae1d3abbd1120c80fe461279b2bdb0399", null ],
+    [ "m_method", "class_optimist_1_1_optimizer_1_1_trust_region.html#abb0e05d2b87637e4233588c5e28b1465", null ],
+    [ "m_radius", "class_optimist_1_1_optimizer_1_1_trust_region.html#a5226ed89b2f61db88ea0556763c888c3", null ],
+    [ "RequiresFirstDerivative", "class_optimist_1_1_optimizer_1_1_trust_region.html#a17553a1ef886bed2c8ae52f3f8740286", null ],
+    [ "RequiresFunction", "class_optimist_1_1_optimizer_1_1_trust_region.html#a1dc15286b509836fa1314f3412eb87e4", null ],
+    [ "RequiresSecondDerivative", "class_optimist_1_1_optimizer_1_1_trust_region.html#a297933855cea535882961ab7c04800fe", null ]
+];

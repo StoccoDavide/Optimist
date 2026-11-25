@@ -21,7 +21,7 @@ The update parameter \f$\beta_k\f$ can be selected among the standard formulas s
 - Hager-Zhang
 - Hager-Zhang+
 
-The implementation uses a strong-Wolfe line search and supports a Powell-style restart safeguard whenever the conjugate direction loses reliability. The `Hager-Zhang+` variant applies the standard survey-style truncation bound controlled by the solver truncation parameter.
+The implementation uses the line searches of `Optimist::LineSearch` (strong Wolfe by default, or Moré-Thuente, Armijo and Goldstein), retries along the steepest descent direction when the conjugate direction fails, and supports a Powell-style restart safeguard whenever the conjugate direction loses reliability. The `Hager-Zhang+` variant applies the standard survey-style truncation bound controlled by the solver truncation parameter.
 
 The initial trial step passed to the line search can also be selected. By default the solver reuses the last accepted step. An optional `Barzilai-Borwein` alpha update computes
 \f[

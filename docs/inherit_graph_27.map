@@ -1,7 +1,9 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$class_optimist_1_1_solver_base.html" title=" " alt="" coords="5,13,221,54"/>
-<area shape="rect" id="Node000001" href="$class_optimist_1_1_root_finder_1_1_root_finder.html" title=" " alt="" coords="269,5,414,61"/>
-<area shape="poly" id="edge42_Node000000_Node000001" title=" " alt="" coords="236,31,271,33,266,33,237,36"/>
-<area shape="rect" id="Node000002" href="$class_optimist_1_1_root_finder_1_1_bracketing.html" title="Class container for the Bracketing algorithms." alt="" coords="462,5,605,61"/>
-<area shape="poly" id="edge43_Node000001_Node000002" title=" " alt="" coords="429,31,464,33,459,33,430,36"/>
+<area shape="rect" id="Node000000" href="$class_optimist_1_1_solver_base.html" title=" " alt="" coords="5,5,163,76"/>
+<area shape="rect" id="Node000001" href="$class_optimist_1_1_optimizer_1_1_optimizer.html" title=" " alt="" coords="211,13,348,68"/>
+<area shape="poly" id="edge81_Node000000_Node000001" title=" " alt="" coords="178,38,210,38,210,43,178,43"/>
+<area shape="rect" id="Node000002" href="$class_optimist_1_1_optimizer_1_1_scalar_minimizer.html" title=" " alt="" coords="396,13,570,68"/>
+<area shape="poly" id="edge82_Node000001_Node000002" title=" " alt="" coords="363,38,396,38,396,43,363,43"/>
+<area shape="rect" id="Node000003" href="$class_optimist_1_1_optimizer_1_1_brent.html" title="Class container for Brent&#39;s minimization method." alt="" coords="618,20,753,61"/>
+<area shape="poly" id="edge83_Node000002_Node000003" title=" " alt="" coords="586,38,618,38,618,43,586,43"/>
 </map>

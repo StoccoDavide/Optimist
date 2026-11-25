@@ -1,8 +1,5 @@
 var searchData=
 [
-  ['rosenbrock10_0',['Rosenbrock10',['../namespace_optimist_1_1_test_set.html#a4d2144630763766dfd57218b71383677',1,'Optimist::TestSet']]],
-  ['rosenbrock2_1',['Rosenbrock2',['../namespace_optimist_1_1_test_set.html#a2957ed2990eaa0a0b00520c2782802db',1,'Optimist::TestSet']]],
-  ['rosenbrock4_2',['Rosenbrock4',['../namespace_optimist_1_1_test_set.html#aef1187024ae7099fcfe8dd918a33d9e1',1,'Optimist::TestSet']]],
-  ['rosenbrock6_3',['Rosenbrock6',['../namespace_optimist_1_1_test_set.html#a03ff330ec8eca0b6799478dad0bc245e',1,'Optimist::TestSet']]],
-  ['rosenbrock8_4',['Rosenbrock8',['../namespace_optimist_1_1_test_set.html#a85c439daad867162cd6da940231d6d00',1,'Optimist::TestSet']]]
+  ['output_0',['Output',['../class_optimist_1_1_optimizer_1_1_optimizer.html#a78d8deca97106344501cc9765dc4e85c',1,'Optimist::Optimizer::Optimizer::Output'],['../class_optimist_1_1_root_finder_1_1_root_finder.html#a1f6ac8adc2ac6afa2720ada346a8f24a',1,'Optimist::RootFinder::RootFinder::Output']]],
+  ['outputtrait_1',['OutputTrait',['../class_optimist_1_1_function_base.html#aa9bdfdd48f32f7f17ccdcd29b0640a33',1,'Optimist::FunctionBase::OutputTrait'],['../class_optimist_1_1_solver_base.html#ab9ac4d8299157b054a5fc4a106859069',1,'Optimist::SolverBase::OutputTrait'],['../class_optimist_1_1_test_set_1_1_brown.html#a1dd2a5e8cd15bdf824ebe4bca6c2e997',1,'Optimist::TestSet::Brown::OutputTrait']]]
 ];

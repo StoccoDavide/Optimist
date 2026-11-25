@@ -1,0 +1,11 @@
+<map id="core/include/Optimist/LineSearch.hh" name="core/include/Optimist/LineSearch.hh">
+<area shape="rect" id="Node000001" title=" " alt="" coords="115,5,259,46"/>
+<area shape="rect" id="Node000002" href="$_b_f_g_s_8hh.html" title=" " alt="" coords="5,94,150,135"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="152,58,104,96,101,91,148,54"/>
+<area shape="rect" id="Node000003" href="$_solvers_8hh.html" title="Convenience header including every solver of the library." alt="" coords="115,183,259,223"/>
+<area shape="poly" id="edge5_Node000001_Node000003" title=" " alt="" coords="190,61,190,182,184,182,184,61"/>
+<area shape="rect" id="Node000004" href="$_conjugate_gradient_8hh.html" title=" " alt="" coords="224,94,435,135"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="233,52,299,91,296,96,230,56"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="116,143,164,180,160,184,113,147"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="286,145,220,185,218,180,283,141"/>
+</map>

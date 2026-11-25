@@ -1,0 +1,818 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>Optimist: core/include/Optimist/Optimizer/ConjugateGradient.hh Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.png"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/StoccoDavide/Optimist" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Optimist
+   &#160;<span id="projectnumber">0.0.0</span>
+   </div>
+   <div id="projectbrief">A C++ library for optimization</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="application/json" id="doxygen-config">
+{
+  "relPath": "",
+  "generateTreeView": true,
+  "searchEngine": true,
+  "serverBasedSearch": false,
+  "disableIndex": false,
+  "dynamicMenus": true,
+  "fullSidebar": false
+}
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',() => { initNavTree('_conjugate_gradient_8hh_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">ConjugateGradient.hh</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_conjugate_gradient_8hh.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2025, Davide Stocco and Enrico Bertolazzi.                  *</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *                                                                           *</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * The Optimist project is distributed under the BSD 2-Clause License.       *</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> *                                                                           *</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"> * Davide Stocco                                           Enrico Bertolazzi *</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment"> * University of Trento                                 University of Trento *</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment"> * davide.stocco@unitn.it                         enrico.bertolazzi@unitn.it *</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">\* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#ifndef OPTIMIST_OPTIMIZER_CONJUGATE_GRADIENT_HH</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="_conjugate_gradient_8hh.html#abbd087fb2d66e218776a1faae22c5ad5">   14</a></span><span class="preprocessor">#define OPTIMIST_OPTIMIZER_CONJUGATE_GRADIENT_HH</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &quot;<a class="code" href="_line_search_8hh.html">Optimist/LineSearch.hh</a>&quot;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &quot;<a class="code" href="_optimizer_8hh.html">Optimist/Optimizer.hh</a>&quot;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_optimist.html">Optimist</a> {</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>  <span class="keyword">namespace </span>Optimizer {</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Vector&gt;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>      <span class="keyword">requires</span> TypeTrait&lt;Vector&gt;::IsEigen &amp;&amp;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>               (!TypeTrait&lt;Vector&gt;::IsFixed || TypeTrait&lt;Vector&gt;::Dimension &gt; 0)</div>
+<div class="foldopen" id="foldopen00033" data-start="{" data-end="};">
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html">   33</a></span>    <span class="keyword">class</span> <a class="code hl_function" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a0bbf164b24fee6526c6b3ecf5dbb88d5">ConjugateGradient</a></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        : public <a class="code hl_function" href="class_optimist_1_1_optimizer_1_1_optimizer.html#ab5448e3266150b563d5d56b2ab5a404e">Optimizer</a>&lt;Vector, <a class="code hl_function" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a0bbf164b24fee6526c6b3ecf5dbb88d5">ConjugateGradient</a>&lt;Vector&gt;&gt; {</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>     <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ad675d9ccb20f5d549c0ab5fef4cbc15f">   36</a></span>      <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keywordtype">bool</span> <a class="code hl_variable" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ad675d9ccb20f5d549c0ab5fef4cbc15f">RequiresFunction</a>{<span class="keyword">true</span>};</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a869825f25361ba71609641a588657872">   37</a></span>      <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keywordtype">bool</span> <a class="code hl_variable" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a869825f25361ba71609641a588657872">RequiresFirstDerivative</a>{<span class="keyword">true</span>};</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a26c3b5d450eeec2233e944327766ab6f">   38</a></span>      <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keywordtype">bool</span> <a class="code hl_variable" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a26c3b5d450eeec2233e944327766ab6f">RequiresSecondDerivative</a>{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a4d83efce0ae51e24f115e2a048402a87">   40</a></span>      <span class="keyword">using </span><a class="code hl_typedef" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a4d83efce0ae51e24f115e2a048402a87">VectorTrait</a> = <a class="code hl_struct" href="struct_optimist_1_1_type_trait.html">TypeTrait&lt;Vector&gt;</a>;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac860050641e7e11a7f61f5d475e0595e">   41</a></span>      <span class="keyword">using </span><a class="code hl_typedef" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac860050641e7e11a7f61f5d475e0595e">Scalar</a>      = <span class="keyword">typename</span> <a class="code hl_struct" href="struct_optimist_1_1_type_trait.html">TypeTrait&lt;Vector&gt;::Scalar</a>;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>      <span class="keyword">using </span>typename <a class="code hl_function" href="class_optimist_1_1_optimizer_1_1_optimizer.html#ab5448e3266150b563d5d56b2ab5a404e">Optimizer</a>&lt;Vector,</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>                               <a class="code hl_function" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a0bbf164b24fee6526c6b3ecf5dbb88d5">ConjugateGradient&lt;Vector&gt;</a>&gt;<a class="code hl_typedef" href="class_optimist_1_1_solver_base.html#adc3d6ecfbd8861d8872dc651a7ec1762">::FirstDerivative</a>;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>      <a class="code hl_define" href="_optimist_8hh.html#a437ef92626d0fc8f1fabd296ca796056">OPTIMIST_BASIC_CONSTANTS</a>(<a class="code hl_typedef" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac860050641e7e11a7f61f5d475e0595e">Scalar</a>)</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>      </div>
+<div class="foldopen" id="foldopen00050" data-start="{" data-end="};">
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#afe8668b026460097747e3ac8f648facf">   50</a></span>      using <a class="code hl_typedef" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#afe8668b026460097747e3ac8f648facf">BetaMethod</a> = enum class <a class="code hl_typedef" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#afe8668b026460097747e3ac8f648facf">BetaMethod</a> : <a class="code hl_typedef" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> {</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        FLETCHER_REEVES    = 0, </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        POLAK_RIBIERE      = 1, </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        POLAK_RIBIERE_PLUS = 2, </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        HESTENES_STIEFEL   = 3, </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        CONJUGATE_DESCENT  = 4, </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        LIU_STOREY         = 5, </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        DAI_YUAN           = 6, </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        HAGER_ZHANG        = 7, </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        HAGER_ZHANG_PLUS   = 8  </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>      };</div>
+</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span></div>
+<div class="foldopen" id="foldopen00065" data-start="{" data-end="};">
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a900a83d510876d0d685f04cabe339984">   65</a></span>      <span class="keyword">using </span><a class="code hl_typedef" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a900a83d510876d0d685f04cabe339984">AlphaMethod</a> = <span class="keyword">enum class</span> <a class="code hl_typedef" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a900a83d510876d0d685f04cabe339984">AlphaMethod</a> : <a class="code hl_typedef" href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Integer</a> {</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        ACCEPTED_STEP    = 0, </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        BARZILAI_BORWEIN = 1  </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>      };</div>
+</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>     <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a2ebb889a2c72af640f2b667cb1717f8e">   71</a></span>      <a class="code hl_typedef" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#afe8668b026460097747e3ac8f648facf">BetaMethod</a> <a class="code hl_variable" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a2ebb889a2c72af640f2b667cb1717f8e">m_beta_method</a>{BetaMethod::HAGER_ZHANG}; </div>
+<div class="foldopen" id="foldopen00072" data-start="{" data-end="};">
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac7dd54273c3c4e84436721beb2e1380f">   72</a></span>      <a class="code hl_typedef" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a900a83d510876d0d685f04cabe339984">AlphaMethod</a> <a class="code hl_variable" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac7dd54273c3c4e84436721beb2e1380f">m_alpha_method</a>{</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        AlphaMethod::ACCEPTED_STEP}; </div>
+</div>
+<div class="foldopen" id="foldopen00074" data-start="{" data-end="};">
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a8ee597783db2ca2cb47becc816efe047">   74</a></span>      <a class="code hl_typedef" href="namespace_optimist_1_1_line_search.html#ad480d0ba8f9c1ce5f8a8ae6c3d42804b">LineSearch::Method</a> <a class="code hl_variable" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a8ee597783db2ca2cb47becc816efe047">m_line_search</a>{</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        LineSearch::Method::STRONG_WOLFE};     </div>
+</div>
+<div class="foldopen" id="foldopen00076" data-start="{" data-end="};">
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a4d2680f578dea46de94d52c7fc326577">   76</a></span>      <a class="code hl_struct" href="struct_optimist_1_1_line_search_1_1_settings.html">LineSearch::Settings&lt;Scalar&gt;</a> <a class="code hl_variable" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a4d2680f578dea46de94d52c7fc326577">m_settings</a>{</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        .c1             = <span class="keyword">static_cast&lt;</span><a class="code hl_typedef" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac860050641e7e11a7f61f5d475e0595e">Scalar</a><span class="keyword">&gt;</span>(1.0e-4),</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        .c2             = <span class="keyword">static_cast&lt;</span><a class="code hl_typedef" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac860050641e7e11a7f61f5d475e0595e">Scalar</a><span class="keyword">&gt;</span>(0.1),</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        .alpha_max      = 1 / SQRT_EPSILON,</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>        .max_iterations = 25};                 </div>
+</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a83836038fd7dfae76ed7b9403cb1bc6c">   81</a></span>      <a class="code hl_typedef" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac860050641e7e11a7f61f5d475e0595e">Scalar</a> <a class="code hl_variable" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a83836038fd7dfae76ed7b9403cb1bc6c">m_initial_step</a>{1.0};              </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a8675c06db13892dddc7dd971f7dd3035">   82</a></span>      <a class="code hl_typedef" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac860050641e7e11a7f61f5d475e0595e">Scalar</a> <a class="code hl_variable" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a8675c06db13892dddc7dd971f7dd3035">m_min_step</a>{SQRT_EPSILON};         </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a310af159011f976319f3b277e3b39dab">   83</a></span>      <a class="code hl_typedef" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac860050641e7e11a7f61f5d475e0595e">Scalar</a> <a class="code hl_variable" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a310af159011f976319f3b277e3b39dab">m_descent_parameter</a>{1.0e-2};      </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a2a2ad010c645526387d8382060ec8449">   84</a></span>      <a class="code hl_typedef" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac860050641e7e11a7f61f5d475e0595e">Scalar</a> <a class="code hl_variable" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a2a2ad010c645526387d8382060ec8449">m_truncation_parameter</a>{1.0e-2};   </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a83989192f715b3f702f3851b0175c52a">   85</a></span>      <span class="keywordtype">bool</span> <a class="code hl_variable" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a83989192f715b3f702f3851b0175c52a">m_powell_restart</a>{<span class="keyword">true</span>};             </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a365c654590cfa5e5d5a0645f8d1b712a">   86</a></span>      <a class="code hl_typedef" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac860050641e7e11a7f61f5d475e0595e">Scalar</a> <a class="code hl_variable" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a365c654590cfa5e5d5a0645f8d1b712a">m_restart_tolerance</a>{0.9};         </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>     <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a0bbf164b24fee6526c6b3ecf5dbb88d5">   92</a></span>      <a class="code hl_function" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a0bbf164b24fee6526c6b3ecf5dbb88d5">ConjugateGradient</a>() {}</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span></div>
+<div class="foldopen" id="foldopen00098" data-start="{" data-end="}">
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno"><a class="line" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a67d27096661ecb8901723e13e3b1f273">   98</a></span>      <span class="keyword">constexpr</span> std::string <a class="code hl_function" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a67d27096661ecb8901723e13e3b1f273">name_impl</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        <span class="keywordflow">return</span> <span class="stringliteral">&quot;ConjugateGradient&quot;</span>;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>      }</div>
+</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span></div>
+<div class="foldopen" id="foldopen00105" data-start="{" data-end="}">
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno"><a class="line" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a0a355784210cbb95d09f0fbb5aafb4e9">  105</a></span>      <a class="code hl_typedef" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#afe8668b026460097747e3ac8f648facf">BetaMethod</a> <a class="code hl_function" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a0a355784210cbb95d09f0fbb5aafb4e9">beta_method</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>        <span class="keywordflow">return</span> this-&gt;m_beta_method;</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>      }</div>
+</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span></div>
+<div class="foldopen" id="foldopen00112" data-start="{" data-end="}">
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno"><a class="line" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#af3762b6a7d1ee395780ee2b5c75306e2">  112</a></span>      <span class="keywordtype">void</span> <a class="code hl_function" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#af3762b6a7d1ee395780ee2b5c75306e2">beta_method</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#afe8668b026460097747e3ac8f648facf">BetaMethod</a> t_beta_method) {</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>        this-&gt;m_beta_method = t_beta_method;</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>      }</div>
+</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span></div>
+<div class="foldopen" id="foldopen00117" data-start="{" data-end="}">
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno"><a class="line" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ad3f9365b5e2feb253f988e38ec14ad99">  117</a></span>      <span class="keywordtype">void</span> <a class="code hl_function" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ad3f9365b5e2feb253f988e38ec14ad99">enable_fletcher_reeves_method</a>() {</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>        this-&gt;m_beta_method = BetaMethod::FLETCHER_REEVES;</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>      }</div>
+</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span></div>
+<div class="foldopen" id="foldopen00122" data-start="{" data-end="}">
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno"><a class="line" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a727a6ce454dd5969993b2d7d3ca44e9b">  122</a></span>      <span class="keywordtype">void</span> <a class="code hl_function" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a727a6ce454dd5969993b2d7d3ca44e9b">enable_polak_ribiere_method</a>() {</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>        this-&gt;m_beta_method = BetaMethod::POLAK_RIBIERE;</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>      }</div>
+</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span></div>
+<div class="foldopen" id="foldopen00127" data-start="{" data-end="}">
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno"><a class="line" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a920a68b3fe958b86c369955005b1e638">  127</a></span>      <span class="keywordtype">void</span> <a class="code hl_function" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a920a68b3fe958b86c369955005b1e638">enable_polak_ribiere_plus_method</a>() {</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>        this-&gt;m_beta_method = BetaMethod::POLAK_RIBIERE_PLUS;</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>      }</div>
+</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span></div>
+<div class="foldopen" id="foldopen00132" data-start="{" data-end="}">
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno"><a class="line" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ae33570d50b48d8062e856ba2e7eebc7b">  132</a></span>      <span class="keywordtype">void</span> <a class="code hl_function" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ae33570d50b48d8062e856ba2e7eebc7b">enable_hestenes_stiefel_method</a>() {</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>        this-&gt;m_beta_method = BetaMethod::HESTENES_STIEFEL;</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>      }</div>
+</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span></div>
+<div class="foldopen" id="foldopen00137" data-start="{" data-end="}">
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno"><a class="line" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ad790db1a8067739cf96fc65b7d3f0b03">  137</a></span>      <span class="keywordtype">void</span> <a class="code hl_function" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ad790db1a8067739cf96fc65b7d3f0b03">enable_conjugate_descent_method</a>() {</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>        this-&gt;m_beta_method = BetaMethod::CONJUGATE_DESCENT;</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>      }</div>
+</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span></div>
+<div class="foldopen" id="foldopen00142" data-start="{" data-end="}">
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno"><a class="line" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#afede9cd18d312827e0a4410e8945b6e7">  142</a></span>      <span class="keywordtype">void</span> <a class="code hl_function" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#afede9cd18d312827e0a4410e8945b6e7">enable_liu_storey_method</a>() {</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>        this-&gt;m_beta_method = BetaMethod::LIU_STOREY;</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>      }</div>
+</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span></div>
+<div class="foldopen" id="foldopen00147" data-start="{" data-end="}">
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno"><a class="line" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a13428296ea5476ad781334559ba2efbf">  147</a></span>      <span class="keywordtype">void</span> <a class="code hl_function" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a13428296ea5476ad781334559ba2efbf">enable_dai_yuan_method</a>() {</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>        this-&gt;m_beta_method = BetaMethod::DAI_YUAN;</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>      }</div>
+</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span></div>
+<div class="foldopen" id="foldopen00152" data-start="{" data-end="}">
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno"><a class="line" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a1d5bba05b7b883d0b2e1398796da8d3e">  152</a></span>      <span class="keywordtype">void</span> <a class="code hl_function" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a1d5bba05b7b883d0b2e1398796da8d3e">enable_hager_zhang_method</a>() {</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>        this-&gt;m_beta_method = BetaMethod::HAGER_ZHANG;</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>      }</div>
+</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span></div>
+<div class="foldopen" id="foldopen00157" data-start="{" data-end="}">
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno"><a class="line" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a99f715d5667170d68b2615f6e3ec925f">  157</a></span>      <span class="keywordtype">void</span> <a class="code hl_function" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a99f715d5667170d68b2615f6e3ec925f">enable_hager_zhang_plus_method</a>() {</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>        this-&gt;m_beta_method = BetaMethod::HAGER_ZHANG_PLUS;</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>      }</div>
+</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span></div>
+<div class="foldopen" id="foldopen00164" data-start="{" data-end="}">
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno"><a class="line" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ad7173edd6b48ad72452dd4d2856ed575">  164</a></span>      <a class="code hl_typedef" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a900a83d510876d0d685f04cabe339984">AlphaMethod</a> <a class="code hl_function" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ad7173edd6b48ad72452dd4d2856ed575">alpha_method</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>        <span class="keywordflow">return</span> this-&gt;m_alpha_method;</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>      }</div>
+</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span></div>
+<div class="foldopen" id="foldopen00171" data-start="{" data-end="}">
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno"><a class="line" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#aadc5ddc761302def1a7e4a941a6c1c73">  171</a></span>      <span class="keywordtype">void</span> <a class="code hl_function" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#aadc5ddc761302def1a7e4a941a6c1c73">alpha_method</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a900a83d510876d0d685f04cabe339984">AlphaMethod</a> t_alpha_method) {</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>        this-&gt;m_alpha_method = t_alpha_method;</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>      }</div>
+</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span></div>
+<div class="foldopen" id="foldopen00176" data-start="{" data-end="}">
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno"><a class="line" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac2d3568698442cb346f838cb30fe0465">  176</a></span>      <span class="keywordtype">void</span> <a class="code hl_function" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac2d3568698442cb346f838cb30fe0465">enable_accepted_step_alpha_method</a>() {</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>        this-&gt;m_alpha_method = AlphaMethod::ACCEPTED_STEP;</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>      }</div>
+</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span></div>
+<div class="foldopen" id="foldopen00181" data-start="{" data-end="}">
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno"><a class="line" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#aafc31feb2168bcee749adc083bc17494">  181</a></span>      <span class="keywordtype">void</span> <a class="code hl_function" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#aafc31feb2168bcee749adc083bc17494">enable_barzilai_borwein_alpha_method</a>() {</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>        this-&gt;m_alpha_method = AlphaMethod::BARZILAI_BORWEIN;</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>      }</div>
+</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span></div>
+<div class="foldopen" id="foldopen00188" data-start="{" data-end="}">
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno"><a class="line" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a41ef883f73bd2e3ed122ba2f1d341627">  188</a></span>      <a class="code hl_typedef" href="namespace_optimist_1_1_line_search.html#ad480d0ba8f9c1ce5f8a8ae6c3d42804b">LineSearch::Method</a> <a class="code hl_function" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a41ef883f73bd2e3ed122ba2f1d341627">line_search</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>        <span class="keywordflow">return</span> this-&gt;m_line_search;</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>      }</div>
+</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span></div>
+<div class="foldopen" id="foldopen00197" data-start="{" data-end="}">
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno"><a class="line" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#aaca27b44bdcdcca43db6f473a66237a3">  197</a></span>      <span class="keywordtype">void</span> <a class="code hl_function" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#aaca27b44bdcdcca43db6f473a66237a3">line_search</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="namespace_optimist_1_1_line_search.html#ad480d0ba8f9c1ce5f8a8ae6c3d42804b">LineSearch::Method</a> t_line_search) {</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>        this-&gt;m_line_search = t_line_search;</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>      }</div>
+</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span></div>
+<div class="foldopen" id="foldopen00205" data-start="{" data-end="}">
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno"><a class="line" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#afde55b4cb5721d0ab121dac7d11a8500">  205</a></span>      <a class="code hl_struct" href="struct_optimist_1_1_line_search_1_1_settings.html">LineSearch::Settings&lt;Scalar&gt;</a> &amp;<a class="code hl_function" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#afde55b4cb5721d0ab121dac7d11a8500">line_search_settings</a>() {</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>        <span class="keywordflow">return</span> this-&gt;m_settings;</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>      }</div>
+</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span></div>
+<div class="foldopen" id="foldopen00212" data-start="{" data-end="}">
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno"><a class="line" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac087f52d50266973b7606d0bc8fb53c6">  212</a></span>      <a class="code hl_typedef" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac860050641e7e11a7f61f5d475e0595e">Scalar</a> <a class="code hl_function" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac087f52d50266973b7606d0bc8fb53c6">initial_step</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>        <span class="keywordflow">return</span> this-&gt;m_initial_step;</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>      }</div>
+</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span></div>
+<div class="foldopen" id="foldopen00219" data-start="{" data-end="}">
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno"><a class="line" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a11c05b2b74df1ce6406db2fe930a31fe">  219</a></span>      <span class="keywordtype">void</span> <a class="code hl_function" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a11c05b2b74df1ce6406db2fe930a31fe">initial_step</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac860050641e7e11a7f61f5d475e0595e">Scalar</a> t_initial_step) {</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>        <a class="code hl_define" href="_optimist_8hh.html#ae84977f5cfcc4fc8178fd20cf52f9068">OPTIMIST_ASSERT</a>(std::isfinite(t_initial_step) &amp;&amp; t_initial_step &gt; 0,</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>                        <span class="stringliteral">&quot;Optimist::Optimizer::ConjugateGradient::initial_step(&quot;</span></div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>                        <span class="stringliteral">&quot;...): invalid input detected.&quot;</span>);</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>        this-&gt;m_initial_step = t_initial_step;</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>      }</div>
+</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span></div>
+<div class="foldopen" id="foldopen00229" data-start="{" data-end="}">
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno"><a class="line" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#aec5004dbbc4193e2aac0a00e9201f2ce">  229</a></span>      <a class="code hl_typedef" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac860050641e7e11a7f61f5d475e0595e">Scalar</a> <a class="code hl_function" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#aec5004dbbc4193e2aac0a00e9201f2ce">min_step</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>        <span class="keywordflow">return</span> this-&gt;m_min_step;</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>      }</div>
+</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span></div>
+<div class="foldopen" id="foldopen00236" data-start="{" data-end="}">
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno"><a class="line" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac3493c9fdd3f9efb58d1123c04df4602">  236</a></span>      <span class="keywordtype">void</span> <a class="code hl_function" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac3493c9fdd3f9efb58d1123c04df4602">min_step</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac860050641e7e11a7f61f5d475e0595e">Scalar</a> t_min_step) {</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>        <a class="code hl_define" href="_optimist_8hh.html#ae84977f5cfcc4fc8178fd20cf52f9068">OPTIMIST_ASSERT</a>(std::isfinite(t_min_step) &amp;&amp; t_min_step &gt; 0,</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>                        <span class="stringliteral">&quot;Optimist::Optimizer::ConjugateGradient::min_step(...)&quot;</span></div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>                        <span class="stringliteral">&quot;: invalid input detected.&quot;</span>);</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>        this-&gt;m_min_step = t_min_step;</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>      }</div>
+</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span></div>
+<div class="foldopen" id="foldopen00247" data-start="{" data-end="}">
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno"><a class="line" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#afcdec08639a7e671494c057143d373a4">  247</a></span>      <a class="code hl_typedef" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac860050641e7e11a7f61f5d475e0595e">Scalar</a> <a class="code hl_function" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#afcdec08639a7e671494c057143d373a4">descent_parameter</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>        <span class="keywordflow">return</span> this-&gt;m_descent_parameter;</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>      }</div>
+</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span></div>
+<div class="foldopen" id="foldopen00254" data-start="{" data-end="}">
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno"><a class="line" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a4d09a952511fe499df5117ee63ff5228">  254</a></span>      <span class="keywordtype">void</span> <a class="code hl_function" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a4d09a952511fe499df5117ee63ff5228">descent_parameter</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac860050641e7e11a7f61f5d475e0595e">Scalar</a> t_descent_parameter) {</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>        <a class="code hl_define" href="_optimist_8hh.html#ae84977f5cfcc4fc8178fd20cf52f9068">OPTIMIST_ASSERT</a>(t_descent_parameter &gt; 0 &amp;&amp; t_descent_parameter &lt; 1,</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>                        <span class="stringliteral">&quot;Optimist::Optimizer::ConjugateGradient::descent_&quot;</span></div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>                        <span class="stringliteral">&quot;parameter(...): invalid input detected.&quot;</span>);</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>        this-&gt;m_descent_parameter = t_descent_parameter;</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>      }</div>
+</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span></div>
+<div class="foldopen" id="foldopen00264" data-start="{" data-end="}">
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno"><a class="line" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a4affeb6dc000ddf5f76406cdfa16eb23">  264</a></span>      <a class="code hl_typedef" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac860050641e7e11a7f61f5d475e0595e">Scalar</a> <a class="code hl_function" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a4affeb6dc000ddf5f76406cdfa16eb23">truncation_parameter</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>        <span class="keywordflow">return</span> this-&gt;m_truncation_parameter;</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>      }</div>
+</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span></div>
+<div class="foldopen" id="foldopen00272" data-start="{" data-end="}">
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno"><a class="line" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ad15090edc142d342871eea22c1fe3b8c">  272</a></span>      <span class="keywordtype">void</span> <a class="code hl_function" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ad15090edc142d342871eea22c1fe3b8c">truncation_parameter</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac860050641e7e11a7f61f5d475e0595e">Scalar</a> t_truncation_parameter) {</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>        <a class="code hl_define" href="_optimist_8hh.html#ae84977f5cfcc4fc8178fd20cf52f9068">OPTIMIST_ASSERT</a>(t_truncation_parameter &gt; 0,</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>                        <span class="stringliteral">&quot;Optimist::Optimizer::ConjugateGradient::truncation_&quot;</span></div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>                        <span class="stringliteral">&quot;parameter(...): invalid input detected.&quot;</span>);</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>        this-&gt;m_truncation_parameter = t_truncation_parameter;</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>      }</div>
+</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span></div>
+<div class="foldopen" id="foldopen00282" data-start="{" data-end="}">
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno"><a class="line" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ae789bcd0ae60b930c2f0c3f1237d6c53">  282</a></span>      <span class="keywordtype">bool</span> <a class="code hl_function" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ae789bcd0ae60b930c2f0c3f1237d6c53">powell_restart</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>        <span class="keywordflow">return</span> this-&gt;m_powell_restart;</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>      }</div>
+</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span></div>
+<div class="foldopen" id="foldopen00290" data-start="{" data-end="}">
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno"><a class="line" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a6f1e78fdeab02494401fa664e83730e5">  290</a></span>      <span class="keywordtype">void</span> <a class="code hl_function" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a6f1e78fdeab02494401fa664e83730e5">powell_restart</a>(<span class="keyword">const</span> <span class="keywordtype">bool</span> t_powell_restart) {</div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>        this-&gt;m_powell_restart = t_powell_restart;</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>      }</div>
+</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span></div>
+<div class="foldopen" id="foldopen00295" data-start="{" data-end="}">
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno"><a class="line" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a269001037d17c27fef1871576dea7f2c">  295</a></span>      <span class="keywordtype">void</span> <a class="code hl_function" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a269001037d17c27fef1871576dea7f2c">enable_powell_restart</a>() {</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>        this-&gt;m_powell_restart = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>      }</div>
+</div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span></div>
+<div class="foldopen" id="foldopen00300" data-start="{" data-end="}">
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno"><a class="line" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a0cc7fd9666c14e563a8627b7d36b52c6">  300</a></span>      <span class="keywordtype">void</span> <a class="code hl_function" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a0cc7fd9666c14e563a8627b7d36b52c6">disable_powell_restart</a>() {</div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>        this-&gt;m_powell_restart = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>      }</div>
+</div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span></div>
+<div class="foldopen" id="foldopen00307" data-start="{" data-end="}">
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno"><a class="line" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac673eb7fa74f5088d827e9409c8d8892">  307</a></span>      <a class="code hl_typedef" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac860050641e7e11a7f61f5d475e0595e">Scalar</a> <a class="code hl_function" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac673eb7fa74f5088d827e9409c8d8892">restart_tolerance</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>        <span class="keywordflow">return</span> this-&gt;m_restart_tolerance;</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>      }</div>
+</div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span></div>
+<div class="foldopen" id="foldopen00316" data-start="{" data-end="}">
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno"><a class="line" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a071d8602897e327d051b12086ddde840">  316</a></span>      <span class="keywordtype">void</span> <a class="code hl_function" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a071d8602897e327d051b12086ddde840">restart_tolerance</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac860050641e7e11a7f61f5d475e0595e">Scalar</a> t_restart_tolerance) {</div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>        <a class="code hl_define" href="_optimist_8hh.html#ae84977f5cfcc4fc8178fd20cf52f9068">OPTIMIST_ASSERT</a>(t_restart_tolerance &gt; 0 &amp;&amp; t_restart_tolerance &lt; 1,</div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>                        <span class="stringliteral">&quot;Optimist::Optimizer::ConjugateGradient::restart_&quot;</span></div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>                        <span class="stringliteral">&quot;tolerance(...): invalid input detected.&quot;</span>);</div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>        this-&gt;m_restart_tolerance = t_restart_tolerance;</div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>      }</div>
+</div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span></div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>      <span class="keyword">template</span> &lt;<span class="keyword">typename</span> FunctionLambda, <span class="keyword">typename</span> GradientLambda&gt;</div>
+<div class="foldopen" id="foldopen00332" data-start="{" data-end="}">
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno"><a class="line" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a2d68d50443bac79f8423aca97a3e7e82">  332</a></span>      <span class="keywordtype">bool</span> <a class="code hl_function" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a2d68d50443bac79f8423aca97a3e7e82">solve_impl</a>(FunctionLambda &amp;&amp;function,</div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>                      GradientLambda &amp;&amp;gradient,</div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>                      <span class="keyword">const</span> Vector &amp;x_ini,</div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span>                      Vector &amp;x_sol) {</div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span><span class="preprocessor">#define CMD &quot;Optimist::Optimizer::ConjugateGradient::solve_impl(...): &quot;</span></div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span> </div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span>        this-&gt;<a class="code hl_function" href="class_optimist_1_1_solver_base.html#aaabb0b2cce2b44555ab0da633501f7b9">reset_counters</a>();</div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span>        <span class="keywordflow">if</span> (this-&gt;<a class="code hl_variable" href="class_optimist_1_1_solver_base.html#af7b647d27a26421da1c593070bc63cbc">m_verbose</a>) {</div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span>          this-&gt;<a class="code hl_function" href="class_optimist_1_1_solver_base.html#a845dc526e24f6d1799ecc7e707701604">header</a>();</div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span>        }</div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span> </div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span>        <span class="comment">// Current point (x, f, g), search direction d and trial step</span></div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span>        Vector x(x_ini), x_new(x_ini);</div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>        <a class="code hl_typedef" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac860050641e7e11a7f61f5d475e0595e">Scalar</a> f{0}, f_new{0};</div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span>        <a class="code hl_typedef" href="class_optimist_1_1_solver_base.html#adc3d6ecfbd8861d8872dc651a7ec1762">FirstDerivative</a> g, g_new, d;</div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>        <a class="code hl_define" href="_optimist_8hh.html#ae84977f5cfcc4fc8178fd20cf52f9068">OPTIMIST_ASSERT</a>(this-&gt;<a class="code hl_function" href="class_optimist_1_1_solver_base.html#a38a5d43530e7fefa31ffaf45bfcdb565">evaluate_function</a>(function, x, f),</div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>                        <a class="code hl_define" href="_adam_8hh.html#a0a5ceb9ceb914e08d345410b561cb37a">CMD</a> <span class="stringliteral">&quot;function evaluation failed at the initial point.&quot;</span>);</div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span>        <a class="code hl_define" href="_optimist_8hh.html#ae84977f5cfcc4fc8178fd20cf52f9068">OPTIMIST_ASSERT</a>(this-&gt;<a class="code hl_function" href="class_optimist_1_1_optimizer_1_1_optimizer.html#add4b6353d014d543d2140f3558a073ac">evaluate_gradient</a>(gradient, x, g),</div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>                        <a class="code hl_define" href="_adam_8hh.html#a0a5ceb9ceb914e08d345410b561cb37a">CMD</a> <span class="stringliteral">&quot;gradient evaluation failed at the initial point.&quot;</span>);</div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>        d = -g;</div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>        <a class="code hl_typedef" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac860050641e7e11a7f61f5d475e0595e">Scalar</a> trial{this-&gt;<a class="code hl_function" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#aa98492290011669b71ede828d8743671">clamp_step</a>(this-&gt;m_initial_step)}, accepted{0};</div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span> </div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span>        std::string notes{<span class="stringliteral">&quot;Initialize&quot;</span>};</div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span>        <span class="keywordflow">for</span> (this-&gt;<a class="code hl_variable" href="class_optimist_1_1_solver_base.html#ab48e0fc65ce173c233c50c314ba59e17">m_iterations</a> = 1;</div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span>             this-&gt;<a class="code hl_variable" href="class_optimist_1_1_solver_base.html#ab48e0fc65ce173c233c50c314ba59e17">m_iterations</a> &lt; this-&gt;<a class="code hl_variable" href="class_optimist_1_1_solver_base.html#a69295f7a09081eb8f90f124c5c2acb68">m_max_iterations</a>;</div>
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span>             ++this-&gt;<a class="code hl_variable" href="class_optimist_1_1_solver_base.html#ab48e0fc65ce173c233c50c314ba59e17">m_iterations</a>) {</div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span>          <span class="keywordflow">if</span> (this-&gt;<a class="code hl_variable" href="class_optimist_1_1_solver_base.html#af7b647d27a26421da1c593070bc63cbc">m_verbose</a>) {</div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span>            this-&gt;<a class="code hl_function" href="class_optimist_1_1_solver_base.html#a08ed686a97cc6dc2a143ece4ebb421e0">info</a>(g.norm(), notes);</div>
+<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span>          }</div>
+<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span>          <span class="keywordflow">if</span> (g.norm() &lt; this-&gt;m_tolerance) {</div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span>            this-&gt;<a class="code hl_variable" href="class_optimist_1_1_solver_base.html#afc6d9026cd969627cb2e72c43c69ac71">m_converged</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span>          }</div>
+<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span>          notes = <span class="stringliteral">&quot;-&quot;</span>;</div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span>          <span class="keywordflow">if</span> (!this-&gt;<a class="code hl_function" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a24fda8a916e15875490862397758c150">has_sufficient_descent</a>(g, d)) {</div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span>            d     = -g;</div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span>            notes = <span class="stringliteral">&quot;Restart&quot;</span>;</div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span>          }</div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span> </div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span>          <span class="comment">// Line search. On failure, or if the step stagnates below the</span></div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span>          <span class="comment">// rounding level of x, retry once along the steepest descent</span></div>
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span>          <span class="comment">// direction before giving up</span></div>
+<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span>          <span class="keyword">const</span> <span class="keywordtype">bool</span> ok{this-&gt;<a class="code hl_function" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a41ef883f73bd2e3ed122ba2f1d341627">line_search</a>(function, gradient, x, f, g, d, trial,</div>
+<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span>                                          x_new, f_new, g_new, accepted)};</div>
+<div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span>          <span class="keyword">const</span> <span class="keywordtype">bool</span> steepest{(d + g).norm() &lt;= EPSILON * g.norm()};</div>
+<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span>          <span class="keyword">const</span> <span class="keywordtype">bool</span> stagnated{ok &amp;&amp; (x_new - x).norm() &lt;=</div>
+<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span>                                         EPSILON * (1 + x.norm())};</div>
+<div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span>          <span class="keywordflow">if</span> (!ok || stagnated) {</div>
+<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span>            <span class="keywordflow">if</span> (steepest) {</div>
+<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span>              notes = ok ? <span class="stringliteral">&quot;Stagnation&quot;</span> : <span class="stringliteral">&quot;Line search failed&quot;</span>;</div>
+<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span>              <span class="keywordflow">if</span> (ok) {</div>
+<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span>                x = x_new;</div>
+<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span>                f = f_new;</div>
+<div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span>                g = g_new;</div>
+<div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span>                this-&gt;<a class="code hl_variable" href="class_optimist_1_1_solver_base.html#afc6d9026cd969627cb2e72c43c69ac71">m_converged</a> = g.norm() &lt; this-&gt;<a class="code hl_variable" href="class_optimist_1_1_solver_base.html#a7019f00274a2227d8997fe6b00d21018">m_tolerance</a>;</div>
+<div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span>              }</div>
+<div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span>              <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span>            }</div>
+<div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span>            <span class="keywordflow">if</span> (ok) {</div>
+<div class="line"><a id="l00391" name="l00391"></a><span class="lineno">  391</span>              x = x_new;</div>
+<div class="line"><a id="l00392" name="l00392"></a><span class="lineno">  392</span>              f = f_new;</div>
+<div class="line"><a id="l00393" name="l00393"></a><span class="lineno">  393</span>              g = g_new;</div>
+<div class="line"><a id="l00394" name="l00394"></a><span class="lineno">  394</span>            }</div>
+<div class="line"><a id="l00395" name="l00395"></a><span class="lineno">  395</span>            d     = -g;</div>
+<div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span>            trial = this-&gt;<a class="code hl_function" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#aa98492290011669b71ede828d8743671">clamp_step</a>(this-&gt;m_initial_step);</div>
+<div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span>            notes = <span class="stringliteral">&quot;Restart&quot;</span>;</div>
+<div class="line"><a id="l00398" name="l00398"></a><span class="lineno">  398</span>            <span class="keywordflow">continue</span>;</div>
+<div class="line"><a id="l00399" name="l00399"></a><span class="lineno">  399</span>          }</div>
+<div class="line"><a id="l00400" name="l00400"></a><span class="lineno">  400</span> </div>
+<div class="line"><a id="l00401" name="l00401"></a><span class="lineno">  401</span>          <span class="comment">// New conjugate direction</span></div>
+<div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span>          <span class="keyword">const</span> <a class="code hl_typedef" href="class_optimist_1_1_solver_base.html#adc3d6ecfbd8861d8872dc651a7ec1762">FirstDerivative</a> y{g_new - g};</div>
+<div class="line"><a id="l00403" name="l00403"></a><span class="lineno">  403</span>          <span class="keyword">const</span> <a class="code hl_typedef" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac860050641e7e11a7f61f5d475e0595e">Scalar</a> beta{this-&gt;<a class="code hl_function" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a477d96bf17014d3d8b26c98fa2770435">compute_beta</a>(g, g_new, d, y)};</div>
+<div class="line"><a id="l00404" name="l00404"></a><span class="lineno">  404</span>          <a class="code hl_typedef" href="class_optimist_1_1_solver_base.html#adc3d6ecfbd8861d8872dc651a7ec1762">FirstDerivative</a> d_new{-g_new + beta * d};</div>
+<div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span>          <span class="keywordflow">if</span> (!std::isfinite(beta) || this-&gt;<a class="code hl_function" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a2f7ef23c8e99d6678bf86da2aa7199fd">should_restart</a>(g, g_new) ||</div>
+<div class="line"><a id="l00406" name="l00406"></a><span class="lineno">  406</span>              !this-&gt;<a class="code hl_function" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a24fda8a916e15875490862397758c150">has_sufficient_descent</a>(g_new, d_new)) {</div>
+<div class="line"><a id="l00407" name="l00407"></a><span class="lineno">  407</span>            d_new = -g_new;</div>
+<div class="line"><a id="l00408" name="l00408"></a><span class="lineno">  408</span>            notes = <span class="stringliteral">&quot;Restart&quot;</span>;</div>
+<div class="line"><a id="l00409" name="l00409"></a><span class="lineno">  409</span>          }</div>
+<div class="line"><a id="l00410" name="l00410"></a><span class="lineno">  410</span>          trial = this-&gt;<a class="code hl_function" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a732834556bea25a5bceb23a2d8489dd2">next_trial_step</a>(accepted, d, g, g_new);</div>
+<div class="line"><a id="l00411" name="l00411"></a><span class="lineno">  411</span>          x     = x_new;</div>
+<div class="line"><a id="l00412" name="l00412"></a><span class="lineno">  412</span>          f     = f_new;</div>
+<div class="line"><a id="l00413" name="l00413"></a><span class="lineno">  413</span>          g     = g_new;</div>
+<div class="line"><a id="l00414" name="l00414"></a><span class="lineno">  414</span>          d     = d_new;</div>
+<div class="line"><a id="l00415" name="l00415"></a><span class="lineno">  415</span>        }</div>
+<div class="line"><a id="l00416" name="l00416"></a><span class="lineno">  416</span> </div>
+<div class="line"><a id="l00417" name="l00417"></a><span class="lineno">  417</span>        <span class="keywordflow">if</span> (this-&gt;<a class="code hl_variable" href="class_optimist_1_1_solver_base.html#af7b647d27a26421da1c593070bc63cbc">m_verbose</a>) {</div>
+<div class="line"><a id="l00418" name="l00418"></a><span class="lineno">  418</span>          this-&gt;<a class="code hl_function" href="class_optimist_1_1_solver_base.html#afedfe01629bf6b3ed7e9706380fdbb9f">bottom</a>();</div>
+<div class="line"><a id="l00419" name="l00419"></a><span class="lineno">  419</span>        }</div>
+<div class="line"><a id="l00420" name="l00420"></a><span class="lineno">  420</span>        x_sol = x;</div>
+<div class="line"><a id="l00421" name="l00421"></a><span class="lineno">  421</span>        <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="class_optimist_1_1_solver_base.html#afc6d9026cd969627cb2e72c43c69ac71">m_converged</a>;</div>
+<div class="line"><a id="l00422" name="l00422"></a><span class="lineno">  422</span> </div>
+<div class="line"><a id="l00423" name="l00423"></a><span class="lineno">  423</span><span class="preprocessor">#undef CMD</span></div>
+<div class="line"><a id="l00424" name="l00424"></a><span class="lineno">  424</span>      }</div>
+</div>
+<div class="line"><a id="l00425" name="l00425"></a><span class="lineno">  425</span> </div>
+<div class="line"><a id="l00426" name="l00426"></a><span class="lineno">  426</span>     <span class="keyword">private</span>:</div>
+<div class="foldopen" id="foldopen00431" data-start="{" data-end="}">
+<div class="line"><a id="l00431" name="l00431"></a><span class="lineno"><a class="line" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#aa98492290011669b71ede828d8743671">  431</a></span>      <a class="code hl_typedef" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac860050641e7e11a7f61f5d475e0595e">Scalar</a> <a class="code hl_function" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#aa98492290011669b71ede828d8743671">clamp_step</a>(<a class="code hl_typedef" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac860050641e7e11a7f61f5d475e0595e">Scalar</a> t_step)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00432" name="l00432"></a><span class="lineno">  432</span>        <span class="keywordflow">if</span> (!std::isfinite(t_step) || t_step &lt;= 0) {</div>
+<div class="line"><a id="l00433" name="l00433"></a><span class="lineno">  433</span>          t_step = this-&gt;m_initial_step;</div>
+<div class="line"><a id="l00434" name="l00434"></a><span class="lineno">  434</span>        }</div>
+<div class="line"><a id="l00435" name="l00435"></a><span class="lineno">  435</span>        <span class="keywordflow">return</span> std::clamp(t_step, this-&gt;m_min_step, this-&gt;m_settings.<a class="code hl_variable" href="struct_optimist_1_1_line_search_1_1_settings.html#a0a6e1204e5b7b9bc0c0206902f2e5fe0">alpha_max</a>);</div>
+<div class="line"><a id="l00436" name="l00436"></a><span class="lineno">  436</span>      }</div>
+</div>
+<div class="line"><a id="l00437" name="l00437"></a><span class="lineno">  437</span></div>
+<div class="foldopen" id="foldopen00441" data-start="{" data-end="}">
+<div class="line"><a id="l00441" name="l00441"></a><span class="lineno"><a class="line" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a732834556bea25a5bceb23a2d8489dd2">  441</a></span>      <a class="code hl_typedef" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac860050641e7e11a7f61f5d475e0595e">Scalar</a> <a class="code hl_function" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a732834556bea25a5bceb23a2d8489dd2">next_trial_step</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac860050641e7e11a7f61f5d475e0595e">Scalar</a> accepted,</div>
+<div class="line"><a id="l00442" name="l00442"></a><span class="lineno">  442</span>                             <span class="keyword">const</span> <a class="code hl_typedef" href="class_optimist_1_1_solver_base.html#adc3d6ecfbd8861d8872dc651a7ec1762">FirstDerivative</a> &amp;d,</div>
+<div class="line"><a id="l00443" name="l00443"></a><span class="lineno">  443</span>                             <span class="keyword">const</span> <a class="code hl_typedef" href="class_optimist_1_1_solver_base.html#adc3d6ecfbd8861d8872dc651a7ec1762">FirstDerivative</a> &amp;g,</div>
+<div class="line"><a id="l00444" name="l00444"></a><span class="lineno">  444</span>                             <span class="keyword">const</span> <a class="code hl_typedef" href="class_optimist_1_1_solver_base.html#adc3d6ecfbd8861d8872dc651a7ec1762">FirstDerivative</a> &amp;g_new)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00445" name="l00445"></a><span class="lineno">  445</span>        <span class="keywordflow">if</span> (this-&gt;m_alpha_method == AlphaMethod::BARZILAI_BORWEIN) {</div>
+<div class="line"><a id="l00446" name="l00446"></a><span class="lineno">  446</span>          <span class="comment">// alpha = s&#39;s / s&#39;y along the previous direction, s = accepted * d</span></div>
+<div class="line"><a id="l00447" name="l00447"></a><span class="lineno">  447</span>          <span class="keyword">const</span> <a class="code hl_typedef" href="class_optimist_1_1_solver_base.html#adc3d6ecfbd8861d8872dc651a7ec1762">FirstDerivative</a> y{g_new - g};</div>
+<div class="line"><a id="l00448" name="l00448"></a><span class="lineno">  448</span>          <span class="keyword">const</span> <a class="code hl_typedef" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac860050641e7e11a7f61f5d475e0595e">Scalar</a> dy{d.dot(y)};</div>
+<div class="line"><a id="l00449" name="l00449"></a><span class="lineno">  449</span>          <span class="keywordflow">if</span> (dy &gt; EPSILON * d.norm() * y.norm()) {</div>
+<div class="line"><a id="l00450" name="l00450"></a><span class="lineno">  450</span>            <span class="keywordflow">return</span> this-&gt;<a class="code hl_function" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#aa98492290011669b71ede828d8743671">clamp_step</a>(accepted * d.squaredNorm() / dy);</div>
+<div class="line"><a id="l00451" name="l00451"></a><span class="lineno">  451</span>          }</div>
+<div class="line"><a id="l00452" name="l00452"></a><span class="lineno">  452</span>        }</div>
+<div class="line"><a id="l00453" name="l00453"></a><span class="lineno">  453</span>        <span class="keywordflow">return</span> this-&gt;<a class="code hl_function" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#aa98492290011669b71ede828d8743671">clamp_step</a>(accepted);</div>
+<div class="line"><a id="l00454" name="l00454"></a><span class="lineno">  454</span>      }</div>
+</div>
+<div class="line"><a id="l00455" name="l00455"></a><span class="lineno">  455</span></div>
+<div class="foldopen" id="foldopen00460" data-start="{" data-end="}">
+<div class="line"><a id="l00460" name="l00460"></a><span class="lineno"><a class="line" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a24fda8a916e15875490862397758c150">  460</a></span>      <span class="keywordtype">bool</span> <a class="code hl_function" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a24fda8a916e15875490862397758c150">has_sufficient_descent</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="class_optimist_1_1_solver_base.html#adc3d6ecfbd8861d8872dc651a7ec1762">FirstDerivative</a> &amp;g,</div>
+<div class="line"><a id="l00461" name="l00461"></a><span class="lineno">  461</span>                                  <span class="keyword">const</span> <a class="code hl_typedef" href="class_optimist_1_1_solver_base.html#adc3d6ecfbd8861d8872dc651a7ec1762">FirstDerivative</a> &amp;d)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00462" name="l00462"></a><span class="lineno">  462</span>        <span class="keyword">const</span> <a class="code hl_typedef" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac860050641e7e11a7f61f5d475e0595e">Scalar</a> gd{g.dot(d)};</div>
+<div class="line"><a id="l00463" name="l00463"></a><span class="lineno">  463</span>        <span class="keywordflow">return</span> std::isfinite(gd) &amp;&amp;</div>
+<div class="line"><a id="l00464" name="l00464"></a><span class="lineno">  464</span>               gd &lt;= -this-&gt;m_descent_parameter * g.squaredNorm();</div>
+<div class="line"><a id="l00465" name="l00465"></a><span class="lineno">  465</span>      }</div>
+</div>
+<div class="line"><a id="l00466" name="l00466"></a><span class="lineno">  466</span></div>
+<div class="foldopen" id="foldopen00470" data-start="{" data-end="}">
+<div class="line"><a id="l00470" name="l00470"></a><span class="lineno"><a class="line" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a2f7ef23c8e99d6678bf86da2aa7199fd">  470</a></span>      <span class="keywordtype">bool</span> <a class="code hl_function" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a2f7ef23c8e99d6678bf86da2aa7199fd">should_restart</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="class_optimist_1_1_solver_base.html#adc3d6ecfbd8861d8872dc651a7ec1762">FirstDerivative</a> &amp;g,</div>
+<div class="line"><a id="l00471" name="l00471"></a><span class="lineno">  471</span>                          <span class="keyword">const</span> <a class="code hl_typedef" href="class_optimist_1_1_solver_base.html#adc3d6ecfbd8861d8872dc651a7ec1762">FirstDerivative</a> &amp;g_new)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00472" name="l00472"></a><span class="lineno">  472</span>        <span class="keywordflow">if</span> (!this-&gt;m_powell_restart) {</div>
+<div class="line"><a id="l00473" name="l00473"></a><span class="lineno">  473</span>          <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00474" name="l00474"></a><span class="lineno">  474</span>        }</div>
+<div class="line"><a id="l00475" name="l00475"></a><span class="lineno">  475</span>        <span class="keyword">const</span> <a class="code hl_typedef" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac860050641e7e11a7f61f5d475e0595e">Scalar</a> n{g.norm() * g_new.norm()};</div>
+<div class="line"><a id="l00476" name="l00476"></a><span class="lineno">  476</span>        <span class="keywordflow">return</span> n &gt; 0 &amp;&amp; g_new.dot(g) &lt;= -this-&gt;m_restart_tolerance * n;</div>
+<div class="line"><a id="l00477" name="l00477"></a><span class="lineno">  477</span>      }</div>
+</div>
+<div class="line"><a id="l00478" name="l00478"></a><span class="lineno">  478</span></div>
+<div class="foldopen" id="foldopen00492" data-start="{" data-end="}">
+<div class="line"><a id="l00492" name="l00492"></a><span class="lineno"><a class="line" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a477d96bf17014d3d8b26c98fa2770435">  492</a></span>      <a class="code hl_typedef" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac860050641e7e11a7f61f5d475e0595e">Scalar</a> <a class="code hl_function" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a477d96bf17014d3d8b26c98fa2770435">compute_beta</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="class_optimist_1_1_solver_base.html#adc3d6ecfbd8861d8872dc651a7ec1762">FirstDerivative</a> &amp;g,</div>
+<div class="line"><a id="l00493" name="l00493"></a><span class="lineno">  493</span>                          <span class="keyword">const</span> <a class="code hl_typedef" href="class_optimist_1_1_solver_base.html#adc3d6ecfbd8861d8872dc651a7ec1762">FirstDerivative</a> &amp;g_new,</div>
+<div class="line"><a id="l00494" name="l00494"></a><span class="lineno">  494</span>                          <span class="keyword">const</span> <a class="code hl_typedef" href="class_optimist_1_1_solver_base.html#adc3d6ecfbd8861d8872dc651a7ec1762">FirstDerivative</a> &amp;d,</div>
+<div class="line"><a id="l00495" name="l00495"></a><span class="lineno">  495</span>                          <span class="keyword">const</span> <a class="code hl_typedef" href="class_optimist_1_1_solver_base.html#adc3d6ecfbd8861d8872dc651a7ec1762">FirstDerivative</a> &amp;y)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00496" name="l00496"></a><span class="lineno">  496</span>        <span class="keyword">const</span> <a class="code hl_typedef" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac860050641e7e11a7f61f5d475e0595e">Scalar</a> gg{g.squaredNorm()};</div>
+<div class="line"><a id="l00497" name="l00497"></a><span class="lineno">  497</span>        <span class="keyword">const</span> <a class="code hl_typedef" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac860050641e7e11a7f61f5d475e0595e">Scalar</a> gg_new{g_new.squaredNorm()};</div>
+<div class="line"><a id="l00498" name="l00498"></a><span class="lineno">  498</span>        <span class="keyword">const</span> <a class="code hl_typedef" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac860050641e7e11a7f61f5d475e0595e">Scalar</a> dg{-d.dot(g)};</div>
+<div class="line"><a id="l00499" name="l00499"></a><span class="lineno">  499</span>        <span class="keyword">const</span> <a class="code hl_typedef" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac860050641e7e11a7f61f5d475e0595e">Scalar</a> dy{d.dot(y)};</div>
+<div class="line"><a id="l00500" name="l00500"></a><span class="lineno">  500</span>        <span class="keyword">const</span> <a class="code hl_typedef" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac860050641e7e11a7f61f5d475e0595e">Scalar</a> gy{g_new.dot(y)};</div>
+<div class="line"><a id="l00501" name="l00501"></a><span class="lineno">  501</span>        <span class="keyword">const</span> <span class="keywordtype">bool</span> ok_gg{gg &gt; 0};</div>
+<div class="line"><a id="l00502" name="l00502"></a><span class="lineno">  502</span>        <span class="keyword">const</span> <span class="keywordtype">bool</span> ok_dg{dg &gt; EPSILON * d.norm() * g.norm()};</div>
+<div class="line"><a id="l00503" name="l00503"></a><span class="lineno">  503</span>        <span class="keyword">const</span> <span class="keywordtype">bool</span> ok_dy{std::abs(dy) &gt; EPSILON * d.norm() * y.norm()};</div>
+<div class="line"><a id="l00504" name="l00504"></a><span class="lineno">  504</span> </div>
+<div class="line"><a id="l00505" name="l00505"></a><span class="lineno">  505</span>        <span class="comment">// Hager-Zhang: g_new&#39;(y - 2 d |y|^2/(d&#39;y)) / (d&#39;y)</span></div>
+<div class="line"><a id="l00506" name="l00506"></a><span class="lineno">  506</span>        <span class="keyword">auto</span> hager_zhang = [&amp;]() -&gt; <a class="code hl_typedef" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac860050641e7e11a7f61f5d475e0595e">Scalar</a> {</div>
+<div class="line"><a id="l00507" name="l00507"></a><span class="lineno">  507</span>          <span class="keywordflow">return</span> (gy - 2 * y.squaredNorm() / dy * g_new.dot(d)) / dy;</div>
+<div class="line"><a id="l00508" name="l00508"></a><span class="lineno">  508</span>        };</div>
+<div class="line"><a id="l00509" name="l00509"></a><span class="lineno">  509</span> </div>
+<div class="line"><a id="l00510" name="l00510"></a><span class="lineno">  510</span>        <span class="keywordflow">switch</span> (this-&gt;m_beta_method) {</div>
+<div class="line"><a id="l00511" name="l00511"></a><span class="lineno">  511</span>          <span class="keywordflow">case</span> BetaMethod::FLETCHER_REEVES:</div>
+<div class="line"><a id="l00512" name="l00512"></a><span class="lineno">  512</span>            <span class="keywordflow">return</span> ok_gg ? gg_new / gg : 0;</div>
+<div class="line"><a id="l00513" name="l00513"></a><span class="lineno">  513</span>          <span class="keywordflow">case</span> BetaMethod::POLAK_RIBIERE:</div>
+<div class="line"><a id="l00514" name="l00514"></a><span class="lineno">  514</span>            <span class="keywordflow">return</span> ok_gg ? gy / gg : 0;</div>
+<div class="line"><a id="l00515" name="l00515"></a><span class="lineno">  515</span>          <span class="keywordflow">case</span> BetaMethod::POLAK_RIBIERE_PLUS:</div>
+<div class="line"><a id="l00516" name="l00516"></a><span class="lineno">  516</span>            <span class="keywordflow">return</span> ok_gg ? std::max(gy / gg, <a class="code hl_typedef" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac860050641e7e11a7f61f5d475e0595e">Scalar</a>(0)) : 0;</div>
+<div class="line"><a id="l00517" name="l00517"></a><span class="lineno">  517</span>          <span class="keywordflow">case</span> BetaMethod::HESTENES_STIEFEL:</div>
+<div class="line"><a id="l00518" name="l00518"></a><span class="lineno">  518</span>            <span class="keywordflow">return</span> ok_dy ? gy / dy : 0;</div>
+<div class="line"><a id="l00519" name="l00519"></a><span class="lineno">  519</span>          <span class="keywordflow">case</span> BetaMethod::CONJUGATE_DESCENT:</div>
+<div class="line"><a id="l00520" name="l00520"></a><span class="lineno">  520</span>            <span class="keywordflow">return</span> ok_dg ? gg_new / dg : 0;</div>
+<div class="line"><a id="l00521" name="l00521"></a><span class="lineno">  521</span>          <span class="keywordflow">case</span> BetaMethod::LIU_STOREY:</div>
+<div class="line"><a id="l00522" name="l00522"></a><span class="lineno">  522</span>            <span class="keywordflow">return</span> ok_dg ? gy / dg : 0;</div>
+<div class="line"><a id="l00523" name="l00523"></a><span class="lineno">  523</span>          <span class="keywordflow">case</span> BetaMethod::DAI_YUAN:</div>
+<div class="line"><a id="l00524" name="l00524"></a><span class="lineno">  524</span>            <span class="keywordflow">return</span> ok_dy ? gg_new / dy : 0;</div>
+<div class="line"><a id="l00525" name="l00525"></a><span class="lineno">  525</span>          <span class="keywordflow">case</span> BetaMethod::HAGER_ZHANG:</div>
+<div class="line"><a id="l00526" name="l00526"></a><span class="lineno">  526</span>            <span class="keywordflow">return</span> ok_dy ? hager_zhang() : 0;</div>
+<div class="line"><a id="l00527" name="l00527"></a><span class="lineno">  527</span>          <span class="keywordflow">case</span> BetaMethod::HAGER_ZHANG_PLUS: {</div>
+<div class="line"><a id="l00528" name="l00528"></a><span class="lineno">  528</span>            <span class="keywordflow">if</span> (!ok_dy) {</div>
+<div class="line"><a id="l00529" name="l00529"></a><span class="lineno">  529</span>              <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00530" name="l00530"></a><span class="lineno">  530</span>            }</div>
+<div class="line"><a id="l00531" name="l00531"></a><span class="lineno">  531</span>            <span class="comment">// Truncation eta_k = -1/(|d| min(eta, |g_new|))</span></div>
+<div class="line"><a id="l00532" name="l00532"></a><span class="lineno">  532</span>            <span class="keyword">const</span> <a class="code hl_typedef" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac860050641e7e11a7f61f5d475e0595e">Scalar</a> den{d.norm() *</div>
+<div class="line"><a id="l00533" name="l00533"></a><span class="lineno">  533</span>                             std::min(this-&gt;m_truncation_parameter,</div>
+<div class="line"><a id="l00534" name="l00534"></a><span class="lineno">  534</span>                                      std::sqrt(gg_new))};</div>
+<div class="line"><a id="l00535" name="l00535"></a><span class="lineno">  535</span>            <span class="keyword">const</span> <a class="code hl_typedef" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac860050641e7e11a7f61f5d475e0595e">Scalar</a> bound{den &gt; 0 ? -1 / den : -INFTY};</div>
+<div class="line"><a id="l00536" name="l00536"></a><span class="lineno">  536</span>            <span class="keywordflow">return</span> std::max(hager_zhang(), bound);</div>
+<div class="line"><a id="l00537" name="l00537"></a><span class="lineno">  537</span>          }</div>
+<div class="line"><a id="l00538" name="l00538"></a><span class="lineno">  538</span>          <span class="keywordflow">default</span>:</div>
+<div class="line"><a id="l00539" name="l00539"></a><span class="lineno">  539</span>            <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00540" name="l00540"></a><span class="lineno">  540</span>        }</div>
+<div class="line"><a id="l00541" name="l00541"></a><span class="lineno">  541</span>      }</div>
+</div>
+<div class="line"><a id="l00542" name="l00542"></a><span class="lineno">  542</span></div>
+<div class="line"><a id="l00548" name="l00548"></a><span class="lineno">  548</span>      <span class="keyword">template</span> &lt;<span class="keyword">typename</span> FunctionLambda, <span class="keyword">typename</span> GradientLambda&gt;</div>
+<div class="foldopen" id="foldopen00549" data-start="{" data-end="}">
+<div class="line"><a id="l00549" name="l00549"></a><span class="lineno"><a class="line" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ad94021c31ce9ec5a659c115b0725111f">  549</a></span>      <span class="keywordtype">bool</span> <a class="code hl_function" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ad94021c31ce9ec5a659c115b0725111f">line_search</a>(FunctionLambda &amp;function,</div>
+<div class="line"><a id="l00550" name="l00550"></a><span class="lineno">  550</span>                       GradientLambda &amp;gradient,</div>
+<div class="line"><a id="l00551" name="l00551"></a><span class="lineno">  551</span>                       <span class="keyword">const</span> Vector &amp;x,</div>
+<div class="line"><a id="l00552" name="l00552"></a><span class="lineno">  552</span>                       <span class="keyword">const</span> <a class="code hl_typedef" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac860050641e7e11a7f61f5d475e0595e">Scalar</a> f,</div>
+<div class="line"><a id="l00553" name="l00553"></a><span class="lineno">  553</span>                       <span class="keyword">const</span> <a class="code hl_typedef" href="class_optimist_1_1_solver_base.html#adc3d6ecfbd8861d8872dc651a7ec1762">FirstDerivative</a> &amp;g,</div>
+<div class="line"><a id="l00554" name="l00554"></a><span class="lineno">  554</span>                       <span class="keyword">const</span> <a class="code hl_typedef" href="class_optimist_1_1_solver_base.html#adc3d6ecfbd8861d8872dc651a7ec1762">FirstDerivative</a> &amp;d,</div>
+<div class="line"><a id="l00555" name="l00555"></a><span class="lineno">  555</span>                       <span class="keyword">const</span> <a class="code hl_typedef" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac860050641e7e11a7f61f5d475e0595e">Scalar</a> trial,</div>
+<div class="line"><a id="l00556" name="l00556"></a><span class="lineno">  556</span>                       Vector &amp;x_new,</div>
+<div class="line"><a id="l00557" name="l00557"></a><span class="lineno">  557</span>                       <a class="code hl_typedef" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac860050641e7e11a7f61f5d475e0595e">Scalar</a> &amp;f_new,</div>
+<div class="line"><a id="l00558" name="l00558"></a><span class="lineno">  558</span>                       <a class="code hl_typedef" href="class_optimist_1_1_solver_base.html#adc3d6ecfbd8861d8872dc651a7ec1762">FirstDerivative</a> &amp;g_new,</div>
+<div class="line"><a id="l00559" name="l00559"></a><span class="lineno">  559</span>                       <a class="code hl_typedef" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac860050641e7e11a7f61f5d475e0595e">Scalar</a> &amp;accepted) {</div>
+<div class="line"><a id="l00560" name="l00560"></a><span class="lineno">  560</span><span class="preprocessor">#define CMD &quot;Optimist::Optimizer::ConjugateGradient::line_search(...): &quot;</span></div>
+<div class="line"><a id="l00561" name="l00561"></a><span class="lineno">  561</span> </div>
+<div class="line"><a id="l00562" name="l00562"></a><span class="lineno">  562</span>        <span class="keyword">const</span> <a class="code hl_typedef" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac860050641e7e11a7f61f5d475e0595e">Scalar</a> slope{g.dot(d)};</div>
+<div class="line"><a id="l00563" name="l00563"></a><span class="lineno">  563</span>        <a class="code hl_define" href="_optimist_8hh.html#ae84977f5cfcc4fc8178fd20cf52f9068">OPTIMIST_ASSERT</a>(slope &lt; 0, <a class="code hl_define" href="_adam_8hh.html#a0a5ceb9ceb914e08d345410b561cb37a">CMD</a> <span class="stringliteral">&quot;non-descent search direction.&quot;</span>);</div>
+<div class="line"><a id="l00564" name="l00564"></a><span class="lineno">  564</span> </div>
+<div class="line"><a id="l00565" name="l00565"></a><span class="lineno">  565</span>        <span class="comment">// Restriction of the objective, keeping the last evaluated point</span></div>
+<div class="line"><a id="l00566" name="l00566"></a><span class="lineno">  566</span>        <a class="code hl_typedef" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac860050641e7e11a7f61f5d475e0595e">Scalar</a> last{-1};</div>
+<div class="line"><a id="l00567" name="l00567"></a><span class="lineno">  567</span>        <span class="keywordtype">bool</span> g_valid{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00568" name="l00568"></a><span class="lineno">  568</span>        this-&gt;<a class="code hl_variable" href="class_optimist_1_1_solver_base.html#ade59773a8258c554559961c11e34430a">m_relaxations</a> = 0;</div>
+<div class="line"><a id="l00569" name="l00569"></a><span class="lineno">  569</span>        <span class="keyword">auto</span> phi = [&amp;](<span class="keyword">const</span> <a class="code hl_typedef" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac860050641e7e11a7f61f5d475e0595e">Scalar</a> a, <a class="code hl_typedef" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac860050641e7e11a7f61f5d475e0595e">Scalar</a> &amp;v, <a class="code hl_typedef" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac860050641e7e11a7f61f5d475e0595e">Scalar</a> *dv) -&gt; <span class="keywordtype">bool</span> {</div>
+<div class="line"><a id="l00570" name="l00570"></a><span class="lineno">  570</span>          ++this-&gt;<a class="code hl_variable" href="class_optimist_1_1_solver_base.html#ade59773a8258c554559961c11e34430a">m_relaxations</a>;</div>
+<div class="line"><a id="l00571" name="l00571"></a><span class="lineno">  571</span>          last    = a;</div>
+<div class="line"><a id="l00572" name="l00572"></a><span class="lineno">  572</span>          g_valid = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00573" name="l00573"></a><span class="lineno">  573</span>          x_new   = x + a * d;</div>
+<div class="line"><a id="l00574" name="l00574"></a><span class="lineno">  574</span>          <span class="keywordflow">if</span> (!this-&gt;<a class="code hl_function" href="class_optimist_1_1_solver_base.html#a38a5d43530e7fefa31ffaf45bfcdb565">evaluate_function</a>(function, x_new, v)) {</div>
+<div class="line"><a id="l00575" name="l00575"></a><span class="lineno">  575</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00576" name="l00576"></a><span class="lineno">  576</span>          }</div>
+<div class="line"><a id="l00577" name="l00577"></a><span class="lineno">  577</span>          f_new = v;</div>
+<div class="line"><a id="l00578" name="l00578"></a><span class="lineno">  578</span>          <span class="keywordflow">if</span> (dv != <span class="keyword">nullptr</span>) {</div>
+<div class="line"><a id="l00579" name="l00579"></a><span class="lineno">  579</span>            <span class="keywordflow">if</span> (!this-&gt;<a class="code hl_function" href="class_optimist_1_1_optimizer_1_1_optimizer.html#add4b6353d014d543d2140f3558a073ac">evaluate_gradient</a>(gradient, x_new, g_new)) {</div>
+<div class="line"><a id="l00580" name="l00580"></a><span class="lineno">  580</span>              <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00581" name="l00581"></a><span class="lineno">  581</span>            }</div>
+<div class="line"><a id="l00582" name="l00582"></a><span class="lineno">  582</span>            g_valid = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00583" name="l00583"></a><span class="lineno">  583</span>            *dv     = g_new.dot(d);</div>
+<div class="line"><a id="l00584" name="l00584"></a><span class="lineno">  584</span>          }</div>
+<div class="line"><a id="l00585" name="l00585"></a><span class="lineno">  585</span>          <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00586" name="l00586"></a><span class="lineno">  586</span>        };</div>
+<div class="line"><a id="l00587" name="l00587"></a><span class="lineno">  587</span> </div>
+<div class="line"><a id="l00588" name="l00588"></a><span class="lineno">  588</span>        accepted = trial;</div>
+<div class="line"><a id="l00589" name="l00589"></a><span class="lineno">  589</span>        <a class="code hl_typedef" href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac860050641e7e11a7f61f5d475e0595e">Scalar</a> value{f}, dvalue{slope};</div>
+<div class="line"><a id="l00590" name="l00590"></a><span class="lineno">  590</span>        <span class="keywordflow">if</span> (!<a class="code hl_function" href="namespace_optimist_1_1_line_search.html#a5bb16a16b94167edb55da7f158cb1fab">LineSearch::search</a>(this-&gt;m_line_search, phi, f, slope, accepted,</div>
+<div class="line"><a id="l00591" name="l00591"></a><span class="lineno">  591</span>                                value, dvalue, this-&gt;m_settings)) {</div>
+<div class="line"><a id="l00592" name="l00592"></a><span class="lineno">  592</span>          <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00593" name="l00593"></a><span class="lineno">  593</span>        }</div>
+<div class="line"><a id="l00594" name="l00594"></a><span class="lineno">  594</span> </div>
+<div class="line"><a id="l00595" name="l00595"></a><span class="lineno">  595</span>        <span class="comment">// Make sure the outputs refer to the accepted step</span></div>
+<div class="line"><a id="l00596" name="l00596"></a><span class="lineno">  596</span>        <span class="keywordflow">if</span> (last != accepted) {</div>
+<div class="line"><a id="l00597" name="l00597"></a><span class="lineno">  597</span>          x_new = x + accepted * d;</div>
+<div class="line"><a id="l00598" name="l00598"></a><span class="lineno">  598</span>          <a class="code hl_define" href="_optimist_8hh.html#ae84977f5cfcc4fc8178fd20cf52f9068">OPTIMIST_ASSERT</a>(this-&gt;<a class="code hl_function" href="class_optimist_1_1_solver_base.html#a38a5d43530e7fefa31ffaf45bfcdb565">evaluate_function</a>(function, x_new, f_new),</div>
+<div class="line"><a id="l00599" name="l00599"></a><span class="lineno">  599</span>                          <a class="code hl_define" href="_adam_8hh.html#a0a5ceb9ceb914e08d345410b561cb37a">CMD</a> <span class="stringliteral">&quot;function evaluation failed.&quot;</span>);</div>
+<div class="line"><a id="l00600" name="l00600"></a><span class="lineno">  600</span>          g_valid = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00601" name="l00601"></a><span class="lineno">  601</span>        }</div>
+<div class="line"><a id="l00602" name="l00602"></a><span class="lineno">  602</span>        <span class="keywordflow">if</span> (!g_valid) {</div>
+<div class="line"><a id="l00603" name="l00603"></a><span class="lineno">  603</span>          <a class="code hl_define" href="_optimist_8hh.html#ae84977f5cfcc4fc8178fd20cf52f9068">OPTIMIST_ASSERT</a>(this-&gt;<a class="code hl_function" href="class_optimist_1_1_optimizer_1_1_optimizer.html#add4b6353d014d543d2140f3558a073ac">evaluate_gradient</a>(gradient, x_new, g_new),</div>
+<div class="line"><a id="l00604" name="l00604"></a><span class="lineno">  604</span>                          <a class="code hl_define" href="_adam_8hh.html#a0a5ceb9ceb914e08d345410b561cb37a">CMD</a> <span class="stringliteral">&quot;gradient evaluation failed.&quot;</span>);</div>
+<div class="line"><a id="l00605" name="l00605"></a><span class="lineno">  605</span>        }</div>
+<div class="line"><a id="l00606" name="l00606"></a><span class="lineno">  606</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00607" name="l00607"></a><span class="lineno">  607</span> </div>
+<div class="line"><a id="l00608" name="l00608"></a><span class="lineno">  608</span><span class="preprocessor">#undef CMD</span></div>
+<div class="line"><a id="l00609" name="l00609"></a><span class="lineno">  609</span>      }</div>
+</div>
+<div class="line"><a id="l00610" name="l00610"></a><span class="lineno">  610</span> </div>
+<div class="line"><a id="l00611" name="l00611"></a><span class="lineno">  611</span>    };  <span class="comment">// class ConjugateGradient</span></div>
+</div>
+<div class="line"><a id="l00612" name="l00612"></a><span class="lineno">  612</span> </div>
+<div class="line"><a id="l00613" name="l00613"></a><span class="lineno">  613</span>  }  <span class="comment">// namespace Optimizer</span></div>
+<div class="line"><a id="l00614" name="l00614"></a><span class="lineno">  614</span> </div>
+<div class="line"><a id="l00615" name="l00615"></a><span class="lineno">  615</span>}  <span class="comment">// namespace Optimist</span></div>
+<div class="line"><a id="l00616" name="l00616"></a><span class="lineno">  616</span> </div>
+<div class="line"><a id="l00617" name="l00617"></a><span class="lineno">  617</span><span class="preprocessor">#endif  </span><span class="comment">// OPTIMIST_OPTIMIZER_CONJUGATE_GRADIENT_HH</span></div>
+<div class="ttc" id="a_adam_8hh_html_a0a5ceb9ceb914e08d345410b561cb37a"><div class="ttname"><a href="_adam_8hh.html#a0a5ceb9ceb914e08d345410b561cb37a">CMD</a></div><div class="ttdeci">#define CMD</div></div>
+<div class="ttc" id="a_line_search_8hh_html"><div class="ttname"><a href="_line_search_8hh.html">LineSearch.hh</a></div></div>
+<div class="ttc" id="a_optimist_8hh_html_a437ef92626d0fc8f1fabd296ca796056"><div class="ttname"><a href="_optimist_8hh.html#a437ef92626d0fc8f1fabd296ca796056">OPTIMIST_BASIC_CONSTANTS</a></div><div class="ttdeci">#define OPTIMIST_BASIC_CONSTANTS(Scalar)</div><div class="ttdef"><b>Definition</b> Optimist.hh:70</div></div>
+<div class="ttc" id="a_optimist_8hh_html_ae84977f5cfcc4fc8178fd20cf52f9068"><div class="ttname"><a href="_optimist_8hh.html#ae84977f5cfcc4fc8178fd20cf52f9068">OPTIMIST_ASSERT</a></div><div class="ttdeci">#define OPTIMIST_ASSERT(COND, MSG)</div><div class="ttdef"><b>Definition</b> Optimist.hh:48</div></div>
+<div class="ttc" id="a_optimizer_8hh_html"><div class="ttname"><a href="_optimizer_8hh.html">Optimizer.hh</a></div></div>
+<div class="ttc" id="aclass_optimist_1_1_optimizer_1_1_conjugate_gradient_html_a071d8602897e327d051b12086ddde840"><div class="ttname"><a href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a071d8602897e327d051b12086ddde840">Optimist::Optimizer::ConjugateGradient::restart_tolerance</a></div><div class="ttdeci">void restart_tolerance(const Scalar t_restart_tolerance)</div><div class="ttdef"><b>Definition</b> ConjugateGradient.hh:316</div></div>
+<div class="ttc" id="aclass_optimist_1_1_optimizer_1_1_conjugate_gradient_html_a0a355784210cbb95d09f0fbb5aafb4e9"><div class="ttname"><a href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a0a355784210cbb95d09f0fbb5aafb4e9">Optimist::Optimizer::ConjugateGradient::beta_method</a></div><div class="ttdeci">BetaMethod beta_method() const</div><div class="ttdef"><b>Definition</b> ConjugateGradient.hh:105</div></div>
+<div class="ttc" id="aclass_optimist_1_1_optimizer_1_1_conjugate_gradient_html_a0bbf164b24fee6526c6b3ecf5dbb88d5"><div class="ttname"><a href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a0bbf164b24fee6526c6b3ecf5dbb88d5">Optimist::Optimizer::ConjugateGradient::ConjugateGradient</a></div><div class="ttdeci">ConjugateGradient()</div><div class="ttdef"><b>Definition</b> ConjugateGradient.hh:92</div></div>
+<div class="ttc" id="aclass_optimist_1_1_optimizer_1_1_conjugate_gradient_html_a0cc7fd9666c14e563a8627b7d36b52c6"><div class="ttname"><a href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a0cc7fd9666c14e563a8627b7d36b52c6">Optimist::Optimizer::ConjugateGradient::disable_powell_restart</a></div><div class="ttdeci">void disable_powell_restart()</div><div class="ttdef"><b>Definition</b> ConjugateGradient.hh:300</div></div>
+<div class="ttc" id="aclass_optimist_1_1_optimizer_1_1_conjugate_gradient_html_a11c05b2b74df1ce6406db2fe930a31fe"><div class="ttname"><a href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a11c05b2b74df1ce6406db2fe930a31fe">Optimist::Optimizer::ConjugateGradient::initial_step</a></div><div class="ttdeci">void initial_step(const Scalar t_initial_step)</div><div class="ttdef"><b>Definition</b> ConjugateGradient.hh:219</div></div>
+<div class="ttc" id="aclass_optimist_1_1_optimizer_1_1_conjugate_gradient_html_a13428296ea5476ad781334559ba2efbf"><div class="ttname"><a href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a13428296ea5476ad781334559ba2efbf">Optimist::Optimizer::ConjugateGradient::enable_dai_yuan_method</a></div><div class="ttdeci">void enable_dai_yuan_method()</div><div class="ttdef"><b>Definition</b> ConjugateGradient.hh:147</div></div>
+<div class="ttc" id="aclass_optimist_1_1_optimizer_1_1_conjugate_gradient_html_a1d5bba05b7b883d0b2e1398796da8d3e"><div class="ttname"><a href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a1d5bba05b7b883d0b2e1398796da8d3e">Optimist::Optimizer::ConjugateGradient::enable_hager_zhang_method</a></div><div class="ttdeci">void enable_hager_zhang_method()</div><div class="ttdef"><b>Definition</b> ConjugateGradient.hh:152</div></div>
+<div class="ttc" id="aclass_optimist_1_1_optimizer_1_1_conjugate_gradient_html_a24fda8a916e15875490862397758c150"><div class="ttname"><a href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a24fda8a916e15875490862397758c150">Optimist::Optimizer::ConjugateGradient::has_sufficient_descent</a></div><div class="ttdeci">bool has_sufficient_descent(const FirstDerivative &amp;g, const FirstDerivative &amp;d) const</div><div class="ttdef"><b>Definition</b> ConjugateGradient.hh:460</div></div>
+<div class="ttc" id="aclass_optimist_1_1_optimizer_1_1_conjugate_gradient_html_a269001037d17c27fef1871576dea7f2c"><div class="ttname"><a href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a269001037d17c27fef1871576dea7f2c">Optimist::Optimizer::ConjugateGradient::enable_powell_restart</a></div><div class="ttdeci">void enable_powell_restart()</div><div class="ttdef"><b>Definition</b> ConjugateGradient.hh:295</div></div>
+<div class="ttc" id="aclass_optimist_1_1_optimizer_1_1_conjugate_gradient_html_a26c3b5d450eeec2233e944327766ab6f"><div class="ttname"><a href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a26c3b5d450eeec2233e944327766ab6f">Optimist::Optimizer::ConjugateGradient::RequiresSecondDerivative</a></div><div class="ttdeci">static constexpr bool RequiresSecondDerivative</div><div class="ttdef"><b>Definition</b> ConjugateGradient.hh:38</div></div>
+<div class="ttc" id="aclass_optimist_1_1_optimizer_1_1_conjugate_gradient_html_a2a2ad010c645526387d8382060ec8449"><div class="ttname"><a href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a2a2ad010c645526387d8382060ec8449">Optimist::Optimizer::ConjugateGradient::m_truncation_parameter</a></div><div class="ttdeci">Scalar m_truncation_parameter</div><div class="ttdef"><b>Definition</b> ConjugateGradient.hh:84</div></div>
+<div class="ttc" id="aclass_optimist_1_1_optimizer_1_1_conjugate_gradient_html_a2d68d50443bac79f8423aca97a3e7e82"><div class="ttname"><a href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a2d68d50443bac79f8423aca97a3e7e82">Optimist::Optimizer::ConjugateGradient::solve_impl</a></div><div class="ttdeci">bool solve_impl(FunctionLambda &amp;&amp;function, GradientLambda &amp;&amp;gradient, const Vector &amp;x_ini, Vector &amp;x_sol)</div><div class="ttdef"><b>Definition</b> ConjugateGradient.hh:332</div></div>
+<div class="ttc" id="aclass_optimist_1_1_optimizer_1_1_conjugate_gradient_html_a2ebb889a2c72af640f2b667cb1717f8e"><div class="ttname"><a href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a2ebb889a2c72af640f2b667cb1717f8e">Optimist::Optimizer::ConjugateGradient::m_beta_method</a></div><div class="ttdeci">BetaMethod m_beta_method</div><div class="ttdef"><b>Definition</b> ConjugateGradient.hh:71</div></div>
+<div class="ttc" id="aclass_optimist_1_1_optimizer_1_1_conjugate_gradient_html_a2f7ef23c8e99d6678bf86da2aa7199fd"><div class="ttname"><a href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a2f7ef23c8e99d6678bf86da2aa7199fd">Optimist::Optimizer::ConjugateGradient::should_restart</a></div><div class="ttdeci">bool should_restart(const FirstDerivative &amp;g, const FirstDerivative &amp;g_new) const</div><div class="ttdef"><b>Definition</b> ConjugateGradient.hh:470</div></div>
+<div class="ttc" id="aclass_optimist_1_1_optimizer_1_1_conjugate_gradient_html_a310af159011f976319f3b277e3b39dab"><div class="ttname"><a href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a310af159011f976319f3b277e3b39dab">Optimist::Optimizer::ConjugateGradient::m_descent_parameter</a></div><div class="ttdeci">Scalar m_descent_parameter</div><div class="ttdef"><b>Definition</b> ConjugateGradient.hh:83</div></div>
+<div class="ttc" id="aclass_optimist_1_1_optimizer_1_1_conjugate_gradient_html_a365c654590cfa5e5d5a0645f8d1b712a"><div class="ttname"><a href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a365c654590cfa5e5d5a0645f8d1b712a">Optimist::Optimizer::ConjugateGradient::m_restart_tolerance</a></div><div class="ttdeci">Scalar m_restart_tolerance</div><div class="ttdef"><b>Definition</b> ConjugateGradient.hh:86</div></div>
+<div class="ttc" id="aclass_optimist_1_1_optimizer_1_1_conjugate_gradient_html_a41ef883f73bd2e3ed122ba2f1d341627"><div class="ttname"><a href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a41ef883f73bd2e3ed122ba2f1d341627">Optimist::Optimizer::ConjugateGradient::line_search</a></div><div class="ttdeci">LineSearch::Method line_search() const</div><div class="ttdef"><b>Definition</b> ConjugateGradient.hh:188</div></div>
+<div class="ttc" id="aclass_optimist_1_1_optimizer_1_1_conjugate_gradient_html_a477d96bf17014d3d8b26c98fa2770435"><div class="ttname"><a href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a477d96bf17014d3d8b26c98fa2770435">Optimist::Optimizer::ConjugateGradient::compute_beta</a></div><div class="ttdeci">Scalar compute_beta(const FirstDerivative &amp;g, const FirstDerivative &amp;g_new, const FirstDerivative &amp;d, const FirstDerivative &amp;y) const</div><div class="ttdef"><b>Definition</b> ConjugateGradient.hh:492</div></div>
+<div class="ttc" id="aclass_optimist_1_1_optimizer_1_1_conjugate_gradient_html_a4affeb6dc000ddf5f76406cdfa16eb23"><div class="ttname"><a href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a4affeb6dc000ddf5f76406cdfa16eb23">Optimist::Optimizer::ConjugateGradient::truncation_parameter</a></div><div class="ttdeci">Scalar truncation_parameter() const</div><div class="ttdef"><b>Definition</b> ConjugateGradient.hh:264</div></div>
+<div class="ttc" id="aclass_optimist_1_1_optimizer_1_1_conjugate_gradient_html_a4d09a952511fe499df5117ee63ff5228"><div class="ttname"><a href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a4d09a952511fe499df5117ee63ff5228">Optimist::Optimizer::ConjugateGradient::descent_parameter</a></div><div class="ttdeci">void descent_parameter(const Scalar t_descent_parameter)</div><div class="ttdef"><b>Definition</b> ConjugateGradient.hh:254</div></div>
+<div class="ttc" id="aclass_optimist_1_1_optimizer_1_1_conjugate_gradient_html_a4d2680f578dea46de94d52c7fc326577"><div class="ttname"><a href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a4d2680f578dea46de94d52c7fc326577">Optimist::Optimizer::ConjugateGradient::m_settings</a></div><div class="ttdeci">LineSearch::Settings&lt; Scalar &gt; m_settings</div><div class="ttdef"><b>Definition</b> ConjugateGradient.hh:76</div></div>
+<div class="ttc" id="aclass_optimist_1_1_optimizer_1_1_conjugate_gradient_html_a4d83efce0ae51e24f115e2a048402a87"><div class="ttname"><a href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a4d83efce0ae51e24f115e2a048402a87">Optimist::Optimizer::ConjugateGradient::VectorTrait</a></div><div class="ttdeci">TypeTrait&lt; Vector &gt; VectorTrait</div><div class="ttdef"><b>Definition</b> ConjugateGradient.hh:40</div></div>
+<div class="ttc" id="aclass_optimist_1_1_optimizer_1_1_conjugate_gradient_html_a67d27096661ecb8901723e13e3b1f273"><div class="ttname"><a href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a67d27096661ecb8901723e13e3b1f273">Optimist::Optimizer::ConjugateGradient::name_impl</a></div><div class="ttdeci">constexpr std::string name_impl() const</div><div class="ttdef"><b>Definition</b> ConjugateGradient.hh:98</div></div>
+<div class="ttc" id="aclass_optimist_1_1_optimizer_1_1_conjugate_gradient_html_a6f1e78fdeab02494401fa664e83730e5"><div class="ttname"><a href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a6f1e78fdeab02494401fa664e83730e5">Optimist::Optimizer::ConjugateGradient::powell_restart</a></div><div class="ttdeci">void powell_restart(const bool t_powell_restart)</div><div class="ttdef"><b>Definition</b> ConjugateGradient.hh:290</div></div>
+<div class="ttc" id="aclass_optimist_1_1_optimizer_1_1_conjugate_gradient_html_a727a6ce454dd5969993b2d7d3ca44e9b"><div class="ttname"><a href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a727a6ce454dd5969993b2d7d3ca44e9b">Optimist::Optimizer::ConjugateGradient::enable_polak_ribiere_method</a></div><div class="ttdeci">void enable_polak_ribiere_method()</div><div class="ttdef"><b>Definition</b> ConjugateGradient.hh:122</div></div>
+<div class="ttc" id="aclass_optimist_1_1_optimizer_1_1_conjugate_gradient_html_a732834556bea25a5bceb23a2d8489dd2"><div class="ttname"><a href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a732834556bea25a5bceb23a2d8489dd2">Optimist::Optimizer::ConjugateGradient::next_trial_step</a></div><div class="ttdeci">Scalar next_trial_step(const Scalar accepted, const FirstDerivative &amp;d, const FirstDerivative &amp;g, const FirstDerivative &amp;g_new) const</div><div class="ttdef"><b>Definition</b> ConjugateGradient.hh:441</div></div>
+<div class="ttc" id="aclass_optimist_1_1_optimizer_1_1_conjugate_gradient_html_a83836038fd7dfae76ed7b9403cb1bc6c"><div class="ttname"><a href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a83836038fd7dfae76ed7b9403cb1bc6c">Optimist::Optimizer::ConjugateGradient::m_initial_step</a></div><div class="ttdeci">Scalar m_initial_step</div><div class="ttdef"><b>Definition</b> ConjugateGradient.hh:81</div></div>
+<div class="ttc" id="aclass_optimist_1_1_optimizer_1_1_conjugate_gradient_html_a83989192f715b3f702f3851b0175c52a"><div class="ttname"><a href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a83989192f715b3f702f3851b0175c52a">Optimist::Optimizer::ConjugateGradient::m_powell_restart</a></div><div class="ttdeci">bool m_powell_restart</div><div class="ttdef"><b>Definition</b> ConjugateGradient.hh:85</div></div>
+<div class="ttc" id="aclass_optimist_1_1_optimizer_1_1_conjugate_gradient_html_a8675c06db13892dddc7dd971f7dd3035"><div class="ttname"><a href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a8675c06db13892dddc7dd971f7dd3035">Optimist::Optimizer::ConjugateGradient::m_min_step</a></div><div class="ttdeci">Scalar m_min_step</div><div class="ttdef"><b>Definition</b> ConjugateGradient.hh:82</div></div>
+<div class="ttc" id="aclass_optimist_1_1_optimizer_1_1_conjugate_gradient_html_a869825f25361ba71609641a588657872"><div class="ttname"><a href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a869825f25361ba71609641a588657872">Optimist::Optimizer::ConjugateGradient::RequiresFirstDerivative</a></div><div class="ttdeci">static constexpr bool RequiresFirstDerivative</div><div class="ttdef"><b>Definition</b> ConjugateGradient.hh:37</div></div>
+<div class="ttc" id="aclass_optimist_1_1_optimizer_1_1_conjugate_gradient_html_a8ee597783db2ca2cb47becc816efe047"><div class="ttname"><a href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a8ee597783db2ca2cb47becc816efe047">Optimist::Optimizer::ConjugateGradient::m_line_search</a></div><div class="ttdeci">LineSearch::Method m_line_search</div><div class="ttdef"><b>Definition</b> ConjugateGradient.hh:74</div></div>
+<div class="ttc" id="aclass_optimist_1_1_optimizer_1_1_conjugate_gradient_html_a900a83d510876d0d685f04cabe339984"><div class="ttname"><a href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a900a83d510876d0d685f04cabe339984">Optimist::Optimizer::ConjugateGradient::AlphaMethod</a></div><div class="ttdeci">enum class AlphaMethod :Integer { ACCEPTED_STEP=0, BARZILAI_BORWEIN=1 } AlphaMethod</div><div class="ttdef"><b>Definition</b> ConjugateGradient.hh:65</div></div>
+<div class="ttc" id="aclass_optimist_1_1_optimizer_1_1_conjugate_gradient_html_a920a68b3fe958b86c369955005b1e638"><div class="ttname"><a href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a920a68b3fe958b86c369955005b1e638">Optimist::Optimizer::ConjugateGradient::enable_polak_ribiere_plus_method</a></div><div class="ttdeci">void enable_polak_ribiere_plus_method()</div><div class="ttdef"><b>Definition</b> ConjugateGradient.hh:127</div></div>
+<div class="ttc" id="aclass_optimist_1_1_optimizer_1_1_conjugate_gradient_html_a99f715d5667170d68b2615f6e3ec925f"><div class="ttname"><a href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#a99f715d5667170d68b2615f6e3ec925f">Optimist::Optimizer::ConjugateGradient::enable_hager_zhang_plus_method</a></div><div class="ttdeci">void enable_hager_zhang_plus_method()</div><div class="ttdef"><b>Definition</b> ConjugateGradient.hh:157</div></div>
+<div class="ttc" id="aclass_optimist_1_1_optimizer_1_1_conjugate_gradient_html_aa98492290011669b71ede828d8743671"><div class="ttname"><a href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#aa98492290011669b71ede828d8743671">Optimist::Optimizer::ConjugateGradient::clamp_step</a></div><div class="ttdeci">Scalar clamp_step(Scalar t_step) const</div><div class="ttdef"><b>Definition</b> ConjugateGradient.hh:431</div></div>
+<div class="ttc" id="aclass_optimist_1_1_optimizer_1_1_conjugate_gradient_html_aaca27b44bdcdcca43db6f473a66237a3"><div class="ttname"><a href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#aaca27b44bdcdcca43db6f473a66237a3">Optimist::Optimizer::ConjugateGradient::line_search</a></div><div class="ttdeci">void line_search(const LineSearch::Method t_line_search)</div><div class="ttdef"><b>Definition</b> ConjugateGradient.hh:197</div></div>
+<div class="ttc" id="aclass_optimist_1_1_optimizer_1_1_conjugate_gradient_html_aadc5ddc761302def1a7e4a941a6c1c73"><div class="ttname"><a href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#aadc5ddc761302def1a7e4a941a6c1c73">Optimist::Optimizer::ConjugateGradient::alpha_method</a></div><div class="ttdeci">void alpha_method(const AlphaMethod t_alpha_method)</div><div class="ttdef"><b>Definition</b> ConjugateGradient.hh:171</div></div>
+<div class="ttc" id="aclass_optimist_1_1_optimizer_1_1_conjugate_gradient_html_aafc31feb2168bcee749adc083bc17494"><div class="ttname"><a href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#aafc31feb2168bcee749adc083bc17494">Optimist::Optimizer::ConjugateGradient::enable_barzilai_borwein_alpha_method</a></div><div class="ttdeci">void enable_barzilai_borwein_alpha_method()</div><div class="ttdef"><b>Definition</b> ConjugateGradient.hh:181</div></div>
+<div class="ttc" id="aclass_optimist_1_1_optimizer_1_1_conjugate_gradient_html_ac087f52d50266973b7606d0bc8fb53c6"><div class="ttname"><a href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac087f52d50266973b7606d0bc8fb53c6">Optimist::Optimizer::ConjugateGradient::initial_step</a></div><div class="ttdeci">Scalar initial_step() const</div><div class="ttdef"><b>Definition</b> ConjugateGradient.hh:212</div></div>
+<div class="ttc" id="aclass_optimist_1_1_optimizer_1_1_conjugate_gradient_html_ac2d3568698442cb346f838cb30fe0465"><div class="ttname"><a href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac2d3568698442cb346f838cb30fe0465">Optimist::Optimizer::ConjugateGradient::enable_accepted_step_alpha_method</a></div><div class="ttdeci">void enable_accepted_step_alpha_method()</div><div class="ttdef"><b>Definition</b> ConjugateGradient.hh:176</div></div>
+<div class="ttc" id="aclass_optimist_1_1_optimizer_1_1_conjugate_gradient_html_ac3493c9fdd3f9efb58d1123c04df4602"><div class="ttname"><a href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac3493c9fdd3f9efb58d1123c04df4602">Optimist::Optimizer::ConjugateGradient::min_step</a></div><div class="ttdeci">void min_step(const Scalar t_min_step)</div><div class="ttdef"><b>Definition</b> ConjugateGradient.hh:236</div></div>
+<div class="ttc" id="aclass_optimist_1_1_optimizer_1_1_conjugate_gradient_html_ac673eb7fa74f5088d827e9409c8d8892"><div class="ttname"><a href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac673eb7fa74f5088d827e9409c8d8892">Optimist::Optimizer::ConjugateGradient::restart_tolerance</a></div><div class="ttdeci">Scalar restart_tolerance() const</div><div class="ttdef"><b>Definition</b> ConjugateGradient.hh:307</div></div>
+<div class="ttc" id="aclass_optimist_1_1_optimizer_1_1_conjugate_gradient_html_ac7dd54273c3c4e84436721beb2e1380f"><div class="ttname"><a href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac7dd54273c3c4e84436721beb2e1380f">Optimist::Optimizer::ConjugateGradient::m_alpha_method</a></div><div class="ttdeci">AlphaMethod m_alpha_method</div><div class="ttdef"><b>Definition</b> ConjugateGradient.hh:72</div></div>
+<div class="ttc" id="aclass_optimist_1_1_optimizer_1_1_conjugate_gradient_html_ac860050641e7e11a7f61f5d475e0595e"><div class="ttname"><a href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ac860050641e7e11a7f61f5d475e0595e">Optimist::Optimizer::ConjugateGradient::Scalar</a></div><div class="ttdeci">typename TypeTrait&lt; Vector &gt;::Scalar Scalar</div><div class="ttdef"><b>Definition</b> ConjugateGradient.hh:41</div></div>
+<div class="ttc" id="aclass_optimist_1_1_optimizer_1_1_conjugate_gradient_html_ad15090edc142d342871eea22c1fe3b8c"><div class="ttname"><a href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ad15090edc142d342871eea22c1fe3b8c">Optimist::Optimizer::ConjugateGradient::truncation_parameter</a></div><div class="ttdeci">void truncation_parameter(const Scalar t_truncation_parameter)</div><div class="ttdef"><b>Definition</b> ConjugateGradient.hh:272</div></div>
+<div class="ttc" id="aclass_optimist_1_1_optimizer_1_1_conjugate_gradient_html_ad3f9365b5e2feb253f988e38ec14ad99"><div class="ttname"><a href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ad3f9365b5e2feb253f988e38ec14ad99">Optimist::Optimizer::ConjugateGradient::enable_fletcher_reeves_method</a></div><div class="ttdeci">void enable_fletcher_reeves_method()</div><div class="ttdef"><b>Definition</b> ConjugateGradient.hh:117</div></div>
+<div class="ttc" id="aclass_optimist_1_1_optimizer_1_1_conjugate_gradient_html_ad675d9ccb20f5d549c0ab5fef4cbc15f"><div class="ttname"><a href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ad675d9ccb20f5d549c0ab5fef4cbc15f">Optimist::Optimizer::ConjugateGradient::RequiresFunction</a></div><div class="ttdeci">static constexpr bool RequiresFunction</div><div class="ttdef"><b>Definition</b> ConjugateGradient.hh:36</div></div>
+<div class="ttc" id="aclass_optimist_1_1_optimizer_1_1_conjugate_gradient_html_ad7173edd6b48ad72452dd4d2856ed575"><div class="ttname"><a href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ad7173edd6b48ad72452dd4d2856ed575">Optimist::Optimizer::ConjugateGradient::alpha_method</a></div><div class="ttdeci">AlphaMethod alpha_method() const</div><div class="ttdef"><b>Definition</b> ConjugateGradient.hh:164</div></div>
+<div class="ttc" id="aclass_optimist_1_1_optimizer_1_1_conjugate_gradient_html_ad790db1a8067739cf96fc65b7d3f0b03"><div class="ttname"><a href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ad790db1a8067739cf96fc65b7d3f0b03">Optimist::Optimizer::ConjugateGradient::enable_conjugate_descent_method</a></div><div class="ttdeci">void enable_conjugate_descent_method()</div><div class="ttdef"><b>Definition</b> ConjugateGradient.hh:137</div></div>
+<div class="ttc" id="aclass_optimist_1_1_optimizer_1_1_conjugate_gradient_html_ad94021c31ce9ec5a659c115b0725111f"><div class="ttname"><a href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ad94021c31ce9ec5a659c115b0725111f">Optimist::Optimizer::ConjugateGradient::line_search</a></div><div class="ttdeci">bool line_search(FunctionLambda &amp;function, GradientLambda &amp;gradient, const Vector &amp;x, const Scalar f, const FirstDerivative &amp;g, const FirstDerivative &amp;d, const Scalar trial, Vector &amp;x_new, Scalar &amp;f_new, FirstDerivative &amp;g_new, Scalar &amp;accepted)</div><div class="ttdef"><b>Definition</b> ConjugateGradient.hh:549</div></div>
+<div class="ttc" id="aclass_optimist_1_1_optimizer_1_1_conjugate_gradient_html_ae33570d50b48d8062e856ba2e7eebc7b"><div class="ttname"><a href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ae33570d50b48d8062e856ba2e7eebc7b">Optimist::Optimizer::ConjugateGradient::enable_hestenes_stiefel_method</a></div><div class="ttdeci">void enable_hestenes_stiefel_method()</div><div class="ttdef"><b>Definition</b> ConjugateGradient.hh:132</div></div>
+<div class="ttc" id="aclass_optimist_1_1_optimizer_1_1_conjugate_gradient_html_ae789bcd0ae60b930c2f0c3f1237d6c53"><div class="ttname"><a href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#ae789bcd0ae60b930c2f0c3f1237d6c53">Optimist::Optimizer::ConjugateGradient::powell_restart</a></div><div class="ttdeci">bool powell_restart() const</div><div class="ttdef"><b>Definition</b> ConjugateGradient.hh:282</div></div>
+<div class="ttc" id="aclass_optimist_1_1_optimizer_1_1_conjugate_gradient_html_aec5004dbbc4193e2aac0a00e9201f2ce"><div class="ttname"><a href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#aec5004dbbc4193e2aac0a00e9201f2ce">Optimist::Optimizer::ConjugateGradient::min_step</a></div><div class="ttdeci">Scalar min_step() const</div><div class="ttdef"><b>Definition</b> ConjugateGradient.hh:229</div></div>
+<div class="ttc" id="aclass_optimist_1_1_optimizer_1_1_conjugate_gradient_html_af3762b6a7d1ee395780ee2b5c75306e2"><div class="ttname"><a href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#af3762b6a7d1ee395780ee2b5c75306e2">Optimist::Optimizer::ConjugateGradient::beta_method</a></div><div class="ttdeci">void beta_method(const BetaMethod t_beta_method)</div><div class="ttdef"><b>Definition</b> ConjugateGradient.hh:112</div></div>
+<div class="ttc" id="aclass_optimist_1_1_optimizer_1_1_conjugate_gradient_html_afcdec08639a7e671494c057143d373a4"><div class="ttname"><a href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#afcdec08639a7e671494c057143d373a4">Optimist::Optimizer::ConjugateGradient::descent_parameter</a></div><div class="ttdeci">Scalar descent_parameter() const</div><div class="ttdef"><b>Definition</b> ConjugateGradient.hh:247</div></div>
+<div class="ttc" id="aclass_optimist_1_1_optimizer_1_1_conjugate_gradient_html_afde55b4cb5721d0ab121dac7d11a8500"><div class="ttname"><a href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#afde55b4cb5721d0ab121dac7d11a8500">Optimist::Optimizer::ConjugateGradient::line_search_settings</a></div><div class="ttdeci">LineSearch::Settings&lt; Scalar &gt; &amp; line_search_settings()</div><div class="ttdef"><b>Definition</b> ConjugateGradient.hh:205</div></div>
+<div class="ttc" id="aclass_optimist_1_1_optimizer_1_1_conjugate_gradient_html_afe8668b026460097747e3ac8f648facf"><div class="ttname"><a href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#afe8668b026460097747e3ac8f648facf">Optimist::Optimizer::ConjugateGradient::BetaMethod</a></div><div class="ttdeci">enum class BetaMethod :Integer { FLETCHER_REEVES=0, POLAK_RIBIERE=1, POLAK_RIBIERE_PLUS=2, HESTENES_STIEFEL=3, CONJUGATE_DESCENT=4, LIU_STOREY=5, DAI_YUAN=6, HAGER_ZHANG=7, HAGER_ZHANG_PLUS=8 } BetaMethod</div><div class="ttdef"><b>Definition</b> ConjugateGradient.hh:50</div></div>
+<div class="ttc" id="aclass_optimist_1_1_optimizer_1_1_conjugate_gradient_html_afede9cd18d312827e0a4410e8945b6e7"><div class="ttname"><a href="class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#afede9cd18d312827e0a4410e8945b6e7">Optimist::Optimizer::ConjugateGradient::enable_liu_storey_method</a></div><div class="ttdeci">void enable_liu_storey_method()</div><div class="ttdef"><b>Definition</b> ConjugateGradient.hh:142</div></div>
+<div class="ttc" id="aclass_optimist_1_1_optimizer_1_1_optimizer_html_ab5448e3266150b563d5d56b2ab5a404e"><div class="ttname"><a href="class_optimist_1_1_optimizer_1_1_optimizer.html#ab5448e3266150b563d5d56b2ab5a404e">Optimist::Optimizer::Optimizer&lt; Vector, ConjugateGradient&lt; Vector &gt; &gt;::Optimizer</a></div><div class="ttdeci">Optimizer()</div><div class="ttdef"><b>Definition</b> Optimizer.hh:58</div></div>
+<div class="ttc" id="aclass_optimist_1_1_optimizer_1_1_optimizer_html_add4b6353d014d543d2140f3558a073ac"><div class="ttname"><a href="class_optimist_1_1_optimizer_1_1_optimizer.html#add4b6353d014d543d2140f3558a073ac">Optimist::Optimizer::Optimizer&lt; Vector, ConjugateGradient&lt; Vector &gt; &gt;::evaluate_gradient</a></div><div class="ttdeci">bool evaluate_gradient(GradientLambda &amp;&amp;gradient, const Input &amp;x, FirstDerivative &amp;out)</div><div class="ttdef"><b>Definition</b> Optimizer.hh:128</div></div>
+<div class="ttc" id="aclass_optimist_1_1_solver_base_html_a08ed686a97cc6dc2a143ece4ebb421e0"><div class="ttname"><a href="class_optimist_1_1_solver_base.html#a08ed686a97cc6dc2a143ece4ebb421e0">Optimist::SolverBase&lt; Vector, TypeTrait&lt; Vector &gt;::Scalar, ConjugateGradient&lt; Vector &gt; &gt;::info</a></div><div class="ttdeci">void info(Scalar residuals, const std::string &amp;notes=&quot;-&quot;)</div><div class="ttdef"><b>Definition</b> SolverBase.hh:1218</div></div>
+<div class="ttc" id="aclass_optimist_1_1_solver_base_html_a38a5d43530e7fefa31ffaf45bfcdb565"><div class="ttname"><a href="class_optimist_1_1_solver_base.html#a38a5d43530e7fefa31ffaf45bfcdb565">Optimist::SolverBase&lt; Vector, TypeTrait&lt; Vector &gt;::Scalar, ConjugateGradient&lt; Vector &gt; &gt;::evaluate_function</a></div><div class="ttdeci">bool evaluate_function(FunctionLambda &amp;&amp;function, const Vector &amp;x, TypeTrait&lt; Vector &gt;::Scalar &amp;out)</div><div class="ttdef"><b>Definition</b> SolverBase.hh:1026</div></div>
+<div class="ttc" id="aclass_optimist_1_1_solver_base_html_a69295f7a09081eb8f90f124c5c2acb68"><div class="ttname"><a href="class_optimist_1_1_solver_base.html#a69295f7a09081eb8f90f124c5c2acb68">Optimist::SolverBase&lt; Vector, TypeTrait&lt; Vector &gt;::Scalar, ConjugateGradient&lt; Vector &gt; &gt;::m_max_iterations</a></div><div class="ttdeci">Integer m_max_iterations</div><div class="ttdef"><b>Definition</b> SolverBase.hh:101</div></div>
+<div class="ttc" id="aclass_optimist_1_1_solver_base_html_a7019f00274a2227d8997fe6b00d21018"><div class="ttname"><a href="class_optimist_1_1_solver_base.html#a7019f00274a2227d8997fe6b00d21018">Optimist::SolverBase&lt; Vector, TypeTrait&lt; Vector &gt;::Scalar, ConjugateGradient&lt; Vector &gt; &gt;::m_tolerance</a></div><div class="ttdeci">Scalar m_tolerance</div><div class="ttdef"><b>Definition</b> SolverBase.hh:108</div></div>
+<div class="ttc" id="aclass_optimist_1_1_solver_base_html_a845dc526e24f6d1799ecc7e707701604"><div class="ttname"><a href="class_optimist_1_1_solver_base.html#a845dc526e24f6d1799ecc7e707701604">Optimist::SolverBase&lt; Vector, TypeTrait&lt; Vector &gt;::Scalar, ConjugateGradient&lt; Vector &gt; &gt;::header</a></div><div class="ttdeci">void header()</div><div class="ttdef"><b>Definition</b> SolverBase.hh:1154</div></div>
+<div class="ttc" id="aclass_optimist_1_1_solver_base_html_aaabb0b2cce2b44555ab0da633501f7b9"><div class="ttname"><a href="class_optimist_1_1_solver_base.html#aaabb0b2cce2b44555ab0da633501f7b9">Optimist::SolverBase&lt; Vector, TypeTrait&lt; Vector &gt;::Scalar, ConjugateGradient&lt; Vector &gt; &gt;::reset_counters</a></div><div class="ttdeci">void reset_counters()</div><div class="ttdef"><b>Definition</b> SolverBase.hh:1008</div></div>
+<div class="ttc" id="aclass_optimist_1_1_solver_base_html_ab48e0fc65ce173c233c50c314ba59e17"><div class="ttname"><a href="class_optimist_1_1_solver_base.html#ab48e0fc65ce173c233c50c314ba59e17">Optimist::SolverBase&lt; Vector, TypeTrait&lt; Vector &gt;::Scalar, ConjugateGradient&lt; Vector &gt; &gt;::m_iterations</a></div><div class="ttdeci">Integer m_iterations</div><div class="ttdef"><b>Definition</b> SolverBase.hh:100</div></div>
+<div class="ttc" id="aclass_optimist_1_1_solver_base_html_adc3d6ecfbd8861d8872dc651a7ec1762"><div class="ttname"><a href="class_optimist_1_1_solver_base.html#adc3d6ecfbd8861d8872dc651a7ec1762">Optimist::SolverBase&lt; Vector, TypeTrait&lt; Vector &gt;::Scalar, ConjugateGradient&lt; Vector &gt; &gt;::FirstDerivative</a></div><div class="ttdeci">FunctionBase&lt; Vector, TypeTrait&lt; Vector &gt;::Scalar, ConjugateGradient&lt; Vector &gt; &gt;::FirstDerivative FirstDerivative</div><div class="ttdef"><b>Definition</b> SolverBase.hh:72</div></div>
+<div class="ttc" id="aclass_optimist_1_1_solver_base_html_ade59773a8258c554559961c11e34430a"><div class="ttname"><a href="class_optimist_1_1_solver_base.html#ade59773a8258c554559961c11e34430a">Optimist::SolverBase&lt; Vector, TypeTrait&lt; Vector &gt;::Scalar, ConjugateGradient&lt; Vector &gt; &gt;::m_relaxations</a></div><div class="ttdeci">Integer m_relaxations</div><div class="ttdef"><b>Definition</b> SolverBase.hh:103</div></div>
+<div class="ttc" id="aclass_optimist_1_1_solver_base_html_af7b647d27a26421da1c593070bc63cbc"><div class="ttname"><a href="class_optimist_1_1_solver_base.html#af7b647d27a26421da1c593070bc63cbc">Optimist::SolverBase&lt; Vector, TypeTrait&lt; Vector &gt;::Scalar, ConjugateGradient&lt; Vector &gt; &gt;::m_verbose</a></div><div class="ttdeci">bool m_verbose</div><div class="ttdef"><b>Definition</b> SolverBase.hh:110</div></div>
+<div class="ttc" id="aclass_optimist_1_1_solver_base_html_afc6d9026cd969627cb2e72c43c69ac71"><div class="ttname"><a href="class_optimist_1_1_solver_base.html#afc6d9026cd969627cb2e72c43c69ac71">Optimist::SolverBase&lt; Vector, TypeTrait&lt; Vector &gt;::Scalar, ConjugateGradient&lt; Vector &gt; &gt;::m_converged</a></div><div class="ttdeci">bool m_converged</div><div class="ttdef"><b>Definition</b> SolverBase.hh:116</div></div>
+<div class="ttc" id="aclass_optimist_1_1_solver_base_html_afedfe01629bf6b3ed7e9706380fdbb9f"><div class="ttname"><a href="class_optimist_1_1_solver_base.html#afedfe01629bf6b3ed7e9706380fdbb9f">Optimist::SolverBase&lt; Vector, TypeTrait&lt; Vector &gt;::Scalar, ConjugateGradient&lt; Vector &gt; &gt;::bottom</a></div><div class="ttdeci">void bottom()</div><div class="ttdef"><b>Definition</b> SolverBase.hh:1191</div></div>
+<div class="ttc" id="anamespace_optimist_1_1_line_search_html_a5bb16a16b94167edb55da7f158cb1fab"><div class="ttname"><a href="namespace_optimist_1_1_line_search.html#a5bb16a16b94167edb55da7f158cb1fab">Optimist::LineSearch::search</a></div><div class="ttdeci">bool search(const Method method, Phi &amp;&amp;phi, const Scalar phi_0, const Scalar dphi_0, Scalar &amp;alpha, Scalar &amp;phi_alpha, Scalar &amp;dphi_alpha, const Settings&lt; Scalar &gt; &amp;s)</div><div class="ttdoc">Run the selected line search.</div><div class="ttdef"><b>Definition</b> LineSearch.hh:614</div></div>
+<div class="ttc" id="anamespace_optimist_1_1_line_search_html_ad480d0ba8f9c1ce5f8a8ae6c3d42804b"><div class="ttname"><a href="namespace_optimist_1_1_line_search.html#ad480d0ba8f9c1ce5f8a8ae6c3d42804b">Optimist::LineSearch::Method</a></div><div class="ttdeci">enum class Method :Integer { ARMIJO=0, GOLDSTEIN=1, STRONG_WOLFE=2, MORE_THUENTE=3 } Method</div><div class="ttdoc">Available line search strategies.</div><div class="ttdef"><b>Definition</b> LineSearch.hh:41</div></div>
+<div class="ttc" id="anamespace_optimist_html"><div class="ttname"><a href="namespace_optimist.html">Optimist</a></div><div class="ttdoc">Namespace for the Optimist library.</div><div class="ttdef"><b>Definition</b> Optimist.hh:90</div></div>
+<div class="ttc" id="anamespace_optimist_html_a71c803585df543aec4079c8282e83baa"><div class="ttname"><a href="namespace_optimist.html#a71c803585df543aec4079c8282e83baa">Optimist::Integer</a></div><div class="ttdeci">OPTIMIST_DEFAULT_INTEGER_TYPE Integer</div><div class="ttdoc">The Integer type as used for the API.</div><div class="ttdef"><b>Definition</b> Optimist.hh:98</div></div>
+<div class="ttc" id="astruct_optimist_1_1_line_search_1_1_settings_html"><div class="ttname"><a href="struct_optimist_1_1_line_search_1_1_settings.html">Optimist::LineSearch::Settings</a></div><div class="ttdoc">Line search parameters and result.</div><div class="ttdef"><b>Definition</b> LineSearch.hh:71</div></div>
+<div class="ttc" id="astruct_optimist_1_1_line_search_1_1_settings_html_a0a6e1204e5b7b9bc0c0206902f2e5fe0"><div class="ttname"><a href="struct_optimist_1_1_line_search_1_1_settings.html#a0a6e1204e5b7b9bc0c0206902f2e5fe0">Optimist::LineSearch::Settings::alpha_max</a></div><div class="ttdeci">Scalar alpha_max</div><div class="ttdef"><b>Definition</b> LineSearch.hh:76</div></div>
+<div class="ttc" id="astruct_optimist_1_1_type_trait_html"><div class="ttname"><a href="struct_optimist_1_1_type_trait.html">Optimist::TypeTrait</a></div><div class="ttdef"><b>Definition</b> Optimist.hh:105</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_4270bfced15e0e73154b13468c7c9ad9.html">core</a></li><li class="navelem"><a href="dir_24d671cfcbc5d5238a6bd565a49d198f.html">include</a></li><li class="navelem"><a href="dir_332c8dd6e4e80f93cb7aa0b11826f145.html">Optimist</a></li><li class="navelem"><a href="dir_3f5646844f18fa840bd3517121475230.html">Optimizer</a></li><li class="navelem"><a href="_conjugate_gradient_8hh.html">ConjugateGradient.hh</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.18.0 </li>
+  </ul>
+</div>
+</body>
+</html>

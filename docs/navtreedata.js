@@ -25,12 +25,15 @@
 var NAVTREE =
 [
   [ "Optimist", "index.html", [
-    [ "Installation", "index.html#autotoc_md10", [
-      [ "Quick and dirty", "index.html#autotoc_md11", null ],
-      [ "CMake", "index.html#autotoc_md12", null ]
+    [ "Installation", "index.html#autotoc_md27", [
+      [ "Quick and dirty", "index.html#autotoc_md28", null ],
+      [ "CMake", "index.html#autotoc_md29", null ]
     ] ],
-    [ "Author", "index.html#autotoc_md13", null ],
-    [ "License", "index.html#autotoc_md14", null ],
+    [ "Solvers", "index.html#autotoc_md30", null ],
+    [ "Structure", "index.html#autotoc_md31", null ],
+    [ "Tests", "index.html#autotoc_md32", null ],
+    [ "Author", "index.html#autotoc_md33", null ],
+    [ "License", "index.html#autotoc_md34", null ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
@@ -47,7 +50,7 @@ var NAVTREE =
       [ "Class Members", "functions.html", [
         [ "All", "functions.html", "functions_dup" ],
         [ "Functions", "functions_func.html", "functions_func" ],
-        [ "Variables", "functions_vars.html", null ],
+        [ "Variables", "functions_vars.html", "functions_vars" ],
         [ "Typedefs", "functions_type.html", null ],
         [ "Related Symbols", "functions_rela.html", null ]
       ] ]
@@ -64,14 +67,17 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_algo748_8hh.html",
-"class_optimist_1_1_optimizer_1_1_exponential_decrease1.html#a52de9787afb7f2c1e30942de8c7bf58e",
-"class_optimist_1_1_optimizer_1_1_particle_swarm.html#a6dc320fd446a7008fc89d78996ff1268",
-"class_optimist_1_1_root_finder_1_1_newton.html#aed327f9af868ddfa05eb5eccdc7c913c",
-"class_optimist_1_1_solver_base.html#acbbf8c2c42758669832fb9976eb7440d",
-"functions_func_n.html"
+"_ackley_8hh.html",
+"class_optimist_1_1_function_base.html#a0cb79d76aac240dd0e379453103b2911",
+"class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#aa98492290011669b71ede828d8743671",
+"class_optimist_1_1_optimizer_1_1_particle_swarm.html",
+"class_optimist_1_1_root_finder_1_1_broyden.html#ae22328ebe546c963a73d66e376995020",
+"class_optimist_1_1_root_finder_1_1_varona.html#ab541ab761743dc17fbafeb1bc8a09084",
+"class_optimist_1_1_test_set_1_1_booth.html#afc9a1f2af834800d1fb3d204c8acfad5",
+"class_optimist_1_1_test_set_1_1_schaffer2.html#a07be0ddfd65e88694621fd3de39daaa3",
+"struct_optimist_1_1_type_trait_3_01_eigen_1_1_matrix_3_01_scalar_type_00_01_eigen_1_1_dynamic_00_01_eigen_1_1_dynamic_01_4_01_4.html#a28bb3170229745a3ed23a7ce4bfb7877"
 ];
 
-var SYNCONMSG = 'click to disable panel synchronization';
-var SYNCOFFMSG = 'click to enable panel synchronization';
-var LISTOFALLMEMBERS = 'List of all members';
+const SYNCONMSG = 'click to disable panel synchronization';
+const SYNCOFFMSG = 'click to enable panel synchronization';
+const LISTOFALLMEMBERS = 'List of all members';

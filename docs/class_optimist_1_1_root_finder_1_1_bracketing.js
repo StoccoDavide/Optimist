@@ -3,7 +3,7 @@ var class_optimist_1_1_root_finder_1_1_bracketing =
     [ "Bracketing", "class_optimist_1_1_root_finder_1_1_bracketing.html#a9a7fcf65e1a5b6e1435cf6abdc549852", null ],
     [ "find_root", "class_optimist_1_1_root_finder_1_1_bracketing.html#a200d7e8dc395ec1d455bbbe2eb317b4d", null ],
     [ "name_impl", "class_optimist_1_1_root_finder_1_1_bracketing.html#ad30ca27ca6b8b6f27da836c64e402aee", null ],
-    [ "solve_impl", "class_optimist_1_1_root_finder_1_1_bracketing.html#aa49bda0d78fd49ffff512825389019d4", null ],
+    [ "solve_impl", "class_optimist_1_1_root_finder_1_1_bracketing.html#a79ef27fa4cf98c8559bd352e49169343", null ],
     [ "tolerance_bracketing", "class_optimist_1_1_root_finder_1_1_bracketing.html#a6a5b7c817fad16b25d75072fd48c62c6", null ],
     [ "m_a", "class_optimist_1_1_root_finder_1_1_bracketing.html#a7a99ae18dc6b5ef8eb8e0e144ecacbbc", null ],
     [ "m_b", "class_optimist_1_1_root_finder_1_1_bracketing.html#a7fd3ccb99c8d2cfad52fe28b7d311d97", null ],

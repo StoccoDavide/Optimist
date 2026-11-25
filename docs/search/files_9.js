@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['neldermead_2ehh_0',['NelderMead.hh',['../_nelder_mead_8hh.html',1,'']]],
-  ['newton_2ehh_1',['Newton.hh',['../_newton_8hh.html',1,'']]],
-  ['newtonraphson_2ehh_2',['NewtonRaphson.hh',['../_newton_raphson_8hh.html',1,'']]]
+  ['levenbergmarquardt_2ehh_0',['LevenbergMarquardt.hh',['../_levenberg_marquardt_8hh.html',1,'']]],
+  ['linear_2ehh_1',['Linear.hh',['../_linear_8hh.html',1,'']]],
+  ['linesearch_2ehh_2',['LineSearch.hh',['../_line_search_8hh.html',1,'']]]
 ];

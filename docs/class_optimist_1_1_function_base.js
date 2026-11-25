@@ -1,10 +1,10 @@
 var class_optimist_1_1_function_base =
 [
-    [ "FirstDerivative", "class_optimist_1_1_function_base.html#a8f50b3a806adf6603e690de797e99dc1", null ],
+    [ "FirstDerivative", "class_optimist_1_1_function_base.html#a0cb79d76aac240dd0e379453103b2911", null ],
     [ "InputTrait", "class_optimist_1_1_function_base.html#a4d3b89e5eab1a58b6a21a2ea28d05ebc", null ],
     [ "OutputTrait", "class_optimist_1_1_function_base.html#aa9bdfdd48f32f7f17ccdcd29b0640a33", null ],
     [ "Scalar", "class_optimist_1_1_function_base.html#a0931ccb395e587fd3ed12ce056f3fcf7", null ],
-    [ "SecondDerivative", "class_optimist_1_1_function_base.html#a44889366bfcb71d25fae1ed5d0417a3f", null ],
+    [ "SecondDerivative", "class_optimist_1_1_function_base.html#acb5a3a307f735766ff083c1dad1129b9", null ],
     [ "FunctionBase", "class_optimist_1_1_function_base.html#ab5d1638e716d43bc195a23a00a1fec3d", null ],
     [ "evaluate", "class_optimist_1_1_function_base.html#a1e7795ee25f89a4d55c32f4e650bfd82", null ],
     [ "first_derivative", "class_optimist_1_1_function_base.html#a3487ae8abad3088975c8844b01a44ff9", null ],

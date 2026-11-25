@@ -1,7 +1,13 @@
 <map id="core/include/Optimist/RootFinder/Bracketing.hh" name="core/include/Optimist/RootFinder/Bracketing.hh">
-<area shape="rect" id="Node000001" title=" " alt="" coords="96,5,270,46"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="195,5,368,46"/>
 <area shape="rect" id="Node000002" href="$_algo748_8hh.html" title=" " alt="" coords="5,94,164,135"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="152,55,108,96,105,91,147,57"/>
-<area shape="rect" id="Node000003" href="$_chandrupatla_8hh.html" title=" " alt="" coords="188,94,376,135"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="218,54,262,94,257,93,216,59"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="224,55,131,96,128,91,222,50"/>
+<area shape="rect" id="Node000004" href="$_chandrupatla_8hh.html" title=" " alt="" coords="188,94,376,135"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="284,62,284,94,279,94,279,62"/>
+<area shape="rect" id="Node000005" href="$_i_t_p_8hh.html" title=" " alt="" coords="400,94,545,135"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="340,50,431,91,428,96,338,55"/>
+<area shape="rect" id="Node000003" href="$_solvers_8hh.html" title="Convenience header including every solver of the library." alt="" coords="210,183,354,223"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="144,139,238,180,236,185,142,144"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="284,150,284,182,279,182,279,150"/>
+<area shape="poly" id="edge6_Node000005_Node000003" title=" " alt="" coords="417,144,326,185,324,180,414,139"/>
 </map>

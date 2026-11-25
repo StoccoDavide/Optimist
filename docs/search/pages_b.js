@@ -1,5 +1,10 @@
 var searchData=
 [
-  ['quasi_20newton_20method_0',['Quasi-Newton method',['../class_optimist_1_1_root_finder_1_1_quasi_newton.html#autotoc_md7',1,'']]],
-  ['quick_20and_20dirty_1',['Quick and dirty',['../index.html#autotoc_md11',1,'']]]
+  ['marquardt_20method_0',['Levenberg-Marquardt method',['../class_optimist_1_1_root_finder_1_1_levenberg_marquardt.html#autotoc_md19',1,'']]],
+  ['matrix_20adaptation_20evolution_20strategy_1',['Covariance matrix adaptation evolution strategy',['../class_optimist_1_1_optimizer_1_1_c_m_a_e_s.html#autotoc_md5',1,'']]],
+  ['mead_20method_2',['Nelder-Mead method',['../class_optimist_1_1_optimizer_1_1_nelder_mead.html#autotoc_md8',1,'']]],
+  ['method_3',['method',['../class_optimist_1_1_optimizer_1_1_adam.html#autotoc_md2',1,'Adam method'],['../class_optimist_1_1_root_finder_1_1_broyden.html#autotoc_md14',1,'Broyden&apos;s method'],['../class_optimist_1_1_root_finder_1_1_chebyshev.html#autotoc_md15',1,'Chebyshev&apos;s method'],['../class_optimist_1_1_root_finder_1_1_greenstadt.html#autotoc_md16',1,'Greenstadt&apos;s method'],['../class_optimist_1_1_root_finder_1_1_halley.html#autotoc_md17',1,'Halley&apos;s method'],['../class_optimist_1_1_root_finder_1_1_i_t_p.html#autotoc_md18',1,'ITP method'],['../class_optimist_1_1_root_finder_1_1_levenberg_marquardt.html#autotoc_md19',1,'Levenberg-Marquardt method'],['../class_optimist_1_1_optimizer_1_1_nelder_mead.html#autotoc_md8',1,'Nelder-Mead method'],['../class_optimist_1_1_root_finder_1_1_newton.html#autotoc_md20',1,'Newton&apos;s method'],['../class_optimist_1_1_root_finder_1_1_newton_raphson.html#autotoc_md21',1,'Newton-Raphson method'],['../class_optimist_1_1_root_finder_1_1_quasi_newton.html#autotoc_md24',1,'Quasi-Newton method'],['../class_optimist_1_1_optimizer_1_1_trust_region.html#autotoc_md11',1,'Trust-region Newton method']]],
+  ['method_20for_20minimization_4',['Brent&apos;s method for minimization',['../class_optimist_1_1_optimizer_1_1_brent.html#autotoc_md4',1,'']]],
+  ['methods_5',['methods',['../class_optimist_1_1_optimizer_1_1_b_f_g_s.html#autotoc_md3',1,'BFGS and L-BFGS methods'],['../class_optimist_1_1_optimizer_1_1_conjugate_gradient.html#autotoc_md6',1,'Conjugate gradient methods']]],
+  ['minimization_6',['Brent&apos;s method for minimization',['../class_optimist_1_1_optimizer_1_1_brent.html#autotoc_md4',1,'']]]
 ];

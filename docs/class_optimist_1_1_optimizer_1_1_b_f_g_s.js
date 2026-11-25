@@ -1,0 +1,26 @@
+var class_optimist_1_1_optimizer_1_1_b_f_g_s =
+[
+    [ "Dense", "class_optimist_1_1_optimizer_1_1_b_f_g_s.html#a0a49535aa86109aad1373e303819cbd5", null ],
+    [ "DenseMatrix", "class_optimist_1_1_optimizer_1_1_b_f_g_s.html#a0aeb53af9934a6eaa81ac501ab45cd94", null ],
+    [ "Method", "class_optimist_1_1_optimizer_1_1_b_f_g_s.html#a3c70addce9de88606061da36f55fd8fa", null ],
+    [ "Scalar", "class_optimist_1_1_optimizer_1_1_b_f_g_s.html#acc63be8c2ec9e755d5e4b74ec3922461", null ],
+    [ "VectorTrait", "class_optimist_1_1_optimizer_1_1_b_f_g_s.html#acc8b1b61c77477e366d179ea8b484624", null ],
+    [ "BFGS", "class_optimist_1_1_optimizer_1_1_b_f_g_s.html#a8d87e3bfe0c25316fae1ea17367363d6", null ],
+    [ "line_search", "class_optimist_1_1_optimizer_1_1_b_f_g_s.html#adf0642b0ad555b70ff594f523874d060", null ],
+    [ "line_search", "class_optimist_1_1_optimizer_1_1_b_f_g_s.html#a648e4e761eea78a355f95e4cedbb0940", null ],
+    [ "line_search_settings", "class_optimist_1_1_optimizer_1_1_b_f_g_s.html#ac346f20e8eef19e8b764760e7db072e5", null ],
+    [ "memory", "class_optimist_1_1_optimizer_1_1_b_f_g_s.html#ada54b9e77c5225cbe7212b2601787741", null ],
+    [ "memory", "class_optimist_1_1_optimizer_1_1_b_f_g_s.html#a4ebc49bd9e1cae226ec921b7e57fa25a", null ],
+    [ "method", "class_optimist_1_1_optimizer_1_1_b_f_g_s.html#a36315fe4d757c192fcc89b0a1ec9522a", null ],
+    [ "method", "class_optimist_1_1_optimizer_1_1_b_f_g_s.html#a3fd15cf99e6b14af3c8b22c31d999ef8", null ],
+    [ "name_impl", "class_optimist_1_1_optimizer_1_1_b_f_g_s.html#a86c2c4ad191359f31bf72066d412c265", null ],
+    [ "solve_impl", "class_optimist_1_1_optimizer_1_1_b_f_g_s.html#abac336d53aa556fbb29e6cdb0be2d144", null ],
+    [ "two_loop", "class_optimist_1_1_optimizer_1_1_b_f_g_s.html#a6f8083b75ae0b547eaf2e90d94ca7bf1", null ],
+    [ "m_line_search", "class_optimist_1_1_optimizer_1_1_b_f_g_s.html#a84fb1d5910176956b6e8508daab22632", null ],
+    [ "m_memory", "class_optimist_1_1_optimizer_1_1_b_f_g_s.html#a7b8054b2e490ea9218eec604ff08bdac", null ],
+    [ "m_method", "class_optimist_1_1_optimizer_1_1_b_f_g_s.html#a2a6077e13c673e18e1b4a5d61fec898f", null ],
+    [ "m_settings", "class_optimist_1_1_optimizer_1_1_b_f_g_s.html#aa2171ad8a0ce7ddc3b5141394781be20", null ],
+    [ "RequiresFirstDerivative", "class_optimist_1_1_optimizer_1_1_b_f_g_s.html#a777bd6b7af587d773cf6353e8562f1ab", null ],
+    [ "RequiresFunction", "class_optimist_1_1_optimizer_1_1_b_f_g_s.html#a8d0241bdc00f745683c7d022510ff324", null ],
+    [ "RequiresSecondDerivative", "class_optimist_1_1_optimizer_1_1_b_f_g_s.html#a692a5e2ed679d79d6db28c0ed0abfb3d", null ]
+];

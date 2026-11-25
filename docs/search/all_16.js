@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['w_0',['W',['../class_optimist_1_1_root_finder_1_1_varona.html#a1aa99bd86308f5cc28e70702dc748270',1,'Optimist::RootFinder::Varona']]]
+  ['x_5ftolerance_0',['x_tolerance',['../struct_optimist_1_1_line_search_1_1_settings.html#ae77a782c5b6cf35a6c45a967a4172d1b',1,'Optimist::LineSearch::Settings']]]
 ];
