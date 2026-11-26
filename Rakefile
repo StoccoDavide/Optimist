@@ -56,7 +56,7 @@ else
   cmd_cmake_build += "-DCMAKE_BUILD_TYPE:VAR=Release "
 end
 if BUILD_TESTS then
-  cmd_cmake_build += "-DOPTIMIST_BUILD_TESTS:VAR=true "
+  cmd_cmake_build += "-DOPTIMIST_BUILD_TESTS:VAR=true -DOPTIMIST_BUILD_EXAMPLES:VAR=true "
 else
   cmd_cmake_build += "-DOPTIMIST_BUILD_TESTS:VAR=false "
 end

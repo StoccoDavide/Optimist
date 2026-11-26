@@ -55,11 +55,17 @@ target_include_directories(Optimist INTERFACE
 file(GLOB_RECURSE RELATIVE_HEADER_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
   "${CMAKE_CURRENT_SOURCE_DIR}/core/include/*.hh")
 
+# Examples
+option(OPTIMIST_BUILD_EXAMPLES "Build examples" OFF)
+
 # Tests
 option(OPTIMIST_BUILD_TESTS "Build tests" OFF)
 if(OPTIMIST_BUILD_TESTS)
   enable_testing()
   add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/core/tests)
+endif()
+if(OPTIMIST_BUILD_EXAMPLES)
+  add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/examples)
 endif()
 
 # Warnings are enforced on the tests only (see core/tests/CMakeLists.txt): an

@@ -81,6 +81,23 @@ The library is header-only and lives in `core/include`:
 
 A new solver derives from `RootFinder` or `Optimizer` (or from one of the family bases above), declares which derivatives it needs (`RequiresFirstDerivative`, `RequiresSecondDerivative`) and implements `solve_impl(...)`; `SolverBase` takes care of the rest.
 
+## Examples
+
+The `examples` folder holds small programs built with `-DOPTIMIST_BUILD_EXAMPLES=ON` (and run by CTest).
+
+`kepler_orbits` follows four satellites around Earth for three days of two-body motion. At every three-minute step it solves Kepler's equation $M = E - e\sin E$ for the eccentric anomaly with the `NewtonRaphson` and `Halley` root finders, then writes the positions as CSV files and draws the two figures below. More eccentric orbits need more iterations per solve, and Halley's method needs fewer than Newton's.
+
+| Satellite | Eccentricity | Period | Newton iterations | Halley iterations |
+|---|---|---|---|---|
+| Low Earth orbit | 0.001 | 1.54 h | 2.00 | 2.00 |
+| Eccentric orbit | 0.300 | 5.08 h | 3.86 | 2.99 |
+| Molniya orbit | 0.740 | 11.99 h | 4.56 | 3.65 |
+| Transfer orbit | 0.730 | 10.54 h | 4.53 | 3.63 |
+
+![Satellite orbits around Earth](examples/images/kepler_orbits.svg)
+
+![Satellite altitude over three days](examples/images/kepler_altitude.svg)
+
 ## Tests
 
 The tests use [`GoogleTest`](https://github.com/google/googletest), which is included as a submodule together with `Eigen`.
