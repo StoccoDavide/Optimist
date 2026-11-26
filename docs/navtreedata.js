@@ -31,9 +31,10 @@ var NAVTREE =
     ] ],
     [ "Solvers", "index.html#autotoc_md30", null ],
     [ "Structure", "index.html#autotoc_md31", null ],
-    [ "Tests", "index.html#autotoc_md32", null ],
-    [ "Author", "index.html#autotoc_md33", null ],
-    [ "License", "index.html#autotoc_md34", null ],
+    [ "Examples", "index.html#autotoc_md32", null ],
+    [ "Tests", "index.html#autotoc_md33", null ],
+    [ "Author", "index.html#autotoc_md34", null ],
+    [ "License", "index.html#autotoc_md35", null ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
@@ -75,7 +76,7 @@ var NAVTREEINDEX =
 "class_optimist_1_1_root_finder_1_1_varona.html#ab541ab761743dc17fbafeb1bc8a09084",
 "class_optimist_1_1_test_set_1_1_booth.html#afc9a1f2af834800d1fb3d204c8acfad5",
 "class_optimist_1_1_test_set_1_1_schaffer2.html#a07be0ddfd65e88694621fd3de39daaa3",
-"struct_optimist_1_1_type_trait_3_01_eigen_1_1_matrix_3_01_scalar_type_00_01_eigen_1_1_dynamic_00_01_eigen_1_1_dynamic_01_4_01_4.html#a28bb3170229745a3ed23a7ce4bfb7877"
+"struct_optimist_1_1_type_trait_3_01_eigen_1_1_matrix_3_01_scalar_type_00_01_eigen_1_1_dynamic_00_01_eigen_1_1_dynamic_01_4_01_4.html#a283a930e3e48b9b5bf7aeeabc6cc45b2"
 ];
 
 const SYNCONMSG = 'click to disable panel synchronization';

@@ -245,6 +245,30 @@ Structure</h1>
 </table>
 <p>A new solver derives from <span class="tt">RootFinder</span> or <span class="tt">Optimizer</span> (or from one of the family bases above), declares which derivatives it needs (<span class="tt">RequiresFirstDerivative</span>, <span class="tt">RequiresSecondDerivative</span>) and implements <span class="tt">solve_impl(...)</span>; <span class="tt">SolverBase</span> takes care of the rest.</p>
 <h1 class="doxsection"><a class="anchor" id="autotoc_md32"></a>
+Examples</h1>
+<p>The <span class="tt">examples</span> folder holds small programs built with <span class="tt">-DOPTIMIST_BUILD_EXAMPLES=ON</span> (and run by CTest).</p>
+<p><span class="tt">kepler_orbits</span> follows four satellites around Earth for three days of two-body motion. At every three-minute step it solves Kepler's equation \(M = E - e\sin E\) for the eccentric anomaly with the <span class="tt">NewtonRaphson</span> and <span class="tt">Halley</span> root finders, then writes the positions as CSV files and draws the two figures below. More eccentric orbits need more iterations per solve, and Halley's method needs fewer than Newton's.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Satellite  </th><th class="markdownTableHeadNone">Eccentricity  </th><th class="markdownTableHeadNone">Period  </th><th class="markdownTableHeadNone">Newton iterations  </th><th class="markdownTableHeadNone">Halley iterations  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Low Earth orbit  </td><td class="markdownTableBodyNone">0.001  </td><td class="markdownTableBodyNone">1.54 h  </td><td class="markdownTableBodyNone">2.00  </td><td class="markdownTableBodyNone">2.00  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Eccentric orbit  </td><td class="markdownTableBodyNone">0.300  </td><td class="markdownTableBodyNone">5.08 h  </td><td class="markdownTableBodyNone">3.86  </td><td class="markdownTableBodyNone">2.99  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Molniya orbit  </td><td class="markdownTableBodyNone">0.740  </td><td class="markdownTableBodyNone">11.99 h  </td><td class="markdownTableBodyNone">4.56  </td><td class="markdownTableBodyNone">3.65  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Transfer orbit  </td><td class="markdownTableBodyNone">0.730  </td><td class="markdownTableBodyNone">10.54 h  </td><td class="markdownTableBodyNone">4.53  </td><td class="markdownTableBodyNone">3.63  </td></tr>
+</table>
+<div class="image">
+<object type="image/svg+xml" data="kepler_orbits.svg" style="pointer-events: none;"></object>
+<div class="caption">
+Satellite orbits around Earth</div></div>
+    <div class="image">
+<object type="image/svg+xml" data="kepler_altitude.svg" style="pointer-events: none;"></object>
+<div class="caption">
+Satellite altitude over three days</div></div>
+    <h1 class="doxsection"><a class="anchor" id="autotoc_md33"></a>
 Tests</h1>
 <p>The tests use <a href="https://github.com/google/googletest"><span class="tt">GoogleTest</span></a>, which is included as a submodule together with <span class="tt">Eigen</span>.</p>
 <div class="fragment"><div class="line">git submodule update --init</div>
@@ -252,7 +276,7 @@ Tests</h1>
 <div class="line">cmake --build build --parallel</div>
 <div class="line">ctest --test-dir build --output-on-failure</div>
 </div><!-- fragment --><p>Configure with <span class="tt">-DOPTIMIST_BENCHMARK=ON</span> to make <span class="tt">test_benchmark</span> print a comparison of all optimizers on the cost functions of the test set.</p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md33"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md34"></a>
 Author</h1>
 <ul>
 <li>Davide Stocco <br  />
@@ -260,7 +284,7 @@ Author</h1>
  Department of Industrial Engineering <br  />
  email: <a href="mai'+'lto:+'dav'+'id'+'e.s'+'to'+'cco'+'@u'+'nit'+'n.'+'it'">david<span class="obfuscator">.nosp@m.</span>e.st<span class="obfuscator">.nosp@m.</span>occo@<span class="obfuscator">.nosp@m.</span>unit<span class="obfuscator">.nosp@m.</span>n.it</a></li>
 </ul>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md34"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md35"></a>
 License</h1>
 <p>The <span class="tt"><a class="el" href="namespace_optimist.html" title="Namespace for the Optimist library.">Optimist</a></span> project is distributed under the BSD 2-Clause License - see the <a href="https://StoccoDavide.github.io/Optimist/LICENSE">LICENSE</a> file for details.</p>
 <p>Here's what the license entails:</p>

@@ -24,5 +24,5 @@ var searchData=
   ['and_20l_20bfgs_20methods_21',['BFGS and L-BFGS methods',['../class_optimist_1_1_optimizer_1_1_b_f_g_s.html#autotoc_md3',1,'']]],
   ['armijo_22',['armijo',['../namespace_optimist_1_1_line_search.html#a1ac9157f37cb45253417346c75841a28',1,'Optimist::LineSearch']]],
   ['armijo_5fbound_23',['armijo_bound',['../namespace_optimist_1_1_line_search.html#a6c0d529f809b338609811c472029284f',1,'Optimist::LineSearch']]],
-  ['author_24',['Author',['../index.html#autotoc_md33',1,'']]]
+  ['author_24',['Author',['../index.html#autotoc_md34',1,'']]]
 ];
